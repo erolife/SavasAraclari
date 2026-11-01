@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eskiden Bugüne Savaş Makineleri — İnteraktif 3D Mühendislik & Teardown Müzesi</title>
+  <style>
+    :root {
+      --bg-cream: #f2ece1;
+      --bg-card: rgba(252, 249, 242, 0.92);
+      --bg-card-solid: #fcf9f2;
+      --bg-sub: #ebe4d6;
+      --border-warm: rgba(180, 145, 95, 0.32);
+      --border-slate: rgba(148, 163, 184, 0.38);
+      --accent: #d97706;
+      --accent-dark: #b45309;
+      --accent-soft: rgba(217, 119, 6, 0.14);
+      --cyan: #0284c7;
+      --cyan-soft: rgba(2, 132, 199, 0.12);
+      --emerald: #059669;
+      --emerald-soft: rgba(5, 150, 105, 0.14);
+      --danger: #dc2626;
+      --text-dark: #0f172a;
+      --text-main: #1e293b;
+      --text-body: #334155;
+      --text-muted: #64748b;
+      --font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg-cream);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle Engineering Blueprint Grid Background */
+    .blueprint-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(30, 41, 59, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 41, 59, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Sticky Top Navbar */
+    .navbar {
+      position: sticky;
+      top: 12px;
+      z-index: 50;
+      max-width: 1320px;
+      margin: 12px auto 0;
+      padding: 12px 22px;
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 11px;
+      padding: 5px 9px;
+      border-radius: 5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: 0.2px;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-body);
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-dark);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-slate);
+      background: rgba(241, 236, 225, 0.9);
+      color: var(--text-main);
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      background: #ffffff;
+      color: var(--text-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      border: 1px solid #b45309;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.42);
+    }
+
+    .btn-cyan {
+      background: var(--cyan-soft);
+      border-color: var(--cyan);
+      color: #0369a1;
+    }
+
+    .btn-cyan:hover {
+      background: var(--cyan);
+      color: #ffffff;
+    }
+
+    .btn-sm {
+      padding: 7px 12px;
+      font-size: 11.5px;
+      font-family: var(--font-mono);
+    }
+
+    /* Main Container */
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 32px;
+      align-items: center;
+      padding: 44px 0 56px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(217, 119, 6, 0.4);
+      color: var(--accent-dark);
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 4.2vw, 50px);
+      font-weight: 900;
+      color: var(--text-dark);
+      line-height: 1.12;
+      letter-spacing: -0.8px;
+      margin-bottom: 18px;
+    }
+
+    .hero-title span {
+      color: var(--accent-dark);
+      text-decoration: underline;
+      text-decoration-color: rgba(217, 119, 6, 0.35);
+      text-underline-offset: 6px;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-body);
+      margin-bottom: 26px;
+      max-width: 610px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: 10px;
+      padding: 12px 14px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .metric-val span {
+      color: var(--accent-dark);
+      font-size: 13px;
+    }
+
+    .metric-label {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Interactive 3D Hero Preview Card */
+    .hero-stage-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 6px;
+    }
+
+    .stage-badge {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--emerald);
+      background: var(--emerald-soft);
+      border: 1px solid rgba(5, 150, 105, 0.35);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .stage-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.25); }
+    }
+
+    .stage-viewport {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f2ece1;
+      border: 1px solid rgba(180, 145, 95, 0.28);
+      cursor: grab;
+    }
+
+    .stage-viewport:active {
+      cursor: grabbing;
+    }
+
+    .stage-overlay-hint {
+      position: absolute;
+      bottom: 10px;
+      left: 12px;
+      background: rgba(252, 249, 242, 0.9);
+      border: 1px solid var(--border-warm);
+      padding: 4px 9px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-body);
+      pointer-events: none;
+    }
+
+    .stage-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .stage-btn-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    /* SECTION HEADERS */
+    .section {
+      padding: 52px 0;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+      flex-wrap: wrap;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--accent-dark);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.4px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-body);
+      max-width: 540px;
+    }
+
+    /* FILTER PILLS */
+    .era-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border-slate);
+      background: rgba(241, 236, 225, 0.85);
+      color: var(--text-body);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--accent);
+      background: #ffffff;
+      color: var(--text-dark);
+    }
+
+    .filter-pill.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+
+    /* HISTORICAL TIMELINE & VEHICLE CATALOG GRID */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 22px;
+    }
+
+    .machine-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      position: relative;
+    }
+
+    .machine-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.11);
+      border-color: rgba(217, 119, 6, 0.6);
+    }
+
+    .machine-card.featured-active {
+      border: 2px solid var(--accent);
+      background: linear-gradient(180deg, rgba(255, 252, 245, 0.98) 0%, rgba(252, 247, 235, 0.96) 100%);
+      box-shadow: 0 12px 32px rgba(217, 119, 6, 0.16);
+    }
+
+    .mc-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .mc-year {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--bg-sub);
+      color: var(--text-dark);
+      border: 1px solid rgba(15, 23, 42, 0.12);
+    }
+
+    .mc-status {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+
+    .mc-status.live {
+      background: var(--emerald-soft);
+      color: var(--emerald);
+      border: 1px solid rgba(5, 150, 105, 0.35);
+    }
+
+    .mc-status.planned {
+      background: var(--cyan-soft);
+      color: #0369a1;
+      border: 1px solid rgba(2, 132, 199, 0.28);
+    }
+
+    /* Technical SVG Blueprint Box inside Card */
+    .mc-blueprint {
+      height: 155px;
+      border-radius: 10px;
+      background: #efe9dc;
+      border: 1px solid rgba(180, 145, 95, 0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 12px;
+    }
+
+    .mc-blueprint::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(30, 41, 59, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 41, 59, 0.05) 1px, transparent 1px);
+      background-size: 18px 18px;
+      pointer-events: none;
+    }
+
+    .mc-blueprint svg {
+      width: 100%;
+      height: 100%;
+      max-width: 300px;
+      z-index: 1;
+    }
+
+    .mc-blueprint-tag {
+      position: absolute;
+      bottom: 7px;
+      right: 9px;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: var(--text-muted);
+      background: rgba(252, 249, 242, 0.85);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .mc-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .mc-sub {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--accent-dark);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .mc-desc {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--text-body);
+    }
+
+    .mc-subsystems {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .sys-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: rgba(241, 236, 225, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-main);
+    }
+
+    .mc-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      background: rgba(241, 236, 225, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      border-radius: 8px;
+      padding: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .mc-specs div {
+      color: var(--text-muted);
+    }
+
+    .mc-specs strong {
+      color: var(--text-dark);
+      display: block;
+      font-size: 12px;
+      margin-top: 1px;
+    }
+
+    .mc-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mc-actions .btn {
+      flex: 1;
+    }
+
+    /* ARCHITECTURE & FEATURES BANNER */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    .feat-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(217, 119, 6, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    .feat-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .feat-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-body);
+    }
+
+    /* MODAL FOR PLANNED VEHICLES */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-card-solid);
+      border: 2px solid var(--accent);
+      border-radius: 14px;
+      max-width: 620px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+    }
+
+    .modal-list {
+      margin: 14px 0;
+      padding-left: 18px;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--text-body);
+    }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 40px;
+      padding: 28px 0 40px;
+      border-top: 1px solid rgba(15, 23, 42, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .catalog-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <div class="blueprint-grid"></div>
+
+  <!-- STICKY TOP NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="nav-brand">
+      <span class="brand-badge">TEARDOWN 3D</span>
+      <div>
+        <div class="brand-title">Eskiden Bugüne Savaş Makineleri</div>
+        <div class="brand-sub">İnteraktif 3D Mühendislik, Kesit ve Parçalama Müzesi</div>
+      </div>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#timeline">Tarihsel Katalog (M.Ö. 300 – 1943)</a>
+      <a href="#features">Mühendislik Modları</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="simulator.html?mode=explode" class="btn btn-sm" title="Parçalarına Ayrılmış Modda Aç">💥 %85 Teardown</a>
+      <a href="simulator.html" class="btn btn-primary btn-sm">🚀 Tiger I 3D Simülatörü Aç →</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO SECTION WITH LIVE 3D MINI TEARDOWN STAGE -->
+    <section class="hero">
+      <div>
+        <div class="hero-eyebrow">
+          <span>⚙️ PROSEDÜREL CAD & TEARDOWN SİMÜLATÖRÜ</span>
+        </div>
+        <h1 class="hero-title">
+          Savaş Tarihini Değiştiren Makinelerin <span>Kalbine İnin.</span>
+        </h1>
+        <p class="hero-desc">
+          Antik Roma'nın burulma yaylı <strong>Ballista</strong>'sından, 1453 İstanbul Kuşatması'nın dev bronz <strong>Şahi Topu</strong>'na ve II. Dünya Savaşı'nın 57 tonluk <strong>Tiger I</strong> tankına kadar tarihsel mühendislik harikalarını 3 boyutlu olarak parçalarına ayırın, X-Ray kesitlerini inceleyin ve mekanizmalarını canlı çalıştırın.
+        </p>
+
+        <div class="hero-actions">
+          <a href="simulator.html" class="btn btn-primary">
+            🔥 1942 Tiger I Simülatörü
+          </a>
+          <a href="simulator.html?vehicle=sahi" class="btn btn-primary" style="background:linear-gradient(135deg,#b45309,#78350f); border-color:#92400e;">
+            🏺 1453 Şahi Topu Simülatörü (Yeni!)
+          </a>
+          <a href="simulator.html?mode=xray" class="btn btn-cyan">
+            🩻 X-Ray Kesit Modu
+          </a>
+          <a href="#timeline" class="btn">
+            📜 Tarihsel Katalog
+          </a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-val">22 <span>Grup</span></div>
+            <div class="metric-label">Bağımsız Mekanik Alt Parça</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">%100 <span>CAD</span></div>
+            <div class="metric-label">Sıfır Harici Dosya, Saf Three.js</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">5 <span>Dönem</span></div>
+            <div class="metric-label">M.Ö. 300'den II. Dünya Savaşı'na</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Live Interactive 3D Preview Stage -->
+      <div class="hero-stage-card">
+        <div class="stage-header">
+          <div>
+            <strong style="font-size:13.5px; color:var(--text-dark);">CANLI 3D VİTRİN: Pz.Kpfw. VI "TIGER I"</strong>
+            <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">Maybach V12 + 8.8cm KwK 36 + Schachtellaufwerk</div>
+          </div>
+          <div class="stage-badge">
+            <span class="stage-live-dot"></span> AKTİF PROTOTİP
+          </div>
+        </div>
+
+        <div class="stage-viewport" id="mini-stage">
+          <div class="stage-overlay-hint">🖱️ Fareyle döndürün • Aşağıdan Teardown test edin</div>
+        </div>
+
+        <div class="stage-controls">
+          <div class="stage-btn-group">
+            <button class="btn btn-sm" id="preview-btn-assemble">🔩 Birleştir (%0)</button>
+            <button class="btn btn-sm" id="preview-btn-explode">💥 Teardown (%80)</button>
+            <button class="btn btn-sm" id="preview-btn-blueprint">📐 Blueprint</button>
+          </div>
+          <a href="simulator.html" class="btn btn-primary btn-sm">Tam Ekran Simülatör →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORICAL TIMELINE & VEHICLE CATALOG SECTION -->
+    <section class="section" id="timeline">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">TARİHSEL ZAMAN ÇİZELGESİ & MÜHENDİSLİK KATALOĞU</div>
+          <h2 class="section-title">Kas Gücünden Baruta ve V12 Motorlara</h2>
+          <p class="section-sub">
+            Her dönemde enerji depolama, geri tepme sönümleme ve zırh teknolojisinin nasıl evrimleştiğini interaktif modeller üzerinden karşılaştırın.
+          </p>
+        </div>
+
+        <div class="era-filters" id="era-filters">
+          <button class="filter-pill active" data-filter="all">Tüm Dönemler (5)</button>
+          <button class="filter-pill" data-filter="ancient">Antik & Orta Çağ (2)</button>
+          <button class="filter-pill" data-filter="gunpowder">Barut Çağı (1)</button>
+          <button class="filter-pill" data-filter="ww2">II. Dünya Savaşı (2)</button>
+        </div>
+      </div>
+
+      <div class="catalog-grid" id="catalog-grid">
+        <!-- 1. M.Ö. 300 ROMA BALLİSTASI -->
+        <article class="machine-card" data-category="ancient">
+          <div>
+            <div class="mc-top">
+              <span class="mc-year">M.Ö. 300 • ANTİK ÇAĞ</span>
+              <span class="mc-status planned">⏳ Faz 2 Planında</span>
+            </div>
+
+            <div class="mc-blueprint" style="margin: 12px 0;">
+              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20" y1="120" x2="300" y2="120" stroke="#94a3b8" stroke-dasharray="4 4"/>
+                <path d="M110 120 L155 75 L195 120" stroke="#334155" stroke-width="3"/>
+                <rect x="148" y="65" width="14" height="55" fill="#d97706" fill-opacity="0.2" stroke="#b45309" stroke-width="2"/>
+                <rect x="55" y="56" width="215" height="12" rx="2" fill="#64748b" fill-opacity="0.25" stroke="#1e293b" stroke-width="2"/>
+                <rect x="75" y="28" width="46" height="58" rx="3" fill="#d97706" fill-opacity="0.18" stroke="#b45309" stroke-width="2"/>
+                <circle cx="88" cy="57" r="8" stroke="#0284c7" stroke-width="2"/>
+                <circle cx="108" cy="57" r="8" stroke="#0284c7" stroke-width="2"/>
+                <path d="M88 49 L45 20 M108 65 L45 94" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
+                <path d="M45 20 L195 60 L45 94" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="3 2"/>
+                <line x1="70" y1="60" x2="210" y2="60" stroke="#0f172a" stroke-width="3"/>
+                <polygon points="62,60 76,55 76,65" fill="#dc2626"/>
+                <circle cx="252" cy="62" r="12" fill="#0284c7" fill-opacity="0.2" stroke="#0284c7" stroke-width="2"/>
+              </svg>
+              <span class="mc-blueprint-tag">CAD ŞEMA: TOR-BAL-300</span>
+            </div>
+
+            <h3 class="mc-title">Roma Burulma Yaylı Ballistası</h3>
+            <div class="mc-sub">TORSION SPRING ARTILLERY • BURULMA MOMENTİ</div>
+            <p class="mc-desc">
+              Esnek ahşap yay yerine bükülmüş hayvan tendonu demetlerinde (Sinew Skeins) depolanan devasa burulma enerjisini kullanan antik hassas kuşatma silahı. Mandal ve çıkrık dişlisiyle gerilir.
+            </p>
+
+            <div class="mc-subsystems">
+              <span class="sys-tag">2x Tendon Burulma Yayı</span>
+              <span class="sys-tag">Bronz Mandal & Çıkrık</span>
+              <span class="sys-tag">Kızaklı Ok Yatağı</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="mc-specs" style="margin-bottom: 12px;">
+              <div>ENERJİ KAYNAĞI<strong>Burulma (Torsion)</strong></div>
+              <div>ETKİLİ MENZİL<strong>~450 Metre</strong></div>
+              <div>MÜHİMMAT<strong>Zırh Delici Ok / 26kg Taş</strong></div>
+              <div>PARÇA GRUBU<strong>14 Mekanik Grup</strong></div>
+            </div>
+            <div class="mc-actions">
+              <button class="btn btn-sm" onclick="openBlueprintModal('ballista')">🔍 Mühendislik Planını İncele</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. 1250 KARŞI AĞIRLIKLI TREBUCHET -->
+        <article class="machine-card" data-category="ancient">
+          <div>
+            <div class="mc-top">
+              <span class="mc-year">1250 • ORTA ÇAĞ</span>
+              <span class="mc-status planned">⏳ Faz 2 Planında</span>
+            </div>
+
+            <div class="mc-blueprint" style="margin: 12px 0;">
+              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/>
+                <polygon points="150,32 105,124 195,124" fill="#d97706" fill-opacity="0.12" stroke="#1e293b" stroke-width="2.5"/>
+                <line x1="150" y1="32" x2="150" y2="124" stroke="#475569" stroke-width="2"/>
+                <line x1="105" y1="54" x2="255" y2="18" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="150" cy="43" r="5" fill="#0284c7"/>
+                <line x1="105" y1="54" x2="105" y2="75" stroke="#1e293b" stroke-width="2"/>
+                <polygon points="86,75 124,75 118,108 92,108" fill="#334155" fill-opacity="0.3" stroke="#0f172a" stroke-width="2"/>
+                <path d="M255 18 Q275 65 225 118" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="3 2"/>
+                <circle cx="222" cy="118" r="7" fill="#475569" stroke="#0f172a" stroke-width="1.5"/>
+              </svg>
+              <span class="mc-blueprint-tag">CAD ŞEMA: TRB-1250-CW</span>
+            </div>
+
+            <h3 class="mc-title">Karşı Ağırlıklı Trebuchet (Karabuga)</h3>
+            <div class="mc-sub">GRAVITY COUNTERWEIGHT ENGINE • KALE KUŞATMASI</div>
+            <p class="mc-desc">
+              Yerçekimi potansiyel enerjisini çift sarkaç fiziğiyle kinetik enerjiye dönüştüren Orta Çağ'ın en yıkıcı kuşatma makinesi. 1:4 oranlı asimetrik kol ve menteşeli 6 tonluk ağırlık sandığıyla çalışır.
+            </p>
+
+            <div class="mc-subsystems">
+              <span class="sys-tag">6 Tonluk Menteşeli Sandık</span>
+              <span class="sys-tag">1:4 Asimetrik Aks Kolu</span>
+              <span class="sys-tag">Çift Sarkaç Sapan</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="mc-specs" style="margin-bottom: 12px;">
+              <div>ENERJİ KAYNAĞI<strong>Yerçekimi (6,000 kg)</strong></div>
+              <div>ETKİLİ MENZİL<strong>~300 Metre</strong></div>
+              <div>GÜLLE AĞIRLIĞI<strong>90 – 135 kg Kaya</strong></div>
+              <div>PARÇA GRUBU<strong>16 Mekanik Grup</strong></div>
+            </div>
+            <div class="mc-actions">
+              <button class="btn btn-sm" onclick="openBlueprintModal('trebuchet')">🔍 Mühendislik Planını İncele</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. 1453 OSMANLI ŞAHİ TOPU (FAZ 2 FEATURED ACTIVE SIMULATOR) -->
+        <article class="machine-card featured-active" data-category="gunpowder">
+          <div>
+            <div class="mc-top">
+              <span class="mc-year">★ 1453 • BARUT ÇAĞI</span>
+              <span class="mc-status live">🟢 FAZ 2 AKTİF SİMÜLATÖR</span>
+            </div>
+
+            <div class="mc-blueprint" style="margin: 12px 0; background: #ede5d4;">
+              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20" y1="118" x2="300" y2="118" stroke="#94a3b8" stroke-dasharray="4 4"/>
+                <rect x="42" y="96" width="225" height="18" rx="2" fill="#b45309" fill-opacity="0.2" stroke="#78350f" stroke-width="2"/>
+                <rect x="50" y="64" width="76" height="32" rx="3" fill="#d97706" fill-opacity="0.32" stroke="#b45309" stroke-width="2.2"/>
+                <line x1="126" y1="56" x2="126" y2="104" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="3 2"/>
+                <rect x="126" y="56" width="132" height="44" rx="3" fill="#d97706" fill-opacity="0.24" stroke="#92400e" stroke-width="2.2"/>
+                <line x1="158" y1="54" x2="158" y2="102" stroke="#78350f" stroke-width="3"/>
+                <line x1="198" y1="54" x2="198" y2="102" stroke="#78350f" stroke-width="3"/>
+                <line x1="248" y1="54" x2="248" y2="102" stroke="#78350f" stroke-width="3"/>
+                <circle cx="280" cy="78" r="15" fill="#64748b" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/>
+              </svg>
+              <span class="mc-blueprint-tag">CANLI 3D: SAHI-1453-680MM</span>
+            </div>
+
+            <h3 class="mc-title">Osmanlı Şahi Topu (İstanbul Kuşatması)</h3>
+            <div class="mc-sub">TWO-PIECE CAST BRONZE BOMBARD • 680 MM KALİBRE</div>
+            <p class="mc-desc">
+              Fatih Sultan Mehmed, Saruca Sekban ve Urban tarafından geliştirilen, taşınabilmesi için birbirine vidalanan <strong>iki parçalı dev tunç döküm</strong> kuşatma topu. 8-yivli bronz vidasını canlı sökün, X-Ray ile 544 kg granit gülleyi görün ve ateşleyin!
+            </p>
+
+            <div class="mc-subsystems">
+              <span class="sys-tag">8-Yivli Vidalı Hazne</span>
+              <span class="sys-tag">544kg Granit Gülle</span>
+              <span class="sys-tag">Meşe Kızak & Kazıklar</span>
+              <span class="sys-tag">4 Tunç Patina Dokusu</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="mc-specs" style="margin-bottom: 12px;">
+              <div>TOPLAM AĞIRLIK<strong>16.8 Ton Saf Tunç</strong></div>
+              <div>NAMLU KALİBRESİ<strong>680 mm (2 Parça Vidalı)</strong></div>
+              <div>GÜLLE & BARUT<strong>544 kg Taş / 60 kg Barut</strong></div>
+              <div>3D PARÇA SAYISI<strong>12 Bağımsız Grup</strong></div>
+            </div>
+            <div class="mc-actions">
+              <a href="simulator.html?vehicle=sahi" class="btn btn-primary btn-sm">🏺 3D Simülatörü Aç →</a>
+              <a href="simulator.html?vehicle=sahi&mode=xray" class="btn btn-cyan btn-sm" style="flex:0.45;" title="X-Ray Kesit Modunda Aç">🩻 Kesit</a>
+              <a href="simulator.html?vehicle=sahi&mode=explode" class="btn btn-sm" style="flex:0.45;" title="Parçalarına Ayrılmış Modda Aç">💥 %85</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. 1942 TIGER I TANKI (FEATURED ACTIVE SIMULATOR) -->
+        <article class="machine-card featured-active" data-category="ww2">
+          <div>
+            <div class="mc-top">
+              <span class="mc-year">★ 1942 • II. DÜNYA SAVAŞI</span>
+              <span class="mc-status live">🟢 ŞU AN AKTİF SİMÜLATÖR</span>
+            </div>
+
+            <div class="mc-blueprint" style="margin: 12px 0; background: #ede5d4;">
+              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20" y1="122" x2="300" y2="122" stroke="#94a3b8" stroke-dasharray="4 4"/>
+                <rect x="52" y="76" width="175" height="28" rx="2" fill="#6b7460" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/>
+                <rect x="46" y="96" width="186" height="24" rx="12" fill="#334155" fill-opacity="0.22" stroke="#0f172a" stroke-width="2"/>
+                <circle cx="72" cy="108" r="9" fill="#6b7460" stroke="#1e293b" stroke-width="1.6"/>
+                <circle cx="96" cy="108" r="9" fill="#475569" stroke="#1e293b" stroke-width="1.6"/>
+                <circle cx="120" cy="108" r="9" fill="#6b7460" stroke="#1e293b" stroke-width="1.6"/>
+                <circle cx="144" cy="108" r="9" fill="#475569" stroke="#1e293b" stroke-width="1.6"/>
+                <circle cx="168" cy="108" r="9" fill="#6b7460" stroke="#1e293b" stroke-width="1.6"/>
+                <circle cx="192" cy="108" r="9" fill="#475569" stroke="#1e293b" stroke-width="1.6"/>
+                <rect x="96" y="48" width="86" height="28" rx="3" fill="#6b7460" fill-opacity="0.45" stroke="#0f172a" stroke-width="2"/>
+                <rect x="108" y="38" width="26" height="10" rx="2" fill="#475569" stroke="#0f172a" stroke-width="1.6"/>
+                <rect x="182" y="57" width="104" height="7" fill="#334155" stroke="#0f172a" stroke-width="1.8"/>
+                <rect x="284" y="54" width="14" height="13" rx="2" fill="#d97706" stroke="#0f172a" stroke-width="1.8"/>
+              </svg>
+              <span class="mc-blueprint-tag">CANLI 3D: SDKFZ-181-TIGER</span>
+            </div>
+
+            <h3 class="mc-title">Pz.Kpfw. VI "Tiger I" (Ausf. E)</h3>
+            <div class="mc-sub">8.8 CM KwK 36 L/56 • MAYBACH HL230 V12 • 57 TON</div>
+            <p class="mc-desc">
+              100mm dikey Krupp ön zırhı, 88mm yüksek ilk hızlı topu, arkada çalışan 12 pistonlu Maybach V12 motoru, öndeki Olvar hidrolik şanzımanı ve 16 burulma çubuğuyla tam teşekküllü interaktif 3D simülatör.
+            </p>
+
+            <div class="mc-subsystems">
+              <span class="sys-tag">8.8cm Top & Geri Tepme</span>
+              <span class="sys-tag">12 Hareketli V12 Piston</span>
+              <span class="sys-tag">92x 88mm Mühimmat Rafı</span>
+              <span class="sys-tag">16x Burulma Çubuğu</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="mc-specs" style="margin-bottom: 12px;">
+              <div>MOTOR GÜCÜ<strong>700 BG @ 3000 RPM</strong></div>
+              <div>ZIRH KALINLIĞI<strong>100mm Ön / 80mm Yan</strong></div>
+              <div>ANA SİLAH<strong>8.8 cm KwK 36 L/56</strong></div>
+              <div>3D PARÇA SAYISI<strong>22 Bağımsız Grup</strong></div>
+            </div>
+            <div class="mc-actions">
+              <a href="simulator.html" class="btn btn-primary btn-sm">🚀 3D Simülatörü Aç</a>
+              <a href="simulator.html?mode=explode" class="btn btn-sm">💥 Teardown (%85)</a>
+              <a href="simulator.html?mode=xray" class="btn btn-cyan btn-sm">🩻 X-Ray</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. 1943 SUPERMARINE SPITFIRE MK IX -->
+        <article class="machine-card" data-category="ww2">
+          <div>
+            <div class="mc-top">
+              <span class="mc-year">1943 • II. DÜNYA SAVAŞI</span>
+              <span class="mc-status planned">⏳ Faz 3 Planında</span>
+            </div>
+
+            <div class="mc-blueprint" style="margin: 12px 0;">
+              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="20" y1="70" x2="300" y2="70" stroke="#94a3b8" stroke-dasharray="4 4"/>
+                <ellipse cx="155" cy="70" rx="34" ry="56" fill="#0284c7" fill-opacity="0.14" stroke="#0284c7" stroke-width="2"/>
+                <path d="M52 70 C85 56, 200 58, 255 70 C200 82, 85 84, 52 70 Z" fill="#6b7460" fill-opacity="0.32" stroke="#1e293b" stroke-width="2"/>
+                <rect x="188" y="62" width="42" height="16" rx="2" fill="#d97706" fill-opacity="0.35" stroke="#b45309" stroke-width="1.8"/>
+                <line x1="255" y1="36" x2="255" y2="104" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+                <line x1="175" y1="34" x2="208" y2="34" stroke="#dc2626" stroke-width="2.2"/>
+                <line x1="175" y1="106" x2="208" y2="106" stroke="#dc2626" stroke-width="2.2"/>
+              </svg>
+              <span class="mc-blueprint-tag">CAD ŞEMA: SPITFIRE-MK9-V12</span>
+            </div>
+
+            <h3 class="mc-title">Supermarine Spitfire Mk IX</h3>
+            <div class="mc-sub">ROLLS-ROYCE MERLIN 66 V12 • ELİPTİK KANAT</div>
+            <p class="mc-desc">
+              Çift kademeli süperşarjlı Rolls-Royce Merlin V12 uçak motoru, indüklenmiş sürüklemeyi en aza indiren eliptik kanat kaburga yapısı, 20mm Hispano topları ve katlanır hidrolik iniş takımı.
+            </p>
+
+            <div class="mc-subsystems">
+              <span class="sys-tag">Merlin 66 V12 + Süperşarj</span>
+              <span class="sys-tag">Eliptik Kanat Kaburgası</span>
+              <span class="sys-tag">2x 20mm Hispano Top</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="mc-specs" style="margin-bottom: 12px;">
+              <div>MOTOR GÜCÜ<strong>1,720 BG Merlin V12</strong></div>
+              <div>MAKSİMUM HIZ<strong>657 km/saat</strong></div>
+              <div>İRTİFA TAVANI<strong>13,100 Metre</strong></div>
+              <div>PARÇA GRUBU<strong>20 Mekanik Grup</strong></div>
+            </div>
+            <div class="mc-actions">
+              <button class="btn btn-sm" onclick="openBlueprintModal('spitfire')">🔍 Mühendislik Planını İncele</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ENGINEERING CAPABILITIES SECTION -->
+    <section class="section" id="features">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">TEARDOWN SİMÜLATÖR MİMARİSİ</div>
+          <h2 class="section-title">Neden Prosedürel 3D Mühendislik?</h2>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-icon">🔧</div>
+          <div class="feat-title">Milimetrik Teardown (%0 – %100)</div>
+          <p class="feat-desc">
+            Her parça kendi gerçek mühendislik montaj ekseninde (explodeVec) dışarı doğru açılır. Bağlantı kılavuz çizgileriyle hangi dişlinin hangi şafta bağlandığını net olarak takip edebilirsiniz.
+          </p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon">🩻</div>
+          <div class="feat-title">X-Ray Zırh Kesiti & CAD Blueprint</div>
+          <p class="feat-desc">
+            Tek tuşla 100mm dış zırh plakalarını şeffaflaştırarak içteki 92 adet 88mm top mermisini, taret sepetini, yangın duvarını ve çalışan V12 motor pistonlarını kesit halinde inceleyin.
+          </p>
+        </div>
+
+        <div class="feat-card">
+          <div class="feat-icon">🔊</div>
+          <div class="feat-title">Canlı Mekanik & Web Audio Sentezi</div>
+          <p class="feat-desc">
+            Harici ses veya 3D model dosyası olmadan; tarayıcı içinde gerçek zamanlı çalışan pistonlar, burulma çubuğu süspansiyon testi ve 8.8 cm KwK 36 top ateşleme/geri tepme simülasyonu.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div>
+        <strong>Eskiden Bugüne Savaş Makineleri</strong> — Three.js & Web Audio API Tabanlı İnteraktif Mühendislik Simülatörü
+      </div>
+      <div>
+        <a href="simulator.html" style="color:var(--accent-dark); font-weight:700; text-decoration:none;">Tiger I 3D Simülatöre Geç →</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- MODAL FOR PLANNED VEHICLES ENGINEERING SPECS -->
+  <div class="modal-backdrop" id="blueprint-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <div class="section-eyebrow" id="modal-era">FAZ 2 MÜHENDİSLİK PLANI</div>
+          <h3 class="section-title" style="font-size:22px;" id="modal-title">Araç Başlığı</h3>
+        </div>
+        <button class="btn btn-sm" id="modal-close">✕ Kapat</button>
+      </div>
+      <p style="font-size:13.5px; color:var(--text-body); line-height:1.55;" id="modal-desc"></p>
+      <div style="margin-top:14px; font-family:var(--font-mono); font-size:11.5px; font-weight:700; color:var(--accent-dark);">
+        PLANLANAN 3D TEARDOWN ALT SİSTEMLERİ & ANİMASYONLAR:
+      </div>
+      <ul class="modal-list" id="modal-list"></ul>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(15,23,42,0.1); gap:10px; flex-wrap:wrap;">
+        <span style="font-size:12px; color:var(--text-muted);">Şu an aktif olan Faz 1 prototipini hemen deneyimleyebilirsiniz:</span>
+        <a href="simulator.html" class="btn btn-primary btn-sm">🚀 Tiger I Simülatörünü Başlat</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS: CATALOG FILTER, MODAL & HERO 3D MINI TEARDOWN PREVIEW -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const filterButtons = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.machine-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    const MODAL_DATA = {
+      ballista: {
+        era: 'M.Ö. 300 • ANTİK ROMA KUŞATMA MÜHENDİSLİĞİ (FAZ 2)',
+        title: 'Roma Burulma Yaylı Ballistası',
+        desc: 'Klasik yaylardan farklı olarak enerjiyi iki dikey çerçeve içine gerilmiş bükümlü tendon demetlerinde (Torsion Skeins) depolar. Simülatörde çıkrık mekanizmasını sararak yayları gerebilecek ve atış anında kolların açısal ivmesini gözlemleyebileceksiniz.',
+        items: [
+          'Sol ve Sağ Burulma Demetleri (Hayvan tendonu & bronz germe bilezikleri)',
+          'Kızaklı Ok Yatağı (Syrinx) ve Bronz Tetik Mandalı (Chele)',
+          'Cırcır Dişlili Germe Çıkrığı (Windlass & Ratchet Pawl)',
+          'Canlı Atış Simülasyonu: Germe kuvveti (kN) ve balistik yörünge hesabı'
+        ]
+      },
+      trebuchet: {
+        era: '1250 • ORTA ÇAĞ KARŞI AĞIRLIK FİZİĞİ (FAZ 2)',
+        title: 'Karşı Ağırlıklı Trebuchet (Karabuga)',
+        desc: '6 tonluk menteşeli ağırlık sandığının serbest düşüşüyle 1:4 oranlı asimetrik kolu döndüren ve ucundaki sapanla 100+ kg kayaları kale surlarına fırlatan çift sarkaçlı mühendislik harikası.',
+        items: [
+          'Menteşeli 6 Tonluk Karşı Ağırlık Sandığı (Hinged Counterweight Box)',
+          'Asimetrik Ana Fırlatma Kolu ve Çelik Taşıyıcı Aks Mili',
+          'Serbest Bırakma Kancası (Release Finger) açısına göre menzil simülasyonu',
+          'Ağır Kuşatma İskeleti ve Çift Çıkrık Kurma Çarkları (Treadwheels)'
+        ]
+      },
+      sahi: {
+        era: '1453 • BARUT VE METALURJİ DEVRİMİ (FAZ 2)',
+        title: 'Osmanlı Şahi Topu (680mm Kuşatma Bombardı)',
+        desc: '16.8 tonluk dev tunç gövdenin Edirne\'den İstanbul önlerine taşınabilmesi için geliştirilen vidalı iki parçalı (Barut Haznesi + Namlu) mühendislik çözümü.',
+        items: [
+          'Vidalı Geçme Mekanizması: Arka barut haznesi ve ön namlunun Teardown ile ayrılması',
+          '680mm Kalibre İç Yatak, Barut İstifi ve 544 kg Granit Gülle Kesiti (X-Ray)',
+          'Döküm Takviye Çemberleri ve Ağır Meşe Geri Tepme Kızağı',
+          'Canlı Ateşleme: Devasa namlu dumanı, şok dalgası ve akustik patlama sentezi'
+        ]
+      },
+      spitfire: {
+        era: '1943 • HAVACILIK VE V12 MOTOR MÜHENDİSLİĞİ (FAZ 3)',
+        title: 'Supermarine Spitfire Mk IX',
+        desc: 'Reginald Mitchell\'in ünlü eliptik kanat mimarisi ile Rolls-Royce Merlin 66 çift kademeli süperşarjlı V12 motorunun birleşimi.',
+        items: [
+          'Rolls-Royce Merlin 66 V12 Motor, Çift Süperşarj ve 4 Palli Rotol Pervane',
+          'Eliptik Kanat Kaburga İskeleti (Wing Spars & Ribs) ve 20mm Hispano Topları',
+          'Hidrolik Katlanır İniş Takımı ve Kokpit Kontrol Mekanizması',
+          'Canlı Pervane Devri, Kanatçık (Aileron/Elevator) ve İniş Takımı Simülasyonu'
+        ]
+      }
+    };
+
+    const modalEl = document.getElementById('blueprint-modal');
+    window.openBlueprintModal = function(key) {
+      const d = MODAL_DATA[key];
+      if (!d) return;
+      document.getElementById('modal-era').textContent = d.era;
+      document.getElementById('modal-title').textContent = d.title;
+      document.getElementById('modal-desc').textContent = d.desc;
+      const listEl = document.getElementById('modal-list');
+      listEl.innerHTML = d.items.map(i => `<li>${i}</li>`).join('');
+      modalEl.classList.add('open');
+    };
+
+    document.getElementById('modal-close').addEventListener('click', () => {
+      modalEl.classList.remove('open');
+    });
+    modalEl.addEventListener('click', e => {
+      if (e.target === modalEl) modalEl.classList.remove('open');
+    });
+
+    const stageContainer = document.getElementById('mini-stage');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf2ece1);
+    scene.fog = new THREE.Fog(0xf2ece1, 14, 32);
+
+    const camera = new THREE.PerspectiveCamera(40, stageContainer.clientWidth / stageContainer.clientHeight, 0.1, 100);
+    camera.position.set(8.8, 5.2, 8.8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(stageContainer.clientWidth, stageContainer.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+    stageContainer.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.enableZoom = false;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.8;
+    controls.target.set(0, 1.1, 0);
+
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xe6decb, 1.45));
+    const dirLight = new THREE.DirectionalLight(0xfffbeb, 2.3);
+    dirLight.position.set(10, 16, 9);
+    dirLight.castShadow = true;
+    scene.add(dirLight);
+
+    const grid = new THREE.GridHelper(20, 20, 0xd97706, 0xd5cbb8);
+    grid.position.y = -0.02;
+    scene.add(grid);
+
+    const floor = new THREE.Mesh(
+      new THREE.CircleGeometry(24, 48),
+      new THREE.MeshStandardMaterial({ color: 0xdfd8c8, roughness: 0.92, metalness: 0.02 })
+    );
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -0.03;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    const edgeDefault = new THREE.LineBasicMaterial({ color: 0x1e293b, transparent: true, opacity: 0.45 });
+    const edgeBlue = new THREE.LineBasicMaterial({ color: 0x0284c7, transparent: true, opacity: 0.9 });
+
+    const miniParts = [];
+    const miniMeshes = [];
+
+    function addPart(basePos, explodeVec) {
+      const g = new THREE.Group();
+      g.position.set(...basePos);
+      g.userData = {
+        base: new THREE.Vector3(...basePos),
+        exp: new THREE.Vector3(...explodeVec)
+      };
+      scene.add(g);
+      miniParts.push(g);
+      return g;
+    }
+
+    function addBox(parent, size, colorHex, pos = [0,0,0]) {
+      const geo = new THREE.BoxGeometry(...size);
+      const mat = new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.5, metalness: 0.35 });
+      const m = new THREE.Mesh(geo, mat);
+      m.position.set(...pos);
+      m.castShadow = true;
+      m.receiveShadow = true;
+      m.userData.origColor = colorHex;
+      const line = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 20), edgeDefault);
+      m.add(line);
+      m.userData.edgeLine = line;
+      parent.add(m);
+      miniMeshes.push(m);
+      return m;
+    }
+
+    function addCyl(parent, rTop, rBot, h, colorHex, pos = [0,0,0], rot = [0,0,0]) {
+      const geo = new THREE.CylinderGeometry(rTop, rBot, h, 20);
+      const mat = new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.45, metalness: 0.45 });
+      const m = new THREE.Mesh(geo, mat);
+      m.position.set(...pos);
+      m.rotation.set(...rot);
+      m.castShadow = true;
+      m.receiveShadow = true;
+      m.userData.origColor = colorHex;
+      const line = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 22), edgeDefault);
+      m.add(line);
+      m.userData.edgeLine = line;
+      parent.add(m);
+      miniMeshes.push(m);
+      return m;
+    }
+
+    const pHull = addPart([0, 0.7, 0], [0, -0.7, 0]);
+    addBox(pHull, [2.1, 0.65, 4.6], 0x4a525a, [0, 0, 0]);
+    for (let i = 0; i < 6; i++) {
+      addCyl(pHull, 0.035, 0.035, 2.2, 0xd97706, [0, -0.22, -1.6 + i * 0.64], [0, 0, Math.PI / 2]);
+    }
+
+    const pUpper = addPart([0, 1.25, 0], [0, 0.85, 0]);
+    addBox(pUpper, [2.85, 0.48, 4.4], 0x6b7460, [0, 0, 0]);
+
+    const pLeftTrack = addPart([-1.25, 0.48, 0], [-1.5, -0.25, 0]);
+    addBox(pLeftTrack, [0.55, 0.72, 4.5], 0x2c3038, [0, 0, 0]);
+    for (let i = 0; i < 5; i++) {
+      addCyl(pLeftTrack, 0.36, 0.36, 0.14, 0x6b7460, [-0.24, -0.04, -1.5 + i * 0.75], [0, 0, Math.PI / 2]);
+    }
+
+    const pRightTrack = addPart([1.25, 0.48, 0], [1.5, -0.25, 0]);
+    addBox(pRightTrack, [0.55, 0.72, 4.5], 0x2c3038, [0, 0, 0]);
+    for (let i = 0; i < 5; i++) {
+      addCyl(pRightTrack, 0.36, 0.36, 0.14, 0x6b7460, [0.24, -0.04, -1.5 + i * 0.75], [0, 0, Math.PI / 2]);
+    }
+
+    const pEngine = addPart([0, 1.35, -1.3], [0, 1.9, -1.4]);
+    addBox(pEngine, [0.65, 0.5, 1.1], 0x2d3a4b, [0, 0, 0]);
+    addBox(pEngine, [0.5, 0.42, 1.0], 0xc25e0e, [-0.75, 0, 0]);
+    addBox(pEngine, [0.5, 0.42, 1.0], 0xc25e0e, [0.75, 0, 0]);
+
+    const pTurret = addPart([0, 1.82, 0.15], [0, 2.3, -0.2]);
+    addCyl(pTurret, 1.05, 1.08, 0.68, 0x6b7460, [0, 0, -0.05]);
+    addBox(pTurret, [1.85, 0.68, 0.75], 0x6b7460, [0, 0, 0.38]);
+    addCyl(pTurret, 0.3, 0.3, 0.25, 0x4a525a, [0.42, 0.45, -0.2]);
+
+    const pGun = addPart([0, 1.82, 1.1], [0, 2.3, 2.2]);
+    addBox(pGun, [1.65, 0.56, 0.25], 0x4a525a, [0, 0, -0.2]);
+    addCyl(pGun, 0.095, 0.115, 3.1, 0x363e45, [0, 0, 1.35], [Math.PI / 2, 0, 0]);
+    addCyl(pGun, 0.14, 0.14, 0.36, 0xd97706, [0, 0, 2.9], [Math.PI / 2, 0, 0]);
+
+    let targetExplode = 0;
+    let currentExplode = 0;
+    let isBlueprint = false;
+
+    document.getElementById('preview-btn-assemble').addEventListener('click', () => {
+      targetExplode = 0;
+    });
+    document.getElementById('preview-btn-explode').addEventListener('click', () => {
+      targetExplode = targetExplode > 0.4 ? 0 : 0.85;
+    });
+    document.getElementById('preview-btn-blueprint').addEventListener('click', e => {
+      isBlueprint = !isBlueprint;
+      e.currentTarget.classList.toggle('btn-cyan', isBlueprint);
+      miniMeshes.forEach(m => {
+        if (isBlueprint) {
+          m.material.color.setHex(0xdbeafe);
+          m.material.transparent = true;
+          m.material.opacity = 0.68;
+          m.userData.edgeLine.material = edgeBlue;
+        } else {
+          m.material.color.setHex(m.userData.origColor);
+          m.material.transparent = false;
+          m.material.opacity = 1.0;
+          m.userData.edgeLine.material = edgeDefault;
+        }
+      });
+    });
+
+    const clock = new THREE.Clock();
+    function animateMiniStage() {
+      requestAnimationFrame(animateMiniStage);
+      const dt = Math.min(clock.getDelta(), 0.05);
+      currentExplode += (targetExplode - currentExplode) * Math.min(1, dt * 6);
+
+      miniParts.forEach(g => {
+        g.position.set(
+          g.userData.base.x + g.userData.exp.x * currentExplode,
+          g.userData.base.y + g.userData.exp.y * currentExplode,
+          g.userData.base.z + g.userData.exp.z * currentExplode
+        );
+      });
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animateMiniStage();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = stageContainer.clientWidth / stageContainer.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(stageContainer.clientWidth, stageContainer.clientHeight);
+    });
+  </script>
+</body>
+</html>
