@@ -882,15 +882,15 @@
       </div>
 
       <div class="catalog-grid" id="catalog-grid">
-        <!-- 1. M.Ö. 300 ROMA BALLİSTASI -->
-        <article class="machine-card" data-category="ancient">
+        <!-- 1. M.Ö. 300 ROMA BALLİSTASI (PAKET 1 — AKTİF SİMÜLATÖR) -->
+        <article class="machine-card featured-active" data-category="ancient">
           <div>
             <div class="mc-top">
-              <span class="mc-year">M.Ö. 300 • ANTİK ÇAĞ</span>
-              <span class="mc-status planned">⏳ Faz 2 Planında</span>
+              <span class="mc-year">★ M.Ö. 300 • ANTİK ÇAĞ</span>
+              <span class="mc-status live">🟢 AKTİF SİMÜLATÖR</span>
             </div>
 
-            <div class="mc-blueprint" style="margin: 12px 0;">
+            <div class="mc-blueprint" style="margin: 12px 0; background: #ede5d4;">
               <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <line x1="20" y1="120" x2="300" y2="120" stroke="#94a3b8" stroke-dasharray="4 4"/>
                 <path d="M110 120 L155 75 L195 120" stroke="#334155" stroke-width="3"/>
@@ -905,31 +905,34 @@
                 <polygon points="62,60 76,55 76,65" fill="#dc2626"/>
                 <circle cx="252" cy="62" r="12" fill="#0284c7" fill-opacity="0.2" stroke="#0284c7" stroke-width="2"/>
               </svg>
-              <span class="mc-blueprint-tag">CAD ŞEMA: TOR-BAL-300</span>
+              <span class="mc-blueprint-tag">CANLI 3D: TOR-BAL-300</span>
             </div>
 
             <h3 class="mc-title">Roma Burulma Yaylı Ballistası</h3>
-            <div class="mc-sub">TORSION SPRING ARTILLERY • BURULMA MOMENTİ</div>
+            <div class="mc-sub">TORSION SPRING ARTILLERY • VITRUVIUS ORANLARI</div>
             <p class="mc-desc">
-              Esnek ahşap yay yerine bükülmüş hayvan tendonu demetlerinde (Sinew Skeins) depolanan devasa burulma enerjisini kullanan antik hassas kuşatma silahı. Mandal ve çıkrık dişlisiyle gerilir.
+              Esnek ahşap yay yerine bükülmüş hayvan tendonu demetlerinde depolanan burulma enerjisini kullanan hassas atış makinesi. Halkaları çevirip ön gerilim verin, çıkrık ve cırcırla kurun, pençe tetikle ateşleyin; ok gerçek bir kavisle uçsun.
             </p>
 
             <div class="mc-subsystems">
               <span class="sys-tag">2x Tendon Burulma Yayı</span>
-              <span class="sys-tag">Bronz Mandal & Çıkrık</span>
-              <span class="sys-tag">Kızaklı Ok Yatağı</span>
+              <span class="sys-tag">Çıkrık & Cırcır</span>
+              <span class="sys-tag">Sürgü & Pençe Tetik</span>
+              <span class="sys-tag">Seri Atış Gösterimi</span>
             </div>
           </div>
 
           <div>
             <div class="mc-specs" style="margin-bottom: 12px;">
-              <div>ENERJİ KAYNAĞI<strong>Burulma (Torsion)</strong></div>
-              <div>ETKİLİ MENZİL<strong>~450 Metre</strong></div>
-              <div>MÜHİMMAT<strong>Zırh Delici Ok / 26kg Taş</strong></div>
-              <div>PARÇA GRUBU<strong>14 Mekanik Grup</strong></div>
+              <div>ENERJİ KAYNAĞI<strong>Burulma (Tendon)</strong></div>
+              <div>MENZİL (HESAP)<strong>~500 m @30° (tahmini)</strong></div>
+              <div>TEMEL ÖLÇÜ<strong>D = Ok Boyu / 9</strong></div>
+              <div>3D PARÇA SAYISI<strong>12 Bağımsız Grup</strong></div>
             </div>
             <div class="mc-actions">
-              <button class="btn btn-sm" onclick="openBlueprintModal('ballista')">🔍 Mühendislik Planını İncele</button>
+              <a href="simulator.html?vehicle=ballista" class="btn btn-primary btn-sm">🏹 3D Simülatörü Aç →</a>
+              <a href="simulator.html?vehicle=ballista&mode=xray" class="btn btn-cyan btn-sm" style="flex:0.45;" title="X-Ray Kesit Modunda Aç">🩻 Kesit</a>
+              <a href="simulator.html?vehicle=ballista&mode=explode" class="btn btn-sm" style="flex:0.45;" title="Parçalarına Ayrılmış Modda Aç">💥 %85</a>
             </div>
           </div>
         </article>
@@ -1003,29 +1006,29 @@
                 <line x1="248" y1="54" x2="248" y2="102" stroke="#78350f" stroke-width="3"/>
                 <circle cx="280" cy="78" r="15" fill="#64748b" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/>
               </svg>
-              <span class="mc-blueprint-tag">CANLI 3D: SAHI-1453-680MM</span>
+              <span class="mc-blueprint-tag">CANLI 3D: DARDANELLES-1464-630MM</span>
             </div>
 
-            <h3 class="mc-title">Osmanlı Şahi Topu (İstanbul Kuşatması)</h3>
-            <div class="mc-sub">TWO-PIECE CAST BRONZE BOMBARD • 680 MM KALİBRE</div>
+            <h3 class="mc-title">Osmanlı Şahi Topu (Dardanelles Gun)</h3>
+            <div class="mc-sub">TWO-PIECE CAST BRONZE BOMBARD • ~63 CM AĞIZ • 1464</div>
             <p class="mc-desc">
-              Fatih Sultan Mehmed, Saruca Sekban ve Urban tarafından geliştirilen, taşınabilmesi için birbirine vidalanan <strong>iki parçalı dev tunç döküm</strong> kuşatma topu. 8-yivli bronz vidasını canlı sökün, X-Ray ile 544 kg granit gülleyi görün ve ateşleyin!
+              1453 kuşatma toplarının günümüze ulaşan en yakın örneği: taşınabilmesi için birbirine vidalanan <strong>iki parçalı dev tunç döküm</strong>. Vidasını sökün, nakliye arabalarına yükleyin, X-Ray ile dar barut odasını görün, dolum döngüsünü oynatın ve ateşleyin!
             </p>
 
             <div class="mc-subsystems">
-              <span class="sys-tag">8-Yivli Vidalı Hazne</span>
-              <span class="sys-tag">544kg Granit Gülle</span>
-              <span class="sys-tag">Meşe Kızak & Kazıklar</span>
-              <span class="sys-tag">4 Tunç Patina Dokusu</span>
+              <span class="sys-tag">Vidalı İki Parça</span>
+              <span class="sys-tag">~315 kg Granit Gülle</span>
+              <span class="sys-tag">Atış Mevzii & Nakliye</span>
+              <span class="sys-tag">6 Adımlı Dolum Döngüsü</span>
             </div>
           </div>
 
           <div>
             <div class="mc-specs" style="margin-bottom: 12px;">
-              <div>TOPLAM AĞIRLIK<strong>16.8 Ton Saf Tunç</strong></div>
-              <div>NAMLU KALİBRESİ<strong>680 mm (2 Parça Vidalı)</strong></div>
-              <div>GÜLLE & BARUT<strong>544 kg Taş / 60 kg Barut</strong></div>
-              <div>3D PARÇA SAYISI<strong>12 Bağımsız Grup</strong></div>
+              <div>TOPLAM AĞIRLIK<strong>16,8 Ton Tunç</strong></div>
+              <div>UZUNLUK / AĞIZ<strong>~5,18 m / ~63 cm</strong></div>
+              <div>GÜLLE (HESAPLANAN)<strong>Ø 61 cm ≈ 315 kg</strong></div>
+              <div>3D PARÇA SAYISI<strong>13 Bağımsız Grup</strong></div>
             </div>
             <div class="mc-actions">
               <a href="simulator.html?vehicle=sahi" class="btn btn-primary btn-sm">🏺 3D Simülatörü Aç →</a>
@@ -1257,13 +1260,13 @@
       },
       sahi: {
         era: '1453 • BARUT VE METALURJİ DEVRİMİ (FAZ 2)',
-        title: 'Osmanlı Şahi Topu (680mm Kuşatma Bombardı)',
-        desc: '16.8 tonluk dev tunç gövdenin Edirne\'den İstanbul önlerine taşınabilmesi için geliştirilen vidalı iki parçalı (Barut Haznesi + Namlu) mühendislik çözümü.',
+        title: 'Osmanlı Şahi Topu — Dardanelles Gun (1464)',
+        desc: '16,8 tonluk tunç gövdenin taşınabilmesi için geliştirilen vidalı iki parçalı (barut odası + namlu) mühendislik çözümü. Ölçüler, Fort Nelson\'da sergilenen Dardanelles Gun\'dan alınmıştır.',
         items: [
-          'Vidalı Geçme Mekanizması: Arka barut haznesi ve ön namlunun Teardown ile ayrılması',
-          '680mm Kalibre İç Yatak, Barut İstifi ve 544 kg Granit Gülle Kesiti (X-Ray)',
-          'Döküm Takviye Çemberleri ve Ağır Meşe Geri Tepme Kızağı',
-          'Canlı Ateşleme: Devasa namlu dumanı, şok dalgası ve akustik patlama sentezi'
+          'Vidalı Geçme: Vida her turda bir diş adımı ilerler; Nakliye Modu\'nda iki parça ayrı öküz arabalarına yüklenir',
+          'İçi Boş Döner Profil: Geniş namlu ve dar barut odası X-Ray kesitinde birlikte görünür',
+          'Kalas Atış Yatağı, Meşe Kızak, Toprak Tabya ve Arka Tampon Kirişi',
+          'Canlı Ateşleme: Kara barut dumanı, balistik gülle yörüngesi ve 6 adımlı dolum döngüsü'
         ]
       },
       spitfire: {

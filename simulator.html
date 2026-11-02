@@ -636,8 +636,8 @@
     </div>
 
     <div class="timeline-pills">
-      <div class="era-pill" data-era="M.Ö. 300 — Roma Ballistası (Burulma Yaylı Fırlatıcı)">
-        <span>M.Ö. 300: Ballista</span> <span class="soon">Faz 3</span>
+      <div class="era-pill" id="pill-ballista" data-vehicle="ballista" data-era="active">
+        <span>★ M.Ö. 300: Ballista</span>
       </div>
       <div class="era-pill" data-era="1250 — Karşı Ağırlıklı Trebuchet (Orta Çağ Kuşatma Mancınığı)">
         <span>1250: Trebuchet</span> <span class="soon">Faz 3</span>
@@ -687,19 +687,22 @@
         <button class="btn btn-cyan active" id="btn-lines">📏 Kılavuz Çizgileri</button>
         <button class="btn btn-cyan" id="btn-autorotate">🔄 Oto-Döndür</button>
       </div>
+      <button class="btn btn-cyan active" id="btn-realistic" style="width:100%; margin-top:6px;" title="Çevre yansıması açık, kenar çizgileri gizli">
+        ✨ Gerçekçi Mod: AÇIK
+      </button>
     </div>
 
     <!-- Armor Camouflage & Zimmerit / Bronze Patina Surface Texture -->
     <div class="card">
       <div class="card-header">
-        <div class="card-title" id="tex-card-title">🎨 Zırh Dokusu & Kamuflaj</div>
-        <div class="card-value" id="camo-label">Normandiya '44</div>
+        <div class="card-title" id="tex-card-title">🎨 Dönem Paketi (Boya, Donanım & İşaret)</div>
+        <div class="card-value" id="camo-label">Normandiya '44 — Geç Üretim</div>
       </div>
       <div class="btn-grid" id="camo-btn-grid" style="margin-bottom:6px;">
-        <button class="btn camo-btn active" data-camo="ambush">🌿 Normandiya 3-Ton</button>
-        <button class="btn camo-btn" data-camo="dunkelgelb">🏜️ Dunkelgelb '43</button>
-        <button class="btn camo-btn" data-camo="winter">❄️ Doğu Cephesi Kış</button>
-        <button class="btn camo-btn" data-camo="panzergrau">⚙️ Panzergrau '42</button>
+        <button class="btn camo-btn" data-camo="early42">⚙️ Erken '42</button>
+        <button class="btn camo-btn" data-camo="tunis43">🏜️ Tunus '43</button>
+        <button class="btn camo-btn" data-camo="winter43">❄️ Kış '43-44</button>
+        <button class="btn camo-btn active" data-camo="normandy44">🌿 Normandiya '44</button>
       </div>
       <button class="btn btn-cyan active" id="btn-zimmerit" style="width:100%;">
         🧱 Zimmerit Anti-Manyetik Doku: AÇIK
@@ -795,6 +798,9 @@
         <button class="btn active" id="btn-terrain">🌊 Süspansiyon Testi</button>
         <button class="btn" id="btn-turret-sweep">🎯 Oto-Taret Tarama</button>
       </div>
+      <button class="btn btn-cyan" id="btn-sahi-mode" style="width:100%; margin-top:6px; display:none;">
+        🐂 Nakliye Moduna Geç (Topu Sök)
+      </button>
     </div>
 
     <!-- Live Engineering Telemetry -->
@@ -810,7 +816,7 @@
         </div>
         <div class="stat-box">
           <div class="stat-label" id="stat-lbl-2">PALET HIZI</div>
-          <div class="stat-val" id="stat-speed">18.4 <span>km/s</span></div>
+          <div class="stat-val" id="stat-speed">18.4 <span>km/sa</span></div>
         </div>
         <div class="stat-box">
           <div class="stat-label" id="stat-lbl-3">KALAN 88MM MERMİ</div>
@@ -865,9 +871,14 @@
   </footer>
 
   <!-- MAIN THREE.JS PROCEDURAL TEARDOWN ENGINE -->
+  <!-- Araç modülleri (klasik script: sayfa doğrudan dosyadan açıldığında da çalışır) -->
+  <script src="js/vehicles/tiger1.js"></script>
+  <script src="js/vehicles/sahi1453.js"></script>
+  <script src="js/vehicles/ballista.js"></script>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
     // ============================================================================
     // 1. PROCEDURAL WEB AUDIO SYNTHESIZER (Sıfır Harici Ses Dosyası)
@@ -998,6 +1009,37 @@
         noise.start(now);
       }
 
+      playTwang() {
+        // Burulma makinesi kirişi: kısa, derin "tung" + gövdeye çarpan kolların tok vuruşu
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const g = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(190, now);
+        osc.frequency.exponentialRampToValueAtTime(70, now + 0.35);
+        g.gain.setValueAtTime(0.45, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+        osc.connect(g);
+        g.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.4);
+        const thump = this.ctx.createOscillator();
+        const tg = this.ctx.createGain();
+        thump.type = 'sine';
+        thump.frequency.setValueAtTime(95, now + 0.05);
+        thump.frequency.exponentialRampToValueAtTime(40, now + 0.2);
+        tg.gain.setValueAtTime(0.0001, now);
+        tg.gain.exponentialRampToValueAtTime(0.5, now + 0.06);
+        tg.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        thump.connect(tg);
+        tg.connect(this.ctx.destination);
+        thump.start(now);
+        thump.stop(now + 0.26);
+      }
+
       playClick(freq = 520) {
         if (!this.enabled) return;
         this.init();
@@ -1038,6 +1080,11 @@
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.25;
     container.appendChild(renderer.domElement);
+
+    // Gerçekçi Mod için stüdyo çevre yansıması (metal, tunç ve krom yüzeyler ortamı yansıtır)
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    const studioEnvMap = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+    pmremGenerator.dispose();
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -1375,6 +1422,14 @@
         metalness: 0.25,
         userData: { isArmor: true, role: 'roof' }
       }),
+      // Kamuflaj boyalı ama Zimmerit uygulanmayan çelik (namlu, tekerlek, egzoz, sandık)
+      paintedSteel: new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        map: camoTextures.ambush,
+        roughness: 0.55,
+        metalness: 0.30,
+        userData: { isArmor: true, role: 'painted' }
+      }),
       armorDark: new THREE.MeshStandardMaterial({
         color: 0x475059,
         roughness: 0.48,
@@ -1451,6 +1506,7 @@
       mesh.userData.origMaterial = mesh.material;
       mesh.userData.origColor = mesh.material.color.clone();
       mesh.userData.vehicle = currentBuildVehicle;
+      mesh.userData.isDecal = material === MATS.insigniaDecal;
 
       if (clonedMat.userData.isArmor) {
         armorMeshes.push(mesh);
@@ -1459,6 +1515,26 @@
         sahiBronzeMeshes.push(mesh);
       }
 
+      parent.add(mesh);
+      allMeshes.push(mesh);
+      return mesh;
+    }
+
+    // Çok sayıda tekrarlanan parça (palet baklaları vb.) için tek çizim çağrılı InstancedMesh.
+    // Kenar çizgisi üretilmez; malzeme/X-Ray/alt sistem filtresi ve raycast için addCADMesh ile aynı kayıtları tutar.
+    function addInstancedMesh(parent, geometry, material, count) {
+      const clonedMat = material.clone();
+      clonedMat.userData = { ...(material.userData || {}) };
+      const mesh = new THREE.InstancedMesh(geometry, clonedMat, count);
+      mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      mesh.frustumCulled = false; // örnekler geometrinin sınır küresinin çok dışına yayılır
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      mesh.userData.origMaterial = mesh.material;
+      mesh.userData.origColor = mesh.material.color.clone();
+      mesh.userData.vehicle = currentBuildVehicle;
+      mesh.userData.isDecal = false;
+      if (clonedMat.userData.isArmor) armorMeshes.push(mesh);
       parent.add(mesh);
       allMeshes.push(mesh);
       return mesh;
@@ -1505,1085 +1581,44 @@
     // ============================================================================
     // 4. BUILD HIGH-DETAIL PANZERKAMPFWAGEN VI "TIGER I" (22 MECHANICAL GROUPS)
     // ============================================================================
-    const tankRoot = new THREE.Group();
-    scene.add(tankRoot);
+    // Araç modülleri js/vehicles/ altında klasik script olarak yüklenir (file:// ile de çalışır).
+    // Çekirdek; THREE, sahne, malzemeler ve parça yardımcılarını ctx ile verir.
+    const buildCtx = {
+      THREE, scene, MATS, addCADMesh, createPartGroup, addInstancedMesh, muzzleLight,
+      audio, notify: html => showToast(html)
+    };
 
-    // ----------------------------------------------------------------------------
-    // A. HULL & ARMOR SUBSYSTEM (100mm Krupp Zırhlı Gövde)
-    // ----------------------------------------------------------------------------
-    const partLowerHull = createPartGroup({
-      id: 'hull_lower',
-      name: 'Alt Zırhlı Gövde Küveti (Wanne) & Çekme Mapaları',
-      subsystem: 'hull',
-      subLabel: 'ALT SİSTEM: ZIRHLI GÖVDE',
-      desc: 'Tiger I\'in tüm ağırlığını taşıyan kaynaklı Krupp çelik taban, burulma çubuğu yatakları, ön yedek palet barı ve ağır U-tipi çelik çekme mapaları.',
-      material: '26mm - 60mm Krupp Çeliği',
-      weight: '9,400 kg',
-      spec: 'Kaynaklı Kutu Şasi + Zimmerit',
-      location: 'Gövde Alt Taban',
-      basePos: [0, 0.72, 0],
-      explodeVec: [0, -1.3, 0],
-      isOuterShell: false
-    });
-    addCADMesh(partLowerHull, new THREE.BoxGeometry(2.15, 0.12, 5.8), MATS.armorDark, [0, -0.25, 0]);
-    addCADMesh(partLowerHull, new THREE.BoxGeometry(0.1, 0.65, 5.8), MATS.armorOuter, [-1.05, 0.12, 0]);
-    addCADMesh(partLowerHull, new THREE.BoxGeometry(0.1, 0.65, 5.8), MATS.armorOuter, [1.05, 0.12, 0]);
-    addCADMesh(partLowerHull, new THREE.BoxGeometry(2.2, 0.65, 0.14), MATS.armorOuter, [0, 0.1, 2.88], [0.42, 0, 0]);
-    addCADMesh(partLowerHull, new THREE.BoxGeometry(2.2, 0.85, 0.12), MATS.armorOuter, [0, 0.2, -2.88], [-0.15, 0, 0]);
-    // Front lower glacis spare track bar (5 spare links) & U-tow shackles
-    addCADMesh(partLowerHull, new THREE.CylinderGeometry(0.025, 0.025, 1.65, 10), MATS.gunSteel, [0, 0.18, 2.98], [0, 0, Math.PI / 2]);
-    for (let s = -2; s <= 2; s++) {
-      addCADMesh(partLowerHull, new THREE.BoxGeometry(0.26, 0.34, 0.06), MATS.trackMetal, [s * 0.29, 0.18, 2.96], [0.42, 0, 0]);
-    }
-    [-0.92, 0.92].forEach(xShackle => {
-      addCADMesh(partLowerHull, new THREE.BoxGeometry(0.12, 0.16, 0.28), MATS.gunSteel, [xShackle, 0.22, 3.02]);
-      addCADMesh(partLowerHull, new THREE.BoxGeometry(0.12, 0.16, 0.28), MATS.gunSteel, [xShackle, 0.15, -2.96]);
-    });
-    // Suspension swing arm mounts along lower hull sides
-    for (let i = 0; i < 8; i++) {
-      const zMount = -1.75 + i * 0.5;
-      addCADMesh(partLowerHull, new THREE.CylinderGeometry(0.08, 0.08, 2.32, 10), MATS.gunSteel, [0, -0.18, zMount], [0, 0, Math.PI / 2], false);
-    }
-    tankRoot.add(partLowerHull);
-
-    const partFrontArmor = createPartGroup({
-      id: 'hull_front',
-      name: '100mm Kademeli Ön Zırh, Kugelblende MG34 & Bosch Farlar',
-      subsystem: 'hull',
-      subLabel: 'ALT SİSTEM: ZIRHLI GÖVDE',
-      desc: 'Tiger I\'i önden neredeyse delinmez kılan 100mm kalınlığındaki dikey sürücü plakası, lamine camlı sürücü vizörü (Fahrersehklappe), küresel MG34 yuvası (Kugelblende) ve üst köşelerdeki Bosch karartma farları.',
-      material: '100mm Homojen Haddelenmiş Çelik',
-      weight: '2,850 kg',
-      spec: '100mm Dikey Zırh + Zimmerit',
-      location: 'Gövde Ön Cephe',
-      basePos: [0, 1.38, 2.45],
-      explodeVec: [0, 0.4, 3.4],
-      isOuterShell: true
-    });
-    addCADMesh(partFrontArmor, new THREE.BoxGeometry(3.15, 0.55, 0.22), MATS.armorOuter, [0, 0.08, 0]);
-    addCADMesh(partFrontArmor, new THREE.BoxGeometry(3.15, 0.12, 0.65), MATS.armorRoof, [0, -0.22, 0.28], [0.18, 0, 0]);
-    // Driver's armored visor (Fahrersehklappe) with vision slit
-    addCADMesh(partFrontArmor, new THREE.BoxGeometry(0.52, 0.22, 0.16), MATS.armorDark, [0.68, 0.12, 0.12]);
-    addCADMesh(partFrontArmor, new THREE.BoxGeometry(0.38, 0.04, 0.18), MATS.chromeSteel, [0.68, 0.13, 0.13]);
-    // Kugelblende ball mount & perforated MG34 barrel jacket
-    addCADMesh(partFrontArmor, new THREE.CylinderGeometry(0.22, 0.24, 0.12, 18), MATS.armorDark, [-0.68, 0.1, 0.08], [Math.PI / 2, 0, 0]);
-    addCADMesh(partFrontArmor, new THREE.SphereGeometry(0.16, 16, 16), MATS.gunSteel, [-0.68, 0.1, 0.14]);
-    addCADMesh(partFrontArmor, new THREE.CylinderGeometry(0.032, 0.042, 0.58, 12), MATS.gunSteel, [-0.68, 0.1, 0.38], [Math.PI / 2, 0, 0]);
-    // Bosch Blackout Headlights (Left & Right)
-    [-1.18, 1.18].forEach(xLight => {
-      addCADMesh(partFrontArmor, new THREE.BoxGeometry(0.08, 0.16, 0.08), MATS.gunSteel, [xLight, 0.42, 0.08]);
-      addCADMesh(partFrontArmor, new THREE.CylinderGeometry(0.11, 0.11, 0.14, 16), MATS.armorDark, [xLight, 0.50, 0.12], [Math.PI / 2, 0, 0]);
-      addCADMesh(partFrontArmor, new THREE.BoxGeometry(0.14, 0.03, 0.02), MATS.chromeSteel, [xLight, 0.50, 0.20]);
-    });
-    tankRoot.add(partFrontArmor);
-
-    const partSideArmor = createPartGroup({
-      id: 'hull_sides',
-      name: '80mm Üst Yan Sponson Zırhları, Çamurluklar & İstihkam Aletleri',
-      subsystem: 'hull',
-      subLabel: 'ALT SİSTEM: ZIRHLI GÖVDE',
-      desc: 'Paletlerin üzerine genişleyen 80mm kalınlığındaki yan zırh plakaları, yan çamurluk etekleri (Schürzen), çelik çekme halatları ve dış istihkam ekipmanları.',
-      material: '80mm Krupp Zırh Çeliği',
-      weight: '4,600 kg',
-      spec: '80mm Dikey Yan Zırh + Balkenkreuz',
-      location: 'Gövde Sağ & Sol Yanlar',
-      basePos: [0, 1.38, -0.2],
-      explodeVec: [0, 0.8, -2.2],
-      isOuterShell: true
-    });
-    addCADMesh(partSideArmor, new THREE.BoxGeometry(0.16, 0.56, 5.2), MATS.armorOuter, [-1.52, 0.08, 0]);
-    addCADMesh(partSideArmor, new THREE.BoxGeometry(0.16, 0.56, 5.2), MATS.armorOuter, [1.52, 0.08, 0]);
-    addCADMesh(partSideArmor, new THREE.BoxGeometry(0.52, 0.08, 5.2), MATS.armorDark, [-1.28, -0.18, 0]);
-    addCADMesh(partSideArmor, new THREE.BoxGeometry(0.52, 0.08, 5.2), MATS.armorDark, [1.28, -0.18, 0]);
-    // Ribbed Side Track Fenders (Schürzen) & Gun Cleaning Rods
-    [-1.66, 1.66].forEach(xFender => {
-      addCADMesh(partSideArmor, new THREE.BoxGeometry(0.16, 0.05, 5.45), MATS.armorRoof, [xFender, -0.16, 0.05]);
-      for (let r = 0; r < 4; r++) {
-        addCADMesh(partSideArmor, new THREE.CylinderGeometry(0.018, 0.018, 2.4, 8), MATS.woodTool, [xFender * 0.96, 0.14 + r * 0.045, -0.4], [Math.PI / 2, 0, 0]);
-      }
-    });
-    // Balkenkreuz Tactical Insignia Plates on Left & Right Hull Sides
-    addCADMesh(partSideArmor, new THREE.PlaneGeometry(0.85, 0.42), MATS.insigniaDecal, [-1.61, 0.12, 0.85], [0, -Math.PI / 2, 0], false);
-    addCADMesh(partSideArmor, new THREE.PlaneGeometry(0.85, 0.42), MATS.insigniaDecal, [1.61, 0.12, 0.85], [0, Math.PI / 2, 0], false);
-    tankRoot.add(partSideArmor);
-
-    const partHullRoof = createPartGroup({
-      id: 'hull_roof',
-      name: 'Gövde Tavanı, Feifel Siklon Filtreleri & Çelik Çekme Halatları',
-      subsystem: 'hull',
-      subLabel: 'ALT SİSTEM: ZIRHLI GÖVDE',
-      desc: 'Periskoplu sürücü/telsizci kapakları, gövde üstü 32mm çelik çekme halatları, motor soğutma panjurları ve ikonik çift Feifel siklon toz/hava filtreleri.',
-      material: '26mm Haddelenmiş Zırh Çeliği',
-      weight: '1,950 kg',
-      spec: 'Feifel Hava Filtreli & Panjurlu',
-      location: 'Gövde Üst Tavan',
-      basePos: [0, 1.72, -0.15],
-      explodeVec: [0, 2.5, 0],
-      isOuterShell: true
-    });
-    addCADMesh(partHullRoof, new THREE.BoxGeometry(3.15, 0.08, 1.5), MATS.armorRoof, [0, 0, 1.85]);
-    // Driver & Radio Operator Swivel Hatches + Periscope Hoods
-    [0.68, -0.68].forEach(xHatch => {
-      addCADMesh(partHullRoof, new THREE.CylinderGeometry(0.28, 0.28, 0.10, 20), MATS.armorDark, [xHatch, 0.05, 1.95]);
-      addCADMesh(partHullRoof, new THREE.BoxGeometry(0.12, 0.09, 0.14), MATS.gunSteel, [xHatch, 0.11, 2.12]);
-    });
-    // Pioneer Shovel & Axe on Front Deck
-    addCADMesh(partHullRoof, new THREE.CylinderGeometry(0.02, 0.02, 1.1, 8), MATS.woodTool, [0, 0.06, 2.38], [0, 0, Math.PI / 2]);
-    addCADMesh(partHullRoof, new THREE.BoxGeometry(0.22, 0.03, 0.26), MATS.gunSteel, [-0.62, 0.06, 2.38]);
-    // Rear Engine Deck & Louvered Cooling Grilles
-    addCADMesh(partHullRoof, new THREE.BoxGeometry(3.15, 0.08, 2.0), MATS.armorRoof, [0, 0, -1.65]);
-    [-0.95, 0.95].forEach(xGrille => {
-      addCADMesh(partHullRoof, new THREE.BoxGeometry(0.88, 0.08, 1.42), MATS.armorDark, [xGrille, 0.02, -1.65]);
-      for (let l = 0; l < 8; l++) {
-        addCADMesh(partHullRoof, new THREE.BoxGeometry(0.82, 0.05, 0.04), MATS.gunSteel, [xGrille, 0.06, -2.25 + l * 0.17], [0.35, 0, 0], false);
-      }
-      // Coiled Steel Tow Cables along hull deck sides
-      addCADMesh(partHullRoof, new THREE.CylinderGeometry(0.032, 0.032, 3.2, 10), MATS.gunSteel, [xGrille * 1.32, 0.07, 0.15], [Math.PI / 2, 0, 0]);
-    });
-    // Twin Feifel Cyclone Air Cleaners & V-Intake Ducts at Rear Engine Deck
-    [-0.58, 0.58].forEach(xFeifel => {
-      addCADMesh(partHullRoof, new THREE.CylinderGeometry(0.18, 0.16, 0.52, 16), MATS.armorDark, [xFeifel, 0.18, -2.55]);
-      addCADMesh(partHullRoof, new THREE.CylinderGeometry(0.045, 0.045, 0.85, 10), MATS.gunSteel, [xFeifel * 0.55, 0.12, -2.15], [Math.PI / 2, xFeifel > 0 ? -0.42 : 0.42, 0]);
-    });
-    tankRoot.add(partHullRoof);
-
-    const partBulkhead = createPartGroup({
-      id: 'hull_bulkhead',
-      name: 'İç Yangın Duvarı (Brandwand) & Kablo Geçişleri',
-      subsystem: 'hull',
-      subLabel: 'ALT SİSTEM: ZIRHLI GÖVDE',
-      desc: 'Mürettebat savaş bölmesi ile arka Maybach V12 motor dairesini birbirinden ayıran çelik bölme duvarı. Olası bir motor yangınının mühimmatlara sıçramasını engeller.',
-      material: '10mm Çelik Sac & Asbest İzolasyon',
-      weight: '320 kg',
-      spec: 'Gaz ve Alev Sızdırmaz',
-      location: 'Gövde Orta-Arka Sınır',
-      basePos: [0, 1.15, -0.82],
-      explodeVec: [0, 1.4, -0.82],
-      isOuterShell: false
-    });
-    addCADMesh(partBulkhead, new THREE.BoxGeometry(2.05, 0.95, 0.08), MATS.interiorCream, [0, 0, 0]);
-    addCADMesh(partBulkhead, new THREE.BoxGeometry(0.45, 0.55, 0.12), MATS.armorDark, [0, 0.05, 0]);
-    tankRoot.add(partBulkhead);
-
-    // ----------------------------------------------------------------------------
-    // B. MAYBACH HL230 V12 ENGINE & COOLING SUBSYSTEM (Motor & Soğutma)
-    // ----------------------------------------------------------------------------
-    const partEngineBlock = createPartGroup({
-      id: 'eng_block',
-      name: 'Maybach HL230 P45 V12 Motor Bloğu & 4x Solex Karbüratör',
-      subsystem: 'engine',
-      subLabel: 'ALT SİSTEM: V12 MOTOR & SOĞUTMA',
-      desc: '23 litre hacminde, 60° V12 dizilimli benzinli motor, üstte 4 adet Solex çift boğazlı karbüratör, manyeto ateşleme ünitesi ve döküm egzoz manifoldları.',
-      material: 'Dökme Demir & Alüminyum Alaşım',
-      weight: '1,200 kg',
-      spec: '700 BG @ 3000 RPM (23.0 L)',
-      location: 'Arka Motor Dairesi Merkez',
-      basePos: [0, 1.05, -1.78],
-      explodeVec: [0, 2.2, -2.5],
-      isOuterShell: false
-    });
-    addCADMesh(partEngineBlock, new THREE.BoxGeometry(0.68, 0.48, 1.35), MATS.engineBlock, [0, -0.1, 0]);
-    addCADMesh(partEngineBlock, new THREE.BoxGeometry(0.32, 0.48, 1.3), MATS.engineBlock, [-0.26, 0.22, 0], [0, 0, 0.48]);
-    addCADMesh(partEngineBlock, new THREE.BoxGeometry(0.32, 0.48, 1.3), MATS.engineBlock, [0.26, 0.22, 0], [0, 0, -0.48]);
-    addCADMesh(partEngineBlock, new THREE.CylinderGeometry(0.16, 0.16, 0.9, 16), MATS.gunSteel, [0, 0.52, 0], [Math.PI / 2, 0, 0]);
-    // 4x Solex Carburetors & Air Collector Plenum
-    for (let c = 0; c < 4; c++) {
-      addCADMesh(partEngineBlock, new THREE.CylinderGeometry(0.06, 0.06, 0.18, 10), MATS.brassAmmo, [0, 0.40, -0.42 + c * 0.28]);
-    }
-    tankRoot.add(partEngineBlock);
-
-    const partPistons = createPartGroup({
-      id: 'eng_pistons',
-      name: 'V12 Hareketli Piston & Biyel Grubu (12 Silindir)',
-      subsystem: 'engine',
-      subLabel: 'ALT SİSTEM: V12 MOTOR & SOĞUTMA',
-      desc: 'Maybach HL230\'un iki sırada 6\'şar adet çalışan toplam 12 yüksek sıkıştırmalı alüminyum pistonu. Sağ panelden RPM (Motor Devri) kaydırıcısını değiştirerek çalışma hızını gözlemleyebilirsiniz.',
-      material: 'Dövme Alüminyum-Silisyum (Mahle)',
-      weight: '84 kg (Takım)',
-      spec: '130mm Çap x 145mm Strok',
-      location: 'Motor Bloğu İçi',
-      basePos: [0, 1.28, -1.78],
-      explodeVec: [0, 3.15, -2.5],
-      isOuterShell: false
-    });
-    const pistonMeshes = [];
-    for (let i = 0; i < 6; i++) {
-      const zOff = -0.5 + i * 0.2;
-      const pL = addCADMesh(partPistons, new THREE.CylinderGeometry(0.075, 0.075, 0.22, 14), MATS.chromeSteel, [-0.28, 0.12, zOff], [0, 0, 0.48]);
-      pL.userData.phase = i * (Math.PI / 3);
-      pL.userData.bankDir = new THREE.Vector3(-Math.sin(0.48), Math.cos(0.48), 0);
-      pL.userData.origin = pL.position.clone();
-      pistonMeshes.push(pL);
-
-      const pR = addCADMesh(partPistons, new THREE.CylinderGeometry(0.075, 0.075, 0.22, 14), MATS.chromeSteel, [0.28, 0.12, zOff], [0, 0, -0.48]);
-      pR.userData.phase = i * (Math.PI / 3) + Math.PI;
-      pR.userData.bankDir = new THREE.Vector3(Math.sin(0.48), Math.cos(0.48), 0);
-      pR.userData.origin = pR.position.clone();
-      pistonMeshes.push(pR);
-    }
-    tankRoot.add(partPistons);
-
-    const partRadiators = createPartGroup({
-      id: 'eng_radiators',
-      name: 'Çift Su Radyatörü, Yakıt Tankları & Siklon Soğutma Fanları',
-      subsystem: 'engine',
-      subLabel: 'ALT SİSTEM: V12 MOTOR & SOĞUTMA',
-      desc: '700 beygirlik V12 motorun aşırı ısınmasını önlemek için motorun sağ ve sol yan bölmelerine yerleştirilmiş 120 litre kapasiteli bakır/pirinç petekli su radyatörleri, 540 litrelik zırhlı yakıt depoları ve mekanik tahrikli dev fanlar.',
-      material: 'Bakır-Pirinç Petek & Çelik Fan',
-      weight: '410 kg',
-      spec: '120 L Su + 540 L Benzin Kapasitesi',
-      location: 'Motor Yan Sponson Bölmeleri',
-      basePos: [0, 1.22, -1.75],
-      explodeVec: [0, 2.0, -3.5],
-      isOuterShell: false
-    });
-    addCADMesh(partRadiators, new THREE.BoxGeometry(0.65, 0.45, 1.3), MATS.radiatorCopper, [-0.95, 0, 0]);
-    addCADMesh(partRadiators, new THREE.BoxGeometry(0.65, 0.45, 1.3), MATS.radiatorCopper, [0.95, 0, 0]);
-    const fanMeshes = [];
-    [-0.95, 0.95].forEach(xPos => {
-      [-0.32, 0.32].forEach(zPos => {
-        const fanGroup = new THREE.Group();
-        fanGroup.position.set(xPos, 0.26, zPos);
-        addCADMesh(fanGroup, new THREE.CylinderGeometry(0.24, 0.24, 0.05, 18), MATS.gunSteel);
-        addCADMesh(fanGroup, new THREE.BoxGeometry(0.42, 0.04, 0.08), MATS.chromeSteel);
-        addCADMesh(fanGroup, new THREE.BoxGeometry(0.08, 0.04, 0.42), MATS.chromeSteel);
-        addCADMesh(fanGroup, new THREE.BoxGeometry(0.42, 0.04, 0.08), MATS.chromeSteel, [0, 0, 0], [0, Math.PI / 4, 0]);
-        addCADMesh(fanGroup, new THREE.BoxGeometry(0.08, 0.04, 0.42), MATS.chromeSteel, [0, 0, 0], [0, Math.PI / 4, 0]);
-        partRadiators.add(fanGroup);
-        fanMeshes.push(fanGroup);
-      });
-    });
-    tankRoot.add(partRadiators);
-
-    const partExhaust = createPartGroup({
-      id: 'eng_exhaust',
-      name: 'Zırhlı Çift Dikey Egzoz Bacası, 20t Kriko & Notek Lambası',
-      subsystem: 'engine',
-      subLabel: 'ALT SİSTEM: V12 MOTOR & SOĞUTMA',
-      desc: 'Tiger I\'in arka zırh plakasında yükselen ikonik çift dikey egzoz susturucusu, 50mm döküm çelik zırh muhafazaları, üst kelebek kapakları ve 20 tonluk ağır bakım krikosu.',
-      material: 'Döküm Çelik Muhafaza (50mm)',
-      weight: '290 kg',
-      spec: 'Alev Gizleyen Susturucu + 20t Kriko',
-      location: 'Gövde Arka Dış Cephe',
-      basePos: [0, 1.25, -3.05],
-      explodeVec: [0, 0.6, -2.6],
-      isOuterShell: false
-    });
-    [-0.38, 0.38].forEach(xEx => {
-      addCADMesh(partExhaust, new THREE.CylinderGeometry(0.19, 0.19, 0.82, 16), MATS.armorOuter, [xEx, -0.02, 0]);
-      addCADMesh(partExhaust, new THREE.CylinderGeometry(0.09, 0.09, 0.98, 12), MATS.gunSteel, [xEx, 0.06, 0]);
-      addCADMesh(partExhaust, new THREE.CylinderGeometry(0.11, 0.11, 0.03, 12), MATS.gunSteel, [xEx, 0.56, 0], [0.25, 0, 0]);
-    });
-    // 20-Ton Heavy Tank Jack on Right Rear Plate & Notek Convoy Light on Left
-    addCADMesh(partExhaust, new THREE.BoxGeometry(0.22, 0.58, 0.18), MATS.gunSteel, [0.85, -0.12, -0.05]);
-    addCADMesh(partExhaust, new THREE.CylinderGeometry(0.08, 0.08, 0.22, 12), MATS.transmissionGreen, [-0.88, 0.15, -0.05]);
-    tankRoot.add(partExhaust);
-
-    // ----------------------------------------------------------------------------
-    // C. DRIVETRAIN, TRANSMISSION, CREW COCKPIT & AMMO RACKS
-    // ----------------------------------------------------------------------------
-    const partTransmission = createPartGroup({
-      id: 'drv_gearbox',
-      name: 'Maybach Olvar Şanzıman, Henschel Direksiyon & Sürücü Kokpiti',
-      subsystem: 'drivetrain',
-      subLabel: 'ALT SİSTEM: ŞANZIMAN & GÜÇ AKTARIMI',
-      desc: 'Sürücü ve telsizcinin tam ortasında bulunan hidrolik ön-seçicili 8 ileri / 4 geri vitesli Olvar şanzıman, Henschel L600C direksiyon simidi ve deri mürettebat koltukları.',
-      material: 'Yüksek Mukavemetli Dişli Çeliği',
-      weight: '1,450 kg',
-      spec: '8 İleri / 4 Geri Hidrolik Vites',
-      location: 'Gövde Ön Merkez',
-      basePos: [0, 0.95, 2.05],
-      explodeVec: [0, 1.8, 2.2],
-      isOuterShell: false
-    });
-    addCADMesh(partTransmission, new THREE.BoxGeometry(0.75, 0.56, 0.88), MATS.transmissionGreen, [0, 0, 0]);
-    addCADMesh(partTransmission, new THREE.CylinderGeometry(0.18, 0.18, 2.2, 16), MATS.transmissionGreen, [0, 0.02, 0.22], [0, 0, Math.PI / 2]);
-    addCADMesh(partTransmission, new THREE.CylinderGeometry(0.28, 0.28, 0.16, 20), MATS.gunSteel, [-0.82, 0.02, 0.22], [0, 0, Math.PI / 2]);
-    addCADMesh(partTransmission, new THREE.CylinderGeometry(0.28, 0.28, 0.16, 20), MATS.gunSteel, [0.82, 0.02, 0.22], [0, 0, Math.PI / 2]);
-    // Driver & Radio Operator Leather Seats + Henschel Steering Wheel
-    [0.68, -0.68].forEach(xSeat => {
-      addCADMesh(partTransmission, new THREE.BoxGeometry(0.42, 0.10, 0.42), MATS.leatherSeat, [xSeat, -0.12, -0.32]);
-      addCADMesh(partTransmission, new THREE.BoxGeometry(0.42, 0.46, 0.08), MATS.leatherSeat, [xSeat, 0.14, -0.52]);
-    });
-    addCADMesh(partTransmission, new THREE.CylinderGeometry(0.18, 0.18, 0.04, 16), MATS.gunSteel, [0.68, 0.24, 0.05], [1.1, 0, 0]);
-    addCADMesh(partTransmission, new THREE.CylinderGeometry(0.03, 0.03, 0.38, 8), MATS.chromeSteel, [0.68, 0.10, 0.18], [-0.5, 0, 0]);
-    tankRoot.add(partTransmission);
-
-    const partDriveShaft = createPartGroup({
-      id: 'drv_shaft',
-      name: 'Ana Kardan Güç Aktarma Şaftı (Kardanwelle)',
-      subsystem: 'drivetrain',
-      subLabel: 'ALT SİSTEM: ŞANZIMAN & GÜÇ AKTARIMI',
-      desc: 'Arkadaki Maybach V12 motordan aldığı torku, taret sepetinin altından geçirerek en öndeki Olvar şanzımana ileten yüksek devirli çelik kardan şaftı.',
-      material: 'Dövme Krom-Molibden Çeliği',
-      weight: '185 kg',
-      spec: 'Maks. 3000 RPM Tork İletimi',
-      location: 'Gövde Taban Merkez Tüneli',
-      basePos: [0, 0.72, 0.15],
-      explodeVec: [0, 0.9, 0],
-      isOuterShell: false
-    });
-    const shaftMesh = addCADMesh(partDriveShaft, new THREE.CylinderGeometry(0.075, 0.075, 2.85, 12), MATS.chromeSteel, [0, 0, 0], [Math.PI / 2, 0, 0]);
-    addCADMesh(partDriveShaft, new THREE.CylinderGeometry(0.13, 0.13, 0.18, 12), MATS.gunSteel, [0, 0, -1.3], [Math.PI / 2, 0, 0]);
-    addCADMesh(partDriveShaft, new THREE.CylinderGeometry(0.13, 0.13, 0.18, 12), MATS.gunSteel, [0, 0, 1.3], [Math.PI / 2, 0, 0]);
-    tankRoot.add(partDriveShaft);
-
-    const partAmmoRacks = createPartGroup({
-      id: 'drv_ammo',
-      name: '8.8 cm PzGr. 39 Mühimmat Rafları (92 Adet Kapasite)',
-      subsystem: 'drivetrain',
-      subLabel: 'ALT SİSTEM: ŞANZIMAN & MÜHİMMAT',
-      desc: 'Gövdenin sağ ve sol üst sponson boşluklarına yatay olarak dizilmiş zırh delici (PzGr. 39) ve yüksek patlayıcılı (Sprgr. L/4.5) 88mm top mermileri. X-Ray modunu açarak iç yerleşimi net görebilirsiniz.',
-      material: 'Pirinç Kovan & Sertleştirilmiş Çelik Çekirdek',
-      weight: '1,380 kg (Tam Yüklü)',
-      spec: '92x 88x571mm R Mermi',
-      location: 'Sağ ve Sol Yan Sponson İçi',
-      basePos: [0, 1.38, 0.35],
-      explodeVec: [0, 1.65, 0.35],
-      isOuterShell: false
-    });
-    [-1.25, 1.25].forEach(xSide => {
-      addCADMesh(partAmmoRacks, new THREE.BoxGeometry(0.36, 0.38, 2.3), MATS.armorDark, [xSide, 0, 0]);
-      for (let row = 0; row < 2; row++) {
-        for (let col = 0; col < 7; col++) {
-          const zShell = -0.95 + col * 0.31;
-          const yShell = -0.08 + row * 0.16;
-          addCADMesh(partAmmoRacks, new THREE.CylinderGeometry(0.042, 0.046, 0.52, 8), MATS.brassAmmo, [xSide, yShell, zShell], [0, 0, Math.PI / 2], false);
-        }
-      }
-    });
-    tankRoot.add(partAmmoRacks);
-
-    // ----------------------------------------------------------------------------
-    // D. SCHACHTELLAUFWERK SUSPENSION & TRACKS (Süspansiyon & Paletler)
-    // ----------------------------------------------------------------------------
-    const partTorsionBars = createPartGroup({
-      id: 'sus_torsion',
-      name: '16x Enlemesine Burulma Çubuğu & Salıncak Kolları (Drehstabfederung)',
-      subsystem: 'suspension',
-      subLabel: 'ALT SİSTEM: SÜSPANSİYON & PALET',
-      desc: 'Gövde tabanını boydan boya enlemesine geçen 16 adet yay çeliği burulma çubuğu. Tekerlekler engebeli arazide yukarı kalktıkça bu çubuklar kendi ekseninde burularak 57 tonluk tanka son derece sarsıntısız bir atış platformu sağlar.',
-      material: 'Yay Çeliği (Krom-Vanadyum)',
-      weight: '1,120 kg',
-      spec: '55mm - 58mm Çaplı Burulma Mili',
-      location: 'Gövde Alt Taban Boyunca',
-      basePos: [0, 0.54, 0.15],
-      explodeVec: [0, -2.0, 0],
-      isOuterShell: false
-    });
-    for (let i = 0; i < 8; i++) {
-      const zBar = -1.75 + i * 0.5;
-      addCADMesh(partTorsionBars, new THREE.CylinderGeometry(0.036, 0.036, 2.35, 8), MATS.torsionPurple, [0, 0, zBar], [0, 0, Math.PI / 2], false);
-    }
-    tankRoot.add(partTorsionBars);
-
-    const partWheelsLeft = createPartGroup({
-      id: 'sus_wheels_l',
-      name: 'Sol Schachtellaufwerk Tekerlekler (Kauçuk Bandajlı) & 20-Diş Cer Çarkı',
-      subsystem: 'suspension',
-      subLabel: 'ALT SİSTEM: SÜSPANSİYON & PALET',
-      desc: 'Alman mühendis Heinrich Ernst Kniekamp\'ın tasarladığı 800mm çapındaki bindirmeli (interleaved) kauçuk çemberli çelik yol tekerlekleri ve önde 20 dişli cer çarkı.',
-      material: 'Preslenmiş Çelik Disk & Kauçuk Bandaj',
-      weight: '3,600 kg (Sol Grup)',
-      spec: '8 Aks x 3 Sıra (800mm Çap)',
-      location: 'Gövde Sol Alt Yan',
-      basePos: [-1.32, 0.45, 0.1],
-      explodeVec: [-2.4, -0.4, 0],
-      isOuterShell: false
-    });
-
-    const partWheelsRight = createPartGroup({
-      id: 'sus_wheels_r',
-      name: 'Sağ Schachtellaufwerk Tekerlekler (Kauçuk Bandajlı) & 20-Diş Cer Çarkı',
-      subsystem: 'suspension',
-      subLabel: 'ALT SİSTEM: SÜSPANSİYON & PALET',
-      desc: 'Sağ palet hattını taşıyan iç içe geçmeli 8 aks kauçuk çemberli tekerlek grubu, önde dişli cer tekerleği (Drive Sprocket) ve arkada palet gergi (Idler) tekerleği.',
-      material: 'Preslenmiş Çelik Disk & Kauçuk Bandaj',
-      weight: '3,600 kg (Sağ Grup)',
-      spec: '8 Aks x 3 Sıra (800mm Çap)',
-      location: 'Gövde Sağ Alt Yan',
-      basePos: [1.32, 0.45, 0.1],
-      explodeVec: [2.4, -0.4, 0],
-      isOuterShell: false
-    });
-
-    const rotatingWheels = [];
-    function populateWheelSide(parentGroup, sideSign) {
-      for (let i = 0; i < 8; i++) {
-        const zStation = -1.75 + i * 0.5;
-        const isOuter = i % 2 === 0;
-        const xOffInner = sideSign * -0.14;
-        const xOffOuter = sideSign * 0.14;
-        const xPos = isOuter ? xOffOuter : xOffInner;
-
-        // Outer black rubber tire rim + inner armored steel disc + grease hubcap
-        const wWheel = addCADMesh(
-          parentGroup,
-          new THREE.CylinderGeometry(0.42, 0.42, 0.11, 22),
-          MATS.rubberTire,
-          [xPos, 0, zStation],
-          [0, 0, Math.PI / 2]
-        );
-        addCADMesh(wWheel, new THREE.CylinderGeometry(0.35, 0.35, 0.125, 20), isOuter ? MATS.armorOuter : MATS.armorDark);
-        addCADMesh(wWheel, new THREE.CylinderGeometry(0.12, 0.12, 0.16, 12), MATS.gunSteel);
-        wWheel.userData.stationIndex = i;
-        wWheel.userData.baseY = 0;
-        rotatingWheels.push(wWheel);
-      }
-
-      // Detailed toothed Drive Sprocket at front
-      const sprocket = addCADMesh(
-        parentGroup,
-        new THREE.CylinderGeometry(0.39, 0.39, 0.32, 18),
-        MATS.armorOuter,
-        [0, 0.26, 2.35],
-        [0, 0, Math.PI / 2]
-      );
-      addCADMesh(sprocket, new THREE.CylinderGeometry(0.18, 0.18, 0.38, 14), MATS.gunSteel);
-      for (let t = 0; t < 12; t++) {
-        const angle = (t / 12) * Math.PI * 2;
-        addCADMesh(
-          sprocket,
-          new THREE.BoxGeometry(0.06, 0.34, 0.12),
-          MATS.chromeSteel,
-          [Math.cos(angle) * 0.41, 0, Math.sin(angle) * 0.41],
-          [0, -angle, 0],
-          false
-        );
-      }
-      sprocket.userData.stationIndex = -1;
-      sprocket.userData.baseY = 0.26;
-      rotatingWheels.push(sprocket);
-
-      const idler = addCADMesh(
-        parentGroup,
-        new THREE.CylinderGeometry(0.36, 0.36, 0.3, 18),
-        MATS.armorDark,
-        [0, 0.22, -2.45],
-        [0, 0, Math.PI / 2]
-      );
-      idler.userData.stationIndex = -1;
-      idler.userData.baseY = 0.22;
-      rotatingWheels.push(idler);
-    }
-
-    populateWheelSide(partWheelsLeft, -1);
-    populateWheelSide(partWheelsRight, 1);
-    tankRoot.add(partWheelsLeft);
-    tankRoot.add(partWheelsRight);
-
-    const partTracks = createPartGroup({
-      id: 'sus_tracks',
-      name: '725mm Geniş Savaş Paletleri & Kılavuz Dişleri (Gefechtsketten)',
-      subsystem: 'suspension',
-      subLabel: 'ALT SİSTEM: SÜSPANSİYON & PALET',
-      desc: '57 tonluk Tiger I\'in yumuşak zemine batmasını önlemek için kullanılan 725mm genişliğindeki manganez-çelik döküm palet baklaları (her iki yanda 96\'şar bakla).',
-      material: 'Döküm Manganez Çeliği',
-      weight: '5,750 kg (Çift Palet)',
-      spec: '725mm Genişlik / 96 Bakla',
-      location: 'Sağ & Sol Tekerlek Çevresi',
-      basePos: [0, 0.45, 0.1],
-      explodeVec: [0, -1.2, 3.0],
-      isOuterShell: false
-    });
-
-    const trackShoes = [];
-    [-1.34, 1.34].forEach(xTrack => {
-      addCADMesh(partTracks, new THREE.BoxGeometry(0.68, 0.07, 4.5), MATS.trackMetal, [xTrack, -0.43, -0.05]);
-      addCADMesh(partTracks, new THREE.BoxGeometry(0.68, 0.07, 4.7), MATS.trackMetal, [xTrack, 0.65, -0.05]);
-      addCADMesh(partTracks, new THREE.BoxGeometry(0.68, 0.07, 0.9), MATS.trackMetal, [xTrack, -0.1, 2.38], [-0.72, 0, 0]);
-      addCADMesh(partTracks, new THREE.BoxGeometry(0.68, 0.07, 0.85), MATS.trackMetal, [xTrack, -0.12, -2.45], [0.68, 0, 0]);
-
-      for (let k = 0; k < 16; k++) {
-        const cleatTop = addCADMesh(partTracks, new THREE.BoxGeometry(0.7, 0.05, 0.12), MATS.gunSteel, [xTrack, 0.7, -2.1 + k * 0.28], [0, 0, 0], false);
-        cleatTop.userData.isTop = true;
-        cleatTop.userData.offset = k / 16;
-        trackShoes.push(cleatTop);
-
-        const cleatBot = addCADMesh(partTracks, new THREE.BoxGeometry(0.7, 0.05, 0.12), MATS.gunSteel, [xTrack, -0.46, -2.1 + k * 0.28], [0, 0, 0], false);
-        cleatBot.userData.isTop = false;
-        cleatBot.userData.offset = k / 16;
-        trackShoes.push(cleatBot);
-      }
-    });
-    tankRoot.add(partTracks);
-
-    // ----------------------------------------------------------------------------
-    // E. TURRET & 8.8 CM KwK 36 L/56 MAIN GUN SUBSYSTEM (Taret & Ana Silah)
-    // ----------------------------------------------------------------------------
-    const turretPivot = new THREE.Group();
-    turretPivot.position.set(0, 1.76, 0.15);
-    tankRoot.add(turretPivot);
-
-    const partTurretBasket = createPartGroup({
-      id: 'tur_basket',
-      name: '360° Taret Dişli Halkası, Sepet & Nişancı/Komutan Koltukları',
-      subsystem: 'turret',
-      subLabel: 'ALT SİSTEM: SİLAH & TARET',
-      desc: 'Taretin gövde üzerinde dönmesini sağlayan 1850mm çapındaki bilyalı dişli çember, taret ile birlikte dönen iç mürettebat tabanı (Turret Basket), nişancı/komutan koltukları ve hidrolik dönüş mekanizması.',
-      material: 'Dövme Çelik Dişli & Çelik Kafes',
-      weight: '1,180 kg',
-      spec: '1,850 mm Çap / Hidrolik Tahrik',
-      location: 'Gövde Merkez Taret Yatağı',
-      basePos: [0, -0.35, 0],
-      explodeVec: [0, 1.2, 0],
-      isOuterShell: false
-    });
-    addCADMesh(partTurretBasket, new THREE.CylinderGeometry(1.12, 1.12, 0.14, 32), MATS.gunSteel, [0, 0.35, 0]);
-    addCADMesh(partTurretBasket, new THREE.CylinderGeometry(0.95, 0.95, 0.08, 24), MATS.interiorCream, [0, -0.42, 0]);
-    addCADMesh(partTurretBasket, new THREE.BoxGeometry(0.08, 0.78, 0.08), MATS.gunSteel, [-0.88, -0.02, 0]);
-    addCADMesh(partTurretBasket, new THREE.BoxGeometry(0.08, 0.78, 0.08), MATS.gunSteel, [0.88, -0.02, 0]);
-    addCADMesh(partTurretBasket, new THREE.BoxGeometry(0.34, 0.10, 0.34), MATS.leatherSeat, [0.55, -0.22, 0.15]);
-    addCADMesh(partTurretBasket, new THREE.BoxGeometry(0.34, 0.10, 0.34), MATS.leatherSeat, [0.50, 0.05, -0.45]);
-    addCADMesh(partTurretBasket, new THREE.BoxGeometry(0.32, 0.12, 0.32), MATS.leatherSeat, [-0.55, -0.22, -0.15]);
-    turretPivot.add(partTurretBasket);
-
-    const partTurretShell = createPartGroup({
-      id: 'tur_shell',
-      name: 'Krupp At Nalı Taret Zırhı (82mm), Sis Havanları & Yedek Paletler',
-      subsystem: 'turret',
-      subLabel: 'ALT SİSTEM: SİLAH & TARET',
-      desc: 'Tek parça 82mm kalınlığındaki bükülmüş Krupp taret zırhı, yanlarda 3\'er namlulu 90mm Nebelwurfgerät sis havanları, asılı yedek palet baklaları, kaçış kapağı ve "131" taktik taret numarası.',
-      material: '82mm Bükülmüş Krupp Çeliği',
-      weight: '4,950 kg',
-      spec: '82mm Zırh + 6x Sis Havanı',
-      location: 'Taret Dış Gövde',
-      basePos: [0, 0.42, -0.1],
-      explodeVec: [0, 3.2, -0.6],
-      isOuterShell: true
-    });
-    addCADMesh(partTurretShell, new THREE.CylinderGeometry(1.18, 1.22, 0.78, 28), MATS.armorOuter, [0, 0, -0.05]);
-    addCADMesh(partTurretShell, new THREE.BoxGeometry(2.15, 0.78, 0.85), MATS.armorOuter, [0, 0, 0.48]);
-    // Triple 90mm Smoke Grenade Dischargers (Nebelwurfgerät) on Left & Right Turret Front
-    [-1.12, 1.12].forEach(xSmoke => {
-      for (let s = 0; s < 3; s++) {
-        addCADMesh(
-          partTurretShell,
-          new THREE.CylinderGeometry(0.05, 0.05, 0.28, 10),
-          MATS.gunSteel,
-          [xSmoke, 0.12 + s * 0.11, 0.68],
-          [Math.PI / 3, 0, xSmoke > 0 ? -0.18 : 0.18]
-        );
-      }
-      // Spare track links mounted on turret sides
-      for (let tr = 0; tr < 3; tr++) {
-        addCADMesh(
-          partTurretShell,
-          new THREE.BoxGeometry(0.07, 0.34, 0.24),
-          MATS.trackMetal,
-          [xSmoke * 1.07, 0.0, -0.15 - tr * 0.28]
-        );
-      }
-    });
-    // Turret Rear Right Loader Escape Hatch
-    addCADMesh(partTurretShell, new THREE.CylinderGeometry(0.24, 0.24, 0.08, 16), MATS.armorDark, [-0.95, 0.02, -0.68], [0, -0.65, Math.PI / 2]);
-    // Tactical Turret Number "131" + Balkenkreuz Plates on Turret Sides
-    addCADMesh(partTurretShell, new THREE.PlaneGeometry(0.78, 0.38), MATS.insigniaDecal, [-1.09, 0.08, 0.42], [0, -Math.PI / 2, 0], false);
-    addCADMesh(partTurretShell, new THREE.PlaneGeometry(0.78, 0.38), MATS.insigniaDecal, [1.09, 0.08, 0.42], [0, Math.PI / 2, 0], false);
-    turretPivot.add(partTurretShell);
-
-    const partCupola = createPartGroup({
-      id: 'tur_cupola',
-      name: 'Komutan Kupolası (5x Periskop), Yükleyici Kapağı & Gepäckkasten',
-      subsystem: 'turret',
-      subLabel: 'ALT SİSTEM: SİLAH & TARET',
-      desc: 'Taretin sol üst kısmında yer alan 5 periskoplu komutan gözetleme kupolası, uçaksavar MG34 halkası, sağda yükleyici kapağı, duman tahliye fanı ve arkadaki ikonik mürettebat malzeme sandığı (Gepäckkasten).',
-      material: '80mm Döküm Çelik Kupola',
-      weight: '680 kg',
-      spec: '5x Gözetleme Yarığı & Rommel Kutusu',
-      location: 'Taret Üst Tavan & Arka',
-      basePos: [0, 0.88, -0.15],
-      explodeVec: [0, 4.4, -1.2],
-      isOuterShell: false
-    });
-    addCADMesh(partCupola, new THREE.CylinderGeometry(0.34, 0.36, 0.32, 20), MATS.armorDark, [0.52, 0.08, -0.25]);
-    addCADMesh(partCupola, new THREE.CylinderGeometry(0.36, 0.36, 0.06, 20), MATS.armorRoof, [0.52, 0.25, -0.25]);
-    // 5 Vision Slit Blocks around Commander Cupola
-    for (let v = 0; v < 5; v++) {
-      const a = (v / 5) * Math.PI * 2;
-      addCADMesh(
-        partCupola,
-        new THREE.BoxGeometry(0.12, 0.07, 0.08),
-        MATS.chromeSteel,
-        [0.52 + Math.cos(a) * 0.33, 0.14, -0.25 + Math.sin(a) * 0.33],
-        [0, -a, 0]
-      );
-    }
-    // Turret Roof Fume Extractor Fan Dome & Loader Hatch
-    addCADMesh(partCupola, new THREE.CylinderGeometry(0.16, 0.18, 0.08, 14), MATS.armorDark, [0.05, 0.0, 0.28]);
-    addCADMesh(partCupola, new THREE.BoxGeometry(0.46, 0.08, 0.46), MATS.armorDark, [-0.5, 0.0, 0.15]);
-    // Rear Gepäckkasten (Rommel Box) with mounting brackets
-    addCADMesh(partCupola, new THREE.BoxGeometry(1.55, 0.58, 0.45), MATS.armorOuter, [0, -0.45, -1.32]);
-    addCADMesh(partCupola, new THREE.BoxGeometry(1.62, 0.06, 0.48), MATS.armorRoof, [0, -0.15, -1.32]);
-    turretPivot.add(partCupola);
-
-    const gunElevationPivot = new THREE.Group();
-    gunElevationPivot.position.set(0, 0.42, 0.88);
-    turretPivot.add(gunElevationPivot);
-
-    const partMantlet = createPartGroup({
-      id: 'tur_mantlet',
-      name: '110mm Döküm Top Kalkanı (Kanonenblende) & TZF 9b Nişangahı',
-      subsystem: 'turret',
-      subLabel: 'ALT SİSTEM: SİLAH & TARET',
-      desc: 'Taretin ön açıklığını tamamen kapatan 110mm (bazı noktalarda 140mm) kalınlığındaki döküm çelik kalkan. Üzerinde TZF 9b çift dürbünlü nişangah delikleri ve eş eksenli MG34 yuvası bulunur.',
-      material: '110mm - 140mm Döküm Zırh Çeliği',
-      weight: '1,780 kg',
-      spec: 'TZF 9b Binoküler Nişangah Yuvalı',
-      location: 'Taret Ön Cephe',
-      basePos: [0, 0, 0.12],
-      explodeVec: [0, 1.5, 1.9],
-      isOuterShell: false
-    });
-    addCADMesh(partMantlet, new THREE.BoxGeometry(1.95, 0.68, 0.28), MATS.armorOuter, [0, 0, 0]);
-    addCADMesh(partMantlet, new THREE.CylinderGeometry(0.24, 0.28, 0.46, 18), MATS.armorDark, [0, 0, 0.22], [Math.PI / 2, 0, 0]);
-    // Coaxial MG34 & Binocular TZF 9b Sight Apertures
-    addCADMesh(partMantlet, new THREE.CylinderGeometry(0.03, 0.03, 0.42, 10), MATS.gunSteel, [-0.52, 0.04, 0.22], [Math.PI / 2, 0, 0]);
-    addCADMesh(partMantlet, new THREE.CylinderGeometry(0.028, 0.028, 0.32, 10), MATS.rubberTire, [0.32, 0.05, 0.02], [Math.PI / 2, 0, 0]);
-    addCADMesh(partMantlet, new THREE.CylinderGeometry(0.028, 0.028, 0.32, 10), MATS.rubberTire, [0.44, 0.05, 0.02], [Math.PI / 2, 0, 0]);
-    gunElevationPivot.add(partMantlet);
-
-    const partBreech = createPartGroup({
-      id: 'tur_breech',
-      name: 'Kama Bloğu & Hidrolik Geri Tepme Silindirleri',
-      subsystem: 'turret',
-      subLabel: 'ALT SİSTEM: SİLAH & TARET',
-      desc: 'Taretin içinde yer alan yarı otomatik yatay kama mekanizması, mermi kovan yakalayıcı sepet ve üstteki ikiz hidrolik-pnömatik geri tepme sönümleyici (recuperator) silindirler.',
-      material: 'Yüksek Alaşımlı Top Çeliği',
-      weight: '640 kg',
-      spec: '580mm Hidrolik Geri Tepme Kursu',
-      location: 'Taret İç Merkez',
-      basePos: [0, 0, -0.58],
-      explodeVec: [0, 3.8, 0.2],
-      isOuterShell: false
-    });
-    const breechMovingGroup = new THREE.Group();
-    partBreech.add(breechMovingGroup);
-    addCADMesh(breechMovingGroup, new THREE.BoxGeometry(0.46, 0.42, 0.85), MATS.gunSteel, [0, 0, 0]);
-    addCADMesh(partBreech, new THREE.CylinderGeometry(0.085, 0.085, 1.05, 14), MATS.chromeSteel, [-0.14, 0.28, 0.12], [Math.PI / 2, 0, 0]);
-    addCADMesh(partBreech, new THREE.CylinderGeometry(0.085, 0.085, 1.05, 14), MATS.chromeSteel, [0.14, 0.28, 0.12], [Math.PI / 2, 0, 0]);
-    gunElevationPivot.add(partBreech);
-
-    const partGunBarrel = createPartGroup({
-      id: 'tur_barrel',
-      name: '8.8 cm KwK 36 L/56 Ana Top Namlusu & Çift Odacıklı Ağız Baskısı',
-      subsystem: 'turret',
-      subLabel: 'ALT SİSTEM: SİLAH & TARET',
-      desc: '4.93 metre uzunluğundaki (56 kalibre) yivli 88mm top namlusu ve ucundaki çift odacıklı gaz saptırıcı ağız baskısı (Muzzle Brake). Ateşle butonuna bastığınızda gerçekçi geri tepme hareketini yapar.',
-      material: 'Krupp Nikel-Krom Top Çeliği',
-      weight: '1,310 kg',
-      spec: '88 mm Çap / 4,930 mm Uzunluk (L/56)',
-      location: 'Taret Ön Uzantı',
-      basePos: [0, 0, 1.85],
-      explodeVec: [0, 1.5, 4.2],
-      isOuterShell: false
-    });
-    const barrelRecoilGroup = new THREE.Group();
-    partGunBarrel.add(barrelRecoilGroup);
-
-    addCADMesh(barrelRecoilGroup, new THREE.CylinderGeometry(0.115, 0.135, 1.6, 20), MATS.armorOuter, [0, 0, -0.75], [Math.PI / 2, 0, 0]);
-    addCADMesh(barrelRecoilGroup, new THREE.CylinderGeometry(0.095, 0.11, 1.85, 20), MATS.armorOuter, [0, 0, 0.95], [Math.PI / 2, 0, 0]);
-    // Stepped Double-Baffle Muzzle Brake with Side Gas Vent Baffles & Dark Bore
-    addCADMesh(barrelRecoilGroup, new THREE.CylinderGeometry(0.155, 0.155, 0.44, 20), MATS.gunSteel, [0, 0, 1.98], [Math.PI / 2, 0, 0]);
-    addCADMesh(barrelRecoilGroup, new THREE.BoxGeometry(0.38, 0.22, 0.12), MATS.armorOuter, [0, 0, 1.88]);
-    addCADMesh(barrelRecoilGroup, new THREE.BoxGeometry(0.38, 0.22, 0.12), MATS.armorOuter, [0, 0, 2.08]);
-    addCADMesh(barrelRecoilGroup, new THREE.CylinderGeometry(0.075, 0.075, 0.46, 16), MATS.rubberTire, [0, 0, 1.99], [Math.PI / 2, 0, 0]);
-
-    const flashGeo = new THREE.ConeGeometry(0.65, 2.2, 16);
-    const flashMat = new THREE.MeshBasicMaterial({ color: 0xffaa00, transparent: true, opacity: 0.0 });
-    const flashMesh = new THREE.Mesh(flashGeo, flashMat);
-    flashMesh.rotation.x = Math.PI / 2;
-    flashMesh.position.set(0, 0, 3.15);
-    barrelRecoilGroup.add(flashMesh);
-
-    gunElevationPivot.add(partGunBarrel);
+    currentBuildVehicle = 'tiger';
+    const {
+      tankRoot, turretPivot, gunElevationPivot, barrelRecoilGroup, breechMovingGroup, flashMesh,
+      pistonMeshes, fanMeshes, shaftMesh, rotatingWheels, trackShoes,
+      partFrontArmor, partAmmoRacks, partGunBarrel, partPistons, partTransmission, partTorsionBars,
+      setVariant: tigerSetVariant, updateTracks: tigerUpdateTracks
+    } = window.VehicleBuilders.tiger1(buildCtx);
 
     // ============================================================================
-    // 4B. BUILD FAZ 2: 1453 OSMANLI ŞAHİ TOPU (12 MECHANICAL GROUPS)
+    // 4B. FAZ 2: OSMANLI ŞAHİ TOPU — DARDANELLES GUN (1464) ÖLÇÜLERİ (js/vehicles/sahi1453.js)
     // ============================================================================
     currentBuildVehicle = 'sahi';
-    const sahiRoot = new THREE.Group();
-    sahiRoot.visible = false;
-    scene.add(sahiRoot);
+    const sahi = window.VehicleBuilders.sahi1453(buildCtx);
+    const sahiRoot = sahi.root;
+    const sahiFlashMesh = sahi.flashMesh;
+    const {
+      front: partSahiFrontBarrel, ball: partSahiStoneBall, threads: partSahiThreads,
+      powder: partSahiPowder, recoil: partSahiRecoilWall, ammo: partSahiAmmoPile, sled: partSahiSled
+    } = sahi.parts;
 
-    const sahiCarriageRecoilGroup = new THREE.Group();
-    sahiRoot.add(sahiCarriageRecoilGroup);
-
-    const sahiBarrelElevPivot = new THREE.Group();
-    sahiBarrelElevPivot.position.set(0, 1.26, 0.15);
-    sahiCarriageRecoilGroup.add(sahiBarrelElevPivot);
-
-    // 1. ÖN TUNÇ NAMLU GÖVDESİ & TAKVİYE BİLEZİKLERİ (X-Ray Outer Shell)
-    const partSahiFrontBarrel = createPartGroup({
-      id: 'sahi_barrel',
-      name: '680mm Ön Tunç Namlu Gövdesi & Osmanlı Kabartma Bilezikleri',
-      subsystem: 'barrel',
-      subLabel: 'ALT SİSTEM: İKİ PARÇALI TUNÇ GÖVDE',
-      desc: '544 kg ağırlığındaki Marmara granit güllesine yön veren 680mm iç çaplı dev ön namlu. Döküm basıncına dayanması için üzerinde 5 adet kalın takviye bileziği, Selçuklu/Osmanlı kabartma kuşakları ve halat askı kulpları bulunur.',
-      material: 'Edirne Dökümü Saf Tunç (%89 Bakır, %11 Kalay)',
-      weight: '10,400 kg (Ön Parça)',
-      spec: '680 mm Kalibre / 3.15m Ön Uzunluk',
-      location: 'Gövde Ön Kısım',
-      basePos: [0, 0, 1.35],
-      explodeVec: [0, 1.3, 2.8],
-      isOuterShell: true
-    });
-    // Main thick bronze cylinder + flared muzzle swell
-    addCADMesh(partSahiFrontBarrel, new THREE.CylinderGeometry(0.58, 0.62, 2.85, 28), MATS.sahiBronzeOuter, [0, 0, 0], [Math.PI / 2, 0, 0]);
-    addCADMesh(partSahiFrontBarrel, new THREE.CylinderGeometry(0.68, 0.60, 0.42, 28), MATS.sahiBronzeBand, [0, 0, 1.32], [Math.PI / 2, 0, 0]);
-    // 5 Decorative & Structural Reinforcement Rings along front barrel
-    [-1.25, -0.65, -0.05, 0.58, 1.12].forEach(zRing => {
-      addCADMesh(partSahiFrontBarrel, new THREE.CylinderGeometry(0.65, 0.65, 0.14, 28), MATS.sahiBronzeBand, [0, 0, zRing], [Math.PI / 2, 0, 0]);
-    });
-    // Heavy Rope Lifting Lugs (Kulplar) on top of barrel
-    [-0.65, 0.58].forEach(zLug => {
-      addCADMesh(partSahiFrontBarrel, new THREE.TorusGeometry(0.14, 0.04, 10, 18), MATS.sahiBronzeBand, [0, 0.64, zLug], [0, Math.PI / 2, 0]);
-    });
-    // Dark 680mm Muzzle Bore Aperture
-    addCADMesh(partSahiFrontBarrel, new THREE.CylinderGeometry(0.44, 0.44, 0.12, 24), MATS.rubberTire, [0, 0, 1.49], [Math.PI / 2, 0, 0]);
-
-    const sahiFlashGeo = new THREE.ConeGeometry(1.15, 3.4, 20);
-    const sahiFlashMat = new THREE.MeshBasicMaterial({ color: 0xff9900, transparent: true, opacity: 0.0 });
-    const sahiFlashMesh = new THREE.Mesh(sahiFlashGeo, sahiFlashMat);
-    sahiFlashMesh.rotation.x = Math.PI / 2;
-    sahiFlashMesh.position.set(0, 0, 3.15);
-    partSahiFrontBarrel.add(sahiFlashMesh);
-    sahiBarrelElevPivot.add(partSahiFrontBarrel);
-
-    // 2. ARKA VİDALI BARUT HAZNESİ & FALYA DELİĞİ (X-Ray Outer Shell)
-    const partSahiBreech = createPartGroup({
-      id: 'sahi_breech',
-      name: 'Vidalı Arka Barut Odası (Hazne), Manivela Yuvaları & Falya Deliği',
-      subsystem: 'barrel',
-      subLabel: 'ALT SİSTEM: İKİ PARÇALI TUNÇ GÖVDE',
-      desc: '60 kg kara barutun patlama basıncına dayanabilmesi için 250mm et kalınlığında dökülmüş arka yanma odası. Üzerindeki 12 yuvarlak/köşeli yuvaya meşe manivelalar takılarak ön namluya vidalanır.',
-      material: '250mm Kalın Döküm Tunç',
-      weight: '6,400 kg (Arka Parça)',
-      spec: 'Vidalı Kuyruk Haznesi + Falya Kanalı',
-      location: 'Gövde Arka Kısım',
-      basePos: [0, 0, -1.35],
-      explodeVec: [0, 1.3, -2.6],
-      isOuterShell: true
-    });
-    const sahiBreechScrewGroup = new THREE.Group();
-    partSahiBreech.add(sahiBreechScrewGroup);
-    addCADMesh(sahiBreechScrewGroup, new THREE.CylinderGeometry(0.48, 0.52, 2.15, 28), MATS.sahiBronzeOuter, [0, 0, 0], [Math.PI / 2, 0, 0]);
-    addCADMesh(sahiBreechScrewGroup, new THREE.SphereGeometry(0.48, 24, 18), MATS.sahiBronzeBand, [0, 0, -1.08]);
-    // Breech reinforcement collars & lever socket rings
-    [-0.85, -0.15, 0.68].forEach(zCollar => {
-      addCADMesh(sahiBreechScrewGroup, new THREE.CylinderGeometry(0.56, 0.56, 0.16, 28), MATS.sahiBronzeBand, [0, 0, zCollar], [Math.PI / 2, 0, 0]);
-    });
-    // 12 Lever Socket Bosses around breech circumference
-    for (let s = 0; s < 8; s++) {
-      const a = (s / 8) * Math.PI * 2;
-      addCADMesh(
-        sahiBreechScrewGroup,
-        new THREE.BoxGeometry(0.14, 0.14, 0.18),
-        MATS.sahiWroughtIron,
-        [Math.cos(a) * 0.53, Math.sin(a) * 0.53, 0.32],
-        [0, 0, a]
-      );
-    }
-    // Top Falya (Touch Hole) Priming Pan at rear breech
-    addCADMesh(sahiBreechScrewGroup, new THREE.CylinderGeometry(0.11, 0.14, 0.12, 16), MATS.sahiBronzeBand, [0, 0.54, -0.58]);
-    addCADMesh(sahiBreechScrewGroup, new THREE.CylinderGeometry(0.035, 0.035, 0.16, 12), MATS.rubberTire, [0, 0.56, -0.58]);
-    sahiBarrelElevPivot.add(partSahiBreech);
-
-    // 3. 8-YİVLİ ERKEK-DİŞİ BRONZ VİDALAMA DİŞLİSİ & CONTA
-    const partSahiThreads = createPartGroup({
-      id: 'sahi_threads',
-      name: '8-Yivli Erkek-Dişi Bronz Vidalama Dişlisi & Sızdırmazlık Bileziği',
-      subsystem: 'barrel',
-      subLabel: 'ALT SİSTEM: İKİ PARÇALI TUNÇ GÖVDE',
-      desc: '1453 Osmanlı top döküm teknolojisinin zirvesi: 16.8 tonluk topun Edirne\'den İstanbul\'a iki parça halinde taşınıp sahada birleştirilmesini sağlayan hassas döküm bronz vida dişleri.',
-      material: 'Hassas İşlenmiş Kalay-Tunç Alaşımı',
-      weight: '480 kg (Vida Boynu)',
-      spec: '8 Yivli Helisel Bronz Dişli',
-      location: 'Gövde Merkez Birleşim Noktası',
-      basePos: [0, 0, -0.15],
-      explodeVec: [0, 2.6, 0],
-      isOuterShell: false
-    });
-    const sahiThreadSpinGroup = new THREE.Group();
-    partSahiThreads.add(sahiThreadSpinGroup);
-    addCADMesh(sahiThreadSpinGroup, new THREE.CylinderGeometry(0.41, 0.41, 0.62, 24), MATS.sahiThreadGold, [0, 0, 0], [Math.PI / 2, 0, 0]);
-    for (let t = 0; t < 7; t++) {
-      addCADMesh(
-        sahiThreadSpinGroup,
-        new THREE.TorusGeometry(0.415, 0.028, 10, 28),
-        MATS.brassAmmo,
-        [0, 0, -0.24 + t * 0.08]
-      );
-    }
-    // Copper gas-seal ring
-    addCADMesh(sahiThreadSpinGroup, new THREE.TorusGeometry(0.46, 0.035, 12, 28), MATS.radiatorCopper, [0, 0, -0.30]);
-    sahiBarrelElevPivot.add(partSahiThreads);
-
-    // 4. 6x MEŞE VİDALAMA MANİVELASI & HALAT SARIMLARI
-    const partSahiLevers = createPartGroup({
-      id: 'sahi_levers',
-      name: '6x Demir Bilezikli Meşe Vidalama Manivelası & Halat Kolları',
-      subsystem: 'barrel',
-      subLabel: 'ALT SİSTEM: İKİ PARÇALI TUNÇ GÖVDE',
-      desc: 'Arka barut haznesindeki yuvalara saplanan kalın meşe manivela kolları. Palangalar ve öküz gücüyle çekilerek iki dev tunç parçanın gaz sızdırmayacak şekilde sıkılmasını sağlar.',
-      material: 'Fırınlanmış Meşe & Dövme Demir Uç',
-      weight: '210 kg (6 Adet Takım)',
-      spec: '1.8m Manivela Kolu Momenti',
-      location: 'Arka Hazne Çevresi',
-      basePos: [0, 0, -1.03],
-      explodeVec: [0, 3.1, -1.4],
-      isOuterShell: false
-    });
-    const sahiLeversSpinGroup = new THREE.Group();
-    partSahiLevers.add(sahiLeversSpinGroup);
-    for (let lv = 0; lv < 6; lv++) {
-      const ang = (lv / 6) * Math.PI * 2 + 0.3;
-      const rDist = 0.85;
-      addCADMesh(
-        sahiLeversSpinGroup,
-        new THREE.CylinderGeometry(0.038, 0.048, 0.95, 10),
-        MATS.sahiOakTimber,
-        [Math.cos(ang) * rDist, Math.sin(ang) * rDist, 0],
-        [0, 0, ang - Math.PI / 2]
-      );
-      addCADMesh(
-        sahiLeversSpinGroup,
-        new THREE.CylinderGeometry(0.052, 0.052, 0.14, 10),
-        MATS.sahiWroughtIron,
-        [Math.cos(ang) * (rDist + 0.42), Math.sin(ang) * (rDist + 0.42), 0],
-        [0, 0, ang - Math.PI / 2]
-      );
-    }
-    sahiBarrelElevPivot.add(partSahiLevers);
-
-    // 5. 544 KG MARMARA GRANİT GÜLLESİ & YAĞLI KEÇE SIKI (Ballistics)
-    const partSahiStoneBall = createPartGroup({
-      id: 'sahi_stoneball',
-      name: '544 kg Marmara Granit Güllesi & Yağlı Keçe Sıkı (Sabot)',
-      subsystem: 'ballistics',
-      subLabel: 'ALT SİSTEM: İÇ BALİSTİK & MÜHİMMAT',
-      desc: 'Karadeniz ve Marmara taş ocaklarından kesilip küre haline getirilen 630mm çapındaki 544 kg\'lık granit gülle ve arkasındaki barut gazını hapseden zeytinyağlı keçe/halat sıkı. X-Ray modunda namlu içinde görünür, ateşlendiğinde namludan fırlar!',
-      material: 'Yontulmuş Marmara Graniti & Keçe/Kenevir',
-      weight: '544 kg (1200 Libre)',
-      spec: '630 mm Çap / ~1,600m Menzil',
-      location: 'Ön Namlu Yatağı İçi',
-      basePos: [0, 0, 0.55],
-      explodeVec: [0, 2.2, 3.8],
-      isOuterShell: false
-    });
-    const sahiProjectileFlyGroup = new THREE.Group();
-    partSahiStoneBall.add(sahiProjectileFlyGroup);
-    addCADMesh(sahiProjectileFlyGroup, new THREE.SphereGeometry(0.40, 24, 20), MATS.sahiGranite, [0, 0, 0]);
-    // Rope & felt wadding cushion behind granite ball
-    addCADMesh(sahiProjectileFlyGroup, new THREE.CylinderGeometry(0.41, 0.41, 0.22, 20), MATS.sahiRopeHemp, [0, 0, -0.42], [Math.PI / 2, 0, 0]);
-    sahiBarrelElevPivot.add(partSahiStoneBall);
-
-    // 6. 60 KG KARA BARUT KESESİ, AHŞAP TAKOZ & FALYA ATEŞLEME KANALI
-    const partSahiPowder = createPartGroup({
-      id: 'sahi_powder',
-      name: '60 kg Kara Barut Kesesi, Ihlamur Takoz & Falya Ateşleme Yolu',
-      subsystem: 'ballistics',
-      subLabel: 'ALT SİSTEM: İÇ BALİSTİK & MÜHİMMAT',
-      desc: 'Arka yanma odasına yerleştirilen %75 Güherçile, %15 Söğüt Kömürü ve %10 Kükürt karışımlı 60 kg kara barut çuvalı ve önündeki ıhlamur ağacı sıkıştırma takozu (Tampion).',
-      material: 'Kara Barut, Keten Çuval & Ihlamur Takoz',
-      weight: '68 kg (Tam Dolum)',
-      spec: '60 kg Barut / Yüksek Gaz Basıncı',
-      location: 'Arka Barut Odası İçi',
-      basePos: [0, 0, -1.25],
-      explodeVec: [0, 2.8, -2.2],
-      isOuterShell: false
-    });
-    addCADMesh(partSahiPowder, new THREE.CylinderGeometry(0.32, 0.34, 1.35, 20), MATS.sahiPowderSack, [0, 0, 0], [Math.PI / 2, 0, 0]);
-    for (let b = -2; b <= 2; b++) {
-      addCADMesh(partSahiPowder, new THREE.TorusGeometry(0.335, 0.018, 8, 20), MATS.sahiRopeHemp, [0, 0, b * 0.24]);
-    }
-    // Wooden tampion plug separating powder chamber from granite ball
-    addCADMesh(partSahiPowder, new THREE.CylinderGeometry(0.36, 0.34, 0.22, 20), MATS.sahiOakTimber, [0, 0, 0.80], [Math.PI / 2, 0, 0]);
-    // Glowing priming channel from top Falya touch hole
-    addCADMesh(partSahiPowder, new THREE.CylinderGeometry(0.03, 0.03, 0.48, 10), MATS.brassAmmo, [0, 0.32, -0.68]);
-    sahiBarrelElevPivot.add(partSahiPowder);
-
-    // 7. ASIRLIK MEŞE BEŞİK KIZAĞI & DÖVME DEMİR KUŞAKLAR (Carriage)
-    const partSahiCradle = createPartGroup({
-      id: 'sahi_cradle',
-      name: 'Asırlık Meşe Beşik Kızağı (Top Arabası) & Dövme Demir Kuşaklar',
-      subsystem: 'carriage',
-      subLabel: 'ALT SİSTEM: MEŞE KIZAK & GERİ TEPME SİSTEMİ',
-      desc: '16.8 tonluk tunç gövdeyi omuzlayan, boydan boya kalın dövme demir perçinli kuşaklar ve enlemesine traverslerle birbirine kenetlenmiş masif meşe kızak yatağı.',
-      material: 'Masif Meşe Kerestesi & Dövme Demir',
-      weight: '4,200 kg',
-      spec: 'Zırhlı Ahşap Kızak Şasisi',
-      location: 'Gövde Alt Taşıyıcı Beşik',
-      basePos: [0, 0.56, 0.05],
-      explodeVec: [0, -1.1, 0],
-      isOuterShell: false
-    });
-    // Left & Right Heavy Oak Side Cheeks
-    [-0.66, 0.66].forEach(xBeam => {
-      addCADMesh(partSahiCradle, new THREE.BoxGeometry(0.28, 0.72, 5.85), MATS.sahiOakTimber, [xBeam, 0, 0]);
-      // Wrought iron reinforcement straps along oak beams
-      for (let st = -4; st <= 4; st++) {
-        addCADMesh(partSahiCradle, new THREE.BoxGeometry(0.31, 0.76, 0.08), MATS.sahiWroughtIron, [xBeam, 0, st * 0.62]);
-      }
-      // Heavy iron lifting/recoil rings on carriage sides
-      addCADMesh(partSahiCradle, new THREE.TorusGeometry(0.12, 0.03, 8, 16), MATS.sahiWroughtIron, [xBeam * 1.24, 0.05, 2.2], [0, Math.PI / 2, 0]);
-      addCADMesh(partSahiCradle, new THREE.TorusGeometry(0.12, 0.03, 8, 16), MATS.sahiWroughtIron, [xBeam * 1.24, 0.05, -2.2], [0, Math.PI / 2, 0]);
-    });
-    // Cross timber transoms & lower bed planks
-    addCADMesh(partSahiCradle, new THREE.BoxGeometry(1.58, 0.22, 5.65), MATS.sahiOakTimber, [0, -0.26, 0]);
-    [-2.2, -0.8, 0.6, 2.0].forEach(zCross => {
-      addCADMesh(partSahiCradle, new THREE.CylinderGeometry(0.06, 0.06, 1.78, 12), MATS.sahiWroughtIron, [0, 0.05, zCross], [0, 0, Math.PI / 2]);
-    });
-    sahiCarriageRecoilGroup.add(partSahiCradle);
-
-    // 8. KADEMELİ YÜKSELİŞ TAKOZLARI (Elevation Quoins)
-    const partSahiQuoins = createPartGroup({
-      id: 'sahi_quoins',
-      name: 'Kademeli Yükseliş Takozları (Meşe Kamalar & Ayar Kolları)',
-      subsystem: 'carriage',
-      subLabel: 'ALT SİSTEM: MEŞE KIZAK & GERİ TEPME SİSTEMİ',
-      desc: 'Namlunun Konstantinopolis surlarına doğru dikey atış açısını (+0° ile +14° arası) hassas şekilde ayarlamak için gövde altına sürülen demir kulplu meşe takozlar. Sağ panelden açıyı değiştirdiğinizde ileri-geri hareket eder!',
-      material: 'Gürgen/Meşe Kama & Demir Kulp',
-      weight: '340 kg',
-      spec: '0° – +14° Balistik Açı Ayarı',
-      location: 'Namlu Altı Kızak Yatağı',
-      basePos: [0, 0.82, 1.55],
-      explodeVec: [0, -0.6, 2.5],
-      isOuterShell: false
-    });
-    const sahiQuoinSlidingGroup = new THREE.Group();
-    partSahiQuoins.add(sahiQuoinSlidingGroup);
-    addCADMesh(sahiQuoinSlidingGroup, new THREE.BoxGeometry(0.95, 0.26, 1.15), MATS.sahiOakTimber, [0, -0.05, 0], [0.14, 0, 0]);
-    addCADMesh(sahiQuoinSlidingGroup, new THREE.BoxGeometry(0.82, 0.18, 0.85), MATS.woodTool, [0, 0.12, 0.12], [0.22, 0, 0]);
-    [-0.52, 0.52].forEach(xHandle => {
-      addCADMesh(sahiQuoinSlidingGroup, new THREE.CylinderGeometry(0.03, 0.03, 0.35, 10), MATS.sahiWroughtIron, [xHandle, 0.05, 0.45], [0, 0, Math.PI / 2]);
-    });
-    sahiCarriageRecoilGroup.add(partSahiQuoins);
-
-    // 9. ARKA GERİ TEPME KAZIKLARI, DESTEK KALASI & KENEVİR HALAT PALANGASI
-    const partSahiRecoilWall = createPartGroup({
-      id: 'sahi_recoil',
-      name: 'Arka Geri Tepme Duvarı, 6x Meşe Kazık & Kenevir Halat Palangası',
-      subsystem: 'carriage',
-      subLabel: 'ALT SİSTEM: MEŞE KIZAK & GERİ TEPME SİSTEMİ',
-      desc: '544 kg\'lık granit gülle ateşlendiğinde oluşan devasa geri tepme kuvvetinin 16.8 tonluk topu yerinden sökmesini önleyen, toprağa çakılmış 6 adet demir başlı meşe kazık, kalın destek kalası ve makaralı kenevir halat fren tertibatı.',
-      material: 'Meşe Kazıklar & 65mm Kenevir Halat',
-      weight: '1,850 kg (Mevzi Tahkimatı)',
-      spec: 'Halat Gerilmeli Geri Tepme Freni',
-      location: 'Kızak Arka Mevzi Sınırı',
-      basePos: [0, 0.65, -3.55],
-      explodeVec: [0, 0.4, -2.8],
-      isOuterShell: false
-    });
-    // Heavy橫 timber buffer beam behind breech
-    addCADMesh(partSahiRecoilWall, new THREE.BoxGeometry(2.65, 0.48, 0.42), MATS.sahiOakTimber, [0, 0.05, 0]);
-    // 6 Ground-driven oak stakes with angled struts
-    for (let st = 0; st < 6; st++) {
-      const xSt = -1.05 + st * 0.42;
-      addCADMesh(partSahiRecoilWall, new THREE.CylinderGeometry(0.11, 0.09, 1.45, 12), MATS.sahiOakTimber, [xSt, 0.08, -0.32]);
-      addCADMesh(partSahiRecoilWall, new THREE.CylinderGeometry(0.12, 0.12, 0.14, 12), MATS.sahiWroughtIron, [xSt, 0.78, -0.32]);
-      addCADMesh(partSahiRecoilWall, new THREE.BoxGeometry(0.14, 0.14, 0.95), MATS.sahiOakTimber, [xSt, -0.12, -0.72], [-0.48, 0, 0]);
-    }
-    // Heavy hemp recoil ropes connecting stakes to carriage
-    [-0.82, 0.82].forEach(xRope => {
-      addCADMesh(partSahiRecoilWall, new THREE.CylinderGeometry(0.055, 0.055, 1.45, 12), MATS.sahiRopeHemp, [xRope, 0.12, 0.65], [Math.PI / 2, 0, 0]);
-      addCADMesh(partSahiRecoilWall, new THREE.TorusGeometry(0.16, 0.045, 10, 20), MATS.sahiRopeHemp, [xRope, 0.12, 0.05], [0, Math.PI / 2, 0]);
-    });
-    sahiRoot.add(partSahiRecoilWall);
-
-    // 10. DEMİR ÇEMBERLİ NAKLİYE TEKERLEKLERİ & AĞIR DİNGİLLER (Logistics)
-    const partSahiWheels = createPartGroup({
-      id: 'sahi_wheels',
-      name: '4x Dövme Demir Çemberli Nakliye Tekerleği & Meşe Dingiller',
-      subsystem: 'logistics',
-      subLabel: 'ALT SİSTEM: NAKLİYE & KUŞATMA LOJİSTİĞİ',
-      desc: 'Edirne\'de dökülen Şahi Topu\'nu 60 öküz ve 400 nefer eşliğinde 2 ayda İstanbul surları önüne taşıyan dövme demir çemberli masif meşe araba tekerlekleri ve ağır çelik akslar.',
-      material: 'Masif Meşe Disk & Dövme Demir Çember',
-      weight: '1,920 kg (4 Tekerlek + 2 Dingil)',
-      spec: '60 Öküzlük Ağır Nakliye Takımı',
-      location: 'Kızak Alt Yan Akslar',
-      basePos: [0, 0.52, 0.1],
-      explodeVec: [0, -1.6, 0],
-      isOuterShell: false
-    });
-    const sahiWheelMeshes = [];
-    [-1.45, 1.35].forEach(zAxle => {
-      addCADMesh(partSahiWheels, new THREE.CylinderGeometry(0.08, 0.08, 2.25, 14), MATS.sahiWroughtIron, [0, -0.08, zAxle], [0, 0, Math.PI / 2]);
-      [-1.02, 1.02].forEach(xWheel => {
-        const wGroup = new THREE.Group();
-        wGroup.position.set(xWheel, -0.08, zAxle);
-        addCADMesh(wGroup, new THREE.CylinderGeometry(0.46, 0.46, 0.18, 24), MATS.sahiWroughtIron, [0, 0, 0], [0, 0, Math.PI / 2]);
-        addCADMesh(wGroup, new THREE.CylinderGeometry(0.42, 0.42, 0.19, 24), MATS.sahiOakTimber, [0, 0, 0], [0, 0, Math.PI / 2]);
-        addCADMesh(wGroup, new THREE.CylinderGeometry(0.16, 0.16, 0.26, 16), MATS.sahiBronzeBand, [0, 0, 0], [0, 0, Math.PI / 2]);
-        partSahiWheels.add(wGroup);
-        sahiWheelMeshes.push(wGroup);
-      });
-    });
-    sahiCarriageRecoilGroup.add(partSahiWheels);
-
-    // 11. YEDEK GRANİT GÜLLE İSTİFİ & MEŞE BARUT FIÇILARI
-    const partSahiAmmoPile = createPartGroup({
-      id: 'sahi_ammopile',
-      name: 'Yedek 544 kg Granit Gülle Piramidi & Meşe Kara Barut Fıçıları',
-      subsystem: 'logistics',
-      subLabel: 'ALT SİSTEM: NAKLİYE & KUŞATMA LOJİSTİĞİ',
-      desc: 'Top bataryasının sağ yanında ahşap takozlar üzerinde istiflenmiş 6 adet 544 kg Marmara granit güllesi ve kıvılcımlardan korunması için deri örtülü meşe kara barut fıçıları.',
-      material: 'Marmara Graniti & Demir Çemberli Meşe Fıçı',
-      weight: '3,550 kg (6 Gülle + 3 Fıçı)',
-      spec: 'Günlük 7 Atışlık Kuşatma İstifi',
-      location: 'Mevzi Sağ Yan Cephanelik',
-      basePos: [2.15, 0.38, -0.25],
-      explodeVec: [2.6, 0.4, 0],
-      isOuterShell: false
-    });
-    // Wooden base rack for heavy granite cannonballs
-    addCADMesh(partSahiAmmoPile, new THREE.BoxGeometry(1.05, 0.10, 2.15), MATS.sahiOakTimber, [0, -0.32, 0.25]);
-    [
-      [-0.22, -0.02, -0.35], [0.22, -0.02, -0.35],
-      [-0.22, -0.02, 0.35],  [0.22, -0.02, 0.35],
-      [0, 0.42, -0.35],      [0, 0.42, 0.35]
-    ].forEach(pos => {
-      addCADMesh(partSahiAmmoPile, new THREE.SphereGeometry(0.32, 20, 16), MATS.sahiGranite, pos);
-    });
-    // 3 Iron-hooped oak black powder barrels
-    [-1.15, -1.68, -1.42].forEach((zB, idx) => {
-      const xB = idx === 2 ? 0.28 : -0.18;
-      const yB = idx === 2 ? 0.38 : -0.02;
-      addCADMesh(partSahiAmmoPile, new THREE.CylinderGeometry(0.24, 0.26, 0.64, 16), MATS.woodTool, [xB, yB, zB]);
-      addCADMesh(partSahiAmmoPile, new THREE.CylinderGeometry(0.255, 0.255, 0.06, 16), MATS.sahiWroughtIron, [xB, yB + 0.18, zB]);
-      addCADMesh(partSahiAmmoPile, new THREE.CylinderGeometry(0.255, 0.255, 0.06, 16), MATS.sahiWroughtIron, [xB, yB - 0.18, zB]);
-    });
-    sahiRoot.add(partSahiAmmoPile);
-
-    // 12. TOPÇU HARBİSİ, ZEYTİNYAĞLI SOĞUTMA SÜNGERİ & ATEŞLEME MEŞALESİ
-    const partSahiTools = createPartGroup({
-      id: 'sahi_tools',
-      name: 'Koyun Postu Soğutma Süngeri, Gülle Harbisi & Ateşleme Meşalesi',
-      subsystem: 'logistics',
-      subLabel: 'ALT SİSTEM: NAKLİYE & KUŞATMA LOJİSTİĞİ',
-      desc: 'Her atıştan sonra aşırı ısınan tunç namlunun çatlamaması için içine sürülen zeytinyağlı/ıslak koyun postu sünger sırığı, barut sıkıştırma harbisi (Ramrod) ve falya ateşleme sırığı (Linstock).',
-      material: 'Dişbudak Sırık, Koyun Postu & Tunç',
-      weight: '145 kg (Ekipman Seti)',
-      spec: 'Zeytinyağı Soğutma & Dolum Seti',
-      location: 'Mevzi Sol Yan Sehpası',
-      basePos: [-2.05, 0.45, 0.25],
-      explodeVec: [-2.6, 0.5, 0],
-      isOuterShell: false
-    });
-    // Wooden tool trestles
-    [-1.2, 1.2].forEach(zTr => {
-      addCADMesh(partSahiTools, new THREE.BoxGeometry(0.45, 0.52, 0.10), MATS.sahiOakTimber, [0, -0.18, zTr]);
-    });
-    // Long Ramrod (Harbi) & Sheepskin Wet Sponge Pole
-    addCADMesh(partSahiTools, new THREE.CylinderGeometry(0.032, 0.032, 4.2, 10), MATS.woodTool, [-0.12, 0.12, 0], [Math.PI / 2, 0, 0]);
-    addCADMesh(partSahiTools, new THREE.CylinderGeometry(0.18, 0.18, 0.42, 16), MATS.sahiBronzeBand, [-0.12, 0.12, 2.15], [Math.PI / 2, 0, 0]);
-    addCADMesh(partSahiTools, new THREE.CylinderGeometry(0.032, 0.032, 4.2, 10), MATS.woodTool, [0.12, 0.12, 0], [Math.PI / 2, 0, 0]);
-    addCADMesh(partSahiTools, new THREE.CylinderGeometry(0.22, 0.20, 0.48, 16), MATS.sahiPowderSack, [0.12, 0.12, 2.15], [Math.PI / 2, 0, 0]);
-    // Olive Oil / Water Cooling Bucket & Linstock Ignition Torch
-    addCADMesh(partSahiTools, new THREE.CylinderGeometry(0.24, 0.19, 0.46, 16), MATS.sahiOakTimber, [0.05, -0.22, 1.85]);
-    addCADMesh(partSahiTools, new THREE.CylinderGeometry(0.025, 0.03, 1.65, 10), MATS.sahiWroughtIron, [0.05, 0.35, -1.75], [0.2, 0, 0]);
-    addCADMesh(partSahiTools, new THREE.SphereGeometry(0.08, 12, 12), MATS.brassAmmo, [0.05, 1.15, -1.58]);
-    sahiRoot.add(partSahiTools);
+    // ============================================================================
+    // 4C. ADAPTÖR KALIBINDAKİ ARAÇLAR (arayüz + mekanik durum modülün içinde)
+    // Yeni araçlar buraya eklenir: modül { root, ui, camPresets, tourSteps, update, onSlider,
+    // onButton, buttonActive, onFire, fireButtonLabel, getSliderValues, getStats, getStatus,
+    // applyTextures, setTexture, toggleRelief, defaultPart } döndürür.
+    // ============================================================================
+    currentBuildVehicle = 'ballista';
+    const ballista = window.VehicleBuilders.ballista(buildCtx);
+    const ADAPTERS = { ballista };
+    const VEHICLE_ROOTS = { tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root };
+    function activeAdapter() { return ADAPTERS[state.vehicle] || null; }
 
     currentBuildVehicle = 'tiger';
     document.getElementById('part-count-label').textContent = '22 Ana Grup';
@@ -2593,6 +1628,7 @@
     // ============================================================================
     const state = {
       vehicle: 'tiger',
+      realistic: true,
       explodeTarget: 0,
       explodeCurrent: 0,
       cutaway: false,
@@ -2601,6 +1637,7 @@
       autoRotate: false,
       activeSubsystem: 'all',
       activeCamo: 'ambush',
+      tigerPackage: 'normandy44',
       zimmerit: true,
       activeBronze: 'edirne1453',
       bronzeRelief: true,
@@ -2609,12 +1646,17 @@
       turretAutoSweep: false,
       gunElevDeg: 2,
       terrainTest: true,
-      // 1453 Şahi Topu Özel Simülasyon Parametreleri
+      // Osmanlı Şahi Topu (Dardanelles Gun) Simülasyon Parametreleri
+      sahiMode: 'battle',          // 'battle' = Atış Mevzii, 'transport' = Nakliye (iki parça ayrı)
       sahiScrewPct: 0,
       sahiAutoScrew: false,
-      sahiRammerPct: 0,
+      sahiRammerPct: 100,
+      sahiLoaded: true,            // namluda gülle var mı
+      sahiCharge: { powder: true, tampion: true, primed: true, hot: false },
+      sahiGunBack: false,          // ateşten sonra top kızakla birlikte geride kalır
+      sahiAutoLoading: false,
+      sahiReload: { idx: 0, t: 0 },
       sahiElevDeg: 5,
-      sahiSpongeTest: false,
       sahiAmmoCount: 7,
       selectedPart: partGunBarrel,
       recoilProgress: 0,
@@ -2623,6 +1665,20 @@
       camTargetLook: null,
       tourIndex: 0
     };
+
+    // Şahi balistiği: ilk hız tahmini, namlu yüksekliği atış mevziinden alınır
+    const SAHI_MUZZLE_VELOCITY = sahi.specs.muzzleVelocity; // m/sn (tahmini)
+    const SAHI_MUZZLE_HEIGHT = sahi.specs.axisHeightBattle; // m
+
+    // Hava direnci ihmal edilen balistik menzil: R = v·cosθ·t, t = (v·sinθ + √((v·sinθ)² + 2gh)) / g
+    function sahiRangeMeters(elevDeg) {
+      const g = 9.81;
+      const th = THREE.MathUtils.degToRad(elevDeg);
+      const vy = SAHI_MUZZLE_VELOCITY * Math.sin(th);
+      const vx = SAHI_MUZZLE_VELOCITY * Math.cos(th);
+      const t = (vy + Math.sqrt(vy * vy + 2 * g * SAHI_MUZZLE_HEIGHT)) / g;
+      return Math.round(vx * t);
+    }
 
     const CAMO_LABELS = {
       ambush: "Normandiya '44",
@@ -2634,6 +1690,122 @@
       siegesoot: "Topkapı Kuşatma İsi",
       imperial: "Saray Tören Tuncu"
     };
+
+    // ============================================================================
+    // TIGER I DÖNEM PAKETLERİ — boya, Zimmerit, donanım ve işaret birlikte seçilir
+    // (Tarihler yaklaşık; taret numaraları bilinen örnek tanklardan alınmıştır.)
+    // ============================================================================
+    const TIGER_PACKAGES = {
+      early42: {
+        label: "Erken '42 — Leningrad", btn: "⚙️ Erken '42", camo: 'panzergrau', zimmerit: false, number: '100',
+        variant: { feifel: true, cupola: 'early', wheels: 'rubber', headlights: 'twin' },
+        note: 'İlk Tiger\'lar (s.Pz.Abt. 502, Leningrad cephesi): Panzergrau boya, Feifel hava filtreleri, davul kupola, kauçuk bandajlı tekerlekler, çift far. Zimmerit henüz yok.'
+      },
+      tunis43: {
+        label: "Tunus '43 — Tiger 131", btn: "🏜️ Tunus '43", camo: 'dunkelgelb', zimmerit: false, number: '131',
+        variant: { feifel: true, cupola: 'early', wheels: 'rubber', headlights: 'twin' },
+        note: 'Tunus\'ta ele geçirilen ünlü Tiger 131 (s.Pz.Abt. 504) dönemi: Dunkelgelb boya, Feifel filtreleri ve erken kupola. Zimmerit Eylül 1943\'ten önce kullanılmıyordu.'
+      },
+      winter43: {
+        label: "Doğu Cephesi Kış '43-44", btn: '❄️ Kış \'43-44', camo: 'winter', zimmerit: true, number: '',
+        variant: { feifel: false, cupola: 'late', wheels: 'rubber', headlights: 'single' },
+        note: 'Orta üretim, Doğu Cephesi kışı: aşınmış kireç badana, Zimmerit, Feifel filtreleri kaldırılmış, 7 periskoplu döküm kupola ve tek orta far.'
+      },
+      normandy44: {
+        label: "Normandiya '44 — Geç Üretim", btn: "🌿 Normandiya '44", camo: 'ambush', zimmerit: true, number: '007',
+        variant: { feifel: false, cupola: 'late', wheels: 'steel', headlights: 'single' },
+        note: 'Geç üretim (1944): üç tonlu pusu kamuflajı, Zimmerit, iç lastikli çelik tekerlekler (aks başına 2), döküm kupola. 007, Michael Wittmann\'ın son tankının numarasıdır.'
+      }
+    };
+    Object.keys(TIGER_PACKAGES).forEach(k => { CAMO_LABELS[k] = TIGER_PACKAGES[k].label; });
+
+    const insigniaCache = {};
+    function setTigerInsignia(num) {
+      if (!insigniaCache[num]) insigniaCache[num] = createInsigniaTexture(num);
+      allMeshes.forEach(m => {
+        if (m.userData.isDecal && m.userData.vehicle === 'tiger') {
+          m.material.map = insigniaCache[num];
+          m.material.needsUpdate = true;
+        }
+      });
+    }
+
+    function applyTigerPackage(key, announce) {
+      const pkg = TIGER_PACKAGES[key] || TIGER_PACKAGES.normandy44;
+      state.tigerPackage = key;
+      state.activeCamo = pkg.camo;
+      state.zimmerit = pkg.zimmerit;
+      tigerSetVariant(pkg.variant);
+      setTigerInsignia(pkg.number);
+      if (state.vehicle === 'tiger') {
+        document.getElementById('camo-label').textContent = pkg.label;
+        const zimBtn = document.getElementById('btn-zimmerit');
+        zimBtn.classList.toggle('active', state.zimmerit);
+        zimBtn.textContent = state.zimmerit ? '🧱 Zimmerit Anti-Manyetik Doku: AÇIK' : '🧱 Zimmerit Anti-Manyetik Doku: KAPALI';
+      }
+      if (announce) showToast(`<strong>${pkg.label}</strong><br/>${pkg.note}`, 5200);
+      updateVisualMaterials();
+    }
+
+    function updateTurretTraverseLabel() {
+      if (state.vehicle !== 'tiger') return;
+      const r = tigerTraverseRate(state.rpm);
+      document.getElementById('lbl-slider-2').textContent = state.rpm < 500
+        ? `Taret Yönü (El Çarkı, ~${r.toFixed(1)}°/sn)`
+        : `Taret Yönü (Hidrolik, ~${r.toFixed(1)}°/sn)`;
+    }
+
+    function tigerPackageButtonsHTML() {
+      return Object.keys(TIGER_PACKAGES).map(k =>
+        `<button class="btn camo-btn ${state.tigerPackage === k ? 'active' : ''}" data-camo="${k}">${TIGER_PACKAGES[k].btn}</button>`
+      ).join('');
+    }
+
+    // Hidrolik taret dönüş hızı (°/sn) — motor devriyle orantılı; yaklaşık değerler.
+    // Yüksek devirde tam tur ≈ 60 sn mertebesinde; rölantinin altında yalnızca el çarkı.
+    function tigerTraverseRate(rpm) {
+      if (rpm < 500) return 0.6; // el çarkı
+      return Math.min(9, 6 * (rpm / 2000));
+    }
+
+    // ============================================================================
+    // TRİPLANAR KAMUFLAJ + KİR/AŞINMA (Tiger I zırhı)
+    // Desen, parçanın "dinlenme" konumundaki dünya koordinatlarından örneklenir: plakalar arasında
+    // kesintisiz akar, her parçada aynı ölçekte görünür ve teardown sırasında parçaya yapışık kalır.
+    // ============================================================================
+    const triUniforms = { uTriScale: { value: 0.32 }, uDirt: { value: 0.55 } };
+    function enableTriplanar(mesh) {
+      const mat = mesh.material;
+      const restMatrix = mesh.matrixWorld.clone();
+      mat.onBeforeCompile = shader => {
+        shader.uniforms.uTriScale = triUniforms.uTriScale;
+        shader.uniforms.uDirt = triUniforms.uDirt;
+        shader.uniforms.uRestMatrix = { value: restMatrix };
+        shader.vertexShader = shader.vertexShader
+          .replace('#include <common>', '#include <common>\nuniform mat4 uRestMatrix;\nvarying vec3 vTriPos;\nvarying vec3 vTriNormal;')
+          .replace('#include <begin_vertex>', '#include <begin_vertex>\nvTriPos = (uRestMatrix * vec4(transformed, 1.0)).xyz;\nvTriNormal = normalize(mat3(uRestMatrix) * objectNormal);');
+        shader.fragmentShader = shader.fragmentShader
+          .replace('#include <common>', '#include <common>\nuniform float uTriScale;\nuniform float uDirt;\nvarying vec3 vTriPos;\nvarying vec3 vTriNormal;')
+          .replace('#include <map_fragment>', [
+            '#ifdef USE_MAP',
+            '  vec3 tw = pow(abs(normalize(vTriNormal)), vec3(4.0));',
+            '  tw /= (tw.x + tw.y + tw.z);',
+            '  vec4 sampledDiffuseColor = texture2D(map, vTriPos.zy * uTriScale) * tw.x',
+            '                           + texture2D(map, vTriPos.xz * uTriScale) * tw.y',
+            '                           + texture2D(map, vTriPos.xy * uTriScale) * tw.z;',
+            '  diffuseColor *= sampledDiffuseColor;',
+            '  // Alt gövdede toz/çamur birikimi (yerden yükseldikçe azalır) + düşük frekanslı lekelenme',
+            '  float dirt = smoothstep(1.25, 0.15, vTriPos.y);',
+            '  float blotch = 0.5 + 0.5 * sin(vTriPos.x * 3.1 + sin(vTriPos.z * 2.3) * 2.0) * sin(vTriPos.z * 1.7);',
+            '  diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * vec3(0.66, 0.58, 0.47), clamp(dirt * (0.6 + 0.4 * blotch), 0.0, 1.0) * uDirt);',
+            '#endif'
+          ].join('\n'));
+      };
+      mat.customProgramCacheKey = () => 'tiger-triplanar-v1';
+      mat.needsUpdate = true;
+    }
+    tankRoot.updateMatrixWorld(true);
+    armorMeshes.forEach(m => { if (m.userData.vehicle === 'tiger' && !m.isInstancedMesh) enableTriplanar(m); });
 
     function applyCamoAndZimmerit() {
       const tex = camoTextures[state.activeCamo] || camoTextures.ambush;
@@ -2655,6 +1827,7 @@
         mat.bumpScale = state.bronzeRelief ? (mat.userData.role === 'band' ? 0.035 : 0.024) : 0;
         mat.needsUpdate = true;
       });
+      Object.values(ADAPTERS).forEach(ad => ad.applyTextures(state.blueprint));
     }
 
     function selectPart(partGroup) {
@@ -2677,9 +1850,21 @@
             obj.userData.edgeLine.material = isSel
               ? edgeMatHighlight
               : (state.blueprint ? edgeMatBlueprint : edgeMatDefault);
+            // Gerçekçi Modda yalnızca seçili parçanın kenarları vurgulanır
+            obj.userData.edgeLine.visible = !state.realistic || state.blueprint || isSel;
           }
         });
       });
+    }
+
+    function applyRenderMode() {
+      const realisticActive = state.realistic && !state.blueprint;
+      triUniforms.uDirt.value = realisticActive ? 0.55 : 0.0;
+      scene.environment = realisticActive ? studioEnvMap : null;
+      ambientLight.intensity = realisticActive ? 0.75 : 1.45;
+      keyLight.intensity = realisticActive ? 2.1 : 2.35;
+      renderer.toneMappingExposure = realisticActive ? 1.05 : 1.25;
+      selectPart(state.selectedPart);
     }
 
     function updateVisualMaterials() {
@@ -2711,7 +1896,8 @@
                 mat.opacity = 0.16;
                 mat.depthWrite = false;
               } else {
-                mat.transparent = mat === MATS.insigniaDecal || !!(mat.map && mat === obj.userData.origMaterial && mat.transparent);
+                // Yalnızca çıkartmalar saydam kalır; zırhlar X-Ray sonrası tekrar tam opak olur
+                mat.transparent = !!obj.userData.isDecal;
                 mat.opacity = 1.0;
                 mat.depthWrite = !mat.transparent;
               }
@@ -2733,15 +1919,17 @@
     };
 
     const CAM_PRESETS_SAHI = {
-      iso: { pos: [9.8, 5.8, 9.8], look: [0, 1.1, 0] },
-      front: { pos: [1.2, 2.4, 8.8], look: [0, 1.2, 1.2] },
-      breech: { pos: [4.8, 3.2, -0.5], look: [0, 1.25, -0.2] },
-      engine: { pos: [-5.5, 3.6, -5.8], look: [0, 0.9, -2.2] },
-      suspension: { pos: [6.4, 2.5, 0.5], look: [0.8, 0.7, 0] },
-      top: { pos: [0.2, 12.2, 0.2], look: [0, 1.0, 0] }
+      iso: { pos: [8.0, 4.4, -6.0], look: [0, 0.8, 0.3] }, // arka-yan: tabya topun önünü kapatmasın
+      front: { pos: [2.6, 2.2, 6.5], look: [0, 0.95, 2.4] },
+      breech: { pos: [3.2, 2.0, 0.8], look: [0, 0.95, 0] },
+      engine: { pos: [-4.5, 3.0, -6.8], look: [0, 0.6, -3.0] },
+      suspension: { pos: [5.6, 2.4, 1.2], look: [2.4, 0.4, -0.9] },
+      top: { pos: [0.2, 11.5, 0.2], look: [0, 0.5, 0] }
     };
 
     function getActiveCamPresets() {
+      const ad = activeAdapter();
+      if (ad) return ad.camPresets;
       return state.vehicle === 'sahi' ? CAM_PRESETS_SAHI : CAM_PRESETS_TIGER;
     }
 
@@ -2792,47 +1980,51 @@
       }
     ];
 
+    const SB = sahi.specs;
     const TOUR_STEPS_SAHI = [
       {
         badge: 'REHBERLİ TUR: 1 / 6',
-        title: 'Genel Bakış: 1453 Osmanlı Şahi Topu (Dardanelles Gun)',
-        desc: 'Fatih Sultan Mehmed, Saruca Sekban ve Urban tarafından İstanbul Kuşatması için dökülen 16.8 tonluk, 680mm kalibreli dev iki parçalı tunç kuşatma topu.',
+        title: 'Genel Bakış: Osmanlı Şahi Topu — Dardanelles Gun (1464)',
+        desc: `Munir Ali tarafından 1464'te dökülen, 1453 kuşatma toplarının günümüze ulaşan en yakın örneği: ~${SB.totalLength.toFixed(2).replace('.', ',')} m boy, 16,8 t ağırlık, ~63 cm ağız. Top, toprak tabyanın arkasındaki kalas atış yatağında duruyor.`,
         explode: 0, cutaway: false, sub: 'all', cam: 'iso', part: partSahiFrontBarrel
       },
       {
         badge: 'REHBERLİ TUR: 2 / 6',
-        title: 'X-Ray Kesiti: 544 kg Marmara Granit Güllesi & 60 kg Kara Barut',
-        desc: '250mm kalınlığındaki tunç gövde şeffaflaştırıldığında, arka yanma odasındaki 60 kg kara barut kesesi, ıhlamur takoz ve ön namludaki 544 kg granit gülle ortaya çıkar.',
+        title: `X-Ray Kesiti: Dar Barut Odası ve ~${SB.ballMassKg} kg Taş Gülle`,
+        desc: `Tunç gövde saydamlaşınca topun asıl mühendislik sırrı görünür: geniş namlunun arkasında çok daha dar bir barut odası vardır. Oda ağzında ahşap takoz, önünde keçe tampon ve ${Math.round(SB.ballRadius * 200)} cm'lik granit gülle durur.`,
         explode: 0, cutaway: true, sub: 'all', cam: 'breech', part: partSahiStoneBall
       },
       {
         badge: 'REHBERLİ TUR: 3 / 6',
-        title: 'Mühendislik Sırrı: 8-Yivli Vidalı Tunç Gövde & Manivelalar',
-        desc: '16.8 tonluk topun taşınabilmesi için ön namlu ve arka barut odası birbirine dev bronz vida dişleriyle bağlanır. Sağ panelden "Vidalı Gövde Sökme" kaydırıcısını deneyin!',
-        explode: 35, cutaway: true, sub: 'barrel', cam: 'breech', part: partSahiThreads
+        title: 'Vidalı Gövde: İki Parça, Manivelalar ve Nakliye',
+        desc: 'Ön namlu ile arka barut odası birbirine vidalanır. "Vidalı Gövde Sökme" kaydırıcısında vidanın her turda bir diş adımı ilerlediğini görebilirsiniz. "Nakliye Modu" düğmesi topu söküp iki ayrı öküz arabasına yükler.',
+        explode: 30, cutaway: true, sub: 'barrel', cam: 'breech', part: partSahiThreads
       },
       {
         badge: 'REHBERLİ TUR: 4 / 6',
-        title: 'İç Balistik & Ateşleme: Falya Deliği ve 1,600 Metre Menzil',
-        desc: 'Üstteki falya deliğinden ateşlenen 60 kg barut, 544 kg\'lık granit gülleyi 1,600 metre uzağa fırlatır. Sağ üstteki kırmızı "ATEŞLE!" butonuna basarak atışı simüle edin!',
-        explode: 25, cutaway: true, sub: 'ballistics', cam: 'front', part: partSahiPowder
+        title: 'Ateşleme ve Balistik',
+        desc: 'Falya deliğine konan ince barut tutuşturulur, alev kanaldan barut odasına iner. Gülle havada gerçek bir kavis çizerek uçar (yavaş çekim). Menzil, yükseliş açısından hava direnci ihmal edilerek hesaplanır; 175 m/sn ilk hız bir tahmindir.',
+        explode: 0, cutaway: false, sub: 'all', cam: 'front', part: partSahiPowder
       },
       {
         badge: 'REHBERLİ TUR: 5 / 6',
-        title: 'Geri Tepme Sönümleme: Asırlık Meşe Kızak, Kazıklar ve Halatlar',
-        desc: 'Ateşleme anındaki korkunç geri tepme kuvveti; demir kuşaklı meşe beşik, zemine çakılı 6 adet meşe kazık ve kalın kenevir halat palangalarıyla sönümlenir.',
-        explode: 30, cutaway: false, sub: 'carriage', cam: 'engine', part: partSahiRecoilWall
+        title: 'Geri Tepme: Kızak, Tampon Kirişi ve Dolum Döngüsü',
+        desc: 'Ateşte top, meşe kızağıyla birlikte geriye kayar ve orada kalır. Topçular onu halatlarla yerine çeker, namluyu ıslak süngerle soğutur, barutu, takozu ve gülleyi yeniden doldurur. "Otomatik Dolum" bu adımları sırayla oynatır.',
+        explode: 0, cutaway: false, sub: 'carriage', cam: 'engine', part: partSahiRecoilWall
       },
       {
         badge: 'REHBERLİ TUR: 6 / 6',
-        title: 'Tam Teardown (%85): 12 Mekanik Grup & Kuşatma Lojistiği',
-        desc: 'Tüm bileşenler ayrılmış görünümde! Zeytinyağlı koyun postu soğutma süngeri, gülle harbisi, 60 öküzlük nakliye tekerlekleri ve granit gülle piramidini inceleyin.',
+        title: 'Tam Teardown (%85): 13 Mekanik Grup',
+        desc: 'Tüm bileşenler ayrılmış görünümde: iki tunç parça, vida boynu, manivelalar, barut, gülle, kızak, ön destek kütüğü, kalas yatak, tampon kirişi, öküz arabaları, gülle istifi ve topçu aletleri.',
         explode: 85, cutaway: false, sub: 'all', cam: 'iso', part: partSahiAmmoPile
       }
     ];
 
     function applyTourStep(index) {
-      const steps = state.vehicle === 'sahi' ? TOUR_STEPS_SAHI : TOUR_STEPS_TIGER;
+      const ad = activeAdapter();
+      const steps = ad
+        ? ad.tourSteps.map((s, i, arr) => Object.assign({ badge: `REHBERLİ TUR: ${i + 1} / ${arr.length}` }, s))
+        : (state.vehicle === 'sahi' ? TOUR_STEPS_SAHI : TOUR_STEPS_TIGER);
       state.tourIndex = (index + steps.length) % steps.length;
       const step = steps[state.tourIndex];
 
@@ -2868,12 +2060,15 @@
         btn.addEventListener('click', () => {
           document.querySelectorAll('.camo-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          if (state.vehicle === 'sahi') {
+          if (activeAdapter()) {
+            const ad = activeAdapter();
+            ad.setTexture(btn.dataset.camo);
+            document.getElementById('camo-label').textContent = ad.ui.textureLabel();
+          } else if (state.vehicle === 'sahi') {
             state.activeBronze = btn.dataset.camo;
             document.getElementById('camo-label').textContent = CAMO_LABELS[state.activeBronze] || state.activeBronze;
           } else {
-            state.activeCamo = btn.dataset.camo;
-            document.getElementById('camo-label').textContent = CAMO_LABELS[state.activeCamo] || state.activeCamo;
+            applyTigerPackage(btn.dataset.camo, true);
           }
           updateVisualMaterials();
           audio.playClick(620);
@@ -2891,22 +2086,108 @@
       });
     }
 
-    function switchVehicle(targetVehicle) {
-      state.vehicle = targetVehicle === 'sahi' ? 'sahi' : 'tiger';
-      const isSahi = state.vehicle === 'sahi';
+    // Adaptör kalıbındaki bir aracın arayüzünü (başlık, kaplama, alt sistemler, kaydırıcılar, telemetri) kurar
+    function setupAdapterUI(ad) {
+      const u = ad.ui;
+      document.getElementById('header-vehicle-title').textContent = u.title;
+      document.getElementById('header-vehicle-sub').textContent = u.sub;
+      document.getElementById('part-count-label').textContent = u.partCount;
 
-      tankRoot.visible = !isSahi;
-      sahiRoot.visible = isSahi;
+      document.getElementById('tex-card-title').textContent = u.texTitle;
+      document.getElementById('camo-label').textContent = u.textureLabel();
+      document.getElementById('camo-btn-grid').innerHTML = u.textures.map(t =>
+        `<button class="btn camo-btn ${u.activeTexture() === t.key ? 'active' : ''}" data-camo="${t.key}">${t.label}</button>`).join('');
+      const relBtn = document.getElementById('btn-zimmerit');
+      relBtn.classList.toggle('active', u.relief());
+      relBtn.textContent = u.reliefLabel(u.relief());
+
+      const total = u.subsystems.reduce((s, x) => s + x.count, 0);
+      document.getElementById('subsystem-list').innerHTML =
+        `<div class="sub-btn active" data-sub="all"><span><span class="sub-dot" style="background:#f59e0b"></span>Tüm Alt Sistemler</span><span class="sub-count">${total} Grup</span></div>` +
+        u.subsystems.map(s =>
+          `<div class="sub-btn" data-sub="${s.key}"><span><span class="sub-dot" style="background:${s.color}"></span>${s.label}</span><span class="sub-count">${s.count} Grup</span></div>`).join('');
+
+      Object.keys(u.camLabels).forEach(k => {
+        const el = document.getElementById(`cam-lbl-${k}`);
+        if (el) el.textContent = u.camLabels[k];
+      });
+
+      const sliderIds = [['slider-rpm', 'val-rpm', 'lbl-slider-1'], ['slider-turret', 'val-turret', 'lbl-slider-2'], ['slider-elev', 'val-elev', 'lbl-slider-3']];
+      const vals = ad.getSliderValues();
+      u.sliders.forEach((s, i) => {
+        const [sid, vid, lid] = sliderIds[i];
+        const el = document.getElementById(sid);
+        el.min = s.min; el.max = s.max; el.step = s.step; el.value = vals[i];
+        document.getElementById(vid).textContent = s.fmt(vals[i]);
+        document.getElementById(lid).textContent = s.label;
+      });
+
+      const bTer = document.getElementById('btn-terrain');
+      bTer.textContent = u.buttons.terrain;
+      bTer.classList.toggle('active', ad.buttonActive('terrain'));
+      const bSwp = document.getElementById('btn-turret-sweep');
+      bSwp.textContent = u.buttons.sweep;
+      bSwp.classList.toggle('active', ad.buttonActive('sweep'));
+      document.getElementById('btn-sahi-mode').style.display = 'none';
+
+      document.getElementById('telemetry-tag').textContent = u.telemetryTag;
+      ['stat-lbl-1', 'stat-lbl-2', 'stat-lbl-3', 'stat-lbl-4'].forEach((id, i) => {
+        document.getElementById(id).textContent = u.statLabels[i];
+      });
+      refreshAdapterHUD(ad, true);
+    }
+
+    // Adaptörün canlı değerlerini arayüze yansıtır (kaydırıcılar, telemetri, durum, ateş butonu)
+    let hudTimer = 0;
+    function refreshAdapterHUD(ad, force) {
+      const statIds = ['stat-hp', 'stat-speed', 'stat-ammo', 'stat-weight'];
+      ad.getStats().forEach((html, i) => {
+        const el = document.getElementById(statIds[i]);
+        if (force || el.innerHTML !== html) el.innerHTML = html;
+      });
+      const sliderIds = [['slider-rpm', 'val-rpm'], ['slider-turret', 'val-turret'], ['slider-elev', 'val-elev']];
+      const vals = ad.getSliderValues();
+      ad.ui.sliders.forEach((s, i) => {
+        const [sid, vid] = sliderIds[i];
+        const el = document.getElementById(sid);
+        if (document.activeElement !== el) el.value = vals[i];
+        document.getElementById(vid).textContent = s.fmt(vals[i]);
+      });
+      const st = ad.getStatus();
+      const gs = document.getElementById('gun-status');
+      gs.textContent = st.text;
+      gs.style.color = st.color;
+      document.getElementById('btn-fire').textContent = ad.fireButtonLabel();
+      document.getElementById('btn-terrain').classList.toggle('active', ad.buttonActive('terrain'));
+      document.getElementById('btn-turret-sweep').classList.toggle('active', ad.buttonActive('sweep'));
+    }
+
+    function switchVehicle(targetVehicle) {
+      state.vehicle = VEHICLE_ROOTS[targetVehicle] ? targetVehicle : 'tiger';
+      const isSahi = state.vehicle === 'sahi';
+      const ad = activeAdapter();
+
+      Object.keys(VEHICLE_ROOTS).forEach(k => { VEHICLE_ROOTS[k].visible = k === state.vehicle; });
       state.recoilProgress = 0;
       state.activeSubsystem = 'all';
+      muzzleLight.intensity = 0;
 
-      document.getElementById('pill-tiger').classList.toggle('active', !isSahi);
-      document.getElementById('pill-sahi').classList.toggle('active', isSahi);
+      document.querySelectorAll('.era-pill[data-vehicle]').forEach(p => {
+        p.classList.toggle('active', p.dataset.vehicle === state.vehicle);
+      });
+
+      if (ad) {
+        setupAdapterUI(ad);
+        bindSubsystemAndCamoButtons();
+        updateVisualMaterials();
+        applyTourStep(0);
+        return;
+      }
 
       if (isSahi) {
-        document.getElementById('header-vehicle-title').textContent = '1453 OSMANLI ŞAHİ TOPU (680mm Kuşatma Topu)';
-        document.getElementById('header-vehicle-sub').textContent = 'İki Parçalı Vidalı Tunç Döküm • 544 kg Granit Gülle • Faz 2 Simülatörü';
-        document.getElementById('part-count-label').textContent = '12 Ana Grup';
+        document.getElementById('header-vehicle-title').textContent = 'OSMANLI ŞAHİ TOPU — Dardanelles Gun (1464)';
+        document.getElementById('header-vehicle-sub').textContent = `1453 kuşatma toplarının günümüze ulaşan en yakın örneği • ~63 cm ağız • 16,8 t • İki parçalı vidalı tunç`;
+        document.getElementById('part-count-label').textContent = '13 Ana Grup';
 
         document.getElementById('tex-card-title').textContent = '🏺 Tunç Döküm & Patina Dokusu';
         document.getElementById('camo-label').textContent = CAMO_LABELS[state.activeBronze];
@@ -2928,31 +2209,31 @@
             <span class="sub-count">100%</span>
           </div>
           <div class="sub-btn" data-sub="barrel">
-            <span><span class="sub-dot" style="background:#d97706"></span>680mm Vidalı Tunç Gövde</span>
+            <span><span class="sub-dot" style="background:#d97706"></span>İki Parçalı Vidalı Tunç Gövde</span>
             <span class="sub-count">4 Grup</span>
           </div>
           <div class="sub-btn" data-sub="ballistics">
-            <span><span class="sub-dot" style="background:#ef4444"></span>544kg Granit Gülle & Barut</span>
+            <span><span class="sub-dot" style="background:#ef4444"></span>Taş Gülle, Barut & Falya</span>
             <span class="sub-count">2 Grup</span>
           </div>
           <div class="sub-btn" data-sub="carriage">
-            <span><span class="sub-dot" style="background:#10b981"></span>Meşe Kızak, Takoz & Kazıklar</span>
-            <span class="sub-count">3 Grup</span>
+            <span><span class="sub-dot" style="background:#10b981"></span>Atış Mevzii, Kızak & Tampon</span>
+            <span class="sub-count">4 Grup</span>
           </div>
           <div class="sub-btn" data-sub="logistics">
-            <span><span class="sub-dot" style="background:#38bdf8"></span>Nakliye Tekerlekleri & Harbi</span>
+            <span><span class="sub-dot" style="background:#38bdf8"></span>Nakliye, İstif & Topçu Aletleri</span>
             <span class="sub-count">3 Grup</span>
           </div>
         `;
 
         document.getElementById('cam-lbl-iso').textContent = 'İzometrik';
-        document.getElementById('cam-lbl-front').textContent = '680mm Ağız';
+        document.getElementById('cam-lbl-front').textContent = 'Namlu Ağzı';
         document.getElementById('cam-lbl-breech').textContent = 'Vidalı Boğaz';
-        document.getElementById('cam-lbl-engine').textContent = 'Arka Kazıklar';
+        document.getElementById('cam-lbl-engine').textContent = 'Arka Tampon';
         document.getElementById('cam-lbl-suspension').textContent = 'Gülle İstifi';
         document.getElementById('cam-lbl-top').textContent = 'Üst Kesit';
 
-        document.getElementById('btn-fire').textContent = '💥 680mm ŞAHİ TOPUNU ATEŞLE!';
+        updateFireButton();
         document.getElementById('lbl-slider-1').textContent = 'Vidalı Gövde Sökme (Breech Screw)';
         const s1 = document.getElementById('slider-rpm');
         s1.min = 0; s1.max = 100; s1.step = 1; s1.value = state.sahiScrewPct;
@@ -2973,19 +2254,21 @@
         bTer.classList.toggle('active', state.sahiAutoScrew);
 
         const bSwp = document.getElementById('btn-turret-sweep');
-        bSwp.textContent = '🧽 Harbi & Dolum Testi';
-        bSwp.classList.toggle('active', state.sahiSpongeTest);
+        bSwp.textContent = '🧽 Otomatik Dolum Döngüsü';
+        bSwp.classList.toggle('active', state.sahiAutoLoading);
+        document.getElementById('btn-sahi-mode').style.display = '';
+        updateSahiModeButton();
 
-        document.getElementById('telemetry-tag').textContent = 'EDİRNE 1453';
-        document.getElementById('stat-lbl-1').textContent = 'BARUT HAKKI';
-        document.getElementById('stat-hp').innerHTML = `60 <span>kg Barut</span>`;
-        document.getElementById('stat-lbl-2').textContent = 'ETKİLİ MENZİL';
-        const rangeM = Math.round(1250 + state.sahiElevDeg * 32);
+        document.getElementById('telemetry-tag').textContent = 'DARDANELLES 1464';
+        document.getElementById('stat-lbl-1').textContent = 'BARUT (TAHMİNİ)';
+        document.getElementById('stat-hp').innerHTML = `~${sahi.specs.powderKg} <span>kg</span>`;
+        document.getElementById('stat-lbl-2').textContent = 'MENZİL (HESAP)';
+        const rangeM = sahiRangeMeters(state.sahiElevDeg);
         document.getElementById('stat-speed').innerHTML = `${rangeM} <span>Metre</span>`;
-        document.getElementById('stat-lbl-3').textContent = '544KG GRANİT GÜLLE';
+        document.getElementById('stat-lbl-3').textContent = `TAŞ GÜLLE (~${sahi.specs.ballMassKg} KG)`;
         document.getElementById('stat-ammo').innerHTML = `${state.sahiAmmoCount} <span>Adet</span>`;
         document.getElementById('stat-lbl-4').textContent = 'TOPLAM TUNÇ AĞIRLIK';
-        document.getElementById('stat-weight').innerHTML = `16.8 <span>Ton</span>`;
+        document.getElementById('stat-weight').innerHTML = `16,8 <span>Ton</span>`;
 
         bindSubsystemAndCamoButtons();
         applyTourStep(0);
@@ -2994,14 +2277,9 @@
         document.getElementById('header-vehicle-sub').textContent = 'İnteraktif Mühendislik, Kesit ve Parçalama Simülatörü';
         document.getElementById('part-count-label').textContent = '22 Ana Grup';
 
-        document.getElementById('tex-card-title').textContent = '🎨 Zırh Dokusu & Kamuflaj';
-        document.getElementById('camo-label').textContent = CAMO_LABELS[state.activeCamo];
-        document.getElementById('camo-btn-grid').innerHTML = `
-          <button class="btn camo-btn ${state.activeCamo === 'ambush' ? 'active' : ''}" data-camo="ambush">🌿 Normandiya 3-Ton</button>
-          <button class="btn camo-btn ${state.activeCamo === 'dunkelgelb' ? 'active' : ''}" data-camo="dunkelgelb">🏜️ Dunkelgelb '43</button>
-          <button class="btn camo-btn ${state.activeCamo === 'winter' ? 'active' : ''}" data-camo="winter">❄️ Doğu Cephesi Kış</button>
-          <button class="btn camo-btn ${state.activeCamo === 'panzergrau' ? 'active' : ''}" data-camo="panzergrau">⚙️ Panzergrau '42</button>
-        `;
+        document.getElementById('tex-card-title').textContent = '🎨 Dönem Paketi (Boya, Donanım & İşaret)';
+        document.getElementById('camo-label').textContent = (TIGER_PACKAGES[state.tigerPackage] || {}).label || '';
+        document.getElementById('camo-btn-grid').innerHTML = tigerPackageButtonsHTML();
         const zimBtn = document.getElementById('btn-zimmerit');
         zimBtn.classList.toggle('active', state.zimmerit);
         zimBtn.textContent = state.zimmerit
@@ -3042,13 +2320,13 @@
         document.getElementById('cam-lbl-suspension').textContent = 'Tekerlek';
         document.getElementById('cam-lbl-top').textContent = 'Üst Kesit';
 
-        document.getElementById('btn-fire').textContent = '💥 8.8 cm KwK 36 ATEŞLE!';
+        updateFireButton();
         document.getElementById('lbl-slider-1').textContent = 'Maybach V12 Motor Devri';
         const s1 = document.getElementById('slider-rpm');
         s1.min = 0; s1.max = 3000; s1.step = 50; s1.value = state.rpm;
         document.getElementById('val-rpm').textContent = `${state.rpm} RPM`;
 
-        document.getElementById('lbl-slider-2').textContent = 'Taret Yönü (Hidrolik Dönüş)';
+        updateTurretTraverseLabel();
         const s2 = document.getElementById('slider-turret');
         s2.min = -180; s2.max = 180; s2.step = 1; s2.value = state.turretAngleDeg;
         document.getElementById('val-turret').textContent = `${Math.round(state.turretAngleDeg)}°`;
@@ -3066,6 +2344,7 @@
         const bSwp = document.getElementById('btn-turret-sweep');
         bSwp.textContent = '🎯 Oto-Taret Tarama';
         bSwp.classList.toggle('active', state.turretAutoSweep);
+        document.getElementById('btn-sahi-mode').style.display = 'none';
 
         document.getElementById('telemetry-tag').textContent = 'HL230 P45';
         document.getElementById('stat-lbl-1').textContent = 'MOTOR GÜCÜ';
@@ -3073,7 +2352,8 @@
         document.getElementById('stat-hp').innerHTML = `${hp} <span>BG</span>`;
         document.getElementById('stat-lbl-2').textContent = 'PALET HIZI';
         const speed = ((state.rpm / 3000) * 38).toFixed(1);
-        document.getElementById('stat-speed').innerHTML = `${speed} <span>km/s</span>`;
+        document.getElementById('stat-speed').innerHTML = `${speed} <span>km/sa</span>`;
+        updateTurretTraverseLabel();
         document.getElementById('stat-lbl-3').textContent = 'KALAN 88MM MERMİ';
         document.getElementById('stat-ammo').innerHTML = `${state.ammoCount} <span>Adet</span>`;
         document.getElementById('stat-lbl-4').textContent = 'TOPLAM AĞIRLIK';
@@ -3118,6 +2398,15 @@
       state.blueprint = !state.blueprint;
       e.currentTarget.classList.toggle('active', state.blueprint);
       updateVisualMaterials();
+      applyRenderMode();
+      audio.playClick();
+    });
+
+    document.getElementById('btn-realistic').addEventListener('click', e => {
+      state.realistic = !state.realistic;
+      e.currentTarget.classList.toggle('active', state.realistic);
+      e.currentTarget.textContent = state.realistic ? '✨ Gerçekçi Mod: AÇIK' : '📐 Gerçekçi Mod: KAPALI (CAD Görünümü)';
+      applyRenderMode();
       audio.playClick();
     });
 
@@ -3139,6 +2428,15 @@
     bindSubsystemAndCamoButtons();
 
     document.getElementById('btn-zimmerit').addEventListener('click', e => {
+      if (activeAdapter()) {
+        const ad = activeAdapter();
+        const on = ad.toggleRelief();
+        e.currentTarget.classList.toggle('active', on);
+        e.currentTarget.textContent = ad.ui.reliefLabel(on);
+        updateVisualMaterials();
+        audio.playClick(540);
+        return;
+      }
       if (state.vehicle === 'sahi') {
         state.bronzeRelief = !state.bronzeRelief;
         e.currentTarget.classList.toggle('active', state.bronzeRelief);
@@ -3178,6 +2476,12 @@
 
     document.getElementById('slider-rpm').addEventListener('input', e => {
       const val = parseFloat(e.target.value);
+      if (activeAdapter()) {
+        const r = activeAdapter().onSlider(0, val);
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        return;
+      }
       if (state.vehicle === 'sahi') {
         state.sahiAutoScrew = false;
         document.getElementById('btn-terrain').classList.remove('active');
@@ -3189,17 +2493,131 @@
         const hp = Math.round((state.rpm / 3000) * 700);
         const speed = ((state.rpm / 3000) * 38).toFixed(1);
         document.getElementById('stat-hp').innerHTML = `${hp} <span>BG</span>`;
-        document.getElementById('stat-speed').innerHTML = `${speed} <span>km/s</span>`;
+        document.getElementById('stat-speed').innerHTML = `${speed} <span>km/sa</span>`;
+        updateTurretTraverseLabel();
       }
     });
 
+    // Şahi: boş namluya harbi ile yeni gülle sürülmesi (gülle istifinden alınır)
+    function sahiSetRammer(val) {
+      if (!state.sahiLoaded && val > 0) {
+        const c = state.sahiCharge;
+        if (state.sahiMode === 'transport') {
+          showToast('<strong>Nakliye modunda dolum yapılamaz.</strong><br/>Önce topu atış mevziine kurun.');
+          val = 0;
+        } else if (state.sahiGunBack || c.hot || !c.powder || !c.tampion) {
+          showToast('<strong>Gülle sürülmeden önce:</strong><br/>top yerine çekilmeli, namlu soğutulmalı, barut ve takoz konmalı. "Otomatik Dolum Döngüsü" bu adımları sırayla yapar.');
+          val = 0;
+        } else if (state.sahiAmmoCount <= 0) {
+          showToast('<strong>Gülle istifi boş!</strong><br/>"Gülle İkmali" butonuyla yeni granit gülleler getirin.');
+          val = 0;
+        } else {
+          state.sahiLoaded = true; // istiften yeni gülle namlu ağzına yerleştirildi
+        }
+      }
+      state.sahiRammerPct = val;
+      document.getElementById('slider-turret').value = val;
+      document.getElementById('val-turret').textContent = `%${Math.round(val)}`;
+      updateFireButton();
+    }
+
+    // Tarihsel dolum döngüsü (her adım atlanabilir: zaten yapılmışsa geçilir)
+    const SAHI_RELOAD_STEPS = [
+      { label: '1/6 Top halat ve manivelalarla yerine çekiliyor', dur: 1.6,
+        skip: () => !state.sahiGunBack, done: () => { state.sahiGunBack = false; } },
+      { label: '2/6 Namlu ıslak süngerle soğutuluyor', dur: 1.8,
+        skip: () => !state.sahiCharge.hot, done: () => { state.sahiCharge.hot = false; sahi.puffSteam(); } },
+      { label: '3/6 Barut odasına barut kesesi konuyor', dur: 1.4,
+        skip: () => state.sahiCharge.powder, done: () => { state.sahiCharge.powder = true; } },
+      { label: '4/6 Ahşap takoz oda ağzına çakılıyor', dur: 1.1,
+        skip: () => state.sahiCharge.tampion, done: () => { state.sahiCharge.tampion = true; } },
+      { label: '5/6 Gülle ve keçe harbi ile sürülüyor', ram: true,
+        skip: () => state.sahiLoaded && state.sahiRammerPct >= 99 },
+      { label: '6/6 Falya deliğine ince barut konuyor', dur: 0.9,
+        skip: () => state.sahiCharge.primed, done: () => { state.sahiCharge.primed = true; } }
+    ];
+
+    function stopSahiReload(statusText) {
+      state.sahiAutoLoading = false;
+      state.sahiReload.idx = 0;
+      state.sahiReload.t = 0;
+      document.getElementById('btn-turret-sweep').classList.remove('active');
+      if (statusText) document.getElementById('gun-status').textContent = statusText;
+    }
+
+    function runSahiReload(dt) {
+      if (!state.sahiAutoLoading || state.recoilProgress > 0.001) return;
+      const r = state.sahiReload;
+      while (r.idx < SAHI_RELOAD_STEPS.length && SAHI_RELOAD_STEPS[r.idx].skip()) { r.idx++; r.t = 0; }
+      if (r.idx >= SAHI_RELOAD_STEPS.length) {
+        stopSahiReload('HAZIR');
+        document.getElementById('gun-status').style.color = '#0284c7';
+        return;
+      }
+      const step = SAHI_RELOAD_STEPS[r.idx];
+      const statusEl = document.getElementById('gun-status');
+      statusEl.textContent = step.label.split(' ')[0] + ' DOLUM';
+      statusEl.style.color = '#d97706';
+      document.getElementById('tour-desc').textContent = `Dolum döngüsü — ${step.label}.`;
+      if (step.ram) {
+        sahiSetRammer(Math.min(100, state.sahiRammerPct + dt * 40));
+        if (!state.sahiLoaded) { stopSahiReload('GÜLLE YOK'); return; }
+        if (state.sahiRammerPct >= 100) { r.idx++; r.t = 0; }
+      } else {
+        r.t += dt;
+        if (r.t >= step.dur) { step.done(); r.idx++; r.t = 0; }
+      }
+    }
+
+    function updateSahiModeButton() {
+      const b = document.getElementById('btn-sahi-mode');
+      const transport = state.sahiMode === 'transport';
+      b.classList.toggle('active', transport);
+      b.textContent = transport ? '🏰 Atış Mevziine Kur (Topu Vidala)' : '🐂 Nakliye Moduna Geç (Topu Sök)';
+    }
+
+    document.getElementById('btn-sahi-mode').addEventListener('click', () => {
+      state.sahiMode = state.sahiMode === 'transport' ? 'battle' : 'transport';
+      stopSahiReload();
+      state.sahiAutoScrew = false;
+      document.getElementById('btn-terrain').classList.remove('active');
+      state.sahiScrewPct = 0;
+      document.getElementById('slider-rpm').value = 0;
+      document.getElementById('val-rpm').textContent = '%0';
+      updateSahiModeButton();
+      document.getElementById('gun-status').textContent = state.sahiMode === 'transport' ? 'NAKLİYEDE' : 'HAZIR';
+      if (state.sahiMode === 'transport') {
+        showToast('<strong>Nakliye Modu:</strong> Arka parça sökülüp ön parçadan ayrıldı; iki parça ayrı öküz arabalarına yüklendi. Vidalı yapının asıl amacı buydu.');
+        flyCameraTo([9.5, 5.2, 7.5], [0, 1.2, -0.3]);
+      }
+      audio.playClick(560);
+    });
+
+    function updateFireButton() {
+      const btn = document.getElementById('btn-fire');
+      if (state.vehicle === 'sahi') {
+        btn.textContent = (!state.sahiLoaded && state.sahiAmmoCount <= 0)
+          ? '📦 GÜLLE İKMALİ (7 Adet)'
+          : '💥 ŞAHİ TOPUNU ATEŞLE!';
+      } else {
+        btn.textContent = state.ammoCount <= 0
+          ? '📦 MÜHİMMAT İKMALİ (92 Adet)'
+          : '💥 8.8 cm KwK 36 ATEŞLE!';
+      }
+    }
+
     document.getElementById('slider-turret').addEventListener('input', e => {
       const val = parseFloat(e.target.value);
+      if (activeAdapter()) {
+        const r = activeAdapter().onSlider(1, val);
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        return;
+      }
       if (state.vehicle === 'sahi') {
-        state.sahiSpongeTest = false;
+        state.sahiAutoLoading = false;
         document.getElementById('btn-turret-sweep').classList.remove('active');
-        state.sahiRammerPct = val;
-        document.getElementById('val-turret').textContent = `%${Math.round(val)}`;
+        sahiSetRammer(val);
       } else {
         state.turretAutoSweep = false;
         document.getElementById('btn-turret-sweep').classList.remove('active');
@@ -3210,10 +2628,16 @@
 
     document.getElementById('slider-elev').addEventListener('input', e => {
       const val = parseFloat(e.target.value);
+      if (activeAdapter()) {
+        const r = activeAdapter().onSlider(2, val);
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        return;
+      }
       if (state.vehicle === 'sahi') {
         state.sahiElevDeg = val;
         document.getElementById('val-elev').textContent = `+${val}°`;
-        const rangeM = Math.round(1250 + val * 32);
+        const rangeM = sahiRangeMeters(val);
         document.getElementById('stat-speed').innerHTML = `${rangeM} <span>Metre</span>`;
       } else {
         state.gunElevDeg = val;
@@ -3223,9 +2647,22 @@
     });
 
     document.getElementById('btn-terrain').addEventListener('click', e => {
+      if (activeAdapter()) {
+        const r = activeAdapter().onButton('terrain');
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        audio.playClick();
+        return;
+      }
       if (state.vehicle === 'sahi') {
         state.sahiAutoScrew = !state.sahiAutoScrew;
         e.currentTarget.classList.toggle('active', state.sahiAutoScrew);
+        if (!state.sahiAutoScrew) {
+          // Gösterim bitince arka parça tekrar tam vidalanır
+          state.sahiScrewPct = 0;
+          document.getElementById('slider-rpm').value = 0;
+          document.getElementById('val-rpm').textContent = '%0';
+        }
       } else {
         state.terrainTest = !state.terrainTest;
         e.currentTarget.classList.toggle('active', state.terrainTest);
@@ -3234,9 +2671,26 @@
     });
 
     document.getElementById('btn-turret-sweep').addEventListener('click', e => {
+      if (activeAdapter()) {
+        const r = activeAdapter().onButton('sweep');
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        audio.playClick();
+        return;
+      }
       if (state.vehicle === 'sahi') {
-        state.sahiSpongeTest = !state.sahiSpongeTest;
-        e.currentTarget.classList.toggle('active', state.sahiSpongeTest);
+        const c = state.sahiCharge;
+        if (state.sahiMode === 'transport') {
+          showToast('<strong>Nakliye modunda dolum yapılamaz.</strong><br/>Önce "Atış Mevziine Kur" ile topu birleştirin.');
+          return;
+        }
+        if (!state.sahiAutoLoading && !state.sahiGunBack && !c.hot && c.powder && c.tampion && c.primed && state.sahiLoaded && state.sahiRammerPct >= 99) {
+          showToast('<strong>Top zaten dolu.</strong><br/>Barut, takoz ve gülle yerinde, falya hazır; ateşe hazır.');
+          return;
+        }
+        if (state.sahiAutoLoading) { stopSahiReload(); }
+        else { state.sahiAutoLoading = true; state.sahiReload.idx = 0; state.sahiReload.t = 0; }
+        e.currentTarget.classList.toggle('active', state.sahiAutoLoading);
       } else {
         state.turretAutoSweep = !state.turretAutoSweep;
         e.currentTarget.classList.toggle('active', state.turretAutoSweep);
@@ -3247,18 +2701,69 @@
     const btnFire = document.getElementById('btn-fire');
     btnFire.addEventListener('click', () => {
       if (state.recoilProgress > 0.05) return;
-      state.recoilProgress = 1.0;
+      if (activeAdapter()) {
+        const r = activeAdapter().onFire();
+        if (r && r.msg) showToast(r.msg, 4600);
+        if (r && r.ok && !r.refill) selectPart(ballista.parts.bolt);
+        refreshAdapterHUD(activeAdapter(), true);
+        return;
+      }
 
       if (state.vehicle === 'sahi') {
+        // İkmal: istif ve namlu boşsa yeni gülleler getirilir
+        if (!state.sahiLoaded && state.sahiAmmoCount <= 0) {
+          state.sahiAmmoCount = 7;
+          document.getElementById('stat-ammo').innerHTML = `${state.sahiAmmoCount} <span>Adet</span>`;
+          updateFireButton();
+          audio.playClick(380);
+          return;
+        }
+        // Ateşleme ön koşulları
+        const c = state.sahiCharge;
+        let block = null;
+        if (state.sahiMode === 'transport') block = 'Top nakliye düzeninde; iki parçası ayrı arabalarda.';
+        else if (state.sahiAutoLoading) block = 'Dolum döngüsü sürüyor.';
+        else if (state.sahiScrewPct > 0.5) block = 'Arka barut odası ön namluya tam vidalanmamış. "Vidalı Gövde Sökme" değerini %0\'a getirin.';
+        else if (state.sahiGunBack) block = 'Top geri tepmeden sonra henüz yerine çekilmedi.';
+        else if (c.hot) block = 'Namlu sıcak ve içinde kıvılcım olabilir; önce ıslak süngerle soğutulmalı.';
+        else if (!c.powder || !c.tampion) block = 'Barut odası boş.';
+        else if (!state.sahiLoaded || state.sahiRammerPct < 99) block = 'Namluda gülle yok veya gülle yerine oturmamış.';
+        else if (!c.primed) block = 'Falya deliğine ince barut konmamış.';
+        if (block) {
+          showToast(`<strong>Ateş edilemez!</strong><br/>${block}<br/><em>"Otomatik Dolum Döngüsü" eksik adımları sırayla tamamlar.</em>`, 4600);
+          return;
+        }
+
+        state.recoilProgress = 1.0;
+        state.sahiLoaded = false;
+        state.sahiGunBack = true;
+        state.sahiCharge = { powder: false, tampion: false, primed: false, hot: true };
         state.sahiAmmoCount = Math.max(0, state.sahiAmmoCount - 1);
         document.getElementById('stat-ammo').innerHTML = `${state.sahiAmmoCount} <span>Adet</span>`;
-        document.getElementById('gun-status').textContent = 'SOĞUTMA & DOLUM...';
+        document.getElementById('gun-status').textContent = 'ATEŞ!';
         document.getElementById('gun-status').style.color = '#ef4444';
         btnFire.disabled = true;
 
+        sahi.fire();
         audio.playBombardFire();
         selectPart(partSahiStoneBall);
+        sahiSetRammer(0);
+        setTimeout(() => {
+          document.getElementById('gun-status').textContent = 'DOLUM GEREKLİ';
+          document.getElementById('gun-status').style.color = '#d97706';
+          btnFire.disabled = false;
+          updateFireButton();
+        }, 1450);
+        return;
       } else {
+        if (state.ammoCount <= 0) {
+          state.ammoCount = 92;
+          document.getElementById('stat-ammo').innerHTML = `${state.ammoCount} <span>Adet</span>`;
+          updateFireButton();
+          audio.playClick(380);
+          return;
+        }
+        state.recoilProgress = 1.0;
         state.ammoCount = Math.max(0, state.ammoCount - 1);
         document.getElementById('stat-ammo').innerHTML = `${state.ammoCount} <span>Adet</span>`;
         document.getElementById('gun-status').textContent = 'DOLUMDA...';
@@ -3273,7 +2778,8 @@
         document.getElementById('gun-status').textContent = 'HAZIR';
         document.getElementById('gun-status').style.color = '#0284c7';
         btnFire.disabled = false;
-      }, 1350);
+        updateFireButton();
+      }, 1450);
     });
 
     document.getElementById('btn-tour-prev').addEventListener('click', () => applyTourStep(state.tourIndex - 1));
@@ -3281,6 +2787,12 @@
 
     const toastEl = document.getElementById('toast');
     let toastTimer = null;
+    function showToast(html, ms = 3800) {
+      toastEl.innerHTML = html;
+      toastEl.style.display = 'block';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { toastEl.style.display = 'none'; }, ms);
+    }
     document.querySelectorAll('.era-pill').forEach(pill => {
       pill.addEventListener('click', () => {
         if (pill.dataset.vehicle) {
@@ -3290,7 +2802,7 @@
           return;
         }
         const era = pill.dataset.era;
-        toastEl.innerHTML = `<strong>${era}</strong><br/>Bu araç Faz 3 kapsamında zaman çizelgesine eklenecektir. Şu an <strong>1453 Osmanlı Şahi Topu</strong> ve <strong>1942 Tiger I</strong> simülatörleri arasında geçiş yapabilirsiniz!`;
+        toastEl.innerHTML = `<strong>${era}</strong><br/>Bu araç Faz 3 kapsamında zaman çizelgesine eklenecektir. Şu an <strong>Roma Ballistası</strong>, <strong>Osmanlı Şahi Topu</strong> ve <strong>Tiger I</strong> simülatörleri arasında geçiş yapabilirsiniz!`;
         toastEl.style.display = 'block';
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => { toastEl.style.display = 'none'; }, 3800);
@@ -3315,8 +2827,15 @@
       return null;
     }
 
+    function isWorldVisible(obj) {
+      for (let o = obj; o; o = o.parent) { if (!o.visible) return false; }
+      return true;
+    }
+
+    // Raycaster gizli nesneleri de yakalar; aktif araca ait ve görünür olanları filtrele
+    // (ör. Şahi'de atış mevzii ⇄ nakliye arabaları)
     function getActiveVehicleMeshes() {
-      return allMeshes.filter(m => m.userData.vehicle === state.vehicle);
+      return allMeshes.filter(m => m.userData.vehicle === state.vehicle && isWorldVisible(m));
     }
 
     renderer.domElement.addEventListener('pointerdown', e => {
@@ -3372,6 +2891,7 @@
     // 9. MAIN ANIMATION LOOP (60 FPS MECHANICAL SIMULATION FOR TIGER I & ŞAHİ TOPU)
     // ============================================================================
     const clock = new THREE.Clock();
+    const cameraShake = new THREE.Vector3();
     let enginePhase = 0;
 
     function animate() {
@@ -3419,8 +2939,13 @@
           document.getElementById('slider-turret').value = state.turretAngleDeg;
           document.getElementById('val-turret').textContent = `${Math.round(state.turretAngleDeg)}°`;
         }
+        // Hidrolik taret dönüşü motordan güç alır: dönüş hızı devirle artar (yaklaşık değerler),
+        // motor rölantinin altındayken yalnızca yavaş el çarkıyla döner.
+        const traverseDegPerSec = tigerTraverseRate(state.rpm);
         const targetYaw = THREE.MathUtils.degToRad(state.turretAngleDeg);
-        turretPivot.rotation.y += (targetYaw - turretPivot.rotation.y) * Math.min(1, dt * 8);
+        const yawDiff = targetYaw - turretPivot.rotation.y;
+        const maxStep = THREE.MathUtils.degToRad(traverseDegPerSec) * dt;
+        turretPivot.rotation.y += Math.sign(yawDiff) * Math.min(Math.abs(yawDiff), maxStep);
 
         const targetPitch = THREE.MathUtils.degToRad(-state.gunElevDeg);
         gunElevationPivot.rotation.x += (targetPitch - gunElevationPivot.rotation.x) * Math.min(1, dt * 10);
@@ -3429,11 +2954,13 @@
           state.recoilProgress = Math.max(0, state.recoilProgress - dt * 1.8);
           const kick = Math.sin(Math.pow(state.recoilProgress, 0.45) * Math.PI);
           const recoilDist = kick * 0.62;
+          // Kama bloğu namluyla tek parçadır: ikisi birlikte 580 mm geri teper
           barrelRecoilGroup.position.z = -recoilDist;
-          breechMovingGroup.position.z = -recoilDist * 0.85;
+          breechMovingGroup.position.z = -recoilDist;
 
-          tankRoot.rotation.x = kick * 0.022 * Math.cos(turretPivot.rotation.y);
-          tankRoot.rotation.z = -kick * 0.022 * Math.sin(turretPivot.rotation.y);
+          // Geri tepme kuvveti ağırlık merkezinin üstünden etki eder: burun kalkar, arka çöker
+          tankRoot.rotation.x = -kick * 0.022 * Math.cos(turretPivot.rotation.y);
+          tankRoot.rotation.z = kick * 0.022 * Math.sin(turretPivot.rotation.y);
 
           const flashIntensity = state.recoilProgress > 0.78 ? (state.recoilProgress - 0.78) * 4.5 : 0;
           flashMesh.material.opacity = flashIntensity * 0.85;
@@ -3473,12 +3000,14 @@
           }
         });
 
-        const trackSpeed = elapsed * rpmFactor * 0.35;
-        trackShoes.forEach(cleat => {
-          const prog = (cleat.userData.offset + (cleat.userData.isTop ? -trackSpeed : trackSpeed)) % 1;
-          const norm = prog < 0 ? prog + 1 : prog;
-          cleat.position.z = -2.15 + norm * 4.3;
-        });
+        // Bakla bakla palet: çevresel hız, tekerlek açısal hızı × yol tekerleği yarıçapı (0,42 m)
+        tigerUpdateTracks(dt, rpmFactor * 3.5 * 0.42, elapsed, state.terrainTest && state.rpm > 50);
+      } else if (activeAdapter()) {
+        // Adaptör kalıbındaki araçlar (Ballista vb.): mekanik modülde, arayüz ~10 Hz güncellenir
+        const ad = activeAdapter();
+        ad.update(dt, elapsed);
+        hudTimer += dt;
+        if (hudTimer > 0.1) { hudTimer = 0; refreshAdapterHUD(ad, false); }
       } else {
         // ========================================================================
         // 1453 OSMANLI ŞAHİ TOPU CANLI MEKANİK ANİMASYONU
@@ -3488,54 +3017,9 @@
           document.getElementById('slider-rpm').value = state.sahiScrewPct;
           document.getElementById('val-rpm').textContent = `%${Math.round(state.sahiScrewPct)}`;
         }
-        if (state.sahiSpongeTest) {
-          state.sahiRammerPct = (Math.sin(elapsed * 1.6) * 0.5 + 0.5) * 100;
-          document.getElementById('slider-turret').value = state.sahiRammerPct;
-          document.getElementById('val-turret').textContent = `%${Math.round(state.sahiRammerPct)}`;
-        }
-
-        // 1. Two-Piece Bronze Breech Unscrewing Rotation & Axial Separation
-        const screwRatio = state.sahiScrewPct / 100;
-        const screwRot = screwRatio * Math.PI * 4;
-        const screwShiftZ = -screwRatio * 0.95;
-        sahiBreechScrewGroup.rotation.z = screwRot;
-        sahiBreechScrewGroup.position.z = screwShiftZ;
-        sahiLeversSpinGroup.rotation.z = screwRot;
-        sahiLeversSpinGroup.position.z = screwShiftZ;
-        sahiThreadSpinGroup.rotation.z = screwRot * 0.5;
-
-        // 2. Barrel Elevation & Sliding Oak Quoin Wedges
-        const sahiPitch = THREE.MathUtils.degToRad(-state.sahiElevDeg);
-        sahiBarrelElevPivot.rotation.x += (sahiPitch - sahiBarrelElevPivot.rotation.x) * Math.min(1, dt * 10);
-        sahiQuoinSlidingGroup.position.z = -(state.sahiElevDeg / 14) * 0.52;
-
-        // 3. 544 kg Granite Ball Ramming & 680mm Bombard Firing Recoil
-        if (state.recoilProgress > 0.001) {
-          state.recoilProgress = Math.max(0, state.recoilProgress - dt * 1.25);
-          const kick = Math.sin(Math.pow(state.recoilProgress, 0.42) * Math.PI);
-          const carriageBack = kick * 0.68;
-          sahiCarriageRecoilGroup.position.z = -carriageBack;
-          sahiCarriageRecoilGroup.rotation.x = kick * 0.032;
-
-          // Launch 544 kg granite stone ball out of the 680mm muzzle!
-          const flyDist = (1.0 - state.recoilProgress) * 14.5;
-          sahiProjectileFlyGroup.position.z = flyDist;
-          sahiProjectileFlyGroup.position.y = -Math.pow(1.0 - state.recoilProgress, 2) * 0.45;
-
-          const flashIntensity = state.recoilProgress > 0.72 ? (state.recoilProgress - 0.72) * 3.5 : 0;
-          sahiFlashMesh.material.opacity = flashIntensity * 0.92;
-          sahiFlashMesh.scale.setScalar(0.7 + flashIntensity * 0.85);
-          partSahiFrontBarrel.localToWorld(muzzleLight.position.set(0, 0, 3.2));
-          muzzleLight.intensity = flashIntensity * 18;
-        } else {
-          sahiCarriageRecoilGroup.position.z *= 0.88;
-          sahiCarriageRecoilGroup.rotation.x *= 0.88;
-          const ramOffset = (state.sahiRammerPct / 100) * 1.45;
-          sahiProjectileFlyGroup.position.z = ramOffset;
-          sahiProjectileFlyGroup.position.y = 0;
-          sahiFlashMesh.material.opacity = 0;
-          muzzleLight.intensity = 0;
-        }
+        // Dolum döngüsü ve tüm Şahi mekaniği (vida, yükseliş, geri tepme, duman, balistik) modülde
+        runSahiReload(dt);
+        sahi.update(state, dt);
       }
 
       if (state.camTargetPos && state.camTargetLook) {
@@ -3548,7 +3032,15 @@
       }
 
       controls.update();
+
+      // Atış anında kamera sarsıntısı (yalnızca render sırasında uygulanır, kontrolleri bozmaz)
+      const shakeAmp = state.recoilProgress > 0.001
+        ? (state.vehicle === 'sahi' ? 0.09 : 0.025) * Math.pow(state.recoilProgress, 2)
+        : 0;
+      cameraShake.set((Math.random() - 0.5) * shakeAmp, (Math.random() - 0.5) * shakeAmp, (Math.random() - 0.5) * shakeAmp);
+      camera.position.add(cameraShake);
       renderer.render(scene, camera);
+      camera.position.sub(cameraShake);
     }
 
     window.addEventListener('resize', () => {
@@ -3559,8 +3051,8 @@
 
     // URL parametresi ile doğrudan araç ve mod başlatma (Landing Page bağlantıları için)
     const params = new URLSearchParams(window.location.search);
-    if (params.get('vehicle') === 'sahi') {
-      switchVehicle('sahi');
+    if (params.get('vehicle') && VEHICLE_ROOTS[params.get('vehicle')] && params.get('vehicle') !== 'tiger') {
+      switchVehicle(params.get('vehicle'));
     } else {
       selectPart(partGunBarrel);
     }
@@ -3579,6 +3071,19 @@
       updateVisualMaterials();
     }
 
+    applyTigerPackage(state.tigerPackage, false);
+    updateTurretTraverseLabel();
+    applyRenderMode();
+
+    // ?cam=iso|front|breech|engine|suspension|top — kamerayı doğrudan (geçişsiz) bir açıya yerleştirir
+    const camParam = getActiveCamPresets()[params.get('cam') || 'iso'];
+    if (camParam) {
+      camera.position.set(...camParam.pos);
+      controls.target.set(...camParam.look);
+      state.camTargetPos = null;
+      state.camTargetLook = null;
+      controls.update();
+    }
     animate();
   </script>
 </body>
