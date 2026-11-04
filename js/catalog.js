@@ -160,13 +160,13 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/><rect x="110" y="50" width="160" height="26" rx="4" fill="#64748b" fill-opacity="0.22" stroke="#1e293b" stroke-width="2"/><g stroke="#334155" stroke-width="2"><line x1="120" y1="55" x2="290" y2="55"/><line x1="120" y1="63" x2="292" y2="63"/><line x1="120" y1="71" x2="290" y2="71"/></g><rect x="86" y="44" width="34" height="38" rx="4" fill="#d97706" fill-opacity="0.28" stroke="#b45309" stroke-width="2"/><rect x="96" y="28" width="16" height="16" fill="#b45309" fill-opacity="0.3" stroke="#78350f" stroke-width="1.6"/><circle cx="72" cy="63" r="10" stroke="#0284c7" stroke-width="2"/><line x1="72" y1="63" x2="64" y2="78" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/><circle cx="150" cy="104" r="20" stroke="#1e293b" stroke-width="2.2"/><line x1="150" y1="84" x2="150" y2="124" stroke="#1e293b" stroke-width="1.4"/><line x1="130" y1="104" x2="170" y2="104" stroke="#1e293b" stroke-width="1.4"/><line x1="110" y1="80" x2="60" y2="118" stroke="#78350f" stroke-width="3"/></svg>'
     },
     {
-      id: 'mark1', group: 2, status: 'planned',
+      id: 'mark1', sim: 'mark1', group: 2, status: 'live',
       year: 1916, yearLabel: '1916', eraLabel: 'I. DÜNYA SAVAŞI',
       domain: 'land', era: 'ww1', energy: ['ice', 'gunpowder'], role: ['armor'], origin: 'uk',
       name: 'İngiliz Mark I Tankı ("Male")', sub: 'RHOMBOID TRACKS • 2 × 6-POUNDER SPONSON',
-      desc: 'Eylül 1916\'da Somme\'da ilk kez savaşa giren, tarihin ilk muharebe tankı. Gövdeyi çepeçevre saran eşkenar dörtgen paletler siperleri aşmak için tasarlandı. Yanlardaki çıkıntılı yuvalarda (sponson) toplar bulunur; aracı yönlendirmek için birkaç mürettebatın uyum içinde çalışması gerekirdi.',
-      tags: ['Eşkenar Dörtgen Palet', 'Sponson Topları', 'Daimler Motor', 'Siper Aşma'],
-      specs: [['AĞIRLIK', '~28 t'], ['MOTOR', 'Daimler, ~105 BG'], ['MÜRETTEBAT', '8'], ['HIZ', '~6 km/sa']],
+      desc: 'Eylül 1916\'da Somme\'da ilk kez savaşa giren, tarihin ilk muharebe tankı. Gövdeyi çepeçevre saran eşkenar dörtgen paletler siperleri aşmak için tasarlandı. Yanlardaki çıkıntılı yuvalarda (sponson) 2 × 57 mm top bulunur; 4 kişilik ikincil vites ve arka kuyruk tekerlekleriyle tek paleti durdurarak yönlendirin veya Somme siperini aşın!',
+      tags: ['Eşkenar Dörtgen Palet', '2 × 6-Pounder Sponson', 'Daimler Motor & İkincil Vites', 'Siper Aşma & Kuyruk Tekeri'],
+      specs: [['AĞIRLIK', '~28,4 t ("Male")'], ['MOTOR', 'Foster-Daimler, 105 BG'], ['SİLAH', '2 × 57 mm + 3 × .303 MG'], ['3D PARÇA SAYISI', '16 Bağımsız Grup']],
       tag: 'MARK-I-1916', icon: '🛡️',
       modal: [
         'Eşkenar dörtgen palet şasisi ve palet makaraları',

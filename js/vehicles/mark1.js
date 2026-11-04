@@ -161,6 +161,7 @@
     const myMeshes = [];
     function makeMat(role, hex, rough, metal, bumpScale = 0.024, extra = {}) {
       const isHull = role === 'hullArmor';
+      const { isArmor = false, ...matOpts } = extra;
       const m = new THREE.MeshStandardMaterial({
         color: hex,
         roughness: rough,
@@ -168,14 +169,14 @@
         map: isHull ? armorMaps.sommeSolomon1916 : null,
         bumpMap: (isHull || role === 'gunMetal') ? rivetBump : null,
         bumpScale: (isHull || role === 'gunMetal') ? bumpScale : 0,
-        ...extra
+        ...matOpts
       });
-      m.userData = { mk1Role: role };
+      m.userData = { mk1Role: role, isArmor };
       return m;
     }
 
-    const matHullArmor = makeMat('hullArmor', 0xffffff, 0.72, 0.28, 0.026, { side: THREE.DoubleSide });
-    const matFrameArmor = makeMat('hullArmor', 0xffffff, 0.70, 0.32, 0.026);
+    const matHullArmor = makeMat('hullArmor', 0xffffff, 0.72, 0.28, 0.026, { side: THREE.DoubleSide, isArmor: true });
+    const matFrameArmor = makeMat('hullArmor', 0xffffff, 0.70, 0.32, 0.026, { isArmor: true });
     const matTrackSteel = makeMat('trackSteel', 0x3b3632, 0.62, 0.72, 0);
     const matGunSteel = makeMat('gunMetal', 0x4b5340, 0.45, 0.68, 0.015);
     const matEngineBlock = makeMat('engineMetal', 0x2f4f4f, 0.42, 0.65, 0);
@@ -233,7 +234,7 @@
       location: 'Sol Yan Gövde (X = +1,08 m)',
       basePos: [0, 0, 0],
       explodeVec: [1.65, 0.35, 0],
-      isOuterShell: false
+      isOuterShell: true
     });
     root.add(partLeftFrame);
 
@@ -250,7 +251,7 @@
       location: 'Sağ Yan Gövde (X = -1,08 m)',
       basePos: [0, 0, 0],
       explodeVec: [-1.65, 0.35, 0],
-      isOuterShell: false
+      isOuterShell: true
     });
     root.add(partRightFrame);
 
@@ -592,18 +593,18 @@
 
     // --- 5 & 6. Sol ve Sağ Çevresel Palet Zincirleri (partLeftTrack & partRightTrack) ---
     // Kapalı eşkenar dörtgen (rhomboid) palet eğrisi: HORN_POLY köşelerinin ~0.06 m dışından dolaşır.
-    // Alt düz hat Y = 0.026 m'dedir; bakla kalınlığı 0.052 m olduğundan min.y = 0.000 m!
+    // Alt düz hat Y = 0.044 m'dedir; bakla + dış mahmuz (cleat) ile en alt nokta min.y = 0.000 m!
     const trackPathPts = [
-      // Alt düz zemin temas hattı (arkadan öne: Z = -2.35 -> +1.65, Y = 0.026)
-      [-2.35, 0.026], [-1.35, 0.026], [-0.35, 0.026], [0.65, 0.026], [1.65, 0.026],
+      // Alt düz zemin temas hattı (arkadan öne: Z = -2.35 -> +1.65, Y = 0.044)
+      [-2.35, 0.044], [-1.35, 0.044], [-0.35, 0.044], [0.65, 0.044], [1.65, 0.044],
       // Ön 40° tırmanma rampası
-      [2.15, 0.36], [2.75, 0.78], [3.35, 1.20], [3.74, 1.50],
+      [2.05, 0.28], [2.75, 0.78], [3.35, 1.20], [3.74, 1.50],
       // Ön burun avara çarkı (front idler) kavisi
       [3.84, 1.76], [3.68, 2.08], [3.32, 2.22],
       // Üst tavan dönüş hattı (önden arkaya: Z = +2.35 -> -2.55)
       [2.35, 2.27], [1.10, 2.25], [-0.15, 2.22], [-1.40, 2.19], [-2.55, 2.17],
       // Arka cer çarkı (rear sprocket) ve alt geri dönüş rampası
-      [-3.18, 1.88], [-3.58, 1.50], [-3.62, 1.12], [-3.48, 0.82], [-2.92, 0.42]
+      [-3.18, 1.88], [-3.58, 1.50], [-3.62, 1.12], [-3.48, 0.82], [-2.85, 0.34]
     ].map(([z, y]) => new THREE.Vector3(0, y, z));
 
     const rhomboidCurve = new THREE.CatmullRomCurve3(trackPathPts, true, 'centripetal');
@@ -614,7 +615,8 @@
       const u = i / LUT_N;
       const p = rhomboidCurve.getPointAt(u);
       const t = rhomboidCurve.getTangentAt(u);
-      trackLUT.push({ y: p.y, z: p.z, a: Math.atan2(-t.y, t.z) });
+      const clampedY = Math.max(0.044, p.y);
+      trackLUT.push({ y: clampedY, z: p.z, a: clampedY <= 0.045 ? 0 : Math.atan2(-t.y, t.z) });
     }
 
     const plateGeo = new THREE.BoxGeometry(0.52, 0.048, 0.21);
@@ -1165,6 +1167,7 @@
         else S.autoDrive = true;
       } else if (index === 1) {
         S.sponsonElevDeg = val;
+        S.autoSweep = false;
       } else if (index === 2) {
         S.steerDeg = val;
       }
@@ -1235,7 +1238,7 @@
       iso: { pos: [7.6, 4.2, 6.8], look: [0, 1.15, -0.4] },
       front: { pos: [2.2, 2.1, 7.6], look: [0, 1.25, 1.5] },
       breech: { pos: [4.8, 2.2, 2.4], look: [1.3, 1.18, 0.15] },
-      engine: { pos: [3.8, 3.6, 1.2], look: [0, 1.05, -0.5] },
+      engine: { pos: [4.6, 3.8, -1.6], look: [0, 0.85, -0.55] },
       suspension: { pos: [5.4, 2.1, -4.8], look: [0, 0.95, -2.8] },
       top: { pos: [0.1, 11.2, -0.6], look: [0, 1.1, -0.6] }
     };
