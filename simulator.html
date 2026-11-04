@@ -922,9 +922,9 @@
         </div>
       </div>
       <button class="veh-step-btn" id="btn-vehicle-next" title="Sonraki Aktif Araç (Tarihsel Sıra)">Sonraki ▶</button>
-      <button class="veh-menu-btn" id="btn-vehicle-menu" title="Tüm Tarihsel Araç Kataloğunu Aç (1. ve 2. Grup)">
+      <button class="veh-menu-btn" id="btn-vehicle-menu" title="Tüm Tarihsel Araç Kataloğunu Aç (1., 2. ve 3. Grup)">
         <span>🗂️ Araç Seç</span>
-        <span id="veh-menu-count" style="opacity:0.85;">(7/10)</span>
+        <span id="veh-menu-count" style="opacity:0.85;">(10/15)</span>
         <span>▾</span>
       </button>
     </div>
@@ -939,12 +939,13 @@
   <div class="vehicle-menu-popover" id="vehicle-menu-popover" role="dialog" aria-label="Tarihsel Araç Seçici">
     <div class="vmp-header">
       <div class="vmp-tabs" id="vmp-tabs">
-        <button class="vmp-tab active" data-filter="all">Tümü (10)</button>
-        <button class="vmp-tab" data-filter="live">🟢 Aktif (5)</button>
-        <button class="vmp-tab" data-filter="planned">⏳ Planlı 2. Grup (5)</button>
+        <button class="vmp-tab active" data-filter="all">Tümü (15)</button>
+        <button class="vmp-tab" data-filter="live">🟢 Aktif (10)</button>
+        <button class="vmp-tab" data-filter="planned">⏳ Planlı (5)</button>
         <button class="vmp-tab" data-filter="land">🪖 Kara</button>
         <button class="vmp-tab" data-filter="sea">⚓ Deniz</button>
         <button class="vmp-tab" data-filter="air">✈️ Hava</button>
+        <button class="vmp-tab" data-filter="space">🚀 Uzay</button>
       </div>
       <input type="search" class="vmp-search" id="vmp-search" placeholder="Araç veya mekanik ara..." />
     </div>
@@ -1178,6 +1179,7 @@
   <script src="js/vehicles/kadirga.js"></script>
   <script src="js/vehicles/gatling.js"></script>
   <script src="js/vehicles/mark1.js"></script>
+  <script src="js/vehicles/fokker.js"></script>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -2000,8 +2002,10 @@
     const gatling = window.VehicleBuilders.gatling(buildCtx);
     currentBuildVehicle = 'mark1';
     const mark1 = window.VehicleBuilders.mark1(buildCtx);
-    const ADAPTERS = { ballista, trebuchet, spitfire, leonardo, kadirga, gatling, mark1 };
-    const VEHICLE_ROOTS = { tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root, leonardo: leonardo.root, kadirga: kadirga.root, gatling: gatling.root, mark1: mark1.root };
+    currentBuildVehicle = 'fokker';
+    const fokker = window.VehicleBuilders.fokker(buildCtx);
+    const ADAPTERS = { ballista, trebuchet, spitfire, leonardo, kadirga, gatling, mark1, fokker };
+    const VEHICLE_ROOTS = { tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root, leonardo: leonardo.root, kadirga: kadirga.root, gatling: gatling.root, mark1: mark1.root, fokker: fokker.root };
     function activeAdapter() { return ADAPTERS[state.vehicle] || null; }
 
     currentBuildVehicle = 'tiger';
@@ -3315,7 +3319,7 @@
       const filtered = allVehicles.filter(v => {
         if (menuFilter === 'live' && v.status !== 'live') return false;
         if (menuFilter === 'planned' && v.status === 'live') return false;
-        if ((menuFilter === 'land' || menuFilter === 'sea' || menuFilter === 'air') && v.domain !== menuFilter) return false;
+        if ((menuFilter === 'land' || menuFilter === 'sea' || menuFilter === 'air' || menuFilter === 'space') && v.domain !== menuFilter) return false;
         if (q) {
           const hay = trNorm(`${v.name} ${v.sub} ${v.yearLabel} ${v.eraLabel} ${(v.tags || []).join(' ')}`);
           if (!hay.includes(q)) return false;
@@ -3373,7 +3377,7 @@
             closeVehicleMenu();
             const bullets = (v.modal || []).slice(0, 2).map(m => `• ${m}`).join('<br/>');
             showToast(
-              `<strong>${v.icon || '⏳'} ${v.yearLabel} — ${v.name}</strong> (2. Grup Planlı)<br/>` +
+              `<strong>${v.icon || '⏳'} ${v.yearLabel} — ${v.name}</strong> (${v.group || 3}. Grup Planlı)<br/>` +
               `<span style="font-size:11px; color:#cbd5e1;">${v.desc}</span>` +
               (bullets ? `<div style="margin-top:6px; font-size:11px; color:#f8fafc;">${bullets}</div>` : ''),
               5200

@@ -1,0 +1,3716 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savaş Makineleri 3D Teardown — Pz.Kpfw. VI Tiger I Mühendislik Simülatörü</title>
+  <style>
+    :root {
+      --bg-dark: #f5f0e6;
+      --panel-bg: rgba(252, 249, 242, 0.90);
+      --panel-border: rgba(180, 145, 95, 0.32);
+      --accent: #d97706;
+      --accent-glow: rgba(217, 119, 6, 0.28);
+      --danger: #dc2626;
+      --cyan: #0284c7;
+      --emerald: #059669;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --font-mono: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body,
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+    }
+
+    #canvas-container {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: #ede6d6;
+    }
+
+    /* Blueprint grid overlay */
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(30, 41, 59, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 41, 59, 0.04) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity: 0.85;
+    }
+
+    /* Top Timeline & Header Bar */
+    .top-bar {
+      position: fixed;
+      top: 12px;
+      left: 16px;
+      right: 16px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      padding: 10px 18px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .brand > div {
+      min-width: 0;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .timeline-pills {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px;
+      flex-shrink: 0;
+    }
+
+    .vehicle-nav-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .veh-step-btn {
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(241, 236, 225, 0.9);
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      line-height: 1;
+    }
+
+    .veh-step-btn:hover {
+      border-color: var(--accent);
+      color: #b45309;
+      background: #ffffff;
+    }
+
+    .veh-menu-btn {
+      padding: 5px 11px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      border: 1px solid rgba(2, 132, 199, 0.45);
+      background: rgba(2, 132, 199, 0.1);
+      color: #0369a1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .veh-menu-btn:hover,
+    .veh-menu-btn.open {
+      background: rgba(2, 132, 199, 0.18);
+      border-color: #0284c7;
+      color: #0c4a6e;
+      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.15);
+    }
+
+    .vehicle-menu-popover {
+      position: fixed;
+      top: 66px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(680px, calc(100vw - 32px));
+      max-height: calc(100vh - 150px);
+      background: rgba(250, 246, 238, 0.98);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(15, 23, 42, 0.18);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.24);
+      z-index: 120;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .vehicle-menu-popover.open {
+      display: flex;
+    }
+
+    .vmp-header {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+      background: rgba(241, 236, 225, 0.85);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .vmp-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .vmp-tab {
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.75);
+      color: #475569;
+      cursor: pointer;
+    }
+
+    .vmp-tab.active {
+      background: rgba(217, 119, 6, 0.16);
+      border-color: var(--accent);
+      color: #b45309;
+      font-weight: 700;
+    }
+
+    .vmp-search {
+      padding: 5px 9px;
+      border-radius: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #ffffff;
+      font-size: 11px;
+      font-family: var(--font-sans);
+      color: #0f172a;
+      width: 175px;
+      outline: none;
+    }
+
+    .vmp-search:focus {
+      border-color: #0284c7;
+    }
+
+    .vmp-body {
+      padding: 10px 14px 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .vmp-era-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .vmp-era-title {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #64748b;
+      padding-bottom: 2px;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.35);
+    }
+
+    .vmp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 6px;
+    }
+
+    .vmp-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(255, 255, 255, 0.78);
+      cursor: pointer;
+      transition: all 0.16s ease;
+      text-align: left;
+    }
+
+    .vmp-item:hover {
+      border-color: rgba(217, 119, 6, 0.65);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .vmp-item.active {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(217, 119, 6, 0.14);
+    }
+
+    .vmp-item.planned {
+      opacity: 0.86;
+      border-style: dashed;
+    }
+
+    .vmp-item-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .vmp-icon {
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .vmp-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .vmp-meta {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      color: #64748b;
+    }
+
+    .vmp-badge {
+      font-size: 9px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .vmp-badge.live {
+      background: rgba(16, 185, 129, 0.14);
+      color: #047857;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .vmp-badge.planned {
+      background: rgba(100, 116, 139, 0.12);
+      color: #475569;
+      border: 1px solid rgba(100, 116, 139, 0.3);
+    }
+
+    .vmp-footer {
+      padding: 8px 14px;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(241, 236, 225, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #475569;
+    }
+
+    .vmp-footer a {
+      color: #0284c7;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .vmp-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .era-pill {
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(241, 236, 225, 0.85);
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .era-pill:hover {
+      border-color: rgba(217, 119, 6, 0.6);
+      color: #0f172a;
+      background: #ffffff;
+    }
+
+    .era-pill.active {
+      background: rgba(245, 158, 11, 0.16);
+      border-color: var(--accent);
+      color: #b45309;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(217, 119, 6, 0.15);
+    }
+
+    .era-pill .soon {
+      font-size: 9px;
+      padding: 1px 4px;
+      border-radius: 3px;
+      background: rgba(15, 23, 42, 0.08);
+      color: #64748b;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .top-actions .btn {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Side Panels */
+    .side-panel {
+      position: fixed;
+      top: 74px;
+      bottom: 84px;
+      width: 310px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .side-panel::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .side-panel::-webkit-scrollbar-thumb {
+      background: rgba(217, 119, 6, 0.35);
+      border-radius: 4px;
+    }
+
+    .left-panel {
+      left: 16px;
+    }
+
+    .right-panel {
+      right: 16px;
+    }
+
+    .card {
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.07);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.09);
+    }
+
+    .card-title {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #b45309;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-value {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    /* Sliders */
+    .control-group {
+      margin-bottom: 10px;
+    }
+
+    .control-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #334155;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .control-label span.val {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #e2dcd0;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #fff;
+      box-shadow: 0 2px 6px rgba(217, 119, 6, 0.4);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    /* Buttons & Grids */
+    .btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .btn-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 5px;
+    }
+
+    .btn {
+      background: rgba(241, 236, 225, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #334155;
+      padding: 7px 9px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      text-align: center;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      background: #ffffff;
+      color: #0f172a;
+    }
+
+    .btn.active {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: var(--accent);
+      color: #b45309;
+      box-shadow: inset 0 0 6px rgba(217, 119, 6, 0.12);
+    }
+
+    .btn-cyan.active {
+      background: rgba(2, 132, 199, 0.14);
+      border-color: var(--cyan);
+      color: #0369a1;
+    }
+
+    .btn-fire {
+      width: 100%;
+      padding: 11px;
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      border: 1px solid #ef4444;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.32);
+      transition: all 0.15s ease;
+      margin-bottom: 8px;
+    }
+
+    .btn-fire:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(220, 38, 38, 0.45);
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    }
+
+    .btn-fire:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+
+    .btn-fire:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    /* Subsystem list */
+    .subsystem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .sub-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      border-radius: 6px;
+      background: rgba(241, 236, 225, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      color: #334155;
+      font-size: 11.5px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .sub-btn:hover {
+      border-color: rgba(217, 119, 6, 0.55);
+      color: #0f172a;
+      background: #ffffff;
+    }
+
+    .sub-btn.active {
+      border-color: var(--accent);
+      background: rgba(245, 158, 11, 0.16);
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .sub-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 7px;
+    }
+
+    .sub-count {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #475569;
+      background: rgba(15, 23, 42, 0.07);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Telemetry Grid */
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .stat-box {
+      background: rgba(241, 236, 225, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 6px;
+      padding: 7px 9px;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+
+    .stat-val {
+      font-size: 14px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: #0f172a;
+      margin-top: 2px;
+    }
+
+    .stat-val span {
+      font-size: 10px;
+      color: #b45309;
+      font-weight: 600;
+    }
+
+    /* Part Inspector Card */
+    .inspector-box {
+      background: rgba(241, 236, 225, 0.85);
+      border-left: 3px solid var(--cyan);
+      border-radius: 6px;
+      padding: 9px 10px;
+    }
+
+    .inspector-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+
+    .inspector-sub {
+      font-size: 10.5px;
+      font-family: var(--font-mono);
+      color: var(--cyan);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .inspector-desc {
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .inspector-specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      font-size: 10.5px;
+      font-family: var(--font-mono);
+      border-top: 1px solid rgba(15, 23, 42, 0.1);
+      padding-top: 6px;
+    }
+
+    .inspector-specs div {
+      color: var(--text-muted);
+    }
+
+    .inspector-specs strong {
+      color: #0f172a;
+    }
+
+    /* Bottom Guided Tour Bar */
+    .bottom-bar {
+      position: fixed;
+      bottom: 12px;
+      left: 16px;
+      right: 16px;
+      z-index: 10;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--panel-border);
+      border-radius: 10px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .tour-info {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .tour-step-badge {
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid var(--cyan);
+      color: #0369a1;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .tour-text-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .tour-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .tour-desc {
+      font-size: 11.5px;
+      color: #334155;
+      line-height: 1.35;
+    }
+
+    .tour-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    /* Floating 3D Callout Badge */
+    #hover-tooltip {
+      position: fixed;
+      pointer-events: none;
+      z-index: 20;
+      background: rgba(255, 253, 248, 0.96);
+      border: 1px solid var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+      padding: 5px 9px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      display: none;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
+    }
+
+    /* Toast Notification for Timeline */
+    #toast {
+      position: fixed;
+      top: 76px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      background: rgba(255, 253, 248, 0.98);
+      border: 1px solid var(--cyan);
+      color: #0f172a;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 12px;
+      box-shadow: 0 8px 25px rgba(15, 23, 42, 0.15);
+      display: none;
+      max-width: 480px;
+      text-align: center;
+    }
+
+    @media (max-width: 1100px) {
+      .timeline-pills {
+        display: none;
+      }
+
+      .side-panel {
+        width: 260px;
+      }
+    }
+  </style>
+  <!-- Load Three.js & OrbitControls via CDN Import Map -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  <div id="canvas-container"></div>
+  <div class="grid-overlay" id="grid-overlay"></div>
+  <div id="hover-tooltip"></div>
+  <div id="toast"></div>
+
+  <!-- TOP HEADER & HISTORICAL TIMELINE -->
+  <header class="top-bar">
+    <div class="brand">
+      <a href="index.html" class="btn" style="text-decoration:none; padding:6px 10px; font-family:var(--font-mono);" title="Ana Sayfaya ve Tarihsel Kataloğa Dön">← Ana Sayfa</a>
+      <span class="brand-badge">TEARDOWN 3D</span>
+      <div>
+        <div class="brand-title" id="header-vehicle-title">Pz.Kpfw. VI "TIGER I" (Ausf. E)</div>
+        <div class="brand-sub" id="header-vehicle-sub">İnteraktif Mühendislik, Kesit ve Parçalama Simülatörü</div>
+      </div>
+    </div>
+
+    <div class="vehicle-nav-wrap" id="vehicle-nav-wrap">
+      <button class="veh-step-btn" id="btn-vehicle-prev" title="Önceki Aktif Araç (Tarihsel Sıra)">◀ Önceki</button>
+      <div class="timeline-pills" id="timeline-pills">
+        <div class="era-pill active" id="pill-active-vehicle" title="Araç değiştirmek için tıklayın">
+          <span>🔥 1942: Tiger I Tankı</span>
+        </div>
+      </div>
+      <button class="veh-step-btn" id="btn-vehicle-next" title="Sonraki Aktif Araç (Tarihsel Sıra)">Sonraki ▶</button>
+      <button class="veh-menu-btn" id="btn-vehicle-menu" title="Tüm Tarihsel Araç Kataloğunu Aç (1. ve 2. Grup)">
+        <span>🗂️ Araç Seç</span>
+        <span id="veh-menu-count" style="opacity:0.85;">(7/10)</span>
+        <span>▾</span>
+      </button>
+    </div>
+
+    <div class="top-actions">
+      <button class="btn btn-cyan" id="btn-sound" title="Prosedürel Mekanik Ses Efektleri">🔊 Ses: Açık</button>
+      <button class="btn" id="btn-reset-cam">🎯 Kamerayı Sıfırla</button>
+    </div>
+  </header>
+
+  <!-- VEHICLE CATALOG POPOVER MENU -->
+  <div class="vehicle-menu-popover" id="vehicle-menu-popover" role="dialog" aria-label="Tarihsel Araç Seçici">
+    <div class="vmp-header">
+      <div class="vmp-tabs" id="vmp-tabs">
+        <button class="vmp-tab active" data-filter="all">Tümü (10)</button>
+        <button class="vmp-tab" data-filter="live">🟢 Aktif (5)</button>
+        <button class="vmp-tab" data-filter="planned">⏳ Planlı 2. Grup (5)</button>
+        <button class="vmp-tab" data-filter="land">🪖 Kara</button>
+        <button class="vmp-tab" data-filter="sea">⚓ Deniz</button>
+        <button class="vmp-tab" data-filter="air">✈️ Hava</button>
+      </div>
+      <input type="search" class="vmp-search" id="vmp-search" placeholder="Araç veya mekanik ara..." />
+    </div>
+    <div class="vmp-body" id="vmp-body"></div>
+    <div class="vmp-footer">
+      <span id="vmp-status-text">Katalogdan bir araca tıklayarak doğrudan geçiş yapabilirsiniz.</span>
+      <a href="index.html#katalog">Tam Filtreli Müze Kataloğu →</a>
+    </div>
+  </div>
+
+  <!-- LEFT PANEL: TEARDOWN, VIEW MODES & SUBSYSTEMS -->
+  <aside class="side-panel left-panel">
+    <!-- Teardown / Explode Card -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">🔧 Teardown (Parçalarına Ayır)</div>
+        <div class="card-value" id="explode-val">%0</div>
+      </div>
+      <div class="control-group">
+        <input type="range" id="slider-explode" min="0" max="100" value="0" />
+      </div>
+      <div class="btn-grid">
+        <button class="btn" id="btn-explode-toggle">💥 Tam Patlat (%85)</button>
+        <button class="btn" id="btn-explode-reset">🔩 Birleştir (%0)</button>
+      </div>
+    </div>
+
+    <!-- Visual & Cutaway Modes -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">👁️ Görünüm & Kesit Modları</div>
+      </div>
+      <div class="btn-grid">
+        <button class="btn btn-cyan" id="btn-cutaway">🩻 Zırh Kesiti (X-Ray)</button>
+        <button class="btn btn-cyan" id="btn-blueprint">📐 CAD / Blueprint</button>
+        <button class="btn btn-cyan active" id="btn-lines">📏 Kılavuz Çizgileri</button>
+        <button class="btn btn-cyan" id="btn-autorotate">🔄 Oto-Döndür</button>
+      </div>
+      <button class="btn btn-cyan active" id="btn-realistic" style="width:100%; margin-top:6px;" title="Çevre yansıması açık, kenar çizgileri gizli">
+        ✨ Gerçekçi Mod: AÇIK
+      </button>
+    </div>
+
+    <!-- Armor Camouflage & Zimmerit / Bronze Patina Surface Texture -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title" id="tex-card-title">🎨 Dönem Paketi (Boya, Donanım & İşaret)</div>
+        <div class="card-value" id="camo-label">Normandiya '44 — Geç Üretim</div>
+      </div>
+      <div class="btn-grid" id="camo-btn-grid" style="margin-bottom:6px;">
+        <button class="btn camo-btn" data-camo="early42">⚙️ Erken '42</button>
+        <button class="btn camo-btn" data-camo="tunis43">🏜️ Tunus '43</button>
+        <button class="btn camo-btn" data-camo="winter43">❄️ Kış '43-44</button>
+        <button class="btn camo-btn active" data-camo="normandy44">🌿 Normandiya '44</button>
+      </div>
+      <button class="btn btn-cyan active" id="btn-zimmerit" style="width:100%;">
+        🧱 Zimmerit Anti-Manyetik Doku: AÇIK
+      </button>
+    </div>
+
+    <!-- Subsystems Isolation -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">⚙️ Alt Sistem Filtresi</div>
+        <div class="card-value" id="part-count-label">22 Ana Grup</div>
+      </div>
+      <div class="subsystem-list" id="subsystem-list">
+        <div class="sub-btn active" data-sub="all">
+          <span><span class="sub-dot" style="background:#f59e0b"></span>Tüm Alt Sistemler</span>
+          <span class="sub-count">100%</span>
+        </div>
+        <div class="sub-btn" data-sub="turret">
+          <span><span class="sub-dot" style="background:#ef4444"></span>8.8cm KwK 36 & Krupp Taret</span>
+          <span class="sub-count">6 Grup</span>
+        </div>
+        <div class="sub-btn" data-sub="engine">
+          <span><span class="sub-dot" style="background:#38bdf8"></span>Maybach HL230 V12 & Soğutma</span>
+          <span class="sub-count">4 Grup</span>
+        </div>
+        <div class="sub-btn" data-sub="drivetrain">
+          <span><span class="sub-dot" style="background:#10b981"></span>Olvar Şanzıman, Şaft & Mühimmat</span>
+          <span class="sub-count">3 Grup</span>
+        </div>
+        <div class="sub-btn" data-sub="suspension">
+          <span><span class="sub-dot" style="background:#a855f7"></span>Schachtellaufwerk & Burulma</span>
+          <span class="sub-count">4 Grup</span>
+        </div>
+        <div class="sub-btn" data-sub="hull">
+          <span><span class="sub-dot" style="background:#94a3b8"></span>100mm Krupp Zırhlı Gövde</span>
+          <span class="sub-count">5 Grup</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camera Presets -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">🎥 Hızlı Kamera Açıları</div>
+      </div>
+      <div class="btn-grid-3" id="cam-btn-grid">
+        <button class="btn cam-btn" data-cam="iso" id="cam-lbl-iso">İzometrik</button>
+        <button class="btn cam-btn" data-cam="front" id="cam-lbl-front">Ön Zırh</button>
+        <button class="btn cam-btn" data-cam="breech" id="cam-lbl-breech">Taret İçi</button>
+        <button class="btn cam-btn" data-cam="engine" id="cam-lbl-engine">V12 Motor</button>
+        <button class="btn cam-btn" data-cam="suspension" id="cam-lbl-suspension">Tekerlek</button>
+        <button class="btn cam-btn" data-cam="top" id="cam-lbl-top">Üst Kesit</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- RIGHT PANEL: MECHANICAL CONTROLS, TELEMETRY & PART INSPECTOR -->
+  <aside class="side-panel right-panel">
+    <!-- Combat & Mechanical Controls -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">🔥 Canlı Mekanik Simülasyon</div>
+        <div class="card-value" id="gun-status">HAZIR</div>
+      </div>
+
+      <button class="btn-fire" id="btn-fire">💥 8.8 cm KwK 36 ATEŞLE!</button>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span id="lbl-slider-1">Maybach V12 Motor Devri</span>
+          <span class="val" id="val-rpm">1400 RPM</span>
+        </div>
+        <input type="range" id="slider-rpm" min="0" max="3000" step="50" value="1400" />
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span id="lbl-slider-2">Taret Yönü (Hidrolik Dönüş)</span>
+          <span class="val" id="val-turret">0°</span>
+        </div>
+        <input type="range" id="slider-turret" min="-180" max="180" value="0" />
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span id="lbl-slider-3">Namlu Yükseliş Açısı</span>
+          <span class="val" id="val-elev">+2°</span>
+        </div>
+        <input type="range" id="slider-elev" min="-8" max="15" step="0.5" value="2" />
+      </div>
+
+      <div class="btn-grid" style="margin-top:6px;">
+        <button class="btn active" id="btn-terrain">🌊 Süspansiyon Testi</button>
+        <button class="btn" id="btn-turret-sweep">🎯 Oto-Taret Tarama</button>
+      </div>
+      <button class="btn btn-cyan" id="btn-sahi-mode" style="width:100%; margin-top:6px; display:none;">
+        🐂 Nakliye Moduna Geç (Topu Sök)
+      </button>
+    </div>
+
+    <!-- Live Engineering Telemetry -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">📊 Canlı Telemetri</div>
+        <div class="card-value" id="telemetry-tag">HL230 P45</div>
+      </div>
+      <div class="telemetry-grid">
+        <div class="stat-box">
+          <div class="stat-label" id="stat-lbl-1">MOTOR GÜCÜ</div>
+          <div class="stat-val" id="stat-hp">325 <span>BG</span></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label" id="stat-lbl-2">PALET HIZI</div>
+          <div class="stat-val" id="stat-speed">18.4 <span>km/sa</span></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label" id="stat-lbl-3">KALAN 88MM MERMİ</div>
+          <div class="stat-val" id="stat-ammo">92 <span>Adet</span></div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label" id="stat-lbl-4">TOPLAM AĞIRLIK</div>
+          <div class="stat-val" id="stat-weight">57.0 <span>Ton</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Raycaster Interactive Part Inspector -->
+    <div class="card" style="flex:1; display:flex; flex-direction:column;">
+      <div class="card-header">
+        <div class="card-title">🔍 Parça Mühendislik Analizi</div>
+        <div class="card-value" style="font-size:10px;">3D Parçaya Tıkla</div>
+      </div>
+      <div class="inspector-box" id="inspector-box">
+        <div class="inspector-title" id="insp-title">8.8 cm KwK 36 L/56 Ana Top</div>
+        <div class="inspector-sub" id="insp-sub">ALT SİSTEM: SİLAH & TARET</div>
+        <div class="inspector-desc" id="insp-desc">
+          Ünlü Alman 88mm Flak uçaksavar topundan geliştirilen yüksek ilkızlı tank topu. Çift odacıklı namlu ağız
+          baskısı geri tepme enerjisinin %30'unu sönümler ve 1000 metreden 100mm+ zırhı delebilir.
+        </div>
+        <div class="inspector-specs">
+          <div>Malzeme: <strong id="insp-mat">Krupp Nikel-Çelik</strong></div>
+          <div>Ağırlık: <strong id="insp-weight">1,310 kg</strong></div>
+          <div>Menzil/Veri: <strong id="insp-spec">810 m/sn İlk Hız</strong></div>
+          <div>Konum: <strong id="insp-loc">Taret Ön Merkez</strong></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- BOTTOM GUIDED ENGINEERING TOUR BAR -->
+  <footer class="bottom-bar">
+    <div class="tour-info">
+      <div class="tour-step-badge" id="tour-badge">REHBERLİ TUR: 1 / 6</div>
+      <div class="tour-text-wrap">
+        <div class="tour-title" id="tour-title">Genel Bakış: Panzerkampfwagen VI "Tiger I" (1942)</div>
+        <div class="tour-desc" id="tour-desc">
+          II. Dünya Savaşı'nın en ünlü ağır tankı. Modeli fareyle döndürebilir, herhangi bir parçaya tıklayarak
+          mühendislik verisini okuyabilir veya sağ/sol panellerden parçalarına ayırabilirsiniz.
+        </div>
+      </div>
+    </div>
+    <div class="tour-controls">
+      <button class="btn" id="btn-tour-prev">◀ Önceki</button>
+      <button class="btn active" id="btn-tour-next">Sonraki Adım ▶</button>
+    </div>
+  </footer>
+
+  <!-- MAIN THREE.JS PROCEDURAL TEARDOWN ENGINE -->
+  <!-- Müze kataloğu ve araç modülleri (klasik script: sayfa doğrudan dosyadan açıldığında da çalışır) -->
+  <script src="js/catalog.js"></script>
+  <script src="js/vehicles/tiger1.js"></script>
+  <script src="js/vehicles/sahi1453.js"></script>
+  <script src="js/vehicles/ballista.js"></script>
+  <script src="js/vehicles/trebuchet.js"></script>
+  <script src="js/vehicles/spitfire.js"></script>
+  <script src="js/vehicles/leonardo.js"></script>
+  <script src="js/vehicles/kadirga.js"></script>
+  <script src="js/vehicles/gatling.js"></script>
+  <script src="js/vehicles/mark1.js"></script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    // ============================================================================
+    // 1. PROCEDURAL WEB AUDIO SYNTHESIZER (Sıfır Harici Ses Dosyası)
+    // ============================================================================
+    class MechanicalAudio {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) this.ctx = new AudioCtx();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      playCannonFire() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        const now = this.ctx.currentTime;
+
+        // 1. Low-end sub boom (88mm cannon blast)
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(115, now);
+        osc.frequency.exponentialRampToValueAtTime(22, now + 0.65);
+
+        gain.gain.setValueAtTime(0.7, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.75);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.75);
+
+        // 2. White noise explosion transient
+        const bufferSize = this.ctx.sampleRate * 0.55;
+        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (this.ctx.sampleRate * 0.12));
+        }
+
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(950, now);
+        filter.frequency.exponentialRampToValueAtTime(140, now + 0.5);
+
+        const nGain = this.ctx.createGain();
+        nGain.gain.setValueAtTime(0.8, now);
+        nGain.gain.exponentialRampToValueAtTime(0.01, now + 0.55);
+
+        noise.connect(filter);
+        filter.connect(nGain);
+        nGain.connect(this.ctx.destination);
+        noise.start(now);
+
+        // 3. Metallic breech clank & brass shell casing eject (after 0.42s)
+        setTimeout(() => {
+          if (!this.ctx || !this.enabled) return;
+          const t2 = this.ctx.currentTime;
+          const clank = this.ctx.createOscillator();
+          const cGain = this.ctx.createGain();
+          clank.type = 'triangle';
+          clank.frequency.setValueAtTime(920, t2);
+          clank.frequency.exponentialRampToValueAtTime(340, t2 + 0.18);
+          cGain.gain.setValueAtTime(0.22, t2);
+          cGain.gain.exponentialRampToValueAtTime(0.001, t2 + 0.2);
+          clank.connect(cGain);
+          cGain.connect(this.ctx.destination);
+          clank.start(t2);
+          clank.stop(t2 + 0.2);
+        }, 420);
+      }
+
+      playBombardFire() {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+
+        const now = this.ctx.currentTime;
+
+        // 1. Massive 680mm Ottoman Bombard seismic black-powder roar
+        const subOsc = this.ctx.createOscillator();
+        const subGain = this.ctx.createGain();
+        subOsc.type = 'sawtooth';
+        subOsc.frequency.setValueAtTime(72, now);
+        subOsc.frequency.exponentialRampToValueAtTime(16, now + 1.35);
+        subGain.gain.setValueAtTime(0.9, now);
+        subGain.gain.exponentialRampToValueAtTime(0.001, now + 1.45);
+        subOsc.connect(subGain);
+        subGain.connect(this.ctx.destination);
+        subOsc.start(now);
+        subOsc.stop(now + 1.45);
+
+        // 2. Long reverberant black powder blast & stone ball thunder
+        const bufferSize = Math.floor(this.ctx.sampleRate * 1.25);
+        const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (this.ctx.sampleRate * 0.28));
+        }
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = this.ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(620, now);
+        filter.frequency.exponentialRampToValueAtTime(85, now + 1.15);
+
+        const nGain = this.ctx.createGain();
+        nGain.gain.setValueAtTime(0.95, now);
+        nGain.gain.exponentialRampToValueAtTime(0.01, now + 1.2);
+
+        noise.connect(filter);
+        filter.connect(nGain);
+        nGain.connect(this.ctx.destination);
+        noise.start(now);
+      }
+
+      playTwang() {
+        // Burulma makinesi kirişi: kısa, derin "tung" + gövdeye çarpan kolların tok vuruşu
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const g = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(190, now);
+        osc.frequency.exponentialRampToValueAtTime(70, now + 0.35);
+        g.gain.setValueAtTime(0.45, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+        osc.connect(g);
+        g.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.4);
+        const thump = this.ctx.createOscillator();
+        const tg = this.ctx.createGain();
+        thump.type = 'sine';
+        thump.frequency.setValueAtTime(95, now + 0.05);
+        thump.frequency.exponentialRampToValueAtTime(40, now + 0.2);
+        tg.gain.setValueAtTime(0.0001, now);
+        tg.gain.exponentialRampToValueAtTime(0.5, now + 0.06);
+        tg.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        thump.connect(tg);
+        tg.connect(this.ctx.destination);
+        thump.start(now);
+        thump.stop(now + 0.26);
+      }
+
+      playCreakWhoosh() {
+        // Trebuchet: ahşap gıcırtısı + düşen ağırlığın tok sesi + sapanın uğultusu
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+        const creak = this.ctx.createOscillator();
+        const cg = this.ctx.createGain();
+        creak.type = 'sawtooth';
+        creak.frequency.setValueAtTime(70, now);
+        creak.frequency.linearRampToValueAtTime(110, now + 0.5);
+        cg.gain.setValueAtTime(0.0001, now);
+        cg.gain.exponentialRampToValueAtTime(0.12, now + 0.15);
+        cg.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+        creak.connect(cg);
+        cg.connect(this.ctx.destination);
+        creak.start(now);
+        creak.stop(now + 0.72);
+
+        const len = Math.floor(this.ctx.sampleRate * 1.6);
+        const buf = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buf;
+        const bp = this.ctx.createBiquadFilter();
+        bp.type = 'bandpass';
+        bp.Q.value = 1.2;
+        bp.frequency.setValueAtTime(180, now + 0.3);
+        bp.frequency.exponentialRampToValueAtTime(900, now + 1.2);
+        bp.frequency.exponentialRampToValueAtTime(300, now + 1.6);
+        const ng = this.ctx.createGain();
+        ng.gain.setValueAtTime(0.0001, now);
+        ng.gain.exponentialRampToValueAtTime(0.35, now + 1.1);
+        ng.gain.exponentialRampToValueAtTime(0.001, now + 1.6);
+        noise.connect(bp);
+        bp.connect(ng);
+        ng.connect(this.ctx.destination);
+        noise.start(now);
+        noise.stop(now + 1.6);
+      }
+
+      playGunBurst() {
+        // 1 sn salvo: 20 mm topların tok patlamaları + .303'lerin hızlı tıkırtısı
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        const start = this.ctx.currentTime;
+        const pop = (t, freq, dur, vol) => {
+          const len = Math.floor(this.ctx.sampleRate * dur);
+          const buf = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
+          const d = buf.getChannelData(0);
+          for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.25));
+          const src = this.ctx.createBufferSource();
+          src.buffer = buf;
+          const f = this.ctx.createBiquadFilter();
+          f.type = 'lowpass';
+          f.frequency.value = freq;
+          const g = this.ctx.createGain();
+          g.gain.value = vol;
+          src.connect(f); f.connect(g); g.connect(this.ctx.destination);
+          src.start(t);
+        };
+        for (let i = 0; i < 10; i++) pop(start + i * 0.1, 900, 0.09, 0.45);   // Hispano ~600/dk
+        for (let i = 0; i < 19; i++) pop(start + i * 0.052, 2600, 0.03, 0.18); // Browning ~1.150/dk
+      }
+
+      playClick(freq = 520) {
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.05);
+      }
+    }
+
+    const audio = new MechanicalAudio();
+
+    // ============================================================================
+    // 2. THREE.JS SCENE, CAMERA & RENDERER SETUP
+    // ============================================================================
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf2ece1);
+    scene.fog = new THREE.Fog(0xf2ece1, 18, 45);
+
+    const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 200);
+    camera.position.set(11.5, 7.2, 11.5);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+    renderer.setClearColor(0xf2ece1, 1);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+    container.appendChild(renderer.domElement);
+
+    // Gerçekçi Mod için stüdyo çevre yansıması (metal, tunç ve krom yüzeyler ortamı yansıtır)
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    const studioEnvMap = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+    pmremGenerator.dispose();
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.target.set(0, 1.3, 0);
+    controls.maxPolarAngle = Math.PI * 0.52;
+    controls.minDistance = 3.5;
+    controls.maxDistance = 32;
+
+    // Lighting (Bright Cream Studio & Museum Illumination)
+    const ambientLight = new THREE.HemisphereLight(0xffffff, 0xe6decb, 1.45);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.DirectionalLight(0xfffbeb, 2.35);
+    keyLight.position.set(12, 18, 10);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 2048;
+    keyLight.shadow.mapSize.height = 2048;
+    keyLight.shadow.camera.near = 2;
+    keyLight.shadow.camera.far = 40;
+    const d = 9;
+    keyLight.shadow.camera.left = -d;
+    keyLight.shadow.camera.right = d;
+    keyLight.shadow.camera.top = d;
+    keyLight.shadow.camera.bottom = -d;
+    keyLight.shadow.bias = -0.0005;
+    scene.add(keyLight);
+
+    const rimLight = new THREE.DirectionalLight(0xe0f2fe, 1.15);
+    rimLight.position.set(-12, 8, -10);
+    scene.add(rimLight);
+
+    const underLight = new THREE.DirectionalLight(0xfff7ed, 0.85);
+    underLight.position.set(0, -8, 4);
+    scene.add(underLight);
+
+    // Muzzle flash point light
+    const muzzleLight = new THREE.PointLight(0xff7700, 0, 18);
+    scene.add(muzzleLight);
+
+    // Studio Technical Floor Grid & Platform (Warm Cream Stone Podium)
+    const floorGroup = new THREE.Group();
+    const gridHelper = new THREE.GridHelper(28, 28, 0xd97706, 0xd5cbb8);
+    gridHelper.position.y = -0.02;
+    floorGroup.add(gridHelper);
+
+    const floorGeo = new THREE.CircleGeometry(45, 64);
+    const floorMat = new THREE.MeshStandardMaterial({
+      color: 0xdfd8c8,
+      roughness: 0.92,
+      metalness: 0.02
+    });
+    const floorMesh = new THREE.Mesh(floorGeo, floorMat);
+    floorMesh.rotation.x = -Math.PI / 2;
+    floorMesh.position.y = -0.03;
+    floorMesh.receiveShadow = true;
+    floorGroup.add(floorMesh);
+    scene.add(floorGroup);
+
+    // ============================================================================
+    // 3. PROCEDURAL TEXTURES, CAMOUFLAGE & ZIMMERIT GENERATOR
+    // ============================================================================
+    function createZimmeritBumpMap() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#808080';
+      ctx.fillRect(0, 0, 256, 256);
+
+      // Horizontal corrugated Zimmerit anti-magnetic paste ridges
+      for (let y = 0; y < 256; y += 6) {
+        ctx.fillStyle = '#d8d8d8';
+        ctx.fillRect(0, y, 256, 3);
+        ctx.fillStyle = '#303030';
+        ctx.fillRect(0, y + 3, 256, 3);
+      }
+      // Vertical trowel column seams
+      ctx.fillStyle = 'rgba(60, 60, 60, 0.55)';
+      for (let x = 0; x < 256; x += 32) {
+        ctx.fillRect(x, 0, 2, 256);
+      }
+      // Subtle rough plaster noise
+      for (let i = 0; i < 1800; i++) {
+        const nx = Math.random() * 256;
+        const ny = Math.random() * 256;
+        ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,0.18)' : 'rgba(0,0,0,0.18)';
+        ctx.fillRect(nx, ny, 2, 2);
+      }
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      tex.repeat.set(3, 3);
+      return tex;
+    }
+
+    function createCamoTexture(scheme, tintFactor = 1.0) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+
+      const palettes = {
+        ambush: {
+          base: '#b29e68',
+          patch1: '#6e3d28',
+          patch2: '#4d603c',
+          dotsLight: '#d1c18e',
+          dotsDark: '#364529'
+        },
+        dunkelgelb: {
+          base: '#bca872',
+          patch1: '#ab9660',
+          patch2: '#c7b580'
+        },
+        winter: {
+          base: '#dfe4ea',
+          patch1: '#525b66',
+          patch2: '#cbd2d9'
+        },
+        panzergrau: {
+          base: '#4c5661',
+          patch1: '#3f4852',
+          patch2: '#5a6572'
+        }
+      };
+
+      const pal = palettes[scheme] || palettes.ambush;
+      ctx.fillStyle = pal.base;
+      ctx.fillRect(0, 0, 512, 512);
+
+      // Deterministic pseudo-random helper so texture looks artistic and consistent
+      let seed = scheme.charCodeAt(0) * 137 + Math.round(tintFactor * 100);
+      const rand = () => {
+        seed = (seed * 16807) % 2147483647;
+        return (seed - 1) / 2147483646;
+      };
+
+      if (scheme === 'ambush') {
+        // Organic 3-tone Normandy / Ardennes camouflage bands
+        for (let i = 0; i < 18; i++) {
+          ctx.fillStyle = i % 2 === 0 ? pal.patch1 : pal.patch2;
+          ctx.beginPath();
+          const cx = rand() * 512;
+          const cy = rand() * 512;
+          const rx = 55 + rand() * 95;
+          const ry = 35 + rand() * 75;
+          ctx.ellipse(cx, cy, rx, ry, rand() * Math.PI, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        // Ambush light & shadow speckles (Hinterhalt-Tarnung)
+        for (let i = 0; i < 160; i++) {
+          ctx.fillStyle = i % 2 === 0 ? pal.dotsLight : pal.dotsDark;
+          ctx.beginPath();
+          ctx.arc(rand() * 512, rand() * 512, 3 + rand() * 4.5, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else if (scheme === 'winter') {
+        // Brushed whitewash with worn Panzergrau steel showing through
+        for (let i = 0; i < 28; i++) {
+          ctx.fillStyle = i % 3 === 0 ? pal.patch1 : pal.patch2;
+          ctx.beginPath();
+          ctx.ellipse(rand() * 512, rand() * 512, 40 + rand() * 80, 18 + rand() * 35, rand() * Math.PI, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else {
+        // Subtle tonal mottling for Dunkelgelb & Panzergrau
+        for (let i = 0; i < 24; i++) {
+          ctx.fillStyle = i % 2 === 0 ? pal.patch1 : pal.patch2;
+          ctx.globalAlpha = 0.35;
+          ctx.beginPath();
+          ctx.arc(rand() * 512, rand() * 512, 35 + rand() * 70, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1.0;
+      }
+
+      // Rolled steel grain, panel weathering & micro-scratches
+      for (let i = 0; i < 2400; i++) {
+        const x = rand() * 512;
+        const y = rand() * 512;
+        ctx.fillStyle = rand() > 0.5 ? 'rgba(255,255,255,0.06)' : 'rgba(15,23,42,0.08)';
+        ctx.fillRect(x, y, 2 + rand() * 6, 1.5);
+      }
+
+      // Subtle panel seam & rivet lines
+      ctx.strokeStyle = 'rgba(15, 23, 42, 0.16)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(4, 4, 504, 504);
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      return tex;
+    }
+
+    function createInsigniaTexture(numText = '131') {
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 128;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, 256, 128);
+
+      // Balkenkreuz (German Cross) on left
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(26, 24, 18, 80);
+      ctx.fillRect(4, 46, 62, 18);
+      ctx.fillStyle = '#111827';
+      ctx.fillRect(30, 24, 10, 80);
+      ctx.fillRect(4, 50, 62, 10);
+
+      // Tactical Turret Number "131" (Red with white outline)
+      ctx.font = '900 54px "JetBrains Mono", monospace';
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = '#f8fafc';
+      ctx.fillStyle = '#b91c1c';
+      ctx.strokeText(numText, 92, 82);
+      ctx.fillText(numText, 92, 82);
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      return tex;
+    }
+
+    function createBronzeBumpMap() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#808080';
+      ctx.fillRect(0, 0, 256, 256);
+
+      // Ottoman relief bands & geometric seljuk motifs along casting
+      ctx.fillStyle = '#c8c8c8';
+      ctx.fillRect(0, 28, 256, 10);
+      ctx.fillRect(0, 120, 256, 12);
+      ctx.fillRect(0, 212, 256, 10);
+      ctx.fillStyle = '#404040';
+      for (let x = 0; x < 256; x += 16) {
+        ctx.fillRect(x + 4, 30, 8, 6);
+        ctx.fillRect(x + 2, 122, 10, 8);
+        ctx.fillRect(x + 4, 214, 8, 6);
+      }
+      // Sand-cast bronze micro-pores
+      for (let i = 0; i < 2600; i++) {
+        const nx = Math.random() * 256;
+        const ny = Math.random() * 256;
+        ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,0.22)' : 'rgba(0,0,0,0.24)';
+        ctx.fillRect(nx, ny, 2, 2);
+      }
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      tex.repeat.set(2, 2);
+      return tex;
+    }
+
+    function createBronzeTexture(scheme) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 512;
+      const ctx = canvas.getContext('2d');
+
+      const palettes = {
+        edirne1453: { base: '#b87d2e', p1: '#96611e', p2: '#d49a45' },
+        patina1464: { base: '#556e5c', p1: '#3f5747', p2: '#7a6845' },
+        siegesoot:  { base: '#4d3b2c', p1: '#261e18', p2: '#785637' },
+        imperial:   { base: '#b55327', p1: '#8c3916', p2: '#db7b3b' }
+      };
+      const pal = palettes[scheme] || palettes.edirne1453;
+      ctx.fillStyle = pal.base;
+      ctx.fillRect(0, 0, 512, 512);
+
+      let seed = scheme.charCodeAt(0) * 193 + scheme.charCodeAt(2) * 31;
+      const rand = () => {
+        seed = (seed * 16807) % 2147483647;
+        return (seed - 1) / 2147483646;
+      };
+
+      for (let i = 0; i < 36; i++) {
+        ctx.fillStyle = i % 2 === 0 ? pal.p1 : pal.p2;
+        ctx.globalAlpha = 0.28;
+        ctx.beginPath();
+        ctx.ellipse(rand() * 512, rand() * 512, 40 + rand() * 90, 20 + rand() * 55, rand() * Math.PI, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1.0;
+
+      // Ornamental Ottoman bronze ring streaks
+      for (let i = 0; i < 2000; i++) {
+        ctx.fillStyle = rand() > 0.5 ? 'rgba(255,240,200,0.07)' : 'rgba(20,12,5,0.09)';
+        ctx.fillRect(rand() * 512, rand() * 512, 3 + rand() * 8, 2);
+      }
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.wrapS = THREE.RepeatWrapping;
+      tex.wrapT = THREE.RepeatWrapping;
+      return tex;
+    }
+
+    const zimmeritBumpTex = createZimmeritBumpMap();
+    const bronzeBumpTex = createBronzeBumpMap();
+    const insigniaTex = createInsigniaTexture('131');
+    const camoTextures = {
+      ambush: createCamoTexture('ambush', 1.0),
+      dunkelgelb: createCamoTexture('dunkelgelb', 1.0),
+      winter: createCamoTexture('winter', 1.0),
+      panzergrau: createCamoTexture('panzergrau', 1.0)
+    };
+    const sahiTextures = {
+      edirne1453: createBronzeTexture('edirne1453'),
+      patina1464: createBronzeTexture('patina1464'),
+      siegesoot: createBronzeTexture('siegesoot'),
+      imperial: createBronzeTexture('imperial')
+    };
+
+    const MATS = {
+      armorOuter: new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        map: camoTextures.ambush,
+        bumpMap: zimmeritBumpTex,
+        bumpScale: 0.022,
+        roughness: 0.62,
+        metalness: 0.22,
+        userData: { isArmor: true, role: 'outer' }
+      }),
+      armorRoof: new THREE.MeshStandardMaterial({
+        color: 0xf1f5f9,
+        map: camoTextures.ambush,
+        roughness: 0.58,
+        metalness: 0.25,
+        userData: { isArmor: true, role: 'roof' }
+      }),
+      // Kamuflaj boyalı ama Zimmerit uygulanmayan çelik (namlu, tekerlek, egzoz, sandık)
+      paintedSteel: new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        map: camoTextures.ambush,
+        roughness: 0.55,
+        metalness: 0.30,
+        userData: { isArmor: true, role: 'painted' }
+      }),
+      armorDark: new THREE.MeshStandardMaterial({
+        color: 0x475059,
+        roughness: 0.48,
+        metalness: 0.45
+      }),
+      gunSteel: new THREE.MeshStandardMaterial({ color: 0x2f363d, roughness: 0.32, metalness: 0.78 }),
+      chromeSteel: new THREE.MeshStandardMaterial({ color: 0xe2e8f0, roughness: 0.18, metalness: 0.90 }),
+      engineBlock: new THREE.MeshStandardMaterial({ color: 0x283545, roughness: 0.42, metalness: 0.62 }),
+      radiatorCopper: new THREE.MeshStandardMaterial({ color: 0xc25e0e, roughness: 0.36, metalness: 0.70 }),
+      transmissionGreen: new THREE.MeshStandardMaterial({ color: 0x1d7076, roughness: 0.42, metalness: 0.50 }),
+      brassAmmo: new THREE.MeshStandardMaterial({ color: 0xfbbf24, roughness: 0.24, metalness: 0.86 }),
+      torsionPurple: new THREE.MeshStandardMaterial({ color: 0x64748b, roughness: 0.35, metalness: 0.72 }),
+      trackMetal: new THREE.MeshStandardMaterial({ color: 0x25282e, roughness: 0.68, metalness: 0.58 }),
+      rubberTire: new THREE.MeshStandardMaterial({ color: 0x181a1f, roughness: 0.88, metalness: 0.08 }),
+      woodTool: new THREE.MeshStandardMaterial({ color: 0x854d0e, roughness: 0.75, metalness: 0.05 }),
+      leatherSeat: new THREE.MeshStandardMaterial({ color: 0x451a03, roughness: 0.65, metalness: 0.10 }),
+      interiorCream: new THREE.MeshStandardMaterial({ color: 0xd6d3c9, roughness: 0.60, metalness: 0.15 }),
+      insigniaDecal: new THREE.MeshBasicMaterial({ map: insigniaTex, transparent: true, depthWrite: false }),
+      // 1453 Osmanlı Şahi Topu Özel Materyalleri
+      sahiBronzeOuter: new THREE.MeshStandardMaterial({
+        color: 0xffffff,
+        map: sahiTextures.edirne1453,
+        bumpMap: bronzeBumpTex,
+        bumpScale: 0.025,
+        roughness: 0.36,
+        metalness: 0.74,
+        userData: { isBronze: true, role: 'outer' }
+      }),
+      sahiBronzeBand: new THREE.MeshStandardMaterial({
+        color: 0xfde68a,
+        map: sahiTextures.edirne1453,
+        bumpMap: bronzeBumpTex,
+        bumpScale: 0.032,
+        roughness: 0.28,
+        metalness: 0.82,
+        userData: { isBronze: true, role: 'band' }
+      }),
+      sahiThreadGold: new THREE.MeshStandardMaterial({ color: 0xd97706, roughness: 0.24, metalness: 0.88 }),
+      sahiGranite: new THREE.MeshStandardMaterial({ color: 0x94a3b8, roughness: 0.85, metalness: 0.08 }),
+      sahiOakTimber: new THREE.MeshStandardMaterial({ color: 0x6b3e16, roughness: 0.80, metalness: 0.06 }),
+      sahiRopeHemp: new THREE.MeshStandardMaterial({ color: 0xc2a370, roughness: 0.88, metalness: 0.02 }),
+      sahiPowderSack: new THREE.MeshStandardMaterial({ color: 0xe2d9c5, roughness: 0.78, metalness: 0.04 }),
+      sahiWroughtIron: new THREE.MeshStandardMaterial({ color: 0x272a30, roughness: 0.48, metalness: 0.75 })
+    };
+
+    const edgeMatDefault = new THREE.LineBasicMaterial({ color: 0x1e293b, transparent: true, opacity: 0.36 });
+    const edgeMatBlueprint = new THREE.LineBasicMaterial({ color: 0x0284c7, transparent: true, opacity: 0.90 });
+    const edgeMatHighlight = new THREE.LineBasicMaterial({ color: 0xd97706, transparent: true, opacity: 1.0 });
+
+    const allParts = [];
+    const allMeshes = [];
+    const armorMeshes = [];
+    const sahiBronzeMeshes = [];
+    const connectorLinesGroup = new THREE.Group();
+    scene.add(connectorLinesGroup);
+
+    let currentBuildVehicle = 'tiger';
+
+    function addCADMesh(parent, geometry, material, pos = [0, 0, 0], rot = [0, 0, 0], castShadow = true) {
+      const clonedMat = material.clone();
+      clonedMat.userData = { ...(material.userData || {}) };
+      const mesh = new THREE.Mesh(geometry, clonedMat);
+      mesh.position.set(pos[0], pos[1], pos[2]);
+      mesh.rotation.set(rot[0], rot[1], rot[2]);
+      mesh.castShadow = castShadow;
+      mesh.receiveShadow = true;
+
+      if (material !== MATS.insigniaDecal) {
+        const edges = new THREE.EdgesGeometry(geometry, 24);
+        const line = new THREE.LineSegments(edges, edgeMatDefault);
+        mesh.add(line);
+        mesh.userData.edgeLine = line;
+      }
+      mesh.userData.origMaterial = mesh.material;
+      mesh.userData.origColor = mesh.material.color.clone();
+      mesh.userData.vehicle = currentBuildVehicle;
+      // Çıkartmalar ve cam gibi kalıcı saydam malzemeler: X-Ray/filtre sonrası özgün opaklıklarına döner
+      mesh.userData.isDecal = material === MATS.insigniaDecal || material.transparent === true;
+      mesh.userData.baseOpacity = material.transparent ? material.opacity : 1.0;
+
+      if (clonedMat.userData.isArmor) {
+        armorMeshes.push(mesh);
+      }
+      if (clonedMat.userData.isBronze) {
+        sahiBronzeMeshes.push(mesh);
+      }
+
+      parent.add(mesh);
+      allMeshes.push(mesh);
+      return mesh;
+    }
+
+    // Çok sayıda tekrarlanan parça (palet baklaları vb.) için tek çizim çağrılı InstancedMesh.
+    // Kenar çizgisi üretilmez; malzeme/X-Ray/alt sistem filtresi ve raycast için addCADMesh ile aynı kayıtları tutar.
+    function addInstancedMesh(parent, geometry, material, count) {
+      const clonedMat = material.clone();
+      clonedMat.userData = { ...(material.userData || {}) };
+      const mesh = new THREE.InstancedMesh(geometry, clonedMat, count);
+      mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+      mesh.frustumCulled = false; // örnekler geometrinin sınır küresinin çok dışına yayılır
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      mesh.userData.origMaterial = mesh.material;
+      mesh.userData.origColor = mesh.material.color.clone();
+      mesh.userData.vehicle = currentBuildVehicle;
+      mesh.userData.isDecal = false;
+      if (clonedMat.userData.isArmor) armorMeshes.push(mesh);
+      parent.add(mesh);
+      allMeshes.push(mesh);
+      return mesh;
+    }
+
+    function createPartGroup(config) {
+      const group = new THREE.Group();
+      group.position.set(...(config.basePos || [0, 0, 0]));
+      group.userData = {
+        vehicle: currentBuildVehicle,
+        id: config.id,
+        name: config.name,
+        subsystem: config.subsystem,
+        subLabel: config.subLabel,
+        desc: config.desc,
+        material: config.material || 'Krupp Zırh Çeliği',
+        weight: config.weight || '450 kg',
+        spec: config.spec || 'Standart',
+        location: config.location || 'Gövde',
+        basePos: new THREE.Vector3(...(config.basePos || [0, 0, 0])),
+        explodeVec: new THREE.Vector3(...(config.explodeVec || [0, 2, 0])),
+        isOuterShell: !!config.isOuterShell
+      };
+
+      const lineGeo = new THREE.BufferGeometry().setFromPoints([
+        new THREE.Vector3(),
+        new THREE.Vector3()
+      ]);
+      const lineMat = new THREE.LineDashedMaterial({
+        color: 0xf59e0b,
+        dashSize: 0.18,
+        gapSize: 0.1,
+        transparent: true,
+        opacity: 0.0
+      });
+      const connector = new THREE.Line(lineGeo, lineMat);
+      connectorLinesGroup.add(connector);
+      group.userData.connector = connector;
+
+      allParts.push(group);
+      return group;
+    }
+
+    // ============================================================================
+    // 4. BUILD HIGH-DETAIL PANZERKAMPFWAGEN VI "TIGER I" (22 MECHANICAL GROUPS)
+    // ============================================================================
+    // Araç modülleri js/vehicles/ altında klasik script olarak yüklenir (file:// ile de çalışır).
+    // Çekirdek; THREE, sahne, malzemeler ve parça yardımcılarını ctx ile verir.
+    const buildCtx = {
+      THREE, scene, MATS, addCADMesh, createPartGroup, addInstancedMesh, muzzleLight,
+      audio, notify: html => showToast(html)
+    };
+
+    currentBuildVehicle = 'tiger';
+    const {
+      tankRoot, turretPivot, gunElevationPivot, barrelRecoilGroup, breechMovingGroup, flashMesh,
+      pistonMeshes, fanMeshes, shaftMesh, rotatingWheels, trackShoes,
+      partFrontArmor, partAmmoRacks, partGunBarrel, partPistons, partTransmission, partTorsionBars,
+      setVariant: tigerSetVariant, updateTracks: tigerUpdateTracks
+    } = window.VehicleBuilders.tiger1(buildCtx);
+
+    // ============================================================================
+    // 4B. FAZ 2: OSMANLI ŞAHİ TOPU — DARDANELLES GUN (1464) ÖLÇÜLERİ (js/vehicles/sahi1453.js)
+    // ============================================================================
+    currentBuildVehicle = 'sahi';
+    const sahi = window.VehicleBuilders.sahi1453(buildCtx);
+    const sahiRoot = sahi.root;
+    const sahiFlashMesh = sahi.flashMesh;
+    const {
+      front: partSahiFrontBarrel, ball: partSahiStoneBall, threads: partSahiThreads,
+      powder: partSahiPowder, recoil: partSahiRecoilWall, ammo: partSahiAmmoPile, sled: partSahiSled
+    } = sahi.parts;
+
+    // ============================================================================
+    // 4C. ADAPTÖR KALIBINDAKİ ARAÇLAR (arayüz + mekanik durum modülün içinde)
+    // Yeni araçlar buraya eklenir: modül { root, ui, camPresets, tourSteps, update, onSlider,
+    // onButton, buttonActive, onFire, fireButtonLabel, getSliderValues, getStats, getStatus,
+    // applyTextures, setTexture, toggleRelief, defaultPart } döndürür.
+    // ============================================================================
+    currentBuildVehicle = 'ballista';
+    const ballista = window.VehicleBuilders.ballista(buildCtx);
+    currentBuildVehicle = 'trebuchet';
+    const trebuchet = window.VehicleBuilders.trebuchet(buildCtx);
+    currentBuildVehicle = 'spitfire';
+    const spitfire = window.VehicleBuilders.spitfire(buildCtx);
+    currentBuildVehicle = 'leonardo';
+    const leonardo = window.VehicleBuilders.leonardo(buildCtx);
+    currentBuildVehicle = 'kadirga';
+    const kadirga = window.VehicleBuilders.kadirga(buildCtx);
+    currentBuildVehicle = 'gatling';
+    const gatling = window.VehicleBuilders.gatling(buildCtx);
+    currentBuildVehicle = 'mark1';
+    const mark1 = window.VehicleBuilders.mark1(buildCtx);
+    const ADAPTERS = { ballista, trebuchet, spitfire, leonardo, kadirga, gatling, mark1 };
+    const VEHICLE_ROOTS = { tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root, leonardo: leonardo.root, kadirga: kadirga.root, gatling: gatling.root, mark1: mark1.root };
+    function activeAdapter() { return ADAPTERS[state.vehicle] || null; }
+
+    currentBuildVehicle = 'tiger';
+    document.getElementById('part-count-label').textContent = '22 Ana Grup';
+
+    // ============================================================================
+    // 5. SIMULATION STATE & INTERACTIVE CONTROLS
+    // ============================================================================
+    const state = {
+      vehicle: 'tiger',
+      realistic: true,
+      explodeTarget: 0,
+      explodeCurrent: 0,
+      cutaway: false,
+      blueprint: false,
+      showLines: true,
+      autoRotate: false,
+      activeSubsystem: 'all',
+      activeCamo: 'ambush',
+      tigerPackage: 'normandy44',
+      zimmerit: true,
+      activeBronze: 'edirne1453',
+      bronzeRelief: true,
+      rpm: 1400,
+      turretAngleDeg: 0,
+      turretAutoSweep: false,
+      gunElevDeg: 2,
+      terrainTest: true,
+      // Osmanlı Şahi Topu (Dardanelles Gun) Simülasyon Parametreleri
+      sahiMode: 'battle',          // 'battle' = Atış Mevzii, 'transport' = Nakliye (iki parça ayrı)
+      sahiScrewPct: 0,
+      sahiAutoScrew: false,
+      sahiRammerPct: 100,
+      sahiLoaded: true,            // namluda gülle var mı
+      sahiCharge: { powder: true, tampion: true, primed: true, hot: false },
+      sahiGunBack: false,          // ateşten sonra top kızakla birlikte geride kalır
+      sahiAutoLoading: false,
+      sahiReload: { idx: 0, t: 0 },
+      sahiElevDeg: 5,
+      sahiAmmoCount: 7,
+      selectedPart: partGunBarrel,
+      recoilProgress: 0,
+      ammoCount: 92,
+      camTargetPos: null,
+      camTargetLook: null,
+      tourIndex: 0
+    };
+
+    // Şahi balistiği: ilk hız tahmini, namlu yüksekliği atış mevziinden alınır
+    const SAHI_MUZZLE_VELOCITY = sahi.specs.muzzleVelocity; // m/sn (tahmini)
+    const SAHI_MUZZLE_HEIGHT = sahi.specs.axisHeightBattle; // m
+
+    // Hava direnci ihmal edilen balistik menzil: R = v·cosθ·t, t = (v·sinθ + √((v·sinθ)² + 2gh)) / g
+    function sahiRangeMeters(elevDeg) {
+      const g = 9.81;
+      const th = THREE.MathUtils.degToRad(elevDeg);
+      const vy = SAHI_MUZZLE_VELOCITY * Math.sin(th);
+      const vx = SAHI_MUZZLE_VELOCITY * Math.cos(th);
+      const t = (vy + Math.sqrt(vy * vy + 2 * g * SAHI_MUZZLE_HEIGHT)) / g;
+      return Math.round(vx * t);
+    }
+
+    const CAMO_LABELS = {
+      ambush: "Normandiya '44",
+      dunkelgelb: "Dunkelgelb '43",
+      winter: "Doğu Kış '43",
+      panzergrau: "Panzergrau '42",
+      edirne1453: "1453 Edirne Döküm",
+      patina1464: "1464 Müze Patinası",
+      siegesoot: "Topkapı Kuşatma İsi",
+      imperial: "Saray Tören Tuncu"
+    };
+
+    // ============================================================================
+    // TIGER I DÖNEM PAKETLERİ — boya, Zimmerit, donanım ve işaret birlikte seçilir
+    // (Tarihler yaklaşık; taret numaraları bilinen örnek tanklardan alınmıştır.)
+    // ============================================================================
+    const TIGER_PACKAGES = {
+      early42: {
+        label: "Erken '42 — Leningrad", btn: "⚙️ Erken '42", camo: 'panzergrau', zimmerit: false, number: '100',
+        variant: { feifel: true, cupola: 'early', wheels: 'rubber', headlights: 'twin' },
+        note: 'İlk Tiger\'lar (s.Pz.Abt. 502, Leningrad cephesi): Panzergrau boya, Feifel hava filtreleri, davul kupola, kauçuk bandajlı tekerlekler, çift far. Zimmerit henüz yok.'
+      },
+      tunis43: {
+        label: "Tunus '43 — Tiger 131", btn: "🏜️ Tunus '43", camo: 'dunkelgelb', zimmerit: false, number: '131',
+        variant: { feifel: true, cupola: 'early', wheels: 'rubber', headlights: 'twin' },
+        note: 'Tunus\'ta ele geçirilen ünlü Tiger 131 (s.Pz.Abt. 504) dönemi: Dunkelgelb boya, Feifel filtreleri ve erken kupola. Zimmerit Eylül 1943\'ten önce kullanılmıyordu.'
+      },
+      winter43: {
+        label: "Doğu Cephesi Kış '43-44", btn: '❄️ Kış \'43-44', camo: 'winter', zimmerit: true, number: '',
+        variant: { feifel: false, cupola: 'late', wheels: 'rubber', headlights: 'single' },
+        note: 'Orta üretim, Doğu Cephesi kışı: aşınmış kireç badana, Zimmerit, Feifel filtreleri kaldırılmış, 7 periskoplu döküm kupola ve tek orta far.'
+      },
+      normandy44: {
+        label: "Normandiya '44 — Geç Üretim", btn: "🌿 Normandiya '44", camo: 'ambush', zimmerit: true, number: '007',
+        variant: { feifel: false, cupola: 'late', wheels: 'steel', headlights: 'single' },
+        note: 'Geç üretim (1944): üç tonlu pusu kamuflajı, Zimmerit, iç lastikli çelik tekerlekler (aks başına 2), döküm kupola. 007, Michael Wittmann\'ın son tankının numarasıdır.'
+      }
+    };
+    Object.keys(TIGER_PACKAGES).forEach(k => { CAMO_LABELS[k] = TIGER_PACKAGES[k].label; });
+
+    const insigniaCache = {};
+    function setTigerInsignia(num) {
+      if (!insigniaCache[num]) insigniaCache[num] = createInsigniaTexture(num);
+      allMeshes.forEach(m => {
+        if (m.userData.isDecal && m.userData.vehicle === 'tiger') {
+          m.material.map = insigniaCache[num];
+          m.material.needsUpdate = true;
+        }
+      });
+    }
+
+    function applyTigerPackage(key, announce) {
+      const pkg = TIGER_PACKAGES[key] || TIGER_PACKAGES.normandy44;
+      state.tigerPackage = key;
+      state.activeCamo = pkg.camo;
+      state.zimmerit = pkg.zimmerit;
+      tigerSetVariant(pkg.variant);
+      setTigerInsignia(pkg.number);
+      if (state.vehicle === 'tiger') {
+        document.getElementById('camo-label').textContent = pkg.label;
+        const zimBtn = document.getElementById('btn-zimmerit');
+        zimBtn.classList.toggle('active', state.zimmerit);
+        zimBtn.textContent = state.zimmerit ? '🧱 Zimmerit Anti-Manyetik Doku: AÇIK' : '🧱 Zimmerit Anti-Manyetik Doku: KAPALI';
+      }
+      if (announce) showToast(`<strong>${pkg.label}</strong><br/>${pkg.note}`, 5200);
+      updateVisualMaterials();
+    }
+
+    function updateTurretTraverseLabel() {
+      if (state.vehicle !== 'tiger') return;
+      const r = tigerTraverseRate(state.rpm);
+      document.getElementById('lbl-slider-2').textContent = state.rpm < 500
+        ? `Taret Yönü (El Çarkı, ~${r.toFixed(1)}°/sn)`
+        : `Taret Yönü (Hidrolik, ~${r.toFixed(1)}°/sn)`;
+    }
+
+    function tigerPackageButtonsHTML() {
+      return Object.keys(TIGER_PACKAGES).map(k =>
+        `<button class="btn camo-btn ${state.tigerPackage === k ? 'active' : ''}" data-camo="${k}">${TIGER_PACKAGES[k].btn}</button>`
+      ).join('');
+    }
+
+    // Hidrolik taret dönüş hızı (°/sn) — motor devriyle orantılı; yaklaşık değerler.
+    // Yüksek devirde tam tur ≈ 60 sn mertebesinde; rölantinin altında yalnızca el çarkı.
+    function tigerTraverseRate(rpm) {
+      if (rpm < 500) return 0.6; // el çarkı
+      return Math.min(9, 6 * (rpm / 2000));
+    }
+
+    // ============================================================================
+    // TRİPLANAR KAMUFLAJ + KİR/AŞINMA (Tiger I zırhı)
+    // Desen, parçanın "dinlenme" konumundaki dünya koordinatlarından örneklenir: plakalar arasında
+    // kesintisiz akar, her parçada aynı ölçekte görünür ve teardown sırasında parçaya yapışık kalır.
+    // ============================================================================
+    const triUniforms = { uTriScale: { value: 0.32 }, uDirt: { value: 0.55 } };
+    function enableTriplanar(mesh) {
+      const mat = mesh.material;
+      const restMatrix = mesh.matrixWorld.clone();
+      mat.onBeforeCompile = shader => {
+        shader.uniforms.uTriScale = triUniforms.uTriScale;
+        shader.uniforms.uDirt = triUniforms.uDirt;
+        shader.uniforms.uRestMatrix = { value: restMatrix };
+        shader.vertexShader = shader.vertexShader
+          .replace('#include <common>', '#include <common>\nuniform mat4 uRestMatrix;\nvarying vec3 vTriPos;\nvarying vec3 vTriNormal;')
+          .replace('#include <begin_vertex>', '#include <begin_vertex>\nvTriPos = (uRestMatrix * vec4(transformed, 1.0)).xyz;\nvTriNormal = normalize(mat3(uRestMatrix) * objectNormal);');
+        shader.fragmentShader = shader.fragmentShader
+          .replace('#include <common>', '#include <common>\nuniform float uTriScale;\nuniform float uDirt;\nvarying vec3 vTriPos;\nvarying vec3 vTriNormal;')
+          .replace('#include <map_fragment>', [
+            '#ifdef USE_MAP',
+            '  vec3 tw = pow(abs(normalize(vTriNormal)), vec3(4.0));',
+            '  tw /= (tw.x + tw.y + tw.z);',
+            '  vec4 sampledDiffuseColor = texture2D(map, vTriPos.zy * uTriScale) * tw.x',
+            '                           + texture2D(map, vTriPos.xz * uTriScale) * tw.y',
+            '                           + texture2D(map, vTriPos.xy * uTriScale) * tw.z;',
+            '  diffuseColor *= sampledDiffuseColor;',
+            '  // Alt gövdede toz/çamur birikimi (yerden yükseldikçe azalır) + düşük frekanslı lekelenme',
+            '  float dirt = smoothstep(1.25, 0.15, vTriPos.y);',
+            '  float blotch = 0.5 + 0.5 * sin(vTriPos.x * 3.1 + sin(vTriPos.z * 2.3) * 2.0) * sin(vTriPos.z * 1.7);',
+            '  diffuseColor.rgb = mix(diffuseColor.rgb, diffuseColor.rgb * vec3(0.66, 0.58, 0.47), clamp(dirt * (0.6 + 0.4 * blotch), 0.0, 1.0) * uDirt);',
+            '#endif'
+          ].join('\n'));
+      };
+      mat.customProgramCacheKey = () => 'tiger-triplanar-v1';
+      mat.needsUpdate = true;
+    }
+    tankRoot.updateMatrixWorld(true);
+    armorMeshes.forEach(m => { if (m.userData.vehicle === 'tiger' && !m.isInstancedMesh) enableTriplanar(m); });
+
+    function applyCamoAndZimmerit() {
+      const tex = camoTextures[state.activeCamo] || camoTextures.ambush;
+      armorMeshes.forEach(mesh => {
+        const mat = mesh.material;
+        mat.map = state.blueprint ? null : tex;
+        if (mat.userData.role === 'outer') {
+          mat.bumpMap = (!state.blueprint && state.zimmerit) ? zimmeritBumpTex : null;
+          mat.bumpScale = state.zimmerit ? 0.022 : 0;
+        }
+        mat.needsUpdate = true;
+      });
+
+      const bTex = sahiTextures[state.activeBronze] || sahiTextures.edirne1453;
+      sahiBronzeMeshes.forEach(mesh => {
+        const mat = mesh.material;
+        mat.map = state.blueprint ? null : bTex;
+        mat.bumpMap = (!state.blueprint && state.bronzeRelief) ? bronzeBumpTex : null;
+        mat.bumpScale = state.bronzeRelief ? (mat.userData.role === 'band' ? 0.035 : 0.024) : 0;
+        mat.needsUpdate = true;
+      });
+      Object.values(ADAPTERS).forEach(ad => ad.applyTextures(state.blueprint));
+    }
+
+    function selectPart(partGroup) {
+      if (!partGroup) return;
+      state.selectedPart = partGroup;
+      const d = partGroup.userData;
+
+      document.getElementById('insp-title').textContent = d.name;
+      document.getElementById('insp-sub').textContent = d.subLabel;
+      document.getElementById('insp-desc').textContent = d.desc;
+      document.getElementById('insp-mat').textContent = d.material;
+      document.getElementById('insp-weight').textContent = d.weight;
+      document.getElementById('insp-spec').textContent = d.spec;
+      document.getElementById('insp-loc').textContent = d.location;
+
+      allParts.forEach(pg => {
+        const isSel = pg === partGroup;
+        pg.traverse(obj => {
+          if (obj.isMesh && obj.userData.edgeLine) {
+            obj.userData.edgeLine.material = isSel
+              ? edgeMatHighlight
+              : (state.blueprint ? edgeMatBlueprint : edgeMatDefault);
+            // Gerçekçi Modda yalnızca seçili parçanın kenarları vurgulanır
+            obj.userData.edgeLine.visible = !state.realistic || state.blueprint || isSel;
+          }
+        });
+      });
+    }
+
+    function applyRenderMode() {
+      const realisticActive = state.realistic && !state.blueprint;
+      triUniforms.uDirt.value = realisticActive ? 0.55 : 0.0;
+      scene.environment = realisticActive ? studioEnvMap : null;
+      ambientLight.intensity = realisticActive ? 0.75 : 1.45;
+      keyLight.intensity = realisticActive ? 2.1 : 2.35;
+      renderer.toneMappingExposure = realisticActive ? 1.05 : 1.25;
+      selectPart(state.selectedPart);
+    }
+
+    function updateVisualMaterials() {
+      applyCamoAndZimmerit();
+      allParts.forEach(pg => {
+        if (pg.userData.vehicle !== state.vehicle) {
+          pg.userData.connector.material.opacity = 0;
+          return;
+        }
+        const subMatch = state.activeSubsystem === 'all' || pg.userData.subsystem === state.activeSubsystem;
+        const isOuter = pg.userData.isOuterShell;
+
+        pg.traverse(obj => {
+          // Yalnızca addCADMesh/addInstancedMesh ile kayıtlı mesh'ler; efekt mesh'leri (alev, bulanık disk vb.) atlanır
+          if (obj.isMesh && obj.userData.origColor && obj !== flashMesh && obj !== sahiFlashMesh) {
+            const mat = obj.material;
+            if (state.blueprint) {
+              mat.color.setHex(0xdbeafe);
+              mat.transparent = true;
+              mat.opacity = subMatch ? 0.65 : 0.10;
+              mat.depthWrite = subMatch;
+            } else {
+              mat.color.copy(obj.userData.origColor);
+              if (!subMatch) {
+                mat.transparent = true;
+                mat.opacity = 0.08;
+                mat.depthWrite = false;
+              } else if (state.cutaway && isOuter) {
+                mat.transparent = true;
+                mat.opacity = 0.16;
+                mat.depthWrite = false;
+              } else {
+                // Yalnızca çıkartmalar saydam kalır; zırhlar X-Ray sonrası tekrar tam opak olur
+                mat.transparent = !!obj.userData.isDecal;
+                mat.opacity = obj.userData.baseOpacity ?? 1.0; // cam gibi kalıcı yarı saydam parçalar özgün opaklığına döner
+                mat.depthWrite = !mat.transparent;
+              }
+            }
+            mat.needsUpdate = true;
+          }
+        });
+      });
+      selectPart(state.selectedPart);
+    }
+
+    const CAM_PRESETS_TIGER = {
+      iso: { pos: [11.5, 7.2, 11.5], look: [0, 1.3, 0] },
+      front: { pos: [0.0, 2.8, 10.5], look: [0, 1.3, 0.8] },
+      breech: { pos: [4.2, 4.2, 2.2], look: [0, 2.0, 0.2] },
+      engine: { pos: [-5.2, 4.8, -6.5], look: [0, 1.2, -1.75] },
+      suspension: { pos: [-6.8, 1.5, 1.2], look: [-1.1, 0.5, 0.1] },
+      top: { pos: [0.2, 13.5, 0.2], look: [0, 1.0, 0] }
+    };
+
+    const CAM_PRESETS_SAHI = {
+      iso: { pos: [8.0, 4.4, -6.0], look: [0, 0.8, 0.3] }, // arka-yan: tabya topun önünü kapatmasın
+      front: { pos: [2.6, 2.2, 6.5], look: [0, 0.95, 2.4] },
+      breech: { pos: [3.2, 2.0, 0.8], look: [0, 0.95, 0] },
+      engine: { pos: [-4.5, 3.0, -6.8], look: [0, 0.6, -3.0] },
+      suspension: { pos: [5.6, 2.4, 1.2], look: [2.4, 0.4, -0.9] },
+      top: { pos: [0.2, 11.5, 0.2], look: [0, 0.5, 0] }
+    };
+
+    function getActiveCamPresets() {
+      const ad = activeAdapter();
+      if (ad) return ad.camPresets;
+      return state.vehicle === 'sahi' ? CAM_PRESETS_SAHI : CAM_PRESETS_TIGER;
+    }
+
+    function flyCameraTo(posArr, lookArr) {
+      state.camTargetPos = new THREE.Vector3(...posArr);
+      state.camTargetLook = new THREE.Vector3(...lookArr);
+    }
+
+    // ============================================================================
+    // 6. GUIDED ENGINEERING TOUR (HER İKİ ARAÇ İÇİN 6 ADIMLI MÜHENDİSLİK TURU)
+    // ============================================================================
+    const TOUR_STEPS_TIGER = [
+      {
+        badge: 'REHBERLİ TUR: 1 / 6',
+        title: 'Genel Bakış: Panzerkampfwagen VI "Tiger I" (1942)',
+        desc: '57 tonluk Alman ağır tankı. Dış zırhını inceleyebilir, parçalara tıklayabilir veya "Sonraki Adım" ile tankın iç mekanizmalarını keşfedebilirsiniz.',
+        explode: 0, cutaway: false, sub: 'all', cam: 'iso', part: partFrontArmor
+      },
+      {
+        badge: 'REHBERLİ TUR: 2 / 6',
+        title: 'X-Ray Kesiti: İç Yerleşim ve 92 Adet 88mm Mühimmat',
+        desc: 'Dış zırh şeffaflaştırıldığında (Cutaway), yan sponsonlardaki 88mm mermi rafları, ortadaki dönen taret sepeti ve arkadaki V12 motor ortaya çıkar.',
+        explode: 0, cutaway: true, sub: 'all', cam: 'iso', part: partAmmoRacks
+      },
+      {
+        badge: 'REHBERLİ TUR: 3 / 6',
+        title: '8.8 cm KwK 36 L/56 Top ve Geri Tepme Mekanizması',
+        desc: 'Efsanevi 88mm top, 110mm döküm kalkan ve taret içi kama bloğu. Sağ üstteki kırmızı "ATEŞLE!" butonuna basarak geri tepme simülasyonunu test edin!',
+        explode: 35, cutaway: true, sub: 'turret', cam: 'breech', part: partGunBarrel
+      },
+      {
+        badge: 'REHBERLİ TUR: 4 / 6',
+        title: 'Maybach HL230 P45 V12 Motor ve Çift Radyatör Sistemi',
+        desc: 'Arka bölmedeki 23 litrelik V12 motorun çalışan 12 pistonunu ve iki yandaki dev bakır radyatör fanlarını görüyorsunuz.',
+        explode: 45, cutaway: true, sub: 'engine', cam: 'engine', part: partPistons
+      },
+      {
+        badge: 'REHBERLİ TUR: 5 / 6',
+        title: 'Arkadan Öne Güç Aktarımı: Kardan Şaftı ve Olvar Şanzıman',
+        desc: 'Motor arkada olmasına rağmen Tiger I önden çekişlidir. Güç, gövde tabanından geçen kardan şaftıyla en öndeki 8 vitesli Maybach Olvar şanzımana iletilir.',
+        explode: 30, cutaway: true, sub: 'drivetrain', cam: 'front', part: partTransmission
+      },
+      {
+        badge: 'REHBERLİ TUR: 6 / 6',
+        title: 'Tam Teardown: Schachtellaufwerk & 16 Burulma Çubuğu',
+        desc: 'Tüm alt sistemler patlatılmış (Teardown %85) görünümde! İç içe geçmeli yol tekerlekleri ve gövde altındaki 16 burulma çubuğu 57 tonu dengeler.',
+        explode: 85, cutaway: false, sub: 'all', cam: 'iso', part: partTorsionBars
+      }
+    ];
+
+    const SB = sahi.specs;
+    const TOUR_STEPS_SAHI = [
+      {
+        badge: 'REHBERLİ TUR: 1 / 6',
+        title: 'Genel Bakış: Osmanlı Şahi Topu — Dardanelles Gun (1464)',
+        desc: `Munir Ali tarafından 1464'te dökülen, 1453 kuşatma toplarının günümüze ulaşan en yakın örneği: ~${SB.totalLength.toFixed(2).replace('.', ',')} m boy, 16,8 t ağırlık, ~63 cm ağız. Top, toprak tabyanın arkasındaki kalas atış yatağında duruyor.`,
+        explode: 0, cutaway: false, sub: 'all', cam: 'iso', part: partSahiFrontBarrel
+      },
+      {
+        badge: 'REHBERLİ TUR: 2 / 6',
+        title: `X-Ray Kesiti: Dar Barut Odası ve ~${SB.ballMassKg} kg Taş Gülle`,
+        desc: `Tunç gövde saydamlaşınca topun asıl mühendislik sırrı görünür: geniş namlunun arkasında çok daha dar bir barut odası vardır. Oda ağzında ahşap takoz, önünde keçe tampon ve ${Math.round(SB.ballRadius * 200)} cm'lik granit gülle durur.`,
+        explode: 0, cutaway: true, sub: 'all', cam: 'breech', part: partSahiStoneBall
+      },
+      {
+        badge: 'REHBERLİ TUR: 3 / 6',
+        title: 'Vidalı Gövde: İki Parça, Manivelalar ve Nakliye',
+        desc: 'Ön namlu ile arka barut odası birbirine vidalanır. "Vidalı Gövde Sökme" kaydırıcısında vidanın her turda bir diş adımı ilerlediğini görebilirsiniz. "Nakliye Modu" düğmesi topu söküp iki ayrı öküz arabasına yükler.',
+        explode: 30, cutaway: true, sub: 'barrel', cam: 'breech', part: partSahiThreads
+      },
+      {
+        badge: 'REHBERLİ TUR: 4 / 6',
+        title: 'Ateşleme ve Balistik',
+        desc: 'Falya deliğine konan ince barut tutuşturulur, alev kanaldan barut odasına iner. Gülle havada gerçek bir kavis çizerek uçar (yavaş çekim). Menzil, yükseliş açısından hava direnci ihmal edilerek hesaplanır; 175 m/sn ilk hız bir tahmindir.',
+        explode: 0, cutaway: false, sub: 'all', cam: 'front', part: partSahiPowder
+      },
+      {
+        badge: 'REHBERLİ TUR: 5 / 6',
+        title: 'Geri Tepme: Kızak, Tampon Kirişi ve Dolum Döngüsü',
+        desc: 'Ateşte top, meşe kızağıyla birlikte geriye kayar ve orada kalır. Topçular onu halatlarla yerine çeker, namluyu ıslak süngerle soğutur, barutu, takozu ve gülleyi yeniden doldurur. "Otomatik Dolum" bu adımları sırayla oynatır.',
+        explode: 0, cutaway: false, sub: 'carriage', cam: 'engine', part: partSahiRecoilWall
+      },
+      {
+        badge: 'REHBERLİ TUR: 6 / 6',
+        title: 'Tam Teardown (%85): 13 Mekanik Grup',
+        desc: 'Tüm bileşenler ayrılmış görünümde: iki tunç parça, vida boynu, manivelalar, barut, gülle, kızak, ön destek kütüğü, kalas yatak, tampon kirişi, öküz arabaları, gülle istifi ve topçu aletleri.',
+        explode: 85, cutaway: false, sub: 'all', cam: 'iso', part: partSahiAmmoPile
+      }
+    ];
+
+    function applyTourStep(index) {
+      const ad = activeAdapter();
+      const steps = ad
+        ? ad.tourSteps.map((s, i, arr) => Object.assign({ badge: `REHBERLİ TUR: ${i + 1} / ${arr.length}` }, s))
+        : (state.vehicle === 'sahi' ? TOUR_STEPS_SAHI : TOUR_STEPS_TIGER);
+      state.tourIndex = (index + steps.length) % steps.length;
+      const step = steps[state.tourIndex];
+
+      document.getElementById('tour-badge').textContent = step.badge;
+      document.getElementById('tour-title').textContent = step.title;
+      document.getElementById('tour-desc').textContent = step.desc;
+
+      state.explodeTarget = step.explode;
+      document.getElementById('slider-explode').value = step.explode;
+      document.getElementById('explode-val').textContent = `%${step.explode}`;
+
+      state.cutaway = step.cutaway;
+      document.getElementById('btn-cutaway').classList.toggle('active', state.cutaway);
+
+      state.activeSubsystem = step.sub;
+      document.querySelectorAll('.sub-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.sub === step.sub);
+      });
+
+      const preset = getActiveCamPresets()[step.cam];
+      if (preset) flyCameraTo(preset.pos, preset.look);
+
+      updateVisualMaterials();
+      selectPart(step.part);
+      audio.playClick(640);
+    }
+
+    // ============================================================================
+    // 6B. DYNAMIC VEHICLE SWITCHER (TIGER I <-> 1453 OSMANLI ŞAHİ TOPU)
+    // ============================================================================
+    function bindSubsystemAndCamoButtons() {
+      document.querySelectorAll('.camo-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.camo-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          if (activeAdapter()) {
+            const ad = activeAdapter();
+            ad.setTexture(btn.dataset.camo);
+            document.getElementById('camo-label').textContent = ad.ui.textureLabel();
+          } else if (state.vehicle === 'sahi') {
+            state.activeBronze = btn.dataset.camo;
+            document.getElementById('camo-label').textContent = CAMO_LABELS[state.activeBronze] || state.activeBronze;
+          } else {
+            applyTigerPackage(btn.dataset.camo, true);
+          }
+          updateVisualMaterials();
+          audio.playClick(620);
+        });
+      });
+
+      document.querySelectorAll('.sub-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          state.activeSubsystem = btn.dataset.sub;
+          updateVisualMaterials();
+          audio.playClick(600);
+        });
+      });
+    }
+
+    // Büyük araçlar (ör. 16 m'lik trebuchet) için sis mesafesi ve gölge kamerası alanı.
+    // u = null → varsayılan değerler (Tiger, Şahi, Ballista ölçeği).
+    function applySceneScale(u) {
+      const fog = (u && u.fog) || { near: 18, far: 45 };
+      scene.fog.near = fog.near;
+      scene.fog.far = fog.far;
+      const ext = (u && u.shadowExtent) || 9;
+      const sc = keyLight.shadow.camera;
+      if (sc.right !== ext) {
+        sc.left = -ext; sc.right = ext; sc.top = ext; sc.bottom = -ext;
+        sc.far = Math.max(40, ext * 4);
+        sc.updateProjectionMatrix();
+      }
+      controls.maxDistance = Math.max(32, ext * 2.2);
+    }
+
+    // Adaptör kalıbındaki bir aracın arayüzünü (başlık, kaplama, alt sistemler, kaydırıcılar, telemetri) kurar
+    function setupAdapterUI(ad) {
+      const u = ad.ui;
+      document.getElementById('header-vehicle-title').textContent = u.title;
+      document.getElementById('header-vehicle-sub').textContent = u.sub;
+      document.getElementById('part-count-label').textContent = u.partCount;
+
+      document.getElementById('tex-card-title').textContent = u.texTitle;
+      document.getElementById('camo-label').textContent = u.textureLabel();
+      document.getElementById('camo-btn-grid').innerHTML = u.textures.map(t =>
+        `<button class="btn camo-btn ${u.activeTexture() === t.key ? 'active' : ''}" data-camo="${t.key}">${t.label}</button>`).join('');
+      const relBtn = document.getElementById('btn-zimmerit');
+      relBtn.classList.toggle('active', u.relief());
+      relBtn.textContent = u.reliefLabel(u.relief());
+
+      const total = u.subsystems.reduce((s, x) => s + x.count, 0);
+      document.getElementById('subsystem-list').innerHTML =
+        `<div class="sub-btn active" data-sub="all"><span><span class="sub-dot" style="background:#f59e0b"></span>Tüm Alt Sistemler</span><span class="sub-count">${total} Grup</span></div>` +
+        u.subsystems.map(s =>
+          `<div class="sub-btn" data-sub="${s.key}"><span><span class="sub-dot" style="background:${s.color}"></span>${s.label}</span><span class="sub-count">${s.count} Grup</span></div>`).join('');
+
+      Object.keys(u.camLabels).forEach(k => {
+        const el = document.getElementById(`cam-lbl-${k}`);
+        if (el) el.textContent = u.camLabels[k];
+      });
+
+      const sliderIds = [['slider-rpm', 'val-rpm', 'lbl-slider-1'], ['slider-turret', 'val-turret', 'lbl-slider-2'], ['slider-elev', 'val-elev', 'lbl-slider-3']];
+      const vals = ad.getSliderValues();
+      u.sliders.forEach((s, i) => {
+        const [sid, vid, lid] = sliderIds[i];
+        const el = document.getElementById(sid);
+        el.min = s.min; el.max = s.max; el.step = s.step; el.value = vals[i];
+        document.getElementById(vid).textContent = s.fmt(vals[i]);
+        document.getElementById(lid).textContent = s.label;
+      });
+
+      const bTer = document.getElementById('btn-terrain');
+      bTer.textContent = u.buttons.terrain;
+      bTer.classList.toggle('active', ad.buttonActive('terrain'));
+      const bSwp = document.getElementById('btn-turret-sweep');
+      bSwp.textContent = u.buttons.sweep;
+      bSwp.classList.toggle('active', ad.buttonActive('sweep'));
+      const modeBtn = document.getElementById('btn-sahi-mode');
+      modeBtn.style.display = u.buttons.mode ? '' : 'none';
+      if (u.buttons.mode) { modeBtn.textContent = ad.modeLabel(); modeBtn.classList.toggle('active', ad.buttonActive('mode')); }
+      applySceneScale(u);
+
+      document.getElementById('telemetry-tag').textContent = u.telemetryTag;
+      ['stat-lbl-1', 'stat-lbl-2', 'stat-lbl-3', 'stat-lbl-4'].forEach((id, i) => {
+        document.getElementById(id).textContent = u.statLabels[i];
+      });
+      refreshAdapterHUD(ad, true);
+    }
+
+    // Adaptörün canlı değerlerini arayüze yansıtır (kaydırıcılar, telemetri, durum, ateş butonu)
+    let hudTimer = 0;
+    function refreshAdapterHUD(ad, force) {
+      const statIds = ['stat-hp', 'stat-speed', 'stat-ammo', 'stat-weight'];
+      ad.getStats().forEach((html, i) => {
+        const el = document.getElementById(statIds[i]);
+        if (force || el.innerHTML !== html) el.innerHTML = html;
+      });
+      const sliderIds = [['slider-rpm', 'val-rpm'], ['slider-turret', 'val-turret'], ['slider-elev', 'val-elev']];
+      const vals = ad.getSliderValues();
+      ad.ui.sliders.forEach((s, i) => {
+        const [sid, vid] = sliderIds[i];
+        const el = document.getElementById(sid);
+        if (document.activeElement !== el) el.value = vals[i];
+        document.getElementById(vid).textContent = s.fmt(vals[i]);
+      });
+      const st = ad.getStatus();
+      const gs = document.getElementById('gun-status');
+      gs.textContent = st.text;
+      gs.style.color = st.color;
+      document.getElementById('btn-fire').textContent = ad.fireButtonLabel();
+      document.getElementById('btn-terrain').classList.toggle('active', ad.buttonActive('terrain'));
+      document.getElementById('btn-turret-sweep').classList.toggle('active', ad.buttonActive('sweep'));
+      if (ad.ui.buttons.mode) {
+        const mb = document.getElementById('btn-sahi-mode');
+        mb.textContent = ad.modeLabel();
+        mb.classList.toggle('active', ad.buttonActive('mode'));
+      }
+    }
+
+    function switchVehicle(targetVehicle) {
+      state.vehicle = VEHICLE_ROOTS[targetVehicle] ? targetVehicle : 'tiger';
+      const isSahi = state.vehicle === 'sahi';
+      const ad = activeAdapter();
+
+      Object.keys(VEHICLE_ROOTS).forEach(k => { VEHICLE_ROOTS[k].visible = k === state.vehicle; });
+      state.recoilProgress = 0;
+      state.activeSubsystem = 'all';
+      muzzleLight.intensity = 0;
+
+      document.querySelectorAll('.era-pill[data-vehicle]').forEach(p => {
+        p.classList.toggle('active', p.dataset.vehicle === state.vehicle);
+      });
+      if (typeof renderTimelinePills === 'function') renderTimelinePills();
+      document.querySelectorAll('.vmp-item[data-sim]').forEach(item => {
+        item.classList.toggle('active', item.dataset.sim === state.vehicle);
+      });
+      try {
+        const u = new URL(window.location.href);
+        u.searchParams.set('vehicle', state.vehicle);
+        window.history.replaceState(null, '', u.search);
+      } catch (_) {}
+
+      if (ad) {
+        setupAdapterUI(ad);
+        bindSubsystemAndCamoButtons();
+        updateVisualMaterials();
+        applyTourStep(0);
+        return;
+      }
+
+      if (isSahi) {
+        document.getElementById('header-vehicle-title').textContent = 'OSMANLI ŞAHİ TOPU — Dardanelles Gun (1464)';
+        document.getElementById('header-vehicle-sub').textContent = `1453 kuşatma toplarının günümüze ulaşan en yakın örneği • ~63 cm ağız • 16,8 t • İki parçalı vidalı tunç`;
+        document.getElementById('part-count-label').textContent = '13 Ana Grup';
+
+        document.getElementById('tex-card-title').textContent = '🏺 Tunç Döküm & Patina Dokusu';
+        document.getElementById('camo-label').textContent = CAMO_LABELS[state.activeBronze];
+        document.getElementById('camo-btn-grid').innerHTML = `
+          <button class="btn camo-btn ${state.activeBronze === 'edirne1453' ? 'active' : ''}" data-camo="edirne1453">🏺 1453 Edirne Tunç</button>
+          <button class="btn camo-btn ${state.activeBronze === 'patina1464' ? 'active' : ''}" data-camo="patina1464">🏛️ 1464 Müze Patina</button>
+          <button class="btn camo-btn ${state.activeBronze === 'siegesoot' ? 'active' : ''}" data-camo="siegesoot">🔥 Topkapı Kuşatma İsi</button>
+          <button class="btn camo-btn ${state.activeBronze === 'imperial' ? 'active' : ''}" data-camo="imperial">✨ Saray Tören Tuncu</button>
+        `;
+        const zimBtn = document.getElementById('btn-zimmerit');
+        zimBtn.classList.toggle('active', state.bronzeRelief);
+        zimBtn.textContent = state.bronzeRelief
+          ? '⚱️ Osmanlı Kabartma & Döküm Dokusu: AÇIK'
+          : '⚱️ Osmanlı Kabartma & Döküm Dokusu: KAPALI';
+
+        document.getElementById('subsystem-list').innerHTML = `
+          <div class="sub-btn active" data-sub="all">
+            <span><span class="sub-dot" style="background:#f59e0b"></span>Tüm Alt Sistemler</span>
+            <span class="sub-count">100%</span>
+          </div>
+          <div class="sub-btn" data-sub="barrel">
+            <span><span class="sub-dot" style="background:#d97706"></span>İki Parçalı Vidalı Tunç Gövde</span>
+            <span class="sub-count">4 Grup</span>
+          </div>
+          <div class="sub-btn" data-sub="ballistics">
+            <span><span class="sub-dot" style="background:#ef4444"></span>Taş Gülle, Barut & Falya</span>
+            <span class="sub-count">2 Grup</span>
+          </div>
+          <div class="sub-btn" data-sub="carriage">
+            <span><span class="sub-dot" style="background:#10b981"></span>Atış Mevzii, Kızak & Tampon</span>
+            <span class="sub-count">4 Grup</span>
+          </div>
+          <div class="sub-btn" data-sub="logistics">
+            <span><span class="sub-dot" style="background:#38bdf8"></span>Nakliye, İstif & Topçu Aletleri</span>
+            <span class="sub-count">3 Grup</span>
+          </div>
+        `;
+
+        document.getElementById('cam-lbl-iso').textContent = 'İzometrik';
+        document.getElementById('cam-lbl-front').textContent = 'Namlu Ağzı';
+        document.getElementById('cam-lbl-breech').textContent = 'Vidalı Boğaz';
+        document.getElementById('cam-lbl-engine').textContent = 'Arka Tampon';
+        document.getElementById('cam-lbl-suspension').textContent = 'Gülle İstifi';
+        document.getElementById('cam-lbl-top').textContent = 'Üst Kesit';
+
+        updateFireButton();
+        document.getElementById('lbl-slider-1').textContent = 'Vidalı Gövde Sökme (Breech Screw)';
+        const s1 = document.getElementById('slider-rpm');
+        s1.min = 0; s1.max = 100; s1.step = 1; s1.value = state.sahiScrewPct;
+        document.getElementById('val-rpm').textContent = `%${Math.round(state.sahiScrewPct)}`;
+
+        document.getElementById('lbl-slider-2').textContent = 'Gülle Harbi & Dolum Konumu';
+        const s2 = document.getElementById('slider-turret');
+        s2.min = 0; s2.max = 100; s2.step = 1; s2.value = state.sahiRammerPct;
+        document.getElementById('val-turret').textContent = `%${Math.round(state.sahiRammerPct)}`;
+
+        document.getElementById('lbl-slider-3').textContent = 'Namlu Yükseliş Açısı (Takoz)';
+        const s3 = document.getElementById('slider-elev');
+        s3.min = 0; s3.max = 14; s3.step = 0.5; s3.value = state.sahiElevDeg;
+        document.getElementById('val-elev').textContent = `+${state.sahiElevDeg}°`;
+
+        const bTer = document.getElementById('btn-terrain');
+        bTer.textContent = '🔩 Oto-Vidalama Gösterimi';
+        bTer.classList.toggle('active', state.sahiAutoScrew);
+
+        const bSwp = document.getElementById('btn-turret-sweep');
+        bSwp.textContent = '🧽 Otomatik Dolum Döngüsü';
+        bSwp.classList.toggle('active', state.sahiAutoLoading);
+        document.getElementById('btn-sahi-mode').style.display = '';
+        applySceneScale(null);
+        updateSahiModeButton();
+
+        document.getElementById('telemetry-tag').textContent = 'DARDANELLES 1464';
+        document.getElementById('stat-lbl-1').textContent = 'BARUT (TAHMİNİ)';
+        document.getElementById('stat-hp').innerHTML = `~${sahi.specs.powderKg} <span>kg</span>`;
+        document.getElementById('stat-lbl-2').textContent = 'MENZİL (HESAP)';
+        const rangeM = sahiRangeMeters(state.sahiElevDeg);
+        document.getElementById('stat-speed').innerHTML = `${rangeM} <span>Metre</span>`;
+        document.getElementById('stat-lbl-3').textContent = `TAŞ GÜLLE (~${sahi.specs.ballMassKg} KG)`;
+        document.getElementById('stat-ammo').innerHTML = `${state.sahiAmmoCount} <span>Adet</span>`;
+        document.getElementById('stat-lbl-4').textContent = 'TOPLAM TUNÇ AĞIRLIK';
+        document.getElementById('stat-weight').innerHTML = `16,8 <span>Ton</span>`;
+
+        bindSubsystemAndCamoButtons();
+        applyTourStep(0);
+      } else {
+        document.getElementById('header-vehicle-title').textContent = 'Pz.Kpfw. VI "TIGER I" (Ausf. E)';
+        document.getElementById('header-vehicle-sub').textContent = 'İnteraktif Mühendislik, Kesit ve Parçalama Simülatörü';
+        document.getElementById('part-count-label').textContent = '22 Ana Grup';
+
+        document.getElementById('tex-card-title').textContent = '🎨 Dönem Paketi (Boya, Donanım & İşaret)';
+        document.getElementById('camo-label').textContent = (TIGER_PACKAGES[state.tigerPackage] || {}).label || '';
+        document.getElementById('camo-btn-grid').innerHTML = tigerPackageButtonsHTML();
+        const zimBtn = document.getElementById('btn-zimmerit');
+        zimBtn.classList.toggle('active', state.zimmerit);
+        zimBtn.textContent = state.zimmerit
+          ? '🧱 Zimmerit Anti-Manyetik Doku: AÇIK'
+          : '🧱 Zimmerit Anti-Manyetik Doku: KAPALI';
+
+        document.getElementById('subsystem-list').innerHTML = `
+          <div class="sub-btn active" data-sub="all">
+            <span><span class="sub-dot" style="background:#f59e0b"></span>Tüm Alt Sistemler</span>
+            <span class="sub-count">100%</span>
+          </div>
+          <div class="sub-btn" data-sub="turret">
+            <span><span class="sub-dot" style="background:#ef4444"></span>8.8cm KwK 36 & Krupp Taret</span>
+            <span class="sub-count">6 Grup</span>
+          </div>
+          <div class="sub-btn" data-sub="engine">
+            <span><span class="sub-dot" style="background:#38bdf8"></span>Maybach HL230 V12 & Soğutma</span>
+            <span class="sub-count">4 Grup</span>
+          </div>
+          <div class="sub-btn" data-sub="drivetrain">
+            <span><span class="sub-dot" style="background:#10b981"></span>Olvar Şanzıman, Şaft & Mühimmat</span>
+            <span class="sub-count">3 Grup</span>
+          </div>
+          <div class="sub-btn" data-sub="suspension">
+            <span><span class="sub-dot" style="background:#a855f7"></span>Schachtellaufwerk & Burulma</span>
+            <span class="sub-count">4 Grup</span>
+          </div>
+          <div class="sub-btn" data-sub="hull">
+            <span><span class="sub-dot" style="background:#94a3b8"></span>100mm Krupp Zırhlı Gövde</span>
+            <span class="sub-count">5 Grup</span>
+          </div>
+        `;
+
+        document.getElementById('cam-lbl-iso').textContent = 'İzometrik';
+        document.getElementById('cam-lbl-front').textContent = 'Ön Zırh';
+        document.getElementById('cam-lbl-breech').textContent = 'Taret İçi';
+        document.getElementById('cam-lbl-engine').textContent = 'V12 Motor';
+        document.getElementById('cam-lbl-suspension').textContent = 'Tekerlek';
+        document.getElementById('cam-lbl-top').textContent = 'Üst Kesit';
+
+        updateFireButton();
+        document.getElementById('lbl-slider-1').textContent = 'Maybach V12 Motor Devri';
+        const s1 = document.getElementById('slider-rpm');
+        s1.min = 0; s1.max = 3000; s1.step = 50; s1.value = state.rpm;
+        document.getElementById('val-rpm').textContent = `${state.rpm} RPM`;
+
+        updateTurretTraverseLabel();
+        const s2 = document.getElementById('slider-turret');
+        s2.min = -180; s2.max = 180; s2.step = 1; s2.value = state.turretAngleDeg;
+        document.getElementById('val-turret').textContent = `${Math.round(state.turretAngleDeg)}°`;
+
+        document.getElementById('lbl-slider-3').textContent = 'Namlu Yükseliş Açısı';
+        const s3 = document.getElementById('slider-elev');
+        s3.min = -8; s3.max = 15; s3.step = 0.5; s3.value = state.gunElevDeg;
+        const sign = state.gunElevDeg > 0 ? '+' : '';
+        document.getElementById('val-elev').textContent = `${sign}${state.gunElevDeg}°`;
+
+        const bTer = document.getElementById('btn-terrain');
+        bTer.textContent = '🌊 Süspansiyon Testi';
+        bTer.classList.toggle('active', state.terrainTest);
+
+        const bSwp = document.getElementById('btn-turret-sweep');
+        bSwp.textContent = '🎯 Oto-Taret Tarama';
+        bSwp.classList.toggle('active', state.turretAutoSweep);
+        document.getElementById('btn-sahi-mode').style.display = 'none';
+        applySceneScale(null);
+
+        document.getElementById('telemetry-tag').textContent = 'HL230 P45';
+        document.getElementById('stat-lbl-1').textContent = 'MOTOR GÜCÜ';
+        const hp = Math.round((state.rpm / 3000) * 700);
+        document.getElementById('stat-hp').innerHTML = `${hp} <span>BG</span>`;
+        document.getElementById('stat-lbl-2').textContent = 'PALET HIZI';
+        const speed = ((state.rpm / 3000) * 38).toFixed(1);
+        document.getElementById('stat-speed').innerHTML = `${speed} <span>km/sa</span>`;
+        updateTurretTraverseLabel();
+        document.getElementById('stat-lbl-3').textContent = 'KALAN 88MM MERMİ';
+        document.getElementById('stat-ammo').innerHTML = `${state.ammoCount} <span>Adet</span>`;
+        document.getElementById('stat-lbl-4').textContent = 'TOPLAM AĞIRLIK';
+        document.getElementById('stat-weight').innerHTML = `57.0 <span>Ton</span>`;
+
+        bindSubsystemAndCamoButtons();
+        applyTourStep(0);
+      }
+    }
+
+    // ============================================================================
+    // 7. UI EVENT LISTENERS
+    // ============================================================================
+    const sliderExplode = document.getElementById('slider-explode');
+    sliderExplode.addEventListener('input', e => {
+      state.explodeTarget = parseFloat(e.target.value);
+      document.getElementById('explode-val').textContent = `%${Math.round(state.explodeTarget)}`;
+    });
+
+    document.getElementById('btn-explode-toggle').addEventListener('click', () => {
+      state.explodeTarget = 85;
+      sliderExplode.value = 85;
+      document.getElementById('explode-val').textContent = '%85';
+      audio.playClick(580);
+    });
+
+    document.getElementById('btn-explode-reset').addEventListener('click', () => {
+      state.explodeTarget = 0;
+      sliderExplode.value = 0;
+      document.getElementById('explode-val').textContent = '%0';
+      audio.playClick(420);
+    });
+
+    document.getElementById('btn-cutaway').addEventListener('click', e => {
+      state.cutaway = !state.cutaway;
+      e.currentTarget.classList.toggle('active', state.cutaway);
+      updateVisualMaterials();
+      audio.playClick();
+    });
+
+    document.getElementById('btn-blueprint').addEventListener('click', e => {
+      state.blueprint = !state.blueprint;
+      e.currentTarget.classList.toggle('active', state.blueprint);
+      updateVisualMaterials();
+      applyRenderMode();
+      audio.playClick();
+    });
+
+    document.getElementById('btn-realistic').addEventListener('click', e => {
+      state.realistic = !state.realistic;
+      e.currentTarget.classList.toggle('active', state.realistic);
+      e.currentTarget.textContent = state.realistic ? '✨ Gerçekçi Mod: AÇIK' : '📐 Gerçekçi Mod: KAPALI (CAD Görünümü)';
+      applyRenderMode();
+      audio.playClick();
+    });
+
+    document.getElementById('btn-lines').addEventListener('click', e => {
+      state.showLines = !state.showLines;
+      e.currentTarget.classList.toggle('active', state.showLines);
+      connectorLinesGroup.visible = state.showLines;
+      audio.playClick();
+    });
+
+    document.getElementById('btn-autorotate').addEventListener('click', e => {
+      state.autoRotate = !state.autoRotate;
+      controls.autoRotate = state.autoRotate;
+      controls.autoRotateSpeed = 1.4;
+      e.currentTarget.classList.toggle('active', state.autoRotate);
+      audio.playClick();
+    });
+
+    bindSubsystemAndCamoButtons();
+
+    document.getElementById('btn-zimmerit').addEventListener('click', e => {
+      if (activeAdapter()) {
+        const ad = activeAdapter();
+        const on = ad.toggleRelief();
+        e.currentTarget.classList.toggle('active', on);
+        e.currentTarget.textContent = ad.ui.reliefLabel(on);
+        updateVisualMaterials();
+        audio.playClick(540);
+        return;
+      }
+      if (state.vehicle === 'sahi') {
+        state.bronzeRelief = !state.bronzeRelief;
+        e.currentTarget.classList.toggle('active', state.bronzeRelief);
+        e.currentTarget.textContent = state.bronzeRelief
+          ? '⚱️ Osmanlı Kabartma & Döküm Dokusu: AÇIK'
+          : '⚱️ Osmanlı Kabartma & Döküm Dokusu: KAPALI';
+      } else {
+        state.zimmerit = !state.zimmerit;
+        e.currentTarget.classList.toggle('active', state.zimmerit);
+        e.currentTarget.textContent = state.zimmerit
+          ? '🧱 Zimmerit Anti-Manyetik Doku: AÇIK'
+          : '🧱 Zimmerit Anti-Manyetik Doku: KAPALI';
+      }
+      updateVisualMaterials();
+      audio.playClick(540);
+    });
+
+    document.querySelectorAll('.cam-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const preset = getActiveCamPresets()[btn.dataset.cam];
+        if (preset) flyCameraTo(preset.pos, preset.look);
+        audio.playClick(700);
+      });
+    });
+
+    document.getElementById('btn-reset-cam').addEventListener('click', () => {
+      const iso = getActiveCamPresets().iso;
+      flyCameraTo(iso.pos, iso.look);
+      audio.playClick(500);
+    });
+
+    document.getElementById('btn-sound').addEventListener('click', e => {
+      audio.enabled = !audio.enabled;
+      e.currentTarget.textContent = audio.enabled ? '🔊 Ses: Açık' : '🔇 Ses: Kapalı';
+      e.currentTarget.classList.toggle('active', audio.enabled);
+    });
+
+    document.getElementById('slider-rpm').addEventListener('input', e => {
+      const val = parseFloat(e.target.value);
+      if (activeAdapter()) {
+        const r = activeAdapter().onSlider(0, val);
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        return;
+      }
+      if (state.vehicle === 'sahi') {
+        state.sahiAutoScrew = false;
+        document.getElementById('btn-terrain').classList.remove('active');
+        state.sahiScrewPct = val;
+        document.getElementById('val-rpm').textContent = `%${Math.round(val)}`;
+      } else {
+        state.rpm = val;
+        document.getElementById('val-rpm').textContent = `${state.rpm} RPM`;
+        const hp = Math.round((state.rpm / 3000) * 700);
+        const speed = ((state.rpm / 3000) * 38).toFixed(1);
+        document.getElementById('stat-hp').innerHTML = `${hp} <span>BG</span>`;
+        document.getElementById('stat-speed').innerHTML = `${speed} <span>km/sa</span>`;
+        updateTurretTraverseLabel();
+      }
+    });
+
+    // Şahi: boş namluya harbi ile yeni gülle sürülmesi (gülle istifinden alınır)
+    function sahiSetRammer(val) {
+      if (!state.sahiLoaded && val > 0) {
+        const c = state.sahiCharge;
+        if (state.sahiMode === 'transport') {
+          showToast('<strong>Nakliye modunda dolum yapılamaz.</strong><br/>Önce topu atış mevziine kurun.');
+          val = 0;
+        } else if (state.sahiGunBack || c.hot || !c.powder || !c.tampion) {
+          showToast('<strong>Gülle sürülmeden önce:</strong><br/>top yerine çekilmeli, namlu soğutulmalı, barut ve takoz konmalı. "Otomatik Dolum Döngüsü" bu adımları sırayla yapar.');
+          val = 0;
+        } else if (state.sahiAmmoCount <= 0) {
+          showToast('<strong>Gülle istifi boş!</strong><br/>"Gülle İkmali" butonuyla yeni granit gülleler getirin.');
+          val = 0;
+        } else {
+          state.sahiLoaded = true; // istiften yeni gülle namlu ağzına yerleştirildi
+        }
+      }
+      state.sahiRammerPct = val;
+      document.getElementById('slider-turret').value = val;
+      document.getElementById('val-turret').textContent = `%${Math.round(val)}`;
+      updateFireButton();
+    }
+
+    // Tarihsel dolum döngüsü (her adım atlanabilir: zaten yapılmışsa geçilir)
+    const SAHI_RELOAD_STEPS = [
+      { label: '1/6 Top halat ve manivelalarla yerine çekiliyor', dur: 1.6,
+        skip: () => !state.sahiGunBack, done: () => { state.sahiGunBack = false; } },
+      { label: '2/6 Namlu ıslak süngerle soğutuluyor', dur: 1.8,
+        skip: () => !state.sahiCharge.hot, done: () => { state.sahiCharge.hot = false; sahi.puffSteam(); } },
+      { label: '3/6 Barut odasına barut kesesi konuyor', dur: 1.4,
+        skip: () => state.sahiCharge.powder, done: () => { state.sahiCharge.powder = true; } },
+      { label: '4/6 Ahşap takoz oda ağzına çakılıyor', dur: 1.1,
+        skip: () => state.sahiCharge.tampion, done: () => { state.sahiCharge.tampion = true; } },
+      { label: '5/6 Gülle ve keçe harbi ile sürülüyor', ram: true,
+        skip: () => state.sahiLoaded && state.sahiRammerPct >= 99 },
+      { label: '6/6 Falya deliğine ince barut konuyor', dur: 0.9,
+        skip: () => state.sahiCharge.primed, done: () => { state.sahiCharge.primed = true; } }
+    ];
+
+    function stopSahiReload(statusText) {
+      state.sahiAutoLoading = false;
+      state.sahiReload.idx = 0;
+      state.sahiReload.t = 0;
+      document.getElementById('btn-turret-sweep').classList.remove('active');
+      if (statusText) document.getElementById('gun-status').textContent = statusText;
+    }
+
+    function runSahiReload(dt) {
+      if (!state.sahiAutoLoading || state.recoilProgress > 0.001) return;
+      const r = state.sahiReload;
+      while (r.idx < SAHI_RELOAD_STEPS.length && SAHI_RELOAD_STEPS[r.idx].skip()) { r.idx++; r.t = 0; }
+      if (r.idx >= SAHI_RELOAD_STEPS.length) {
+        stopSahiReload('HAZIR');
+        document.getElementById('gun-status').style.color = '#0284c7';
+        return;
+      }
+      const step = SAHI_RELOAD_STEPS[r.idx];
+      const statusEl = document.getElementById('gun-status');
+      statusEl.textContent = step.label.split(' ')[0] + ' DOLUM';
+      statusEl.style.color = '#d97706';
+      document.getElementById('tour-desc').textContent = `Dolum döngüsü — ${step.label}.`;
+      if (step.ram) {
+        sahiSetRammer(Math.min(100, state.sahiRammerPct + dt * 40));
+        if (!state.sahiLoaded) { stopSahiReload('GÜLLE YOK'); return; }
+        if (state.sahiRammerPct >= 100) { r.idx++; r.t = 0; }
+      } else {
+        r.t += dt;
+        if (r.t >= step.dur) { step.done(); r.idx++; r.t = 0; }
+      }
+    }
+
+    function updateSahiModeButton() {
+      const b = document.getElementById('btn-sahi-mode');
+      const transport = state.sahiMode === 'transport';
+      b.classList.toggle('active', transport);
+      b.textContent = transport ? '🏰 Atış Mevziine Kur (Topu Vidala)' : '🐂 Nakliye Moduna Geç (Topu Sök)';
+    }
+
+    document.getElementById('btn-sahi-mode').addEventListener('click', () => {
+      if (activeAdapter()) {
+        const r = activeAdapter().onButton('mode');
+        if (r && r.msg) showToast(r.msg, 5200);
+        refreshAdapterHUD(activeAdapter(), true);
+        audio.playClick(560);
+        return;
+      }
+      state.sahiMode = state.sahiMode === 'transport' ? 'battle' : 'transport';
+      stopSahiReload();
+      state.sahiAutoScrew = false;
+      document.getElementById('btn-terrain').classList.remove('active');
+      state.sahiScrewPct = 0;
+      document.getElementById('slider-rpm').value = 0;
+      document.getElementById('val-rpm').textContent = '%0';
+      updateSahiModeButton();
+      document.getElementById('gun-status').textContent = state.sahiMode === 'transport' ? 'NAKLİYEDE' : 'HAZIR';
+      if (state.sahiMode === 'transport') {
+        showToast('<strong>Nakliye Modu:</strong> Arka parça sökülüp ön parçadan ayrıldı; iki parça ayrı öküz arabalarına yüklendi. Vidalı yapının asıl amacı buydu.');
+        flyCameraTo([9.5, 5.2, 7.5], [0, 1.2, -0.3]);
+      }
+      audio.playClick(560);
+    });
+
+    function updateFireButton() {
+      const btn = document.getElementById('btn-fire');
+      if (state.vehicle === 'sahi') {
+        btn.textContent = (!state.sahiLoaded && state.sahiAmmoCount <= 0)
+          ? '📦 GÜLLE İKMALİ (7 Adet)'
+          : '💥 ŞAHİ TOPUNU ATEŞLE!';
+      } else {
+        btn.textContent = state.ammoCount <= 0
+          ? '📦 MÜHİMMAT İKMALİ (92 Adet)'
+          : '💥 8.8 cm KwK 36 ATEŞLE!';
+      }
+    }
+
+    document.getElementById('slider-turret').addEventListener('input', e => {
+      const val = parseFloat(e.target.value);
+      if (activeAdapter()) {
+        const r = activeAdapter().onSlider(1, val);
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        return;
+      }
+      if (state.vehicle === 'sahi') {
+        state.sahiAutoLoading = false;
+        document.getElementById('btn-turret-sweep').classList.remove('active');
+        sahiSetRammer(val);
+      } else {
+        state.turretAutoSweep = false;
+        document.getElementById('btn-turret-sweep').classList.remove('active');
+        state.turretAngleDeg = val;
+        document.getElementById('val-turret').textContent = `${Math.round(state.turretAngleDeg)}°`;
+      }
+    });
+
+    document.getElementById('slider-elev').addEventListener('input', e => {
+      const val = parseFloat(e.target.value);
+      if (activeAdapter()) {
+        const r = activeAdapter().onSlider(2, val);
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        return;
+      }
+      if (state.vehicle === 'sahi') {
+        state.sahiElevDeg = val;
+        document.getElementById('val-elev').textContent = `+${val}°`;
+        const rangeM = sahiRangeMeters(val);
+        document.getElementById('stat-speed').innerHTML = `${rangeM} <span>Metre</span>`;
+      } else {
+        state.gunElevDeg = val;
+        const sign = state.gunElevDeg > 0 ? '+' : '';
+        document.getElementById('val-elev').textContent = `${sign}${state.gunElevDeg}°`;
+      }
+    });
+
+    document.getElementById('btn-terrain').addEventListener('click', e => {
+      if (activeAdapter()) {
+        const r = activeAdapter().onButton('terrain');
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        audio.playClick();
+        return;
+      }
+      if (state.vehicle === 'sahi') {
+        state.sahiAutoScrew = !state.sahiAutoScrew;
+        e.currentTarget.classList.toggle('active', state.sahiAutoScrew);
+        if (!state.sahiAutoScrew) {
+          // Gösterim bitince arka parça tekrar tam vidalanır
+          state.sahiScrewPct = 0;
+          document.getElementById('slider-rpm').value = 0;
+          document.getElementById('val-rpm').textContent = '%0';
+        }
+      } else {
+        state.terrainTest = !state.terrainTest;
+        e.currentTarget.classList.toggle('active', state.terrainTest);
+      }
+      audio.playClick();
+    });
+
+    document.getElementById('btn-turret-sweep').addEventListener('click', e => {
+      if (activeAdapter()) {
+        const r = activeAdapter().onButton('sweep');
+        if (r && r.msg) showToast(r.msg);
+        refreshAdapterHUD(activeAdapter(), true);
+        audio.playClick();
+        return;
+      }
+      if (state.vehicle === 'sahi') {
+        const c = state.sahiCharge;
+        if (state.sahiMode === 'transport') {
+          showToast('<strong>Nakliye modunda dolum yapılamaz.</strong><br/>Önce "Atış Mevziine Kur" ile topu birleştirin.');
+          return;
+        }
+        if (!state.sahiAutoLoading && !state.sahiGunBack && !c.hot && c.powder && c.tampion && c.primed && state.sahiLoaded && state.sahiRammerPct >= 99) {
+          showToast('<strong>Top zaten dolu.</strong><br/>Barut, takoz ve gülle yerinde, falya hazır; ateşe hazır.');
+          return;
+        }
+        if (state.sahiAutoLoading) { stopSahiReload(); }
+        else { state.sahiAutoLoading = true; state.sahiReload.idx = 0; state.sahiReload.t = 0; }
+        e.currentTarget.classList.toggle('active', state.sahiAutoLoading);
+      } else {
+        state.turretAutoSweep = !state.turretAutoSweep;
+        e.currentTarget.classList.toggle('active', state.turretAutoSweep);
+      }
+      audio.playClick();
+    });
+
+    const btnFire = document.getElementById('btn-fire');
+    btnFire.addEventListener('click', () => {
+      if (state.recoilProgress > 0.05) return;
+      if (activeAdapter()) {
+        const r = activeAdapter().onFire();
+        if (r && r.msg) showToast(r.msg, 4600);
+        if (r && r.ok && !r.refill) selectPart(activeAdapter().firePart || activeAdapter().defaultPart);
+        refreshAdapterHUD(activeAdapter(), true);
+        return;
+      }
+
+      if (state.vehicle === 'sahi') {
+        // İkmal: istif ve namlu boşsa yeni gülleler getirilir
+        if (!state.sahiLoaded && state.sahiAmmoCount <= 0) {
+          state.sahiAmmoCount = 7;
+          document.getElementById('stat-ammo').innerHTML = `${state.sahiAmmoCount} <span>Adet</span>`;
+          updateFireButton();
+          audio.playClick(380);
+          return;
+        }
+        // Ateşleme ön koşulları
+        const c = state.sahiCharge;
+        let block = null;
+        if (state.sahiMode === 'transport') block = 'Top nakliye düzeninde; iki parçası ayrı arabalarda.';
+        else if (state.sahiAutoLoading) block = 'Dolum döngüsü sürüyor.';
+        else if (state.sahiScrewPct > 0.5) block = 'Arka barut odası ön namluya tam vidalanmamış. "Vidalı Gövde Sökme" değerini %0\'a getirin.';
+        else if (state.sahiGunBack) block = 'Top geri tepmeden sonra henüz yerine çekilmedi.';
+        else if (c.hot) block = 'Namlu sıcak ve içinde kıvılcım olabilir; önce ıslak süngerle soğutulmalı.';
+        else if (!c.powder || !c.tampion) block = 'Barut odası boş.';
+        else if (!state.sahiLoaded || state.sahiRammerPct < 99) block = 'Namluda gülle yok veya gülle yerine oturmamış.';
+        else if (!c.primed) block = 'Falya deliğine ince barut konmamış.';
+        if (block) {
+          showToast(`<strong>Ateş edilemez!</strong><br/>${block}<br/><em>"Otomatik Dolum Döngüsü" eksik adımları sırayla tamamlar.</em>`, 4600);
+          return;
+        }
+
+        state.recoilProgress = 1.0;
+        state.sahiLoaded = false;
+        state.sahiGunBack = true;
+        state.sahiCharge = { powder: false, tampion: false, primed: false, hot: true };
+        state.sahiAmmoCount = Math.max(0, state.sahiAmmoCount - 1);
+        document.getElementById('stat-ammo').innerHTML = `${state.sahiAmmoCount} <span>Adet</span>`;
+        document.getElementById('gun-status').textContent = 'ATEŞ!';
+        document.getElementById('gun-status').style.color = '#ef4444';
+        btnFire.disabled = true;
+
+        sahi.fire();
+        audio.playBombardFire();
+        selectPart(partSahiStoneBall);
+        sahiSetRammer(0);
+        setTimeout(() => {
+          document.getElementById('gun-status').textContent = 'DOLUM GEREKLİ';
+          document.getElementById('gun-status').style.color = '#d97706';
+          btnFire.disabled = false;
+          updateFireButton();
+        }, 1450);
+        return;
+      } else {
+        if (state.ammoCount <= 0) {
+          state.ammoCount = 92;
+          document.getElementById('stat-ammo').innerHTML = `${state.ammoCount} <span>Adet</span>`;
+          updateFireButton();
+          audio.playClick(380);
+          return;
+        }
+        state.recoilProgress = 1.0;
+        state.ammoCount = Math.max(0, state.ammoCount - 1);
+        document.getElementById('stat-ammo').innerHTML = `${state.ammoCount} <span>Adet</span>`;
+        document.getElementById('gun-status').textContent = 'DOLUMDA...';
+        document.getElementById('gun-status').style.color = '#ef4444';
+        btnFire.disabled = true;
+
+        audio.playCannonFire();
+        selectPart(partGunBarrel);
+      }
+
+      setTimeout(() => {
+        document.getElementById('gun-status').textContent = 'HAZIR';
+        document.getElementById('gun-status').style.color = '#0284c7';
+        btnFire.disabled = false;
+        updateFireButton();
+      }, 1450);
+    });
+
+    document.getElementById('btn-tour-prev').addEventListener('click', () => applyTourStep(state.tourIndex - 1));
+    document.getElementById('btn-tour-next').addEventListener('click', () => applyTourStep(state.tourIndex + 1));
+
+    const toastEl = document.getElementById('toast');
+    let toastTimer = null;
+    function showToast(html, ms = 3800) {
+      toastEl.innerHTML = html;
+      toastEl.style.display = 'block';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => { toastEl.style.display = 'none'; }, ms);
+    }
+    // ============================================================================
+    // 7B. KATALOG TABANLI ARAÇ SEÇİCİ MENÜ VE ZAMAN ÇİZELGESİ GEZİNİMİ
+    // ============================================================================
+    const CATALOG = window.MUSEUM_CATALOG || { FACETS: [], VEHICLES: [] };
+    const ERA_ORDER = (CATALOG.FACETS.find(f => f.key === 'era') || { options: [] }).options;
+    const DOMAIN_MAP = Object.fromEntries(
+      ((CATALOG.FACETS.find(f => f.key === 'domain') || { options: [] }).options).map(o => [o.key, o.label])
+    );
+
+    function getActiveSimList() {
+      const fromCat = CATALOG.VEHICLES
+        .filter(v => v.status === 'live' && VEHICLE_ROOTS[v.sim || v.id])
+        .sort((a, b) => a.year - b.year);
+      if (fromCat.length) return fromCat;
+      return [
+        { id: 'ballista', sim: 'ballista', yearLabel: 'M.Ö. 300', name: 'Ballista', icon: '🏹', status: 'live' },
+        { id: 'trebuchet', sim: 'trebuchet', yearLabel: '1250', name: 'Trebuchet', icon: '🏰', status: 'live' },
+        { id: 'sahi', sim: 'sahi', yearLabel: '1453', name: 'Şahi Topu', icon: '🏺', status: 'live' },
+        { id: 'tiger', sim: 'tiger', yearLabel: '1942', name: 'Tiger I', icon: '🔥', status: 'live' },
+        { id: 'spitfire', sim: 'spitfire', yearLabel: '1943', name: 'Spitfire', icon: '✈️', status: 'live' }
+      ];
+    }
+
+    function shortVehicleName(v) {
+      const map = {
+        ballista: 'Ballista',
+        trebuchet: 'Trebuchet',
+        sahi: 'Şahi Topu',
+        tiger: 'Tiger I Tankı',
+        spitfire: 'Spitfire',
+        leonardo: 'Leonardo Tankı',
+        kadirga: 'Osmanlı Kadırgası',
+        gatling: 'Gatling 1862',
+        mark1: 'Mark I Tankı',
+        fokker: 'Fokker Dr.I'
+      };
+      return map[v.id] || v.name;
+    }
+
+    const pillsContainer = document.getElementById('timeline-pills');
+    const menuBtn = document.getElementById('btn-vehicle-menu');
+    const menuPopover = document.getElementById('vehicle-menu-popover');
+    const menuBody = document.getElementById('vmp-body');
+    const menuSearch = document.getElementById('vmp-search');
+    const menuTabs = document.getElementById('vmp-tabs');
+    const menuCountEl = document.getElementById('veh-menu-count');
+    let menuFilter = 'all';
+
+    function renderTimelinePills() {
+      const liveList = getActiveSimList();
+      const totalCount = CATALOG.VEHICLES.length || liveList.length;
+      if (menuCountEl) menuCountEl.textContent = `(${liveList.length}/${totalCount})`;
+
+      const idx = Math.max(0, liveList.findIndex(v => (v.sim || v.id) === state.vehicle));
+      const cur = liveList[idx] || liveList[0];
+      if (!cur) return;
+      const yr = cur.id === 'sahi' ? '1453' : cur.yearLabel;
+      pillsContainer.innerHTML = `
+        <div class="era-pill active" id="pill-active-vehicle" title="Aktif Araç: ${cur.name} (${cur.yearLabel}) — Katalogdan araç değiştirmek için tıklayın">
+          <span>${cur.icon || '★'} ${yr}: ${shortVehicleName(cur)}</span>
+          <span class="soon">${idx + 1}/${liveList.length}</span>
+        </div>
+      `;
+      const activePill = document.getElementById('pill-active-vehicle');
+      if (activePill) {
+        activePill.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (menuPopover.classList.contains('open')) closeVehicleMenu();
+          else openVehicleMenu();
+          audio.playClick(580);
+        });
+      }
+    }
+
+    function trNorm(str) {
+      return (str || '').toLocaleLowerCase('tr-TR');
+    }
+
+    function renderVehicleMenu() {
+      const q = trNorm(menuSearch.value.trim());
+      const allVehicles = (CATALOG.VEHICLES || []).slice().sort((a, b) => a.year - b.year);
+      const liveCount = allVehicles.filter(v => v.status === 'live').length;
+      const plannedCount = allVehicles.filter(v => v.status !== 'live').length;
+
+      menuTabs.querySelectorAll('.vmp-tab').forEach(btn => {
+        const f = btn.dataset.filter;
+        if (f === 'all') btn.textContent = `Tümü (${allVehicles.length})`;
+        else if (f === 'live') btn.textContent = `🟢 Aktif (${liveCount})`;
+        else if (f === 'planned') btn.textContent = `⏳ Planlı (${plannedCount})`;
+        btn.classList.toggle('active', f === menuFilter);
+      });
+
+      const filtered = allVehicles.filter(v => {
+        if (menuFilter === 'live' && v.status !== 'live') return false;
+        if (menuFilter === 'planned' && v.status === 'live') return false;
+        if ((menuFilter === 'land' || menuFilter === 'sea' || menuFilter === 'air') && v.domain !== menuFilter) return false;
+        if (q) {
+          const hay = trNorm(`${v.name} ${v.sub} ${v.yearLabel} ${v.eraLabel} ${(v.tags || []).join(' ')}`);
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      if (!filtered.length) {
+        menuBody.innerHTML = `<div style="padding:18px; text-align:center; color:#64748b; font-size:12px;">Aramanızla eşleşen araç bulunamadı.</div>`;
+        return;
+      }
+
+      const groups = [];
+      ERA_ORDER.forEach(eraOpt => {
+        const items = filtered.filter(v => v.era === eraOpt.key);
+        if (items.length) groups.push({ label: eraOpt.label, items });
+      });
+      const ungrouped = filtered.filter(v => !ERA_ORDER.some(e => e.key === v.era));
+      if (ungrouped.length) groups.push({ label: 'Diğer Dönemler', items: ungrouped });
+
+      menuBody.innerHTML = groups.map(g => `
+        <div class="vmp-era-group">
+          <div class="vmp-era-title">${g.label} (${g.items.length})</div>
+          <div class="vmp-grid">
+            ${g.items.map(v => {
+              const simKey = v.sim || v.id;
+              const isLive = v.status === 'live' && !!VEHICLE_ROOTS[simKey];
+              const isActive = isLive && simKey === state.vehicle;
+              const domLabel = DOMAIN_MAP[v.domain] || '';
+              return `<button type="button" class="vmp-item ${isActive ? 'active' : ''} ${isLive ? '' : 'planned'}" data-id="${v.id}" data-sim="${isLive ? simKey : ''}">
+                <div class="vmp-item-left">
+                  <span class="vmp-icon">${v.icon || '⚙️'}</span>
+                  <div style="min-width:0;">
+                    <div class="vmp-name">${v.name}</div>
+                    <div class="vmp-meta">${v.yearLabel} • ${domLabel}</div>
+                  </div>
+                </div>
+                <span class="vmp-badge ${isLive ? 'live' : 'planned'}">${isLive ? (isActive ? '★ AÇIK' : '🟢 AKTİF') : '⏳ PLANLI'}</span>
+              </button>`;
+            }).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      menuBody.querySelectorAll('.vmp-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const simKey = item.dataset.sim;
+          const v = (CATALOG.VEHICLES || []).find(x => x.id === item.dataset.id);
+          if (simKey && VEHICLE_ROOTS[simKey]) {
+            switchVehicle(simKey);
+            toastEl.style.display = 'none';
+            closeVehicleMenu();
+            audio.playClick(680);
+          } else if (v) {
+            closeVehicleMenu();
+            const bullets = (v.modal || []).slice(0, 2).map(m => `• ${m}`).join('<br/>');
+            showToast(
+              `<strong>${v.icon || '⏳'} ${v.yearLabel} — ${v.name}</strong> (2. Grup Planlı)<br/>` +
+              `<span style="font-size:11px; color:#cbd5e1;">${v.desc}</span>` +
+              (bullets ? `<div style="margin-top:6px; font-size:11px; color:#f8fafc;">${bullets}</div>` : ''),
+              5200
+            );
+            audio.playClick(480);
+          }
+        });
+      });
+    }
+
+    function openVehicleMenu() {
+      renderVehicleMenu();
+      menuPopover.classList.add('open');
+      menuBtn.classList.add('open');
+    }
+
+    function closeVehicleMenu() {
+      menuPopover.classList.remove('open');
+      menuBtn.classList.remove('open');
+    }
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (menuPopover.classList.contains('open')) closeVehicleMenu();
+      else openVehicleMenu();
+      audio.playClick(580);
+    });
+
+    menuPopover.addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('click', () => closeVehicleMenu());
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuPopover.classList.contains('open')) closeVehicleMenu();
+    });
+
+    menuTabs.querySelectorAll('.vmp-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        menuFilter = tab.dataset.filter;
+        renderVehicleMenu();
+        audio.playClick(540);
+      });
+    });
+
+    menuSearch.addEventListener('input', () => renderVehicleMenu());
+
+    function stepActiveVehicle(delta) {
+      const list = getActiveSimList();
+      if (!list.length) return;
+      const idx = Math.max(0, list.findIndex(v => (v.sim || v.id) === state.vehicle));
+      const nextIdx = (idx + delta + list.length) % list.length;
+      const target = list[nextIdx];
+      switchVehicle(target.sim || target.id);
+      closeVehicleMenu();
+      audio.playClick(640);
+    }
+
+    document.getElementById('btn-vehicle-prev').addEventListener('click', () => stepActiveVehicle(-1));
+    document.getElementById('btn-vehicle-next').addEventListener('click', () => stepActiveVehicle(1));
+
+    renderTimelinePills();
+    renderVehicleMenu();
+
+    // ============================================================================
+    // 8. RAYCASTER CLICK & HOVER INSPECTION
+    // ============================================================================
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    const tooltip = document.getElementById('hover-tooltip');
+    let pointerDownPos = { x: 0, y: 0 };
+
+    function findPartGroup(mesh) {
+      let curr = mesh;
+      while (curr) {
+        if (curr.userData && curr.userData.id) return curr;
+        curr = curr.parent;
+      }
+      return null;
+    }
+
+    function isWorldVisible(obj) {
+      for (let o = obj; o; o = o.parent) { if (!o.visible) return false; }
+      return true;
+    }
+
+    // Raycaster gizli nesneleri de yakalar; aktif araca ait ve görünür olanları filtrele
+    // (ör. Şahi'de atış mevzii ⇄ nakliye arabaları)
+    function getActiveVehicleMeshes() {
+      return allMeshes.filter(m => m.userData.vehicle === state.vehicle && isWorldVisible(m));
+    }
+
+    renderer.domElement.addEventListener('pointerdown', e => {
+      pointerDownPos = { x: e.clientX, y: e.clientY };
+    });
+
+    renderer.domElement.addEventListener('pointerup', e => {
+      const dist = Math.hypot(e.clientX - pointerDownPos.x, e.clientY - pointerDownPos.y);
+      if (dist > 6) return;
+
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+
+      const hits = raycaster.intersectObjects(getActiveVehicleMeshes(), false);
+      for (const hit of hits) {
+        if (hit.object.material.opacity < 0.2) continue;
+        const pg = findPartGroup(hit.object);
+        if (pg) {
+          selectPart(pg);
+          audio.playClick(720);
+          break;
+        }
+      }
+    });
+
+    renderer.domElement.addEventListener('pointermove', e => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+
+      const hits = raycaster.intersectObjects(getActiveVehicleMeshes(), false);
+      let hoveredGroup = null;
+      for (const hit of hits) {
+        if (hit.object.material.opacity < 0.2) continue;
+        hoveredGroup = findPartGroup(hit.object);
+        if (hoveredGroup) break;
+      }
+
+      if (hoveredGroup) {
+        renderer.domElement.style.cursor = 'pointer';
+        tooltip.style.display = 'block';
+        tooltip.style.left = `${e.clientX + 14}px`;
+        tooltip.style.top = `${e.clientY + 14}px`;
+        tooltip.textContent = `🔧 ${hoveredGroup.userData.name}`;
+      } else {
+        renderer.domElement.style.cursor = 'grab';
+        tooltip.style.display = 'none';
+      }
+    });
+
+    // ============================================================================
+    // 9. MAIN ANIMATION LOOP (60 FPS MECHANICAL SIMULATION FOR TIGER I & ŞAHİ TOPU)
+    // ============================================================================
+    const clock = new THREE.Clock();
+    const cameraShake = new THREE.Vector3();
+    let enginePhase = 0;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const dt = Math.min(clock.getDelta(), 0.05);
+      const elapsed = clock.getElapsedTime();
+
+      state.explodeCurrent += (state.explodeTarget - state.explodeCurrent) * Math.min(1, dt * 8);
+      const tExplode = state.explodeCurrent / 100;
+
+      const worldStart = new THREE.Vector3();
+      const worldEnd = new THREE.Vector3();
+
+      allParts.forEach(pg => {
+        if (pg.userData.vehicle !== state.vehicle) {
+          pg.userData.connector.material.opacity = 0;
+          return;
+        }
+        const base = pg.userData.basePos;
+        const vec = pg.userData.explodeVec;
+        pg.position.set(
+          base.x + vec.x * tExplode,
+          base.y + vec.y * tExplode,
+          base.z + vec.z * tExplode
+        );
+
+        const conn = pg.userData.connector;
+        if (tExplode > 0.02 && state.showLines) {
+          pg.parent.localToWorld(worldStart.copy(base));
+          pg.getWorldPosition(worldEnd);
+          const posAttr = conn.geometry.attributes.position;
+          posAttr.setXYZ(0, worldStart.x, worldStart.y, worldStart.z);
+          posAttr.setXYZ(1, worldEnd.x, worldEnd.y, worldEnd.z);
+          posAttr.needsUpdate = true;
+          conn.computeLineDistances();
+          conn.material.opacity = Math.min(0.65, tExplode * 0.9);
+        } else {
+          conn.material.opacity = 0;
+        }
+      });
+
+      if (state.vehicle === 'tiger') {
+        if (state.turretAutoSweep) {
+          state.turretAngleDeg = Math.sin(elapsed * 0.65) * 55;
+          document.getElementById('slider-turret').value = state.turretAngleDeg;
+          document.getElementById('val-turret').textContent = `${Math.round(state.turretAngleDeg)}°`;
+        }
+        // Hidrolik taret dönüşü motordan güç alır: dönüş hızı devirle artar (yaklaşık değerler),
+        // motor rölantinin altındayken yalnızca yavaş el çarkıyla döner.
+        const traverseDegPerSec = tigerTraverseRate(state.rpm);
+        const targetYaw = THREE.MathUtils.degToRad(state.turretAngleDeg);
+        const yawDiff = targetYaw - turretPivot.rotation.y;
+        const maxStep = THREE.MathUtils.degToRad(traverseDegPerSec) * dt;
+        turretPivot.rotation.y += Math.sign(yawDiff) * Math.min(Math.abs(yawDiff), maxStep);
+
+        const targetPitch = THREE.MathUtils.degToRad(-state.gunElevDeg);
+        gunElevationPivot.rotation.x += (targetPitch - gunElevationPivot.rotation.x) * Math.min(1, dt * 10);
+
+        if (state.recoilProgress > 0.001) {
+          state.recoilProgress = Math.max(0, state.recoilProgress - dt * 1.8);
+          const kick = Math.sin(Math.pow(state.recoilProgress, 0.45) * Math.PI);
+          const recoilDist = kick * 0.62;
+          // Kama bloğu namluyla tek parçadır: ikisi birlikte 580 mm geri teper
+          barrelRecoilGroup.position.z = -recoilDist;
+          breechMovingGroup.position.z = -recoilDist;
+
+          // Geri tepme kuvveti ağırlık merkezinin üstünden etki eder: burun kalkar, arka çöker
+          tankRoot.rotation.x = -kick * 0.022 * Math.cos(turretPivot.rotation.y);
+          tankRoot.rotation.z = kick * 0.022 * Math.sin(turretPivot.rotation.y);
+
+          const flashIntensity = state.recoilProgress > 0.78 ? (state.recoilProgress - 0.78) * 4.5 : 0;
+          flashMesh.material.opacity = flashIntensity * 0.85;
+          flashMesh.scale.setScalar(0.6 + flashIntensity * 0.7);
+          barrelRecoilGroup.localToWorld(muzzleLight.position.set(0, 0, 3.3));
+          muzzleLight.intensity = flashIntensity * 14;
+        } else {
+          barrelRecoilGroup.position.z = 0;
+          breechMovingGroup.position.z = 0;
+          tankRoot.rotation.x *= 0.9;
+          tankRoot.rotation.z *= 0.9;
+          flashMesh.material.opacity = 0;
+          muzzleLight.intensity = 0;
+        }
+
+        const rpmFactor = state.rpm / 1000;
+        enginePhase += dt * rpmFactor * 16;
+
+        pistonMeshes.forEach(p => {
+          const stroke = Math.sin(enginePhase + p.userData.phase) * 0.075;
+          p.position.copy(p.userData.origin).addScaledVector(p.userData.bankDir, stroke);
+        });
+
+        fanMeshes.forEach((fan, idx) => {
+          fan.rotation.y += dt * rpmFactor * (idx % 2 === 0 ? 14 : -14);
+        });
+
+        shaftMesh.rotation.y += dt * rpmFactor * 18;
+
+        rotatingWheels.forEach(w => {
+          w.rotation.x += dt * rpmFactor * 3.5;
+          if (state.terrainTest && w.userData.stationIndex >= 0 && state.rpm > 50) {
+            const wave = Math.sin(elapsed * 3.8 + w.userData.stationIndex * 0.75) * 0.055;
+            w.position.y = w.userData.baseY + wave;
+          } else {
+            w.position.y += (w.userData.baseY - w.position.y) * 0.15;
+          }
+        });
+
+        // Bakla bakla palet: çevresel hız, tekerlek açısal hızı × yol tekerleği yarıçapı (0,42 m)
+        tigerUpdateTracks(dt, rpmFactor * 3.5 * 0.42, elapsed, state.terrainTest && state.rpm > 50);
+      } else if (activeAdapter()) {
+        // Adaptör kalıbındaki araçlar (Ballista vb.): mekanik modülde, arayüz ~10 Hz güncellenir
+        const ad = activeAdapter();
+        ad.update(dt, elapsed);
+        hudTimer += dt;
+        if (hudTimer > 0.1) { hudTimer = 0; refreshAdapterHUD(ad, false); }
+      } else {
+        // ========================================================================
+        // 1453 OSMANLI ŞAHİ TOPU CANLI MEKANİK ANİMASYONU
+        // ========================================================================
+        if (state.sahiAutoScrew) {
+          state.sahiScrewPct = (Math.sin(elapsed * 1.1) * 0.5 + 0.5) * 100;
+          document.getElementById('slider-rpm').value = state.sahiScrewPct;
+          document.getElementById('val-rpm').textContent = `%${Math.round(state.sahiScrewPct)}`;
+        }
+        // Dolum döngüsü ve tüm Şahi mekaniği (vida, yükseliş, geri tepme, duman, balistik) modülde
+        runSahiReload(dt);
+        sahi.update(state, dt);
+      }
+
+      if (state.camTargetPos && state.camTargetLook) {
+        camera.position.lerp(state.camTargetPos, Math.min(1, dt * 6));
+        controls.target.lerp(state.camTargetLook, Math.min(1, dt * 6));
+        if (camera.position.distanceTo(state.camTargetPos) < 0.08) {
+          state.camTargetPos = null;
+          state.camTargetLook = null;
+        }
+      }
+
+      controls.update();
+
+      // Atış anında kamera sarsıntısı (yalnızca render sırasında uygulanır, kontrolleri bozmaz)
+      const shakeAmp = state.recoilProgress > 0.001
+        ? (state.vehicle === 'sahi' ? 0.09 : 0.025) * Math.pow(state.recoilProgress, 2)
+        : 0;
+      cameraShake.set((Math.random() - 0.5) * shakeAmp, (Math.random() - 0.5) * shakeAmp, (Math.random() - 0.5) * shakeAmp);
+      camera.position.add(cameraShake);
+      renderer.render(scene, camera);
+      camera.position.sub(cameraShake);
+    }
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // URL parametresi ile doğrudan araç ve mod başlatma (Landing Page bağlantıları için)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('vehicle') && VEHICLE_ROOTS[params.get('vehicle')] && params.get('vehicle') !== 'tiger') {
+      switchVehicle(params.get('vehicle'));
+    } else {
+      selectPart(partGunBarrel);
+    }
+
+    if (params.get('mode') === 'explode') {
+      state.explodeTarget = 85;
+      sliderExplode.value = 85;
+      document.getElementById('explode-val').textContent = '%85';
+    } else if (params.get('mode') === 'xray') {
+      state.cutaway = true;
+      document.getElementById('btn-cutaway').classList.add('active');
+      updateVisualMaterials();
+    } else if (params.get('mode') === 'blueprint') {
+      state.blueprint = true;
+      document.getElementById('btn-blueprint').classList.add('active');
+      updateVisualMaterials();
+    }
+
+    applyTigerPackage(state.tigerPackage, false);
+    updateTurretTraverseLabel();
+    applyRenderMode();
+
+    // ?cam=iso|front|breech|engine|suspension|top — kamerayı doğrudan (geçişsiz) bir açıya yerleştirir
+    const camParam = getActiveCamPresets()[params.get('cam') || 'iso'];
+    if (camParam) {
+      camera.position.set(...camParam.pos);
+      controls.target.set(...camParam.look);
+      state.camTargetPos = null;
+      state.camTargetLook = null;
+      controls.update();
+    }
+    animate();
+  </script>
+</body>
+
+</html>

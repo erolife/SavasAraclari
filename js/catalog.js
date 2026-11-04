@@ -42,7 +42,7 @@
       { key: 'rome', label: 'Roma' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
       { key: 'ottoman', label: 'Osmanlı' }, { key: 'italy', label: 'İtalya (Rönesans)' },
       { key: 'uk', label: 'İngiltere' }, { key: 'germany', label: 'Almanya' },
-      { key: 'usa', label: 'ABD' }
+      { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }
     ] },
     { key: 'status', url: 'durum', label: 'Durum', options: [
       { key: 'live', label: '🟢 Simülatör Hazır' }, { key: 'planned', label: '⏳ Planlı' }
@@ -177,13 +177,13 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/><path d="M40 100 L80 40 L250 40 L290 100 L250 122 L80 122 Z" fill="#6b7460" fill-opacity="0.3" stroke="#1e293b" stroke-width="2.4"/><path d="M60 100 L92 52 L238 52 L270 100 L238 112 L92 112 Z" stroke="#475569" stroke-width="1.4" stroke-dasharray="3 3"/><rect x="140" y="70" width="44" height="30" rx="4" fill="#d97706" fill-opacity="0.3" stroke="#b45309" stroke-width="2"/><line x1="184" y1="82" x2="214" y2="80" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round"/><rect x="150" y="30" width="30" height="10" rx="2" fill="#475569" stroke="#0f172a" stroke-width="1.5"/><g fill="#334155"><circle cx="100" cy="117" r="4"/><circle cx="130" cy="117" r="4"/><circle cx="160" cy="117" r="4"/><circle cx="190" cy="117" r="4"/><circle cx="220" cy="117" r="4"/></g></svg>'
     },
     {
-      id: 'fokker', group: 2, status: 'planned',
+      id: 'fokker', sim: 'fokker', group: 2, status: 'live',
       year: 1917, yearLabel: '1917', eraLabel: 'I. DÜNYA SAVAŞI',
       domain: 'air', era: 'ww1', energy: ['ice', 'gunpowder'], role: ['aircraft'], origin: 'germany',
       name: 'Fokker Dr.I Üç Kanatlı Avcı', sub: 'OBERURSEL ROTARY ENGINE • SENKRONİZE MAKİNELİ TÜFEK',
-      desc: 'Üç kanatlı yapısıyla çok çevik bir avcı. Döner (rotary) motorunda krank mili sabittir; silindirler pervaneyle birlikte döner. İki makineli tüfek, pervane palları önlerindeyken ateşlemeyi durduran bir senkronizasyon düzeneğiyle pervanenin içinden ateş eder. "Kızıl Baron" Manfred von Richthofen ile özdeşleşmiştir.',
-      tags: ['Döner (Rotary) Motor', 'Senkronizasyon Dişlisi', 'Üç Kanat', '2 × 7,92 mm MG'],
-      specs: [['MOTOR', 'Oberursel Ur.II, ~110 BG'], ['SİLAH', '2 × 7,92 mm (senkronize)'], ['AZAMİ HIZ', '~185 km/sa'], ['ÖNE ÇIKAN', 'Senkronizasyon açık/kapalı']],
+      desc: 'Üç kanatlı yapısıyla çok çevik bir avcı. Oberursel Ur.II döner (rotary) motorunda krank mili gövdeye sabittir; 9 silindir ve karter pervaneyle birlikte döner! İki 7,92 mm Spandau tüfeği, Fokker senkronizasyon düzeneğiyle pervanenin içinden ateş eder. Senkronizasyonu kapatıp ateşleyerek kurşunların pervaneyi nasıl vurduğunu deneyin!',
+      tags: ['9 Silindir Döner (Rotary) Motor', 'Fokker Senkronizasyon (Açık/Kapalı)', 'Konsol Üç Kanat', '2 × 7,92 mm Spandau'],
+      specs: [['MOTOR', 'Oberursel Ur.II, 110 BG (Döner)'], ['SİLAH', '2 × 7,92 mm Spandau (Senkronize)'], ['KANAT AÇIKLIĞI', '7,19 m (Üç Kanat)'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
       tag: 'FOKKER-DR1-1917', icon: '🛩️',
       modal: [
         'Üç kanat, gövde kafes iskeleti ve kumaş kaplama (X-Ray)',
@@ -192,6 +192,93 @@
         'Kumanda yüzeyleri ve kokpit; iki makineli tüfek salvosu'
       ],
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/><rect x="95" y="28" width="130" height="9" rx="4" fill="#dc2626" fill-opacity="0.25" stroke="#7f1d1d" stroke-width="2"/><rect x="100" y="56" width="120" height="9" rx="4" fill="#dc2626" fill-opacity="0.25" stroke="#7f1d1d" stroke-width="2"/><rect x="105" y="84" width="110" height="9" rx="4" fill="#dc2626" fill-opacity="0.25" stroke="#7f1d1d" stroke-width="2"/><line x1="130" y1="37" x2="130" y2="84" stroke="#334155" stroke-width="1.6"/><line x1="195" y1="37" x2="195" y2="84" stroke="#334155" stroke-width="1.6"/><path d="M70 70 L240 64 L285 70 L240 76 Z" fill="#64748b" fill-opacity="0.25" stroke="#1e293b" stroke-width="2"/><circle cx="72" cy="70" r="14" stroke="#0284c7" stroke-width="2"/><line x1="58" y1="40" x2="58" y2="100" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/><g stroke="#d97706" stroke-width="2"><line x1="110" y1="62" x2="84" y2="62"/><line x1="110" y1="66" x2="84" y2="66"/></g><circle cx="150" cy="114" r="9" stroke="#1e293b" stroke-width="2"/><circle cx="170" cy="114" r="9" stroke="#1e293b" stroke-width="2"/></svg>'
+    },
+
+    // ===================================================================== 3. GRUP (PLANLI)
+    {
+      id: 'monitor', group: 3, status: 'planned',
+      year: 1862, yearLabel: '1862', eraLabel: 'SANAYİ DEVRİMİ',
+      domain: 'sea', era: 'industrial', energy: ['gunpowder', 'ice'], role: ['artillery', 'armor'], origin: 'usa',
+      name: 'USS Monitor & Ericsson Döner Taret', sub: 'IRONCLAD REVOLVING TURRET • 2 × 11 İNÇ DAHLGREN TOPU',
+      desc: 'John Ericsson tarafından tasarlanan, su hattının hemen üzerinde ("sal üzerinde peynir kutusu") yüzen ilk döner taretli zırhlı savaş gemisi. 8 kat 1 inçlik dövme demir plakadan oluşan 6,1 m çapındaki taret, merkezi mil üzerinde kaldırılıp buharlı yardımcı motor ve dişli çarklarla 360° döndürülür; atış anında ağır sarkaçlı kepenkler lombarları kapatır.',
+      tags: ['360° Buharlı Döner Taret', '2 × 11 inç Dahlgren Topu', 'Sarkaçlı Lombar Kepenkleri', 'Titreşimli Manivela Buhar Motoru'],
+      specs: [['ZIRH KALINLIĞI', '203 mm (8×1 inç Dövme Demir)'], ['SİLAH', '2 × 279 mm (11 inç) Dahlgren'], ['TARET İÇ ÇAPI', '6,10 m (20 ft) • ~120 Ton'], ['PLANLANAN GRUP', '15 Bağımsız Grup']],
+      tag: 'MONITOR-1862', icon: '⚓',
+      modal: [
+        '8 kat 1 inç dövme demir plakalı silindirik taret (X-Ray kesiti) ve merkezi kaldırma/dönüş mili',
+        'Yan yana iki adet 11 inç (279 mm) Dahlgren yivsiz top, sürtünmeli geri tepme kızakları ve el çarklı ileri sürme',
+        'Etkileşim: taret 360° dönüşü, sarkaçlı lombar kepenklerinin (port stoppers) açılıp kapanması ve çift top salvosu',
+        'Zırhlı güverte altında Ericsson titreşimli manivela (vibrating-lever) buhar motoru ve 4 kanatlı pervane'
+      ],
+      svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 98 Q90 94 160 98 T305 98" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 3"/><path d="M28 96 L292 96 L276 116 L44 116 Z" fill="#475569" fill-opacity="0.32" stroke="#1e293b" stroke-width="2"/><rect x="115" y="54" width="90" height="42" rx="4" fill="#64748b" fill-opacity="0.38" stroke="#0f172a" stroke-width="2.4"/><line x1="160" y1="50" x2="160" y2="114" stroke="#d97706" stroke-width="2.4" stroke-dasharray="3 2"/><line x1="205" y1="70" x2="242" y2="70" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/><line x1="205" y1="80" x2="242" y2="80" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/><rect x="64" y="82" width="18" height="14" rx="2" fill="#334155" stroke="#0f172a" stroke-width="1.6"/></svg>'
+    },
+    {
+      id: 'katyusha', group: 3, status: 'planned',
+      year: 1942, yearLabel: '1942', eraLabel: 'II. DÜNYA SAVAŞI',
+      domain: 'land', era: 'ww2', energy: ['jet', 'ice'], role: ['artillery'], origin: 'ussr',
+      name: 'BM-13 "Katyuşa" Çok Namlulu Roketatar', sub: 'MULTIPLE ROCKET LAUNCHER • 16 × 132 MM M-13 ROKETİ',
+      desc: 'ZİS-6 (6×4) kamyon şasisi üzerine yerleştirilmiş 8 çift yönlü I-profil kızakta toplam 16 adet 132 mm M-13 katı yakıtlı roket taşıyan mobil topçu sistemi. Kabin içindeki el çarklı elektrikli ateşleme kutusu kontağı sıra ile kapatır; 7–10 saniyelik salvo sonunda 16 roket ~8,5 km menzile yaylım ateşiyle ulaşır.',
+      tags: ['8 Çift Yönlü I-Profil Ray', '16 × 132 mm M-13 Roketi', 'Sıralı Elektrikli Kontak Kutusu', 'Arka Denge Kriko Ayakları'],
+      specs: [['ROKET ÇAPI', '132 mm M-13 (42,5 kg)'], ['KAPASİTE', '16 Roket (8 Ray × 2)'], ['SALVO SÜRESİ', '7 – 10 Saniye (~8,5 km Menzil)'], ['PLANLANAN GRUP', '15 Bağımsız Grup']],
+      tag: 'BM13-KATYUSHA-1942', icon: '🚀',
+      modal: [
+        'ZİS-6 (6×4) üç dingilli kamyon şasisi, katlanır zırhlı ön cam panjurları ve arka denge kriko ayakları',
+        '8 adet 5 metrelik I-profil çelik fırlatma rayı (üstte 8 + altta 8 = 16 adet 132 mm M-13 roketi)',
+        'Etkileşim: yükseliş (+4° ila +45°) ve yanal yönlendirme dişlileri; 16 roketin 0,5 sn arayla sıralı salvo ateşlemesi',
+        'M-13 roket iç kesiti (X-Ray): 7 çubuklu nitrogliserin-nitroselüloz katı yakıt bloğu, Laval lülesi ve 4 kuyruk kanatçığı'
+      ],
+      svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/><rect x="52" y="92" width="190" height="12" rx="2" fill="#475569" fill-opacity="0.3" stroke="#1e293b" stroke-width="2"/><path d="M190 92 L190 66 L225 66 L238 80 L238 92 Z" fill="#4b5320" fill-opacity="0.3" stroke="#1e293b" stroke-width="2"/><g transform="rotate(-22 140 82)"><line x1="55" y1="74" x2="215" y2="74" stroke="#0f172a" stroke-width="3.2"/><line x1="65" y1="67" x2="205" y2="67" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/><line x1="65" y1="81" x2="205" y2="81" stroke="#d97706" stroke-width="3" stroke-linecap="round"/></g><circle cx="80" cy="111" r="12" stroke="#1e293b" stroke-width="2.2"/><circle cx="110" cy="111" r="12" stroke="#1e293b" stroke-width="2.2"/><circle cx="215" cy="111" r="12" stroke="#1e293b" stroke-width="2.2"/></svg>'
+    },
+    {
+      id: 'v2', group: 3, status: 'planned',
+      year: 1944, yearLabel: '1944', eraLabel: 'II. DÜNYA SAVAŞI',
+      domain: 'space', era: 'ww2', energy: ['jet'], role: ['artillery', 'siege'], origin: 'germany',
+      name: 'V-2 (Aggregat 4) Balistik Roket & Turbo-Pompa', sub: 'LIQUID-PROPELLANT BALLISTIC MISSILE • 25 TON İTKİ',
+      desc: 'Uzay sınırını (Kármán hattı, >100 km) aşan ilk insan yapımı araç ve modern uzay roketçiliğinin doğrudan atası. H₂O₂ buhar jeneratörüyle tahrik edilen 580 BG turbo-pompa, saniyede 125 kg sıvı oksijen (LOX) ve etil alkolü 18 brülörlü yanma odasına basar; egzoz jetinin içindeki 4 grafit kanatçık (jet vanes) LEV-3 jiroskoplarıyla roketi yönlendirir.',
+      tags: ['H₂O₂ Buhar Türbinli Turbo-Pompa', 'LOX + Alkol Tankları (X-Ray)', '4 × Grafit Egzoz Kanatçığı (TVC)', 'LEV-3 Jiroskop & İvmeölçer'],
+      specs: [['İTKİ KUVVETİ', '~25.000 kgf (245 kN)'], ['TURBO-POMPA', '580 BG • 4.000 RPM (125 kg/sn)'], ['MAKSİMUM HIZ', 'Mach 4,7 (~5.760 km/sa)'], ['PLANLANAN GRUP', '16 Bağımsız Grup']],
+      tag: 'A4-V2-1944', icon: '🛰️',
+      modal: [
+        '4 bölmeli dış aerodinamik kabuk (X-Ray): burun harp başlığı, LEV-3 jiroskop bölmesi, alkol/LOX tankları ve kuyruk motoru',
+        'Walter H₂O₂ buhar türbiniyle çalışan 4.000 RPM çift santrifüj turbo-pompa ve 18 çanaklı yanma odası',
+        'Etkileşim: turbo-pompa devri, rejeneratif alkol soğutma akışı ve 4 grafit egzoz kanatçığıyla (TVC) itki vektör yönlendirme',
+        'Meillerwagen hidrolik dikme kolu ve döner fırlatma tablası (Firing Table)'
+      ],
+      svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 70 L235 52 Q278 52 298 70 Q278 88 235 88 L40 70 Z" fill="#1e293b" fill-opacity="0.18" stroke="#0f172a" stroke-width="2.2"/><path d="M40 52 L18 36 L58 56 Z" fill="#334155" stroke="#0f172a" stroke-width="1.6"/><path d="M40 88 L18 104 L58 84 Z" fill="#334155" stroke="#0f172a" stroke-width="1.6"/><rect x="105" y="58" width="52" height="24" rx="4" fill="#0284c7" fill-opacity="0.28" stroke="#0284c7" stroke-width="1.8"/><rect x="165" y="58" width="52" height="24" rx="4" fill="#d97706" fill-opacity="0.28" stroke="#d97706" stroke-width="1.8"/><circle cx="82" cy="70" r="9" stroke="#dc2626" stroke-width="2"/><path d="M40 62 L58 58 L58 82 L40 78 Z" fill="#dc2626" fill-opacity="0.3" stroke="#991b1b" stroke-width="1.8"/></svg>'
+    },
+    {
+      id: 'j79', group: 3, status: 'planned',
+      year: 1965, yearLabel: '1965', eraLabel: 'SOĞUK SAVAŞ',
+      domain: 'air', era: 'coldwar', energy: ['jet'], role: ['aircraft'], origin: 'usa',
+      name: 'General Electric J79-GE-17 Turbojet & Art Yakıcı', sub: 'VARIABLE-STATOR AXIAL TURBOJET • AFTERBURNER & NOZZLE',
+      desc: 'F-4 Phantom II ve F-104 Starfighter gibi Soğuk Savaş efsanelerine Mach 2+ hız kazandıran tek şaftlı eksenel turbojet motoru. Kompresör bayılmasını (stall) önleyen ilk 6 kademe değişken açılı stator kanatçıkları (VSV), 10 halkalı kan-annüler yanma odası, 3 kademeli türbin ve art yakıcı (afterburner) devreye girdiğinde açılıp kapanan 24 yapraklı yakınsak-ıraksak egzoz nozulu.',
+      tags: ['17 Kademe Kompresör & VSV', 'Kan-Annüler Yanma Odası', 'Art Yakıcı (Afterburner) Halkaları', 'Değişken Alanlı Egzoz Nozulu'],
+      specs: [['KURU / ISLAK İTKİ', '52,9 kN / 79,6 kN (Art Yakıcılı)'], ['KOMPRESÖR', '17 Kademe Eksenel (13,5:1 Basınç)'], ['TÜRBİN', '3 Kademe Eksenel (~7.460 RPM)'], ['PLANLANAN GRUP', '15 Bağımsız Grup']],
+      tag: 'J79-TURBOJET-1965', icon: '🔥',
+      modal: [
+        '17 kademeli eksenel kompresör rotoru ve devirle birlikte açı değiştiren değişken stator kanatçıkları (VSV biyel halkaları)',
+        '10 adet kan-annüler alev tüpü (combustor cans) ve kombine şaftı süren 3 kademeli yüksek basınç türbini',
+        'Etkileşim: gaz kolu (%0–%100 Kuru İtki + Art Yakıcı kademesi), yakıt püskürtme halkaları ve 24 yapraklı hareketli egzoz nozulu',
+        'Bölünmüş dış titanyum/çelik karter gövdesi (X-Ray kesiti) ve alt aksesuar dişli kutusu'
+      ],
+      svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="36" y="46" width="175" height="48" rx="4" fill="#475569" fill-opacity="0.22" stroke="#1e293b" stroke-width="2.2"/><path d="M211 46 L278 52 L292 44 L292 96 L278 88 L211 94 Z" fill="#d97706" fill-opacity="0.22" stroke="#b45309" stroke-width="2"/><line x1="36" y1="70" x2="225" y2="70" stroke="#0f172a" stroke-width="3.2"/><g stroke="#0284c7" stroke-width="2"><line x1="55" y1="48" x2="55" y2="92"/><line x1="72" y1="50" x2="72" y2="90"/><line x1="89" y1="52" x2="89" y2="88"/><line x1="106" y1="53" x2="106" y2="87"/><line x1="123" y1="54" x2="123" y2="86"/></g><rect x="138" y="54" width="36" height="32" rx="4" fill="#dc2626" fill-opacity="0.3" stroke="#991b1b" stroke-width="1.8"/><g stroke="#7c2d12" stroke-width="2.4"><line x1="186" y1="48" x2="186" y2="92"/><line x1="198" y1="48" x2="198" y2="92"/></g></svg>'
+    },
+    {
+      id: 'phalanx', group: 3, status: 'planned',
+      year: 1980, yearLabel: '1980', eraLabel: 'MODERN DÖNEM',
+      domain: 'sea', era: 'modern', energy: ['gunpowder'], role: ['defense', 'smallarms'], origin: 'usa',
+      name: 'Mk 15 Phalanx CIWS (20 mm M61 Vulcan & Radar)', sub: 'CLOSED-LOOP RADAR GATLING DEFENSE • 3.000 – 4.500 ATIM/DK',
+      desc: 'Gemisavar füzelere karşı son savunma hattı (Close-In Weapon System). Beyaz radom içindeki Ku-bandı arama ve takip radarları, gelen hedefle birlikte havadaki 20 mm mermi akışını aynı anda izleyip açı farkını sıfırlayan kapalı çevrim (closed-loop spotting) kontrolüyle M61A1 6 namlulu Gatling topunu saniyeler içinde hedefe kilitler.',
+      tags: ['M61A1 20 mm 6 Namlulu Gatling', 'Ku-Band Arama & Takip Radarı', '1.550 Mermilik Helisel Tambur', '2 Eksenli Servo Kule & Radom'],
+      specs: [['SİLAH SİSTEMİ', '20 mm M61A1 Vulcan (6 Namlu)'], ['ATIŞ HIZI', '3.000 – 4.500 Atım/Dakika'], ['RADAR SİSTEMİ', 'Ku-Band Kapalı Çevrim Arama/Takip'], ['PLANLANAN GRUP', '15 Bağımsız Grup']],
+      tag: 'MK15-PHALANX-1980', icon: '📡',
+      modal: [
+        'İkonik beyaz kompozit radom (X-Ray kesiti): üstte dönen Ku-bandı arama anteni, önde monopuls takip çanağı',
+        'M61A1 20 mm 6 namlulu Gatling topu, pnömatik/hidrolik tahrik motoru ve namlu ucu kelepçesi',
+        'Etkileşim: kule yanal dönüş/yükseliş servoları, radar tarama devri ve 1.550 mermilik helisel tamburdan yüksek hızlı salvo',
+        '1862 el kranklı Gatling topu ile 1980 radar güdümlü M61 Vulcan arasındaki 118 yıllık mekanik süreklilik'
+      ],
+      svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/><rect x="115" y="106" width="70" height="18" rx="3" fill="#475569" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/><path d="M126 62 L126 28 A24 24 0 0 1 174 28 L174 62 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="2.2"/><circle cx="150" cy="46" r="10" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="3 2"/><rect x="122" y="62" width="56" height="44" rx="4" fill="#64748b" fill-opacity="0.3" stroke="#1e293b" stroke-width="2"/><line x1="178" y1="74" x2="248" y2="66" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round"/><circle cx="150" cy="92" r="11" fill="#d97706" fill-opacity="0.28" stroke="#b45309" stroke-width="1.8"/></svg>'
     }
   ];
 

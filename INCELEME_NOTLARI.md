@@ -227,6 +227,71 @@
 - **Çekirdek (`simulator.html`) değişikliği yapıldı mı?**
   - Yalnızca standart adaptör entegrasyonu satırları eklendi (`<script src="js/vehicles/mark1.js"></script>`, `const mark1 = window.VehicleBuilders.mark1(buildCtx)` ve `ADAPTERS` / `VEHICLE_ROOTS` kaydı). Çekirdek mantığına dokunulmadı.
 
+---
+
+## GÖREV B — 2. Grup Araç #3: 1917 Fokker Dr.I Üç Kanatlı Avcı — `js/vehicles/fokker.js`
+
+- **Durum:** Tamamlandı ve Doğrulandı
+- **Kaynaklar ve varsayımlar:**
+  - *Birincil Tarihsel Kaynaklar:* Reinhold Platz & Anthony Fokker 1917 *Fokker F.I / Dr.I* fabrika teknik çizimleri, *Oberursel Ur.II (Le Rhône 9J kopyası)* 110 BG 9 silindirli döner motor kılavuzu, Fokker *Zentralsteuerung* (merkezi kam-iticili senkronizasyon) şeması ve Alex Imrie (*The Fokker Triplane*).
+  - *Tarihsel ölçüler ve varsayımlar:*
+    - **Üst / Orta / Alt Kanat Açıklığı:** Üst $7,19\text{ m}$ (`SEMI_TOP = 3.595 m`), Orta $6,23\text{ m}$ (`SEMI_MID = 3.115 m`), Alt $5,73\text{ m}$ (`SEMI_BOT = 2.865 m`). Kanat veteri (*chord*) her üç kanatta $1,00\text{ m}$, kalın Göttingen 298 (`~%16` kalınlık) konsol (*cantilever*) kutu kirişli profil.
+    - **Toplam Gövde Boyu:** $5,77\text{ m}$ ($Z = -3,52 .. +2,25\text{ m}$); yükseklik $2,95\text{ m}$.
+    - **Aks Kanatçığı (Axle Sub-wing):** İniş takımı tekerlek dingilini saran $1,52 \times 0,36\text{ m}$ aerodinamik taşıyıcı kaplama.
+    - **Motor & Pervane:** **Oberursel Ur.II** 9 silindirli hava soğutmalı **döner (rotary) motor** ($110\text{ BG @ }1200\text{ RPM}$, ağırlık $\approx 140\text{ kg}$). Krank mili gövde yangın perdesine **SABİTTİR**; 9 silindir, karter ve $\varnothing 2,62\text{ m}$ (`PROP_R = 1.31 m`) *Axial* lamine ceviz pervane $1:1$ oranla **BİRLİKTE DÖNER**!
+    - **Silahlar & Senkronizasyon:** Kokpit önünde 2 adet **7,92 mm LMG 08/15 "Spandau"** makineli tüfek ($2 \times 500 = 1000\text{ mermi}$) ve motor karterindeki kam halkasından tahrik alan Fokker *Zentralsteuerung* itici çubuklu senkronizasyon düzeneği.
+- **Tartışmalı tarihsel noktalar:**
+  - Popüler kültürde tüm Fokker Dr.I uçaklarının "kırmızı" olduğu sanılır; oysa gerçekte yalnızca Manfred von Richthofen'in birkaç uçağı (*Dr.I 425/17* vb.) tamamen kırmızıya boyanmıştı. Üretilen 320 adet Dr.I'in büyük çoğunluğu fabrikadan **zeytin yeşili / kahverengi çizgili kamuflaj (*Streifentarnung*)** ve açık gök mavisi alt yüzeyle çıkmıştır.
+- **15 Bağımsız Mekanik Parça Grubu Planı (5 Alt Sistem):**
+  - **Oberursel Ur.II Döner Motor & Pervane (`rotary_engine` — 4 Grup):**
+    1. `fk_propeller`: Axial $\varnothing 2,62\text{ m}$ İki Palli Lamine Ceviz Pervane & Göbek Flanşı
+    2. `fk_rotary_block`: Oberursel Ur.II Döner Karter & 9 Silindir Bloğu (Pervaneyle Birlikte Döner!)
+    3. `fk_fixed_crank`: Sabit İçi Boş Krank Mili, Arka Motor Yatağı & Karbüratör Girişi (Gövdeye Sabit!)
+    4. `fk_cowling`: Alüminyum At Nalı Motor Kaportası (X-Ray Dış Kabuk: `isOuterShell: true`)
+  - **Senkronizasyon & Spandau Silahları (`sync_weapons` — 3 Grup):**
+    5. `fk_sync_gear`: Fokker *Zentralsteuerung* Senkronizasyon Kam Halkası, İtici Çubuklar & Tetik Kamları
+    6. `fk_spandau_guns`: İkiz 7,92 mm LMG 08/15 "Spandau" Hava Soğutmalı Makineli Tüfekler
+    7. `fk_ammo_boxes`: Alüminyum Mühimmat Sandıkları & Boş Kovan Olukları ($2 \times 500\text{ Mermi}$)
+  - **Üç Kanat (Triplane) & İç Kutu Kiriş (`triplane_wings` — 3 Grup):**
+    8. `fk_wings_skin`: Üst, Orta ve Alt Kanat Kumaş Kaplaması (X-Ray Dış Kabuk: `isOuterShell: true`)
+    9. `fk_wings_spars`: Kalın Konsol Ahşap Kutu Kirişler (*Box Spars*) & Huş Kontrplak Kaburgalar
+    10. `fk_interplane_struts`: Kanatlar Arası Tekil Dikmeler (*Interplane Struts*) & Kabin Payandaları (Üç kanada tam temaslı)
+  - **Çelik Boru Gövde & Kokpit (`fuselage_cockpit` — 3 Grup):**
+    11. `fk_fuselage_skin`: Kumaş Gövde Kaplaması & *Balkenkreuz* İşaretleri (`isOuterShell: true`)
+    12. `fk_steel_truss`: Kaynaklı Çelik Boru Gövde Kafesi (*Steel-Tube Truss*), Kokpit, Lövye & Koltuk
+    13. `fk_fuel_castor`: Ön Benzin (70 L) ve Hint Yağı (*Castor Oil* — 20 L) Birleşik Tankı
+  - **Kumanda Yüzeyleri & Aks Kanatçıklı İniş Takımı (`controls_gear` — 2 Grup):**
+    14. `fk_control_surfaces`: Boynuz Dengeli Kanatçıklar, Üçgen İrtifa Dümeni & Tam Hareketli İstikamet Dümeni
+    15. `fk_landing_gear`: Aerodinamik Aks Kanatçıklı (*Axle Sub-wing*) Ana İniş Takımı & Kuyruk Kızağı
+- **Mekanik Hesaplar (Döner Motor, Senkronizasyon Açısı ve Zemin Teması):**
+  - **Oberursel Ur.II Döner Motor Matematiği:**
+    - Sabit krank mili (`partFixedCrank`) $\omega = 0$ ile gövdede sabit durur (`dCrank = 0`); 9 silindirli blok (`rotarySpinGrp`) ve pervane (`propSpinGrp`) $\theta(t) = \int \omega_{\text{motor}}\,dt$ açısıyla $1:1$ birlikte döner (`dProp === dRotary`).
+  - **Senkronizasyon Matematiği (Açık vs Kapalı — Pervane İsabeti):**
+    - İkiz Spandau namluları $X = \pm 0,18\text{ m}, Y = +0,39\text{ m}$ konumundan $+Z$ yönüne ateş eder. Pervane düzlemi ($Z = +2,22\text{ m}$) üzerinde mermi geçiş noktaları merkeze göre $\alpha_{\text{namlu}} = \text{atan2}(-x_{\text{namlu}}, y_{\text{namlu}})$ açılarındadır.
+    - İki palli pervanenin pal açıları $\beta_0 = -\theta \pmod{2\pi}$ ve $\beta_1 = (\beta_0 + \pi) \pmod{2\pi}$'dir.
+    - **Senkronizasyon AÇIK (`syncEnabled = true`):** $|\text{shortestAngleDist}(\beta_k, \alpha_{\text{namlu}})| < 0,22\text{ rad}$ ($\approx 12,6^\circ$) olduğunda Fokker kamı tetiği kilitler; mermi **yalnızca pala namlu önünde değilken** ateşlenir (`propHits === 0`).
+    - **Senkronizasyon KAPALI (`syncEnabled = false`):** Tüfekler pala konumuna bakmaksızın ateş eder; atış anında $|\text{shortestAngleDist}(\beta_k, \alpha_{\text{namlu}})| < 0,22\text{ rad}$ ise mermi pervane palasına çarpar (`propHits++`) ve kırmızı kıvılcım çakar.
+  - **Zemin Teması:**
+    - Ana tekerlekler ($Y_{\text{merkez}} = -0,96\text{ m}, R_w = 0,35\text{ m}, Z = +0,88\text{ m}$) ve arka kuyruk kızağı ($Y_{\text{alt}} = -0,44\text{ m}, Z = -3,28\text{ m}$) üzerinden hesaplanan `GROUND_PITCH` ve `GROUND_Y` ile yerde dururken $\min(y) = 0,000\text{ m}$ tam zemin teması sağlanır.
+- **Test komutu ve GERÇEK çıktı:**
+  - Komut: `node C:\Users\hyper\.gemini\antigravity\brain\8359d426-d9a9-43d9-901a-3a6dd7dc21f1\scratch\threetest\test_fokker.js`
+  - Gerçek Çıktı:
+    `DOĞRULANDI [fokker.js]: 15 grup, 264 mesh, min.y=-0.000m, Döner Motor 1:1 (dProp=4.500 === dRotary=4.500, sabitKrank=0) OK, RPM=0 duruş OK, Senkron AÇIK(mermi=985, pervaneİsabet=0) & Senkron KAPALI(mermi=968, pervaneİsabet=2) OK, Dikme-Kanat teması OK, UTF-8 temiz.`
+- **Ekran görüntüleri:**
+  - `C:\Users\hyper\.gemini\antigravity\brain\8359d426-d9a9-43d9-901a-3a6dd7dc21f1\scratch\rev_fokker_iso.png` — Fabrika standart çizgili kamuflajı (*Streifentarnung*), üç kanatlı (triplane) konsol yapı, kanatlar arası tekil dikmeler, aks kanatçıklı iniş takımı ve dönen Axial pervane.
+  - `C:\Users\hyper\.gemini\antigravity\brain\8359d426-d9a9-43d9-901a-3a6dd7dc21f1\scratch\rev_fokker_front_xray.png` — X-Ray burun kesitinde saydamlaşan at nalı kaporta içinde 9 silindirli Oberursel Ur.II döner motor, bakır emme boruları, çelik boru gövde kafesi ve üç kanadın içindeki kalın ahşap kutu kirişler + huş kontrplak kaburgalar.
+  - `C:\Users\hyper\.gemini\antigravity\brain\8359d426-d9a9-43d9-901a-3a6dd7dc21f1\scratch\rev_fokker_breech_xray.png` — İlk çekimde `breech` kamerası biraz alçak kaldığı için `camPresets.breech` `[1.95, 2.25, 2.55]` olarak yükseltildi; ikinci çekimde döner motorun arkasındaki sabit krank mili, pirinç senkronizasyon kam halkası, itici çubuklar, ikiz 7,92 mm Spandau makineli tüfekler ve benzin/hint yağı tankı engelsiz doğrulandı.
+- **Bilinen eksikler ve bilinçli tavizler:**
+  - Yüksek devirde (1100 RPM) ekran yenileme hızı nedeniyle oluşan stroboskopik donma etkisini önlemek için görsel açısal hız üst sınırı `18 rad/sn` ile sınırlandırılmış ve yarı-saydam pervane diski (`propBlurDisc`) ile desteklenmiştir (`RPM = 0` iken tam `0 rad/sn` olarak durur).
+- **İnceleyicinin özellikle bakması gerekenler:**
+  1. **X-Ray + `Döner Motor` kamerası:** Krank mili (`3. Sabit İçi Boş Krank Mili`) gövdeye sabit dururken 9 silindirli Oberursel Ur.II bloğunun pervaneyle 1:1 birlikte dönmesi.
+  2. Sağ paneldeki **"⚙️ Senkronizasyon: AÇIK ⇄ ⚠️ Senkronizasyon: KAPALI"** düğmesi: Senkronizasyon kapatılıp ateşlendiğinde mermilerin dönen pervaneyi vurması (`PERVANE İSABETİ` sayacının artması ve kırmızı kıvılcım).
+  3. 4 tarihsel kaplama seçeneği: Varsayılan *Fabrika Çizgili (Streifentarnung)* yanında *Kızıl Baron (Dr.I 425/17)*, *Werner Voss (F.I 103/17)* ve *Jasta 18 "Raben"*.
+- **Çekirdek (`simulator.html`) değişikliği yapıldı mı?**
+  - Yalnızca standart adaptör entegrasyonu satırları eklendi (`<script src="js/vehicles/fokker.js"></script>`, `const fokker = window.VehicleBuilders.fokker(buildCtx)` ve `ADAPTERS` / `VEHICLE_ROOTS` kaydı). Çekirdek mantığına dokunulmadı.
+
+
+
 
 
 
