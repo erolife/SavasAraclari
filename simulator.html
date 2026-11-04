@@ -111,9 +111,266 @@
     .timeline-pills {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       overflow-x: auto;
       padding: 2px;
+    }
+
+    .vehicle-nav-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .veh-step-btn {
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(241, 236, 225, 0.9);
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      line-height: 1;
+    }
+
+    .veh-step-btn:hover {
+      border-color: var(--accent);
+      color: #b45309;
+      background: #ffffff;
+    }
+
+    .veh-menu-btn {
+      padding: 5px 11px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      border: 1px solid rgba(2, 132, 199, 0.45);
+      background: rgba(2, 132, 199, 0.1);
+      color: #0369a1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .veh-menu-btn:hover,
+    .veh-menu-btn.open {
+      background: rgba(2, 132, 199, 0.18);
+      border-color: #0284c7;
+      color: #0c4a6e;
+      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.15);
+    }
+
+    .vehicle-menu-popover {
+      position: fixed;
+      top: 66px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(680px, calc(100vw - 32px));
+      max-height: calc(100vh - 150px);
+      background: rgba(250, 246, 238, 0.98);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(15, 23, 42, 0.18);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(15, 23, 42, 0.24);
+      z-index: 120;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .vehicle-menu-popover.open {
+      display: flex;
+    }
+
+    .vmp-header {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+      background: rgba(241, 236, 225, 0.85);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .vmp-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .vmp-tab {
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 10px;
+      font-family: var(--font-mono);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(255, 255, 255, 0.75);
+      color: #475569;
+      cursor: pointer;
+    }
+
+    .vmp-tab.active {
+      background: rgba(217, 119, 6, 0.16);
+      border-color: var(--accent);
+      color: #b45309;
+      font-weight: 700;
+    }
+
+    .vmp-search {
+      padding: 5px 9px;
+      border-radius: 6px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #ffffff;
+      font-size: 11px;
+      font-family: var(--font-sans);
+      color: #0f172a;
+      width: 175px;
+      outline: none;
+    }
+
+    .vmp-search:focus {
+      border-color: #0284c7;
+    }
+
+    .vmp-body {
+      padding: 10px 14px 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .vmp-era-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .vmp-era-title {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #64748b;
+      padding-bottom: 2px;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.35);
+    }
+
+    .vmp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 6px;
+    }
+
+    .vmp-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(255, 255, 255, 0.78);
+      cursor: pointer;
+      transition: all 0.16s ease;
+      text-align: left;
+    }
+
+    .vmp-item:hover {
+      border-color: rgba(217, 119, 6, 0.65);
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .vmp-item.active {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(217, 119, 6, 0.14);
+    }
+
+    .vmp-item.planned {
+      opacity: 0.86;
+      border-style: dashed;
+    }
+
+    .vmp-item-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .vmp-icon {
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+
+    .vmp-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .vmp-meta {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      color: #64748b;
+    }
+
+    .vmp-badge {
+      font-size: 9px;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .vmp-badge.live {
+      background: rgba(16, 185, 129, 0.14);
+      color: #047857;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .vmp-badge.planned {
+      background: rgba(100, 116, 139, 0.12);
+      color: #475569;
+      border: 1px solid rgba(100, 116, 139, 0.3);
+    }
+
+    .vmp-footer {
+      padding: 8px 14px;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(241, 236, 225, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #475569;
+    }
+
+    .vmp-footer a {
+      color: #0284c7;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .vmp-footer a:hover {
+      text-decoration: underline;
     }
 
     .era-pill {
@@ -635,22 +892,31 @@
       </div>
     </div>
 
-    <div class="timeline-pills">
-      <div class="era-pill" id="pill-ballista" data-vehicle="ballista" data-era="active">
-        <span>★ M.Ö. 300: Ballista</span>
+    <div class="vehicle-nav-wrap" id="vehicle-nav-wrap">
+      <button class="veh-step-btn" id="btn-vehicle-prev" title="Önceki Aktif Araç (Tarihsel Sıra)">◀</button>
+      <div class="timeline-pills" id="timeline-pills">
+        <div class="era-pill" id="pill-ballista" data-vehicle="ballista" data-era="active">
+          <span>🏹 M.Ö. 300: Ballista</span>
+        </div>
+        <div class="era-pill" id="pill-trebuchet" data-vehicle="trebuchet" data-era="active">
+          <span>🏰 1250: Trebuchet</span>
+        </div>
+        <div class="era-pill" id="pill-sahi" data-vehicle="sahi" data-era="active">
+          <span>🏺 1453: Şahi Topu</span>
+        </div>
+        <div class="era-pill active" id="pill-tiger" data-vehicle="tiger" data-era="active">
+          <span>🔥 1942: Tiger I Tankı</span>
+        </div>
+        <div class="era-pill" id="pill-spitfire" data-vehicle="spitfire" data-era="active">
+          <span>✈️ 1943: Spitfire</span>
+        </div>
       </div>
-      <div class="era-pill" id="pill-trebuchet" data-vehicle="trebuchet" data-era="active">
-        <span>★ 1250: Trebuchet</span>
-      </div>
-      <div class="era-pill" id="pill-sahi" data-vehicle="sahi" data-era="active">
-        <span>★ 1453: Şahi Topu</span>
-      </div>
-      <div class="era-pill active" id="pill-tiger" data-vehicle="tiger" data-era="active">
-        <span>★ 1942: Tiger I Tankı</span>
-      </div>
-      <div class="era-pill" id="pill-spitfire" data-vehicle="spitfire" data-era="active">
-        <span>★ 1943: Spitfire</span>
-      </div>
+      <button class="veh-step-btn" id="btn-vehicle-next" title="Sonraki Aktif Araç (Tarihsel Sıra)">▶</button>
+      <button class="veh-menu-btn" id="btn-vehicle-menu" title="Tüm Tarihsel Araç Kataloğunu Aç (1. ve 2. Grup)">
+        <span>🗂️ Araç Seç</span>
+        <span id="veh-menu-count" style="opacity:0.85;">(5/10)</span>
+        <span>▾</span>
+      </button>
     </div>
 
     <div class="top-actions">
@@ -658,6 +924,26 @@
       <button class="btn" id="btn-reset-cam">🎯 Kamerayı Sıfırla</button>
     </div>
   </header>
+
+  <!-- VEHICLE CATALOG POPOVER MENU -->
+  <div class="vehicle-menu-popover" id="vehicle-menu-popover" role="dialog" aria-label="Tarihsel Araç Seçici">
+    <div class="vmp-header">
+      <div class="vmp-tabs" id="vmp-tabs">
+        <button class="vmp-tab active" data-filter="all">Tümü (10)</button>
+        <button class="vmp-tab" data-filter="live">🟢 Aktif (5)</button>
+        <button class="vmp-tab" data-filter="planned">⏳ Planlı 2. Grup (5)</button>
+        <button class="vmp-tab" data-filter="land">🪖 Kara</button>
+        <button class="vmp-tab" data-filter="sea">⚓ Deniz</button>
+        <button class="vmp-tab" data-filter="air">✈️ Hava</button>
+      </div>
+      <input type="search" class="vmp-search" id="vmp-search" placeholder="Araç veya mekanik ara..." />
+    </div>
+    <div class="vmp-body" id="vmp-body"></div>
+    <div class="vmp-footer">
+      <span id="vmp-status-text">Katalogdan bir araca tıklayarak doğrudan geçiş yapabilirsiniz.</span>
+      <a href="index.html#katalog">Tam Filtreli Müze Kataloğu →</a>
+    </div>
+  </div>
 
   <!-- LEFT PANEL: TEARDOWN, VIEW MODES & SUBSYSTEMS -->
   <aside class="side-panel left-panel">
@@ -871,7 +1157,8 @@
   </footer>
 
   <!-- MAIN THREE.JS PROCEDURAL TEARDOWN ENGINE -->
-  <!-- Araç modülleri (klasik script: sayfa doğrudan dosyadan açıldığında da çalışır) -->
+  <!-- Müze kataloğu ve araç modülleri (klasik script: sayfa doğrudan dosyadan açıldığında da çalışır) -->
+  <script src="js/catalog.js"></script>
   <script src="js/vehicles/tiger1.js"></script>
   <script src="js/vehicles/sahi1453.js"></script>
   <script src="js/vehicles/ballista.js"></script>
@@ -2275,6 +2562,14 @@
       document.querySelectorAll('.era-pill[data-vehicle]').forEach(p => {
         p.classList.toggle('active', p.dataset.vehicle === state.vehicle);
       });
+      document.querySelectorAll('.vmp-item[data-sim]').forEach(item => {
+        item.classList.toggle('active', item.dataset.sim === state.vehicle);
+      });
+      try {
+        const u = new URL(window.location.href);
+        u.searchParams.set('vehicle', state.vehicle);
+        window.history.replaceState(null, '', u.search);
+      } catch (_) {}
 
       if (ad) {
         setupAdapterUI(ad);
@@ -2902,22 +3197,220 @@
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => { toastEl.style.display = 'none'; }, ms);
     }
-    document.querySelectorAll('.era-pill').forEach(pill => {
-      pill.addEventListener('click', () => {
-        if (pill.dataset.vehicle) {
-          switchVehicle(pill.dataset.vehicle);
-          toastEl.style.display = 'none';
-          audio.playClick(660);
-          return;
+    // ============================================================================
+    // 7B. KATALOG TABANLI ARAÇ SEÇİCİ MENÜ VE ZAMAN ÇİZELGESİ GEZİNİMİ
+    // ============================================================================
+    const CATALOG = window.MUSEUM_CATALOG || { FACETS: [], VEHICLES: [] };
+    const ERA_ORDER = (CATALOG.FACETS.find(f => f.key === 'era') || { options: [] }).options;
+    const DOMAIN_MAP = Object.fromEntries(
+      ((CATALOG.FACETS.find(f => f.key === 'domain') || { options: [] }).options).map(o => [o.key, o.label])
+    );
+
+    function getActiveSimList() {
+      const fromCat = CATALOG.VEHICLES
+        .filter(v => v.status === 'live' && VEHICLE_ROOTS[v.sim || v.id])
+        .sort((a, b) => a.year - b.year);
+      if (fromCat.length) return fromCat;
+      return [
+        { id: 'ballista', sim: 'ballista', yearLabel: 'M.Ö. 300', name: 'Ballista', icon: '🏹', status: 'live' },
+        { id: 'trebuchet', sim: 'trebuchet', yearLabel: '1250', name: 'Trebuchet', icon: '🏰', status: 'live' },
+        { id: 'sahi', sim: 'sahi', yearLabel: '1453', name: 'Şahi Topu', icon: '🏺', status: 'live' },
+        { id: 'tiger', sim: 'tiger', yearLabel: '1942', name: 'Tiger I', icon: '🔥', status: 'live' },
+        { id: 'spitfire', sim: 'spitfire', yearLabel: '1943', name: 'Spitfire', icon: '✈️', status: 'live' }
+      ];
+    }
+
+    function shortVehicleName(v) {
+      const map = {
+        ballista: 'Ballista',
+        trebuchet: 'Trebuchet',
+        sahi: 'Şahi Topu',
+        tiger: 'Tiger I Tankı',
+        spitfire: 'Spitfire',
+        leonardo: 'Leonardo Tankı',
+        kadirga: 'Osmanlı Kadırgası',
+        gatling: 'Gatling 1862',
+        mark1: 'Mark I Tankı',
+        fokker: 'Fokker Dr.I'
+      };
+      return map[v.id] || v.name;
+    }
+
+    const pillsContainer = document.getElementById('timeline-pills');
+    const menuBtn = document.getElementById('btn-vehicle-menu');
+    const menuPopover = document.getElementById('vehicle-menu-popover');
+    const menuBody = document.getElementById('vmp-body');
+    const menuSearch = document.getElementById('vmp-search');
+    const menuTabs = document.getElementById('vmp-tabs');
+    const menuCountEl = document.getElementById('veh-menu-count');
+    let menuFilter = 'all';
+
+    function renderTimelinePills() {
+      const liveList = getActiveSimList();
+      const totalCount = CATALOG.VEHICLES.length || liveList.length;
+      if (menuCountEl) menuCountEl.textContent = `(${liveList.length}/${totalCount})`;
+
+      pillsContainer.innerHTML = liveList.map(v => {
+        const simKey = v.sim || v.id;
+        const isActive = simKey === state.vehicle;
+        const yr = v.id === 'sahi' ? '1453' : v.yearLabel;
+        return `<div class="era-pill ${isActive ? 'active' : ''}" id="pill-${simKey}" data-vehicle="${simKey}" title="${v.name} (${v.yearLabel})">
+          <span>${v.icon || '★'} ${yr}: ${shortVehicleName(v)}</span>
+        </div>`;
+      }).join('');
+
+      pillsContainer.querySelectorAll('.era-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          if (pill.dataset.vehicle) {
+            switchVehicle(pill.dataset.vehicle);
+            toastEl.style.display = 'none';
+            closeVehicleMenu();
+            audio.playClick(660);
+          }
+        });
+      });
+    }
+
+    function trNorm(str) {
+      return (str || '').toLocaleLowerCase('tr-TR');
+    }
+
+    function renderVehicleMenu() {
+      const q = trNorm(menuSearch.value.trim());
+      const allVehicles = (CATALOG.VEHICLES || []).slice().sort((a, b) => a.year - b.year);
+      const liveCount = allVehicles.filter(v => v.status === 'live').length;
+      const plannedCount = allVehicles.filter(v => v.status !== 'live').length;
+
+      menuTabs.querySelectorAll('.vmp-tab').forEach(btn => {
+        const f = btn.dataset.filter;
+        if (f === 'all') btn.textContent = `Tümü (${allVehicles.length})`;
+        else if (f === 'live') btn.textContent = `🟢 Aktif (${liveCount})`;
+        else if (f === 'planned') btn.textContent = `⏳ Planlı (${plannedCount})`;
+        btn.classList.toggle('active', f === menuFilter);
+      });
+
+      const filtered = allVehicles.filter(v => {
+        if (menuFilter === 'live' && v.status !== 'live') return false;
+        if (menuFilter === 'planned' && v.status === 'live') return false;
+        if ((menuFilter === 'land' || menuFilter === 'sea' || menuFilter === 'air') && v.domain !== menuFilter) return false;
+        if (q) {
+          const hay = trNorm(`${v.name} ${v.sub} ${v.yearLabel} ${v.eraLabel} ${(v.tags || []).join(' ')}`);
+          if (!hay.includes(q)) return false;
         }
-        const era = pill.dataset.era;
-        toastEl.innerHTML = `<strong>${era}</strong><br/>Bu araç Faz 3 kapsamında zaman çizelgesine eklenecektir. Şu an <strong>Roma Ballistası</strong>, <strong>Trebuchet</strong>, <strong>Osmanlı Şahi Topu</strong>, <strong>Tiger I</strong> ve <strong>Spitfire</strong> simülatörleri arasında geçiş yapabilirsiniz!`;
-        toastEl.style.display = 'block';
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => { toastEl.style.display = 'none'; }, 3800);
-        audio.playClick(480);
+        return true;
+      });
+
+      if (!filtered.length) {
+        menuBody.innerHTML = `<div style="padding:18px; text-align:center; color:#64748b; font-size:12px;">Aramanızla eşleşen araç bulunamadı.</div>`;
+        return;
+      }
+
+      const groups = [];
+      ERA_ORDER.forEach(eraOpt => {
+        const items = filtered.filter(v => v.era === eraOpt.key);
+        if (items.length) groups.push({ label: eraOpt.label, items });
+      });
+      const ungrouped = filtered.filter(v => !ERA_ORDER.some(e => e.key === v.era));
+      if (ungrouped.length) groups.push({ label: 'Diğer Dönemler', items: ungrouped });
+
+      menuBody.innerHTML = groups.map(g => `
+        <div class="vmp-era-group">
+          <div class="vmp-era-title">${g.label} (${g.items.length})</div>
+          <div class="vmp-grid">
+            ${g.items.map(v => {
+              const simKey = v.sim || v.id;
+              const isLive = v.status === 'live' && !!VEHICLE_ROOTS[simKey];
+              const isActive = isLive && simKey === state.vehicle;
+              const domLabel = DOMAIN_MAP[v.domain] || '';
+              return `<button type="button" class="vmp-item ${isActive ? 'active' : ''} ${isLive ? '' : 'planned'}" data-id="${v.id}" data-sim="${isLive ? simKey : ''}">
+                <div class="vmp-item-left">
+                  <span class="vmp-icon">${v.icon || '⚙️'}</span>
+                  <div style="min-width:0;">
+                    <div class="vmp-name">${v.name}</div>
+                    <div class="vmp-meta">${v.yearLabel} • ${domLabel}</div>
+                  </div>
+                </div>
+                <span class="vmp-badge ${isLive ? 'live' : 'planned'}">${isLive ? (isActive ? '★ AÇIK' : '🟢 AKTİF') : '⏳ PLANLI'}</span>
+              </button>`;
+            }).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      menuBody.querySelectorAll('.vmp-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const simKey = item.dataset.sim;
+          const v = (CATALOG.VEHICLES || []).find(x => x.id === item.dataset.id);
+          if (simKey && VEHICLE_ROOTS[simKey]) {
+            switchVehicle(simKey);
+            toastEl.style.display = 'none';
+            closeVehicleMenu();
+            audio.playClick(680);
+          } else if (v) {
+            closeVehicleMenu();
+            const bullets = (v.modal || []).slice(0, 2).map(m => `• ${m}`).join('<br/>');
+            showToast(
+              `<strong>${v.icon || '⏳'} ${v.yearLabel} — ${v.name}</strong> (2. Grup Planlı)<br/>` +
+              `<span style="font-size:11px; color:#cbd5e1;">${v.desc}</span>` +
+              (bullets ? `<div style="margin-top:6px; font-size:11px; color:#f8fafc;">${bullets}</div>` : ''),
+              5200
+            );
+            audio.playClick(480);
+          }
+        });
+      });
+    }
+
+    function openVehicleMenu() {
+      renderVehicleMenu();
+      menuPopover.classList.add('open');
+      menuBtn.classList.add('open');
+    }
+
+    function closeVehicleMenu() {
+      menuPopover.classList.remove('open');
+      menuBtn.classList.remove('open');
+    }
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (menuPopover.classList.contains('open')) closeVehicleMenu();
+      else openVehicleMenu();
+      audio.playClick(580);
+    });
+
+    menuPopover.addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('click', () => closeVehicleMenu());
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuPopover.classList.contains('open')) closeVehicleMenu();
+    });
+
+    menuTabs.querySelectorAll('.vmp-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        menuFilter = tab.dataset.filter;
+        renderVehicleMenu();
+        audio.playClick(540);
       });
     });
+
+    menuSearch.addEventListener('input', () => renderVehicleMenu());
+
+    function stepActiveVehicle(delta) {
+      const list = getActiveSimList();
+      if (!list.length) return;
+      const idx = Math.max(0, list.findIndex(v => (v.sim || v.id) === state.vehicle));
+      const nextIdx = (idx + delta + list.length) % list.length;
+      const target = list[nextIdx];
+      switchVehicle(target.sim || target.id);
+      closeVehicleMenu();
+      audio.playClick(640);
+    }
+
+    document.getElementById('btn-vehicle-prev').addEventListener('click', () => stepActiveVehicle(-1));
+    document.getElementById('btn-vehicle-next').addEventListener('click', () => stepActiveVehicle(1));
+
+    renderTimelinePills();
+    renderVehicleMenu();
 
     // ============================================================================
     // 8. RAYCASTER CLICK & HOVER INSPECTION

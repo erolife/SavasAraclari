@@ -415,39 +415,6 @@
       max-width: 540px;
     }
 
-    /* FILTER PILLS */
-    .era-filters {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .filter-pill {
-      padding: 7px 14px;
-      border-radius: 8px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 600;
-      border: 1px solid var(--border-slate);
-      background: rgba(241, 236, 225, 0.85);
-      color: var(--text-body);
-      cursor: pointer;
-      transition: all 0.18s ease;
-    }
-
-    .filter-pill:hover {
-      border-color: var(--accent);
-      background: #ffffff;
-      color: var(--text-dark);
-    }
-
-    .filter-pill.active {
-      background: var(--accent-soft);
-      border-color: var(--accent);
-      color: var(--accent-dark);
-      font-weight: 700;
-    }
-
     /* HISTORICAL TIMELINE & VEHICLE CATALOG GRID */
     .catalog-grid {
       display: grid;
@@ -721,6 +688,217 @@
       color: var(--text-body);
     }
 
+    /* MÜZE KATALOĞU: ÇOK BOYUTLU FİLTRE PANELİ */
+    .catalog-summary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      border: 1px solid var(--border-warm);
+      border-radius: 12px;
+      background: var(--bg-card);
+    }
+
+    .summary-num {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--accent-dark);
+      font-family: var(--font-mono);
+      line-height: 1;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      color: var(--text-body);
+      line-height: 1.4;
+      font-family: var(--font-mono);
+    }
+
+    .filter-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+    }
+
+    .filter-toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .catalog-search {
+      flex: 1;
+      min-width: 240px;
+      padding: 9px 12px;
+      border-radius: 9px;
+      border: 1px solid var(--border-slate);
+      background: #fffdf8;
+      font-size: 13.5px;
+      color: var(--text-dark);
+      outline: none;
+    }
+
+    .catalog-search:focus,
+    .catalog-sort:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .catalog-sort {
+      padding: 9px 10px;
+      border-radius: 9px;
+      border: 1px solid var(--border-slate);
+      background: #fffdf8;
+      font-size: 12.5px;
+      color: var(--text-dark);
+      font-family: var(--font-mono);
+      cursor: pointer;
+    }
+
+    #catalog-clear:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    .facet-groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 12px 22px;
+    }
+
+    .facet-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: var(--accent-dark);
+      margin-bottom: 6px;
+    }
+
+    .facet-badge {
+      display: inline-block;
+      min-width: 18px;
+      padding: 0 5px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    .facet-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .facet-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-slate);
+      background: rgba(241, 236, 225, 0.85);
+      color: var(--text-body);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .facet-chip:hover {
+      border-color: var(--accent);
+      background: #fff;
+      color: var(--text-dark);
+    }
+
+    .facet-chip.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    .facet-chip.disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .facet-chip.disabled:hover {
+      border-color: var(--border-slate);
+      background: rgba(241, 236, 225, 0.85);
+    }
+
+    .facet-count {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      padding: 0 6px;
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.07);
+      color: var(--text-muted);
+    }
+
+    .facet-chip.active .facet-count {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .filter-result {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(15, 23, 42, 0.12);
+      font-size: 12.5px;
+      color: var(--text-body);
+      font-family: var(--font-mono);
+    }
+
+    .mc-facets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .mc-facet {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(2, 132, 199, 0.08);
+      color: #0369a1;
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+
+    .machine-card.is-planned .mc-blueprint svg {
+      opacity: 0.85;
+    }
+
+    .catalog-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 40px 20px;
+      border: 1px dashed var(--border-slate);
+      border-radius: 14px;
+      color: var(--text-body);
+      text-align: center;
+    }
+
+    .catalog-empty[hidden] {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .facet-groups {
+        grid-template-columns: 1fr;
+      }
+    }
     /* FOOTER */
     .footer {
       margin-top: 40px;
@@ -780,7 +958,7 @@
     </a>
 
     <nav class="nav-links">
-      <a href="#timeline">Tarihsel Katalog (M.Ö. 300 – 1943)</a>
+      <a href="#timeline">Müze Kataloğu & Filtreler</a>
       <a href="#features">Mühendislik Modları</a>
     </nav>
 
@@ -829,8 +1007,8 @@
             <div class="metric-label">Sıfır Harici Dosya, Saf Three.js</div>
           </div>
           <div class="metric-card">
-            <div class="metric-val">5 <span>Dönem</span></div>
-            <div class="metric-label">M.Ö. 300'den II. Dünya Savaşı'na</div>
+            <div class="metric-val" id="metric-vehicles">— <span>Araç</span></div>
+            <div class="metric-label" id="metric-vehicles-label">Müze koleksiyonu</div>
           </div>
         </div>
       </div>
@@ -866,284 +1044,35 @@
     <section class="section" id="timeline">
       <div class="section-header">
         <div>
-          <div class="section-eyebrow">TARİHSEL ZAMAN ÇİZELGESİ & MÜHENDİSLİK KATALOĞU</div>
-          <h2 class="section-title">Kas Gücünden Baruta ve V12 Motorlara</h2>
+          <div class="section-eyebrow">MÜZE KATALOĞU • TARİHSEL ZAMAN ÇİZELGESİ</div>
+          <h2 class="section-title">Kas Gücünden Baruta, V12 Motorlardan Jetlere</h2>
           <p class="section-sub">
-            Her dönemde enerji depolama, geri tepme sönümleme ve zırh teknolojisinin nasıl evrimleştiğini interaktif modeller üzerinden karşılaştırın.
+            Araçları kullanım ortamına, dönemine, enerji kaynağına ve görev tipine göre süzün; mühendisliğin çağlar boyunca nasıl evrimleştiğini interaktif modeller üzerinden karşılaştırın.
           </p>
         </div>
-
-        <div class="era-filters" id="era-filters">
-          <button class="filter-pill active" data-filter="all">Tüm Dönemler (5)</button>
-          <button class="filter-pill" data-filter="ancient">Antik & Orta Çağ (2)</button>
-          <button class="filter-pill" data-filter="gunpowder">Barut Çağı (1)</button>
-          <button class="filter-pill" data-filter="ww2">II. Dünya Savaşı (2)</button>
-        </div>
+        <div class="catalog-summary" id="catalog-summary"></div>
       </div>
 
-      <div class="catalog-grid" id="catalog-grid">
-        <!-- 1. M.Ö. 300 ROMA BALLİSTASI (PAKET 1 — AKTİF SİMÜLATÖR) -->
-        <article class="machine-card featured-active" data-category="ancient">
-          <div>
-            <div class="mc-top">
-              <span class="mc-year">★ M.Ö. 300 • ANTİK ÇAĞ</span>
-              <span class="mc-status live">🟢 AKTİF SİMÜLATÖR</span>
-            </div>
+      <div class="filter-panel" id="filter-panel">
+        <div class="filter-toolbar">
+          <input type="search" id="catalog-search" class="catalog-search" placeholder="🔎 Araç, dönem veya mekanik ara… (ör. palet, burulma, Osmanlı)" aria-label="Katalogda ara" />
+          <select id="catalog-sort" class="catalog-sort" aria-label="Sıralama">
+            <option value="year">Sırala: Kronolojik</option>
+            <option value="year-desc">Sırala: En Yeni Önce</option>
+            <option value="name">Sırala: Alfabetik</option>
+          </select>
+          <button class="btn btn-sm" id="catalog-clear">✕ Filtreleri Temizle</button>
+        </div>
+        <div class="facet-groups" id="facet-groups"></div>
+        <div class="filter-result" id="filter-result"></div>
+      </div>
 
-            <div class="mc-blueprint" style="margin: 12px 0; background: #ede5d4;">
-              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="20" y1="120" x2="300" y2="120" stroke="#94a3b8" stroke-dasharray="4 4"/>
-                <path d="M110 120 L155 75 L195 120" stroke="#334155" stroke-width="3"/>
-                <rect x="148" y="65" width="14" height="55" fill="#d97706" fill-opacity="0.2" stroke="#b45309" stroke-width="2"/>
-                <rect x="55" y="56" width="215" height="12" rx="2" fill="#64748b" fill-opacity="0.25" stroke="#1e293b" stroke-width="2"/>
-                <rect x="75" y="28" width="46" height="58" rx="3" fill="#d97706" fill-opacity="0.18" stroke="#b45309" stroke-width="2"/>
-                <circle cx="88" cy="57" r="8" stroke="#0284c7" stroke-width="2"/>
-                <circle cx="108" cy="57" r="8" stroke="#0284c7" stroke-width="2"/>
-                <path d="M88 49 L45 20 M108 65 L45 94" stroke="#1e293b" stroke-width="3" stroke-linecap="round"/>
-                <path d="M45 20 L195 60 L45 94" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="3 2"/>
-                <line x1="70" y1="60" x2="210" y2="60" stroke="#0f172a" stroke-width="3"/>
-                <polygon points="62,60 76,55 76,65" fill="#dc2626"/>
-                <circle cx="252" cy="62" r="12" fill="#0284c7" fill-opacity="0.2" stroke="#0284c7" stroke-width="2"/>
-              </svg>
-              <span class="mc-blueprint-tag">CANLI 3D: TOR-BAL-300</span>
-            </div>
-
-            <h3 class="mc-title">Roma Burulma Yaylı Ballistası</h3>
-            <div class="mc-sub">TORSION SPRING ARTILLERY • VITRUVIUS ORANLARI</div>
-            <p class="mc-desc">
-              Esnek ahşap yay yerine bükülmüş hayvan tendonu demetlerinde depolanan burulma enerjisini kullanan hassas atış makinesi. Halkaları çevirip ön gerilim verin, çıkrık ve cırcırla kurun, pençe tetikle ateşleyin; ok gerçek bir kavisle uçsun.
-            </p>
-
-            <div class="mc-subsystems">
-              <span class="sys-tag">2x Tendon Burulma Yayı</span>
-              <span class="sys-tag">Çıkrık & Cırcır</span>
-              <span class="sys-tag">Sürgü & Pençe Tetik</span>
-              <span class="sys-tag">Seri Atış Gösterimi</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="mc-specs" style="margin-bottom: 12px;">
-              <div>ENERJİ KAYNAĞI<strong>Burulma (Tendon)</strong></div>
-              <div>MENZİL (HESAP)<strong>~500 m @30° (tahmini)</strong></div>
-              <div>TEMEL ÖLÇÜ<strong>D = Ok Boyu / 9</strong></div>
-              <div>3D PARÇA SAYISI<strong>12 Bağımsız Grup</strong></div>
-            </div>
-            <div class="mc-actions">
-              <a href="simulator.html?vehicle=ballista" class="btn btn-primary btn-sm">🏹 3D Simülatörü Aç →</a>
-              <a href="simulator.html?vehicle=ballista&mode=xray" class="btn btn-cyan btn-sm" style="flex:0.45;" title="X-Ray Kesit Modunda Aç">🩻 Kesit</a>
-              <a href="simulator.html?vehicle=ballista&mode=explode" class="btn btn-sm" style="flex:0.45;" title="Parçalarına Ayrılmış Modda Aç">💥 %85</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 2. 1250 KARŞI AĞIRLIKLI TREBUCHET (PAKET 1 — AKTİF SİMÜLATÖR) -->
-        <article class="machine-card featured-active" data-category="ancient">
-          <div>
-            <div class="mc-top">
-              <span class="mc-year">★ 1250 • ORTA ÇAĞ</span>
-              <span class="mc-status live">🟢 AKTİF SİMÜLATÖR</span>
-            </div>
-
-            <div class="mc-blueprint" style="margin: 12px 0; background: #ede5d4;">
-              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/>
-                <polygon points="150,32 105,124 195,124" fill="#d97706" fill-opacity="0.12" stroke="#1e293b" stroke-width="2.5"/>
-                <line x1="150" y1="32" x2="150" y2="124" stroke="#475569" stroke-width="2"/>
-                <line x1="105" y1="54" x2="255" y2="18" stroke="#b45309" stroke-width="4" stroke-linecap="round"/>
-                <circle cx="150" cy="43" r="5" fill="#0284c7"/>
-                <line x1="105" y1="54" x2="105" y2="75" stroke="#1e293b" stroke-width="2"/>
-                <polygon points="86,75 124,75 118,108 92,108" fill="#334155" fill-opacity="0.3" stroke="#0f172a" stroke-width="2"/>
-                <path d="M255 18 Q275 65 225 118" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="3 2"/>
-                <circle cx="222" cy="118" r="7" fill="#475569" stroke="#0f172a" stroke-width="1.5"/>
-              </svg>
-              <span class="mc-blueprint-tag">CANLI 3D: TRB-1250-CW</span>
-            </div>
-
-            <h3 class="mc-title">Karşı Ağırlıklı Trebuchet (Mancınık)</h3>
-            <div class="mc-sub">GRAVITY COUNTERWEIGHT ENGINE • KALE KUŞATMASI</div>
-            <p class="mc-desc">
-              Ağırlığın düşüşünü 1:4 kaldıraç kolu ve sapanın kamçı etkisiyle hıza dönüştüren Orta Çağ kuşatma makinesi. Çarklarla kurun, karşı ağırlığı ve bırakma açısını ayarlayın, menteşeli ile sabit ağırlığı karşılaştırın.
-            </p>
-
-            <div class="mc-subsystems">
-              <span class="sys-tag">Menteşeli ⇄ Sabit Ağırlık</span>
-              <span class="sys-tag">1:4 Kaldıraç Kolu</span>
-              <span class="sys-tag">Fiziksel Sapan Simülasyonu</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="mc-specs" style="margin-bottom: 12px;">
-              <div>KARŞI AĞIRLIK<strong>3 – 10 t (ayarlanabilir)</strong></div>
-              <div>MENZİL (MODEL)<strong>~320 m @6 t, 45°</strong></div>
-              <div>GÜLLE<strong>100 kg Granit</strong></div>
-              <div>3D PARÇA SAYISI<strong>14 Bağımsız Grup</strong></div>
-            </div>
-            <div class="mc-actions">
-              <a href="simulator.html?vehicle=trebuchet" class="btn btn-primary btn-sm">🏰 3D Simülatörü Aç →</a>
-              <a href="simulator.html?vehicle=trebuchet&mode=xray" class="btn btn-cyan btn-sm" style="flex:0.45;" title="X-Ray Kesit Modunda Aç">🩻 Kesit</a>
-              <a href="simulator.html?vehicle=trebuchet&mode=explode" class="btn btn-sm" style="flex:0.45;" title="Parçalarına Ayrılmış Modda Aç">💥 %85</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 3. 1453 OSMANLI ŞAHİ TOPU (FAZ 2 FEATURED ACTIVE SIMULATOR) -->
-        <article class="machine-card featured-active" data-category="gunpowder">
-          <div>
-            <div class="mc-top">
-              <span class="mc-year">★ 1453 • BARUT ÇAĞI</span>
-              <span class="mc-status live">🟢 FAZ 2 AKTİF SİMÜLATÖR</span>
-            </div>
-
-            <div class="mc-blueprint" style="margin: 12px 0; background: #ede5d4;">
-              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="20" y1="118" x2="300" y2="118" stroke="#94a3b8" stroke-dasharray="4 4"/>
-                <rect x="42" y="96" width="225" height="18" rx="2" fill="#b45309" fill-opacity="0.2" stroke="#78350f" stroke-width="2"/>
-                <rect x="50" y="64" width="76" height="32" rx="3" fill="#d97706" fill-opacity="0.32" stroke="#b45309" stroke-width="2.2"/>
-                <line x1="126" y1="56" x2="126" y2="104" stroke="#0284c7" stroke-width="2.5" stroke-dasharray="3 2"/>
-                <rect x="126" y="56" width="132" height="44" rx="3" fill="#d97706" fill-opacity="0.24" stroke="#92400e" stroke-width="2.2"/>
-                <line x1="158" y1="54" x2="158" y2="102" stroke="#78350f" stroke-width="3"/>
-                <line x1="198" y1="54" x2="198" y2="102" stroke="#78350f" stroke-width="3"/>
-                <line x1="248" y1="54" x2="248" y2="102" stroke="#78350f" stroke-width="3"/>
-                <circle cx="280" cy="78" r="15" fill="#64748b" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/>
-              </svg>
-              <span class="mc-blueprint-tag">CANLI 3D: DARDANELLES-1464-630MM</span>
-            </div>
-
-            <h3 class="mc-title">Osmanlı Şahi Topu (Dardanelles Gun)</h3>
-            <div class="mc-sub">TWO-PIECE CAST BRONZE BOMBARD • ~63 CM AĞIZ • 1464</div>
-            <p class="mc-desc">
-              1453 kuşatma toplarının günümüze ulaşan en yakın örneği: taşınabilmesi için birbirine vidalanan <strong>iki parçalı dev tunç döküm</strong>. Vidasını sökün, nakliye arabalarına yükleyin, X-Ray ile dar barut odasını görün, dolum döngüsünü oynatın ve ateşleyin!
-            </p>
-
-            <div class="mc-subsystems">
-              <span class="sys-tag">Vidalı İki Parça</span>
-              <span class="sys-tag">~315 kg Granit Gülle</span>
-              <span class="sys-tag">Atış Mevzii & Nakliye</span>
-              <span class="sys-tag">6 Adımlı Dolum Döngüsü</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="mc-specs" style="margin-bottom: 12px;">
-              <div>TOPLAM AĞIRLIK<strong>16,8 Ton Tunç</strong></div>
-              <div>UZUNLUK / AĞIZ<strong>~5,18 m / ~63 cm</strong></div>
-              <div>GÜLLE (HESAPLANAN)<strong>Ø 61 cm ≈ 315 kg</strong></div>
-              <div>3D PARÇA SAYISI<strong>13 Bağımsız Grup</strong></div>
-            </div>
-            <div class="mc-actions">
-              <a href="simulator.html?vehicle=sahi" class="btn btn-primary btn-sm">🏺 3D Simülatörü Aç →</a>
-              <a href="simulator.html?vehicle=sahi&mode=xray" class="btn btn-cyan btn-sm" style="flex:0.45;" title="X-Ray Kesit Modunda Aç">🩻 Kesit</a>
-              <a href="simulator.html?vehicle=sahi&mode=explode" class="btn btn-sm" style="flex:0.45;" title="Parçalarına Ayrılmış Modda Aç">💥 %85</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 4. 1942 TIGER I TANKI (FEATURED ACTIVE SIMULATOR) -->
-        <article class="machine-card featured-active" data-category="ww2">
-          <div>
-            <div class="mc-top">
-              <span class="mc-year">★ 1942 • II. DÜNYA SAVAŞI</span>
-              <span class="mc-status live">🟢 ŞU AN AKTİF SİMÜLATÖR</span>
-            </div>
-
-            <div class="mc-blueprint" style="margin: 12px 0; background: #ede5d4;">
-              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="20" y1="122" x2="300" y2="122" stroke="#94a3b8" stroke-dasharray="4 4"/>
-                <rect x="52" y="76" width="175" height="28" rx="2" fill="#6b7460" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/>
-                <rect x="46" y="96" width="186" height="24" rx="12" fill="#334155" fill-opacity="0.22" stroke="#0f172a" stroke-width="2"/>
-                <circle cx="72" cy="108" r="9" fill="#6b7460" stroke="#1e293b" stroke-width="1.6"/>
-                <circle cx="96" cy="108" r="9" fill="#475569" stroke="#1e293b" stroke-width="1.6"/>
-                <circle cx="120" cy="108" r="9" fill="#6b7460" stroke="#1e293b" stroke-width="1.6"/>
-                <circle cx="144" cy="108" r="9" fill="#475569" stroke="#1e293b" stroke-width="1.6"/>
-                <circle cx="168" cy="108" r="9" fill="#6b7460" stroke="#1e293b" stroke-width="1.6"/>
-                <circle cx="192" cy="108" r="9" fill="#475569" stroke="#1e293b" stroke-width="1.6"/>
-                <rect x="96" y="48" width="86" height="28" rx="3" fill="#6b7460" fill-opacity="0.45" stroke="#0f172a" stroke-width="2"/>
-                <rect x="108" y="38" width="26" height="10" rx="2" fill="#475569" stroke="#0f172a" stroke-width="1.6"/>
-                <rect x="182" y="57" width="104" height="7" fill="#334155" stroke="#0f172a" stroke-width="1.8"/>
-                <rect x="284" y="54" width="14" height="13" rx="2" fill="#d97706" stroke="#0f172a" stroke-width="1.8"/>
-              </svg>
-              <span class="mc-blueprint-tag">CANLI 3D: SDKFZ-181-TIGER</span>
-            </div>
-
-            <h3 class="mc-title">Pz.Kpfw. VI "Tiger I" (Ausf. E)</h3>
-            <div class="mc-sub">8.8 CM KwK 36 L/56 • MAYBACH HL230 V12 • 57 TON</div>
-            <p class="mc-desc">
-              100mm dikey Krupp ön zırhı, 88mm yüksek ilk hızlı topu, arkada çalışan 12 pistonlu Maybach V12 motoru, öndeki Olvar hidrolik şanzımanı ve 16 burulma çubuğuyla tam teşekküllü interaktif 3D simülatör.
-            </p>
-
-            <div class="mc-subsystems">
-              <span class="sys-tag">8.8cm Top & Geri Tepme</span>
-              <span class="sys-tag">12 Hareketli V12 Piston</span>
-              <span class="sys-tag">92x 88mm Mühimmat Rafı</span>
-              <span class="sys-tag">16x Burulma Çubuğu</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="mc-specs" style="margin-bottom: 12px;">
-              <div>MOTOR GÜCÜ<strong>700 BG @ 3000 RPM</strong></div>
-              <div>ZIRH KALINLIĞI<strong>100mm Ön / 80mm Yan</strong></div>
-              <div>ANA SİLAH<strong>8.8 cm KwK 36 L/56</strong></div>
-              <div>3D PARÇA SAYISI<strong>22 Bağımsız Grup</strong></div>
-            </div>
-            <div class="mc-actions">
-              <a href="simulator.html" class="btn btn-primary btn-sm">🚀 3D Simülatörü Aç</a>
-              <a href="simulator.html?mode=explode" class="btn btn-sm">💥 Teardown (%85)</a>
-              <a href="simulator.html?mode=xray" class="btn btn-cyan btn-sm">🩻 X-Ray</a>
-            </div>
-          </div>
-        </article>
-
-        <!-- 5. 1943 SUPERMARINE SPITFIRE MK IX (AKTİF SİMÜLATÖR) -->
-        <article class="machine-card featured-active" data-category="ww2">
-          <div>
-            <div class="mc-top">
-              <span class="mc-year">★ 1943 • II. DÜNYA SAVAŞI</span>
-              <span class="mc-status live">🟢 AKTİF SİMÜLATÖR</span>
-            </div>
-
-            <div class="mc-blueprint" style="margin: 12px 0; background: #ede5d4;">
-              <svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <line x1="20" y1="70" x2="300" y2="70" stroke="#94a3b8" stroke-dasharray="4 4"/>
-                <ellipse cx="155" cy="70" rx="34" ry="56" fill="#0284c7" fill-opacity="0.14" stroke="#0284c7" stroke-width="2"/>
-                <path d="M52 70 C85 56, 200 58, 255 70 C200 82, 85 84, 52 70 Z" fill="#6b7460" fill-opacity="0.32" stroke="#1e293b" stroke-width="2"/>
-                <rect x="188" y="62" width="42" height="16" rx="2" fill="#d97706" fill-opacity="0.35" stroke="#b45309" stroke-width="1.8"/>
-                <line x1="255" y1="36" x2="255" y2="104" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
-                <line x1="175" y1="34" x2="208" y2="34" stroke="#dc2626" stroke-width="2.2"/>
-                <line x1="175" y1="106" x2="208" y2="106" stroke="#dc2626" stroke-width="2.2"/>
-              </svg>
-              <span class="mc-blueprint-tag">CANLI 3D: SPITFIRE-MK9-V12</span>
-            </div>
-
-            <h3 class="mc-title">Supermarine Spitfire Mk IX</h3>
-            <div class="mc-sub">ROLLS-ROYCE MERLIN 66 V12 • ELİPTİK KANAT</div>
-            <p class="mc-desc">
-              İki kademeli süperşarjlı Merlin 66 V12, eliptik kanat (kiriş ve kaburgalarıyla), "C" kanadı silahları ve dışa katlanan iniş takımı. Pervaneyi döndürün, kumanda yüzeylerini oynatın, uçağı müze kaidesine kaldırıp takımı toplayın ve salvo atın.
-            </p>
-
-            <div class="mc-subsystems">
-              <span class="sys-tag">Merlin 66 V12 + Süperşarj</span>
-              <span class="sys-tag">Eliptik Kanat Kaburgası</span>
-              <span class="sys-tag">Kumanda Yüzeyleri & İniş Takımı</span>
-              <span class="sys-tag">2 × 20 mm + 4 × .303</span>
-          </div>
-
-          <div>
-            <div class="mc-specs" style="margin-bottom: 12px;">
-              <div>MOTOR<strong>Merlin 66, ~1.700 BG</strong></div>
-              <div>MAKSİMUM HIZ<strong>~650 km/sa (irtifada)</strong></div>
-              <div>İRTİFA TAVANI<strong>13,100 Metre</strong></div>
-              <div>3D PARÇA SAYISI<strong>16 Bağımsız Grup</strong></div>
-            </div>
-            <div class="mc-actions">
-              <a href="simulator.html?vehicle=spitfire" class="btn btn-primary btn-sm">✈️ 3D Simülatörü Aç →</a>
-              <a href="simulator.html?vehicle=spitfire&mode=xray" class="btn btn-cyan btn-sm" style="flex:0.45;" title="X-Ray Kesit Modunda Aç">🩻 Kesit</a>
-              <a href="simulator.html?vehicle=spitfire&mode=explode" class="btn btn-sm" style="flex:0.45;" title="Parçalarına Ayrılmış Modda Aç">💥 %85</a>
-            </div>
-          </div>
-        </article>
+      <div class="catalog-grid" id="catalog-grid"></div>
+      <div class="catalog-empty" id="catalog-empty" hidden>
+        <div style="font-size:30px;">🔍</div>
+        <strong>Bu filtrelerle eşleşen araç yok.</strong>
+        <span>Bir boyuttan seçim kaldırmayı veya aramayı değiştirmeyi deneyin.</span>
+        <button class="btn btn-sm" id="catalog-empty-reset">Filtreleri Temizle</button>
       </div>
     </section>
 
@@ -1210,100 +1139,214 @@
       </div>
       <ul class="modal-list" id="modal-list"></ul>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(15,23,42,0.1); gap:10px; flex-wrap:wrap;">
-        <span style="font-size:12px; color:var(--text-muted);">Şu an aktif olan Faz 1 prototipini hemen deneyimleyebilirsiniz:</span>
-        <a href="simulator.html" class="btn btn-primary btn-sm">🚀 Tiger I Simülatörünü Başlat</a>
+        <span style="font-size:12px; color:var(--text-muted);">Bu araç planlı; simülatörü hazır araçları hemen deneyimleyebilirsiniz:</span>
+        <a href="#katalog?durum=live" class="btn btn-primary btn-sm" onclick="document.getElementById('blueprint-modal').classList.remove('open')">🟢 Simülatörü Hazır Araçları Göster</a>
       </div>
     </div>
   </div>
 
   <!-- SCRIPTS: CATALOG FILTER, MODAL & HERO 3D MINI TEARDOWN PREVIEW -->
+  <script src="js/catalog.js"></script>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    const filterButtons = document.querySelectorAll('.filter-pill');
-    const cards = document.querySelectorAll('.machine-card');
+    // ============================================================================
+    // MÜZE KATALOĞU: kartlar, çok boyutlu filtre, arama, sıralama ve paylaşılabilir URL
+    // Tüm veriler js/catalog.js (window.MUSEUM_CATALOG) kaydından gelir.
+    // ============================================================================
+    const { FACETS, VEHICLES } = window.MUSEUM_CATALOG;
+    const facetSel = {};
+    FACETS.forEach(f => { facetSel[f.key] = new Set(); });
+    let searchQuery = '';
+    let sortKey = 'year';
 
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        cards.forEach(card => {
-          if (filter === 'all' || card.dataset.category === filter) {
-            card.style.display = 'flex';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
+    const lower = s => String(s).toLocaleLowerCase('tr');
+    const valuesOf = (v, key) => (Array.isArray(v[key]) ? v[key] : [v[key]]);
+    const optionLabel = (facetKey, optKey) => {
+      const f = FACETS.find(x => x.key === facetKey);
+      const o = f && f.options.find(x => x.key === optKey);
+      return o ? o.label : optKey;
+    };
+    const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-    const MODAL_DATA = {
-      ballista: {
-        era: 'M.Ö. 300 • ANTİK ROMA KUŞATMA MÜHENDİSLİĞİ (FAZ 2)',
-        title: 'Roma Burulma Yaylı Ballistası',
-        desc: 'Klasik yaylardan farklı olarak enerjiyi iki dikey çerçeve içine gerilmiş bükümlü tendon demetlerinde (Torsion Skeins) depolar. Simülatörde çıkrık mekanizmasını sararak yayları gerebilecek ve atış anında kolların açısal ivmesini gözlemleyebileceksiniz.',
-        items: [
-          'Sol ve Sağ Burulma Demetleri (Hayvan tendonu & bronz germe bilezikleri)',
-          'Kızaklı Ok Yatağı (Syrinx) ve Bronz Tetik Mandalı (Chele)',
-          'Cırcır Dişlili Germe Çıkrığı (Windlass & Ratchet Pawl)',
-          'Canlı Atış Simülasyonu: Germe kuvveti (kN) ve balistik yörünge hesabı'
-        ]
-      },
-      trebuchet: {
-        era: '1250 • ORTA ÇAĞ KARŞI AĞIRLIK FİZİĞİ (FAZ 2)',
-        title: 'Karşı Ağırlıklı Trebuchet (Karabuga)',
-        desc: '6 tonluk menteşeli ağırlık sandığının serbest düşüşüyle 1:4 oranlı asimetrik kolu döndüren ve ucundaki sapanla 100+ kg kayaları kale surlarına fırlatan çift sarkaçlı mühendislik harikası.',
-        items: [
-          'Menteşeli 6 Tonluk Karşı Ağırlık Sandığı (Hinged Counterweight Box)',
-          'Asimetrik Ana Fırlatma Kolu ve Çelik Taşıyıcı Aks Mili',
-          'Serbest Bırakma Kancası (Release Finger) açısına göre menzil simülasyonu',
-          'Ağır Kuşatma İskeleti ve Çift Çıkrık Kurma Çarkları (Treadwheels)'
-        ]
-      },
-      sahi: {
-        era: '1453 • BARUT VE METALURJİ DEVRİMİ (FAZ 2)',
-        title: 'Osmanlı Şahi Topu — Dardanelles Gun (1464)',
-        desc: '16,8 tonluk tunç gövdenin taşınabilmesi için geliştirilen vidalı iki parçalı (barut odası + namlu) mühendislik çözümü. Ölçüler, Fort Nelson\'da sergilenen Dardanelles Gun\'dan alınmıştır.',
-        items: [
-          'Vidalı Geçme: Vida her turda bir diş adımı ilerler; Nakliye Modu\'nda iki parça ayrı öküz arabalarına yüklenir',
-          'İçi Boş Döner Profil: Geniş namlu ve dar barut odası X-Ray kesitinde birlikte görünür',
-          'Kalas Atış Yatağı, Meşe Kızak, Toprak Tabya ve Arka Tampon Kirişi',
-          'Canlı Ateşleme: Kara barut dumanı, balistik gülle yörüngesi ve 6 adımlı dolum döngüsü'
-        ]
-      },
-      spitfire: {
-        era: '1943 • HAVACILIK VE V12 MOTOR MÜHENDİSLİĞİ (FAZ 3)',
-        title: 'Supermarine Spitfire Mk IX',
-        desc: 'Reginald Mitchell\'in ünlü eliptik kanat mimarisi ile Rolls-Royce Merlin 66 çift kademeli süperşarjlı V12 motorunun birleşimi.',
-        items: [
-          'Rolls-Royce Merlin 66 V12 Motor, Çift Süperşarj ve 4 Palli Rotol Pervane',
-          'Eliptik Kanat Kaburga İskeleti (Wing Spars & Ribs) ve 20mm Hispano Topları',
-          'Hidrolik Katlanır İniş Takımı ve Kokpit Kontrol Mekanizması',
-          'Canlı Pervane Devri, Kanatçık (Aileron/Elevator) ve İniş Takımı Simülasyonu'
-        ]
+    // Aramada ad, açıklama, etiketler ve tüm filtre etiketleri taranır
+    const SEARCH_INDEX = new Map(VEHICLES.map(v => [v.id, lower([
+      v.name, v.sub, v.desc, v.yearLabel, v.eraLabel, ...(v.tags || []),
+      ...FACETS.flatMap(f => valuesOf(v, f.key).map(k => optionLabel(f.key, k)))
+    ].join(' '))]));
+
+    // Bir boyut içinde VEYA, boyutlar arasında VE. skipFacet: o boyutun sayıları hesaplanırken kendisi yok sayılır.
+    function matches(v, skipFacet) {
+      for (const f of FACETS) {
+        if (f.key === skipFacet) continue;
+        const set = facetSel[f.key];
+        if (set.size && !valuesOf(v, f.key).some(x => set.has(x))) return false;
       }
-    };
+      if (searchQuery && !SEARCH_INDEX.get(v.id).includes(searchQuery)) return false;
+      return true;
+    }
 
+    function cardHTML(v) {
+      const live = v.status === 'live';
+      const status = live
+        ? '<span class="mc-status live">🟢 SİMÜLATÖR HAZIR</span>'
+        : `<span class="mc-status planned">⏳ ${v.group}. GRUP • PLANLI</span>`;
+      const chips = [
+        optionLabel('domain', v.domain),
+        ...valuesOf(v, 'energy').map(k => optionLabel('energy', k))
+      ].map(c => `<span class="mc-facet">${escapeHtml(c)}</span>`).join('');
+      const actions = live
+        ? `<a href="simulator.html?vehicle=${v.sim}" class="btn btn-primary btn-sm">${v.icon} 3D Simülatörü Aç →</a>
+           <a href="simulator.html?vehicle=${v.sim}&mode=xray" class="btn btn-cyan btn-sm" style="flex:0.45;" title="X-Ray Kesit Modunda Aç">🩻 Kesit</a>
+           <a href="simulator.html?vehicle=${v.sim}&mode=explode" class="btn btn-sm" style="flex:0.45;" title="Parçalarına Ayrılmış Modda Aç">💥 %85</a>`
+        : `<button class="btn btn-sm" data-plan="${v.id}">🔍 Mühendislik Planını İncele</button>`;
+      return `
+        <article class="machine-card ${live ? 'featured-active' : 'is-planned'}" data-id="${v.id}">
+          <div>
+            <div class="mc-top">
+              <span class="mc-year">${live ? '★ ' : ''}${escapeHtml(v.yearLabel)} • ${escapeHtml(v.eraLabel)}</span>
+              ${status}
+            </div>
+            <div class="mc-blueprint" style="margin: 12px 0;${live ? ' background: #ede5d4;' : ''}">
+              ${v.svg}
+              <span class="mc-blueprint-tag">${live ? 'CANLI 3D' : 'CAD ŞEMA'}: ${escapeHtml(v.tag)}</span>
+            </div>
+            <div class="mc-facets">${chips}</div>
+            <h3 class="mc-title">${escapeHtml(v.name)}</h3>
+            <div class="mc-sub">${escapeHtml(v.sub)}</div>
+            <p class="mc-desc">${escapeHtml(v.desc)}</p>
+            <div class="mc-subsystems">${(v.tags || []).map(t => `<span class="sys-tag">${escapeHtml(t)}</span>`).join('')}</div>
+          </div>
+          <div>
+            <div class="mc-specs" style="margin-bottom: 12px;">
+              ${v.specs.map(([k, val]) => `<div>${escapeHtml(k)}<strong>${escapeHtml(val)}</strong></div>`).join('')}
+            </div>
+            <div class="mc-actions">${actions}</div>
+          </div>
+        </article>`;
+    }
+
+    function renderFacets() {
+      const host = document.getElementById('facet-groups');
+      host.innerHTML = FACETS.map(f => {
+        const chips = f.options.map(o => {
+          const count = VEHICLES.filter(v => matches(v, f.key) && valuesOf(v, f.key).includes(o.key)).length;
+          const active = facetSel[f.key].has(o.key);
+          const disabled = count === 0 && !active;
+          const title = disabled
+            ? (VEHICLES.some(v => valuesOf(v, f.key).includes(o.key)) ? 'Mevcut filtrelerle sonuç yok' : 'Bu kategoride henüz araç yok — yakında')
+            : `${count} araç`;
+          return `<button class="facet-chip${active ? ' active' : ''}${disabled ? ' disabled' : ''}" data-facet="${f.key}" data-opt="${o.key}" title="${title}" aria-pressed="${active}" ${disabled ? 'aria-disabled="true"' : ''}>${o.label}<span class="facet-count">${count}</span></button>`;
+        }).join('');
+        const n = facetSel[f.key].size;
+        return `<div class="facet-group"><div class="facet-label">${f.label}${n ? ` <span class="facet-badge">${n}</span>` : ''}</div><div class="facet-chips">${chips}</div></div>`;
+      }).join('');
+    }
+
+    function renderCards() {
+      const list = VEHICLES.filter(v => matches(v));
+      list.sort((a, b) => sortKey === 'name' ? a.name.localeCompare(b.name, 'tr')
+        : sortKey === 'year-desc' ? b.year - a.year : a.year - b.year);
+      document.getElementById('catalog-grid').innerHTML = list.map(cardHTML).join('');
+      document.getElementById('catalog-empty').hidden = list.length > 0;
+      const liveN = list.filter(v => v.status === 'live').length;
+      const anyFilter = searchQuery || FACETS.some(f => facetSel[f.key].size);
+      document.getElementById('filter-result').innerHTML = anyFilter
+        ? `<strong>${list.length}</strong> / ${VEHICLES.length} araç gösteriliyor • ${liveN} simülatör hazır`
+        : `Tüm koleksiyon: <strong>${VEHICLES.length}</strong> araç • ${VEHICLES.filter(v => v.status === 'live').length} simülatör hazır • ${VEHICLES.filter(v => v.status === 'planned').length} planlı`;
+      document.getElementById('catalog-clear').disabled = !anyFilter;
+    }
+
+    function writeHash() {
+      const parts = [];
+      FACETS.forEach(f => { if (facetSel[f.key].size) parts.push(`${f.url}=${[...facetSel[f.key]].join(',')}`); });
+      if (searchQuery) parts.push(`ara=${encodeURIComponent(searchQuery)}`);
+      if (sortKey !== 'year') parts.push(`sirala=${sortKey}`);
+      const h = parts.length ? `#katalog?${parts.join('&')}` : '';
+      if (location.hash !== h) history.replaceState(null, '', h || location.pathname + location.search);
+    }
+
+    function readHash() {
+      FACETS.forEach(f => facetSel[f.key].clear());
+      searchQuery = '';
+      sortKey = 'year';
+      const m = location.hash.match(/^#katalog\?(.*)$/);
+      if (m) {
+        new URLSearchParams(m[1]).forEach((val, key) => {
+          const f = FACETS.find(x => x.url === key);
+          if (f) val.split(',').forEach(k => { if (f.options.some(o => o.key === k)) facetSel[f.key].add(k); });
+          else if (key === 'ara') searchQuery = lower(val);
+          else if (key === 'sirala' && ['year', 'year-desc', 'name'].includes(val)) sortKey = val;
+        });
+      }
+      document.getElementById('catalog-search').value = searchQuery;
+      document.getElementById('catalog-sort').value = sortKey;
+    }
+
+    function refreshCatalog(updateUrl = true) {
+      renderFacets();
+      renderCards();
+      if (updateUrl) writeHash();
+    }
+
+    document.getElementById('facet-groups').addEventListener('click', e => {
+      const chip = e.target.closest('.facet-chip');
+      if (!chip || chip.classList.contains('disabled')) return;
+      const set = facetSel[chip.dataset.facet];
+      if (set.has(chip.dataset.opt)) set.delete(chip.dataset.opt); else set.add(chip.dataset.opt);
+      refreshCatalog();
+    });
+    let searchTimer = null;
+    document.getElementById('catalog-search').addEventListener('input', e => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => { searchQuery = lower(e.target.value.trim()); refreshCatalog(); }, 150);
+    });
+    document.getElementById('catalog-sort').addEventListener('change', e => { sortKey = e.target.value; refreshCatalog(); });
+    document.getElementById('catalog-clear').addEventListener('click', () => {
+      FACETS.forEach(f => facetSel[f.key].clear());
+      searchQuery = '';
+      document.getElementById('catalog-search').value = '';
+      refreshCatalog();
+    });
+    document.getElementById('catalog-empty-reset').addEventListener('click', () => document.getElementById('catalog-clear').click());
+    window.addEventListener('hashchange', () => {
+      readHash();
+      refreshCatalog(false);
+      if (location.hash.startsWith('#katalog')) document.getElementById('timeline').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Özet ve kahraman alanı metrikleri katalogdan
+    const eraCount = new Set(VEHICLES.map(v => v.era)).size;
+    const liveCount = VEHICLES.filter(v => v.status === 'live').length;
+    document.getElementById('catalog-summary').innerHTML =
+      `<div class="summary-num">${VEHICLES.length}</div><div class="summary-label">araç • ${liveCount} simülatör hazır<br/>${eraCount} dönem</div>`;
+    document.getElementById('metric-vehicles').innerHTML = `${VEHICLES.length} <span>Araç</span>`;
+    document.getElementById('metric-vehicles-label').textContent = `${liveCount} simülatör hazır • ${eraCount} dönem`;
+
+    // Planlı araçların mühendislik penceresi
     const modalEl = document.getElementById('blueprint-modal');
-    window.openBlueprintModal = function(key) {
-      const d = MODAL_DATA[key];
-      if (!d) return;
-      document.getElementById('modal-era').textContent = d.era;
-      document.getElementById('modal-title').textContent = d.title;
-      document.getElementById('modal-desc').textContent = d.desc;
-      const listEl = document.getElementById('modal-list');
-      listEl.innerHTML = d.items.map(i => `<li>${i}</li>`).join('');
+    function openBlueprintModal(id) {
+      const v = VEHICLES.find(x => x.id === id);
+      if (!v) return;
+      document.getElementById('modal-era').textContent = `${v.yearLabel} • ${v.eraLabel} — ${v.group}. GRUP MÜHENDİSLİK PLANI`;
+      document.getElementById('modal-title').textContent = v.name;
+      document.getElementById('modal-desc').textContent = v.desc;
+      document.getElementById('modal-list').innerHTML = (v.modal || []).map(i => `<li>${escapeHtml(i)}</li>`).join('');
       modalEl.classList.add('open');
-    };
+    }
+    window.openBlueprintModal = openBlueprintModal;
+    document.getElementById('catalog-grid').addEventListener('click', e => {
+      const b = e.target.closest('[data-plan]');
+      if (b) openBlueprintModal(b.dataset.plan);
+    });
+    document.getElementById('modal-close').addEventListener('click', () => modalEl.classList.remove('open'));
+    modalEl.addEventListener('click', e => { if (e.target === modalEl) modalEl.classList.remove('open'); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') modalEl.classList.remove('open'); });
 
-    document.getElementById('modal-close').addEventListener('click', () => {
-      modalEl.classList.remove('open');
-    });
-    modalEl.addEventListener('click', e => {
-      if (e.target === modalEl) modalEl.classList.remove('open');
-    });
+    readHash();
+    refreshCatalog(false);
+    if (location.hash.startsWith('#katalog')) document.getElementById('timeline').scrollIntoView();
 
     const stageContainer = document.getElementById('mini-stage');
     const scene = new THREE.Scene();
