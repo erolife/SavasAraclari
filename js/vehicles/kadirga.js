@@ -12,7 +12,7 @@
  *    dururdu. Yanal dönüş açısı olmadığı için topu hedefe çevirmek üzere BÜTÜN GEMİ
  *    dümen ve diferansiyel kürek manevrasıyla (bir taraf ileri, diğer taraf geri
  *    kürek çekerek) döndürülürdü.
- *  - Ateşleme anında top kızak boyunca ~1,3 m geriye kayar, kalın "braga" halatı ve
+ *  - Ateşleme anında top kızak boyunca ~0,75 m geriye kayar, kalın "braga" halatı ve
  *    palanga makaraları geri tepmeyi sönümler, ardından topçular palangalarla topu
  *    yeniden pruva mazgalına (batarya konumuna) çekerdi.
  * ========================================================================== */
@@ -33,7 +33,7 @@
     const Z_RAM_TIP = 5.85;       // Pruva mahmuzu ucu
     const HALF_BEAM = 1.62;       // Gövde yarı genişliği (tam genişlik 3,24 m)
     const APOSTIS_X = 2.08;       // Kürek küpeştesi (apostis) yarı açıklığı
-    const Y_KEEL = 0.16;          // Omurga taban yüksekliği
+    const Y_KEEL = 0.12;          // Omurga merkez yüksekliği (alt taban Y = 0.00 m zemin teması)
     const Y_WATER = 0.62;         // Su hattı yüksekliği
     const Y_DECK = 1.16;          // Ana güverte yüksekliği
     const Y_RAMBADE = 1.56;       // Pruva top köşkü (rambade) yüksekliği
@@ -321,11 +321,11 @@
       name: '9. Pruva Top Köşkü (Rambade), Siperlik & Kızak Olukları',
       subsystem: 'artillery',
       subLabel: 'Kızaklı Baş Topu & Prangiler',
-      desc: 'Pruvada küreklerin üzerinde yükselen zırhlı top ve bordalama platformu (rambade). Merkezinde ağır baş topunun ateşlendiğinde geriye kaydığı yağlanmış ikiz meşe kızak olukları yer alır.',
+      desc: 'Pruvada apostis çerçevesi ve enine kemere dikmeleri üzerinde yükselen zırhlı top ve bordalama platformu (rambade). Merkezinde ağır baş topunun ateşlendiğinde geriye kaydığı yağlanmış ikiz meşe kızak olukları yer alır.',
       material: 'Zırhlı Meşe Platform & Kızak Rayları',
       weight: '~1.350 kg',
-      spec: '1,6 m Geri Tepme Kızak Yolu',
-      location: 'Pruva Üst Güvertesi (Z = +1,2..+3,8 m)',
+      spec: '2,80 m Kızak Yolu • ~0,75 m Geri Tepme',
+      location: 'Pruva Üst Güvertesi (Z = +0,6..+3,6 m)',
       basePos: [0, 0, 0],
       explodeVec: [0, 1.4, 1.4],
       isOuterShell: false
@@ -338,7 +338,7 @@
       name: '10. Kızaklı Tunç Baş Topu (Kolunburna / Şayka — ~24 Libre)',
       subsystem: 'artillery',
       subLabel: 'Kızaklı Baş Topu & Prangiler',
-      desc: 'Kadırganın ana vurucu silahı: tekerleksiz ahşap kızak kundağı üzerine oturtulmuş 2,65 m boyunda dökme tunç baş topu. Ateşlendiğinde kızak üzerinde ~1,35 m geriye kayar ve palangalarla tekrar ileri çekilir.',
+      desc: 'Kadırganın ana vurucu silahı: tekerleksiz ahşap kızak kundağı üzerine oturtulmuş 2,65 m boyunda dökme tunç baş topu. Ateşlendiğinde kızak üzerinde ~0,75 m geriye kayar ve palangalarla tekrar ileri çekilir.',
       material: 'Dökme Tunç (Tophane-i Âmire) & Meşe Kızak',
       weight: '~2.150 kg (Namlu + Kızak)',
       spec: 'L = 2,65 m • Ø ~140 mm (~24 Libre Gülle)',
@@ -389,11 +389,11 @@
       name: '13. Pruva Direği (Trinketa), Boğatalar & Çarmıh Halatları',
       subsystem: 'rigging',
       subLabel: 'Direk, Latin Yelken & Cephanelik',
-      desc: 'Öne doğru hafif eğimli (raked) çam trinketa direği, direk tepesi kalsası (calcet) ve direği bordalara sabitleyen çarmıh halatları.',
+      desc: 'Rambade platformunun hemen gerisinde (Z = -0,15 m) yükselen, öne doğru hafif eğimli (raked) çam trinketa direği, direk tepesi kalsası (calcet) ve direği bordalara sabitleyen çarmıh halatları.',
       material: 'Karadeniz Çamı & Kenevir Çarmıh',
       weight: '~780 kg',
-      spec: 'Yükseklik ~6,2 m • Öne Eğimli Direk',
-      location: 'Pruva Gerisi (Z = +0,65 m)',
+      spec: 'Yükseklik ~6,0 m • Öne Eğimli Direk',
+      location: 'Rambade Gerisi (Z = -0,15 m)',
       basePos: [0, 0, 0],
       explodeVec: [0, 3.2, 0],
       isOuterShell: false
@@ -498,6 +498,10 @@
           [0, side * yaw, 0]
         );
       });
+
+      // Ana güverte döşeme kalasları (Y = Y_DECK, X-Ray modunda partHullPlanking ile birlikte saydamlaşır)
+      const deckPlankGeo = new THREE.BoxGeometry(wm * 1.84, 0.036, dz + 0.015);
+      addMesh(partHullPlanking, deckPlankGeo, matDeckWood, [0, Y_DECK, zm]);
     }
 
     // --- 2. Ana Omurga, Pruva Bodoslaması & 18 Kaburga (partKeelRibs) ---
@@ -550,18 +554,19 @@
 
     // --- 5. Kürekçi Oturakları, Apostis Çerçevesi & Korsiye Yolu (partApostisBenches) ---
     // Merkez yükseltilmiş yürüyüş yolu (korsiye / corsia)
-    const corsiaLen = 5.8;
+    const corsiaLen = 5.4;
     const corsiaGeo = new THREE.BoxGeometry(0.56, 0.22, corsiaLen);
-    addMesh(partApostisBenches, corsiaGeo, matDeckWood, [0, Y_DECK + 0.11, -1.55]);
+    addMesh(partApostisBenches, corsiaGeo, matDeckWood, [0, Y_DECK + 0.11, -1.85]);
 
     // İskele ve Sancak dış kürek küpeşte kirişleri (apostis / telaro) ve payandalar
+    // Z = -4.55 .. +3.45 m boyunca kesintisiz uzanarak önde rambade top köşkünü de taşır
     [-1, 1].forEach(side => {
-      const apostisBeamGeo = new THREE.BoxGeometry(0.12, 0.14, 6.1);
-      addMesh(partApostisBenches, apostisBeamGeo, matDeckWood, [side * APOSTIS_X, Y_DECK + 0.28, -1.50]);
+      const apostisBeamGeo = new THREE.BoxGeometry(0.12, 0.14, 8.0);
+      addMesh(partApostisBenches, apostisBeamGeo, matDeckWood, [side * APOSTIS_X, Y_DECK + 0.28, -0.55]);
 
       // 8 kürekçi oturağı (bank), ayak basamağı (pedagne) ve iskarmoz kazığı (tholepin)
       for (let b = 0; b < OAR_COUNT_SIDE; b++) {
-        const zb = -4.15 + b * 0.74;
+        const zb = -4.15 + b * 0.68;
         // Açılı kürekçi bankı
         const benchGeo = new THREE.BoxGeometry(1.36, 0.07, 0.24);
         addMesh(partApostisBenches, benchGeo, matDeckWood, [side * 1.05, Y_DECK + 0.18, zb], [0, -side * 0.16, 0]);
@@ -580,7 +585,7 @@
 
     function buildOarSet(parent, side, targetArr) {
       for (let i = 0; i < OAR_COUNT_SIDE; i++) {
-        const zo = -4.03 + i * 0.74;
+        const zo = -4.03 + i * 0.68;
         // Kürek mafsal noktası: apostis kirişi üzerinde
         const pivot = new THREE.Group();
         pivot.position.set(side * APOSTIS_X, Y_DECK + 0.38, zo);
@@ -628,23 +633,39 @@
     addMesh(rudderPivot, tillerBarGeo, matDeckWood, [0, 0.56, 0.48], [Math.PI / 2 - 0.12, 0, 0]);
 
     // --- 9. Pruva Top Köşkü (Rambade), Siperlik & Kızak Olukları (partBowPlatform) ---
-    const rambadeDeckGeo = new THREE.BoxGeometry(2.65, 0.10, 2.55);
-    addMesh(partBowPlatform, rambadeDeckGeo, matDeckWood, [0, Y_RAMBADE, 2.35]);
+    // Z = +0.60 .. +3.60 m (boy 3.00 m, merkez Z = 2.10 m) — geri tepen topu ve arka takozu tam taşır
+    const rambadeDeckGeo = new THREE.BoxGeometry(2.65, 0.10, 3.00);
+    addMesh(partBowPlatform, rambadeDeckGeo, matDeckWood, [0, Y_RAMBADE, 2.10]);
+
+    // Rambade platformunu ana güverteye, bordalara ve apostis kirişlerine bağlayan 3 enine kemere, dikmeler ve diyagonal payandalar
+    const rambadeBeamGeo = new THREE.BoxGeometry(2.65, 0.11, 0.14);
+    const rambadePostGeo = new THREE.BoxGeometry(0.12, Y_RAMBADE - Y_DECK, 0.12);
+    const rambadeBraceGeo = new THREE.BoxGeometry(0.92, 0.10, 0.12);
+    [0.85, 2.10, 3.35].forEach(bz => {
+      addMesh(partBowPlatform, rambadeBeamGeo, matDeckWood, [0, Y_RAMBADE - 0.08, bz]);
+      [-0.95, 0.95].forEach(px => {
+        addMesh(partBowPlatform, rambadePostGeo, matDeckWood, [px, (Y_DECK + Y_RAMBADE) * 0.5, bz]);
+      });
+      [-1, 1].forEach(side => {
+        addMesh(partBowPlatform, rambadeBraceGeo, matDeckWood, [side * 1.56, Y_DECK + 0.32, bz], [0, 0, -side * 0.18]);
+      });
+    });
+
     // Ön zırhlı siperlik duvarı (ortasında baş topu mazgal açıklığı ile sol ve sağ kanat)
     const breastworkGeo = new THREE.BoxGeometry(1.02, 0.52, 0.14);
     addMesh(partBowPlatform, breastworkGeo, matHullWood, [-0.82, Y_RAMBADE + 0.28, 3.45], [0, 0.18, 0]);
     addMesh(partBowPlatform, breastworkGeo, matHullWood, [0.82, Y_RAMBADE + 0.28, 3.45], [0, -0.18, 0]);
-    // Baş topu geri tepme kızak rayları (omurga doğrultusunda ikiz meşe oluk)
-    const slideRailGeo = new THREE.BoxGeometry(0.12, 0.11, 2.45);
-    addMesh(partBowPlatform, slideRailGeo, matDeckWood, [-0.26, Y_RAMBADE + 0.08, 2.25]);
-    addMesh(partBowPlatform, slideRailGeo, matDeckWood, [0.26, Y_RAMBADE + 0.08, 2.25]);
-    // Arka geri tepme tampon takozu
+    // Baş topu geri tepme kızak rayları (Z = +0.55 .. +3.45 m, boy 2.90 m, merkez Z = 2.00 m)
+    const slideRailGeo = new THREE.BoxGeometry(0.12, 0.11, 2.90);
+    addMesh(partBowPlatform, slideRailGeo, matDeckWood, [-0.26, Y_RAMBADE + 0.08, 2.00]);
+    addMesh(partBowPlatform, slideRailGeo, matDeckWood, [0.26, Y_RAMBADE + 0.08, 2.00]);
+    // Arka geri tepme tampon takozu (Z = +0.58 m — tam geri tepmiş kızak arkası Z = 0.78 m ile çakışmaz)
     const rearChockGeo = new THREE.BoxGeometry(0.76, 0.18, 0.18);
-    addMesh(partBowPlatform, rearChockGeo, matIron, [0, Y_RAMBADE + 0.12, 1.02]);
+    addMesh(partBowPlatform, rearChockGeo, matIron, [0, Y_RAMBADE + 0.12, 0.58]);
 
     // --- 10. Kızaklı Tunç Baş Topu (Kolunburna / Şayka — partCenterCannon) ---
     const centerGunSlideGrp = new THREE.Group();
-    // Batarya konumunda Z = 2.45; ateşlenince Z = 1.15'e kayar
+    // Batarya konumunda Z = 2.45; ateşlenince ~0.75 m geri teperek Z = 1.70'e kayar
     centerGunSlideGrp.position.set(0, Y_RAMBADE + 0.14, 2.45);
     partCenterCannon.add(centerGunSlideGrp);
 
@@ -735,7 +756,9 @@
 
     // --- 13. Pruva Direği (Trinketa) & Çarmıh Halatları (partForeMast) ---
     const mastH = 5.85;
-    const mastZ = 0.55;
+    // Rambade platformunun (Z = +0.60 .. +3.60) hemen gerisinde Z = -0.15 m'de yükselir;
+    // böylece geri tepen baş topu (en arka noktası Z = +0.62 m) direğe kesinlikle çarpmaz.
+    const mastZ = -0.15;
     const mastGeo = new THREE.CylinderGeometry(0.095, 0.145, mastH, 12);
     // Öne hafif eğimli (0.08 rad)
     addMesh(partForeMast, mastGeo, matDeckWood, [0, Y_KEEL + mastH * 0.5 + 0.12, mastZ], [0.08, 0, 0]);
@@ -808,7 +831,7 @@
       autoCombat: false,      // Otomatik pruva nişan & atış döngüsü
       oarPhase: 0,            // Kürek çevrim fazı (rad)
       gunState: 'ready',      // 'ready' | 'recoil' | 'haul_forward'
-      gunSlideZ: 2.45,        // Baş topu kızak konumu (2.45 = batarya, 1.10 = tam geri tepmiş)
+      gunSlideZ: 2.45,        // Baş topu kızak konumu (2.45 = batarya, 1.70 = ~0.75 m tam geri tepmiş)
       recoilVel: 0,
       flashTimer: 0,
       ammoCount: 16,
@@ -845,7 +868,7 @@
         };
       }
       S.gunState = 'recoil';
-      S.recoilVel = 4.6;
+      S.recoilVel = 4.58;
       S.flashTimer = 0.14;
       S.ammoCount = Math.max(0, S.ammoCount - 1);
       mainFlashMesh.visible = true;
@@ -859,7 +882,8 @@
 
     function update(dt, elapsed = 0) {
       // 1. Kürek çevrimi (Eliptik 3B darbe: suya dalış -> çekiş -> sudan çıkış -> ileri hazırlık)
-      const activeSpm = S.autoRow ? Math.max(S.strokesPerMin, 18) : S.strokesPerMin;
+      // Gizli alt sınır yok: kaydırıcı 0 ise kürekler durur
+      const activeSpm = S.autoRow ? S.strokesPerMin : 0;
       const omegaOar = (activeSpm * Math.PI * 2) / 60;
       S.oarPhase += omegaOar * dt;
 
@@ -879,18 +903,20 @@
       animateOarBank(portOarPivots, S.rowMode === 'pivot' ? -1 : 1);
 
       // 2. Gemi pruva nişan dönüşü ve dümen
+      // 'pivot' modunda kullanıcının S.helmDeg kaydırıcısını ezmeden ayrı bir pivotYaw salınımı eklenir
+      let pivotYawDeg = 0;
       if (S.autoCombat) {
         S.combatTimer += dt;
         S.helmDeg = Math.sin(S.combatTimer * 0.85) * 12;
         if (S.gunState === 'ready' && S.ammoCount > 0 && Math.abs(Math.cos(S.combatTimer * 0.85)) > 0.96) {
           fireBowBattery();
         }
-      } else if (S.rowMode === 'pivot' && activeSpm > 1) {
-        // Diferansiyel kürek modunda gemi ağır ağır nişan salınımı yapar
-        S.helmDeg = Math.sin(S.oarPhase * 0.35) * 14;
+      } else if (S.rowMode === 'pivot' && activeSpm > 0) {
+        // Diferansiyel kürek modunda gemi ağır ağır nişan salınımı yapar (S.helmDeg korunur)
+        pivotYawDeg = Math.sin(S.oarPhase * 0.35) * 10;
       }
 
-      const targetYaw = THREE.MathUtils.degToRad(S.helmDeg * 0.45);
+      const targetYaw = THREE.MathUtils.degToRad((S.helmDeg + pivotYawDeg) * 0.45);
       root.rotation.y += (targetYaw - root.rotation.y) * Math.min(1, dt * 4);
       // Hafif deniz salınımı (pitch/roll)
       root.rotation.x = Math.sin((elapsed || S.oarPhase) * 1.4) * 0.012;
@@ -910,7 +936,7 @@
         }
       });
 
-      // 4. Baş topu kızak geri tepmesi ve halat-palanga ile bataryaya çekilme döngüsü
+      // 4. Baş topu kızak geri tepmesi (~0.75 m: Z = 2.45 -> 1.70 m) ve halat-palanga ile bataryaya çekilme döngüsü
       if (S.flashTimer > 0) {
         S.flashTimer -= dt;
         if (S.flashTimer <= 0) mainFlashMesh.visible = false;
@@ -918,10 +944,10 @@
 
       if (S.gunState === 'recoil') {
         S.gunSlideZ -= S.recoilVel * dt;
-        // Braga halatı gerildikçe frenleme kuvveti artar
-        S.recoilVel -= 7.8 * dt;
-        if (S.gunSlideZ <= 1.12 || S.recoilVel <= 0) {
-          S.gunSlideZ = Math.max(1.12, S.gunSlideZ);
+        // Braga halatı gerildikçe frenleme kuvveti artar (~0.75 m mesafede durdurur)
+        S.recoilVel -= 14.0 * dt;
+        if (S.gunSlideZ <= 1.70 || S.recoilVel <= 0) {
+          S.gunSlideZ = Math.max(1.70, S.gunSlideZ);
           S.gunState = 'haul_forward';
           S.recoilVel = 0;
         }
@@ -929,7 +955,7 @@
         updateTackleRopes();
       } else if (S.gunState === 'haul_forward') {
         // Topçular palangalarla topu tekrar pruva mazgalına (Z = 2.45) çeker
-        S.gunSlideZ += 0.58 * dt;
+        S.gunSlideZ += 0.48 * dt;
         if (S.gunSlideZ >= 2.45) {
           S.gunSlideZ = 2.45;
           S.gunState = 'ready';
@@ -1027,6 +1053,7 @@
       if (index === 0) {
         S.strokesPerMin = val;
         if (val === 0) S.autoRow = false;
+        else S.autoRow = true;
       } else if (index === 1) {
         S.elevDeg = val;
       } else if (index === 2) {
@@ -1039,7 +1066,7 @@
     function onButton(name) {
       if (name === 'terrain') {
         S.autoRow = !S.autoRow;
-        if (S.autoRow && S.strokesPerMin < 12) S.strokesPerMin = 24;
+        if (S.autoRow && S.strokesPerMin === 0) S.strokesPerMin = 22;
         return { active: S.autoRow };
       }
       if (name === 'sweep') {
@@ -1075,15 +1102,15 @@
     }
 
     function getStats() {
-      const activeSpm = S.autoRow ? Math.max(S.strokesPerMin, 18) : S.strokesPerMin;
-      const knots = S.rowMode === 'cruise'
-        ? ((activeSpm / 36) * 7.8).toFixed(1)
-        : '0.0 (Dönüş)';
+      const activeSpm = S.autoRow ? S.strokesPerMin : 0;
+      const knotsHtml = S.rowMode === 'cruise'
+        ? `${((activeSpm / 36) * 7.8).toFixed(1)} <span>Knot</span>`
+        : '0.0 <span>Knot (dönüş)</span>';
       const modeTxt = S.rowMode === 'cruise' ? 'HÜCUM (SENKRON)' : 'NİŞAN DÖNÜŞÜ';
       const rangeM = Math.round(620 + Math.max(0, S.elevDeg) * 95);
       return [
         `${modeTxt}`,
-        `${knots} <span>Knot</span>`,
+        knotsHtml,
         `${S.ammoCount} <span>Gülle</span>`,
         `~${rangeM} <span>Metre</span>`
       ];
@@ -1113,7 +1140,7 @@
       },
       {
         title: 'Kızaklı Tunç Baş Topu ve Halat-Palanga Geri Tepme Freni',
-        desc: 'Pruva merkezindeki ~24 librelik tunç kolunburna, tekerleksiz ahşap kızak üzerinde durur. "Baş Topu & Prangileri Ateşle" butonuna basın: top kızak üzerinde 1,35 m geriye kayar, braga halatıyla frenlenir ve palangalarla tekrar ileri çekilir!',
+        desc: 'Pruva merkezindeki ~24 librelik tunç kolunburna, tekerleksiz ahşap kızak üzerinde durur. "Baş Topu & Prangileri Ateşle" butonuna basın: top kızak üzerinde ~0,75 m geriye kayar, braga halatıyla frenlenir ve palangalarla tekrar ileri çekilir!',
         explode: 0, cutaway: false, sub: 'all', cam: 'breech', part: partCenterCannon
       },
       {

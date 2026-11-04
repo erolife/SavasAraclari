@@ -285,34 +285,34 @@
     });
     root.add(partCrankShafts);
 
-    // 8. Merkez Fener Dişliler (4 Adet Rocchetti / Kafes Pinyon)
+    // 8. Boyuna Tahrik Milleri & 4 Adet Fener Dişli (Rocchetti / Kafes Pinyon)
     const partLanternPinions = createPartGroup({
       id: 'leo_lantern_pinions',
-      name: '8. Merkez Fener Dişliler (4 Adet Rocchetti / Kafes Pinyon)',
+      name: '8. Boyuna Tahrik Milleri & 4 × Fener Dişli (Rocchetti)',
       subsystem: 'drivetrain',
       subLabel: 'Krank & Fener Dişli Aktarma',
-      desc: 'Rönesans makine mühendisliğinin karakteristik "fener dişlisi" (lantern pinion): iki ahşap disk arasına dizilmiş 10 silindirik çubuk, tekerlek üzerindeki taç dişlilerle dik açılı (90°) güç aktarımı sağlar.',
-      material: 'Şimşir Ağacı & Demir Miller',
-      weight: '~160 kg',
-      spec: '4 × 10 Çubuklu Kafes Pinyon',
-      location: 'Krank Mili Uçları',
+      desc: 'Her iki yanda (x = ±1,04 m, y = 0,56 m) Z ekseni boyunca uzanan tahrik milleri ve uçlarındaki 10 çubuklu kafes fener dişliler (r ≈ 0,12 m). Tekerleklerin iç taç dişlileriyle (R = 0,36 m) 90° dik açıyla kavraşır.',
+      material: 'Şimşir Ağacı & Dövme Demir Mil',
+      weight: '~210 kg',
+      spec: 'Z Eksenli 2 Tahrik Mili + 4 Fener Pinyon',
+      location: 'Sağ/Sol Alt Aktarma Hattı',
       basePos: [0, 0, 0],
       explodeVec: [-1.4, 0.35, 0],
       isOuterShell: false
     });
     root.add(partLanternPinions);
 
-    // 9. Ara Avare Dişli & Ters Dişli Düzeltme Mekanizması
+    // 9. Arka Pinyon Kaydırma Çatalı & Ters Dişli Düzeltme Mandalı
     const partIdlerGear = createPartGroup({
       id: 'leo_idler_gear',
-      name: '9. Ters Dişli Bilmecesi & Ara Avare Dişli (Kodeks ⇄ Düzeltilmiş)',
+      name: '9. Arka Pinyon Kaydırma Çatalı (Kodeks z=-0,82m ⇄ Düzeltilmiş z=-1,54m)',
       subsystem: 'drivetrain',
       subLabel: 'Krank & Fener Dişli Aktarma',
-      desc: 'Codex Arundel f.1030 çiziminde ön ve arka fener dişliler taç dişlilere aynı iç taraftan kavradığı için ön ve arka tekerlekler ZIT yönde döner ve araç kilitlenir. "Düzeltilmiş Dişli" moduna geçildiğinde arka pinyon konumu/avare dişli devreye girerek 4 tekerleğin aynı yönde dönmesini sağlar!',
-      material: 'Tunç & Gürgen Dişli Grubu',
-      weight: '~95 kg',
-      spec: 'Kodeks Kilidi ⇄ Düzeltilmiş Senkron Tahrik',
-      location: 'Arka Aktarma Hattı',
+      desc: 'Codex Arundel f.1030 çiziminde arka fener pinyon z = -0,82 m konumunda (arka taç dişlinin ön kenarı) durduğu için ön ve arka tekerlekler ZIT yönde döner. Kaydırma çatalı arka pinyonu mil üzerinde z = -1,54 m konumuna (arka kenar) kaydırdığında 4 tekerlek aynı yönde döner!',
+      material: 'Dövme Demir Çatal & Tunç Bilezik',
+      weight: '~85 kg',
+      spec: 'z = -0,82 m (Kodeks) ⇄ z = -1,54 m (Senkron)',
+      location: 'Arka Tahrik Mili Üzeri',
       basePos: [0, 0, 0],
       explodeVec: [1.4, 0.35, -0.8],
       isOuterShell: false
@@ -436,26 +436,35 @@
     }
 
     // --- 2. İç Radyal Kaburga İskeleti (partRibFrame) ---
-    const ribLen = Math.hypot(R_BASE * 0.92 - R_TOP * 0.95, Y_CONE_TOP - Y_DECK);
-    const ribTilt = Math.atan2(R_BASE * 0.92 - R_TOP * 0.95, Y_CONE_TOP - Y_DECK);
-    const ribGeo = new THREE.BoxGeometry(0.085, ribLen, 0.11);
+    // Koni dış yüzeyi Y_PORT (0.92 m, r=2.11 m) ile Y_CONE_TOP (2.22 m, r=0.56 m) arasında daraldığı için,
+    // iç kaburgalar koni yüzeyinin ~0.12 m içerisinden paralel (rot.x = -ribTilt) olarak
+    // Y = 1.00 m (r = 1.88 m) seviyesinden Y = 2.16 m (r = 0.50 m) seviyesine uzanır.
+    const ribBottomR = 1.80;
+    const ribTopR = 0.44;
+    const ribBottomY = 1.00;
+    const ribTopY = 2.14;
+    const ribSpanY = ribTopY - ribBottomY;
+    const ribLen = Math.hypot(ribBottomR - ribTopR, ribSpanY);
+    const ribTilt = Math.atan2(ribBottomR - ribTopR, ribSpanY);
+    const ribGeo = new THREE.BoxGeometry(0.075, ribLen, 0.085);
     for (let i = 0; i < 16; i++) {
       const ang = (i / 16) * Math.PI * 2 + Math.PI / 16;
-      const rMid = (R_BASE * 0.92 + R_TOP * 0.95) * 0.5 - 0.08;
-      const yMid = (Y_CONE_TOP + Y_DECK) * 0.5;
+      const rMid = (ribBottomR + ribTopR) * 0.5;
+      const yMid = (ribTopY + ribBottomY) * 0.5;
       const grp = new THREE.Group();
       grp.rotation.y = ang;
       addMesh(grp, ribGeo, matFrameWood, [0, yMid, rMid], [-ribTilt, 0, 0]);
       partRibFrame.add(grp);
     }
-    // İç yatay gergi halkaları ve dikey destek dikmeleri
-    const innerRing1 = new THREE.TorusGeometry(1.55, 0.055, 8, 16);
+    // İç yatay gergi halkaları ve dikey destek dikmeleri (koni iç profili r(y) içinde kalacak şekilde)
+    const innerRing1 = new THREE.TorusGeometry(1.30, 0.05, 8, 16);
     addMesh(partRibFrame, innerRing1, matFrameWood, [0, 1.45, 0], [Math.PI / 2, 0, 0]);
-    const innerRing2 = new THREE.TorusGeometry(0.92, 0.05, 8, 16);
+    const innerRing2 = new THREE.TorusGeometry(0.74, 0.045, 8, 16);
     addMesh(partRibFrame, innerRing2, matFrameWood, [0, 1.92, 0], [Math.PI / 2, 0, 0]);
-    const pillarGeo = new THREE.CylinderGeometry(0.06, 0.065, Y_CONE_TOP - Y_DECK, 10);
-    [[-0.75, -0.75], [0.75, -0.75], [-0.75, 0.75], [0.75, 0.75]].forEach(([px, pz]) => {
-      addMesh(partRibFrame, pillarGeo, matFrameWood, [px, (Y_CONE_TOP + Y_DECK) * 0.5, pz]);
+    const pillarH = 1.56 - Y_DECK; // Y = 0.62 .. 1.56 m (iç gergi kirişlerine kadar yükselir, koni kabuğunu delmez)
+    const pillarGeo = new THREE.CylinderGeometry(0.055, 0.06, pillarH, 10);
+    [[-0.58, -0.58], [0.58, -0.58], [-0.58, 0.58], [0.58, 0.58]].forEach(([px, pz]) => {
+      addMesh(partRibFrame, pillarGeo, matFrameWood, [px, Y_DECK + pillarH * 0.5, pz]);
     });
 
     // --- 3. Üst Gözetleme Kulesi (partCupola) ---
@@ -497,19 +506,42 @@
     }
 
     // --- 5. Ana Şasi Platformu & Dingil Yatakları (partMainDeck) ---
-    const deckGeo = new THREE.CylinderGeometry(R_BASE * 0.84, R_BASE * 0.84, 0.09, 24);
-    addMesh(partMainDeck, deckGeo, matFrameWood, [0, Y_DECK, 0]);
-    // Ana boyuna ve enine şasi kirişleri
-    const mainBeamZ = new THREE.BoxGeometry(0.18, 0.16, 3.8);
-    addMesh(partMainDeck, mainBeamZ, matFrameWood, [-WHEEL_X + 0.22, Y_DECK - 0.08, 0]);
-    addMesh(partMainDeck, mainBeamZ, matFrameWood, [WHEEL_X - 0.22, Y_DECK - 0.08, 0]);
-    const mainBeamX = new THREE.BoxGeometry(3.6, 0.16, 0.18);
-    addMesh(partMainDeck, mainBeamX, matFrameWood, [0, Y_DECK - 0.08, WHEEL_Z]);
-    addMesh(partMainDeck, mainBeamX, matFrameWood, [0, Y_DECK - 0.08, -WHEEL_Z]);
-    // Krank mili dikme yatakları (platform üstünde 4 adet)
+    // Tekerleklerin (x = ±1.32, z = ±1.18, R = 0.56) ve pinyonların içinden geçmemesi,
+    // ayrıca alt etek zırhının (r ≈ 2.28 m) dışına köşelerinin taşmaması için sekizgen/yuvarlatılmış meşe platform
+    const centerDeckGeo = new THREE.BoxGeometry(1.56, 0.09, 3.28);
+    addMesh(partMainDeck, centerDeckGeo, matFrameWood, [0, Y_DECK, 0]);
+    const sideWingDeckGeo = new THREE.BoxGeometry(0.84, 0.09, 0.96);
+    addMesh(partMainDeck, sideWingDeckGeo, matFrameWood, [-1.20, Y_DECK, 0]);
+    addMesh(partMainDeck, sideWingDeckGeo, matFrameWood, [1.20, Y_DECK, 0]);
+    const endCapDeckGeo = new THREE.BoxGeometry(1.24, 0.09, 0.34);
+    addMesh(partMainDeck, endCapDeckGeo, matFrameWood, [0, Y_DECK, 1.81]);
+    addMesh(partMainDeck, endCapDeckGeo, matFrameWood, [0, Y_DECK, -1.81]);
+
+    // Ana boyuna (x = ±0.82, z = ±1.76 -> r = 1.94 m < 2.24 m) ve enine şasi kirişleri
+    const mainBeamZ = new THREE.BoxGeometry(0.16, 0.16, 3.52);
+    addMesh(partMainDeck, mainBeamZ, matFrameWood, [-0.82, Y_DECK - 0.08, 0]);
+    addMesh(partMainDeck, mainBeamZ, matFrameWood, [0.82, Y_DECK - 0.08, 0]);
+    // Dış yan kirişler: x = ±1.56, z = ±1.32 -> köşe yarıçapı r = sqrt(1.63^2 + 1.32^2) = 2.09 m < 2.24 m (etek zırhından taşmaz!)
+    const outerSillZ = new THREE.BoxGeometry(0.14, 0.14, 2.64);
+    addMesh(partMainDeck, outerSillZ, matFrameWood, [-1.56, Y_DECK - 0.06, 0]);
+    addMesh(partMainDeck, outerSillZ, matFrameWood, [1.56, Y_DECK - 0.06, 0]);
+    // İç enine kirişler (z = ±0.54, genişlik 3.26 m -> r = sqrt(1.63^2 + 0.62^2) = 1.74 m)
+    const innerBeamX = new THREE.BoxGeometry(3.26, 0.16, 0.16);
+    addMesh(partMainDeck, innerBeamX, matFrameWood, [0, Y_DECK - 0.08, 0.54]);
+    addMesh(partMainDeck, innerBeamX, matFrameWood, [0, Y_DECK - 0.08, -0.54]);
+    // Ön/arka uç enine kirişler (z = ±1.68, genişlik 1.80 m -> r = sqrt(0.90^2 + 1.76^2) = 1.97 m < 2.24 m, etek zırhını delmez!)
+    const endBeamX = new THREE.BoxGeometry(1.80, 0.16, 0.16);
+    addMesh(partMainDeck, endBeamX, matFrameWood, [0, Y_DECK - 0.08, 1.68]);
+    addMesh(partMainDeck, endBeamX, matFrameWood, [0, Y_DECK - 0.08, -1.68]);
+
+    // Krank mili dikme yatakları (platform üstünde 4 adet) ve alt tahrik mili yatakları
     const stanchionGeo = new THREE.BoxGeometry(0.14, 0.52, 0.18);
     [[-0.52, 0.95], [0.52, 0.95], [-0.52, -0.95], [0.52, -0.95]].forEach(([sx, sz]) => {
       addMesh(partMainDeck, stanchionGeo, matFrameWood, [sx, Y_DECK + 0.28, sz]);
+    });
+    const driveBearingGeo = new THREE.BoxGeometry(0.16, 0.16, 0.16);
+    [[-1.04, 0.48], [1.04, 0.48], [-1.04, -0.48], [1.04, -0.48]].forEach(([bx, bz]) => {
+      addMesh(partMainDeck, driveBearingGeo, matWroughtIron, [bx, R_WHEEL, bz]);
     });
     // Komutan merkezi merdiveni/kürsüsü
     const stepStandGeo = new THREE.CylinderGeometry(0.32, 0.40, 0.55, 8);
@@ -537,7 +569,8 @@
     addMesh(rudderPivot, tillerGeo, matFrameWood, [0, 0.96, 0.42], [Math.PI / 2 - 0.18, 0, 0]);
 
     // --- 7. İkiz Krank Mili & 8 Kişilik Çevirme Kolları (partCrankShafts) ---
-    // İki paralel krank mili: X = -0.52 ve X = +0.52, Y = CRANK_Y, Z = -1.18..+1.18
+    // İki paralel krank mili: X = -0.52 ve X = +0.52, Y = CRANK_Y (1.08), Z = -1.18..+1.18
+    // z = 0 noktasında r1 = 0.26 m düz dişli ile alt tahrik milindeki (x = ±1.04, y = 0.56) r2 = 0.475 m düz dişliye bağlanır
     const crankPivots = [];
     [-1, 1].forEach(side => {
       const cx = side * 0.52;
@@ -565,67 +598,101 @@
         addMesh(shaftGrp, handleGeo, matGearWood, [0, throwSign * throwR, cz], [Math.PI / 2, 0, 0]);
       });
 
-      // Uçlarda enine tahrik mili aktarma dişlileri (bevel/crown)
-      const crossGearGeo = new THREE.CylinderGeometry(0.14, 0.14, 0.05, 12);
-      addMesh(shaftGrp, crossGearGeo, matGearWood, [0, 0, WHEEL_Z], [Math.PI / 2, 0, 0]);
-      addMesh(shaftGrp, crossGearGeo, matGearWood, [0, 0, -WHEEL_Z], [Math.PI / 2, 0, 0]);
+      // z = 0 noktasında alt tahrik miliyle kavraşan r1 = 0.26 m düz dişli (spur gear)
+      const spurR1 = 0.26;
+      const spurDisc1 = new THREE.CylinderGeometry(spurR1, spurR1, 0.06, 20);
+      addMesh(shaftGrp, spurDisc1, matGearWood, [0, 0, 0], [Math.PI / 2, 0, 0]);
+      const spurTooth1 = new THREE.BoxGeometry(0.038, 0.038, 0.065);
+      for (let t = 0; t < 10; t++) {
+        const a = (t / 10) * Math.PI * 2;
+        addMesh(shaftGrp, spurTooth1, matWroughtIron, [Math.cos(a) * spurR1, Math.sin(a) * spurR1, 0], [0, 0, a]);
+      }
     });
 
-    // --- 8. Merkez Fener Dişliler (4 Adet Rocchetti — partLanternPinions) ---
-    // Tekerleklerin iç taç dişlileriyle kavrayan 4 adet fener pinyon
-    function buildLanternCage(parent, radius = 0.16, length = 0.22, pins = 10) {
+    // --- 8. Boyuna Tahrik Milleri & 4 Adet Fener Dişli (Rocchetti — partLanternPinions) ---
+    // Pinyonların ekseni Z yönündedir (taç dişlilerin X eksenine 90° dik!).
+    // Ön pinyon z = +0.82 m (ön taç dişlinin arka kenarı: 1.18 - 0.36 = +0.82 m).
+    // Arka pinyon Kodeks modunda z = -0.82 m (arka taç dişlinin ön kenarı: -1.18 + 0.36 = -0.82 m),
+    // Düzeltilmiş modda z = -1.54 m (arka taç dişlinin arka kenarı: -1.18 - 0.36 = -1.54 m).
+    function buildLanternCageZ(parent, radius = 0.15, pinRadius = 0.12, length = 0.20, pins = 10) {
       const g = new THREE.Group();
-      const discGeo = new THREE.CylinderGeometry(radius, radius, 0.035, 16);
-      addMesh(g, discGeo, matGearWood, [-length * 0.5, 0, 0], [0, 0, Math.PI / 2]);
-      addMesh(g, discGeo, matGearWood, [length * 0.5, 0, 0], [0, 0, Math.PI / 2]);
-      const hubAxisGeo = new THREE.CylinderGeometry(0.038, 0.038, length + 0.45, 10);
-      addMesh(g, hubAxisGeo, matWroughtIron, [0, 0, 0], [0, 0, Math.PI / 2]);
-      const pinGeo = new THREE.CylinderGeometry(0.018, 0.018, length, 8);
+      const discGeo = new THREE.CylinderGeometry(radius, radius, 0.032, 16);
+      addMesh(g, discGeo, matGearWood, [0, 0, -length * 0.5], [Math.PI / 2, 0, 0]);
+      addMesh(g, discGeo, matGearWood, [0, 0, length * 0.5], [Math.PI / 2, 0, 0]);
+      const pinGeo = new THREE.CylinderGeometry(0.016, 0.016, length, 8);
       for (let i = 0; i < pins; i++) {
         const a = (i / pins) * Math.PI * 2;
-        const py = Math.cos(a) * (radius * 0.76);
-        const pz = Math.sin(a) * (radius * 0.76);
-        addMesh(g, pinGeo, matWroughtIron, [0, py, pz], [0, 0, Math.PI / 2]);
+        const px = Math.cos(a) * pinRadius;
+        const py = Math.sin(a) * pinRadius;
+        addMesh(g, pinGeo, matWroughtIron, [px, py, 0], [Math.PI / 2, 0, 0]);
       }
       parent.add(g);
       return g;
     }
 
+    const driveShaftGroups = [];
     const lanternGroups = [];
-    // Ön sağ/sol ve Arka sağ/sol fener dişliler
-    [
-      { side: -1, fb: 1, z: WHEEL_Z - 0.30 },
-      { side: 1, fb: 1, z: WHEEL_Z - 0.30 },
-      { side: -1, fb: -1, z: -WHEEL_Z + 0.30 },
-      { side: 1, fb: -1, z: -WHEEL_Z + 0.30 }
-    ].forEach(cfg => {
-      const pGrp = new THREE.Group();
-      pGrp.position.set(cfg.side * (WHEEL_X - 0.22), R_WHEEL + 0.14, cfg.z);
-      pGrp.userData = cfg;
-      buildLanternCage(pGrp, 0.16, 0.22, 10);
-      partLanternPinions.add(pGrp);
-      lanternGroups.push(pGrp);
+    [-1, 1].forEach(side => {
+      const dx = side * 1.04;
+      const dGrp = new THREE.Group();
+      dGrp.position.set(dx, R_WHEEL, 0);
+      dGrp.userData = { side };
+      partLanternPinions.add(dGrp);
+      driveShaftGroups.push(dGrp);
+
+      // Z ekseni boyunca uzanan boyuna tahrik mili (z = -1.68 .. +1.02 m, uzunluk 2.70 m)
+      const longShaftGeo = new THREE.CylinderGeometry(0.038, 0.038, 2.70, 10);
+      addMesh(dGrp, longShaftGeo, matWroughtIron, [0, 0, -0.33], [Math.PI / 2, 0, 0]);
+
+      // z = 0 noktasında krank milindeki r1 = 0.26 m dişliyle kavraşan r2 = 0.475 m düz dişli
+      const spurR2 = 0.475;
+      const spurDisc2 = new THREE.CylinderGeometry(spurR2, spurR2, 0.06, 24);
+      addMesh(dGrp, spurDisc2, matGearWood, [0, 0, 0], [Math.PI / 2, 0, 0]);
+      const spurTooth2 = new THREE.BoxGeometry(0.04, 0.04, 0.065);
+      for (let t = 0; t < 16; t++) {
+        const a = (t / 16) * Math.PI * 2;
+        addMesh(dGrp, spurTooth2, matWroughtIron, [Math.cos(a) * spurR2, Math.sin(a) * spurR2, 0], [0, 0, a]);
+      }
+
+      // Ön fener pinyon (sabit: z = +0.82 m)
+      const frontPinion = new THREE.Group();
+      frontPinion.position.set(0, 0, 0.82);
+      frontPinion.userData = { side, fb: 1 };
+      buildLanternCageZ(frontPinion, 0.15, 0.12, 0.20, 10);
+      dGrp.add(frontPinion);
+      lanternGroups.push(frontPinion);
+
+      // Arka fener pinyon (kaydırılabilir: Kodeks z = -0.82 m ⇄ Düzeltilmiş z = -1.54 m)
+      const rearPinion = new THREE.Group();
+      rearPinion.position.set(0, 0, -0.82);
+      rearPinion.userData = { side, fb: -1 };
+      buildLanternCageZ(rearPinion, 0.15, 0.12, 0.20, 10);
+      dGrp.add(rearPinion);
+      lanternGroups.push(rearPinion);
     });
 
-    // --- 9. Ara Avare Dişli & Ters Dişli Düzeltme Mekanizması (partIdlerGear) ---
-    // Arka sol ve sağ aktarma hattında yer alan yön çevirici avare dişliler
-    const idlerGroups = [];
+    // --- 9. Arka Pinyon Kaydırma Çatalı & Mandal Düzeneği (partIdlerGear) ---
+    // Arka fener pinyonları z = -0.82 m ile z = -1.54 m arasında kaydıran çatallı kol mekanizması
+    const shifterGroups = [];
     [-1, 1].forEach(side => {
-      const ig = new THREE.Group();
-      ig.position.set(side * (WHEEL_X - 0.22), R_WHEEL + 0.34, -WHEEL_Z);
-      ig.userData = { side };
-      const idlerDiskGeo = new THREE.CylinderGeometry(0.15, 0.15, 0.09, 14);
-      addMesh(ig, idlerDiskGeo, matIdlerHighlight, [0, 0, 0], [0, 0, Math.PI / 2]);
-      const toothGeo = new THREE.BoxGeometry(0.08, 0.035, 0.035);
-      for (let i = 0; i < 10; i++) {
-        const a = (i / 10) * Math.PI * 2;
-        addMesh(ig, toothGeo, matBronzeGun, [0, Math.cos(a) * 0.165, Math.sin(a) * 0.165], [a, 0, 0]);
-      }
-      // Kaydırma çatallı manivela kolu
-      const shiftArmGeo = new THREE.BoxGeometry(0.05, 0.32, 0.05);
-      addMesh(ig, shiftArmGeo, matWroughtIron, [-side * 0.12, 0.16, 0]);
-      partIdlerGear.add(ig);
-      idlerGroups.push(ig);
+      const sg = new THREE.Group();
+      sg.position.set(side * 1.04, R_WHEEL, -0.82);
+      sg.userData = { side };
+      // Pinyon bileziğini kavrayan çatal halka
+      const collarGeo = new THREE.TorusGeometry(0.175, 0.022, 8, 16);
+      addMesh(sg, collarGeo, matIdlerHighlight, [0, 0, 0]);
+      // Yukarıya (platformdaki kol yuvasına) uzanan kaydırma manivelası
+      const forkStemGeo = new THREE.BoxGeometry(0.045, 0.42, 0.045);
+      addMesh(sg, forkStemGeo, matIdlerHighlight, [-side * 0.14, 0.21, 0]);
+      const handleKnobGeo = new THREE.SphereGeometry(0.045, 10, 10);
+      addMesh(sg, handleKnobGeo, matBronzeGun, [-side * 0.14, 0.44, 0]);
+      partIdlerGear.add(sg);
+      shifterGroups.push(sg);
+    });
+    // Kaydırma kılavuz rayı (sabit)
+    [-1, 1].forEach(side => {
+      const railGeo = new THREE.CylinderGeometry(0.018, 0.018, 0.96, 8);
+      addMesh(partIdlerGear, railGeo, matWroughtIron, [side * 0.90, R_WHEEL + 0.28, -1.18], [Math.PI / 2, 0, 0]);
     });
 
     // --- 10 & 11. Ön ve Arka Tahrik Tekerlekleri + Çivili Taç Dişliler ---
@@ -691,6 +758,19 @@
     const ringTrackGeo = new THREE.TorusGeometry(1.78, 0.055, 8, 24);
     addMesh(partCannonRing, ringTrackGeo, matFrameWood, [0, Y_PORT - 0.16, 0], [Math.PI / 2, 0, 0]);
 
+    // Top halkasını ana şasiye bağlayan 8 adet dikme ve radyal destek kolu
+    const ringPillarH = (Y_PORT - 0.16) - Y_DECK + 0.08;
+    const ringPillarGeo = new THREE.CylinderGeometry(0.05, 0.055, ringPillarH, 8);
+    const ringSpokeGeo = new THREE.BoxGeometry(0.08, 0.07, 0.92);
+    for (let p = 0; p < 8; p++) {
+      const a = (p / 8) * Math.PI * 2 + Math.PI / 8;
+      const g = new THREE.Group();
+      g.rotation.y = a;
+      addMesh(g, ringPillarGeo, matFrameWood, [0, Y_DECK + ringPillarH * 0.5 - 0.04, 1.78]);
+      addMesh(g, ringSpokeGeo, matFrameWood, [0, Y_PORT - 0.19, 1.32]);
+      partCannonRing.add(g);
+    }
+
     const barrelPivots = [];
     const muzzleFlashes = [];
     const carriageGeo = new THREE.BoxGeometry(0.18, 0.12, 0.56);
@@ -736,46 +816,55 @@
     }
 
     // --- 14. Barut Fıçıları, Mascoli Odaları ve Gülle Sandıkları (partAmmoPowder) ---
-    const barrelCaskGeo = new THREE.CylinderGeometry(0.17, 0.19, 0.42, 12);
-    const ammoCrateGeo = new THREE.BoxGeometry(0.38, 0.22, 0.28);
-    const shotBallGeo = new THREE.SphereGeometry(0.038, 8, 8);
+    // Tekerlek boşluklarından uzakta, merkez platform koridoru üzerinde konumlandırılmıştır
+    const barrelCaskGeo = new THREE.CylinderGeometry(0.16, 0.18, 0.40, 12);
+    const ammoCrateGeo = new THREE.BoxGeometry(0.34, 0.20, 0.26);
+    const shotBallGeo = new THREE.SphereGeometry(0.036, 8, 8);
     [
-      [-0.95, 0.95], [0.95, 0.95], [-0.95, -0.95], [0.95, -0.95]
+      [-0.56, 1.32], [0.56, 1.32], [-0.56, -1.32], [0.56, -1.32]
     ].forEach(([ax, az], idx) => {
       addMesh(partAmmoPowder, barrelCaskGeo, matFrameWood, [ax, Y_DECK + 0.24, az]);
-      const crateX = ax * 0.72;
-      const crateZ = az * 1.15;
-      addMesh(partAmmoPowder, ammoCrateGeo, matFrameWood, [crateX, Y_DECK + 0.15, crateZ], [0, idx * 0.4, 0]);
+      const crateX = (idx % 2 === 0 ? -1 : 1) * 1.24;
+      const crateZ = (idx < 2 ? 1 : -1) * 0.26;
+      addMesh(partAmmoPowder, ammoCrateGeo, matFrameWood, [crateX, Y_DECK + 0.14, crateZ], [0, idx * 0.3, 0]);
       for (let s = -1; s <= 1; s++) {
-        addMesh(partAmmoPowder, shotBallGeo, matWroughtIron, [crateX + s * 0.08, Y_DECK + 0.28, crateZ]);
+        addMesh(partAmmoPowder, shotBallGeo, matWroughtIron, [crateX + s * 0.075, Y_DECK + 0.26, crateZ]);
       }
     });
 
     // ------------------------------------------------------------------------
     // SİMÜLASYON DURUMU VE FİZİK / ANİMASYON DÖNGÜSÜ
     // ------------------------------------------------------------------------
+    const GEAR_RATIO_SPUR = 0.26 / 0.475;     // Krank düz dişlisi (r1=0.26) / Tahrik mili düz dişlisi (r2=0.475) ≈ 0.5474
+    const GEAR_RATIO_CROWN = 0.12 / 0.36;     // Fener pinyon (rp=0.12) / Taç dişli (Rc=0.36) = 1/3 ≈ 0.3333
+    const TOTAL_WHEEL_RATIO = GEAR_RATIO_SPUR * GEAR_RATIO_CROWN; // ≈ 0.1825
+
     const S = {
       rpm: 28,                // Mürettebat krank devri (0 - 60 RPM)
       elevDeg: 2,             // Çevresel top yükseliş açısı (-2° .. +12°)
       steerDeg: 0,            // Arka dümen açısı (-30° .. +30°)
-      gearMode: 'codex',      // 'codex' (1487 Ters Dişli Kilidi) | 'fixed' (Düzeltilmiş Senkron Tahrik)
+      gearMode: 'codex',      // 'codex' (1487 Ters Dişli Kilidi: z=-0.82) | 'fixed' (Düzeltilmiş Senkron: z=-1.54)
       autoCrank: true,        // Otomatik krank çevirme
       rippleFire: false,      // 360° sıralı dairesel atış modu
       salvoTimer: -1,         // Salvo atışı zamanlayıcısı
       salvoIndex: 0,          // Sıradaki ateşlenecek top (0..15)
-      ammoSalvos: 32,         // Kalan top atımı
+      ammoSalvos: 32,         // Kalan top atımı (her top atışında 1 azalır)
       crankAngle: 0,
       finish: 'florence1487',
       relief: true
     };
 
     function fireSingleBarrel(idx) {
+      if (S.ammoSalvos <= 0) return false;
       const b = barrelPivots[idx % GUN_COUNT];
-      if (!b) return;
+      if (!b) return false;
+      S.ammoSalvos = Math.max(0, S.ammoSalvos - 1);
       b.recoil = 1.0;
       b.flashTimer = 0.11;
       muzzleFlashes[idx % GUN_COUNT].visible = true;
-      if (audio && audio.playCannonFire) audio.playCannonFire();
+      // Ses yükünü sınırlamak için 2 atışta bir ses çalınır
+      if (idx % 2 === 0 && audio && audio.playCannonFire) audio.playCannonFire();
+      return true;
     }
 
     function triggerSalvo() {
@@ -784,52 +873,50 @@
         if (audio && audio.playClick) audio.playClick(520);
         return { ok: true, refill: true };
       }
-      S.SalvoActive = true;
       S.salvoTimer = 0;
       S.salvoIndex = 0;
-      S.ammoSalvos = Math.max(0, S.ammoSalvos - 4);
       fireSingleBarrel(0);
       return { ok: true };
     }
 
     function update(dt) {
-      const activeRpm = S.autoCrank ? Math.max(S.rpm, 24) : S.rpm;
+      const activeRpm = S.autoCrank ? S.rpm : 0;
       const omegaCrank = (activeRpm * Math.PI * 2) / 60; // rad/sn
       S.crankAngle += omegaCrank * dt;
 
-      // 1. Krank milleri dönüşü
+      // 1. Krank milleri dönüşü (Z ekseni etrafında)
       crankPivots.forEach(cp => {
         cp.rotation.z = S.crankAngle * cp.userData.side;
       });
 
-      // 2. Fener dişliler (10 çubuklu pinyon) dönüşü
-      lanternGroups.forEach(lg => {
-        lg.rotation.x = S.crankAngle * 1.8;
-        // "Düzeltilmiş Dişli" modunda arka fener dişli kavrama noktası kaydırılır
-        const targetZ = lg.userData.fb > 0
-          ? (WHEEL_Z - 0.30)
-          : (S.gearMode === 'fixed' ? (-WHEEL_Z + 0.18) : (-WHEEL_Z + 0.30));
-        lg.position.z += (targetZ - lg.position.z) * Math.min(1, dt * 8);
+      // 2. Boyuna tahrik milleri ve Z eksenli fener dişliler dönüşü
+      const shaftAngle = -S.crankAngle * GEAR_RATIO_SPUR;
+      driveShaftGroups.forEach(dg => {
+        dg.rotation.z = shaftAngle * dg.userData.side;
       });
 
-      // 3. Ara avare dişli (Düzeltilmiş modda devreye girer)
-      idlerGroups.forEach(ig => {
-        const targetY = S.gearMode === 'fixed' ? (R_WHEEL + 0.18) : (R_WHEEL + 0.38);
-        ig.position.y += (targetY - ig.position.y) * Math.min(1, dt * 8);
-        if (S.gearMode === 'fixed') {
-          ig.rotation.x = -S.crankAngle * 1.8;
+      // Arka fener pinyonun Z konumu: Kodeks modunda z = -0.82 m, Düzeltilmiş modda z = -1.54 m
+      const targetRearPinionZ = S.gearMode === 'fixed' ? -1.54 : -0.82;
+      lanternGroups.forEach(lg => {
+        if (lg.userData.fb < 0) {
+          lg.position.z += (targetRearPinionZ - lg.position.z) * Math.min(1, dt * 8);
         }
       });
 
+      // 3. Arka pinyon kaydırma çatalı (arka pinyonla birlikte z = -0.82 ⇄ -1.54 arasında kayar)
+      shifterGroups.forEach(sg => {
+        sg.position.z += (targetRearPinionZ - sg.position.z) * Math.min(1, dt * 8);
+      });
+
       // 4. Ön ve Arka Tahrik Tekerlekleri
-      // Taç dişli oranı: 10 pinyon çubuğu / 20 taç dişi = 0.5x açısal hız
-      const wheelOmega = omegaCrank * 0.5;
+      // Tekerlek açısal hızı = tahrik mili hızı × (0.12 / 0.36) = omegaCrank × 0.1825
+      const wheelOmega = omegaCrank * TOTAL_WHEEL_RATIO;
       frontWheelGroups.forEach(wg => {
         wg.rotation.x += wheelOmega * dt;
       });
       rearWheelGroups.forEach(wg => {
-        // KODEKS MODU: Arka tekerlekler ön tekerleklere ZIT yönde döner!
-        // DÜZELTİLMİŞ MOD: Arka tekerlekler ön tekerleklerle AYNI yönde döner!
+        // KODEKS MODU (z=-0.82, ön kenar): Arka tekerlekler ön tekerleklere ZIT yönde döner!
+        // DÜZELTİLMİŞ MOD (z=-1.54, arka kenar): Arka tekerlekler ön tekerleklerle AYNI yönde döner!
         const dir = S.gearMode === 'codex' ? -1 : 1;
         wg.rotation.x += dir * wheelOmega * dt;
       });
@@ -845,7 +932,7 @@
       const steerRad = THREE.MathUtils.degToRad(S.steerDeg);
       rudderPivot.rotation.y += (steerRad - rudderPivot.rotation.y) * Math.min(1, dt * 8);
       if (S.gearMode === 'fixed') {
-        casterWheelPivot.rotation.x += wheelOmega * 1.6 * dt;
+        casterWheelPivot.rotation.x += wheelOmega * (R_WHEEL / 0.30) * dt;
       }
 
       // 6. 16 Çevresel Top Yükseliş Açısı ve Salvo Geri Tepmesi
@@ -873,7 +960,7 @@
           S.salvoIndex = (S.salvoIndex + 1) % GUN_COUNT;
           if (S.ammoSalvos > 0) {
             fireSingleBarrel(S.salvoIndex);
-            if (!S.rippleFire && S.salvoIndex === 0) {
+            if (!S.rippleFire && S.salvoIndex === GUN_COUNT - 1) {
               S.salvoTimer = -1;
             }
           } else {
@@ -934,7 +1021,7 @@
         front: 'Ön Mazgal',
         breech: 'Top Halkası',
         engine: 'Krank & Dişli',
-        suspension: 'Tاع Dişli Teker',
+        suspension: 'Taç Dişli Teker',
         top: 'Üst Kesit'
       },
       sliders: [
@@ -948,7 +1035,7 @@
         mode: true
       },
       telemetryTag: 'CODEX ARUNDEL 1030',
-      statLabels: ['TAHRİK DURUMU', 'İLERLEME HIZI', 'KALAN SALVO', 'TOPLAM AĞIRLIK']
+      statLabels: ['TAHRİK DURUMU', 'İLERLEME HIZI', 'KALAN ATIM', 'TOPLAM AĞIRLIK']
     };
 
     function modeLabel() {
@@ -964,7 +1051,7 @@
     function onSlider(index, val) {
       if (index === 0) {
         S.rpm = val;
-        if (val === 0) S.autoCrank = false;
+        S.autoCrank = val > 0;
       } else if (index === 1) {
         S.elevDeg = val;
       } else if (index === 2) {
@@ -976,7 +1063,7 @@
     function onButton(name) {
       if (name === 'terrain') {
         S.autoCrank = !S.autoCrank;
-        if (S.autoCrank && S.rpm < 15) S.rpm = 28;
+        if (S.autoCrank && S.rpm <= 0) S.rpm = 28;
         return { active: S.autoCrank };
       }
       if (name === 'sweep') {
@@ -989,8 +1076,8 @@
       if (name === 'mode') {
         S.gearMode = S.gearMode === 'codex' ? 'fixed' : 'codex';
         const msg = S.gearMode === 'fixed'
-          ? '<strong>⚙️ Düzeltilmiş Dişli Modu Aktif!</strong><br/>Ara avare dişli devreye girdi: Ön ve arka tekerlekler artık <strong>aynı yönde</strong> dönüyor ve araç ilerleyebiliyor.'
-          : '<strong>📜 1487 Kodeks Çizimi Modu Aktif!</strong><br/>Leonardo\'nun orijinal eskizindeki gibi fener dişliler içten kavrıyor: Ön ve arka tekerlekler <strong>zıt yönde</strong> dönerek aracı kilitliyor!';
+          ? '<strong>⚙️ Düzeltilmiş Dişli Modu Aktif!</strong><br/>Kaydırma çatalı arka fener pinyonu <code>z = -1,54 m</code> konumuna (arka taç dişlinin arka kenarına) kaydırdı: Ön ve arka tekerlekler artık <strong>aynı yönde</strong> dönüyor!'
+          : '<strong>📜 1487 Kodeks Çizimi Modu Aktif!</strong><br/>Arka fener pinyon <code>z = -0,82 m</code> konumunda (arka taç dişlinin ön kenarında): Ön ve arka tekerlekler <strong>zıt yönde</strong> dönerek aracı kilitliyor!';
         return { active: S.gearMode === 'fixed', msg };
       }
       return {};
@@ -1014,14 +1101,14 @@
     }
 
     function getStats() {
-      const activeRpm = S.autoCrank ? Math.max(S.rpm, 24) : S.rpm;
-      // Teker çevresi = 2 * pi * 0.56 ≈ 3.52 m; teker devri = 0.5 * activeRpm
+      const activeRpm = S.autoCrank ? S.rpm : 0;
+      // Teker çevresi = 2 * pi * 0.56 ≈ 3.519 m; teker devri = activeRpm * TOTAL_WHEEL_RATIO (≈ 0.1825)
       const speedKmh = S.gearMode === 'fixed'
-        ? ((activeRpm * 0.5 * 3.518 * 60) / 1000).toFixed(1)
+        ? ((activeRpm * TOTAL_WHEEL_RATIO * 3.519 * 60) / 1000).toFixed(1)
         : '0.0';
       const driveText = S.gearMode === 'fixed' ? 'SENKRON' : 'ZIT KİLİTLİ';
       return [
-        `${driveText} <span>${activeRpm} RPM</span>`,
+        `${driveText} <span>${Math.round(activeRpm)} RPM</span>`,
         `${speedKmh} <span>km/sa</span>`,
         `${S.ammoSalvos} <span>Atım</span>`,
         `~6.8 <span>Ton</span>`
@@ -1032,7 +1119,7 @@
       if (S.salvoTimer >= 0 || S.rippleFire) return { text: '360° SALVO ATEŞİ!', color: '#ef4444' };
       if (S.ammoSalvos <= 0) return { text: 'MÜHİMMAT BİTTİ', color: '#d97706' };
       if (S.gearMode === 'codex') return { text: 'KODEKS: TERS DİŞLİ KİLİTLİ', color: '#d97706' };
-      return { text: 'DÜZELTİLMİŞ: İLERlemeye HAZIR', color: '#10b981' };
+      return { text: 'DÜZELTİLMİŞ: İLERLEMEYE HAZIR', color: '#10b981' };
     }
 
     const camPresets = {
@@ -1051,28 +1138,28 @@
         explode: 0, cutaway: false, sub: 'all', cam: 'iso', part: partConeArmor
       },
       {
-        title: 'X-Ray Kesit: 8 Kişilik Krank Mili ve İç İskelet',
-        desc: 'Dış konik kabuk saydamlaştığında içerideki iki paralel krank mili, 16 radyal meşe mertek ve komutanın tepe gözetleme kulesine çıkan kürsüsü görülür.',
+        title: 'X-Ray Kesit: 8 Kişilik Krank Mili ve Düz Dişli Aktarımı',
+        desc: 'Dış konik kabuk saydamlaştığında içerideki iki paralel krank mili ve z=0 düzleminde alt boyuna tahrik millerine güç aktaran düz dişli çiftleri (r=0,26m → r=0,475m) görülür.',
         explode: 0, cutaway: true, sub: 'all', cam: 'engine', part: partCrankShafts
       },
       {
         title: 'Ünlü Mühendislik Bilmecesi: Ters Dişli Hatası mı, Güvenlik Kilidi mi?',
-        desc: 'Codex Arundel f.1030 çiziminde fener dişliler (rocchetti) ön ve arka tekerlekleri ZIT yönde döndürür. Sağ paneldeki "Mod" butonuna tıklayarak "Düzeltilmiş Dişli" moduna geçin ve 4 tekerleğin senkronize dönüşünü izleyin!',
+        desc: 'Codex Arundel f.1030 çiziminde arka fener pinyon z=-0,82m noktasında (taç dişlinin ön kenarı) durduğu için ön ve arka tekerlekler ZIT yönde döner. Sağ paneldeki "Mod" butonuna tıklayarak arka pinyonu z=-1,54m konumuna (arka kenara) kaydırın!',
         explode: 15, cutaway: true, sub: 'drivetrain', cam: 'suspension', part: partIdlerGear
       },
       {
-        title: 'Fener Dişliler (Rocchetti) ve Çivili Taç Dişli Tekerlekler',
-        desc: 'Rönesans makinelerinin imzası olan kafes fener dişliler, tekerleklerin iç yüzeyindeki 20 çivili taç dişliyle 90° açıyla kavraşarak insan gücünü torka dönüştürür.',
+        title: 'Z Eksenli Fener Dişliler (Rocchetti) ve Çivili Taç Dişli Tekerlekler',
+        desc: 'Boyuna tahrik milleri üzerindeki 10 çubuklu kafes fener dişliler (r=0,12m), tekerleklerin iç yüzeyindeki 20 çivili taç dişliyle (R=0,36m) 90° dik açıyla kavraşarak insan gücünü yüksek torka dönüştürür.',
         explode: 30, cutaway: true, sub: 'drivetrain', cam: 'suspension', part: partLanternPinions
       },
       {
         title: '360° Çevresel Top Bataryası (16 × Falconet)',
-        desc: 'Mazgallardan dışarı uzanan 16 adet tunç hafif top ve yedek barut odaları (mascoli). "16 Topla 360° Salvo Ateşi" butonuna basarak dairesel yaylım ateşini başlatın!',
+        desc: '8 dikmeyle desteklenen çevresel top halkası üzerindeki 16 adet tunç hafif top ve yedek barut odaları (mascoli). "16 Topla 360° Salvo Ateşi" butonuna basarak dairesel yaylım ateşini başlatın!',
         explode: 20, cutaway: true, sub: 'artillery', cam: 'breech', part: partCannonBarrels
       },
       {
         title: 'Tam Teardown (%85): 14 Bağımsız Mekanik Grup',
-        desc: 'Konik zırh, 16 kaburga kirişi, gözetleme kulesi, etek zırhı, şasi platformu, arka dümen, ikiz krank mili, 4 fener dişli, avare dişli, 4 tahrik tekeri ve 16 top bataryası tamamen ayrılmış görünümde.',
+        desc: 'Konik zırh, 16 kaburga kirişi, gözetleme kulesi, etek zırhı, tekerlek yuvalı şasi platformu, arka dümen, ikiz krank mili, boyuna tahrik milleri ve 4 fener pinyon, kaydırma çatalı, 4 tahrik tekeri ve 16 top bataryası ayrılmış görünümde.',
         explode: 85, cutaway: false, sub: 'all', cam: 'iso', part: partConeArmor
       }
     ];

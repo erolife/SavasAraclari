@@ -132,7 +132,7 @@
       name: 'Osmanlı Kadırgası & Baş Topu (İnebahtı)', sub: 'OARED WAR GALLEY • KIZAKLI BAŞ TOPU',
       desc: 'Akdeniz\'in kürekli savaş gemisi. Ana silahı, pruvada omurga doğrultusunda kızak üzerine yerleştirilmiş ağır tunç baş topudur; gemi bu topu hedefe çevirmek için diferansiyel kürek manevrasıyla (bir taraf ileri, diğer taraf geri) döndürülür. Ateşleyin, braga halatıyla geri tepmeyi sönümleyin ve palangalarla topu tekrar bataryaya çekin!',
       tags: ['Kızaklı Tunç Baş Topu', 'Diferansiyel Kürek Manevrası', 'Mahmuz & 4 Prangi', 'Braga Halatı & Palanga'],
-      specs: [['TAHRİK', '16 Alakürek & Latin Yelken'], ['ANA SİLAH', 'Kızaklı Tunç Baş Topu + 4 Prangi'], ['GERİ TEPME', '~1,35 m Kızak + Braga Freni'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
+      specs: [['TAHRİK', '16 Alakürek & Latin Yelken'], ['ANA SİLAH', 'Kızaklı Tunç Baş Topu + 4 Prangi'], ['GERİ TEPME', '~0,75 m Kızak + Braga Freni'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
       tag: 'KADIRGA-1571', icon: '⚓',
       modal: [
         'Kadırga gövdesi, kürek tezgâhları ve yelken donanımı (X-Ray kesit)',
@@ -143,13 +143,13 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 100 Q160 112 300 100" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 4"/><path d="M40 82 L268 82 L292 70 L280 92 Q160 104 52 94 Z" fill="#b45309" fill-opacity="0.22" stroke="#78350f" stroke-width="2.2"/><line x1="150" y1="82" x2="150" y2="22" stroke="#1e293b" stroke-width="2.5"/><path d="M150 26 L210 60 L150 66 Z" fill="#f1f5f9" stroke="#475569" stroke-width="1.6"/><rect x="238" y="72" width="34" height="8" rx="2" fill="#334155" stroke="#0f172a" stroke-width="1.6"/><line x1="272" y1="76" x2="290" y2="76" stroke="#0f172a" stroke-width="3"/><g stroke="#475569" stroke-width="1.6"><line x1="70" y1="90" x2="58" y2="118"/><line x1="95" y1="92" x2="83" y2="120"/><line x1="120" y1="93" x2="108" y2="121"/><line x1="145" y1="94" x2="133" y2="122"/><line x1="170" y1="94" x2="158" y2="122"/><line x1="195" y1="93" x2="183" y2="121"/><line x1="220" y1="92" x2="208" y2="120"/></g></svg>'
     },
     {
-      id: 'gatling', group: 2, status: 'planned',
+      id: 'gatling', sim: 'gatling', group: 2, status: 'live',
       year: 1862, yearLabel: '1862', eraLabel: 'SANAYİ DEVRİMİ',
       domain: 'land', era: 'industrial', energy: ['gunpowder', 'muscle'], role: ['smallarms'], origin: 'usa',
       name: 'Gatling Makineli Silahı (1862)', sub: 'HAND-CRANKED ROTARY GUN • 6 NAMLU',
-      desc: 'Richard Gatling\'in 1862\'de patentini aldığı el krankıyla çalışan döner namlulu silah. Namlular döndükçe her birinin kilidi eğik bir kam oluğu boyunca ileri-geri itilir: mermiyi yerleştirir, ateşler ve boş kovanı çıkarır. Her namlu soğumak için zaman bulur.',
-      tags: ['6 Döner Namlu', 'Helisel Kam & Kilitler', 'El Krankı', 'Yerçekimli Şarjör'],
-      specs: [['NAMLU', '6'], ['TAHRİK', 'El krankı'], ['BESLEME', 'Yerçekimli şarjör'], ['ATIŞ HIZI', '~200/dk (ilk model, yaklaşık)']],
+      desc: 'Richard Gatling\'in 1862\'de patentini aldığı el krankıyla çalışan döner namlulu silah. Namlular döndükçe her birinin kilidi sabit helisel kam oluğu boyunca 14 cm ileri-geri itilir: mermiyi yerleştirir, Saat 6 yönünde ateşler ve boş kovanı çıkarır. X-Ray modunda kam ve 6 sürgünün tam döngüsünü inceleyin!',
+      tags: ['6 Döner Namlu', 'Helisel Kam & 6 Kilit', '90° Konik Dişli Krank', 'Yerçekimli Şarjör'],
+      specs: [['NAMLU', '6 × .58 Kalibre'], ['TAHRİK', 'El Krankı (1:1 Konik Dişli)'], ['BESLEME', 'Yerçekimli Şarjör (48 Atım)'], ['3D PARÇA SAYISI', '14 Bağımsız Grup']],
       tag: 'GATLING-1862', icon: '🔩',
       modal: [
         'Namlu demeti, döner gövde ve sabit dış muhafaza',
