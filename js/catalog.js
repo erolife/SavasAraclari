@@ -107,15 +107,15 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="70" x2="300" y2="70" stroke="#94a3b8" stroke-dasharray="4 4"/><ellipse cx="155" cy="70" rx="34" ry="56" fill="#0284c7" fill-opacity="0.14" stroke="#0284c7" stroke-width="2"/><path d="M52 70 C85 56, 200 58, 255 70 C200 82, 85 84, 52 70 Z" fill="#6b7460" fill-opacity="0.32" stroke="#1e293b" stroke-width="2"/><rect x="188" y="62" width="42" height="16" rx="2" fill="#d97706" fill-opacity="0.35" stroke="#b45309" stroke-width="1.8"/><line x1="255" y1="36" x2="255" y2="104" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/><line x1="175" y1="34" x2="208" y2="34" stroke="#dc2626" stroke-width="2.2"/><line x1="175" y1="106" x2="208" y2="106" stroke="#dc2626" stroke-width="2.2"/></svg>'
     },
 
-    // ===================================================================== 2. GRUP (PLANLI)
+    // ===================================================================== 2. GRUP (AKTİF & PLANLI)
     {
-      id: 'leonardo', group: 2, status: 'planned',
+      id: 'leonardo', sim: 'leonardo', group: 2, status: 'live',
       year: 1487, yearLabel: '~1487', eraLabel: 'RÖNESANS',
       domain: 'land', era: 'gunpowder', energy: ['muscle', 'gunpowder'], role: ['armor'], origin: 'italy',
       name: 'Leonardo da Vinci\'nin Zırhlı Aracı', sub: 'CRANK & GEAR DRIVE • KONİK AHŞAP ZIRH',
-      desc: 'Leonardo\'nun defterlerindeki, çevresine hafif toplar dizilmiş konik ahşap zırhlı araç. İçerideki adamlar krankları çevirerek tekerlekleri döndürür. Çizimdeki dişli düzeni, ön ve arka tekerlekleri zıt yönde döndürecek şekildedir; bu bir tasarım hatası mı yoksa bilinçli bir "güvenlik kilidi" mi, hâlâ tartışılır.',
-      tags: ['Krank & Dişli Aktarma', 'Konik Ahşap Zırh', 'Çevresel Toplar', 'Ters Dişli Bilmecesi'],
-      specs: [['TAHRİK', 'İnsan gücü (krank)'], ['SİLAH', 'Çevresel hafif toplar'], ['DURUM', 'Yalnızca çizim (inşa edilmedi)'], ['ÖNE ÇIKAN', 'Çizim ⇄ düzeltilmiş dişli']],
+      desc: 'Leonardo\'nun defterlerindeki, çevresine 16 hafif top dizilmiş konik ahşap zırhlı araç. 8 kişilik mürettebat krankları çevirerek fener dişlilerle tekerlekleri döndürür. "1487 Kodeks" (ters dişli kilidi) ile "Düzeltilmiş Dişli" modları arasında canlı geçiş yapın ve 360° salvo ateşleyin!',
+      tags: ['Krank & Fener Dişli', 'Konik Ahşap Zırh', '16 Çevresel Top', 'Kodeks ⇄ Düzeltilmiş Dişli'],
+      specs: [['TAHRİK', '8 Kişilik İkiz Krank'], ['SİLAH', '16 × Tunç Hafif Top'], ['ÖNE ÇIKAN', 'Kodeks ⇄ Düzeltilmiş Dişli'], ['3D PARÇA SAYISI', '14 Bağımsız Grup']],
       tag: 'LEONARDO-1487', icon: '🛡️',
       modal: [
         'Konik ahşap zırh kabuğu ve gözetleme kulesi (X-Ray ile iç mekanizma)',
@@ -126,13 +126,13 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="122" x2="300" y2="122" stroke="#94a3b8" stroke-dasharray="4 4"/><path d="M70 104 Q160 10 250 104 Z" fill="#b45309" fill-opacity="0.18" stroke="#78350f" stroke-width="2.2"/><rect x="146" y="22" width="28" height="18" rx="3" fill="#d97706" fill-opacity="0.3" stroke="#78350f" stroke-width="2"/><line x1="70" y1="104" x2="250" y2="104" stroke="#1e293b" stroke-width="2.5"/><circle cx="100" cy="112" r="10" stroke="#1e293b" stroke-width="2"/><circle cx="220" cy="112" r="10" stroke="#1e293b" stroke-width="2"/><circle cx="160" cy="80" r="14" stroke="#0284c7" stroke-width="2" stroke-dasharray="3 2"/><path d="M160 66 L160 94 M146 80 L174 80" stroke="#0284c7" stroke-width="1.6"/><line x1="82" y1="96" x2="58" y2="98" stroke="#334155" stroke-width="4" stroke-linecap="round"/><line x1="238" y1="96" x2="262" y2="98" stroke="#334155" stroke-width="4" stroke-linecap="round"/><line x1="112" y1="66" x2="94" y2="58" stroke="#334155" stroke-width="4" stroke-linecap="round"/><line x1="208" y1="66" x2="226" y2="58" stroke="#334155" stroke-width="4" stroke-linecap="round"/><path d="M100 112 L160 80 L220 112" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3 2"/></svg>'
     },
     {
-      id: 'kadirga', group: 2, status: 'planned',
+      id: 'kadirga', sim: 'kadirga', group: 2, status: 'live',
       year: 1571, yearLabel: '1571', eraLabel: 'BARUT ÇAĞI',
       domain: 'sea', era: 'gunpowder', energy: ['gunpowder', 'muscle'], role: ['artillery'], origin: 'ottoman',
       name: 'Osmanlı Kadırgası & Baş Topu (İnebahtı)', sub: 'OARED WAR GALLEY • KIZAKLI BAŞ TOPU',
-      desc: 'Akdeniz\'in kürekli savaş gemisi. Ana silahı, pruvada omurga doğrultusunda kızak üzerine yerleştirilmiş ağır baş topudur; gemi bu topu hedefe çevirmek için bütünüyle döndürülür. 1571 İnebahtı, kadırgaların son büyük deniz savaşlarından biridir.',
-      tags: ['Kızaklı Baş Topu', 'Kürek Düzeni', 'Mahmuz & Pruva', 'Halat-Palanga Freni'],
-      specs: [['TAHRİK', 'Kürek & Yelken'], ['ANA SİLAH', 'Pruvada kızaklı baş topu'], ['SAVAŞ', 'İnebahtı (1571)'], ['ÖNE ÇIKAN', 'Kürek temposu + geri tepme']],
+      desc: 'Akdeniz\'in kürekli savaş gemisi. Ana silahı, pruvada omurga doğrultusunda kızak üzerine yerleştirilmiş ağır tunç baş topudur; gemi bu topu hedefe çevirmek için diferansiyel kürek manevrasıyla (bir taraf ileri, diğer taraf geri) döndürülür. Ateşleyin, braga halatıyla geri tepmeyi sönümleyin ve palangalarla topu tekrar bataryaya çekin!',
+      tags: ['Kızaklı Tunç Baş Topu', 'Diferansiyel Kürek Manevrası', 'Mahmuz & 4 Prangi', 'Braga Halatı & Palanga'],
+      specs: [['TAHRİK', '16 Alakürek & Latin Yelken'], ['ANA SİLAH', 'Kızaklı Tunç Baş Topu + 4 Prangi'], ['GERİ TEPME', '~1,35 m Kızak + Braga Freni'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
       tag: 'KADIRGA-1571', icon: '⚓',
       modal: [
         'Kadırga gövdesi, kürek tezgâhları ve yelken donanımı (X-Ray kesit)',
