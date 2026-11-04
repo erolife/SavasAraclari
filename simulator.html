@@ -639,8 +639,8 @@
       <div class="era-pill" id="pill-ballista" data-vehicle="ballista" data-era="active">
         <span>★ M.Ö. 300: Ballista</span>
       </div>
-      <div class="era-pill" data-era="1250 — Karşı Ağırlıklı Trebuchet (Orta Çağ Kuşatma Mancınığı)">
-        <span>1250: Trebuchet</span> <span class="soon">Faz 3</span>
+      <div class="era-pill" id="pill-trebuchet" data-vehicle="trebuchet" data-era="active">
+        <span>★ 1250: Trebuchet</span>
       </div>
       <div class="era-pill" id="pill-sahi" data-vehicle="sahi" data-era="active">
         <span>★ 1453: Şahi Topu</span>
@@ -648,8 +648,8 @@
       <div class="era-pill active" id="pill-tiger" data-vehicle="tiger" data-era="active">
         <span>★ 1942: Tiger I Tankı</span>
       </div>
-      <div class="era-pill" data-era="1943 — Supermarine Spitfire Mk IX (Merlin V12 & Eliptik Kanat)">
-        <span>1943: Spitfire</span> <span class="soon">Faz 3</span>
+      <div class="era-pill" id="pill-spitfire" data-vehicle="spitfire" data-era="active">
+        <span>★ 1943: Spitfire</span>
       </div>
     </div>
 
@@ -875,6 +875,8 @@
   <script src="js/vehicles/tiger1.js"></script>
   <script src="js/vehicles/sahi1453.js"></script>
   <script src="js/vehicles/ballista.js"></script>
+  <script src="js/vehicles/trebuchet.js"></script>
+  <script src="js/vehicles/spitfire.js"></script>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -1038,6 +1040,73 @@
         tg.connect(this.ctx.destination);
         thump.start(now);
         thump.stop(now + 0.26);
+      }
+
+      playCreakWhoosh() {
+        // Trebuchet: ahşap gıcırtısı + düşen ağırlığın tok sesi + sapanın uğultusu
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        const now = this.ctx.currentTime;
+        const creak = this.ctx.createOscillator();
+        const cg = this.ctx.createGain();
+        creak.type = 'sawtooth';
+        creak.frequency.setValueAtTime(70, now);
+        creak.frequency.linearRampToValueAtTime(110, now + 0.5);
+        cg.gain.setValueAtTime(0.0001, now);
+        cg.gain.exponentialRampToValueAtTime(0.12, now + 0.15);
+        cg.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+        creak.connect(cg);
+        cg.connect(this.ctx.destination);
+        creak.start(now);
+        creak.stop(now + 0.72);
+
+        const len = Math.floor(this.ctx.sampleRate * 1.6);
+        const buf = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
+        const data = buf.getChannelData(0);
+        for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
+        const noise = this.ctx.createBufferSource();
+        noise.buffer = buf;
+        const bp = this.ctx.createBiquadFilter();
+        bp.type = 'bandpass';
+        bp.Q.value = 1.2;
+        bp.frequency.setValueAtTime(180, now + 0.3);
+        bp.frequency.exponentialRampToValueAtTime(900, now + 1.2);
+        bp.frequency.exponentialRampToValueAtTime(300, now + 1.6);
+        const ng = this.ctx.createGain();
+        ng.gain.setValueAtTime(0.0001, now);
+        ng.gain.exponentialRampToValueAtTime(0.35, now + 1.1);
+        ng.gain.exponentialRampToValueAtTime(0.001, now + 1.6);
+        noise.connect(bp);
+        bp.connect(ng);
+        ng.connect(this.ctx.destination);
+        noise.start(now);
+        noise.stop(now + 1.6);
+      }
+
+      playGunBurst() {
+        // 1 sn salvo: 20 mm topların tok patlamaları + .303'lerin hızlı tıkırtısı
+        if (!this.enabled) return;
+        this.init();
+        if (!this.ctx) return;
+        const start = this.ctx.currentTime;
+        const pop = (t, freq, dur, vol) => {
+          const len = Math.floor(this.ctx.sampleRate * dur);
+          const buf = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
+          const d = buf.getChannelData(0);
+          for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (len * 0.25));
+          const src = this.ctx.createBufferSource();
+          src.buffer = buf;
+          const f = this.ctx.createBiquadFilter();
+          f.type = 'lowpass';
+          f.frequency.value = freq;
+          const g = this.ctx.createGain();
+          g.gain.value = vol;
+          src.connect(f); f.connect(g); g.connect(this.ctx.destination);
+          src.start(t);
+        };
+        for (let i = 0; i < 10; i++) pop(start + i * 0.1, 900, 0.09, 0.45);   // Hispano ~600/dk
+        for (let i = 0; i < 19; i++) pop(start + i * 0.052, 2600, 0.03, 0.18); // Browning ~1.150/dk
       }
 
       playClick(freq = 520) {
@@ -1506,7 +1575,9 @@
       mesh.userData.origMaterial = mesh.material;
       mesh.userData.origColor = mesh.material.color.clone();
       mesh.userData.vehicle = currentBuildVehicle;
-      mesh.userData.isDecal = material === MATS.insigniaDecal;
+      // Çıkartmalar ve cam gibi kalıcı saydam malzemeler: X-Ray/filtre sonrası özgün opaklıklarına döner
+      mesh.userData.isDecal = material === MATS.insigniaDecal || material.transparent === true;
+      mesh.userData.baseOpacity = material.transparent ? material.opacity : 1.0;
 
       if (clonedMat.userData.isArmor) {
         armorMeshes.push(mesh);
@@ -1616,8 +1687,12 @@
     // ============================================================================
     currentBuildVehicle = 'ballista';
     const ballista = window.VehicleBuilders.ballista(buildCtx);
-    const ADAPTERS = { ballista };
-    const VEHICLE_ROOTS = { tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root };
+    currentBuildVehicle = 'trebuchet';
+    const trebuchet = window.VehicleBuilders.trebuchet(buildCtx);
+    currentBuildVehicle = 'spitfire';
+    const spitfire = window.VehicleBuilders.spitfire(buildCtx);
+    const ADAPTERS = { ballista, trebuchet, spitfire };
+    const VEHICLE_ROOTS = { tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root };
     function activeAdapter() { return ADAPTERS[state.vehicle] || null; }
 
     currentBuildVehicle = 'tiger';
@@ -1878,7 +1953,8 @@
         const isOuter = pg.userData.isOuterShell;
 
         pg.traverse(obj => {
-          if (obj.isMesh && obj !== flashMesh && obj !== sahiFlashMesh) {
+          // Yalnızca addCADMesh/addInstancedMesh ile kayıtlı mesh'ler; efekt mesh'leri (alev, bulanık disk vb.) atlanır
+          if (obj.isMesh && obj.userData.origColor && obj !== flashMesh && obj !== sahiFlashMesh) {
             const mat = obj.material;
             if (state.blueprint) {
               mat.color.setHex(0xdbeafe);
@@ -1898,7 +1974,7 @@
               } else {
                 // Yalnızca çıkartmalar saydam kalır; zırhlar X-Ray sonrası tekrar tam opak olur
                 mat.transparent = !!obj.userData.isDecal;
-                mat.opacity = 1.0;
+                mat.opacity = obj.userData.baseOpacity ?? 1.0; // cam gibi kalıcı yarı saydam parçalar özgün opaklığına döner
                 mat.depthWrite = !mat.transparent;
               }
             }
@@ -2086,6 +2162,22 @@
       });
     }
 
+    // Büyük araçlar (ör. 16 m'lik trebuchet) için sis mesafesi ve gölge kamerası alanı.
+    // u = null → varsayılan değerler (Tiger, Şahi, Ballista ölçeği).
+    function applySceneScale(u) {
+      const fog = (u && u.fog) || { near: 18, far: 45 };
+      scene.fog.near = fog.near;
+      scene.fog.far = fog.far;
+      const ext = (u && u.shadowExtent) || 9;
+      const sc = keyLight.shadow.camera;
+      if (sc.right !== ext) {
+        sc.left = -ext; sc.right = ext; sc.top = ext; sc.bottom = -ext;
+        sc.far = Math.max(40, ext * 4);
+        sc.updateProjectionMatrix();
+      }
+      controls.maxDistance = Math.max(32, ext * 2.2);
+    }
+
     // Adaptör kalıbındaki bir aracın arayüzünü (başlık, kaplama, alt sistemler, kaydırıcılar, telemetri) kurar
     function setupAdapterUI(ad) {
       const u = ad.ui;
@@ -2128,7 +2220,10 @@
       const bSwp = document.getElementById('btn-turret-sweep');
       bSwp.textContent = u.buttons.sweep;
       bSwp.classList.toggle('active', ad.buttonActive('sweep'));
-      document.getElementById('btn-sahi-mode').style.display = 'none';
+      const modeBtn = document.getElementById('btn-sahi-mode');
+      modeBtn.style.display = u.buttons.mode ? '' : 'none';
+      if (u.buttons.mode) { modeBtn.textContent = ad.modeLabel(); modeBtn.classList.toggle('active', ad.buttonActive('mode')); }
+      applySceneScale(u);
 
       document.getElementById('telemetry-tag').textContent = u.telemetryTag;
       ['stat-lbl-1', 'stat-lbl-2', 'stat-lbl-3', 'stat-lbl-4'].forEach((id, i) => {
@@ -2160,6 +2255,11 @@
       document.getElementById('btn-fire').textContent = ad.fireButtonLabel();
       document.getElementById('btn-terrain').classList.toggle('active', ad.buttonActive('terrain'));
       document.getElementById('btn-turret-sweep').classList.toggle('active', ad.buttonActive('sweep'));
+      if (ad.ui.buttons.mode) {
+        const mb = document.getElementById('btn-sahi-mode');
+        mb.textContent = ad.modeLabel();
+        mb.classList.toggle('active', ad.buttonActive('mode'));
+      }
     }
 
     function switchVehicle(targetVehicle) {
@@ -2257,6 +2357,7 @@
         bSwp.textContent = '🧽 Otomatik Dolum Döngüsü';
         bSwp.classList.toggle('active', state.sahiAutoLoading);
         document.getElementById('btn-sahi-mode').style.display = '';
+        applySceneScale(null);
         updateSahiModeButton();
 
         document.getElementById('telemetry-tag').textContent = 'DARDANELLES 1464';
@@ -2345,6 +2446,7 @@
         bSwp.textContent = '🎯 Oto-Taret Tarama';
         bSwp.classList.toggle('active', state.turretAutoSweep);
         document.getElementById('btn-sahi-mode').style.display = 'none';
+        applySceneScale(null);
 
         document.getElementById('telemetry-tag').textContent = 'HL230 P45';
         document.getElementById('stat-lbl-1').textContent = 'MOTOR GÜCÜ';
@@ -2577,6 +2679,13 @@
     }
 
     document.getElementById('btn-sahi-mode').addEventListener('click', () => {
+      if (activeAdapter()) {
+        const r = activeAdapter().onButton('mode');
+        if (r && r.msg) showToast(r.msg, 5200);
+        refreshAdapterHUD(activeAdapter(), true);
+        audio.playClick(560);
+        return;
+      }
       state.sahiMode = state.sahiMode === 'transport' ? 'battle' : 'transport';
       stopSahiReload();
       state.sahiAutoScrew = false;
@@ -2704,7 +2813,7 @@
       if (activeAdapter()) {
         const r = activeAdapter().onFire();
         if (r && r.msg) showToast(r.msg, 4600);
-        if (r && r.ok && !r.refill) selectPart(ballista.parts.bolt);
+        if (r && r.ok && !r.refill) selectPart(activeAdapter().firePart || activeAdapter().defaultPart);
         refreshAdapterHUD(activeAdapter(), true);
         return;
       }
@@ -2802,7 +2911,7 @@
           return;
         }
         const era = pill.dataset.era;
-        toastEl.innerHTML = `<strong>${era}</strong><br/>Bu araç Faz 3 kapsamında zaman çizelgesine eklenecektir. Şu an <strong>Roma Ballistası</strong>, <strong>Osmanlı Şahi Topu</strong> ve <strong>Tiger I</strong> simülatörleri arasında geçiş yapabilirsiniz!`;
+        toastEl.innerHTML = `<strong>${era}</strong><br/>Bu araç Faz 3 kapsamında zaman çizelgesine eklenecektir. Şu an <strong>Roma Ballistası</strong>, <strong>Trebuchet</strong>, <strong>Osmanlı Şahi Topu</strong>, <strong>Tiger I</strong> ve <strong>Spitfire</strong> simülatörleri arasında geçiş yapabilirsiniz!`;
         toastEl.style.display = 'block';
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => { toastEl.style.display = 'none'; }, 3800);
