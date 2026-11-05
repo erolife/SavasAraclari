@@ -884,6 +884,346 @@
         width: 260px;
       }
     }
+
+    /* =========================================================================
+     * MOBİL & TABLET GÖRÜNÜMÜ (ALT SEKME BARI + ALTTAN AÇILIR ÇEKMECE / SHEET)
+     * Masaüstünde (> 900px) tüm mobil bileşenler gizlidir.
+     * ========================================================================= */
+    .mob-sheet-header,
+    .mobile-quick-bar,
+    .mobile-bottom-nav {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      /* 1. Kompakt 2 Satırlı Üst Bar */
+      .top-bar {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        padding: 7px 10px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 6px 8px;
+        border-radius: 10px;
+      }
+
+      .brand {
+        gap: 6px;
+        min-width: 0;
+      }
+
+      .brand > a.btn {
+        padding: 5px 8px !important;
+        font-size: 10.5px;
+        flex-shrink: 0;
+      }
+
+      .brand-badge,
+      .brand-sub {
+        display: none;
+      }
+
+      .brand-title {
+        font-size: 13px;
+        line-height: 1.2;
+      }
+
+      .top-actions {
+        gap: 5px;
+      }
+
+      .top-actions .btn {
+        padding: 5px 8px;
+        font-size: 10.5px;
+      }
+
+      .vehicle-nav-wrap {
+        grid-column: 1 / -1;
+        width: 100%;
+        display: flex;
+        gap: 6px;
+      }
+
+      .timeline-pills {
+        display: none !important;
+      }
+
+      .veh-step-btn {
+        padding: 6px 9px;
+        font-size: 10.5px;
+        flex-shrink: 0;
+      }
+
+      .veh-menu-btn {
+        flex: 1;
+        justify-content: center;
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+
+      /* 2. Katalog Açılır Menüsü & Bildirim Kutusu */
+      .vehicle-menu-popover {
+        top: 88px;
+        width: calc(100vw - 16px);
+        max-height: calc(100vh - 156px);
+      }
+
+      .vmp-search {
+        width: 100%;
+      }
+
+      .vmp-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .vmp-footer span {
+        display: none;
+      }
+
+      #toast {
+        top: 90px;
+        width: calc(100vw - 24px);
+        max-width: none;
+        padding: 8px 12px;
+        font-size: 11.5px;
+      }
+
+      /* 3. Dokunmatik Kaydırıcı İyileştirmesi */
+      input[type="range"] {
+        height: 8px;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* 4. Yan Paneller ve Alt Tur Barı: Varsayılan Gizli, Seçili Sekmede Bottom Sheet */
+      .side-panel,
+      .bottom-bar {
+        display: none;
+      }
+
+      .mob-sheet-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 6;
+        background: rgba(250, 246, 238, 0.98);
+        padding: 10px 4px 8px;
+        margin-bottom: 2px;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+      }
+
+      .mob-sheet-header::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 4px;
+        border-radius: 999px;
+        background: rgba(100, 116, 139, 0.35);
+      }
+
+      .mob-sheet-title {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 800;
+        color: #b45309;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+      }
+
+      .mob-sheet-close {
+        padding: 4px 10px;
+        border-radius: 6px;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        background: #ffffff;
+        color: #334155;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      body[data-mob-sheet="view"] .left-panel,
+      body[data-mob-sheet="mech"] .right-panel,
+      body[data-mob-sheet="part"] .right-panel,
+      body[data-mob-sheet="tour"] .bottom-bar {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 58px;
+        width: 100%;
+        max-height: 52vh;
+        overflow-y: auto;
+        z-index: 90;
+        background: rgba(250, 246, 238, 0.98);
+        backdrop-filter: blur(18px);
+        border: none;
+        border-top: 2px solid var(--accent);
+        border-radius: 16px 16px 0 0;
+        padding: 0 12px 14px;
+        box-shadow: 0 -12px 32px rgba(15, 23, 42, 0.22);
+        gap: 10px;
+      }
+
+      /* Sağ panel kartlarını Mekanik ve Parça sekmelerine göre ayır */
+      body[data-mob-sheet="mech"] #card-inspector {
+        display: none !important;
+      }
+
+      body[data-mob-sheet="part"] #card-mech,
+      body[data-mob-sheet="part"] #card-telemetry {
+        display: none !important;
+      }
+
+      /* Rehberli Tur çekmecesinde tam genişlikli rahat okuma düzeni */
+      body[data-mob-sheet="tour"] .bottom-bar {
+        border-top-color: var(--cyan);
+        align-items: stretch;
+      }
+
+      body[data-mob-sheet="tour"] .tour-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        width: 100%;
+      }
+
+      body[data-mob-sheet="tour"] .tour-title {
+        font-size: 14px;
+      }
+
+      body[data-mob-sheet="tour"] .tour-desc {
+        font-size: 12.5px;
+        line-height: 1.5;
+      }
+
+      body[data-mob-sheet="tour"] .tour-controls {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      body[data-mob-sheet="tour"] .tour-controls .btn {
+        padding: 9px 12px;
+        font-size: 12px;
+      }
+
+      /* 5. 3D Sahne Üzerinde Yüzen Hızlı Eylem Çubuğu (Çekmece Kapalıyken) */
+      .mobile-quick-bar {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        position: fixed;
+        bottom: 66px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 45;
+        background: rgba(250, 246, 238, 0.94);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(180, 145, 95, 0.45);
+        border-radius: 999px;
+        padding: 5px 8px;
+        box-shadow: 0 6px 20px rgba(15, 23, 42, 0.15);
+        transition: opacity 0.18s ease, transform 0.18s ease;
+        white-space: nowrap;
+      }
+
+      body[data-mob-sheet="view"] .mobile-quick-bar,
+      body[data-mob-sheet="mech"] .mobile-quick-bar,
+      body[data-mob-sheet="part"] .mobile-quick-bar,
+      body[data-mob-sheet="tour"] .mobile-quick-bar {
+        opacity: 0;
+        pointer-events: none;
+        transform: translate(-50%, 10px);
+      }
+
+      .mob-qbtn {
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        background: rgba(241, 236, 225, 0.92);
+        color: #1e293b;
+        font-family: var(--font-mono);
+        font-size: 11px;
+        font-weight: 700;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .mob-qbtn.fire {
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+        border-color: #ef4444;
+        color: #ffffff;
+        box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+      }
+
+      .mob-qbtn.active {
+        background: rgba(2, 132, 199, 0.16);
+        border-color: var(--cyan);
+        color: #0369a1;
+      }
+
+      /* 6. Alt 4 Sekmeli Mobil Gezinim Barı */
+      .mobile-bottom-nav {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 58px;
+        padding: 5px 8px;
+        background: rgba(250, 246, 238, 0.98);
+        backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(15, 23, 42, 0.14);
+        box-shadow: 0 -4px 18px rgba(15, 23, 42, 0.08);
+        z-index: 95;
+      }
+
+      .mob-nav-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        background: transparent;
+        color: #475569;
+        font-family: var(--font-sans);
+        font-size: 10.5px;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 3px 4px;
+      }
+
+      .mob-nav-btn.active {
+        background: rgba(217, 119, 6, 0.15);
+        border-color: var(--accent);
+        color: #b45309;
+        font-weight: 700;
+      }
+
+      .mob-nav-ico {
+        font-size: 15px;
+        line-height: 1;
+      }
+    }
   </style>
   <!-- Load Three.js & OrbitControls via CDN Import Map -->
   <script type="importmap">
@@ -958,6 +1298,10 @@
 
   <!-- LEFT PANEL: TEARDOWN, VIEW MODES & SUBSYSTEMS -->
   <aside class="side-panel left-panel">
+    <div class="mob-sheet-header">
+      <span class="mob-sheet-title">🔧 Görünüm, Kesit & Alt Sistemler</span>
+      <button type="button" class="mob-sheet-close" data-mob-close>✕ Kapat</button>
+    </div>
     <!-- Teardown / Explode Card -->
     <div class="card">
       <div class="card-header">
@@ -1058,8 +1402,12 @@
 
   <!-- RIGHT PANEL: MECHANICAL CONTROLS, TELEMETRY & PART INSPECTOR -->
   <aside class="side-panel right-panel">
+    <div class="mob-sheet-header">
+      <span class="mob-sheet-title" id="mob-right-sheet-title">🔥 Canlı Mekanik & Telemetri</span>
+      <button type="button" class="mob-sheet-close" data-mob-close>✕ Kapat</button>
+    </div>
     <!-- Combat & Mechanical Controls -->
-    <div class="card">
+    <div class="card" id="card-mech">
       <div class="card-header">
         <div class="card-title">🔥 Canlı Mekanik Simülasyon</div>
         <div class="card-value" id="gun-status">HAZIR</div>
@@ -1101,7 +1449,7 @@
     </div>
 
     <!-- Live Engineering Telemetry -->
-    <div class="card">
+    <div class="card" id="card-telemetry">
       <div class="card-header">
         <div class="card-title">📊 Canlı Telemetri</div>
         <div class="card-value" id="telemetry-tag">HL230 P45</div>
@@ -1127,7 +1475,7 @@
     </div>
 
     <!-- Raycaster Interactive Part Inspector -->
-    <div class="card" style="flex:1; display:flex; flex-direction:column;">
+    <div class="card" id="card-inspector" style="flex:1; display:flex; flex-direction:column;">
       <div class="card-header">
         <div class="card-title">🔍 Parça Mühendislik Analizi</div>
         <div class="card-value" style="font-size:10px;">3D Parçaya Tıkla</div>
@@ -1151,6 +1499,10 @@
 
   <!-- BOTTOM GUIDED ENGINEERING TOUR BAR -->
   <footer class="bottom-bar">
+    <div class="mob-sheet-header">
+      <span class="mob-sheet-title">🧭 Rehberli Mühendislik Turu</span>
+      <button type="button" class="mob-sheet-close" data-mob-close>✕ Kapat</button>
+    </div>
     <div class="tour-info">
       <div class="tour-step-badge" id="tour-badge">REHBERLİ TUR: 1 / 6</div>
       <div class="tour-text-wrap">
@@ -1166,6 +1518,34 @@
       <button class="btn active" id="btn-tour-next">Sonraki Adım ▶</button>
     </div>
   </footer>
+
+  <!-- MOBİL HIZLI EYLEM ÇUBUĞU (Çekmece kapalıyken 3D sahnenin altında yüzer) -->
+  <div class="mobile-quick-bar" id="mobile-quick-bar" aria-label="Hızlı Simülasyon Kontrolleri">
+    <button type="button" class="mob-qbtn fire" id="mob-q-fire">💥 Ateşle</button>
+    <button type="button" class="mob-qbtn" id="mob-q-explode">🔧 %85 Patlat</button>
+    <button type="button" class="mob-qbtn" id="mob-q-xray">🩻 X-Ray</button>
+    <button type="button" class="mob-qbtn" id="mob-q-cad">📐 CAD</button>
+  </div>
+
+  <!-- MOBİL ALT SEKME ÇUBUĞU (Bottom Sheet Çekmece Seçici) -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Mobil Kontroller">
+    <button type="button" class="mob-nav-btn" data-mob-tab="view">
+      <span class="mob-nav-ico">🔧</span>
+      <span>Görünüm</span>
+    </button>
+    <button type="button" class="mob-nav-btn" data-mob-tab="mech">
+      <span class="mob-nav-ico">🔥</span>
+      <span>Mekanik</span>
+    </button>
+    <button type="button" class="mob-nav-btn" data-mob-tab="part">
+      <span class="mob-nav-ico">🔍</span>
+      <span>Parça</span>
+    </button>
+    <button type="button" class="mob-nav-btn" data-mob-tab="tour">
+      <span class="mob-nav-ico">🧭</span>
+      <span id="mob-tour-tab-lbl">Tur (1/6)</span>
+    </button>
+  </nav>
 
   <!-- MAIN THREE.JS PROCEDURAL TEARDOWN ENGINE -->
   <!-- Müze kataloğu ve araç modülleri (klasik script: sayfa doğrudan dosyadan açıldığında da çalışır) -->
@@ -2420,6 +2800,8 @@
       document.getElementById('tour-badge').textContent = step.badge;
       document.getElementById('tour-title').textContent = step.title;
       document.getElementById('tour-desc').textContent = step.desc;
+      const mobTourLbl = document.getElementById('mob-tour-tab-lbl');
+      if (mobTourLbl) mobTourLbl.textContent = `Tur (${state.tourIndex + 1}/${steps.length})`;
 
       state.explodeTarget = step.explode;
       document.getElementById('slider-explode').value = step.explode;
@@ -2438,6 +2820,7 @@
 
       updateVisualMaterials();
       selectPart(step.part);
+      if (typeof syncMobileQuickBar === 'function') syncMobileQuickBar();
       audio.playClick(640);
     }
 
@@ -2795,12 +3178,14 @@
     sliderExplode.addEventListener('input', e => {
       state.explodeTarget = parseFloat(e.target.value);
       document.getElementById('explode-val').textContent = `%${Math.round(state.explodeTarget)}`;
+      if (typeof syncMobileQuickBar === 'function') syncMobileQuickBar();
     });
 
     document.getElementById('btn-explode-toggle').addEventListener('click', () => {
       state.explodeTarget = 85;
       sliderExplode.value = 85;
       document.getElementById('explode-val').textContent = '%85';
+      if (typeof syncMobileQuickBar === 'function') syncMobileQuickBar();
       audio.playClick(580);
     });
 
@@ -2808,6 +3193,7 @@
       state.explodeTarget = 0;
       sliderExplode.value = 0;
       document.getElementById('explode-val').textContent = '%0';
+      if (typeof syncMobileQuickBar === 'function') syncMobileQuickBar();
       audio.playClick(420);
     });
 
@@ -2815,6 +3201,7 @@
       state.cutaway = !state.cutaway;
       e.currentTarget.classList.toggle('active', state.cutaway);
       updateVisualMaterials();
+      if (typeof syncMobileQuickBar === 'function') syncMobileQuickBar();
       audio.playClick();
     });
 
@@ -2823,6 +3210,7 @@
       e.currentTarget.classList.toggle('active', state.blueprint);
       updateVisualMaterials();
       applyRenderMode();
+      if (typeof syncMobileQuickBar === 'function') syncMobileQuickBar();
       audio.playClick();
     });
 
@@ -2882,6 +3270,7 @@
       btn.addEventListener('click', () => {
         const preset = getActiveCamPresets()[btn.dataset.cam];
         if (preset) flyCameraTo(preset.pos, preset.look);
+        if (window.innerWidth <= 900 && typeof closeMobileSheet === 'function') closeMobileSheet();
         audio.playClick(700);
       });
     });
@@ -3440,6 +3829,104 @@
     renderVehicleMenu();
 
     // ============================================================================
+    // 7C. MOBİL ALT SEKME BARI & BOTTOM SHEET ÇEKMECE KONTROLÜ
+    // ============================================================================
+    const mobBottomNav = document.getElementById('mobile-bottom-nav');
+    const mobRightSheetTitle = document.getElementById('mob-right-sheet-title');
+    const mobQFire = document.getElementById('mob-q-fire');
+    const mobQExplode = document.getElementById('mob-q-explode');
+    const mobQXray = document.getElementById('mob-q-xray');
+    const mobQCad = document.getElementById('mob-q-cad');
+
+    function syncMobileQuickBar() {
+      const exploded = state.explodeTarget > 10;
+      if (mobQExplode) {
+        mobQExplode.classList.toggle('active', exploded);
+        mobQExplode.textContent = exploded ? '🔩 Birleştir' : '🔧 %85 Patlat';
+      }
+      if (mobQXray) mobQXray.classList.toggle('active', !!state.cutaway);
+      if (mobQCad) mobQCad.classList.toggle('active', !!state.blueprint);
+    }
+
+    function openMobileSheet(tabKey) {
+      document.body.setAttribute('data-mob-sheet', tabKey || '');
+      if (mobRightSheetTitle) {
+        mobRightSheetTitle.textContent = tabKey === 'part'
+          ? '🔍 Parça Mühendislik Analizi'
+          : '🔥 Canlı Mekanik & Telemetri';
+      }
+      if (mobBottomNav) {
+        mobBottomNav.querySelectorAll('.mob-nav-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.mobTab === tabKey);
+        });
+      }
+    }
+
+    function closeMobileSheet() {
+      openMobileSheet('');
+    }
+
+    if (mobBottomNav) {
+      mobBottomNav.querySelectorAll('.mob-nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const t = btn.dataset.mobTab;
+          const cur = document.body.getAttribute('data-mob-sheet') || '';
+          if (cur === t) closeMobileSheet();
+          else openMobileSheet(t);
+          closeVehicleMenu();
+          audio.playClick(560);
+        });
+      });
+    }
+
+    document.querySelectorAll('[data-mob-close]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        closeMobileSheet();
+        audio.playClick(460);
+      });
+    });
+
+    // Çekmece başlığını aşağı kaydırarak (swipe-down) kapatma
+    document.querySelectorAll('.mob-sheet-header').forEach(hdr => {
+      let startY = null;
+      hdr.addEventListener('touchstart', e => {
+        if (e.touches && e.touches.length === 1) startY = e.touches[0].clientY;
+      }, { passive: true });
+      hdr.addEventListener('touchend', e => {
+        if (startY !== null && e.changedTouches && e.changedTouches.length === 1) {
+          if (e.changedTouches[0].clientY - startY > 32) {
+            closeMobileSheet();
+            audio.playClick(460);
+          }
+        }
+        startY = null;
+      }, { passive: true });
+    });
+
+    if (mobQFire) {
+      mobQFire.addEventListener('click', () => {
+        document.getElementById('btn-fire').click();
+      });
+    }
+    if (mobQExplode) {
+      mobQExplode.addEventListener('click', () => {
+        if (state.explodeTarget > 10) document.getElementById('btn-explode-reset').click();
+        else document.getElementById('btn-explode-toggle').click();
+      });
+    }
+    if (mobQXray) {
+      mobQXray.addEventListener('click', () => {
+        document.getElementById('btn-cutaway').click();
+      });
+    }
+    if (mobQCad) {
+      mobQCad.addEventListener('click', () => {
+        document.getElementById('btn-blueprint').click();
+      });
+    }
+    syncMobileQuickBar();
+
+    // ============================================================================
     // 8. RAYCASTER CLICK & HOVER INSPECTION
     // ============================================================================
     const raycaster = new THREE.Raycaster();
@@ -3480,14 +3967,20 @@
       raycaster.setFromCamera(mouse, camera);
 
       const hits = raycaster.intersectObjects(getActiveVehicleMeshes(), false);
+      let picked = false;
       for (const hit of hits) {
         if (hit.object.material.opacity < 0.2) continue;
         const pg = findPartGroup(hit.object);
         if (pg) {
           selectPart(pg);
+          picked = true;
+          if (window.innerWidth <= 900) openMobileSheet('part');
           audio.playClick(720);
           break;
         }
+      }
+      if (!picked && window.innerWidth <= 900 && document.body.getAttribute('data-mob-sheet')) {
+        closeMobileSheet();
       }
     });
 
