@@ -345,6 +345,272 @@
     ,{id:'swordpistol',sim:'swordpistol',group:5,status:'live',year:1735,yearLabel:'18. yüzyılın ilk yarısı',eraLabel:'SAKSONYA • BİRLEŞİK AV SİLAHI',domain:'land',era:'gunpowder',energy:['muscle','gunpowder'],role:['melee','smallarms'],origin:'germany',name:'Kılıç–Tabanca — Saksonya Av Silahı',sub:'UZUN ÇELİK YÜZEY • OYMALI METAL • KIVRIMLI AHŞAP',desc:'Met Müzesi 2018.371 örneğinden yorumlanan birleşik av silahı. Yivli kılıç, sırtındaki kısa namlu, koyu kıvrımlı kabza, uzun el koruması ve oymalı dış levha. İki yüzü yavaş dönüşle karşılaştırın, bezemeleri yakın planda inceleyin.',tags:['16 İnceleme Grubu','Yüzeyli Çelik Kılıç','Açık El Koruması','Oymalı Dış Levha'],specs:[['KAYNAK','The Met • 2018.371'],['ATIF','Johannes Andreas Niefind'],['UZUNLUK','65,5 cm (müze nesnesi)'],['BAĞLAM','Saksonya av silahı']],tag:'SWORD-PISTOL-MET',icon:'⚔️',modal:['Kalınlıklı ve daralan kılıç, yivler ve kısa dış namlu','Kıvrımlı koyu ahşap kabza ve açık el koruması','Kıvrımlı metal bezeme, yarıklı vidalar ve dış kilit levhası','Müze tarihlemesi 1730/1740 farklılığı içerir; model yorumdur'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M95 61L284 62L310 70L280 78H93Z" fill="#a6afb3" stroke="#5a6268" stroke-width="2"/><path d="M95 58H171" stroke="#69767d" stroke-width="9"/><path d="M22 87Q17 60 92 59L95 77Q49 77 34 94Z" fill="#5e3b26" stroke="#333c40" stroke-width="3"/><path d="M27 91V111H94Q119 105 102 80" fill="none" stroke="#626f77" stroke-width="4"/><path d="M83 62Q68 34 91 33L103 43" stroke="#67747c" stroke-width="5" fill="none"/></svg>'}
 ];
 
+  // Araştırma defterinden aktarılan doğrulanmış bağlantılar; model bilgileriyle aynı kaynakta.
+  const SOURCES = {
+  "monitor": [
+    {
+      "title": "USS Monitor koruma çalışmaları — Mariners’ Museum",
+      "url": "https://www.marinersmuseum.org/conservation/uss-monitor/"
+    },
+    {
+      "title": "İnşa ve tasarım — NOAA",
+      "url": "https://monitor.noaa.gov/150th/construction.html"
+    }
+  ],
+  "j79": [
+    {
+      "title": "J79 tarihçesi — GE Aerospace",
+      "url": "https://www.geaerospace.com/company/about-us/history"
+    },
+    {
+      "title": "J79-GE-2 koleksiyonu — Smithsonian",
+      "url": "https://airandspace.si.edu/collection-objects/general-electric-j79-ge-2-turbojet-engine/nasm_A19810156000"
+    }
+  ],
+  "katyusha": [
+    {
+      "title": "BM-13 ve ZİS-6 — Voronej Bölge Müzesi",
+      "url": "https://museum-vrn.ru/muzej/novosti/muzej-online-oruzhie-pobedy-boevaya-mashina-reaktivnoj-artillerii-katyusha/"
+    }
+  ],
+  "v2": [
+    {
+      "title": "V-2 koleksiyon kaydı — Australian War Memorial",
+      "url": "https://www.awm.gov.au/collection/C111276"
+    },
+    {
+      "title": "Meillerwagen koruma projesi — AWM",
+      "url": "https://www.awm.gov.au/v2-meillerwagen-conservation-project"
+    },
+    {
+      "title": "V-2 tarihsel bağlamı — AWM",
+      "url": "https://wm.awm.gov.au/read/v2-rocket-science"
+    }
+  ],
+  "phalanx": [
+    {
+      "title": "Mk 15 bilgi dosyası — ABD Donanması",
+      "url": "https://www.navy.mil/Resources/Fact-Files/Display-FactFiles/Article/2167831/mk-15-phalanx-close-in-weapon-system-ciws/linkId/mk-15-phalanx-close-in-weapon-system-ciws/"
+    },
+    {
+      "title": "Phalanx dış görünümü — Raytheon",
+      "url": "https://www.rtx.com/en/raytheon/what-we-do/sea/phalanx-close-in-weapon-system"
+    },
+    {
+      "title": "Phalanx ürün broşürü — GD-OTS (PDF)",
+      "url": "https://www.gd-ots.com/wp-content/uploads/2024/03/400002644-PHALANX-Close-In-Weapon-System-CIWS-Product-Brochure-2024-03-V02-1.pdf"
+    }
+  ],
+  "huey": [
+    {
+      "title": "UH-1H Smokey III koleksiyonu — Smithsonian",
+      "url": "https://airandspace.si.edu/collection-objects/bell-uh-1h-iroquois-huey-smokey-iii/nasm_A19960005000"
+    }
+  ],
+  "u505": [
+    {
+      "title": "U-505 koleksiyon kaydı — Griffin MSI",
+      "url": "https://collections.griffinmsi.org/collections/4855"
+    }
+  ],
+  "enigma": [
+    {
+      "title": "Enigma I makinesi — Crypto Museum",
+      "url": "https://www.cryptomuseum.com/crypto/enigma/i/index.htm"
+    },
+    {
+      "title": "Rotor bağlantıları — Crypto Museum",
+      "url": "https://www.cryptomuseum.com/crypto/enigma/wiring.htm"
+    },
+    {
+      "title": "Devre ve çift adımlama — Crypto Museum",
+      "url": "https://www.cryptomuseum.com/crypto/enigma/working.htm"
+    }
+  ],
+  "lcvp": [
+    {
+      "title": "LCVP ve çıkarma lojistiği — Ulaştırma Müzesi",
+      "url": "https://transportation.army.mil/museum/AOTM/2020/may_2020.html"
+    },
+    {
+      "title": "LCVP fotoğraf koleksiyonu — ABD Denizcilik Tarihi",
+      "url": "https://www.history.navy.mil/content/history/museums/nmusn/explore/photography/ships-us/ships-usn-l/landing-craft-vehicle-personnel.html"
+    }
+  ],
+  "chainhome": [
+    {
+      "title": "Chain Home tarihçesi — RAF Radar Museum",
+      "url": "https://www.radarmuseum.co.uk/history/world-war-two/"
+    },
+    {
+      "title": "Poling istasyon kaydı — Historic England",
+      "url": "https://historicengland.org.uk/listing/heritage-gateway/results/record/0d636742-8028-4a8c-8b7c-e1f9aaf2d338/3ee99efa-d7fe-419b-a488-eba77c78d893"
+    }
+  ],
+  "scythed": [
+    {
+      "title": "Askerî makineler çizimi — British Museum / Arts & Culture",
+      "url": "https://artsandculture.google.com/asset/military-machines-leonardo-da-vinci/4AF1vuuEl2xiew?hl=en"
+    },
+    {
+      "title": "Özgün çizim kaydı — British Museum",
+      "url": "https://www.britishmuseum.org/collection/object/P_1860-0616-99"
+    },
+    {
+      "title": "Leonardo sergisi — Las Vegas Natural History Museum",
+      "url": "https://www.lvnhm.org/post/worldofdavinci"
+    }
+  ],
+  "hwacha": [
+    {
+      "title": "Munjong Hwacha tarihçesi — Kore Ulusal Tarih Enstitüsü",
+      "url": "https://contents.history.go.kr/play/view.do?itemId=tz&lang=eng&levelId=tz_b32"
+    },
+    {
+      "title": "Modern rekonstrüksiyon — KCISA / Sketchfab",
+      "url": "https://sketchfab.com/3d-models/singijeon-hwacha-85f48b05a86240e99b755d70070d8401"
+    }
+  ],
+  "atlatl": [
+    {
+      "title": "Mexica atlatlı Am.5226 — British Museum",
+      "url": "https://artsandculture.google.com/asset/wooden-spear-thrower-atlatl/YwGmIA6eKl4tqQ"
+    },
+    {
+      "title": "Atlatl ve dart anlatımı — Maxwell Museum",
+      "url": "https://hands.unm.edu/atlatls.html"
+    },
+    {
+      "title": "Mixtec örnekleri — Museo delle Civiltà",
+      "url": "https://www.museodellecivilta.it/en/oggetti/american-arts-and-cultures/spear-throwers-atlatl/"
+    }
+  ],
+  "lantern": [
+    {
+      "title": "Fenerli kalkan A 384 — Kunsthistorisches Museum",
+      "url": "https://www.khm.at/en/artworks/laternenschild-mit-eisenhandschuh-und-einschiebbarer-stossklinge-372783-1"
+    }
+  ],
+  "polybolos": [
+    {
+      "title": "Tekrarlayan mancınık — Kotsanas Museum",
+      "url": "https://kotsanas.com/exhibits/military/the-repeating-catapult/"
+    }
+  ],
+  "giantbow": [
+    {
+      "title": "Leonardo askerî tasarımları — Museo Scienza",
+      "url": "https://artsandculture.google.com/story/leonardo-and-the-military-engineering/BgVx_Ikfu3ohIg?hl=en-GB"
+    },
+    {
+      "title": "Dev arbalet model kaydı — Lombardia",
+      "url": "https://www.lombardiabeniculturali.it/scienza-tecnologia/schede/ST070-00100/"
+    }
+  ],
+  "chukonu": [
+    {
+      "title": "Tekrarlayan arbalet 2007.10.1 — Musée de l’Archerie",
+      "url": "https://www.musee-archerie-valois.fr/en/2021/10/01/repeating-crossbow/"
+    }
+  ],
+  "helepolis": [
+    {
+      "title": "Helepolis koleksiyon kaydı — Kotsanas",
+      "url": "https://collection.kotsanasmuseum.com/en/exhibits/106078/"
+    },
+    {
+      "title": "Rekonstrüksiyonun ön ve arka fotoğrafları — Kotsanas",
+      "url": "https://kotsanas.com/el/exhibits/military/helepolis-epimachus/"
+    }
+  ],
+  "organ33": [
+    {
+      "title": "Leonardo askerî tasarımları — Museo Scienza",
+      "url": "https://artsandculture.google.com/story/leonardo-and-the-military-engineering/BgVx_Ikfu3ohIg?hl=en-GB"
+    },
+    {
+      "title": "33 namlulu model — Argan Giovenale / Museo Scienza",
+      "url": "https://artsandculture.google.com/asset/organo-a-trentatre-canne-0111/ywGcPElzcqJvUA"
+    }
+  ],
+  "swordpistol": [
+    {
+      "title": "Birleşik av silahı 2018.371 — The Met",
+      "url": "https://www.metmuseum.org/art/collection/search/785931"
+    }
+  ],
+  "ballista": [
+    {
+      "title": "Roma ballistasının arkeolojik bağlamı — English Heritage",
+      "url": "https://www.english-heritage.org.uk/visit/places/maiden-castle/history/",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ],
+  "trebuchet": [
+    {
+      "title": "Orta Çağ kuşatma makineleri — English Heritage",
+      "url": "https://www.english-heritage.org.uk/learn/story-of-england/medieval/siege-warfare/?epsremainingpath=%2F",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ],
+  "sahi": [
+    {
+      "title": "1464 Dardanelles Gun arşiv fotoğrafı — Historic England",
+      "url": "https://historicengland.org.uk/images-books/photos/item/AA077288",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ],
+  "tiger": [
+    {
+      "title": "Tiger I / Tiger 131 — The Tank Museum",
+      "url": "https://tankmuseum.org/tank-nuts/tank-collection/tiger-i?tpage=5",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ],
+  "spitfire": [
+    {
+      "title": "Spitfire Mk.IX — The Museum of Flight",
+      "url": "https://www.museumofflight.org/exhibits-and-events/aircraft/supermarine-spitfire-mkix",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ],
+  "leonardo": [
+    {
+      "title": "Zırhlı araç ve askerî tasarımlar — Museo Scienza",
+      "url": "https://artsandculture.google.com/story/leonardo-and-the-military-engineering/BgVx_Ikfu3ohIg?hl=en-GB",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ],
+  "kadirga": [
+    {
+      "title": "Tarihi Kadırga araştırması — Vakıflar Dergisi",
+      "url": "https://dergipark.org.tr/tr/pub/vakiflar/article/439133",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ],
+  "gatling": [
+    {
+      "title": "1862 Gatling patenti — US36836A",
+      "url": "https://patents.google.com/patent/US36836A/en",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ],
+  "mark1": [
+    {
+      "title": "Mark I koleksiyonu — The Tank Museum",
+      "url": "https://tankmuseum.org/tank-nuts/tank-collection/mark-i?country=all&era=WW1&tname=&tpage=",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ],
+  "fokker": [
+    {
+      "title": "Fokker Dr.I — ABD Hava Kuvvetleri Müzesi",
+      "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/197402/AFmuseum/fokker-dr-i/",
+      "note": "Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir."
+    }
+  ]
+};
+  VEHICLES.forEach(v => { v.sources = SOURCES[v.id] || []; });
   window.MUSEUM_CATALOG = { FACETS, VEHICLES };
 })();
 

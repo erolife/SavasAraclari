@@ -1,0 +1,13 @@
+.museum-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.museum-dialog{box-sizing:border-box;width:min(580px,calc(100vw - 28px));max-height:80dvh;padding:22px;border:1px solid #c9b99b;border-radius:16px;background:#faf7ef;color:#263642;box-shadow:0 20px 70px #17233155;font:15px/1.6 system-ui,sans-serif}
+.museum-dialog::backdrop{background:#17233188}
+.museum-dialog-head{display:flex;align-items:flex-start;gap:16px;justify-content:space-between}.museum-dialog-head h2{margin:0;font-size:20px;line-height:1.4}.museum-dialog-head button{flex-shrink:0}
+.museum-dialog-body input{box-sizing:border-box;display:block;width:100%;padding:12px;border:1px solid #a49170;border-radius:6px;background:white;color:#263642;font:14px system-ui}
+.museum-dialog-body ul{padding-left:22px}.museum-dialog-body li{margin:12px 0}.museum-dialog a{color:#175f80;overflow-wrap:anywhere}.museum-dialog a:focus-visible,.museum-dialog button:focus-visible{outline:3px solid #be7925;outline-offset:3px}
+#museum-link-status:empty{display:none}#museum-link-status{position:fixed;z-index:20000;left:50%;bottom:100px;transform:translateX(-50%);max-width:calc(100vw - 40px);box-sizing:border-box;padding:12px 20px;border-radius:10px;background:#263642;color:#fff;box-shadow:0 4px 24px #0003;font:14px/1.5 system-ui;text-align:center;pointer-events:none}
+
+.museum-dialog{margin:auto}.museum-dialog-head button{cursor:pointer;padding:7px 11px;border:1px solid #c9b99b;border-radius:7px;background:#f3eee3;color:#263642}
+
+.museum-lab-header{flex-wrap:wrap;gap:12px}.museum-lab-header button{white-space:nowrap}
+
+.museum-dialog li small{display:block;margin-top:5px;color:#657078;line-height:1.5}
