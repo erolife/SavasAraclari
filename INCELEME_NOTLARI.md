@@ -427,7 +427,7 @@
 7. Çin tekrarlayan arbaleti — Chu-ko-nu (`chukonu`) — tamamlandı.
 8. Helepolis kuşatma kulesi (`helepolis`) — tamamlandı.
 9. Leonardo’nun çok namlulu top düzeni (`organ33`) — tamamlandı.
-10. Kılıç–tabanca birleşimi.
+10. Kılıç–tabanca birleşimi (`swordpistol`) — tamamlandı.
 Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe commit alır. Push en son, kullanıcı talimatıyla. Çizimler, günümüze kalan nesneler ve modern rekonstrüksiyonlar birbirinden ayrılır.
 
 ## Leonardo’nun oraklı savaş arabası — 6 Kasım 2026
@@ -510,3 +510,16 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - 16 grup / 173 mesh: 33 açık ağızlı bronz dış namlu, üç yatak, ortak çerçeve, menteşeler, tutucu çubuklar, ahşap tekerlekler, 12 ispit, metal çemberler/pimler, kuyruk, vida/helis ve tutamak. Sıra işaretleri çağdaş sergi ekidir; atış veya iç ateşleme modeli yoktur.
 - 73 dönüş konumunda bütün namlu köşelerinin zemin/arka kiriş/yan kiriş açıklıkları doğrulandı. 33 ağız boşluğu ve dudak için raycast; üç 120° duruş, manuel öncelik, kaldırma/dönüş kilidi, vurgu ve sıfırlama geçti. Helepolis/J79 regresyonları geçti. İlk kontrolde arka kiriş ve kuyruk başlangıcı dönüş hacminden çıkarıldı.
 - Masaüstü genel, kaldırılmış sıra/X-Ray yakın planı, dört yüzey ve altı tur; 390×844 mobil genel görünüm kontrol edildi. Yatay taşma ve konsol hatası yok. Katalog 29 aktif, grup 9/10; sıradaki kılıç–tabanca. Push yok.
+
+
+## Kılıç–tabanca — 7 Kasım 2026
+- Kaynak: The Metropolitan Museum of Art, https://www.metmuseum.org/art/collection/search/785931 ; 2018.371, Saksonya, Johannes Andreas Niefind’e atfedilen birleşik av silahı, çelik/ahşap, 65,5 cm. Genel ve kabza yakın plan fotoğrafları incelendi. Başlık/kayıtta yaklaşık 1740, açıklamada yaklaşık 1730 bulunduğundan arayüzde 18. yüzyılın ilk yarısı yazıldı; sıralama yılı 1735 yalnız katalog içindir.
+- 16 grup / 68 mesh: kalınlıklı daralan çelik kılıç, yan yivler, kök bilezikleri, kısa açık ağızlı dış namlu, kıvrımlı ahşap kabza, uzun açık el koruması, kabza başı/sırt, dış levha, çakmak kolu ve karşı çelik, yarıklı vidalar, kıvrımlı bezeme, döner çağdaş kaide. Bezemeler özgün figürlerin kopyası değil yorumdur. İşlevsel iç ateşleme veya atış gösterimi yoktur.
+- Test: iki taraftan kılıç yüzeyine raycast; el koruması boşluğu ve dolu kenarı; namlu ağzı; 73 dönüş ve 101 levha ayırma konumu; iki yarım turda otomatik duruş, manuel öncelik, sınırlar, bezeme/sıfırlama geçti. İlk görsel kontrolde yüz normalleri, kabza mesnedi ve bezeme yüzey konumu düzeltildi.
+- Masaüstü kabza/dış levha yakın planı, dört yüzey/CAD, altı tur ve 390×844 mobil görünüm kontrol edildi. Mobil kadraj kılıcın tamamı için genişletildi. JavaScript hatası yok; mevcut favicon.ico 404 isteği sürüyor.
+
+## Beşinci grup — bütünleşik kapanış, 7 Kasım 2026
+- On araç tamamlandı, katalog 30 aktif modele ulaştı. Her araç kendi araştırma, test ve görsel kontrol kaydıyla ayrı Türkçe commit aldı; push yapılmadı.
+- 21 test dosyasının tamamı geçti (yardımcı model-harness ve indirme setup-monitor betikleri test sayısına dahil değil). Yeni modellerin yanı sıra Monitor/J79, Katyuşa, V-2, Phalanx, UH-1H, U-505, Enigma çekirdeği/modeli, LCVP ve Chain Home regresyonları doğrulandı.
+- Tarayıcıda 30 aracın tamamına geçiş ve karşılık gelen başlıklar doğrulandı. Çin filtresi yalnız Chu-ko-nu’yu getiriyor. Mobil yatay sayfa taşması yok.
+- Müze kaynaklarıyla modern rekonstrüksiyonlar ve sergi için yorumlanan hareketler metinlerde ayrıldı. Uygulama harici Three.js/font kaynaklarını kullanmayı sürdürüyor; tam çevrimdışı paket değildir. Yeni araç sırası kullanıcıyla henüz belirlenmedi.
