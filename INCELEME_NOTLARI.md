@@ -423,7 +423,7 @@
 3. Atlatl — mızrak fırlatma kolu (`atlatl`) — tamamlandı.
 4. Fenerli kalkan (`lantern`) — tamamlandı.
 5. Polybolos (`polybolos`) — tamamlandı.
-6. Leonardo’nun dev arbaleti.
+6. Leonardo’nun dev arbaleti (`giantbow`) — tamamlandı.
 7. Çin tekrarlayan arbaleti — Chu-ko-nu.
 8. Helepolis kuşatma kulesi.
 9. Leonardo’nun çok namlulu top düzeni.
@@ -482,3 +482,10 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - İlk geometrik kontrolde zincir/demet çakışması giderildi, ön çerçeve ilerletildi; dış dikmelerde hareketli kollar için açıklık bırakıldı. Üst hazne iki sütun/dört sıra düzeniyle alçaltıldı. Helis takipçisinin uçları sürgü ve tambur izine bağlandı. Zincir teğet yönleri ve çark dönüş işareti düzeltildi.
 - `node tests/polybolos.cjs`: 100 evrede zincir pimi/sürgü, kiriş/kol uçları, helis takipçi teması, zincir-demet açıklığı; dönüş işareti, tek ok aktarım sürekliliği, sekiz tam çevrim, boşta duruş, yenileme, manuel öncelik ve sıfırlama. Lantern/J79 regresyonları ve katalog/simulator sözdizimi kontrolü geçti.
 - Görsel kontrol: masaüstü genel görünüm; %68 evrede açık hazne/X-Ray besleme yakın planı; dört ahşap görünümü, CAD ve altı tur. 390×844 mobil kadraj ve duraklatılan evre sabitliği kontrol edildi; yatay taşma yok. Katalog 25 aktif. Beşinci grup 5/10; sıradaki Leonardo dev arbalet. Push yok.
+
+
+## Leonardo dev arbalet — 6 Kasım 2026
+- Kaynaklar: Museo Nazionale Scienza e Tecnologia, https://artsandculture.google.com/story/leonardo-and-the-military-engineering/BgVx_Ikfu3ohIg?hl=en-GB ; Regione Lombardia ST070-00100, https://www.lombardiabeniculturali.it/scienza-tecnologia/schede/ST070-00100/ . Müze modelinin fotoğrafı incelendi. Katmanlı yay, yaklaşık 24 m tasarım açıklığı ve altı tekerlek esas alındı. Kaynaklar mühimmatı farklı anlattığından yatak boş bırakıldı. Savaşta kullanıldığı iddia edilmez.
+- 16 grup / 225 mesh: dokuz bağımsız lamina, takip eden bantlar, halat gözleri, çift kiriş, uzun kundak, çaprazlar, altı ispitli tekerlek, hareketli kızak, iki kurma halatı, tambur ve çarklar. Ahşap ölçek figürü ve kaldırılabilir paneller sergi ekidir. Yaklaşık 1:3 sahne; deformasyon ve oranlar üretim verisi değildir.
+- Test: 101 evrede kiriş ve halat uçlarının bağlantısı, simetri, sonlu yay geometrisi; altı zemin teması, ileri/geri uçta duruş, manuel öncelik ve sıfırlama geçti. Polybolos/J79 regresyonları, katalog ve simulator sözdizimi geçti.
+- Görsel kontrol: masaüstü genel ve tam kurulmuş arka tambur yakın planı; dört kaplama, altı tur; 390×844 mobil açık paneller/X-Ray. Yatay taşma yok. JavaScript hatası görülmedi; mevcut favicon 404. Katalog 26 aktif, grup 6/10; sıradaki Chu-ko-nu. Push yok.
