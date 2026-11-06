@@ -424,7 +424,7 @@
 4. Fenerli kalkan (`lantern`) — tamamlandı.
 5. Polybolos (`polybolos`) — tamamlandı.
 6. Leonardo’nun dev arbaleti (`giantbow`) — tamamlandı.
-7. Çin tekrarlayan arbaleti — Chu-ko-nu.
+7. Çin tekrarlayan arbaleti — Chu-ko-nu (`chukonu`) — tamamlandı.
 8. Helepolis kuşatma kulesi.
 9. Leonardo’nun çok namlulu top düzeni.
 10. Kılıç–tabanca birleşimi.
@@ -489,3 +489,10 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - 16 grup / 225 mesh: dokuz bağımsız lamina, takip eden bantlar, halat gözleri, çift kiriş, uzun kundak, çaprazlar, altı ispitli tekerlek, hareketli kızak, iki kurma halatı, tambur ve çarklar. Ahşap ölçek figürü ve kaldırılabilir paneller sergi ekidir. Yaklaşık 1:3 sahne; deformasyon ve oranlar üretim verisi değildir.
 - Test: 101 evrede kiriş ve halat uçlarının bağlantısı, simetri, sonlu yay geometrisi; altı zemin teması, ileri/geri uçta duruş, manuel öncelik ve sıfırlama geçti. Polybolos/J79 regresyonları, katalog ve simulator sözdizimi geçti.
 - Görsel kontrol: masaüstü genel ve tam kurulmuş arka tambur yakın planı; dört kaplama, altı tur; 390×844 mobil açık paneller/X-Ray. Yatay taşma yok. JavaScript hatası görülmedi; mevcut favicon 404. Katalog 26 aktif, grup 6/10; sıradaki Chu-ko-nu. Push yok.
+
+
+## Chu-ko-nu — 6 Kasım 2026
+- Kaynak: Musée de l’Archerie et du Valois, https://www.musee-archerie-valois.fr/en/2021/10/01/repeating-crossbow/ ; 2007.10.1, 19. yüzyıl Çin, ahşap/metal/lif. Müzenin nesne fotoğrafı incelendi. Mucit atfı, atış hızı ve menzil tekrar edilmedi. Kısa tüysüz oklar ve yaklaşık bir düzine hazne anlatımı esas alındı.
+- 16 grup / 104 mesh: dar kundak, yay katmanları/lif bağları, çift kol ve tutamak, pimler, üst hazne, kapak, köşe takviyeleri, on iki ok ve çağdaş mesnet. Dört mafsallı hareketin oranları, kiriş yer değiştirmesi ve eksilme temposu sergi yorumudur; nesnenin ölçülü mekanik kopyası değildir.
+- İlk görsel kontrolde hazne yüksekliği azaltıldı. 101 evrede kaldıraç/hazne mafsalı, sabit boylu ön bağlantılar, hazne-kundak açıklığı ve kiriş uçları test edildi. On iki çevrim, boşta duruş, yenileme, manuel öncelik, kapak/duvar açma ve sıfırlama geçti. Dev arbalet/J79 regresyonları geçti.
+- Masaüstü açık hazne yakın planı, dört kaplama/CAD, altı tur ve 390×844 mobil genel görünüm incelendi. Mobil yatay taşma ve konsol hatası yok. Katalog 27 aktif, Çin köken filtresi eklendi. Grup 7/10; sıradaki Helepolis. Push yok.
