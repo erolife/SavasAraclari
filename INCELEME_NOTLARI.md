@@ -421,7 +421,7 @@
 1. Leonardo’nun oraklı savaş arabası (`scythed`) — tamamlandı.
 2. Kore Hwacha’sı (`hwacha`) — tamamlandı.
 3. Atlatl — mızrak fırlatma kolu (`atlatl`) — tamamlandı.
-4. Fenerli kalkan.
+4. Fenerli kalkan (`lantern`) — tamamlandı.
 5. Polybolos.
 6. Leonardo’nun dev arbaleti.
 7. Çin tekrarlayan arbaleti — Chu-ko-nu.
@@ -463,3 +463,13 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Testler: `node tests/atlatl.cjs` — 101 pozda temas/ayrılma ve kaide açıklığı, kabuk halkalara boşluk/duvar raycast kontrolü, açık yuva, ayrılan dartın sabit yönü, duraklatma/manuel öncelik, sınırlar, sıfırlama ve dört kaplama. `node tests/hwacha.cjs` ve `node tests/j79.cjs` regresyonları geçti; katalog facet ve simulator sözdizimi doğrulandı.
 - Görsel kontrol: genel görünüm, kabuk halka/sargı yakın planı, %60 temas pozunda X-Ray, dört kaplama/CAD, altı tur; 390×844 mobil başlangıç ve %100 ayrılma görünümü. Mobil taşma yok, duraklatılan evre sabit kaldı. Hwacha/Scythed/Atlatl geçişleri başarılı. JavaScript hatası görülmedi; mevcut favicon isteği 404 veriyor.
 - Sonuç: 23 aktif model, beşinci grup 3/10. Meksika filtresi yalnız Atlatl'ı getirir. Sıradaki fenerli kalkan. Kullanıcı 6 Kasım'da kalan sıraya onay beklemeden devam edilmesini istedi; her araçtan sonra Türkçe commit, push yok.
+
+
+## Fenerli kalkan — KHM A 384 — 6 Kasım 2026
+- Esas kaynak: Kunsthistorisches Museum, https://www.khm.at/en/artworks/laternenschild-mit-eisenhandschuh-und-einschiebbarer-stossklinge-372783-1 . 1596'dan önce; Ferdinand II koleksiyonu. Kalkan çapı 40 cm, uzunluk kapalı 82 / açık 101 cm. Kaynaktaki demir/pirinç/kadife/deri/zincir örgü bilgileri ve ön/arka fotoğraflar esas alındı. Müze pratikliği düşük, muhtemelen sohbet nesnesi yorumu yapar; etkili bir savaş silahı iddiası kurulmaz. Üretim yeri kesinleştirilmediği için katalog kökeni Avrupa (yer atfı belirsiz).
+- Müze sayfası web açmada 403 verdi; PowerShell ile erişildi. Büyük ön/arka fotoğraflar müzenin `/pics/372783/HJRK_A_384_38076.jpg` ve `HJRK_A_384_38079.jpg` yayınlarından gözle incelendi. Görseller uygulamaya kopyalanmadı. Philadelphia örneği araştırmada görüldü fakat geometriler tek özgün nesneymiş gibi birleştirilmedi.
+- 16 grup / 92 kayıtlı mesh: delikli çelik yüz ve eldiven çentiği, kıvrılmış kenar, pirinç perçinler, merkez çıkıntısı, kırmızı kadife, işlemeli şerit, kayışlar, levhalı eldiven, 180 örneklenmiş zincir halkası, iki çentikli çıkıntı, sürgü kanalı, hareketli bıçak, arka fener, iç lamba ve kapak. Ayrıntı oranları ve eklemler yaklaşık; nesne sergi için büyütülmüş, çağdaş mesnet ayrı gruptur.
+- Etkileşim: 0–110° kapak, temsili ışık aç/kapat, bıçak uzantısı ve parmak inceleme açısı; dört kaplama, altı kamera/tur. Bıçak hareketi kaynakta verilen 19 cm farkı kalkan çapına göre orantılar; üretim/kilit mekanizması modeli değildir.
+- `node tests/lantern.cjs`: gerçek ışık ağzı/astar açıklığı, kapalı kapak örtüşmesi; 111 kapak açısında çarpışmasız hareket; ışık-kapak ilişkisi; 101 bıçak konumunda kılavuz açıklığı ve devamlı örtüşme; parmak sınırları, sıfırlama ve kaplamalar. Atlatl ve J79 regresyonları da geçti. J79 testi katalog ve simulator sözdizimini doğrular.
+- Görsel kontroller: genel, kadife arka yüz, X-Ray fener içi; dört kaplama/CAD ve altı tur; 390×844 mobil kapak açık ve bıçak tam uzatılmış kadraj. Mobil yatay taşma yok; kontroller telemetriyle eşleşti. Atlatl/Hwacha/yeni araç geçişleri tamam. Sayfa JavaScript hatası görülmedi.
+- Sonuç: 24 aktif model, beşinci grup 4/10. Sıradaki Polybolos; kullanıcı onay beklemeden sıraya devam istiyor. Her araç ayrı Türkçe commit; push yok.

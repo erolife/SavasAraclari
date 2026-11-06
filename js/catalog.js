@@ -43,7 +43,7 @@
       { key: 'rome', label: 'Roma' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
       { key: 'ottoman', label: 'Osmanlı' }, { key: 'italy', label: 'İtalya (Rönesans)' },
       { key: 'uk', label: 'İngiltere' }, { key: 'germany', label: 'Almanya' },
-      { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }, { key: 'korea', label: 'Kore (Joseon)' }, { key: 'mexico', label: 'Meksika (Mezoamerika)' }
+      { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }, { key: 'korea', label: 'Kore (Joseon)' }, { key: 'mexico', label: 'Meksika (Mezoamerika)' }, { key: 'europe', label: 'Avrupa (yer atfı belirsiz)' }
     ] },
     { key: 'status', url: 'durum', label: 'Durum', options: [
       { key: 'live', label: '🟢 Simülatör Hazır' }, { key: 'planned', label: '⏳ Planlı' }
@@ -327,6 +327,11 @@
       modal:['Oyma ahşap görünümü, çift kabuk halka ve çapraz pamuk sargıları','Uzun dart, gerçek arka yuva, kuyruk tüyleri ve yüzeyli taş uç','Dört yüzey seçeneği, altı kamera ve altı adımlı tur','Çağdaş sergi kaidesi; dart, kabartma ve hareketler yorumdur'],
       svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M58 96L261 60" stroke="#633b27" stroke-width="12" stroke-linecap="round"/><path d="M166 77L260 60" stroke="#b69a5e" stroke-width="7"/><g fill="none" stroke="#bcad8b" stroke-width="7"><ellipse cx="109" cy="72" rx="13" ry="16"/><ellipse cx="114" cy="106" rx="13" ry="16"/></g><path d="M35 39L270 57" stroke="#aa854e" stroke-width="4"/><path d="M16 37L42 29L38 48Z" fill="#4f5d62"/><path d="M239 54L252 40L265 57" fill="#ddd3b4"/></svg>'
     }
+
+    ,{id:'lantern',sim:'lantern',group:5,status:'live',year:1595,yearLabel:'1596’dan önce',eraLabel:'GEÇ RÖNESANS',domain:'land',era:'gunpowder',energy:['muscle'],role:['defense','melee'],origin:'europe',
+      name:'Fenerli Kalkan — KHM A 384',sub:'DEMİR ELDİVEN • KIRMIZI KADİFE • GİZLİ FENER',desc:'Viyana’daki A 384 örneğinden ayrıntılı dış rekonstrüksiyon. Delikli çelik yüz, pirinç perçinler, mafsallı eldiven, zincir örgü ve kırmızı kadife içlik. Işık kapağını açın, feneri yakın ve sürgülü bıçağı inceleyin.',
+      tags:['16 İnceleme Grubu','Açılır Işık Kapağı','Kadife ve Zincir Örgü','Sürgülü Bıçak'],specs:[['KAYNAK','KHM • A 384'],['KALKAN ÇAPI','40 cm (kaynak)'],['TOPLAM UZUNLUK','82 / 101 cm (kaynak)'],['BAĞLAM','Pratikliği sınırlı birleşik nesne']],tag:'LANTERN-SHIELD-A384',icon:'🛡️',modal:['Delikli kalkan, ışık ağzı, pirinç perçinler ve merkez çıkıntısı','Demir eldiven, parmak levhaları, zincir örgü ve iki uzun çıkıntı','Arka kadife, kayışlar, metal fener ve sıcak ışık gösterimi','KHM ön/arka fotoğrafları; küçük bağlantılar ve hareketler yaklaşık'],
+      svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><circle cx="205" cy="70" r="58" fill="#56616a" stroke="#b7a47b" stroke-width="3"/><circle cx="205" cy="70" r="45" fill="none" stroke="#d5bd88" stroke-width="2"/><path d="M20 103H250" stroke="#89959a" stroke-width="7"/><path d="M140 45H105V82H150" fill="#687780" stroke="#293b45" stroke-width="3"/><circle cx="205" cy="38" r="10" fill="#ffc06a"/><path d="M205 70L180 56L185 77Z" fill="#a7b0b5"/></svg>'}
 
   ];
 
