@@ -426,7 +426,7 @@
 6. Leonardo’nun dev arbaleti (`giantbow`) — tamamlandı.
 7. Çin tekrarlayan arbaleti — Chu-ko-nu (`chukonu`) — tamamlandı.
 8. Helepolis kuşatma kulesi (`helepolis`) — tamamlandı.
-9. Leonardo’nun çok namlulu top düzeni.
+9. Leonardo’nun çok namlulu top düzeni (`organ33`) — tamamlandı.
 10. Kılıç–tabanca birleşimi.
 Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe commit alır. Push en son, kullanıcı talimatıyla. Çizimler, günümüze kalan nesneler ve modern rekonstrüksiyonlar birbirinden ayrılır.
 
@@ -503,3 +503,10 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - 18 grup / 389 mesh: ızgara taban, dört çift masif tekerlek, yataklar, daralan dikmeler, kuşaklar/çaprazlar, dokuz döşeme, gerçek merdiven boşlukları, korkuluklar, sabit atıcı siluetleri, levhalı ön yüz, yan tahtalar, 18 kapak, menteşeli köprü ve halatlar. Tekrarlanan tahtalar ve parçalar örneklenmiştir.
 - Test: 91 köprü açısında halat bağlantısı; 16 merdiven boşluğuna raycast ve komşu dolu döşemeye kontrol ışını; dokuz kat filtresi, cephe ayırma, kapaklar, uçta duruş/manuel öncelik/sıfırlama geçti. Chu-ko-nu/J79 regresyonları geçti.
 - Görsel: genel görünüm, açık arka, dört katlı kesit ve mobil 390×844 incelendi. Kesitte gizlenmiş üst kata çıkan son merdiven ve desteksiz kalan halatlar gizlendi; arka kamera kadrajı genişletildi. Dört kaplama/CAD ve altı tur çalıştı; mobil taşma ve konsol hatası yok. Katalog 28 aktif, grup 8/10; sıradaki Leonardo çok namlulu düzen. Push yok.
+
+
+## Leonardo 33 namlulu düzen — 7 Kasım 2026
+- Kaynak: Museo Nazionale Scienza e Tecnologia, https://artsandculture.google.com/story/leonardo-and-the-military-engineering/BgVx_Ikfu3ohIg?hl=en-GB ; Argan Giovenale model kaydı/fotoğrafı https://artsandculture.google.com/asset/organo-a-trentatre-canne-0111/ywGcPElzcqJvUA . Müze fotoğrafı incelendi; üç sıra/on bir namlu, döner çerçeve ve arka vida esas alındı. Çizimden modern rekonstrüksiyon olduğu belirtilir.
+- 16 grup / 173 mesh: 33 açık ağızlı bronz dış namlu, üç yatak, ortak çerçeve, menteşeler, tutucu çubuklar, ahşap tekerlekler, 12 ispit, metal çemberler/pimler, kuyruk, vida/helis ve tutamak. Sıra işaretleri çağdaş sergi ekidir; atış veya iç ateşleme modeli yoktur.
+- 73 dönüş konumunda bütün namlu köşelerinin zemin/arka kiriş/yan kiriş açıklıkları doğrulandı. 33 ağız boşluğu ve dudak için raycast; üç 120° duruş, manuel öncelik, kaldırma/dönüş kilidi, vurgu ve sıfırlama geçti. Helepolis/J79 regresyonları geçti. İlk kontrolde arka kiriş ve kuyruk başlangıcı dönüş hacminden çıkarıldı.
+- Masaüstü genel, kaldırılmış sıra/X-Ray yakın planı, dört yüzey ve altı tur; 390×844 mobil genel görünüm kontrol edildi. Yatay taşma ve konsol hatası yok. Katalog 29 aktif, grup 9/10; sıradaki kılıç–tabanca. Push yok.

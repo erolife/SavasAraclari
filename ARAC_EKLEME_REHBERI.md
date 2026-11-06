@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 6 Kasım 2026:** İlk dört grup tamamlandı. Beşinci grubun ilk sekiz aracı tamamlandı; toplam 28 aktif model. Onlunun kalan sırası INCELEME_NOTLARI.md içindedir; sıradaki Leonardo çok namlulu düzen. UH-1H, U-505, Enigma, Higgins LCVP ve Chain Home eklendi. Enigma için enigma.html özel şifreleme masası vardır. Araştırma ve doğrulama kayıtları INCELEME_NOTLARI.md içindedir. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
+> **Güncel durum — 6 Kasım 2026:** İlk dört grup tamamlandı. Beşinci grubun ilk dokuz aracı tamamlandı; toplam 29 aktif model. Onlunun kalan sırası INCELEME_NOTLARI.md içindedir; sıradaki kılıç–tabanca. UH-1H, U-505, Enigma, Higgins LCVP ve Chain Home eklendi. Enigma için enigma.html özel şifreleme masası vardır. Araştırma ve doğrulama kayıtları INCELEME_NOTLARI.md içindedir. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.
