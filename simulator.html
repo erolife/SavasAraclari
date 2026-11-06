@@ -2721,6 +2721,10 @@
     function flyCameraTo(posArr, lookArr) {
       state.camTargetPos = new THREE.Vector3(...posArr);
       state.camTargetLook = new THREE.Vector3(...lookArr);
+      const portraitScale = activeAdapter()?.ui.portraitCameraScale || 1;
+      if (window.innerWidth < 600 && window.innerHeight > window.innerWidth) {
+        state.camTargetPos.sub(state.camTargetLook).multiplyScalar(portraitScale).add(state.camTargetLook);
+      }
     }
 
     // ============================================================================
@@ -2965,6 +2969,7 @@
       gs.textContent = st.text;
       gs.style.color = st.color;
       document.getElementById('btn-fire').textContent = ad.fireButtonLabel();
+      document.getElementById('mob-q-fire').textContent = ad.mobileFireButtonLabel ? ad.mobileFireButtonLabel() : '💥 Ateşle';
       document.getElementById('btn-terrain').classList.toggle('active', ad.buttonActive('terrain'));
       document.getElementById('btn-turret-sweep').classList.toggle('active', ad.buttonActive('sweep'));
       if (ad.ui.buttons.mode) {
@@ -2978,6 +2983,8 @@
       state.vehicle = VEHICLE_ROOTS[targetVehicle] ? targetVehicle : 'tiger';
       const isSahi = state.vehicle === 'sahi';
       const ad = activeAdapter();
+      document.title = (ad ? ad.ui.title : isSahi ? 'Osmanlı Şahi Topu' : 'Tiger I') + ' — Savaş Makineleri 3D';
+      document.getElementById('mob-q-fire').textContent = ad && ad.mobileFireButtonLabel ? ad.mobileFireButtonLabel() : '💥 Ateşle';
 
       Object.keys(VEHICLE_ROOTS).forEach(k => { VEHICLE_ROOTS[k].visible = k === state.vehicle; });
       state.recoilProgress = 0;
@@ -4216,8 +4223,9 @@
     // ?cam=iso|front|breech|engine|suspension|top — kamerayı doğrudan (geçişsiz) bir açıya yerleştirir
     const camParam = getActiveCamPresets()[params.get('cam') || 'iso'];
     if (camParam) {
-      camera.position.set(...camParam.pos);
-      controls.target.set(...camParam.look);
+      flyCameraTo(camParam.pos, camParam.look);
+      camera.position.copy(state.camTargetPos);
+      controls.target.copy(state.camTargetLook);
       state.camTargetPos = null;
       state.camTargetLook = null;
       controls.update();
