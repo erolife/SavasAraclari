@@ -1,5 +1,5 @@
 # Gemini Argon — Uzun Süreli Çalışma Promptu
-> **Güncel durum — 6 Kasım 2026:** İlk dört grup tamamlandı. Beşinci grubun ilk dört aracı Leonardo’nun oraklı savaş arabası, Kore Hwacha’sı, Atlatl ve fenerli kalkan eklendi; toplam 24 aktif model. Onlunun kalan sırası INCELEME_NOTLARI.md içindedir; sıradaki Polybolos. UH-1H, U-505, Enigma, Higgins LCVP ve Chain Home eklendi. Enigma için enigma.html özel şifreleme masası vardır. Araştırma ve doğrulama kayıtları INCELEME_NOTLARI.md içindedir. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
+> **Güncel durum — 6 Kasım 2026:** İlk dört grup tamamlandı. Beşinci grubun ilk beş aracı tamamlandı: oraklı araba, Hwacha, Atlatl, fenerli kalkan ve Polybolos; toplam 25 aktif model. Onlunun kalan sırası INCELEME_NOTLARI.md içindedir; sıradaki Leonardo dev arbalet. UH-1H, U-505, Enigma, Higgins LCVP ve Chain Home eklendi. Enigma için enigma.html özel şifreleme masası vardır. Araştırma ve doğrulama kayıtları INCELEME_NOTLARI.md içindedir. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
 
 > **Amaç:** Gemini Argon'un birkaç gün boyunca, bağımsız olarak yeni araçlar eklemesi.
 > Daha sonra Claude ile yapılacak kısa (en fazla 5 saatlik) inceleme oturumunun hızlı ve verimli geçmesi.

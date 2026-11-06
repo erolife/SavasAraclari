@@ -422,7 +422,7 @@
 2. Kore Hwacha’sı (`hwacha`) — tamamlandı.
 3. Atlatl — mızrak fırlatma kolu (`atlatl`) — tamamlandı.
 4. Fenerli kalkan (`lantern`) — tamamlandı.
-5. Polybolos.
+5. Polybolos (`polybolos`) — tamamlandı.
 6. Leonardo’nun dev arbaleti.
 7. Çin tekrarlayan arbaleti — Chu-ko-nu.
 8. Helepolis kuşatma kulesi.
@@ -473,3 +473,12 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - `node tests/lantern.cjs`: gerçek ışık ağzı/astar açıklığı, kapalı kapak örtüşmesi; 111 kapak açısında çarpışmasız hareket; ışık-kapak ilişkisi; 101 bıçak konumunda kılavuz açıklığı ve devamlı örtüşme; parmak sınırları, sıfırlama ve kaplamalar. Atlatl ve J79 regresyonları da geçti. J79 testi katalog ve simulator sözdizimini doğrular.
 - Görsel kontroller: genel, kadife arka yüz, X-Ray fener içi; dört kaplama/CAD ve altı tur; 390×844 mobil kapak açık ve bıçak tam uzatılmış kadraj. Mobil yatay taşma yok; kontroller telemetriyle eşleşti. Atlatl/Hwacha/yeni araç geçişleri tamam. Sayfa JavaScript hatası görülmedi.
 - Sonuç: 24 aktif model, beşinci grup 4/10. Sıradaki Polybolos; kullanıcı onay beklemeden sıraya devam istiyor. Her araç ayrı Türkçe commit; push yok.
+
+
+## Polybolos — 6 Kasım 2026
+- Ana kaynak: Kotsanas Museum, https://kotsanas.com/exhibits/military/the-repeating-catapult/ . Müzenin Philon anlatımına dayalı modern rekonstrüksiyonu ve fotoğrafı incelendi. Dionysios'a atıf, çift zincir, beşgen çark, ileri–geri krank ve döner besleme düzeni temel alınır; özgün korunmuş nesne gibi sunulmaz. Fotoğraf uygulamaya alınmadı.
+- 18 grup / 166 mesh. Üçgen ahşap taban, payandalar, çift lif demeti, simetrik kollar, hareketli kiriş, metal kuşaklar, dört beşgen çark, ortak miller, krank, örneklenmiş çift zincir, sürgü/mandal, üst hazne, yivli tambur ve sekiz dış ok.
+- Oranlar, sekiz ok kapasitesi, yuvarlatılmış zincir yolu, helis takipçisinin değişen uzunluğu ve çevrim evreleri sergi yorumudur; operasyonel fizik/menzil hesabı yoktur. Elle evre değiştirmek sayaçtan ok düşürmez. Otomatik çevrim başına bir ok azalır; son çevrim tamamlanıp durur, yenileme oynatmayı kendiliğinden başlatmaz.
+- İlk geometrik kontrolde zincir/demet çakışması giderildi, ön çerçeve ilerletildi; dış dikmelerde hareketli kollar için açıklık bırakıldı. Üst hazne iki sütun/dört sıra düzeniyle alçaltıldı. Helis takipçisinin uçları sürgü ve tambur izine bağlandı. Zincir teğet yönleri ve çark dönüş işareti düzeltildi.
+- `node tests/polybolos.cjs`: 100 evrede zincir pimi/sürgü, kiriş/kol uçları, helis takipçi teması, zincir-demet açıklığı; dönüş işareti, tek ok aktarım sürekliliği, sekiz tam çevrim, boşta duruş, yenileme, manuel öncelik ve sıfırlama. Lantern/J79 regresyonları ve katalog/simulator sözdizimi kontrolü geçti.
+- Görsel kontrol: masaüstü genel görünüm; %68 evrede açık hazne/X-Ray besleme yakın planı; dört ahşap görünümü, CAD ve altı tur. 390×844 mobil kadraj ve duraklatılan evre sabitliği kontrol edildi; yatay taşma yok. Katalog 25 aktif. Beşinci grup 5/10; sıradaki Leonardo dev arbalet. Push yok.
