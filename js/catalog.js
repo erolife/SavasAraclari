@@ -194,15 +194,15 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/><rect x="95" y="28" width="130" height="9" rx="4" fill="#dc2626" fill-opacity="0.25" stroke="#7f1d1d" stroke-width="2"/><rect x="100" y="56" width="120" height="9" rx="4" fill="#dc2626" fill-opacity="0.25" stroke="#7f1d1d" stroke-width="2"/><rect x="105" y="84" width="110" height="9" rx="4" fill="#dc2626" fill-opacity="0.25" stroke="#7f1d1d" stroke-width="2"/><line x1="130" y1="37" x2="130" y2="84" stroke="#334155" stroke-width="1.6"/><line x1="195" y1="37" x2="195" y2="84" stroke="#334155" stroke-width="1.6"/><path d="M70 70 L240 64 L285 70 L240 76 Z" fill="#64748b" fill-opacity="0.25" stroke="#1e293b" stroke-width="2"/><circle cx="72" cy="70" r="14" stroke="#0284c7" stroke-width="2"/><line x1="58" y1="40" x2="58" y2="100" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/><g stroke="#d97706" stroke-width="2"><line x1="110" y1="62" x2="84" y2="62"/><line x1="110" y1="66" x2="84" y2="66"/></g><circle cx="150" cy="114" r="9" stroke="#1e293b" stroke-width="2"/><circle cx="170" cy="114" r="9" stroke="#1e293b" stroke-width="2"/></svg>'
     },
 
-    // ===================================================================== 3. GRUP (PLANLI)
+    // ===================================================================== 3. GRUP (AKTİF & PLANLI)
     {
-      id: 'monitor', group: 3, status: 'planned',
+      id: 'monitor', sim: 'monitor', group: 3, status: 'live',
       year: 1862, yearLabel: '1862', eraLabel: 'SANAYİ DEVRİMİ',
       domain: 'sea', era: 'industrial', energy: ['gunpowder', 'ice'], role: ['artillery', 'armor'], origin: 'usa',
       name: 'USS Monitor & Ericsson Döner Taret', sub: 'IRONCLAD REVOLVING TURRET • 2 × 11 İNÇ DAHLGREN TOPU',
       desc: 'John Ericsson tarafından tasarlanan, su hattının hemen üzerinde ("sal üzerinde peynir kutusu") yüzen ilk döner taretli zırhlı savaş gemisi. 8 kat 1 inçlik dövme demir plakadan oluşan 6,1 m çapındaki taret, merkezi mil üzerinde kaldırılıp buharlı yardımcı motor ve dişli çarklarla 360° döndürülür; atış anında ağır sarkaçlı kepenkler lombarları kapatır.',
       tags: ['360° Buharlı Döner Taret', '2 × 11 inç Dahlgren Topu', 'Sarkaçlı Lombar Kepenkleri', 'Titreşimli Manivela Buhar Motoru'],
-      specs: [['ZIRH KALINLIĞI', '203 mm (8×1 inç Dövme Demir)'], ['SİLAH', '2 × 279 mm (11 inç) Dahlgren'], ['TARET İÇ ÇAPI', '6,10 m (20 ft) • ~120 Ton'], ['PLANLANAN GRUP', '15 Bağımsız Grup']],
+      specs: [['ZIRH KALINLIĞI', '203 mm (8×1 inç Dövme Demir)'], ['SİLAH', '2 × 279 mm (11 inç) Dahlgren'], ['TARET İÇ ÇAPI', '6,10 m (20 ft) • ~120 Ton'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
       tag: 'MONITOR-1862', icon: '⚓',
       modal: [
         '8 kat 1 inç dövme demir plakalı silindirik taret (X-Ray kesiti) ve merkezi kaldırma/dönüş mili',

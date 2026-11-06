@@ -1560,6 +1560,7 @@
   <script src="js/vehicles/gatling.js"></script>
   <script src="js/vehicles/mark1.js"></script>
   <script src="js/vehicles/fokker.js"></script>
+  <script src="js/vehicles/monitor.js"></script>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -2384,8 +2385,10 @@
     const mark1 = window.VehicleBuilders.mark1(buildCtx);
     currentBuildVehicle = 'fokker';
     const fokker = window.VehicleBuilders.fokker(buildCtx);
-    const ADAPTERS = { ballista, trebuchet, spitfire, leonardo, kadirga, gatling, mark1, fokker };
-    const VEHICLE_ROOTS = { tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root, leonardo: leonardo.root, kadirga: kadirga.root, gatling: gatling.root, mark1: mark1.root, fokker: fokker.root };
+    currentBuildVehicle = 'monitor';
+    const monitor = window.VehicleBuilders.monitor(buildCtx);
+    const ADAPTERS = { ballista, trebuchet, spitfire, leonardo, kadirga, gatling, mark1, fokker, monitor };
+    const VEHICLE_ROOTS = { tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root, leonardo: leonardo.root, kadirga: kadirga.root, gatling: gatling.root, mark1: mark1.root, fokker: fokker.root, monitor: monitor.root };
     function activeAdapter() { return ADAPTERS[state.vehicle] || null; }
 
     currentBuildVehicle = 'tiger';

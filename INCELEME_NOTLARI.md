@@ -290,6 +290,92 @@
 - **Çekirdek (`simulator.html`) değişikliği yapıldı mı?**
   - Yalnızca standart adaptör entegrasyonu satırları eklendi (`<script src="js/vehicles/fokker.js"></script>`, `const fokker = window.VehicleBuilders.fokker(buildCtx)` ve `ADAPTERS` / `VEHICLE_ROOTS` kaydı). Çekirdek mantığına dokunulmadı.
 
+---
+
+# GÖREV D — 3. Grup Araçlarının Eklenmesi
+
+## 4. 1862 USS Monitor & Ericsson Döner Taret — `js/vehicles/monitor.js`
+- **Durum:** Tamamlandı (`15 parça grubu`, `213 mesh`, `min.y = -0,000 m`)
+- **Kaynaklar ve varsayımlar:**
+  - *Gerçek boyutlar (John Ericsson 1861/1862 tasarım çizimleri, HABS/HAER VA-1396 ve The Mariners' Museum kurtarılan taret/motor verileri):*
+    - Üst Zırhlı Sal Gövde (*Upper Armored Raft*): Tam boy `172 ft` (`52,4 m`), genişlik `41 ft 6 in` (`12,65 m`), su kesimi (draft) `10 ft 6 in` (`3,20 m`), su üstü borda yüksekliği (*freeboard*) yalnızca `~18 in` (`0,46 m`).
+    - Alt Demir Tekne (*Lower Iron Hull*): Boy `124 ft` (`37,8 m`), genişlik `34 ft` (`10,36 m`).
+    - Ericsson Döner Taret: İç çap `20 ft` (`6,10 m`), dış çap `21 ft 4 in` (`6,50 m`), yükseklik `9 ft` (`2,74 m`), zırh kalınlığı **8 kat × 1 inç (`25,4 mm`) haddelenmiş dövme demir plaka = toplam `8 in` (`203 mm`)**, ağırlık `~120 long ton`.
+    - Ana Silahlar: Yan yana **2 × 11 inç (`279 mm`) Dahlgren yivsiz kabuk/gülle topu** (her biri `~15.700 lb / 7.120 kg`, namlu boyu `~3,35 m`, katı demir gülle `~168 lb / 76 kg` veya patlayıcı humbara `~136 lb / 61,7 kg`, barut hakkı `15 lb / 6,8 kg` — 1862 Hampton Roads standart emniyet sınırı).
+    - Ana Tahrik: Ericsson **36 inç çaplı çift pistonlu yatay "titreşimli manivela" (*vibrating-lever*) buhar motoru** (`~320 IHP`, maks. ~60–80 RPM, azami hız `~6–8 knot`), 2 adet Martin su borulu kazan ve 4 kanatlı `9 ft` (`2,74 m`) dökme demir Ericsson uskuru.
+  - *Sahne Ölçeği (Taret ve makine dairesinin 18 m müze ızgarasında detaylı okunabilmesi için `1:2,2` taret ölçeği, `10,4 m` kesit gövde):*
+    - Deniz tabanı/kızak alt yüzeyi: `y = 0,000 m`, su hattı yüzeyi `Y_WATER = 0,92 m`, zırhlı ana güverte `Y_DECK = 1,18 m` (su üstü *freeboard* = `0,26 m`).
+    - Üst Zırhlı Sal: Boy `10,40 m` (`z = -5,20 .. +5,20 m`), genişlik `3,60 m` (`x = -1,80 .. +1,80 m`).
+    - Alt Demir Tekne: Boy `7,80 m` (`z = -3,90 .. +3,90 m`), genişlik `2,80 m` (`x = -1,40 .. +1,40 m`), `y = 0,14 .. 0,92 m`.
+    - Ericsson Döner Taret: Merkez `(x = 0, z = +0,35 m)`, dış yarıçap `R_TURRET_OUT = 1,40 m` (çap `2,80 m`), iç yarıçap `R_TURRET_IN = 1,28 m` (zırh kalınlığı `0,12 m`, 8 eşmerkezli katman), yükseklik `H_TURRET = 1,25 m` (`y = 1,18 .. 2,43 m`).
+- **Tartışmalı tarihsel noktalar:**
+  - *Taret Sızdırmazlığı ve Kaldırma Kama Mekanizması:* Ericsson taretin tüm ağırlığını güverte halkasına değil, gemi omurgasına oturan **merkezi dövme demir mile (`Ø 9 inç`)** taşıtmıştır. Muharebe öncesi milin altındaki kama (*wedge key*) çakılarak taret güverteden hafifçe kaldırılır ve buharlı yardımcı motorla döndürülürdü; ancak bu boşluktan içeri su girdiği ve tareti tam durdurmanın zor olduğu (bazen topçuların taret dönerken "uçarak" ateş ettiği) tarihsel kaynaklarda tartışılır.
+  - *15 lb vs 30 lb Barut Hakkı:* 9 Mart 1862 Hampton Roads çarpışmasında Donanma Bürosu namlu çatlaması endişesiyle barut hakkını `15 lb` (`6,8 kg`) ile sınırlamıştır. Daha sonra yapılan testlerde `30 lb` (`13,6 kg`) barutla *CSS Virginia* zırhının delinebileceği öne sürülmüştür; bu durum parça açıklamalarında açıkça belirtilmiştir.
+- **15 Bağımsız Mekanik Parça Grubu (4 Alt Sistem):**
+  - **8 Katmanlı Döner Taret & Mil (`turret_system` — 5 Grup):**
+    1. `mn_turret_armor`: 8 Katmanlı (8×1 inç) Dövme Demir Döner Taret Zırhı (`isOuterShell: true`, X-Ray'de saydamlaşır ve 8 eşmerkezli katmanı görünür)
+    2. `mn_roof_grating`: Taret Üst Havalandırma Izgarası, Raylar & Komutan Nişan Siperi
+    3. `mn_center_spindle`: Merkezi Dövme Demir Taret Mili (`x=0, z=+0,35 m`), Kaldırma Kaması & Çapraz Gergi Kirişleri
+    4. `mn_turret_gears`: Güverte Altı Ana Dişli Çark (`R = 0,72 m`) & 2 Silindirli Yardımcı Taret Buhar Motoru (`r_pin = 0,18 m`, 4:1 oran)
+    5. `mn_port_stoppers`: Ağır Dövme Demir Sarkaçlı Lombar Kepenkleri (*Pendulum Port Stoppers*)
+  - **2 × 11 İnç Dahlgren Topları & Cephanelik (`artillery` — 4 Grup):**
+    6. `mn_left_dahlgren`: İskele (Sol) 11 İnç (`279 mm`) Dahlgren Yivsiz Topu (`x = -0,44 m`) & Sürtünmeli Geri Tepme Kızağı
+    7. `mn_right_dahlgren`: Sancak (Sağ) 11 İnç (`279 mm`) Dahlgren Yivsiz Topu (`x = +0,44 m`) & Sürtünmeli Geri Tepme Kızağı
+    8. `mn_recoil_slides`: Taret İçi Demir Kızak Rayları, Sürtünme Fren Kolları, El Çarkları & Gülle Vinç Palangası
+    9. `mn_shell_magazine`: Alt Cephanelik, 11 İnç Küresel Humbara/Gülle İstifi & Barut Fıçıları (`z = +1,95 m`)
+  - **Zırhlı Sal Gövde, Kaptan Köşkü & Su Hattı (`armored_hull` — 3 Grup):**
+    10. `mn_armored_deck`: Üst Zırhlı Sal Güvertesi (*Armored Raft Overhang*), Zırh Kuşağı & Pirinç Taret Halkası (`isOuterShell: true`)
+    11. `mn_lower_hull`: Alt Demir Tekne, Omurga, Enine Bölmeler & Çapa Kuyusu (`z = +4,15 m`)
+    12. `mn_pilot_house`: Pruva Kütük Tipi Zırhlı Kaptan Köşkü (*Pilot House*, `z = +3,35 m`), Gözetleme Yarıkları & Dümen Çarkı + Yarı Saydam Deniz Yüzeyi
+  - **Ericsson Titreşimli Manivela Motoru & Uskur (`steam_propulsion` — 3 Grup):**
+    13. `mn_vibrating_engine`: Ericsson Çift Pistonlu "Titreşimli Manivela" (*Vibrating-Lever*) Ana Buhar Motoru (`z = -2,85 m`)
+    14. `mn_boilers_blower`: 2 × Martin Su Borulu Kazan, Yatkın Duman Boruları & Santrifüj Buharlı Havalandırma Fanı (`z = -1,25 m`)
+    15. `mn_propeller_rudder`: 4 Kanatlı `9 ft` Ericsson Dökme Demir Uskur (`z = -4,45 m`), Pervane Şaftı & Dengeli Dümen
+- **Mekanik Hesaplar (Dişli Oranları, `v = ω × r` Yön Hesabı ve Uç Konum Çakışma Kontrolü):**
+  - **1. Taret Dönüş Dişlisi (`v = ω × r`):**
+    - Taret merkezi $C_B = (0, 0,72, +0,35)$, güverte altı ana dişli çark yarıçapı $R_B = 0,72\text{ m}$ (Y ekseni).
+    - Yardımcı buhar motorunun sürdüğü dikey pinyon mili merkezi $C_P = (-0,90, 0,72, +0,35)$, pinyon yarıçapı $r_P = 0,18\text{ m}$ (Y ekseni).
+    - Eksenler arası mesafe $|C_B - C_P| = 0,90\text{ m} = R_B + r_P = 0,72 + 0,18\text{ m}$ (tam diş teması, $P = (-0,72, 0,72, +0,35)$).
+    - Taret $\omega_B\,\hat{j}$ hızıyla dönerken temas noktasındaki çizgisel hız:
+      $$v_P = (\omega_B\,\hat{j}) \times (-0,72\,\hat{i}) = +0,72\,\omega_B\,\hat{k}$$
+    - Pinyonun aynı $v_P$ hızını üretmesi için:
+      $$v_P = (\omega_P\,\hat{j}) \times (+0,18\,\hat{i}) = -0,18\,\omega_P\,\hat{k} \implies \omega_P = -\frac{0,72}{0,18}\,\omega_B = -4,0\,\omega_B$$
+    - Dolayısıyla taret $\Delta\psi$ kadar döndüğünde pinyon $\Delta\phi_P = -4,0\,\Delta\psi$ kadar zıt yönde döner.
+  - **2. 11 İnç Dahlgren Geri Tepme ve Sarkaçlı Kepenk Uç Konumları:**
+    - İki top taret içinde $x_{\text{yerel}} = \pm 0,44\text{ m}$ eksenlerindedir (merkezi mil $x = 0, r = 0,11\text{ m}$'den $0,16\text{ m}$ net açıklıkla ayrılır).
+    - Batarya konumunda (`slideBack = 0`): namlu kuyruk topuzu $z_{\text{yerel}} = -0,42\text{ m}$, namlu ağzı $z_{\text{yerel}} = +1,48\text{ m}$ (lombar dışına $0,20\text{ m}$ çıkar).
+    - Maksimum geri tepmede (`MAX_RECOIL = 0,42 m`): namlu kuyruk topuzu $z_{\text{yerel}} = -0,84\text{ m}$ konumuna gelir.
+    - $x = \pm 0,44\text{ m}$ kesitinde taret arka iç duvarı $z_{\text{duvar}} = -\sqrt{1,28^2 - 0,44^2} = -1,202\text{ m}$'dir.
+    - $-0,84\text{ m} > -1,202\text{ m}$ olduğundan en uç geri tepme konumunda bile namlu kuyruğu ile taret iç duvarı arasında **$0,362\text{ m}$ net boşluk** kalır (hiçbir parçanın içinden geçmez).
+    - **🛡️ Kepenk Kapalı (`shuttersClosed = true`) Modu:** Toplar taret içine $0,36\text{ m}$ geri çekilir ($z_{\text{ağız}} = +1,12\text{ m} < R_{\text{in}} = 1,28\text{ m}$) ve sarkaçlı lombar kepenkleri $\pm 38^\circ \to 0^\circ$ kapanarak lombar deliklerini örter.
+  - **3. Ericsson Titreşimli Manivela Motoru (`RPM = 0` Duruş Dahil):**
+    - Motor krank açısı $\theta_E(t) = \int 2\pi\frac{\text{RPM}}{60}\,dt$. `RPM === 0` iken $\Delta\theta_E = 0$, manivelalar ve 4 kanatlı uskur tamamen durur.
+    - Sağ ve sol yatay piston kolları $\pm\sin(\theta_E)$ ile salınırken, titreşimli manivela kolları (*rocker shafts*) $\alpha_{L,R} = \pm 0,36\sin(\theta_E)\text{ rad}$ ($\approx \pm 20,6^\circ$) açıyla salınır ve biyel kollarıyla merkez uskur şaftını $1:1$ döndürür.
+- **Test komutu ve GERÇEK çıktı:**
+  - Komut:
+    ```powershell
+    node C:\Users\hyper\.gemini\antigravity\brain\8359d426-d9a9-43d9-901a-3a6dd7dc21f1\scratch\threetest\test_monitor.js
+    ```
+  - Gerçek Çıktı:
+    ```text
+    DOĞRULANDI [monitor.js]: 15 grup, 213 mesh, min.y=-0.000m, Manivela Motoru & Uskur 1:1 (dProp=1.571 === dCrank=1.571, RPM=0 duruş) OK, Taret Dişlisi 4:1 (pinYaw=-3.142 === -4*0.785) OK, 2x11-inç Dahlgren Salvo (40->38, geriTepme=-0.42m, kuyrukZ=-0.84m > duvarZ=-1.20m, milAçıklığı OK) & Sarkaç Kepenk Kilidi OK, UTF-8 temiz.
+    ```
+- **Ekran görüntüleri:**
+  - `C:\Users\hyper\.gemini\antigravity\brain\8359d426-d9a9-43d9-901a-3a6dd7dc21f1\scratch\rev_monitor_iso.png` (`431.781 bayt`)
+  - `C:\Users\hyper\.gemini\antigravity\brain\8359d426-d9a9-43d9-901a-3a6dd7dc21f1\scratch\rev_monitor_front_xray.png` (`466.744 bayt`)
+  - `C:\Users\hyper\.gemini\antigravity\brain\8359d426-d9a9-43d9-901a-3a6dd7dc21f1\scratch\rev_monitor_breech_xray.png` (`815.181 bayt`)
+  - *Görsel inceleme ve yapılan düzeltme:* İlk alınan `rev_monitor_iso.png` görüntüsünde `buildRingWall()` içindeki dış `CylinderGeometry` nesnesinde `openEnded: false` bırakıldığı için taretin üstünün düz metal bir kapakla kapandığı ve demiryolu raylı tavan ızgarasını (`partRoofGrating`) örttüğü tespit edildi. Her iki silindir duvarı `openEnded: true` yapılarak yalnızca et kalınlığını (`R_TURRET_IN .. R_TURRET_OUT`) örten `RingGeometry` halka kapaklar eklendi; ikinci ekran görüntüsünde taret içi boşluğunun ve tavan ızgarasının kusursuz göründüğü doğrulandı.
+- **Bilinen eksikler ve bilinçli tavizler:**
+  - Gerçek *USS Monitor* `52,4 m` (`172 ft`) tam boyunda ve oldukça basık bir gemidir; `6,5 m` çapındaki döner taretin, `2 × 11 inç` Dahlgren toplarının, güverte altı `4:1` dişli çarkının ve kıçtaki Ericsson titreşimli manivela motorunun 18 metrelik müze sahnesinde mikroskobik kalmaması için gövde boyu `10,4 m` (`-5,20 .. +5,20 m`) kesit-müze ölçeğinde temsil edilmiş, tüm iç mekanizma koordinatları birebir geometrik uyumla yerleştirilmiştir.
+- **İnceleyicinin özellikle bakması gerekenler (En kritik 3 nokta):**
+  1. `js/vehicles/monitor.js` içinde taret döndürüldüğünde (`S.turretYawDeg` veya `360° Buharlı Taret Tarama` modu) güverte altındaki ana dişli çark (`R = 0,72 m`) ile yardımcı "donkey" buhar motoru pinyonunun (`r = 0,18 m`, merkez `x = -0,90 m`) `1:-4` oranıyla (`v = ω × r`) ters yönde dönmesi.
+  2. `Lombar Kepenkleri: KAPALI` (`shuttersClosed = true`) durumuna geçildiğinde iki 11 inçlik Dahlgren topunun taret içine `0,36 m` çekilmesi (`z_ağız = +1,12 m < R_in = 1,28 m`), sarkaçlı kepenklerin `±38° -> 0°` kapanması ve bu konumda ateşleme tuşuna basıldığında kepenk emniyet kilidinin devreye girmesi.
+  3. Atış anında (`MAX_RECOIL = 0,42 m`) her iki Dahlgren topunun kuyruk topuzunun `z_yerel = -0,84 m` konumunda durarak taret arka iç duvarına (`z_duvar = -1,202 m`) `0,362 m` kala güvenli biçimde frenlenmesi ve mühimmatın `40 -> 38` (her salvoda `-2`) azalması.
+- **Çekirdek (`simulator.html`) değişikliği yapıldı mı? Neden?**
+  - Yalnızca standart adaptör entegrasyonu satırları eklendi (`<script src="js/vehicles/monitor.js"></script>`, `const monitor = window.VehicleBuilders.monitor(buildCtx)` ve `ADAPTERS` / `VEHICLE_ROOTS` kaydı). Çekirdek mantığına dokunulmadı.
+
+
+
 
 
 
