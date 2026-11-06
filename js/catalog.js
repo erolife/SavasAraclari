@@ -260,19 +260,19 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="36" y="46" width="175" height="48" rx="4" fill="#475569" fill-opacity="0.22" stroke="#1e293b" stroke-width="2.2"/><path d="M211 46 L278 52 L292 44 L292 96 L278 88 L211 94 Z" fill="#d97706" fill-opacity="0.22" stroke="#b45309" stroke-width="2"/><line x1="36" y1="70" x2="225" y2="70" stroke="#0f172a" stroke-width="3.2"/><g stroke="#0284c7" stroke-width="2"><line x1="55" y1="48" x2="55" y2="92"/><line x1="72" y1="50" x2="72" y2="90"/><line x1="89" y1="52" x2="89" y2="88"/><line x1="106" y1="53" x2="106" y2="87"/><line x1="123" y1="54" x2="123" y2="86"/></g><rect x="138" y="54" width="36" height="32" rx="4" fill="#dc2626" fill-opacity="0.3" stroke="#991b1b" stroke-width="1.8"/><g stroke="#7c2d12" stroke-width="2.4"><line x1="186" y1="48" x2="186" y2="92"/><line x1="198" y1="48" x2="198" y2="92"/></g></svg>'
     },
     {
-      id: 'phalanx', group: 3, status: 'planned',
-      year: 1980, yearLabel: '1980', eraLabel: 'MODERN DÖNEM',
+      id: 'phalanx', sim: 'phalanx', group: 3, status: 'live',
+      year: 1999, yearLabel: '1999', eraLabel: 'MODERN DÖNEM',
       domain: 'sea', era: 'modern', energy: ['gunpowder'], role: ['defense', 'smallarms'], origin: 'usa',
-      name: 'Mk 15 Phalanx CIWS (20 mm M61 Vulcan & Radar)', sub: 'CLOSED-LOOP RADAR GATLING DEFENSE • 3.000 – 4.500 ATIM/DK',
-      desc: 'Gemisavar füzelere karşı son savunma hattı (Close-In Weapon System). Beyaz radom içindeki Ku-bandı arama ve takip radarları, gelen hedefle birlikte havadaki 20 mm mermi akışını aynı anda izleyip açı farkını sıfırlayan kapalı çevrim (closed-loop spotting) kontrolüyle M61A1 6 namlulu Gatling topunu saniyeler içinde hedefe kilitler.',
-      tags: ['M61A1 20 mm 6 Namlulu Gatling', 'Ku-Band Arama & Takip Radarı', '1.550 Mermilik Helisel Tambur', '2 Eksenli Servo Kule & Radom'],
-      specs: [['SİLAH SİSTEMİ', '20 mm M61A1 Vulcan (6 Namlu)'], ['ATIŞ HIZI', '3.000 – 4.500 Atım/Dakika'], ['RADAR SİSTEMİ', 'Ku-Band Kapalı Çevrim Arama/Takip'], ['PLANLANAN GRUP', '15 Bağımsız Grup']],
-      tag: 'MK15-PHALANX-1980', icon: '📡',
+      name: 'Mk 15 Phalanx CIWS — Block 1B', sub: 'RADAR, ELEKTRO-OPTİK SENSÖR VE ALTI NAMLU',
+      desc: 'Block 1B görünümünde ayrıntılı güverte sistemi: beyaz radar kubbesi, elektro-optik sensör, altı namlulu rotor, tambur ve körüklü besleme kanalı. 18 seçilebilir grup, X-Ray ve yavaşlatılmış mekanizma gösterimi.',
+      tags: ['Block 1B • 1999', '6 Namlulu Rotor', 'Radar ve Optik Sensör', '18 İnceleme Grubu'],
+      specs: [['VARYANT', 'Mk 15 Phalanx Block 1B'], ['NAMLU GRUBU', '20 mm • 6 namlu'], ['ETKİLEŞİM', 'Rotor, yatay ve düşey inceleme'], ['MODEL GRUBU', '18 Bağımsız Grup']],
+      tag: 'MK15-PHALANX-1B-1999', icon: '📡',
       modal: [
-        'İkonik beyaz kompozit radom (X-Ray kesiti): üstte dönen Ku-bandı arama anteni, önde monopuls takip çanağı',
-        'M61A1 20 mm 6 namlulu Gatling topu, pnömatik/hidrolik tahrik motoru ve namlu ucu kelepçesi',
-        'Etkileşim: kule yanal dönüş/yükseliş servoları, radar tarama devri ve 1.550 mermilik helisel tamburdan yüksek hızlı salvo',
-        '1862 el kranklı Gatling topu ile 1980 radar güdümlü M61 Vulcan arasındaki 118 yıllık mekanik süreklilik'
+        'Dış form: yuvarlak radar kubbesi, sensör pencereleri, mafsallı top beşiği ve namlu destek kafesi',
+        'Bakım ayrıntıları: cıvatalı kaide, tambur kapakları, körüklü kanal, kablolar, ızgaralar ve basamaklar',
+        'Etkileşim: yavaşlatılmış rotor, elle eksen açıları, otomatik poz gösterimi, X-Ray ve parçalarına ayırma',
+        '6 adımlı rehber tur; ilk Phalanx (1980) ile burada gösterilen Block 1B (1999) ayrımı'
       ],
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/><rect x="115" y="106" width="70" height="18" rx="3" fill="#475569" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/><path d="M126 62 L126 28 A24 24 0 0 1 174 28 L174 62 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="2.2"/><circle cx="150" cy="46" r="10" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="3 2"/><rect x="122" y="62" width="56" height="44" rx="4" fill="#64748b" fill-opacity="0.3" stroke="#1e293b" stroke-width="2"/><line x1="178" y1="74" x2="248" y2="66" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round"/><circle cx="150" cy="92" r="11" fill="#d97706" fill-opacity="0.28" stroke="#b45309" stroke-width="1.8"/></svg>'
     }
