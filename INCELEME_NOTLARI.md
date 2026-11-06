@@ -416,3 +416,27 @@
 - Katalog 20 aktif; tüm kayıtların facet değerleri doğrulandı. Tarayıcıda 20 araç geçişi, X-Ray/CAD aç-kapat ve beş yeni modelde altışar tur adımı çalıştı; konsol hatası yok.
 - Chain Home bumpMap düzeltmesi sonrası mobil konsol temiz ve saha tabanı bütünüyle görünür. Ortak kaplama yardımcısındaki değişim diğer dokuz model testiyle tekrar doğrulandı.
 - Enigma masaüstü/mobil klavye, örnek şifreleme, ayar doğrulama, geri çözme ve çift adımlama kontrol edildi. Sayfa harici Three.js/font kaynakları kullanır; tamamen çevrimdışı paket değildir.
+
+## Beşinci grup — kullanıcı tarafından onaylanan sıra
+1. Leonardo’nun oraklı savaş arabası (`scythed`) — bu çalışmanın kapsamı.
+2. Kore Hwacha’sı.
+3. Atlatl — mızrak fırlatma kolu.
+4. Fenerli kalkan.
+5. Polybolos.
+6. Leonardo’nun dev arbaleti.
+7. Çin tekrarlayan arbaleti — Chu-ko-nu.
+8. Helepolis kuşatma kulesi.
+9. Leonardo’nun çok namlulu top düzeni.
+10. Kılıç–tabanca birleşimi.
+Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe commit alır. Push en son, kullanıcı talimatıyla. Çizimler, günümüze kalan nesneler ve modern rekonstrüksiyonlar birbirinden ayrılır.
+
+## Leonardo’nun oraklı savaş arabası — 6 Kasım 2026
+- Esas alınan çizim: British Museum, 1860,0616.99, yaklaşık 1485. Müzenin yayımladığı açıklama ve çizim: https://artsandculture.google.com/asset/military-machines-leonardo-da-vinci/4AF1vuuEl2xiew?hl=en ; özgün kayıt https://www.britishmuseum.org/collection/object/P_1860-0616-99 (doğrudan erişim 403 verdi; müzenin Google Arts & Culture yayını okundu, çizim görsel olarak incelendi).
+- British Museum bu tasarımların yapılıp savaşta kullanılmasını pek olası görmez. Arayüz, katalog ve turda “çizimden rekonstrüksiyon” ayrımı korunur. Torino 15583 çizimiyle tek bir özgün makineymiş gibi birleştirilmez. İkinci görsel karşılaştırma: Las Vegas Natural History Museum, https://www.lvnhm.org/post/worldofdavinci .
+- Siluet: arkada iki büyük tekerlek, ortada iki koşumlu at, önde dört kollu yatay orak. Ölçüler tarihsel veri değildir; orantısal müze modeli. Atlar oyma ahşap figürlerdir, yürüyüş simülasyonu yoktur.
+- 18 seçilebilir grup, 262 kayıtlı mesh. İspit/parmak/göbek/pim ayrıntılı tekerlekler; ahşap damar dokusu; demir kuşaklar; iki oyma at, deri koşum ve dizginler; eğri ve kalınlıklı dört orak; destekli kesintisiz mil; iki taç/fener dişli çifti.
+- Sergi yorumu: arka 24/8 ve ön 8/24 aktarım (3:1 → 1:3); gerçek tasarım oranı iddiası yok. Mil yatakları, açılır inceleme paneli ve ön müze beşiği yorum olarak açıklanır. Devir 0–18; elle faz kontrolü oynatmayı durdurur. Atlar/koşum gizlenebilir, aktarım vurgulanabilir. Dört ahşap görünümü, altı kamera ve altı tur adımı.
+- İlk yakın plan kontrolde arka dişli hacmine giren orta kiriş kaldırıldı, çaprazlar dişlinin altına alınıp dikmelerle bağlandı; kapak açıklığı artırıldı. Dizgin uçları destekli bağlama halkalarına bağlandı. Ön dişli altındaki yatak açıklığı düzeltildi.
+- Test, dönen daireye ait eksen hizalı kutunun sahte zemin/çarpışma sonucu üretmesini önlemek için gerçek dönüştürülmüş tekerlek ve dişli köşelerini kullanır. 73 fazda orak/at, dişli/şasi açıklığı ve tekerlek zemin teması; dik aktarımın v=ω×r yönleri, 3:1/1:3 hızlar, sıfır devir, manuel öncelik, kapak, gizleme ve sıfırlama doğrulanır.
+
+- Sonuç: beşinci grup 1/10 tamamlandı; katalog 21 aktif. Normal görünüm, açık kapak/X-Ray arka dişli yakın planı, 45° ön orak pozu ve 390×844 mobil kadraj gözle incelendi. Tarayıcıda dört kaplama, CAD/X-Ray, altı tur adımı ve Leonardo zırhlı araç/Chain Home/Enigma/yeni araç geçişleri kontrol edildi. Mobilde oynatma ilerledi; elle 90° seçilince devir sıfıra indi ve açı korundu. Konsolda sayfa hatası yok.

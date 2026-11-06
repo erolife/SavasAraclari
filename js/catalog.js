@@ -37,7 +37,7 @@
     { key: 'role', url: 'gorev', label: 'Görev Tipi', options: [
       { key: 'siege', label: 'Kuşatma' }, { key: 'artillery', label: 'Topçu' },
       { key: 'armor', label: 'Zırhlı Araç' }, { key: 'aircraft', label: 'Savaş Uçağı' },
-      { key: 'smallarms', label: 'Hafif & Makineli Silah' }, { key: 'defense', label: 'Savunma Sistemi' }, { key: 'intelligence', label: 'Haberleşme & İstihbarat' }, { key: 'transport', label: 'Nakliye & Çıkarma' }
+      { key: 'smallarms', label: 'Hafif & Makineli Silah' }, { key: 'defense', label: 'Savunma Sistemi' }, { key: 'intelligence', label: 'Haberleşme & İstihbarat' }, { key: 'transport', label: 'Nakliye & Çıkarma' }, { key: 'melee', label: 'Yakın Muharebe & Hücum' }
     ] },
     { key: 'origin', url: 'koken', label: 'Köken', options: [
       { key: 'rome', label: 'Roma' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
@@ -293,6 +293,19 @@
 
     ,{id:'lcvp',sim:'lcvp',group:4,status:'live',year:1942,yearLabel:'1942',eraLabel:'II. DÜNYA SAVAŞI',domain:'sea',era:'ww2',energy:['ice'],role:['transport'],origin:'usa',name:'Higgins LCVP — Çıkarma Teknesi',sub:'AHŞAP TEKNE • ÇELİK RAMPA • KIÇ TAHRİKİ',desc:'Baş rampasını açın, çift halatın hareketini ve ahşap gövde postalarını inceleyin. Kıç motoru, şaft, pervane, dümen mahalli ve yük alanıyla tam tekne modeli.',tags:['18 İnceleme Grubu','Hareketli Baş Rampası','Ahşap İç Yapı','Kıç Dizel Tahriki'],specs:[['BOY','~11 m'],['KAPASİTE','~36 personel'],['ETKİLEŞİM','Rampa, pervane ve dümen'],['MODEL','18 Bağımsız Grup']],tag:'HIGGINS-LCVP',icon:'⚓',modal:['Ahşap tekne, iç postalar, döşeme ve koruyucu yan kaplama','Menteşeli baş rampası, çift halat ve vinç tamburu','Dizel motor, şaft, pervane, dümen ve kıç donanımı','ABD müze referansları; ölçüler ve yerleşim yaklaşık'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M30 65H270L290 108H55Z" fill="#67747a" stroke="#263442" stroke-width="3"/><path d="M60 70H235V95H70Z" fill="#a88a61"/><path d="M270 65L310 95L290 108Z" fill="#859398" stroke="#263442" stroke-width="3"/><path d="M40 65V45H80V65" fill="#52616b"/></svg>'}
     ,{id:'chainhome',sim:'chainhome',group:4,status:'live',year:1938,yearLabel:'1938',eraLabel:'II. DÜNYA SAVAŞINA GİDEN DÖNEM',domain:'land',era:'ww2',energy:['electric'],role:['defense','intelligence'],origin:'uk',name:'Chain Home — Erken Uyarı İstasyonu',sub:'SABİT ANTENLER • OPERATÖRLER • RAPORLAMA AĞI',desc:'Dört çelik verici ve dört ahşap alıcı kulesiyle istasyon dioraması. Çatıları kaldırın; cihaz kabinleri, A-tipi ekran, telefon ve harita masasını inceleyin.',tags:['19 İnceleme Grubu','Çelik ve Ahşap Kuleler','Kaldırılabilir Çatılar','Operatör Odası'],specs:[['VERİCİ KULE TİPİ','~107 m'],['ALICI KULE TİPİ','~73 m'],['ANTENLER','Sabit perde ve çapraz dipoller'],['MODEL','Kuleler 1:10; saha sıkıştırılmış']],tag:'CHAIN-HOME',icon:'📡',modal:['Beton temeller, kafes kuleler, bakım merdivenleri ve sabit antenler','Verici kabinleri, bobinler, alıcı masası ve gonyometre','A-tipi ekran, harita masası ve telefonla insan unsurunun anlatımı','RAF Radar Museum ve Historic England kaynakları; temsili darbe gösterimi'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><g stroke="#5a666d" stroke-width="3" fill="none"><path d="M40 125L55 12L70 125M130 125L145 12L160 125M46 75H64M49 48H61M136 75H154M139 48H151M55 28H145M55 45H145M55 62H145"/></g><path d="M215 125L225 48L235 125M260 125L270 48L280 125M210 60H240M255 60H285" stroke="#8a6e46" stroke-width="3" fill="none"/><path d="M82 125V99H122V125M174 125V99H204V125" fill="#737b67"/></svg>'}
+
+    ,{
+      id: 'scythed', sim: 'scythed', group: 5, status: 'live',
+      year: 1485, yearLabel: '~1485', eraLabel: 'RÖNESANS — TASARIM',
+      domain: 'land', era: 'gunpowder', energy: ['muscle'], role: ['melee'], origin: 'italy',
+      name: 'Leonardo’nun Oraklı Savaş Arabası', sub: 'ÇİZİMDEN REKONSTRÜKSİYON • DÖRT KOLLU ORAK DÜZENİ',
+      desc: 'British Museum’daki yaklaşık 1485 tarihli çizimden yorumlanan atlı araba. Oyma atlar, deri koşum, ahşap ispitli tekerlekler, iki dik açılı dişli aktarımı ve kavisli oraklar. Yapıldığı veya savaşta kullanıldığı doğrulanmış bir araç değildir.',
+      tags: ['18 İnceleme Grubu', 'Oyma Atlar ve Koşum', 'Bağlantılı Dişli Aktarımı', 'Tarihsel Tasarım'],
+      specs: [['KAYNAK', 'British Museum • 1860,0616.99'], ['STATÜ', 'Çizimden müze rekonstrüksiyonu'], ['ETKİLEŞİM', 'Devir, elle faz ve sergi kapağı'], ['ÖLÇÜLER', 'Görsel yorum; tarihsel ölçüm değil']],
+      tag: 'LEONARDO-SCYTHED-1485', icon: '⚙️',
+      modal: ['İki oyma at, deri koşum ve uzun ahşap çeki çerçevesi', 'Demir çemberli ispitli tekerlekler, taç/fener dişliler ve sürekli mil', 'Dört kavisli orak; yavaş gösterim, elle faz, X-Ray ve aktarım vurgusu', 'Dişli oranları, boyutlar ve açılır panel sergi yorumudur; savaşta kullanım iddiası yok'],
+      svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#74543b" stroke-width="5"><path d="M40 99H264M54 95V74H100V95"/><circle cx="67" cy="99" r="25"/><path d="M67 74V124M42 99H92M120 94V66L154 59L168 32L182 35L176 57L160 72V94M135 71V95"/></g><path d="M240 96L284 80Q307 76 300 54Q292 72 276 72L240 88L207 78Q190 70 187 50Q176 75 201 86Z" fill="#8b928d" stroke="#384444" stroke-width="2"/><path d="M252 97V61" stroke="#74543b" stroke-width="5"/></svg>'
+    }
 
   ];
 
