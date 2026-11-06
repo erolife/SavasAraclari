@@ -214,13 +214,13 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 98 Q90 94 160 98 T305 98" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 3"/><path d="M28 96 L292 96 L276 116 L44 116 Z" fill="#475569" fill-opacity="0.32" stroke="#1e293b" stroke-width="2"/><rect x="115" y="54" width="90" height="42" rx="4" fill="#64748b" fill-opacity="0.38" stroke="#0f172a" stroke-width="2.4"/><line x1="160" y1="50" x2="160" y2="114" stroke="#d97706" stroke-width="2.4" stroke-dasharray="3 2"/><line x1="205" y1="70" x2="242" y2="70" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/><line x1="205" y1="80" x2="242" y2="80" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/><rect x="64" y="82" width="18" height="14" rx="2" fill="#334155" stroke="#0f172a" stroke-width="1.6"/></svg>'
     },
     {
-      id: 'katyusha', group: 3, status: 'planned',
-      year: 1942, yearLabel: '1942', eraLabel: 'II. DÜNYA SAVAŞI',
+      id: 'katyusha', sim: 'katyusha', group: 3, status: 'live',
+      year: 1941, yearLabel: '1941', eraLabel: 'II. DÜNYA SAVAŞI',
       domain: 'land', era: 'ww2', energy: ['jet', 'ice'], role: ['artillery'], origin: 'ussr',
       name: 'BM-13 "Katyuşa" Çok Namlulu Roketatar', sub: 'MULTIPLE ROCKET LAUNCHER • 16 × 132 MM M-13 ROKETİ',
-      desc: 'ZİS-6 (6×4) kamyon şasisi üzerine yerleştirilmiş 8 çift yönlü I-profil kızakta toplam 16 adet 132 mm M-13 katı yakıtlı roket taşıyan mobil topçu sistemi. Kabin içindeki el çarklı elektrikli ateşleme kutusu kontağı sıra ile kapatır; 7–10 saniyelik salvo sonunda 16 roket ~8,5 km menzile yaylım ateşiyle ulaşır.',
+      desc: 'Erken dönem ZİS-6 kamyon şasili BM-13: ayrıntılı kabin, motor, üç dingil, yaprak yaylar ve sekiz çift yüzlü ray. X-Ray ile içini inceleyin, denge ayaklarını indirin ve on altı gövdenin sıralı gösterimini oynatın. Boyutlar fotoğraf referanslarından yaklaşık; balistik hesaplanmaz.',
       tags: ['8 Çift Yönlü I-Profil Ray', '16 × 132 mm M-13 Roketi', 'Sıralı Elektrikli Kontak Kutusu', 'Arka Denge Kriko Ayakları'],
-      specs: [['ROKET ÇAPI', '132 mm M-13 (42,5 kg)'], ['KAPASİTE', '16 Roket (8 Ray × 2)'], ['SALVO SÜRESİ', '7 – 10 Saniye (~8,5 km Menzil)'], ['PLANLANAN GRUP', '15 Bağımsız Grup']],
+      specs: [['ROKET ÇAPI', '132 mm M-13 (42,5 kg)'], ['KAPASİTE', '16 Roket (8 Ray × 2)'], ['SALVO SÜRESİ', '7 – 10 Saniye (~8,5 km Menzil)'], ['3D PARÇA SAYISI', '18 Bağımsız Grup']],
       tag: 'BM13-KATYUSHA-1942', icon: '🚀',
       modal: [
         'ZİS-6 (6×4) üç dingilli kamyon şasisi, katlanır zırhlı ön cam panjurları ve arka denge kriko ayakları',

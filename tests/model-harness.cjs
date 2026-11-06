@@ -1,0 +1,7 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const THREE=require(process.env.THREE_CJS||require('node:path').join(require('node:os').tmpdir(),'monitor-three.cjs'));
+function load(id){const sandbox={window:{}};for(const p of ['js/model-kit.js',`js/vehicles/${id}.js`])vm.runInNewContext(fs.readFileSync(p,'utf8'),sandbox);const groups=[],meshes=[];
+function reg(p,o){o.userData.origColor=o.material.color.clone();p.add(o);meshes.push(o);return o;}
+const ad=sandbox.window.VehicleBuilders[id]({THREE,scene:new THREE.Scene(),createPartGroup:c=>{const g=new THREE.Group();g.position.set(...c.basePos);g.userData=c;groups.push(g);return g;},addCADMesh:(p,g,m,pos,rot)=>{const o=new THREE.Mesh(g,m.clone());o.position.set(...pos);o.rotation.set(...rot);return reg(p,o);},addInstancedMesh:(p,g,m,n)=>reg(p,new THREE.InstancedMesh(g,m.clone(),n))});return {ad,groups,meshes};}
+function common(id,n){const r=load(id),{ad,groups,meshes}=r;assert.equal(groups.length,n);assert.equal(ad.tourSteps.length,6);assert.equal(ad.ui.subsystems.reduce((a,s)=>a+s.count,0),n);assert(meshes.length<500);for(const t of ad.ui.textures){ad.setTexture(t.key);ad.applyTextures(false);ad.applyTextures(true);}ad.toggleRelief();ad.applyTextures(false);const bounds=new THREE.Box3().setFromObject(ad.root);assert(bounds.min.y>-.08);for(const m of meshes){const p=m.geometry.attributes.position;for(const v of p.array)assert(Number.isFinite(v));}return r;}
+module.exports={load,common,THREE,assert};
