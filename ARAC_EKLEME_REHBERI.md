@@ -1,4 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
+> **Güncel durum — 6 Kasım 2026:** Aşağıdaki eski görev sıraları tamamlandı. Yeni onaylı sıra ve çalışma durumu AGENT_CONTEXT.md / BEYIN_FIRTINASI.md içindedir. Teknik kalite kuralları geçerlidir.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.

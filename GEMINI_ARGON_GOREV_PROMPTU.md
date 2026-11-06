@@ -1,4 +1,5 @@
 # Gemini Argon — Uzun Süreli Çalışma Promptu
+> **Güncel durum — 6 Kasım 2026:** Aşağıdaki eski görev sıraları tamamlandı. Yeni onaylı sıra ve çalışma durumu AGENT_CONTEXT.md / BEYIN_FIRTINASI.md içindedir. Teknik kalite kuralları geçerlidir.
 
 > **Amaç:** Gemini Argon'un birkaç gün boyunca, bağımsız olarak yeni araçlar eklemesi.
 > Daha sonra Claude ile yapılacak kısa (en fazla 5 saatlik) inceleme oturumunun hızlı ve verimli geçmesi.

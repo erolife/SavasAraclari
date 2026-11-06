@@ -275,7 +275,17 @@
         '6 adımlı rehber tur; ilk Phalanx (1980) ile burada gösterilen Block 1B (1999) ayrımı'
       ],
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/><rect x="115" y="106" width="70" height="18" rx="3" fill="#475569" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/><path d="M126 62 L126 28 A24 24 0 0 1 174 28 L174 62 Z" fill="#f8fafc" stroke="#0f172a" stroke-width="2.2"/><circle cx="150" cy="46" r="10" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="3 2"/><rect x="122" y="62" width="56" height="44" rx="4" fill="#64748b" fill-opacity="0.3" stroke="#1e293b" stroke-width="2"/><line x1="178" y1="74" x2="248" y2="66" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round"/><circle cx="150" cy="92" r="11" fill="#d97706" fill-opacity="0.28" stroke="#b45309" stroke-width="1.8"/></svg>'
+    },
+    {
+      id:'huey',sim:'huey',group:4,status:'live',year:1967,yearLabel:'1967',eraLabel:'SOĞUK SAVAŞ',domain:'air',era:'coldwar',energy:['jet'],role:['aircraft'],origin:'usa',
+      name:'Bell UH-1H Iroquois — Huey',sub:'HAVA HAREKETLİLİĞİ • TÜRBİN VE ROTOR AKTARMASI',
+      desc:'Tam gövdeli UH-1H: geniş camlı kokpit, kayar kabin kapıları, T53 türbin dış donanımı, transmisyon, kumanda tablası ve iki palli rotorlar. X-Ray ile iç bağlantıları inceleyin.',
+      tags:['20 İnceleme Grubu','14,7 m Ana Rotor','Kayar Kabin Kapıları','Türbin ve Aktarma'],
+      specs:[['ROTOR ÇAPI','14,7 m'],['GÖVDE BOYU','~12,6 m'],['GÖSTERİM','Rotor, kollektif ve kapılar'],['MODEL','20 Bağımsız Grup']],tag:'UH1H-HUEY',icon:'🚁',
+      modal:['Tam gövde, kokpit, kabin koltukları, kızaklar ve uzun kuyruk bomu','T53 dış gövdeleri, transmisyon, mast ve kumanda bağlantıları','İki palli rotorlar, kollektif pala açısı ve kayar kapılar','Smithsonian ölçü referansı; iç ayrıntılar yaklaşık rekonstrüksiyon'],
+      svg:'<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M110 55 Q165 35 200 60 L230 92 L100 92 L40 75 L20 45 L35 42 L50 68 L110 75Z" fill="#4e5940" stroke="#1e293b" stroke-width="3"/><path d="M154 55V24 M75 24H260 M110 105H235 M130 91V105 M210 92V105" stroke="#334155" stroke-width="4"/><path d="M170 55L200 64L215 81H170Z" fill="#8ab0bb"/></svg>'
     }
+
   ];
 
   window.MUSEUM_CATALOG = { FACETS, VEHICLES };
