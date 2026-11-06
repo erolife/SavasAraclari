@@ -961,6 +961,7 @@
       }
     }
   </script>
+<link rel="stylesheet" href="css/museum-links.css">
 </head>
 <body>
 
@@ -1166,6 +1167,7 @@
 
   <!-- SCRIPTS: CATALOG FILTER, MODAL & HERO 3D MINI TEARDOWN PREVIEW -->
   <script src="js/catalog.js"></script>
+  <script src="js/museum-links.js"></script>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -1242,6 +1244,7 @@
               ${v.specs.map(([k, val]) => `<div>${escapeHtml(k)}<strong>${escapeHtml(val)}</strong></div>`).join('')}
             </div>
             <div class="mc-actions">${actions}</div>
+            <div class="museum-links"><button class="btn btn-sm" data-museum-share="${v.id}" aria-label="${escapeHtml(v.name)} bağlantısını paylaş">Paylaş ↗</button><button class="btn btn-sm" data-museum-sources="${v.id}">Kaynaklar</button></div>
           </div>
         </article>`;
     }

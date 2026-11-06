@@ -381,3 +381,241 @@
 
 
 
+
+## USS Monitor — 6 Kasım 2026
+
+- Kaynaklar: https://www.marinersmuseum.org/conservation/uss-monitor/ ve https://monitor.noaa.gov/150th/construction.html
+- Doğrulanan temel bilgiler: iki XI-inç Dahlgren; sekiz adet 1 inç demir taret tabakası; yatay pistonlu Ericsson buhar makinesi.
+- Kapsam: 15 gruplu, 274 mesh içeren taret ve yaklaşık 10 × 9 m güverte kesiti. Tam gemi değildir. Tarihsel tam mekanik rekonstrüksiyon değildir: buhar makinesi, taret tahriki, kepenk hareketi ve iç yerleşim şematik; 0,45 m geri tepme ve 20 atımlık gösterim kapasitesi eğitim amaçlıdır. Kazan, kondenser, pervane ve gerçek kaldırma/dişli bağlantıları modellenmedi. Kaplamalar tarihsel boya iddiası taşımaz.
+- Katalogdaki içten yanmalı motor etiketi buhar ile düzeltildi. Katalog aktif; 11/15 simülatör. Çekirdekte yalnızca script ve adaptör kayıtları eklendi.
+- Tekrar çalıştırma: `node tests/setup-monitor.cjs` (internet gerekir), ardından `node tests/monitor.cjs`. Three.js 0.160.0 işletim sisteminin geçici klasörüne indirilir; THREE_CJS ortam değişkeniyle mevcut kopya seçilebilir.
+- Gerçek test çıktısı: `PASS: 15 groups, 6 tours, 274 meshes; closed ports, ammo/refill, manual angle, zero RPM, finishes, ground contact`
+- Tarayıcı: normal ve X-Ray görüntüleri incelendi; ilk görsel kontrolde namlu çıkıntısı yetersiz görüldü, namlu konumu düzeltildi ve tekrar incelendi. 11 aktif araçta sonraki düğmesiyle geçiş tamamlandı; konsolda JavaScript hatası yok. Tarayıcının kullanıcı etkileşimi öncesi AudioContext uyarısı mevcut.
+
+## J79-GE-15 — 6 Kasım 2026
+
+### Kaynak ve varyant
+- National Museum of the US Air Force, General Electric J79 Turbojet: https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/197630/www.youtube.com/general-electric-j79-turbojet/
+  Arama indeksindeki müze kaydı GE-15, 17 kompresör ve 3 türbin kademesi, 17 ft 5 in uzunluk, 3 ft 2 in çap, kuru 10.900 lbf / art yakıcıyla 17.000 lbf bildiriyor. Doğrudan yeniden açma isteği 403 döndü. Katalogdaki GE-17 taslağı GE-15 olarak düzeltildi; itki değerleri 48,5 / 75,6 kN olarak dönüştürüldü. Katalog yılı dönem etiketi olarak korundu; GE-15 hizmete giriş tarihi olarak doğrulanmadı.
+- GE Aerospace tarihçesi: https://www.geaerospace.com/company/about-us/history — J79 değişken statorlarının farklı akış şartlarına uyumu.
+- Smithsonian J79-GE-2 koleksiyonu: https://airandspace.si.edu/collection-objects/general-electric-j79-ge-2-turbojet-engine/nasm_A19810156000 — J79 ailesinin kan-annüler yanma ve 17/3 kademe mimarisini çapraz kontrol için kullanıldı; GE-2 ölçüleri GE-15 verisi olarak kullanılmadı.
+
+### Uygulama ve sınırlar
+- 15 grup, 247 kayıtlı mesh, 6 kamera ve 6 tur; tekrar eden rotor/stator kanatları InstancedMesh kullanır.
+- Ortak şaft üzerindeki kompresör ve türbin aynı fazda döner. Sabit statorlar dönmez; değişken statorlar kendi açısını değiştirir.
+- Görsel hız en fazla 3 rad/sn; gerçek motor devri, termodinamik, yakıt tüketimi veya canlı itki hesabı yapılmaz. Akış renkleri sıcaklık verisi değildir.
+- İç boyutlar, kanat profili/adetleri, altı hareketli stator sırası, 10 alev tüpü yerleşimi, 24 egzoz yaprağı ve kontrol çizelgesi temsili. Malzeme seçenekleri tarihsel kaplama iddiası taşımaz.
+- Elle stator veya egzoz ayarı otomatiği kapatır. Sıfır gaz rotorları durdurur ve art yakıcıyı kapatır; gösterim düğmesi sıfır gazda reddedilir.
+- Modül klasik script; çekirdekte yalnızca script/build/adaptör/root kaydı eklendi. Önceki Monitor değişiklikleri korundu.
+
+### Gerçek doğrulama
+- Bağımlılık hazırlama (ilk kullanım): `node tests/setup-monitor.cjs`; mevcut Three.js 0.160.0 için `THREE_CJS` yolu da kullanılabilir.
+- Komut: `node tests/j79.cjs`
+- Çıktı: `PASS J79: 15 groups, 6 tours, 247 meshes; 17/3 stages, shared shaft, stationary stators, zero throttle, afterburner interlock, manual override, 4 finishes, ground contact, syntax/catalog`
+- Masaüstü Chrome: normal ve X-Ray + art yakıcı görüntüleri incelendi. 12 aktif araç ileri düğmesiyle dolaşıldı; J79 turu 6/6 adımına ulaştı. Konsolda JavaScript hatası yok; mevcut AudioContext kullanıcı etkileşimi uyarısı sürüyor.
+- Mobil cihaz, CFD doğruluğu ve her aracın tüm mekanik hareketleri bu kapsamda test edilmedi.
+
+## Görsel ayrıntı revizyonu — Monitor ve J79 (6 Kasım 2026)
+
+Önceki kesit modelleri kullanıcının talebiyle daha ayrıntılı dış geometrilere dönüştürüldü. Yukarıdaki ilk sürüm kapsamları bu bölümle güncellenir.
+
+- Monitor: kare platform kaldırıldı. NOAA 173 ft × 41 ft 6 in referansıyla yaklaşık 52,73 × 12,65 m tam gövde, alt karina, iç postalar, güverte levha birleşimleri, perçinler, pruva kumanda kabini, kapaklar, babalar, filikalar/mataforalar, bacalar/havalandırma, emniyet halatları, kazanlar, pervane mili, yataklar ve dümen eklendi. Taret tavan kapağı ve merdiven ayrıntıları tamamlandı. 22 grup; seyir donanımı görünümü. https://monitor.noaa.gov/shipwrecks/uss_monitor.html
+- J79: düz üç silindir karter yerine değişken çaplı karter bölümleri, cıvatalı flanşlar, ayrım şeritleri, dış stator kontrol halkaları, boru/kablo hatları, filtre/aksesuar gövdeleri, egzoz aktüatörleri, yaprak takviyeleri ve tekerlekli bakım arabası eklendi. Kutu rotor kanatları yerine daralan ve süpürülmüş kanat geometrisi kullanıldı. https://www.nationalmuseum.af.mil/Upcoming/Photos/igsearch/J79/
+- Her iki modelde tekrar kullanılan deterministik 128 px metal mikro yüzey dokusu var. Görsel rekonstrüksiyonun iç ölçüleri, boru güzergâhları ve kontrol programları yaklaşık kalır; fotogrametri veya üretim çizimi doğruluğu iddia edilmez. Monitor seyir donanımı belirli bir günün birebir konfigürasyonu değildir.
+- Başlangıçta root.visible=false düzeltmesiyle varsayılan Tiger açılışında bu modellerin üst üste görünmesi önlendi.
+- Doğrulama: node tests/monitor.cjs (22 grup, 445 mesh), node tests/j79.cjs (15 grup, 439 mesh) geçti. Monitor gövde boyut kontrolü ve alt sistem grup toplamı eklendi. Her ikisi 500 mesh hedefinin altında.
+- Masaüstü tarayıcıda normal ve X-Ray genel görüntüler; Monitor makine dairesi yakın görünümü incelendi. J79 art yakıcı ve parçalarına ayırma kontrolleri çalıştırıldı. Havalandırma ağız diskindeki boşluk görsel kontrolde görülüp giderildi.
+
+## Katyuşa / ZİS-6 — 6 Kasım 2026
+- Varyant: erken ZİS-6 şasili BM-13; katalog yılı 1941 olarak düzeltildi. Kaynak: Voronej Bölge Müzesi, https://museum-vrn.ru/muzej/novosti/muzej-online-oruzhie-pobedy-boevaya-mashina-reaktivnoj-artillerii-katyusha/ ; ZİS-6 ve erken üretim tarihini doğrular. Dış görünüm müze fotoğraf oranlarından yeniden kurulmuştur; ölçek yaklaşık.
+- 18 parça grubu: şasi, üç dingil, çift arka lastikler, yaprak yaylar, motor/radyatör/fan, kaput, kabin, saydam camlar, koltuk/direksiyon/göstergeler, çamurluklar, dış donanım, platform, ayaklar, yatak, raylar, çaprazlar, dış mühimmat gövdeleri ve kabin koruma panelleri.
+- Sıralı görsel animasyon ve ikmal; gerçek balistik, hedefleme veya mühimmat iç yapısı yok. Denge ayakları ile tekerlek gösterimi birbirini dışlar. 4 temsili kaplama ve 6 rehberli tur.
+- `node tests/katyusha.cjs`: PASS; 18 grup, 353 mesh, sonlu geometri, kaplamalar, sıralı gösterim/ikmal, denge ayakları ve elle açı kontrolü.
+- Tarayıcı: normal görünüm incelendi; X-Ray ve gösterim kontrolleri çalıştırıldı, konsolda JavaScript hatası yok.
+- Ortak geometri/UI yardımcıları js/model-kit.js içinde; seçilebilir parça kayıtları mevcut çekirdeğin yardımcıları üzerinden yapılır.
+
+## V-2 / A4 ve Meillerwagen — 6 Kasım 2026
+- Kaynaklar: AWM koleksiyonu https://www.awm.gov.au/collection/C111276 ; konservasyon https://www.awm.gov.au/v2-meillerwagen-conservation-project ; tarihsel bağlam https://wm.awm.gov.au/read/v2-rocket-science . Yaklaşık 14 m dış biçim ve taşıyıcı fotoğraf oranları esas alındı. Siyah-beyaz deneysel görünüm, AWM'nin yeşil restore örneğinin birebir boyası değildir.
+- 18 grup, 222 mesh: taşıyıcı şasi, tekerlekler, ayaklar, kafes, kuşaklar, hareketli silindirler, servis donanımı; dış gövde, burun, kanatlar, birleşim halkaları; tank hacimleri, ekipman kutuları, çerçeveler ve motor dış donanımı.
+- Dikey/yatay poz, gövde inceleme dönüşü ve kuyruk yüzeyi gösterimi; otomatik pozdan manuel kontrole geçiş. Fırlatma, hedefleme veya çalışır itki hesabı yok. Rehber turda zorla çalıştırma ve sivil mağdurların tarihsel bağlamı var.
+- `node tests/v2.cjs`: PASS; kaplamalar, 6 tur, 0/30/60/90 derece yer açıklığı, manuel öncelik ve poz düğmeleri doğrulandı.
+- Görsel kontrol: dikey normal ve yatay X-Ray incelendi; ilk dikey görüntüde eksik trunnion destekleri eklendi. Yatay görüntüde kafes üstte kaldığı için kafes bağlantıları taşıma pozunda roketin altında kalacak şekilde düzeltildi.
+
+## Phalanx Block 1B — 6 Kasım 2026
+- Varyant ve tarih: ABD Donanması ilk Block 1B kurulumunu 1999 olarak verir. Katalog 1980 ilk Phalanx ile 1999 Block 1B ayrımını yapacak şekilde güncellendi. Kaynak: https://www.navy.mil/Resources/Fact-Files/Display-FactFiles/Article/2167831/mk-15-phalanx-close-in-weapon-system-ciws/linkId/mk-15-phalanx-close-in-weapon-system-ciws/
+- Dış görünüm referansı: https://www.rtx.com/en/raytheon/what-we-do/sea/phalanx-close-in-weapon-system ; altı namlu ve besleme donanımı: https://www.gd-ots.com/wp-content/uploads/2024/03/400002644-PHALANX-Close-In-Weapon-System-CIWS-Product-Brochure-2024-03-V02-1.pdf
+- 18 grup, 230 mesh: cıvatalı güverte kaidesi, dönüş yatağı, kabin ve kapaklar, beyaz radom, iç anten ve taşıyıcıları, optik pencereler, yükseliş beşiği, altı ayrı namlu ve destek kafesi, tambur dış/iç iskeleti, körüklü besleme kanalı, tahrik gövdeleri, ızgaralar, kablolar ve basamaklar.
+- Yavaşlatılmış rotor, yatay/düşey inceleme, otomatik eksen gösterimi, X-Ray, kaplamalar ve 6 adımlı rehber tur. Görsel rekonstrüksiyon; iç yerleşim ve oranlar yaklaşık, hedefleme/angajman hesabı yok.
+- `node tests/phalanx.cjs` geçti: başlat/durdur, manuel öncelik, açı sınırları, yer açıklığı, sıfırlama ve sonlu geometri. Tarayıcıda normal/X-Ray incelendi; antenin alt desteği ve tamburun iç iskeleti görsel kontrolde tamamlandı. JavaScript konsol hatası yok.
+
+## Üç yeni araç — bütünleşik son kontrol
+- Katalogdaki eski plan/özellik metinleri uygulanan modellerle eşleştirildi; Katyuşa etiketi 1941, V-2 adı Meillerwagen olarak güncellendi. Katalog 15/15 aktif.
+- Mobil hızlı işlem düğmeleri modelin gerçek işlemini ve durumunu gösterir; sekme başlığı aktif araçla eşleşir. Üç yeni modelin dikey telefon kadrajı, doğrudan URL açılışı dahil genişletildi.
+- Beş model testi (Monitor, J79, Katyuşa, V-2, Phalanx) geçti. Ana sayfa/simülatör JavaScript, ES module ve import-map sözdizimi kontrolü geçti; git diff --check temiz.
+- Tarayıcıda 15 araç arasında geçiş, her birinde X-Ray/CAD aç-kapat ve üç yeni aracın altışar rehber tur adımı çalıştırıldı. Konsolda JavaScript hatası yok.
+- Üç yeni model normal ve X-Ray görünümlerinde incelendi; V-2 yatay pozundaki kafesin roket altında kaldığı doğrulandı. 390×844 mobil kadrajlar ve işlem düğmeleri kontrol edildi.
+
+## Dördüncü grup / UH-1H — araştırma ve uygulama planı
+- Kaynak: Smithsonian NASM, https://airandspace.si.edu/collection-objects/bell-uh-1h-iroquois-huey-smokey-iii/nasm_A19960005000 ; rotor çapı 14,7 m, gövde uzunluğu 12,6 m, yükseklik yaklaşık 4,2 m. Model genel UH-1H; Smokey III duman donanımı kopyalanmaz.
+- 20 grup: alt gövde, kabin iskeleti, burun, camlar, kokpit, koltuklar, kapılar, kabin zemini, tavan, kuyruk, stabilizeler, kızaklar, motor kaportası, türbin, transmisyon, mast/kumanda tablası, ana rotor, kuyruk şaftı, kuyruk rotoru ve dış servis ayrıntıları.
+- Görsel devir 0–40; tahrik sürekliliği görünür, gerçek uçuş hesabı yok. Kollektif pala açısı ve kapı açıklığı; sıfır devir tam duruş. Ölçü dışındaki detaylar fotoğraf oranlarından yaklaşık.
+- Plan: iki pal ±7,35 m; rotor merkezi y≈4,0; kızak tabanı y=0. Kapı kılavuzları üzerinde geriye kayar. Ana/kuyruk rotor hareketi ortak gösterim fazından türetilir; oran tarihsel değer iddiası taşımaz.
+
+- UH-1H uygulandı: `node tests/huey.cjs` → `PASS UH-1H: 20 groups, 241 meshes, rotor stop/link, collective/manual override, doors/reset, 14.7m rotor`. Normal ve X-Ray + açık kapılar tarayıcıda incelendi; mobil 390×844 kadraj kontrol edildi. Konsolda hata yok. İlk görsel kontrolde kokpit yan panelleri ve ray destekleri tamamlandı. İlk testte negatif sıfır karşılaştırması toleranslı kontrolle düzeltildi; başlangıç pozuna dönüşe rotor fazı sıfırlaması eklendi.
+
+- Mobil son görüntüde UH-1H sol pala ucu kadraj dışında kaldı; portre kamera katsayısı 2,3 yapılıp tekrar görüntülendi. AGENT_CONTEXT.md ve BEYIN_FIRTINASI.md repo .gitignore kuralı gereği yerel tutulur; izlenen rehber/notlar günceldir.
+
+## U-505 — araştırma ve plan
+- Griffin MSI koleksiyonu https://collections.griffinmsi.org/collections/4855 : yaklaşık 252 ft (76,8 m) boy, 22,3 ft (6,8 m) en, iki dokuz silindirli dizel ve iki elektrik motoru. Müze görünümü temel alınır; bölüm ve boru ölçüleri yaklaşık.
+- 20 grup planı: dış gövde, basınç teknesi, postalar, güverte, kule, korkuluk, periskoplar, kapaklar, dümen, dalış düzlemleri, şaftlar, pervaneler, dizeller, elektrik motorları, bataryalar, kumanda odası, yaşam alanları, dış tüp kapakları, borular ve sergileme desteği.
+- Kontroller: yavaşlatılmış tahrik, periskop açıklığı, dümen; dizel/elektrik gösterim modu. Dalış ve silah atışı simülasyonu yok. Çift şaft sürekli, dümen uçları ve hareketli kapsamlar test edilir.
+
+- Portre kadraj kök nedeni: OrbitControls.maxDistance yeni kamera mesafesini sınırlıyordu. flyCameraTo içinde yalnızca portre ölçeklemesi sırasında uzaklık sınırı hedef mesafeye uyarlanır. Araç kimliğine özel çekirdek koşulu yok. Tekrar ekran görüntüsünde iki rotor ucu da kadraja girdi.
+
+- U-505 tamamlandı: `node tests/u505.cjs` → `PASS U-505: 20 groups, 454 meshes, twin shafts, stop/reset, periscope/rudder, 76.8m hull`. Gövde boyu testi ilk uygulamadaki yerel eksen ölçekleme hatasını yakaladı; düşey kesit ölçeği düzeltildi. Normal görünümde baş/kıç güverte boşluğu kapatıldı; X-Ray makine dairesi ve 390×844 mobil genel görünüm incelendi. Konsolda hata yok.
+
+## Enigma — özel çalışma planı
+- Enigma I seçildi; M4 deniz modeliyle karıştırılmaz. Crypto Museum: https://www.cryptomuseum.com/crypto/enigma/i/index.htm ; bağlantılar https://www.cryptomuseum.com/crypto/enigma/wiring.htm ; adımlama https://www.cryptomuseum.com/crypto/enigma/working.htm . Tarihsel bağlamda Polonyalı matematikçiler, Turing/Welchman ve daha geniş ekip birlikte anlatılır.
+- İki görünüm aynı modeli/hesabı kullanır: standart müze adaptörü ve enigma.html şifreleme masası. 3B ahşap kasa/kapak, tuşlar, lambalar, fişler, rotorlar, mandallar ve iç bağlantılar.
+- Saf JS şifre çekirdeği: I–V rotorlar, B/C yansıtıcı, halka/konumlar, fiş çiftleri; elektrik geçmeden önce adımlama, çift adımlama. Varsayılan I-II-III/AAA/AAA/B fişsiz AAAAA→BDZGO ve HELLOWORLD→ILBDAAMTAZ vektörleri; III-II-I/ADQ→AER→BFS.
+- Masa: gerçek tuş girişi, çıktı şeridi, ayar doğrulama, 9 aşamalı iz, adım seçimi, aynı başlangıç ayarıyla çözme ve çift adımlama örneği. Mobil düzen ve klavye erişimi kontrol edilir.
+
+- Enigma tamamlandı: çekirdek ve model testleri geçti. Tarayıcıda AAAAA→BDZGO, geri çözme→AAAAA, ADQ→AER→BFS ve tekrarlı fiş uyarısı doğrulandı. Uygulanmamış form değişikliğinin geri çözmeyi etkilemesi engellendi. Masa ve müze görünümü, 390×844 mobil kadraj/klavye kontrol edildi; yatay taşma yok. Altın gidiş ve turkuaz dönüş yolları açıklayıcı görselleştirmedir. 17 grup; metinsiz testte 316 mesh.
+
+## Higgins LCVP — araştırma ve uygulama
+- ABD Ordu Ulaştırma Müzesi: https://transportation.army.mil/museum/AOTM/2020/may_2020.html ; ahşap tekne, çelik baş/yan koruma ve yaklaşık 36 personel. ABD Denizcilik Tarihi: https://www.history.navy.mil/content/history/museums/nmusn/explore/photography/ships-us/ships-usn-l/landing-craft-vehicle-personnel.html ; yaklaşık 36 ft boy. Prototipler 1941 sonu, katalog seri kullanım dönemi 1942.
+- 18 grup: tekne, postalar, döşeme, küpeşte, rampa, menteşeler, halatlar, vinç, kıç güverte, dümen mahalli, motor, şaft, pervane, dümen, halka yuvaları, yük, servis ve beşikler. İç geometri yaklaşık; sandıklar temsili.
+- Test: rampa 0/45/90° konumlarında iki halat ucunun menteşeli rampaya bağlı kalması, yer açıklığı, pervane duruşu/sıfırlama, dümen sınırı ve yük görünürlüğü geçti. 201 mesh.
+
+- LCVP normal görünüm, açık rampa/X-Ray motor yakın planı ve 390×844 mobil kadraj incelendi. Konsol hatası yok.
+
+## Chain Home — araştırma ve uygulama
+- Kaynak: RAF Air Defence Radar Museum, https://www.radarmuseum.co.uk/history/world-war-two/ ; ahşap alıcı, çelik verici ve sabit perde anten düzeni. 350 ft (~107 m) verici / 240 ft (~73 m) alıcı tipi için Historic England Poling kaydı: https://historicengland.org.uk/listing/heritage-gateway/results/record/0d636742-8028-4a8c-8b7c-e1f9aaf2d338/3ee99efa-d7fe-419b-a488-eba77c78d893 . Kule yükseklikleri istasyona göre değişmiştir; diorama belirli bir istasyonun birebir kopyası değildir.
+- 19 grup, 329 mesh: sekiz kafes kule, beton temeller, merdivenler/platformlar, sabit antenler, izolatörler, iki bina ve hareketli çatılar, verici cihazları, alıcı/gonyometre, A-tipi ekran, harita masası, telefon/sandalyeler, jeneratör, çevre çiti ve açıklayıcı darbe izleri.
+- Kule ölçeği yaklaşık 1:10; saha aralıkları ve iç odalar sıkıştırılmış. Ekran izi temsili; gerçek algılama/menzil hesabı yok. Gonyometre kontrolü yalnız düğme hareketi gösterir, kuleleri döndürmez.
+- Testler: sabit kuleler/yükseklikler, darbe duruşu ve manuel öncelik, çatı kaldırma, düğme sınırı, iz görünürlüğü ve sıfırlama geçti.
+
+- Chain Home normal istasyon ve açık çatı/X-Ray operatör odası incelendi. Mobil son kontrolde desteklenmeyen bumpMap uniform hatası bulundu; ortak kaplama yardımcısı BasicMaterial üzerine bumpMap ekliyordu. Yalnız bumpMap destekleyen malzemelere uygulama ve değişimde needsUpdate eklendi. Regresyon testi bu koşulu kapsar. Mobil saha tabanı için kadraj 2,2 yapıldı.
+
+## Dördüncü grup — bütünleşik son kontrol
+- 11 test dosyası geçti: Monitor, J79, Katyuşa, V-2, Phalanx, UH-1H, U-505, Enigma çekirdeği/modeli, LCVP ve Chain Home.
+- Katalog 20 aktif; tüm kayıtların facet değerleri doğrulandı. Tarayıcıda 20 araç geçişi, X-Ray/CAD aç-kapat ve beş yeni modelde altışar tur adımı çalıştı; konsol hatası yok.
+- Chain Home bumpMap düzeltmesi sonrası mobil konsol temiz ve saha tabanı bütünüyle görünür. Ortak kaplama yardımcısındaki değişim diğer dokuz model testiyle tekrar doğrulandı.
+- Enigma masaüstü/mobil klavye, örnek şifreleme, ayar doğrulama, geri çözme ve çift adımlama kontrol edildi. Sayfa harici Three.js/font kaynakları kullanır; tamamen çevrimdışı paket değildir.
+
+## Beşinci grup — kullanıcı tarafından onaylanan sıra
+1. Leonardo’nun oraklı savaş arabası (`scythed`) — tamamlandı.
+2. Kore Hwacha’sı (`hwacha`) — tamamlandı.
+3. Atlatl — mızrak fırlatma kolu (`atlatl`) — tamamlandı.
+4. Fenerli kalkan (`lantern`) — tamamlandı.
+5. Polybolos (`polybolos`) — tamamlandı.
+6. Leonardo’nun dev arbaleti (`giantbow`) — tamamlandı.
+7. Çin tekrarlayan arbaleti — Chu-ko-nu (`chukonu`) — tamamlandı.
+8. Helepolis kuşatma kulesi (`helepolis`) — tamamlandı.
+9. Leonardo’nun çok namlulu top düzeni (`organ33`) — tamamlandı.
+10. Kılıç–tabanca birleşimi (`swordpistol`) — tamamlandı.
+Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe commit alır. Push en son, kullanıcı talimatıyla. Çizimler, günümüze kalan nesneler ve modern rekonstrüksiyonlar birbirinden ayrılır.
+
+## Leonardo’nun oraklı savaş arabası — 6 Kasım 2026
+- Esas alınan çizim: British Museum, 1860,0616.99, yaklaşık 1485. Müzenin yayımladığı açıklama ve çizim: https://artsandculture.google.com/asset/military-machines-leonardo-da-vinci/4AF1vuuEl2xiew?hl=en ; özgün kayıt https://www.britishmuseum.org/collection/object/P_1860-0616-99 (doğrudan erişim 403 verdi; müzenin Google Arts & Culture yayını okundu, çizim görsel olarak incelendi).
+- British Museum bu tasarımların yapılıp savaşta kullanılmasını pek olası görmez. Arayüz, katalog ve turda “çizimden rekonstrüksiyon” ayrımı korunur. Torino 15583 çizimiyle tek bir özgün makineymiş gibi birleştirilmez. İkinci görsel karşılaştırma: Las Vegas Natural History Museum, https://www.lvnhm.org/post/worldofdavinci .
+- Siluet: arkada iki büyük tekerlek, ortada iki koşumlu at, önde dört kollu yatay orak. Ölçüler tarihsel veri değildir; orantısal müze modeli. Atlar oyma ahşap figürlerdir, yürüyüş simülasyonu yoktur.
+- 18 seçilebilir grup, 262 kayıtlı mesh. İspit/parmak/göbek/pim ayrıntılı tekerlekler; ahşap damar dokusu; demir kuşaklar; iki oyma at, deri koşum ve dizginler; eğri ve kalınlıklı dört orak; destekli kesintisiz mil; iki taç/fener dişli çifti.
+- Sergi yorumu: arka 24/8 ve ön 8/24 aktarım (3:1 → 1:3); gerçek tasarım oranı iddiası yok. Mil yatakları, açılır inceleme paneli ve ön müze beşiği yorum olarak açıklanır. Devir 0–18; elle faz kontrolü oynatmayı durdurur. Atlar/koşum gizlenebilir, aktarım vurgulanabilir. Dört ahşap görünümü, altı kamera ve altı tur adımı.
+- İlk yakın plan kontrolde arka dişli hacmine giren orta kiriş kaldırıldı, çaprazlar dişlinin altına alınıp dikmelerle bağlandı; kapak açıklığı artırıldı. Dizgin uçları destekli bağlama halkalarına bağlandı. Ön dişli altındaki yatak açıklığı düzeltildi.
+- Test, dönen daireye ait eksen hizalı kutunun sahte zemin/çarpışma sonucu üretmesini önlemek için gerçek dönüştürülmüş tekerlek ve dişli köşelerini kullanır. 73 fazda orak/at, dişli/şasi açıklığı ve tekerlek zemin teması; dik aktarımın v=ω×r yönleri, 3:1/1:3 hızlar, sıfır devir, manuel öncelik, kapak, gizleme ve sıfırlama doğrulanır.
+
+- Sonuç: beşinci grup 1/10 tamamlandı; katalog 21 aktif. Normal görünüm, açık kapak/X-Ray arka dişli yakın planı, 45° ön orak pozu ve 390×844 mobil kadraj gözle incelendi. Tarayıcıda dört kaplama, CAD/X-Ray, altı tur adımı ve Leonardo zırhlı araç/Chain Home/Enigma/yeni araç geçişleri kontrol edildi. Mobilde oynatma ilerledi; elle 90° seçilince devir sıfıra indi ve açı korundu. Konsolda sayfa hatası yok.
+
+
+## Kore Hwacha’sı — 6 Kasım 2026
+- Varyant: 1451 Munjong Hwacha, 100 orta boy Singijeon taşıyan düzen. Kore Ulusal Tarih Enstitüsü, https://contents.history.go.kr/play/view.do?itemId=tz&lang=eng&levelId=tz_b32 ; Munjong kayıtlarının 13 Şubat 1451 tarihli anlatımında 100 Singijeon ile 50 sajeon chongtong seçenekleri ayrılır. Bu model ikinci varyantı temsil etmez.
+- Görsel kaynak: Korea Culture Information Service Agency (@kcisameta), “Singijeon Hwacha”, https://sketchfab.com/3d-models/singijeon-hwacha-85f48b05a86240e99b755d70070d8401 . Sayfa web aracında 403 verdi; herkese açık Sketchfab model API kaydındaki kurumun 1920×1080 önizlemesi alınıp gözle incelendi. Model dosyası indirilmedi/kopyalanmadı; yerel geometri sıfırdan yazıldı.
+- Görsel dayanak modern rekonstrüksiyondur; orijinal korunmuş araç veya kesin üretim ölçüsü iddiası yoktur. Ahşap araba, uzun kollar, büyük ispitli tekerlekler, eğimli delikli kaset ve uzun saplar esas alındı. İkinci kılavuz levha, birleşimler, destek hareketi, açı aralığı ve yüzey renkleri sergi yorumudur. Sergi levhasındaki üç çizgi dekoratiftir; tarihsel yazıt değildir.
+- 18 seçilebilir grup, 168 kayıtlı mesh: iki ahşap tekerlek, demir çemberler, parmaklar/göbekler/pimler, şasi/döşeme/çaprazlar, taşıma kolları, dayanaklar, yan dikmeler, mafsallar, kaset çerçevesi, iki delikli levha ve yüz dış ok modeli. Her levhada gerçek geometriyle 100 açıklık vardır. Tekrarlanan ok parçaları InstancedMesh kullanır.
+- Etkileşim: temsili sıralı eksilme, duraklatma, 100 oka yenileme, kaset inceleme açısı, levhaları ayırma, okları gizleme ve başlangıca dönüş. Dört ahşap görünümü, altı kamera ve altı tur. İç mühimmat yapısı veya balistik hesap yok; eksilme temposu tarihsel atış hızı değildir.
+- Testler: `node tests/hwacha.cjs` (200 deliğe raycast ve ahşap aralıklara kontrol ışınları; 26 açıda destek uçları, zemin/tekerlek açıklığı; 100 okun eksilmesi, zaman birikimi, duraklatma, manuel öncelik, yenileme, görünürlük, sınırlar ve sıfırlama), `node tests/scythed.cjs`, `node tests/j79.cjs` geçti. Son test katalog facet değerlerini ve simulator modül sözdizimini de doğrular.
+- Görsel kontrol: masaüstü genel görünüm, arka saplar/X-Ray yakın planı, oklar gizliyken ayrılmış delikli levhalar; dört kaplama ve CAD aç/kapat; altı tur; 390×844 mobil genel görünüm. Mobil yatay taşma yok; gösterim sayacı azaldı, duraklatınca sabit kaldı. Scythed/Enigma/Hwacha geçişleri çalıştı. Sayfa JavaScript hatası yok; mevcut favicon.ico eksikliği 404 veriyor.
+- Katalog: 22 aktif model; yeni Kore (Joseon) filtresi yalnız Hwacha’yı getiriyor. Beşinci grup 2/10 tamamlandı; sıradaki Atlatl. Türkçe commit, push kullanıcı talimatına kadar yok.
+
+
+## Atlatl — 6 Kasım 2026
+- Görsel kaynak: British Museum Am.5226, müzenin Google Arts & Culture yayını https://artsandculture.google.com/asset/wooden-spear-thrower-atlatl/YwGmIA6eKl4tqQ ; 1400–1521, Mexica/Aztek, ahşap-kabuk-pamuk ve altın bezeme. Müze muhtemelen törensel kullanım belirtir. Fotoğraf incelendi; model fotoğrafı/varlığı kopyalanmadan prosedürel olarak yazıldı. 1400–1521 atlatl türünün icat tarihi değildir.
+- Mekanik ve dart anlatımı: Maxwell Museum / University of New Mexico, https://hands.unm.edu/atlatls.html . Ahşap kol ucundaki kanca dartın arka yuvasına dayanır; dartlarda bölümlü sap ve taş uç örnekleri bulunur. Bu kaynakta anlatılan Güneybatı ABD örnekleri, Mexica nesnesiyle tek arkeolojik takım olarak sunulmaz.
+- İkincil bağlam: Museo delle Civiltà, https://www.museodellecivilta.it/en/oggetti/american-arts-and-cultures/spear-throwers-atlatl/ ; geç 15./erken 16. yy Oaxaca, Mixtec örnekleri, oyma ahşap/altın/kabuk. Mixtec ve Mexica atıfları birleştirilmedi.
+- Büyütülmüş, esinlenilmiş müze modeli; Am.5226 birebir kopyası değildir. Uzun dart, yiv/kanca, kıvrımlı bezeme, oranlar ve hareketler yorumdur. Özgün figürler/glifler uydurularak kopya diye sunulmaz. Kaide, destek ve dekoratif işaretler çağdaştır. Menzil, gerçek atış, dart esnemesi veya hız hesabı yoktur.
+- 16 seçilebilir grup / 189 mesh: cilalı ahşap, yiv kenarları, uç kancası, gerçek boşluklu çift kabuk halka, çapraz pamuk sargıları, altın renkli kabartma, uzun dart, sap boğumları, açık arka yuva, üç tüy ve ince lifleri, ön sap/sargı ve üç boyutlu yüzeyli taş uç. Dört ahşap görünümü, altı kamera ve altı tur.
+- Gösterim: %60'a kadar ortak hareketle kanca/yuva teması korunur; sonra dartın yönü sabitlenerek temsili ayrılma açıklığı oluşur. Elle evre/ayırma değişince oynatma durur. Son evrede otomatik duruş, yeniden oynatma, dart gizleme, temas işareti ve sıfırlama mevcut.
+- Testler: `node tests/atlatl.cjs` — 101 pozda temas/ayrılma ve kaide açıklığı, kabuk halkalara boşluk/duvar raycast kontrolü, açık yuva, ayrılan dartın sabit yönü, duraklatma/manuel öncelik, sınırlar, sıfırlama ve dört kaplama. `node tests/hwacha.cjs` ve `node tests/j79.cjs` regresyonları geçti; katalog facet ve simulator sözdizimi doğrulandı.
+- Görsel kontrol: genel görünüm, kabuk halka/sargı yakın planı, %60 temas pozunda X-Ray, dört kaplama/CAD, altı tur; 390×844 mobil başlangıç ve %100 ayrılma görünümü. Mobil taşma yok, duraklatılan evre sabit kaldı. Hwacha/Scythed/Atlatl geçişleri başarılı. JavaScript hatası görülmedi; mevcut favicon isteği 404 veriyor.
+- Sonuç: 23 aktif model, beşinci grup 3/10. Meksika filtresi yalnız Atlatl'ı getirir. Sıradaki fenerli kalkan. Kullanıcı 6 Kasım'da kalan sıraya onay beklemeden devam edilmesini istedi; her araçtan sonra Türkçe commit, push yok.
+
+
+## Fenerli kalkan — KHM A 384 — 6 Kasım 2026
+- Esas kaynak: Kunsthistorisches Museum, https://www.khm.at/en/artworks/laternenschild-mit-eisenhandschuh-und-einschiebbarer-stossklinge-372783-1 . 1596'dan önce; Ferdinand II koleksiyonu. Kalkan çapı 40 cm, uzunluk kapalı 82 / açık 101 cm. Kaynaktaki demir/pirinç/kadife/deri/zincir örgü bilgileri ve ön/arka fotoğraflar esas alındı. Müze pratikliği düşük, muhtemelen sohbet nesnesi yorumu yapar; etkili bir savaş silahı iddiası kurulmaz. Üretim yeri kesinleştirilmediği için katalog kökeni Avrupa (yer atfı belirsiz).
+- Müze sayfası web açmada 403 verdi; PowerShell ile erişildi. Büyük ön/arka fotoğraflar müzenin `/pics/372783/HJRK_A_384_38076.jpg` ve `HJRK_A_384_38079.jpg` yayınlarından gözle incelendi. Görseller uygulamaya kopyalanmadı. Philadelphia örneği araştırmada görüldü fakat geometriler tek özgün nesneymiş gibi birleştirilmedi.
+- 16 grup / 92 kayıtlı mesh: delikli çelik yüz ve eldiven çentiği, kıvrılmış kenar, pirinç perçinler, merkez çıkıntısı, kırmızı kadife, işlemeli şerit, kayışlar, levhalı eldiven, 180 örneklenmiş zincir halkası, iki çentikli çıkıntı, sürgü kanalı, hareketli bıçak, arka fener, iç lamba ve kapak. Ayrıntı oranları ve eklemler yaklaşık; nesne sergi için büyütülmüş, çağdaş mesnet ayrı gruptur.
+- Etkileşim: 0–110° kapak, temsili ışık aç/kapat, bıçak uzantısı ve parmak inceleme açısı; dört kaplama, altı kamera/tur. Bıçak hareketi kaynakta verilen 19 cm farkı kalkan çapına göre orantılar; üretim/kilit mekanizması modeli değildir.
+- `node tests/lantern.cjs`: gerçek ışık ağzı/astar açıklığı, kapalı kapak örtüşmesi; 111 kapak açısında çarpışmasız hareket; ışık-kapak ilişkisi; 101 bıçak konumunda kılavuz açıklığı ve devamlı örtüşme; parmak sınırları, sıfırlama ve kaplamalar. Atlatl ve J79 regresyonları da geçti. J79 testi katalog ve simulator sözdizimini doğrular.
+- Görsel kontroller: genel, kadife arka yüz, X-Ray fener içi; dört kaplama/CAD ve altı tur; 390×844 mobil kapak açık ve bıçak tam uzatılmış kadraj. Mobil yatay taşma yok; kontroller telemetriyle eşleşti. Atlatl/Hwacha/yeni araç geçişleri tamam. Sayfa JavaScript hatası görülmedi.
+- Sonuç: 24 aktif model, beşinci grup 4/10. Sıradaki Polybolos; kullanıcı onay beklemeden sıraya devam istiyor. Her araç ayrı Türkçe commit; push yok.
+
+
+## Polybolos — 6 Kasım 2026
+- Ana kaynak: Kotsanas Museum, https://kotsanas.com/exhibits/military/the-repeating-catapult/ . Müzenin Philon anlatımına dayalı modern rekonstrüksiyonu ve fotoğrafı incelendi. Dionysios'a atıf, çift zincir, beşgen çark, ileri–geri krank ve döner besleme düzeni temel alınır; özgün korunmuş nesne gibi sunulmaz. Fotoğraf uygulamaya alınmadı.
+- 18 grup / 166 mesh. Üçgen ahşap taban, payandalar, çift lif demeti, simetrik kollar, hareketli kiriş, metal kuşaklar, dört beşgen çark, ortak miller, krank, örneklenmiş çift zincir, sürgü/mandal, üst hazne, yivli tambur ve sekiz dış ok.
+- Oranlar, sekiz ok kapasitesi, yuvarlatılmış zincir yolu, helis takipçisinin değişen uzunluğu ve çevrim evreleri sergi yorumudur; operasyonel fizik/menzil hesabı yoktur. Elle evre değiştirmek sayaçtan ok düşürmez. Otomatik çevrim başına bir ok azalır; son çevrim tamamlanıp durur, yenileme oynatmayı kendiliğinden başlatmaz.
+- İlk geometrik kontrolde zincir/demet çakışması giderildi, ön çerçeve ilerletildi; dış dikmelerde hareketli kollar için açıklık bırakıldı. Üst hazne iki sütun/dört sıra düzeniyle alçaltıldı. Helis takipçisinin uçları sürgü ve tambur izine bağlandı. Zincir teğet yönleri ve çark dönüş işareti düzeltildi.
+- `node tests/polybolos.cjs`: 100 evrede zincir pimi/sürgü, kiriş/kol uçları, helis takipçi teması, zincir-demet açıklığı; dönüş işareti, tek ok aktarım sürekliliği, sekiz tam çevrim, boşta duruş, yenileme, manuel öncelik ve sıfırlama. Lantern/J79 regresyonları ve katalog/simulator sözdizimi kontrolü geçti.
+- Görsel kontrol: masaüstü genel görünüm; %68 evrede açık hazne/X-Ray besleme yakın planı; dört ahşap görünümü, CAD ve altı tur. 390×844 mobil kadraj ve duraklatılan evre sabitliği kontrol edildi; yatay taşma yok. Katalog 25 aktif. Beşinci grup 5/10; sıradaki Leonardo dev arbalet. Push yok.
+
+
+## Leonardo dev arbalet — 6 Kasım 2026
+- Kaynaklar: Museo Nazionale Scienza e Tecnologia, https://artsandculture.google.com/story/leonardo-and-the-military-engineering/BgVx_Ikfu3ohIg?hl=en-GB ; Regione Lombardia ST070-00100, https://www.lombardiabeniculturali.it/scienza-tecnologia/schede/ST070-00100/ . Müze modelinin fotoğrafı incelendi. Katmanlı yay, yaklaşık 24 m tasarım açıklığı ve altı tekerlek esas alındı. Kaynaklar mühimmatı farklı anlattığından yatak boş bırakıldı. Savaşta kullanıldığı iddia edilmez.
+- 16 grup / 225 mesh: dokuz bağımsız lamina, takip eden bantlar, halat gözleri, çift kiriş, uzun kundak, çaprazlar, altı ispitli tekerlek, hareketli kızak, iki kurma halatı, tambur ve çarklar. Ahşap ölçek figürü ve kaldırılabilir paneller sergi ekidir. Yaklaşık 1:3 sahne; deformasyon ve oranlar üretim verisi değildir.
+- Test: 101 evrede kiriş ve halat uçlarının bağlantısı, simetri, sonlu yay geometrisi; altı zemin teması, ileri/geri uçta duruş, manuel öncelik ve sıfırlama geçti. Polybolos/J79 regresyonları, katalog ve simulator sözdizimi geçti.
+- Görsel kontrol: masaüstü genel ve tam kurulmuş arka tambur yakın planı; dört kaplama, altı tur; 390×844 mobil açık paneller/X-Ray. Yatay taşma yok. JavaScript hatası görülmedi; mevcut favicon 404. Katalog 26 aktif, grup 6/10; sıradaki Chu-ko-nu. Push yok.
+
+
+## Chu-ko-nu — 6 Kasım 2026
+- Kaynak: Musée de l’Archerie et du Valois, https://www.musee-archerie-valois.fr/en/2021/10/01/repeating-crossbow/ ; 2007.10.1, 19. yüzyıl Çin, ahşap/metal/lif. Müzenin nesne fotoğrafı incelendi. Mucit atfı, atış hızı ve menzil tekrar edilmedi. Kısa tüysüz oklar ve yaklaşık bir düzine hazne anlatımı esas alındı.
+- 16 grup / 104 mesh: dar kundak, yay katmanları/lif bağları, çift kol ve tutamak, pimler, üst hazne, kapak, köşe takviyeleri, on iki ok ve çağdaş mesnet. Dört mafsallı hareketin oranları, kiriş yer değiştirmesi ve eksilme temposu sergi yorumudur; nesnenin ölçülü mekanik kopyası değildir.
+- İlk görsel kontrolde hazne yüksekliği azaltıldı. 101 evrede kaldıraç/hazne mafsalı, sabit boylu ön bağlantılar, hazne-kundak açıklığı ve kiriş uçları test edildi. On iki çevrim, boşta duruş, yenileme, manuel öncelik, kapak/duvar açma ve sıfırlama geçti. Dev arbalet/J79 regresyonları geçti.
+- Masaüstü açık hazne yakın planı, dört kaplama/CAD, altı tur ve 390×844 mobil genel görünüm incelendi. Mobil yatay taşma ve konsol hatası yok. Katalog 27 aktif, Çin köken filtresi eklendi. Grup 7/10; sıradaki Helepolis. Push yok.
+
+
+## Helepolis — 6 Kasım 2026
+- Kaynak: Kotsanas Museum, https://collection.kotsanasmuseum.com/en/exhibits/106078/ ve ön/arka fotoğrafları https://kotsanas.com/el/exhibits/military/helepolis-epimachus/ . Modern rekonstrüksiyonun iki fotoğrafı incelendi. Dokuz kat, sekiz tekerlek, iki merdiven ve yaklaşık 40 m anlatımı esas alındı; iç yerleşim/kaplama bağlantıları yorumdur.
+- 18 grup / 389 mesh: ızgara taban, dört çift masif tekerlek, yataklar, daralan dikmeler, kuşaklar/çaprazlar, dokuz döşeme, gerçek merdiven boşlukları, korkuluklar, sabit atıcı siluetleri, levhalı ön yüz, yan tahtalar, 18 kapak, menteşeli köprü ve halatlar. Tekrarlanan tahtalar ve parçalar örneklenmiştir.
+- Test: 91 köprü açısında halat bağlantısı; 16 merdiven boşluğuna raycast ve komşu dolu döşemeye kontrol ışını; dokuz kat filtresi, cephe ayırma, kapaklar, uçta duruş/manuel öncelik/sıfırlama geçti. Chu-ko-nu/J79 regresyonları geçti.
+- Görsel: genel görünüm, açık arka, dört katlı kesit ve mobil 390×844 incelendi. Kesitte gizlenmiş üst kata çıkan son merdiven ve desteksiz kalan halatlar gizlendi; arka kamera kadrajı genişletildi. Dört kaplama/CAD ve altı tur çalıştı; mobil taşma ve konsol hatası yok. Katalog 28 aktif, grup 8/10; sıradaki Leonardo çok namlulu düzen. Push yok.
+
+
+## Leonardo 33 namlulu düzen — 7 Kasım 2026
+- Kaynak: Museo Nazionale Scienza e Tecnologia, https://artsandculture.google.com/story/leonardo-and-the-military-engineering/BgVx_Ikfu3ohIg?hl=en-GB ; Argan Giovenale model kaydı/fotoğrafı https://artsandculture.google.com/asset/organo-a-trentatre-canne-0111/ywGcPElzcqJvUA . Müze fotoğrafı incelendi; üç sıra/on bir namlu, döner çerçeve ve arka vida esas alındı. Çizimden modern rekonstrüksiyon olduğu belirtilir.
+- 16 grup / 173 mesh: 33 açık ağızlı bronz dış namlu, üç yatak, ortak çerçeve, menteşeler, tutucu çubuklar, ahşap tekerlekler, 12 ispit, metal çemberler/pimler, kuyruk, vida/helis ve tutamak. Sıra işaretleri çağdaş sergi ekidir; atış veya iç ateşleme modeli yoktur.
+- 73 dönüş konumunda bütün namlu köşelerinin zemin/arka kiriş/yan kiriş açıklıkları doğrulandı. 33 ağız boşluğu ve dudak için raycast; üç 120° duruş, manuel öncelik, kaldırma/dönüş kilidi, vurgu ve sıfırlama geçti. Helepolis/J79 regresyonları geçti. İlk kontrolde arka kiriş ve kuyruk başlangıcı dönüş hacminden çıkarıldı.
+- Masaüstü genel, kaldırılmış sıra/X-Ray yakın planı, dört yüzey ve altı tur; 390×844 mobil genel görünüm kontrol edildi. Yatay taşma ve konsol hatası yok. Katalog 29 aktif, grup 9/10; sıradaki kılıç–tabanca. Push yok.
+
+
+## Kılıç–tabanca — 7 Kasım 2026
+- Kaynak: The Metropolitan Museum of Art, https://www.metmuseum.org/art/collection/search/785931 ; 2018.371, Saksonya, Johannes Andreas Niefind’e atfedilen birleşik av silahı, çelik/ahşap, 65,5 cm. Genel ve kabza yakın plan fotoğrafları incelendi. Başlık/kayıtta yaklaşık 1740, açıklamada yaklaşık 1730 bulunduğundan arayüzde 18. yüzyılın ilk yarısı yazıldı; sıralama yılı 1735 yalnız katalog içindir.
+- 16 grup / 68 mesh: kalınlıklı daralan çelik kılıç, yan yivler, kök bilezikleri, kısa açık ağızlı dış namlu, kıvrımlı ahşap kabza, uzun açık el koruması, kabza başı/sırt, dış levha, çakmak kolu ve karşı çelik, yarıklı vidalar, kıvrımlı bezeme, döner çağdaş kaide. Bezemeler özgün figürlerin kopyası değil yorumdur. İşlevsel iç ateşleme veya atış gösterimi yoktur.
+- Test: iki taraftan kılıç yüzeyine raycast; el koruması boşluğu ve dolu kenarı; namlu ağzı; 73 dönüş ve 101 levha ayırma konumu; iki yarım turda otomatik duruş, manuel öncelik, sınırlar, bezeme/sıfırlama geçti. İlk görsel kontrolde yüz normalleri, kabza mesnedi ve bezeme yüzey konumu düzeltildi.
+- Masaüstü kabza/dış levha yakın planı, dört yüzey/CAD, altı tur ve 390×844 mobil görünüm kontrol edildi. Mobil kadraj kılıcın tamamı için genişletildi. JavaScript hatası yok; mevcut favicon.ico 404 isteği sürüyor.
+
+## Beşinci grup — bütünleşik kapanış, 7 Kasım 2026
+- On araç tamamlandı, katalog 30 aktif modele ulaştı. Her araç kendi araştırma, test ve görsel kontrol kaydıyla ayrı Türkçe commit aldı; push yapılmadı.
+- 21 test dosyasının tamamı geçti (yardımcı model-harness ve indirme setup-monitor betikleri test sayısına dahil değil). Yeni modellerin yanı sıra Monitor/J79, Katyuşa, V-2, Phalanx, UH-1H, U-505, Enigma çekirdeği/modeli, LCVP ve Chain Home regresyonları doğrulandı.
+- Tarayıcıda 30 aracın tamamına geçiş ve karşılık gelen başlıklar doğrulandı. Çin filtresi yalnız Chu-ko-nu’yu getiriyor. Mobil yatay sayfa taşması yok.
+- Müze kaynaklarıyla modern rekonstrüksiyonlar ve sergi için yorumlanan hareketler metinlerde ayrıldı. Uygulama harici Three.js/font kaynaklarını kullanmayı sürdürüyor; tam çevrimdışı paket değildir. Yeni araç sırası kullanıcıyla henüz belirlenmedi.
+
+
+## Ürün önerileri — paylaşım ve kaynaklar, 7 Kasım 2026
+- Kullanıcı talimatıyla tamamlanan onlunun bütün commit’leri `origin/feature/kilic-tabanca` dalına push edildi; uzak uç 4c62a85 ile yerel uç eşleşti. Main’e merge/deploy yapılmadı.
+- Kullanıcı kapsamı: şimdilik paylaşım ve kaynak bağlantıları. Yorum/inceleme sayacı sunucu işi kapsam dışı; video seçkisi ayrıca araştırılabilecek sonraki öneri.
+- Katalog kartları, simülatör üst çubuğu ve Enigma masasına ortak Paylaş/Kaynaklar düğmeleri eklendi. Ortak işlev `js/museum-links.js`, stil `css/museum-links.css`; veri tek katalog kaynağında. Simülatör çekirdeğine araca özel davranış eklenmedi; yalnız ortak arayüz düğmeleri ve betik/stil yüklemesi eklendi.
+- Paylaşım: yerel paylaşım API’si, ardından pano; izin yoksa seçilebilir URL penceresi. İptal panoya yazmaz. URL alt dizini korur, yalnız seçili aracı içerir; Enigma mesaj/ayarları paylaşılmaz. O an açık araç URL’den okunur. Dosya/localhost ortamındaki bağlantı aynı ortamı gösterir; yayımlanmış sitede otomatik aynı site adresi kullanılır.
+- Önce 20 araç için araştırma defterindeki 38 bağlantı aktarıldı. İlk 10 araç için 10 ek okuma bağlantısı araştırıldı: English Heritage (Roma ballistası/Orta Çağ kuşatma bağlamı), Historic England (1464 top arşivi), Tank Museum (Tiger I/Mark I), Museum of Flight (Spitfire IX), Museo Scienza (Leonardo), Vakıflar Dergisi (tarihi kadırga), US36836A patent kaydı ve ABD Hava Kuvvetleri Müzesi (Fokker). Tam URL’ler katalogda; ek okumalar birebir model referansı olmadıkları notuyla gösterilir. Fokker doğrudan web açmada 403 verdi, kurumsal arama kaydı okundu.
+- Testler: `node tests/museum-links.cjs` — 30 araç URL’si, alt dizin ve özel sorgu temizleme, native/iptal/pano/manuel yollar, 48 HTTPS kaynak, tüm araçlarda kaynak varlığı geçti. `node tests/j79.cjs` katalog/simulator sözdizimi ve `node tests/enigma-core.cjs` regresyonları geçti.
+- Tarayıcı: katalogdaki 30 paylaş düğmesi, Chu-ko-nu doğru URL kopyalama, araç değiştirdikten sonra kılıç-tabanca URL’si, pano reddinde seçili alan ve kapanınca odağın düğmeye dönmesi doğrulandı. Atlatl masaüstü kaynak paneli ve 390×844 simülatör/Enigma panelleri gözle incelendi. Dialog varsayılan margin sıfırlamasına karşı ortalandı; Enigma mobil üst çubuğuna satır kaydırma eklendi.

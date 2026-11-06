@@ -1,0 +1,2 @@
+const fs=require('fs'),os=require('os'),path=require('path');
+(async()=>{const response=await fetch('https://unpkg.com/three@0.160.0/build/three.cjs');if(!response.ok)throw Error('Three.js download failed: '+response.status);fs.writeFileSync(path.join(os.tmpdir(),'monitor-three.cjs'),await response.text());console.log('Three.js 0.160.0 test dependency ready');})().catch(e=>{console.error(e.message);process.exitCode=1;});

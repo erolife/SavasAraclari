@@ -1234,6 +1234,7 @@
       }
     }
   </script>
+<link rel="stylesheet" href="css/museum-links.css">
 </head>
 
 <body>
@@ -1270,6 +1271,8 @@
     </div>
 
     <div class="top-actions">
+      <button class="btn" data-museum-share="">Paylaş ↗</button>
+      <button class="btn" data-museum-sources="">Kaynaklar</button>
       <button class="btn btn-cyan" id="btn-sound" title="Prosedürel Mekanik Ses Efektleri">🔊 Ses: Açık</button>
       <button class="btn" id="btn-reset-cam">🎯 Kamerayı Sıfırla</button>
     </div>
@@ -1550,6 +1553,7 @@
   <!-- MAIN THREE.JS PROCEDURAL TEARDOWN ENGINE -->
   <!-- Müze kataloğu ve araç modülleri (klasik script: sayfa doğrudan dosyadan açıldığında da çalışır) -->
   <script src="js/catalog.js"></script>
+  <script src="js/museum-links.js"></script>
   <script src="js/vehicles/tiger1.js"></script>
   <script src="js/vehicles/sahi1453.js"></script>
   <script src="js/vehicles/ballista.js"></script>
@@ -1561,6 +1565,30 @@
   <script src="js/vehicles/mark1.js"></script>
   <script src="js/vehicles/fokker.js"></script>
   <script src="js/vehicles/monitor.js"></script>
+<<<<<<< HEAD
+=======
+  <script src="js/vehicles/j79.js"></script>
+  <script src="js/model-kit.js"></script>
+  <script src="js/vehicles/katyusha.js"></script>
+  <script src="js/vehicles/v2.js"></script>
+  <script src="js/vehicles/phalanx.js"></script>
+  <script src="js/vehicles/huey.js"></script>
+  <script src="js/vehicles/u505.js"></script>
+  <script src="js/enigma-core.js"></script>
+  <script src="js/vehicles/enigma.js"></script>
+  <script src="js/vehicles/lcvp.js"></script>
+  <script src="js/vehicles/chainhome.js"></script>
+  <script src="js/vehicles/scythed.js"></script>
+  <script src="js/vehicles/hwacha.js"></script>
+  <script src="js/vehicles/atlatl.js"></script>
+  <script src="js/vehicles/lantern.js"></script>
+  <script src="js/vehicles/polybolos.js"></script>
+  <script src="js/vehicles/giantbow.js"></script>
+  <script src="js/vehicles/chukonu.js"></script>
+  <script src="js/vehicles/helepolis.js"></script>
+  <script src="js/vehicles/organ33.js"></script>
+  <script src="js/vehicles/swordpistol.js"></script>
+>>>>>>> 734ff246925d81fd6781dd8e9a0cf25945f2a2fc
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -2387,8 +2415,51 @@
     const fokker = window.VehicleBuilders.fokker(buildCtx);
     currentBuildVehicle = 'monitor';
     const monitor = window.VehicleBuilders.monitor(buildCtx);
+<<<<<<< HEAD
     const ADAPTERS = { ballista, trebuchet, spitfire, leonardo, kadirga, gatling, mark1, fokker, monitor };
     const VEHICLE_ROOTS = { tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root, leonardo: leonardo.root, kadirga: kadirga.root, gatling: gatling.root, mark1: mark1.root, fokker: fokker.root, monitor: monitor.root };
+=======
+    currentBuildVehicle = 'j79';
+    const j79 = window.VehicleBuilders.j79(buildCtx);
+    currentBuildVehicle = 'katyusha';
+    const katyusha = window.VehicleBuilders.katyusha(buildCtx);
+    currentBuildVehicle = 'v2';
+    const v2 = window.VehicleBuilders.v2(buildCtx);
+    currentBuildVehicle = 'phalanx';
+    const phalanx = window.VehicleBuilders.phalanx(buildCtx);
+    currentBuildVehicle = 'huey';
+    const huey = window.VehicleBuilders.huey(buildCtx);
+    currentBuildVehicle = 'u505';
+    const u505 = window.VehicleBuilders.u505(buildCtx);
+    currentBuildVehicle = 'enigma';
+    const enigma = window.VehicleBuilders.enigma(buildCtx);
+    currentBuildVehicle = 'lcvp';
+    const lcvp = window.VehicleBuilders.lcvp(buildCtx);
+    currentBuildVehicle = 'chainhome';
+    const chainhome = window.VehicleBuilders.chainhome(buildCtx);
+    currentBuildVehicle = 'scythed';
+    const scythed = window.VehicleBuilders.scythed(buildCtx);
+    currentBuildVehicle = 'hwacha';
+    const hwacha = window.VehicleBuilders.hwacha(buildCtx);
+    currentBuildVehicle = 'atlatl';
+    const atlatl = window.VehicleBuilders.atlatl(buildCtx);
+    currentBuildVehicle = 'lantern';
+    const lantern = window.VehicleBuilders.lantern(buildCtx);
+    currentBuildVehicle = 'polybolos';
+    const polybolos = window.VehicleBuilders.polybolos(buildCtx);
+    currentBuildVehicle = 'giantbow';
+    const giantbow = window.VehicleBuilders.giantbow(buildCtx);
+    currentBuildVehicle = 'chukonu';
+    const chukonu = window.VehicleBuilders.chukonu(buildCtx);
+    currentBuildVehicle = 'helepolis';
+    const helepolis = window.VehicleBuilders.helepolis(buildCtx);
+    currentBuildVehicle = 'organ33';
+    const organ33 = window.VehicleBuilders.organ33(buildCtx);
+    currentBuildVehicle = 'swordpistol';
+    const swordpistol = window.VehicleBuilders.swordpistol(buildCtx);
+    const ADAPTERS = { swordpistol, organ33, helepolis, chukonu, giantbow, polybolos, lantern, atlatl, hwacha, scythed, chainhome, lcvp, enigma, u505, huey, phalanx, v2, katyusha, j79, monitor, ballista, trebuchet, spitfire, leonardo, kadirga, gatling, mark1, fokker };
+    const VEHICLE_ROOTS = { swordpistol: swordpistol.root, organ33: organ33.root, helepolis: helepolis.root, chukonu: chukonu.root, giantbow: giantbow.root, polybolos: polybolos.root, lantern: lantern.root, atlatl: atlatl.root, hwacha: hwacha.root, scythed: scythed.root, chainhome: chainhome.root, lcvp: lcvp.root, enigma: enigma.root, u505: u505.root, huey: huey.root, phalanx: phalanx.root, v2: v2.root, katyusha: katyusha.root, j79: j79.root, monitor: monitor.root, tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root, leonardo: leonardo.root, kadirga: kadirga.root, gatling: gatling.root, mark1: mark1.root, fokker: fokker.root };
+>>>>>>> 734ff246925d81fd6781dd8e9a0cf25945f2a2fc
     function activeAdapter() { return ADAPTERS[state.vehicle] || null; }
 
     currentBuildVehicle = 'tiger';
@@ -2708,6 +2779,11 @@
     function flyCameraTo(posArr, lookArr) {
       state.camTargetPos = new THREE.Vector3(...posArr);
       state.camTargetLook = new THREE.Vector3(...lookArr);
+      const portraitScale = activeAdapter()?.ui.portraitCameraScale || 1;
+      if (window.innerWidth < 600 && window.innerHeight > window.innerWidth) {
+        state.camTargetPos.sub(state.camTargetLook).multiplyScalar(portraitScale).add(state.camTargetLook);
+        controls.maxDistance = Math.max(controls.maxDistance, state.camTargetPos.distanceTo(state.camTargetLook) * 1.1);
+      }
     }
 
     // ============================================================================
@@ -2952,6 +3028,7 @@
       gs.textContent = st.text;
       gs.style.color = st.color;
       document.getElementById('btn-fire').textContent = ad.fireButtonLabel();
+      document.getElementById('mob-q-fire').textContent = ad.mobileFireButtonLabel ? ad.mobileFireButtonLabel() : '💥 Ateşle';
       document.getElementById('btn-terrain').classList.toggle('active', ad.buttonActive('terrain'));
       document.getElementById('btn-turret-sweep').classList.toggle('active', ad.buttonActive('sweep'));
       if (ad.ui.buttons.mode) {
@@ -2965,6 +3042,8 @@
       state.vehicle = VEHICLE_ROOTS[targetVehicle] ? targetVehicle : 'tiger';
       const isSahi = state.vehicle === 'sahi';
       const ad = activeAdapter();
+      document.title = (ad ? ad.ui.title : isSahi ? 'Osmanlı Şahi Topu' : 'Tiger I') + ' — Savaş Makineleri 3D';
+      document.getElementById('mob-q-fire').textContent = ad && ad.mobileFireButtonLabel ? ad.mobileFireButtonLabel() : '💥 Ateşle';
 
       Object.keys(VEHICLE_ROOTS).forEach(k => { VEHICLE_ROOTS[k].visible = k === state.vehicle; });
       state.recoilProgress = 0;
@@ -4203,8 +4282,9 @@
     // ?cam=iso|front|breech|engine|suspension|top — kamerayı doğrudan (geçişsiz) bir açıya yerleştirir
     const camParam = getActiveCamPresets()[params.get('cam') || 'iso'];
     if (camParam) {
-      camera.position.set(...camParam.pos);
-      controls.target.set(...camParam.look);
+      flyCameraTo(camParam.pos, camParam.look);
+      camera.position.copy(state.camTargetPos);
+      controls.target.copy(state.camTargetLook);
       state.camTargetPos = null;
       state.camTargetLook = null;
       controls.update();
