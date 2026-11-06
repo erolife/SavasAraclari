@@ -37,13 +37,13 @@
     { key: 'role', url: 'gorev', label: 'Görev Tipi', options: [
       { key: 'siege', label: 'Kuşatma' }, { key: 'artillery', label: 'Topçu' },
       { key: 'armor', label: 'Zırhlı Araç' }, { key: 'aircraft', label: 'Savaş Uçağı' },
-      { key: 'smallarms', label: 'Hafif & Makineli Silah' }, { key: 'defense', label: 'Savunma Sistemi' }, { key: 'intelligence', label: 'Haberleşme & İstihbarat' }, { key: 'transport', label: 'Nakliye & Çıkarma' }, { key: 'melee', label: 'Yakın Muharebe & Hücum' }
+      { key: 'smallarms', label: 'Hafif & Makineli Silah' }, { key: 'defense', label: 'Savunma Sistemi' }, { key: 'intelligence', label: 'Haberleşme & İstihbarat' }, { key: 'transport', label: 'Nakliye & Çıkarma' }, { key: 'melee', label: 'Yakın Muharebe & Hücum' }, { key: 'projectile', label: 'Elle Atılan & Fırlatma Araçları' }
     ] },
     { key: 'origin', url: 'koken', label: 'Köken', options: [
       { key: 'rome', label: 'Roma' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
       { key: 'ottoman', label: 'Osmanlı' }, { key: 'italy', label: 'İtalya (Rönesans)' },
       { key: 'uk', label: 'İngiltere' }, { key: 'germany', label: 'Almanya' },
-      { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }, { key: 'korea', label: 'Kore (Joseon)' }
+      { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }, { key: 'korea', label: 'Kore (Joseon)' }, { key: 'mexico', label: 'Meksika (Mezoamerika)' }
     ] },
     { key: 'status', url: 'durum', label: 'Durum', options: [
       { key: 'live', label: '🟢 Simülatör Hazır' }, { key: 'planned', label: '⏳ Planlı' }
@@ -317,6 +317,15 @@
       tag: 'HWACHA-MUNJONG-1451', icon: '🏹',
       modal: ['Dilimli ahşap tekerlekler, demir çember, dingil ve uzun taşıma kolları', 'İki delikli levha, yüz uzun ok sapı ve dış kılıflar', 'Dört ahşap görünümü, altı kamera, X-Ray ve altı adımlı tur', 'Kore Ulusal Tarih Enstitüsü tarih referansı; ölçüler ve gösterim temposu temsili'],
       svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><g stroke="#654b32" stroke-width="7" fill="none"><path d="M35 120L235 84M60 125L260 90M215 90L224 43"/><circle cx="205" cy="103" r="29"/><path d="M205 74V132M176 103H234M184 82L226 124M184 124L226 82" stroke-width="3"/></g><path d="M165 51L210 26L235 64L190 90Z" fill="#98734e" stroke="#493b2d" stroke-width="3"/><g stroke="#c3a266" stroke-width="3"><path d="M80 106L229 20M87 111L236 25M94 116L243 30M101 121L250 35M108 126L257 40"/></g></svg>'
+    }
+
+    ,{id:'atlatl',sim:'atlatl',group:5,status:'live',year:1400,yearLabel:'1400–1521',eraLabel:'MEXICA ÖRNEĞİ • DAHA ESKİ BİR ARAÇ TÜRÜ',domain:'land',era:'medieval',energy:['muscle'],role:['projectile'],origin:'mexico',
+      name:'Atlatl — Kolu Uzatan Fırlatma Aracı',sub:'KABUK HALKALAR • AHŞAP KOL • UZUN DART',
+      desc:'Mexica törensel örneğinden esinlenen büyütülmüş inceleme modeli. Cilalı ahşap, içi boş kabuk halkalar, pamuk sargıları ve altın renkli kabartmalar. Dartın kancaya temasını ve ayrılmasını yavaş gösterimde izleyin; taş ucu ve tüyleri yakın planda inceleyin.',
+      tags:['16 İnceleme Grubu','Kabuk Parmak Halkaları','Kanca–Dart Teması','Müze Yorumu'],
+      specs:[['GÖRSEL KAYNAK','British Museum • Am.5226'],['TARİH','Örnek: 1400–1521; icat tarihi değil'],['GÖSTERİM','Yavaş temas ve ayrılma'],['STATÜ','Törensel örnekten esinlenme']],tag:'ATLATL-MEXICA',icon:'🏹',
+      modal:['Oyma ahşap görünümü, çift kabuk halka ve çapraz pamuk sargıları','Uzun dart, gerçek arka yuva, kuyruk tüyleri ve yüzeyli taş uç','Dört yüzey seçeneği, altı kamera ve altı adımlı tur','Çağdaş sergi kaidesi; dart, kabartma ve hareketler yorumdur'],
+      svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M58 96L261 60" stroke="#633b27" stroke-width="12" stroke-linecap="round"/><path d="M166 77L260 60" stroke="#b69a5e" stroke-width="7"/><g fill="none" stroke="#bcad8b" stroke-width="7"><ellipse cx="109" cy="72" rx="13" ry="16"/><ellipse cx="114" cy="106" rx="13" ry="16"/></g><path d="M35 39L270 57" stroke="#aa854e" stroke-width="4"/><path d="M16 37L42 29L38 48Z" fill="#4f5d62"/><path d="M239 54L252 40L265 57" fill="#ddd3b4"/></svg>'
     }
 
   ];

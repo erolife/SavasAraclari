@@ -420,7 +420,7 @@
 ## Beşinci grup — kullanıcı tarafından onaylanan sıra
 1. Leonardo’nun oraklı savaş arabası (`scythed`) — tamamlandı.
 2. Kore Hwacha’sı (`hwacha`) — tamamlandı.
-3. Atlatl — mızrak fırlatma kolu.
+3. Atlatl — mızrak fırlatma kolu (`atlatl`) — tamamlandı.
 4. Fenerli kalkan.
 5. Polybolos.
 6. Leonardo’nun dev arbaleti.
@@ -451,3 +451,15 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Testler: `node tests/hwacha.cjs` (200 deliğe raycast ve ahşap aralıklara kontrol ışınları; 26 açıda destek uçları, zemin/tekerlek açıklığı; 100 okun eksilmesi, zaman birikimi, duraklatma, manuel öncelik, yenileme, görünürlük, sınırlar ve sıfırlama), `node tests/scythed.cjs`, `node tests/j79.cjs` geçti. Son test katalog facet değerlerini ve simulator modül sözdizimini de doğrular.
 - Görsel kontrol: masaüstü genel görünüm, arka saplar/X-Ray yakın planı, oklar gizliyken ayrılmış delikli levhalar; dört kaplama ve CAD aç/kapat; altı tur; 390×844 mobil genel görünüm. Mobil yatay taşma yok; gösterim sayacı azaldı, duraklatınca sabit kaldı. Scythed/Enigma/Hwacha geçişleri çalıştı. Sayfa JavaScript hatası yok; mevcut favicon.ico eksikliği 404 veriyor.
 - Katalog: 22 aktif model; yeni Kore (Joseon) filtresi yalnız Hwacha’yı getiriyor. Beşinci grup 2/10 tamamlandı; sıradaki Atlatl. Türkçe commit, push kullanıcı talimatına kadar yok.
+
+
+## Atlatl — 6 Kasım 2026
+- Görsel kaynak: British Museum Am.5226, müzenin Google Arts & Culture yayını https://artsandculture.google.com/asset/wooden-spear-thrower-atlatl/YwGmIA6eKl4tqQ ; 1400–1521, Mexica/Aztek, ahşap-kabuk-pamuk ve altın bezeme. Müze muhtemelen törensel kullanım belirtir. Fotoğraf incelendi; model fotoğrafı/varlığı kopyalanmadan prosedürel olarak yazıldı. 1400–1521 atlatl türünün icat tarihi değildir.
+- Mekanik ve dart anlatımı: Maxwell Museum / University of New Mexico, https://hands.unm.edu/atlatls.html . Ahşap kol ucundaki kanca dartın arka yuvasına dayanır; dartlarda bölümlü sap ve taş uç örnekleri bulunur. Bu kaynakta anlatılan Güneybatı ABD örnekleri, Mexica nesnesiyle tek arkeolojik takım olarak sunulmaz.
+- İkincil bağlam: Museo delle Civiltà, https://www.museodellecivilta.it/en/oggetti/american-arts-and-cultures/spear-throwers-atlatl/ ; geç 15./erken 16. yy Oaxaca, Mixtec örnekleri, oyma ahşap/altın/kabuk. Mixtec ve Mexica atıfları birleştirilmedi.
+- Büyütülmüş, esinlenilmiş müze modeli; Am.5226 birebir kopyası değildir. Uzun dart, yiv/kanca, kıvrımlı bezeme, oranlar ve hareketler yorumdur. Özgün figürler/glifler uydurularak kopya diye sunulmaz. Kaide, destek ve dekoratif işaretler çağdaştır. Menzil, gerçek atış, dart esnemesi veya hız hesabı yoktur.
+- 16 seçilebilir grup / 189 mesh: cilalı ahşap, yiv kenarları, uç kancası, gerçek boşluklu çift kabuk halka, çapraz pamuk sargıları, altın renkli kabartma, uzun dart, sap boğumları, açık arka yuva, üç tüy ve ince lifleri, ön sap/sargı ve üç boyutlu yüzeyli taş uç. Dört ahşap görünümü, altı kamera ve altı tur.
+- Gösterim: %60'a kadar ortak hareketle kanca/yuva teması korunur; sonra dartın yönü sabitlenerek temsili ayrılma açıklığı oluşur. Elle evre/ayırma değişince oynatma durur. Son evrede otomatik duruş, yeniden oynatma, dart gizleme, temas işareti ve sıfırlama mevcut.
+- Testler: `node tests/atlatl.cjs` — 101 pozda temas/ayrılma ve kaide açıklığı, kabuk halkalara boşluk/duvar raycast kontrolü, açık yuva, ayrılan dartın sabit yönü, duraklatma/manuel öncelik, sınırlar, sıfırlama ve dört kaplama. `node tests/hwacha.cjs` ve `node tests/j79.cjs` regresyonları geçti; katalog facet ve simulator sözdizimi doğrulandı.
+- Görsel kontrol: genel görünüm, kabuk halka/sargı yakın planı, %60 temas pozunda X-Ray, dört kaplama/CAD, altı tur; 390×844 mobil başlangıç ve %100 ayrılma görünümü. Mobil taşma yok, duraklatılan evre sabit kaldı. Hwacha/Scythed/Atlatl geçişleri başarılı. JavaScript hatası görülmedi; mevcut favicon isteği 404 veriyor.
+- Sonuç: 23 aktif model, beşinci grup 3/10. Meksika filtresi yalnız Atlatl'ı getirir. Sıradaki fenerli kalkan. Kullanıcı 6 Kasım'da kalan sıraya onay beklemeden devam edilmesini istedi; her araçtan sonra Türkçe commit, push yok.
