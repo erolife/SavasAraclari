@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -329,8 +330,17 @@
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(1.25); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.45;
+        transform: scale(1.25);
+      }
     }
 
     .stage-viewport {
@@ -899,6 +909,7 @@
         grid-template-columns: 1fr;
       }
     }
+
     /* FOOTER */
     .footer {
       margin-top: 40px;
@@ -917,9 +928,11 @@
       .hero {
         grid-template-columns: 1fr;
       }
+
       .features-grid {
         grid-template-columns: 1fr;
       }
+
       .nav-links {
         display: none;
       }
@@ -932,25 +945,130 @@
         gap: 10px;
         margin: 8px 10px 0;
       }
+
       .brand-sub {
         display: none;
       }
+
       .nav-cta {
         width: 100%;
         justify-content: stretch;
       }
+
       .nav-cta .btn {
         flex: 1;
       }
+
       .stage-viewport {
         height: 260px;
       }
+
       .catalog-grid {
         grid-template-columns: 1fr;
       }
+
       .hero-metrics {
         grid-template-columns: 1fr;
       }
+
+      .req-grid-2 {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* ARAÇ TALEP FORMU STİLLERİ */
+    .req-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .req-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .req-field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .req-field label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-dark);
+    }
+
+    .req-field label span.req-opt {
+      font-weight: 500;
+      text-transform: none;
+      color: var(--text-muted);
+    }
+
+    .req-input,
+    .req-select,
+    .req-textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border-slate);
+      background: #fffdf8;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-dark);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .req-input:focus,
+    .req-select:focus,
+    .req-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.16);
+      background: #fff;
+    }
+
+    .req-textarea {
+      resize: vertical;
+      min-height: 82px;
+      line-height: 1.45;
+    }
+
+    .req-status {
+      font-size: 12.5px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      display: none;
+      line-height: 1.45;
+    }
+
+    .req-status.success {
+      display: block;
+      background: rgba(22, 163, 74, 0.12);
+      border: 1px solid rgba(22, 163, 74, 0.35);
+      color: #166534;
+    }
+
+    .req-status.error {
+      display: block;
+      background: rgba(220, 38, 38, 0.10);
+      border: 1px solid rgba(220, 38, 38, 0.35);
+      color: #991b1b;
+    }
+
+    .req-hp {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
   </style>
   <script type="importmap">
@@ -961,8 +1079,9 @@
       }
     }
   </script>
-<link rel="stylesheet" href="css/museum-links.css">
+  <link rel="stylesheet" href="css/museum-links.css">
 </head>
+
 <body>
 
   <div class="blueprint-grid"></div>
@@ -983,8 +1102,7 @@
     </nav>
 
     <div class="nav-cta">
-      <a href="simulator.html?mode=explode" class="btn btn-sm" title="Parçalarına Ayrılmış Modda Aç">💥 %85 Teardown</a>
-      <a href="simulator.html" class="btn btn-primary btn-sm">🚀 Tiger I 3D Simülatörü Aç →</a>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-open-request-modal">💡 Yeni Araç Talep Et</button>
     </div>
   </header>
 
@@ -999,14 +1117,18 @@
           Savaş Tarihini Değiştiren Makinelerin <span>Kalbine İnin.</span>
         </h1>
         <p class="hero-desc">
-          Antik Roma'nın burulma yaylı <strong>Ballista</strong>'sından, 1453 İstanbul Kuşatması'nın dev bronz <strong>Şahi Topu</strong>'na ve II. Dünya Savaşı'nın 57 tonluk <strong>Tiger I</strong> tankına kadar tarihsel mühendislik harikalarını 3 boyutlu olarak parçalarına ayırın, X-Ray kesitlerini inceleyin ve mekanizmalarını canlı çalıştırın.
+          Antik Roma'nın burulma yaylı <strong>Ballista</strong>'sından, 1453 İstanbul Kuşatması'nın dev bronz
+          <strong>Şahi Topu</strong>'na ve II. Dünya Savaşı'nın 57 tonluk <strong>Tiger I</strong> tankına kadar
+          tarihsel mühendislik harikalarını 3 boyutlu olarak parçalarına ayırın, X-Ray kesitlerini inceleyin ve
+          mekanizmalarını canlı çalıştırın.
         </p>
 
         <div class="hero-actions">
           <a href="simulator.html" class="btn btn-primary">
             🔥 1942 Tiger I Simülatörü
           </a>
-          <a href="simulator.html?vehicle=sahi" class="btn btn-primary" style="background:linear-gradient(135deg,#b45309,#78350f); border-color:#92400e;">
+          <a href="simulator.html?vehicle=sahi" class="btn btn-primary"
+            style="background:linear-gradient(135deg,#b45309,#78350f); border-color:#92400e;">
             🏺 1453 Şahi Topu Simülatörü (Yeni!)
           </a>
           <a href="simulator.html?mode=xray" class="btn btn-cyan">
@@ -1038,7 +1160,8 @@
         <div class="stage-header">
           <div>
             <strong style="font-size:13.5px; color:var(--text-dark);">CANLI 3D VİTRİN: Pz.Kpfw. VI "TIGER I"</strong>
-            <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">Maybach V12 + 8.8cm KwK 36 + Schachtellaufwerk</div>
+            <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">Maybach V12 + 8.8cm KwK
+              36 + Schachtellaufwerk</div>
           </div>
           <div class="stage-badge">
             <span class="stage-live-dot"></span> AKTİF PROTOTİP
@@ -1067,7 +1190,8 @@
           <div class="section-eyebrow">MÜZE KATALOĞU • TARİHSEL ZAMAN ÇİZELGESİ</div>
           <h2 class="section-title">Kas Gücünden Baruta, V12 Motorlardan Jetlere</h2>
           <p class="section-sub">
-            Araçları kullanım ortamına, dönemine, enerji kaynağına ve görev tipine göre süzün; mühendisliğin çağlar boyunca nasıl evrimleştiğini interaktif modeller üzerinden karşılaştırın.
+            Araçları kullanım ortamına, dönemine, enerji kaynağına ve görev tipine göre süzün; mühendisliğin çağlar
+            boyunca nasıl evrimleştiğini interaktif modeller üzerinden karşılaştırın.
           </p>
         </div>
         <div class="catalog-summary" id="catalog-summary"></div>
@@ -1075,7 +1199,8 @@
 
       <div class="filter-panel" id="filter-panel">
         <div class="filter-toolbar">
-          <input type="search" id="catalog-search" class="catalog-search" placeholder="🔎 Araç, dönem veya mekanik ara… (ör. palet, burulma, Osmanlı)" aria-label="Katalogda ara" />
+          <input type="search" id="catalog-search" class="catalog-search"
+            placeholder="🔎 Araç, dönem veya mekanik ara… (ör. palet, burulma, Osmanlı)" aria-label="Katalogda ara" />
           <select id="catalog-sort" class="catalog-sort" aria-label="Sıralama">
             <option value="year">Sırala: Kronolojik</option>
             <option value="year-desc">Sırala: En Yeni Önce</option>
@@ -1110,7 +1235,8 @@
           <div class="feat-icon">🔧</div>
           <div class="feat-title">Milimetrik Teardown (%0 – %100)</div>
           <p class="feat-desc">
-            Her parça kendi gerçek mühendislik montaj ekseninde (explodeVec) dışarı doğru açılır. Bağlantı kılavuz çizgileriyle hangi dişlinin hangi şafta bağlandığını net olarak takip edebilirsiniz.
+            Her parça kendi gerçek mühendislik montaj ekseninde (explodeVec) dışarı doğru açılır. Bağlantı kılavuz
+            çizgileriyle hangi dişlinin hangi şafta bağlandığını net olarak takip edebilirsiniz.
           </p>
         </div>
 
@@ -1118,7 +1244,8 @@
           <div class="feat-icon">🩻</div>
           <div class="feat-title">X-Ray Zırh Kesiti & CAD Blueprint</div>
           <p class="feat-desc">
-            Tek tuşla 100mm dış zırh plakalarını şeffaflaştırarak içteki 92 adet 88mm top mermisini, taret sepetini, yangın duvarını ve çalışan V12 motor pistonlarını kesit halinde inceleyin.
+            Tek tuşla 100mm dış zırh plakalarını şeffaflaştırarak içteki 92 adet 88mm top mermisini, taret sepetini,
+            yangın duvarını ve çalışan V12 motor pistonlarını kesit halinde inceleyin.
           </p>
         </div>
 
@@ -1126,7 +1253,8 @@
           <div class="feat-icon">🔊</div>
           <div class="feat-title">Canlı Mekanik & Web Audio Sentezi</div>
           <p class="feat-desc">
-            Harici ses veya 3D model dosyası olmadan; tarayıcı içinde gerçek zamanlı çalışan pistonlar, burulma çubuğu süspansiyon testi ve 8.8 cm KwK 36 top ateşleme/geri tepme simülasyonu.
+            Harici ses veya 3D model dosyası olmadan; tarayıcı içinde gerçek zamanlı çalışan pistonlar, burulma çubuğu
+            süspansiyon testi ve 8.8 cm KwK 36 top ateşleme/geri tepme simülasyonu.
           </p>
         </div>
       </div>
@@ -1135,10 +1263,12 @@
     <!-- FOOTER -->
     <footer class="footer">
       <div>
-        <strong>Eskiden Bugüne Savaş Makineleri</strong> — Three.js & Web Audio API Tabanlı İnteraktif Mühendislik Simülatörü
+        <strong>Eskiden Bugüne Savaş Makineleri</strong> — Three.js & Web Audio API Tabanlı İnteraktif Mühendislik
+        Simülatörü
       </div>
       <div>
-        <a href="simulator.html" style="color:var(--accent-dark); font-weight:700; text-decoration:none;">Tiger I 3D Simülatöre Geç →</a>
+        <a href="simulator.html" style="color:var(--accent-dark); font-weight:700; text-decoration:none;">Tiger I 3D
+          Simülatöre Geç →</a>
       </div>
     </footer>
   </main>
@@ -1154,18 +1284,118 @@
         <button class="btn btn-sm" id="modal-close">✕ Kapat</button>
       </div>
       <p style="font-size:13.5px; color:var(--text-body); line-height:1.55;" id="modal-desc"></p>
-      <div style="margin-top:14px; font-family:var(--font-mono); font-size:11.5px; font-weight:700; color:var(--accent-dark);">
+      <div
+        style="margin-top:14px; font-family:var(--font-mono); font-size:11.5px; font-weight:700; color:var(--accent-dark);">
         PLANLANAN 3D TEARDOWN ALT SİSTEMLERİ & ANİMASYONLAR:
       </div>
       <ul class="modal-list" id="modal-list"></ul>
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(15,23,42,0.1); gap:10px; flex-wrap:wrap;">
-        <span style="font-size:12px; color:var(--text-muted);">Bu araç planlı; simülatörü hazır araçları hemen deneyimleyebilirsiniz:</span>
-        <a href="#katalog?durum=live" class="btn btn-primary btn-sm" onclick="document.getElementById('blueprint-modal').classList.remove('open')">🟢 Simülatörü Hazır Araçları Göster</a>
+      <div
+        style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; padding-top:14px; border-top:1px solid rgba(15,23,42,0.1); gap:10px; flex-wrap:wrap;">
+        <span style="font-size:12px; color:var(--text-muted);">Bu araç planlı; simülatörü hazır araçları hemen
+          deneyimleyebilirsiniz:</span>
+        <a href="#katalog?durum=live" class="btn btn-primary btn-sm"
+          onclick="document.getElementById('blueprint-modal').classList.remove('open')">🟢 Simülatörü Hazır Araçları
+          Göster</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL FOR VEHICLE REQUEST / SUGGESTION FORM -->
+  <div class="modal-backdrop" id="vehicle-request-modal" role="dialog" aria-modal="true"
+    aria-labelledby="req-modal-title">
+    <div class="modal-card" style="max-height:92vh; overflow-y:auto;">
+      <div class="modal-header">
+        <div>
+          <div class="section-eyebrow">KOLEKSİYONA KATKIDA BULUNUN</div>
+          <h3 class="section-title" style="font-size:21px;" id="req-modal-title">💡 Yeni Savaş Makinesi / Araç Talep
+            Formu</h3>
+        </div>
+        <button type="button" class="btn btn-sm" id="req-modal-close">✕ Kapat</button>
+      </div>
+      <p style="font-size:13px; color:var(--text-body); line-height:1.5;">
+        3D Teardown müzemizde parçalarına ayrılmış ve çalışan mekanizmasıyla görmek istediğiniz tarihsel aracı önerin.
+      </p>
+
+      <form class="req-form" id="vehicle-request-form" novalidate>
+        <!-- Honeypot (Bot Koruması) -->
+        <div class="req-hp" aria-hidden="true">
+          <label for="req-website-hp">Web Sitesi</label>
+          <input type="text" id="req-website-hp" name="website_hp" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="req-field">
+          <label for="req-vehicle-name">Araç veya Silah Adı *</label>
+          <input type="text" class="req-input" id="req-vehicle-name" name="vehicle_name" required minlength="2"
+            maxlength="120" placeholder="Örn: 1515 Yavuz Sultan Selim Darbzen Topu, B-17 Flying Fortress, T-34/85..." />
+        </div>
+
+        <div class="req-grid-2">
+          <div class="req-field">
+            <label for="req-era-year">Dönemi / Yaklaşık Yılı *</label>
+            <input type="text" class="req-input" id="req-era-year" name="era_or_year" required minlength="1"
+              maxlength="80" placeholder="Örn: MÖ 212, 1526, II. Dünya Savaşı (1943)" />
+          </div>
+          <div class="req-field">
+            <label for="req-domain">Kullanım Ortamı *</label>
+            <select class="req-select" id="req-domain" name="domain" required>
+              <option value="land">🪖 Kara (Tank, Topçu, Kuşatma, Piyade)</option>
+              <option value="sea">⚓ Deniz (Kadırga, Zırhlı, Denizaltı)</option>
+              <option value="air">✈️ Hava (Avcı, Bombardıman, Helikopter, Motor)</option>
+              <option value="space">🚀 Uzay & Balistik Roket</option>
+              <option value="other">🔐 Diğer (İstihbarat, Radar, Lojistik)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="req-field">
+          <label for="req-mechanism-notes">Öne Çıkarılması İstenen Mekanizma / Neden Eklenmeli? *</label>
+          <textarea class="req-textarea" id="req-mechanism-notes" name="mechanism_notes" required minlength="5"
+            maxlength="1500"
+            placeholder="Örn: Christie süspansiyon yaylarının X-Ray'de çalışması, Norden bomba nişangâhının jiroskop dişlileri veya Yunan ateşi sifon pompası..."></textarea>
+        </div>
+
+        <div class="req-field">
+          <label for="req-reference-url">Referans / Kaynak Linki <span class="req-opt">(İsteğe bağlı — Müze, Wikipedia,
+              Teknik Çizim)</span></label>
+          <input type="url" class="req-input" id="req-reference-url" name="reference_url" maxlength="500"
+            placeholder="https://..." />
+        </div>
+
+        <div class="req-grid-2">
+          <div class="req-field">
+            <label for="req-requester-name">Adınız / Rumuzunuz <span class="req-opt">(İsteğe bağlı)</span></label>
+            <input type="text" class="req-input" id="req-requester-name" name="requester_name" maxlength="100"
+              placeholder="Örn: Ahmet Y." />
+          </div>
+          <div class="req-field">
+            <label for="req-requester-contact">E-posta veya İletişim <span class="req-opt">(İsteğe bağlı)</span></label>
+            <input type="text" class="req-input" id="req-requester-contact" name="requester_contact" maxlength="150"
+              placeholder="Araç eklendiğinde haber vermemiz için" />
+          </div>
+        </div>
+
+        <div class="req-status" id="req-form-status" role="status" aria-live="polite"></div>
+
+        <div
+          style="display:flex; justify-content:flex-end; align-items:center; gap:10px; margin-top:4px; padding-top:12px; border-top:1px solid rgba(15,23,42,0.1);">
+          <button type="button" class="btn btn-sm" id="req-btn-cancel">Vazgeç</button>
+          <button type="submit" class="btn btn-primary btn-sm" id="req-btn-submit">🚀 Talebi Gönder</button>
+        </div>
+      </form>
+
+      <div id="req-saved-wrap" hidden
+        style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(15,23,42,0.14);">
+        <div
+          style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--accent-dark); margin-bottom:6px;">
+          📋 BU TARAYICIDAN GÖNDERDİĞİNİZ TALEPLER (<span id="req-saved-count">0</span>)
+        </div>
+        <ul class="modal-list" id="req-saved-list" style="margin:0; max-height:130px; overflow-y:auto;"></ul>
       </div>
     </div>
   </div>
 
   <!-- SCRIPTS: CATALOG FILTER, MODAL & HERO 3D MINI TEARDOWN PREVIEW -->
+  <script src="js/supabase-config.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/museum-links.js"></script>
   <script type="module">
@@ -1364,7 +1594,160 @@
     });
     document.getElementById('modal-close').addEventListener('click', () => modalEl.classList.remove('open'));
     modalEl.addEventListener('click', e => { if (e.target === modalEl) modalEl.classList.remove('open'); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') modalEl.classList.remove('open'); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        modalEl.classList.remove('open');
+        reqModalEl.classList.remove('open');
+      }
+    });
+
+    // Araç Talep / Öneri Formu Penceresi ve Supabase REST Gönderimi
+    const reqModalEl = document.getElementById('vehicle-request-modal');
+    const reqFormEl = document.getElementById('vehicle-request-form');
+    const reqStatusEl = document.getElementById('req-form-status');
+    const reqSubmitBtn = document.getElementById('req-btn-submit');
+    let lastReqSubmitAt = 0;
+
+    function showReqStatus(type, msg) {
+      reqStatusEl.className = 'req-status ' + type;
+      reqStatusEl.textContent = msg;
+    }
+
+    function renderSavedRequests() {
+      const wrap = document.getElementById('req-saved-wrap');
+      const listEl = document.getElementById('req-saved-list');
+      const countEl = document.getElementById('req-saved-count');
+      const localList = JSON.parse(localStorage.getItem('savas_araclari_requests') || '[]');
+      if (!localList.length) {
+        wrap.hidden = true;
+        return;
+      }
+      wrap.hidden = false;
+      countEl.textContent = localList.length;
+      listEl.innerHTML = localList.slice().reverse().map(item =>
+        `<li><strong>${escapeHtml(item.vehicle_name)}</strong> (${escapeHtml(item.era_or_year)}) — ${escapeHtml(item.mechanism_notes)}</li>`
+      ).join('');
+    }
+
+    function openRequestModal() {
+      reqStatusEl.className = 'req-status';
+      reqStatusEl.textContent = '';
+      renderSavedRequests();
+      reqModalEl.classList.add('open');
+      setTimeout(() => document.getElementById('req-vehicle-name')?.focus(), 50);
+    }
+
+    function closeRequestModal() {
+      reqModalEl.classList.remove('open');
+    }
+
+    document.getElementById('btn-open-request-modal').addEventListener('click', openRequestModal);
+    document.getElementById('req-modal-close').addEventListener('click', closeRequestModal);
+    document.getElementById('req-btn-cancel').addEventListener('click', closeRequestModal);
+    reqModalEl.addEventListener('click', e => { if (e.target === reqModalEl) closeRequestModal(); });
+
+    reqFormEl.addEventListener('submit', async e => {
+      e.preventDefault();
+      // Honeypot bot kontrolü
+      if (document.getElementById('req-website-hp').value.trim() !== '') {
+        closeRequestModal();
+        return;
+      }
+
+      // 20 saniye hız sınırı (Spam koruması)
+      const now = Date.now();
+      if (now - lastReqSubmitAt < 20000) {
+        showReqStatus('error', 'Lütfen yeni bir talep göndermeden önce birkaç saniye bekleyin.');
+        return;
+      }
+
+      const vehicleName = document.getElementById('req-vehicle-name').value.trim();
+      const eraOrYear = document.getElementById('req-era-year').value.trim();
+      const domain = document.getElementById('req-domain').value;
+      const mechanismNotes = document.getElementById('req-mechanism-notes').value.trim();
+      const referenceUrl = document.getElementById('req-reference-url').value.trim();
+      const requesterName = document.getElementById('req-requester-name').value.trim();
+      const requesterContact = document.getElementById('req-requester-contact').value.trim();
+
+      if (vehicleName.length < 2) {
+        showReqStatus('error', 'Lütfen geçerli bir araç veya silah adı girin (en az 2 karakter).');
+        return;
+      }
+      if (!eraOrYear) {
+        showReqStatus('error', 'Lütfen aracın ait olduğu dönemi veya yaklaşık yılını belirtin.');
+        return;
+      }
+      if (mechanismNotes.length < 5) {
+        showReqStatus('error', 'Lütfen görmek istediğiniz mekanizmayı veya eklenme nedenini kısaca açıklayın.');
+        return;
+      }
+      if (referenceUrl && !/^https?:\/\/.+/i.test(referenceUrl)) {
+        showReqStatus('error', 'Referans linki http:// veya https:// ile başlamalıdır.');
+        return;
+      }
+
+      const payload = {
+        vehicle_name: vehicleName,
+        era_or_year: eraOrYear,
+        domain: domain,
+        mechanism_notes: mechanismNotes,
+        reference_url: referenceUrl || null,
+        requester_name: requesterName || null,
+        requester_contact: requesterContact || null,
+        status: 'pending'
+      };
+
+      const sbCfg = window.SUPABASE_CONFIG || {};
+      const sbUrl = (sbCfg.url || '').trim().replace(/\/+$/, '');
+      const sbKey = (sbCfg.anonKey || '').trim();
+      const sbTable = (sbCfg.table || 'vehicle_requests').trim();
+
+      reqSubmitBtn.disabled = true;
+      reqSubmitBtn.textContent = '⏳ Gönderiliyor...';
+
+      try {
+        if (sbUrl && sbKey) {
+          const res = await fetch(`${sbUrl}/rest/v1/${encodeURIComponent(sbTable)}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': sbKey,
+              'Authorization': `Bearer ${sbKey}`,
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!res.ok) {
+            const errTxt = await res.text().catch(() => '');
+            throw new Error(`Sunucu yanıtı (${res.status}): ${errTxt || res.statusText}`);
+          }
+
+          // Yerel kuyruğa da kaydet (Supabase hazır olduğunda senkronize edilebilir)
+          const localList = JSON.parse(localStorage.getItem('savas_araclari_requests') || '[]');
+          localList.push(Object.assign({ created_at: new Date().toISOString(), synced: !!(sbUrl && sbKey) }, payload));
+          localStorage.setItem('savas_araclari_requests', JSON.stringify(localList));
+          lastReqSubmitAt = Date.now();
+          reqFormEl.reset();
+          renderSavedRequests();
+          showReqStatus('success', `✅ Teşekkürler! "${vehicleName}" araç talebiniz başarıyla alındı.`);
+        } else {
+          // Supabase henüz bağlanmadığında yerel kuyruğa kaydet
+          const localList = JSON.parse(localStorage.getItem('savas_araclari_requests') || '[]');
+          localList.push(Object.assign({ created_at: new Date().toISOString(), synced: false }, payload));
+          localStorage.setItem('savas_araclari_requests', JSON.stringify(localList));
+          lastReqSubmitAt = Date.now();
+          reqFormEl.reset();
+          renderSavedRequests();
+          showReqStatus('success', `✅ Teşekkürler! "${vehicleName}" araç talebiniz başarıyla kaydedildi.`);
+        }
+      } catch (err) {
+        showReqStatus('error', 'Talep gönderilirken bir hata oluştu: ' + (err.message || 'Bağlantı hatası'));
+      } finally {
+        reqSubmitBtn.disabled = false;
+        reqSubmitBtn.textContent = '🚀 Talebi Gönder';
+      }
+    });
 
     readHash();
     refreshCatalog(false);
@@ -1430,7 +1813,7 @@
       return g;
     }
 
-    function addBox(parent, size, colorHex, pos = [0,0,0]) {
+    function addBox(parent, size, colorHex, pos = [0, 0, 0]) {
       const geo = new THREE.BoxGeometry(...size);
       const mat = new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.5, metalness: 0.35 });
       const m = new THREE.Mesh(geo, mat);
@@ -1446,7 +1829,7 @@
       return m;
     }
 
-    function addCyl(parent, rTop, rBot, h, colorHex, pos = [0,0,0], rot = [0,0,0]) {
+    function addCyl(parent, rTop, rBot, h, colorHex, pos = [0, 0, 0], rot = [0, 0, 0]) {
       const geo = new THREE.CylinderGeometry(rTop, rBot, h, 20);
       const mat = new THREE.MeshStandardMaterial({ color: colorHex, roughness: 0.45, metalness: 0.45 });
       const m = new THREE.Mesh(geo, mat);
@@ -1553,4 +1936,5 @@
     });
   </script>
 </body>
+
 </html>
