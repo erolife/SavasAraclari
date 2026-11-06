@@ -395,3 +395,10 @@
 - Masa: gerçek tuş girişi, çıktı şeridi, ayar doğrulama, 9 aşamalı iz, adım seçimi, aynı başlangıç ayarıyla çözme ve çift adımlama örneği. Mobil düzen ve klavye erişimi kontrol edilir.
 
 - Enigma tamamlandı: çekirdek ve model testleri geçti. Tarayıcıda AAAAA→BDZGO, geri çözme→AAAAA, ADQ→AER→BFS ve tekrarlı fiş uyarısı doğrulandı. Uygulanmamış form değişikliğinin geri çözmeyi etkilemesi engellendi. Masa ve müze görünümü, 390×844 mobil kadraj/klavye kontrol edildi; yatay taşma yok. Altın gidiş ve turkuaz dönüş yolları açıklayıcı görselleştirmedir. 17 grup; metinsiz testte 316 mesh.
+
+## Higgins LCVP — araştırma ve uygulama
+- ABD Ordu Ulaştırma Müzesi: https://transportation.army.mil/museum/AOTM/2020/may_2020.html ; ahşap tekne, çelik baş/yan koruma ve yaklaşık 36 personel. ABD Denizcilik Tarihi: https://www.history.navy.mil/content/history/museums/nmusn/explore/photography/ships-us/ships-usn-l/landing-craft-vehicle-personnel.html ; yaklaşık 36 ft boy. Prototipler 1941 sonu, katalog seri kullanım dönemi 1942.
+- 18 grup: tekne, postalar, döşeme, küpeşte, rampa, menteşeler, halatlar, vinç, kıç güverte, dümen mahalli, motor, şaft, pervane, dümen, halka yuvaları, yük, servis ve beşikler. İç geometri yaklaşık; sandıklar temsili.
+- Test: rampa 0/45/90° konumlarında iki halat ucunun menteşeli rampaya bağlı kalması, yer açıklığı, pervane duruşu/sıfırlama, dümen sınırı ve yük görünürlüğü geçti. 201 mesh.
+
+- LCVP normal görünüm, açık rampa/X-Ray motor yakın planı ve 390×844 mobil kadraj incelendi. Konsol hatası yok.

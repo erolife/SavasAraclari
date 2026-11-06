@@ -37,7 +37,7 @@
     { key: 'role', url: 'gorev', label: 'Görev Tipi', options: [
       { key: 'siege', label: 'Kuşatma' }, { key: 'artillery', label: 'Topçu' },
       { key: 'armor', label: 'Zırhlı Araç' }, { key: 'aircraft', label: 'Savaş Uçağı' },
-      { key: 'smallarms', label: 'Hafif & Makineli Silah' }, { key: 'defense', label: 'Savunma Sistemi' }, { key: 'intelligence', label: 'Haberleşme & İstihbarat' }
+      { key: 'smallarms', label: 'Hafif & Makineli Silah' }, { key: 'defense', label: 'Savunma Sistemi' }, { key: 'intelligence', label: 'Haberleşme & İstihbarat' }, { key: 'transport', label: 'Nakliye & Çıkarma' }
     ] },
     { key: 'origin', url: 'koken', label: 'Köken', options: [
       { key: 'rome', label: 'Roma' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
@@ -48,6 +48,7 @@
     { key: 'status', url: 'durum', label: 'Durum', options: [
       { key: 'live', label: '🟢 Simülatör Hazır' }, { key: 'planned', label: '⏳ Planlı' }
     ] }
+
   ];
 
   const VEHICLES = [
@@ -290,6 +291,7 @@
     tags:['20 İnceleme Grubu','İki Dizel ve İki Elektrik Motoru','Hareketli Periskoplar','X-Ray Bölmeler'],specs:[['BOY','~76,8 m'],['EN','~6,8 m'],['TAHRİK','Dizel / elektrik'],['MODEL','20 Bağımsız Grup']],tag:'U505-IXC',icon:'⚓',modal:['Tam dış tekne, kule ve güverte donanımı','Basınç teknesi, postalar, kumanda odası ve ranzalar','Çift şaft, pervaneler, periskop ve dümen gösterimi','Griffin MSI müze referansı; iç ayrıntılar yaklaşık'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M15 85Q140 60 300 85Q280 115 40 108Z" fill="#626c70" stroke="#1e293b" stroke-width="3"/><path d="M135 80V45H180V80M150 45V20H160" fill="#89949a" stroke="#1e293b" stroke-width="3"/></svg>'},
     {id:'enigma',sim:'enigma',group:4,status:'live',year:1930,yearLabel:'1930',eraLabel:'II. DÜNYA SAVAŞINA GİDEN DÖNEM',domain:'land',era:'ww2',energy:['electric'],role:['intelligence'],origin:'germany',name:'Enigma I — Bir Harfin Yolculuğu',sub:'ÖZEL ŞİFRELEME MASASI • ÜÇ ROTOR VE YANSITICI',desc:'Ahşap kasayı ve iç mekanizmayı inceleyin; özel şifreleme masasında kendi mesajınızı yazın. Rotorlar, halka ayarları ve fiş çiftleriyle harfin dokuz aşamalı gidiş-dönüş yolunu izleyin.',tags:['Etkileşimli Şifreleme Masası','Tarihsel Rotor Bağlantıları','Çift Adımlama','17 İnceleme Grubu'],specs:[['MODEL','Enigma I'],['ROTORLAR','I–V arasından üç farklı rotor'],['YANSITICI','B / C'],['DENEYİM','3D inceleme + şifreleme masası']],tag:'ENIGMA-I',icon:'🔐',modal:['Ahşap kasa, menteşeler, bakelit tuşlar, lambalar ve sayısal rotor halkaları','Özel şifreleme masası: mesaj, rotor/halka ayarları ve fiş çiftleri','Bilinen test vektörleri ve çift adımlama ile doğrulanmış hesaplama','Polonyalı matematikçiler ve Müttefik ekiplerin katkılarını içeren tarihsel anlatım'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M60 60V14H250V60M60 60H250V125H60Z" fill="#72452d" stroke="#342c24" stroke-width="3"/><path d="M72 72H238V115H72Z" fill="#202a26"/><g fill="#e9d8b7"><circle cx="100" cy="100" r="6"/><circle cx="130" cy="100" r="6"/><circle cx="160" cy="100" r="6"/><circle cx="190" cy="100" r="6"/><circle cx="220" cy="100" r="6"/></g><path d="M125 61V79M155 61V79M185 61V79" stroke="#c39b50" stroke-width="9"/></svg>'}
 
+    ,{id:'lcvp',sim:'lcvp',group:4,status:'live',year:1942,yearLabel:'1942',eraLabel:'II. DÜNYA SAVAŞI',domain:'sea',era:'ww2',energy:['ice'],role:['transport'],origin:'usa',name:'Higgins LCVP — Çıkarma Teknesi',sub:'AHŞAP TEKNE • ÇELİK RAMPA • KIÇ TAHRİKİ',desc:'Baş rampasını açın, çift halatın hareketini ve ahşap gövde postalarını inceleyin. Kıç motoru, şaft, pervane, dümen mahalli ve yük alanıyla tam tekne modeli.',tags:['18 İnceleme Grubu','Hareketli Baş Rampası','Ahşap İç Yapı','Kıç Dizel Tahriki'],specs:[['BOY','~11 m'],['KAPASİTE','~36 personel'],['ETKİLEŞİM','Rampa, pervane ve dümen'],['MODEL','18 Bağımsız Grup']],tag:'HIGGINS-LCVP',icon:'⚓',modal:['Ahşap tekne, iç postalar, döşeme ve koruyucu yan kaplama','Menteşeli baş rampası, çift halat ve vinç tamburu','Dizel motor, şaft, pervane, dümen ve kıç donanımı','ABD müze referansları; ölçüler ve yerleşim yaklaşık'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M30 65H270L290 108H55Z" fill="#67747a" stroke="#263442" stroke-width="3"/><path d="M60 70H235V95H70Z" fill="#a88a61"/><path d="M270 65L310 95L290 108Z" fill="#859398" stroke="#263442" stroke-width="3"/><path d="M40 65V45H80V65" fill="#52616b"/></svg>'}
   ];
 
   window.MUSEUM_CATALOG = { FACETS, VEHICLES };
