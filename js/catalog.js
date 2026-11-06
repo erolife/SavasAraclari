@@ -31,6 +31,7 @@
     { key: 'energy', url: 'enerji', label: 'Enerji / Temel Mekanik', options: [
       { key: 'muscle', label: '💪 Kas Gücü & Burulma' }, { key: 'gravity', label: '⚖️ Yerçekimi' },
       { key: 'gunpowder', label: '💥 Barut' }, { key: 'ice', label: '⚙️ İçten Yanmalı Motor' },
+      { key: 'steam', label: '♨️ Buhar Makinesi' },
       { key: 'jet', label: '🔥 Jet & Roket' }
     ] },
     { key: 'role', url: 'gorev', label: 'Görev Tipi', options: [
@@ -196,13 +197,13 @@
 
     // ===================================================================== 3. GRUP (PLANLI)
     {
-      id: 'monitor', group: 3, status: 'planned',
+      id: 'monitor', sim: 'monitor', group: 3, status: 'live',
       year: 1862, yearLabel: '1862', eraLabel: 'SANAYİ DEVRİMİ',
-      domain: 'sea', era: 'industrial', energy: ['gunpowder', 'ice'], role: ['artillery', 'armor'], origin: 'usa',
+      domain: 'sea', era: 'industrial', energy: ['steam', 'gunpowder'], role: ['artillery', 'armor'], origin: 'usa',
       name: 'USS Monitor & Ericsson Döner Taret', sub: 'IRONCLAD REVOLVING TURRET • 2 × 11 İNÇ DAHLGREN TOPU',
-      desc: 'John Ericsson tarafından tasarlanan, su hattının hemen üzerinde ("sal üzerinde peynir kutusu") yüzen ilk döner taretli zırhlı savaş gemisi. 8 kat 1 inçlik dövme demir plakadan oluşan 6,1 m çapındaki taret, merkezi mil üzerinde kaldırılıp buharlı yardımcı motor ve dişli çarklarla 360° döndürülür; atış anında ağır sarkaçlı kepenkler lombarları kapatır.',
-      tags: ['360° Buharlı Döner Taret', '2 × 11 inç Dahlgren Topu', 'Sarkaçlı Lombar Kepenkleri', 'Titreşimli Manivela Buhar Motoru'],
-      specs: [['ZIRH KALINLIĞI', '203 mm (8×1 inç Dövme Demir)'], ['SİLAH', '2 × 279 mm (11 inç) Dahlgren'], ['TARET İÇ ÇAPI', '6,10 m (20 ft) • ~120 Ton'], ['PLANLANAN GRUP', '15 Bağımsız Grup']],
+      desc: 'USS Monitor (1862): döner demir taret, iki XI-inç Dahlgren topu ve yatay buhar makinesini anlatan 22 gruplu tam gemi modeli. X-Ray ile içini inceleyin; kepenkleri açın ve temsili geri tepme gösterimini oynatın. Alçak gövde, kumanda kabini, filikalar, bacalar ve kıç pervanesiyle gemiyi inceleyin. İç ölçüler yaklaşık yeniden kurulmuştur.',
+      tags: ['360° Buharlı Döner Taret', '2 × 11 inç Dahlgren Topu', 'Sarkaçlı Lombar Kepenkleri', 'Şematik Yatay Buhar Makinesi'],
+      specs: [['ZIRH KALINLIĞI', '203 mm (8×1 inç Dövme Demir)'], ['SİLAH', '2 × 279 mm (11 inç) Dahlgren'], ['TARET İÇ ÇAPI', '~6,10 m (20 ft)'], ['3D PARÇA SAYISI', '22 Bağımsız Grup']],
       tag: 'MONITOR-1862', icon: '⚓',
       modal: [
         '8 kat 1 inç dövme demir plakalı silindirik taret (X-Ray kesiti) ve merkezi kaldırma/dönüş mili',
@@ -247,19 +248,19 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 70 L235 52 Q278 52 298 70 Q278 88 235 88 L40 70 Z" fill="#1e293b" fill-opacity="0.18" stroke="#0f172a" stroke-width="2.2"/><path d="M40 52 L18 36 L58 56 Z" fill="#334155" stroke="#0f172a" stroke-width="1.6"/><path d="M40 88 L18 104 L58 84 Z" fill="#334155" stroke="#0f172a" stroke-width="1.6"/><rect x="105" y="58" width="52" height="24" rx="4" fill="#0284c7" fill-opacity="0.28" stroke="#0284c7" stroke-width="1.8"/><rect x="165" y="58" width="52" height="24" rx="4" fill="#d97706" fill-opacity="0.28" stroke="#d97706" stroke-width="1.8"/><circle cx="82" cy="70" r="9" stroke="#dc2626" stroke-width="2"/><path d="M40 62 L58 58 L58 82 L40 78 Z" fill="#dc2626" fill-opacity="0.3" stroke="#991b1b" stroke-width="1.8"/></svg>'
     },
     {
-      id: 'j79', group: 3, status: 'planned',
+      id: 'j79', sim: 'j79', group: 3, status: 'live',
       year: 1965, yearLabel: '1965', eraLabel: 'SOĞUK SAVAŞ',
       domain: 'air', era: 'coldwar', energy: ['jet'], role: ['aircraft'], origin: 'usa',
-      name: 'General Electric J79-GE-17 Turbojet & Art Yakıcı', sub: 'VARIABLE-STATOR AXIAL TURBOJET • AFTERBURNER & NOZZLE',
-      desc: 'F-4 Phantom II ve F-104 Starfighter gibi Soğuk Savaş efsanelerine Mach 2+ hız kazandıran tek şaftlı eksenel turbojet motoru. Kompresör bayılmasını (stall) önleyen ilk 6 kademe değişken açılı stator kanatçıkları (VSV), 10 halkalı kan-annüler yanma odası, 3 kademeli türbin ve art yakıcı (afterburner) devreye girdiğinde açılıp kapanan 24 yapraklı yakınsak-ıraksak egzoz nozulu.',
+      name: 'General Electric J79-GE-15 Turbojet & Art Yakıcı', sub: 'VARIABLE-STATOR AXIAL TURBOJET • AFTERBURNER & NOZZLE',
+      desc: 'ABD Hava Kuvvetleri Müzesi GE-15 örneğini temel alan eğitim kesiti: 17 kademeli kompresör, üç kademeli türbin ve ortak şaft. X-Ray ile iç yapıyı inceleyin; gaz kolunu, temsili stator açısını ve egzoz açıklığını değiştirin. Art yakıcı ve renkli akış gösterimini açın. İç geometri yaklaşık, hareketler yavaşlatılmıştır.',
       tags: ['17 Kademe Kompresör & VSV', 'Kan-Annüler Yanma Odası', 'Art Yakıcı (Afterburner) Halkaları', 'Değişken Alanlı Egzoz Nozulu'],
-      specs: [['KURU / ISLAK İTKİ', '52,9 kN / 79,6 kN (Art Yakıcılı)'], ['KOMPRESÖR', '17 Kademe Eksenel (13,5:1 Basınç)'], ['TÜRBİN', '3 Kademe Eksenel (~7.460 RPM)'], ['PLANLANAN GRUP', '15 Bağımsız Grup']],
+      specs: [['KURU / ISLAK İTKİ', '48,5 kN / 75,6 kN (Art Yakıcılı)'], ['KOMPRESÖR', '17 Kademe Eksenel'], ['TÜRBİN', '3 Kademe Eksenel'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
       tag: 'J79-TURBOJET-1965', icon: '🔥',
       modal: [
-        '17 kademeli eksenel kompresör rotoru ve devirle birlikte açı değiştiren değişken stator kanatçıkları (VSV biyel halkaları)',
-        '10 adet kan-annüler alev tüpü (combustor cans) ve kombine şaftı süren 3 kademeli yüksek basınç türbini',
-        'Etkileşim: gaz kolu (%0–%100 Kuru İtki + Art Yakıcı kademesi), yakıt püskürtme halkaları ve 24 yapraklı hareketli egzoz nozulu',
-        'Bölünmüş dış titanyum/çelik karter gövdesi (X-Ray kesiti) ve alt aksesuar dişli kutusu'
+        '17 kademeli eksenel kompresör; sabit ve temsili değişken stator sıraları',
+        'Temsili kan-annüler yanma bölgesi ve kompresörle aynı şaftı paylaşan 3 kademeli türbin',
+        'Etkileşim: gösterim gaz kolu, art yakıcı, renkli akış ve temsili 24 yapraklı hareketli egzoz',
+        'X-Ray karter ve temsili aksesuar kutusu; ölçüler ve kontrol çizelgesi sadeleştirilmiştir'
       ],
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="36" y="46" width="175" height="48" rx="4" fill="#475569" fill-opacity="0.22" stroke="#1e293b" stroke-width="2.2"/><path d="M211 46 L278 52 L292 44 L292 96 L278 88 L211 94 Z" fill="#d97706" fill-opacity="0.22" stroke="#b45309" stroke-width="2"/><line x1="36" y1="70" x2="225" y2="70" stroke="#0f172a" stroke-width="3.2"/><g stroke="#0284c7" stroke-width="2"><line x1="55" y1="48" x2="55" y2="92"/><line x1="72" y1="50" x2="72" y2="90"/><line x1="89" y1="52" x2="89" y2="88"/><line x1="106" y1="53" x2="106" y2="87"/><line x1="123" y1="54" x2="123" y2="86"/></g><rect x="138" y="54" width="36" height="32" rx="4" fill="#dc2626" fill-opacity="0.3" stroke="#991b1b" stroke-width="1.8"/><g stroke="#7c2d12" stroke-width="2.4"><line x1="186" y1="48" x2="186" y2="92"/><line x1="198" y1="48" x2="198" y2="92"/></g></svg>'
     },
