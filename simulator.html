@@ -2727,6 +2727,7 @@
       const portraitScale = activeAdapter()?.ui.portraitCameraScale || 1;
       if (window.innerWidth < 600 && window.innerHeight > window.innerWidth) {
         state.camTargetPos.sub(state.camTargetLook).multiplyScalar(portraitScale).add(state.camTargetLook);
+        controls.maxDistance = Math.max(controls.maxDistance, state.camTargetPos.distanceTo(state.camTargetLook) * 1.1);
       }
     }
 
