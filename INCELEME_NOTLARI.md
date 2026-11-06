@@ -402,3 +402,11 @@
 - Test: rampa 0/45/90° konumlarında iki halat ucunun menteşeli rampaya bağlı kalması, yer açıklığı, pervane duruşu/sıfırlama, dümen sınırı ve yük görünürlüğü geçti. 201 mesh.
 
 - LCVP normal görünüm, açık rampa/X-Ray motor yakın planı ve 390×844 mobil kadraj incelendi. Konsol hatası yok.
+
+## Chain Home — araştırma ve uygulama
+- Kaynak: RAF Air Defence Radar Museum, https://www.radarmuseum.co.uk/history/world-war-two/ ; ahşap alıcı, çelik verici ve sabit perde anten düzeni. 350 ft (~107 m) verici / 240 ft (~73 m) alıcı tipi için Historic England Poling kaydı: https://historicengland.org.uk/listing/heritage-gateway/results/record/0d636742-8028-4a8c-8b7c-e1f9aaf2d338/3ee99efa-d7fe-419b-a488-eba77c78d893 . Kule yükseklikleri istasyona göre değişmiştir; diorama belirli bir istasyonun birebir kopyası değildir.
+- 19 grup, 329 mesh: sekiz kafes kule, beton temeller, merdivenler/platformlar, sabit antenler, izolatörler, iki bina ve hareketli çatılar, verici cihazları, alıcı/gonyometre, A-tipi ekran, harita masası, telefon/sandalyeler, jeneratör, çevre çiti ve açıklayıcı darbe izleri.
+- Kule ölçeği yaklaşık 1:10; saha aralıkları ve iç odalar sıkıştırılmış. Ekran izi temsili; gerçek algılama/menzil hesabı yok. Gonyometre kontrolü yalnız düğme hareketi gösterir, kuleleri döndürmez.
+- Testler: sabit kuleler/yükseklikler, darbe duruşu ve manuel öncelik, çatı kaldırma, düğme sınırı, iz görünürlüğü ve sıfırlama geçti.
+
+- Chain Home normal istasyon, açık çatı/X-Ray operatör odası ve 390×844 mobil genel kadraj incelendi. Konsolda hata yok.
