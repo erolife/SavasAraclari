@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 6 Kasım 2026:** Aşağıdaki eski görev sıraları tamamlandı. Yeni onaylı sıra ve çalışma durumu AGENT_CONTEXT.md / BEYIN_FIRTINASI.md içindedir. Teknik kalite kuralları geçerlidir.
+> **Güncel durum — 6 Kasım 2026:** İlk dört grup tamamlandı: 20 aktif model. UH-1H, U-505, Enigma, Higgins LCVP ve Chain Home eklendi. Enigma için enigma.html özel şifreleme masası vardır. Araştırma ve doğrulama kayıtları INCELEME_NOTLARI.md içindedir. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.

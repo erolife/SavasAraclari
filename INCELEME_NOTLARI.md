@@ -409,4 +409,10 @@
 - Kule ölçeği yaklaşık 1:10; saha aralıkları ve iç odalar sıkıştırılmış. Ekran izi temsili; gerçek algılama/menzil hesabı yok. Gonyometre kontrolü yalnız düğme hareketi gösterir, kuleleri döndürmez.
 - Testler: sabit kuleler/yükseklikler, darbe duruşu ve manuel öncelik, çatı kaldırma, düğme sınırı, iz görünürlüğü ve sıfırlama geçti.
 
-- Chain Home normal istasyon, açık çatı/X-Ray operatör odası ve 390×844 mobil genel kadraj incelendi. Konsolda hata yok.
+- Chain Home normal istasyon ve açık çatı/X-Ray operatör odası incelendi. Mobil son kontrolde desteklenmeyen bumpMap uniform hatası bulundu; ortak kaplama yardımcısı BasicMaterial üzerine bumpMap ekliyordu. Yalnız bumpMap destekleyen malzemelere uygulama ve değişimde needsUpdate eklendi. Regresyon testi bu koşulu kapsar. Mobil saha tabanı için kadraj 2,2 yapıldı.
+
+## Dördüncü grup — bütünleşik son kontrol
+- 11 test dosyası geçti: Monitor, J79, Katyuşa, V-2, Phalanx, UH-1H, U-505, Enigma çekirdeği/modeli, LCVP ve Chain Home.
+- Katalog 20 aktif; tüm kayıtların facet değerleri doğrulandı. Tarayıcıda 20 araç geçişi, X-Ray/CAD aç-kapat ve beş yeni modelde altışar tur adımı çalıştı; konsol hatası yok.
+- Chain Home bumpMap düzeltmesi sonrası mobil konsol temiz ve saha tabanı bütünüyle görünür. Ortak kaplama yardımcısındaki değişim diğer dokuz model testiyle tekrar doğrulandı.
+- Enigma masaüstü/mobil klavye, örnek şifreleme, ayar doğrulama, geri çözme ve çift adımlama kontrol edildi. Sayfa harici Three.js/font kaynakları kullanır; tamamen çevrimdışı paket değildir.

@@ -25,7 +25,7 @@
     function polygon(p,points,depth,mat=mats.paint){const s=new T.Shape();s.moveTo(...points[0]);points.slice(1).forEach(v=>s.lineTo(...v));s.closePath();return mesh(p,new T.ExtrudeGeometry(s,{depth,bevelEnabled:false}),mat);}
     let finish='original',relief=true;
     const schemes={original:{label:'Müze Görünümü',color:null},winter:{label:'Açık Kaplama (temsili)',color:0xa9ada5},dark:{label:'Koyu Kaplama (temsili)',color:0x333e39},sand:{label:'Toprak Kaplama (temsili)',color:0x8b7850}};
-    function applyTextures(blueprint){meshes.forEach(({o,color,paint})=>{const c=paint&&schemes[finish].color!==null?new T.Color(schemes[finish].color):color;o.userData.origColor.copy(c);if(!blueprint)o.material.color.copy(c);o.material.bumpMap=relief?grain:null;});details.forEach(o=>o.visible=relief);}
+    function applyTextures(blueprint){meshes.forEach(({o,color,paint})=>{const c=paint&&schemes[finish].color!==null?new T.Color(schemes[finish].color):color;o.userData.origColor.copy(c);if(!blueprint)o.material.color.copy(c);if ('bumpMap' in o.material) { const bump=relief?grain:null;if(o.material.bumpMap!==bump){o.material.bumpMap=bump;o.material.needsUpdate=true;} }});details.forEach(o=>o.visible=relief);}
     function ui(config){return {...config,partCount:Object.keys(parts).length+' Ana Grup',texTitle:'Yüzey ve Kaplama',textures:Object.entries(schemes).map(([key,s])=>({key,label:s.label})),textureLabel:()=>schemes[finish].label,activeTexture:()=>finish,relief:()=>relief,reliefLabel:v=>'Yüzey Ayrıntıları: '+(v?'AÇIK':'KAPALI')};}
     return {T,root,parts,meshes,mats,part,mesh,box,cyl,ring,pipe,beam,instances,bolts,wheel,polygon,ui,applyTextures,setTexture:k=>{if(schemes[k])finish=k;},toggleRelief:()=>{relief=!relief;return relief;}};
   };
