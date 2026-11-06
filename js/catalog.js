@@ -231,20 +231,15 @@
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="124" x2="300" y2="124" stroke="#94a3b8" stroke-dasharray="4 4"/><rect x="52" y="92" width="190" height="12" rx="2" fill="#475569" fill-opacity="0.3" stroke="#1e293b" stroke-width="2"/><path d="M190 92 L190 66 L225 66 L238 80 L238 92 Z" fill="#4b5320" fill-opacity="0.3" stroke="#1e293b" stroke-width="2"/><g transform="rotate(-22 140 82)"><line x1="55" y1="74" x2="215" y2="74" stroke="#0f172a" stroke-width="3.2"/><line x1="65" y1="67" x2="205" y2="67" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/><line x1="65" y1="81" x2="205" y2="81" stroke="#d97706" stroke-width="3" stroke-linecap="round"/></g><circle cx="80" cy="111" r="12" stroke="#1e293b" stroke-width="2.2"/><circle cx="110" cy="111" r="12" stroke="#1e293b" stroke-width="2.2"/><circle cx="215" cy="111" r="12" stroke="#1e293b" stroke-width="2.2"/></svg>'
     },
     {
-      id: 'v2', group: 3, status: 'planned',
+      id: 'v2', sim: 'v2', group: 3, status: 'live',
       year: 1944, yearLabel: '1944', eraLabel: 'II. DÜNYA SAVAŞI',
       domain: 'space', era: 'ww2', energy: ['jet'], role: ['artillery', 'siege'], origin: 'germany',
       name: 'V-2 (Aggregat 4) Balistik Roket & Turbo-Pompa', sub: 'LIQUID-PROPELLANT BALLISTIC MISSILE • 25 TON İTKİ',
-      desc: 'Uzay sınırını (Kármán hattı, >100 km) aşan ilk insan yapımı araç ve modern uzay roketçiliğinin doğrudan atası. H₂O₂ buhar jeneratörüyle tahrik edilen 580 BG turbo-pompa, saniyede 125 kg sıvı oksijen (LOX) ve etil alkolü 18 brülörlü yanma odasına basar; egzoz jetinin içindeki 4 grafit kanatçık (jet vanes) LEV-3 jiroskoplarıyla roketi yönlendirir.',
+      desc: 'V-2/A4 ve Meillerwagen taşıyıcısının müze referanslı modeli. Siyah-beyaz dış gövde, dört kuyruk kanadı, iç tank hacimleri ve taşıma kafesini inceleyin; dikey/yatay sergi pozları arasında geçin. Tarihsel anlatım zorla çalıştırılan insanları ve saldırıların mağdurlarını da kapsar.',
       tags: ['H₂O₂ Buhar Türbinli Turbo-Pompa', 'LOX + Alkol Tankları (X-Ray)', '4 × Grafit Egzoz Kanatçığı (TVC)', 'LEV-3 Jiroskop & İvmeölçer'],
-      specs: [['İTKİ KUVVETİ', '~25.000 kgf (245 kN)'], ['TURBO-POMPA', '580 BG • 4.000 RPM (125 kg/sn)'], ['MAKSİMUM HIZ', 'Mach 4,7 (~5.760 km/sa)'], ['PLANLANAN GRUP', '16 Bağımsız Grup']],
+      specs: [['İTKİ KUVVETİ', '~25.000 kgf (245 kN)'], ['TURBO-POMPA', '580 BG • 4.000 RPM (125 kg/sn)'], ['MAKSİMUM HIZ', 'Mach 4,7 (~5.760 km/sa)'], ['3D PARÇA SAYISI', '18 Bağımsız Grup']],
       tag: 'A4-V2-1944', icon: '🛰️',
-      modal: [
-        '4 bölmeli dış aerodinamik kabuk (X-Ray): burun harp başlığı, LEV-3 jiroskop bölmesi, alkol/LOX tankları ve kuyruk motoru',
-        'Walter H₂O₂ buhar türbiniyle çalışan 4.000 RPM çift santrifüj turbo-pompa ve 18 çanaklı yanma odası',
-        'Etkileşim: turbo-pompa devri, rejeneratif alkol soğutma akışı ve 4 grafit egzoz kanatçığıyla (TVC) itki vektör yönlendirme',
-        'Meillerwagen hidrolik dikme kolu ve döner fırlatma tablası (Firing Table)'
-      ],
+      modal: ['Meillerwagen şasisi, tekerlekleri, destekleri ve hareketli taşıma kafesi', 'Gövde panelleri, kuyruk kanatları ve X-Ray iç bölmeleri', 'Dikey/yatay müze pozları; fırlatma veya hedefleme simülasyonu yok', 'AWM kaynaklarıyla tarihsel bağlam ve yaklaşık görsel rekonstrüksiyon'],
       svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M40 70 L235 52 Q278 52 298 70 Q278 88 235 88 L40 70 Z" fill="#1e293b" fill-opacity="0.18" stroke="#0f172a" stroke-width="2.2"/><path d="M40 52 L18 36 L58 56 Z" fill="#334155" stroke="#0f172a" stroke-width="1.6"/><path d="M40 88 L18 104 L58 84 Z" fill="#334155" stroke="#0f172a" stroke-width="1.6"/><rect x="105" y="58" width="52" height="24" rx="4" fill="#0284c7" fill-opacity="0.28" stroke="#0284c7" stroke-width="1.8"/><rect x="165" y="58" width="52" height="24" rx="4" fill="#d97706" fill-opacity="0.28" stroke="#d97706" stroke-width="1.8"/><circle cx="82" cy="70" r="9" stroke="#dc2626" stroke-width="2"/><path d="M40 62 L58 58 L58 82 L40 78 Z" fill="#dc2626" fill-opacity="0.3" stroke="#991b1b" stroke-width="1.8"/></svg>'
     },
     {
