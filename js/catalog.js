@@ -43,7 +43,7 @@
       { key: 'rome', label: 'Roma' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
       { key: 'ottoman', label: 'Osmanlı' }, { key: 'italy', label: 'İtalya (Rönesans)' },
       { key: 'uk', label: 'İngiltere' }, { key: 'germany', label: 'Almanya' },
-      { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }
+      { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }, { key: 'korea', label: 'Kore (Joseon)' }
     ] },
     { key: 'status', url: 'durum', label: 'Durum', options: [
       { key: 'live', label: '🟢 Simülatör Hazır' }, { key: 'planned', label: '⏳ Planlı' }
@@ -305,6 +305,18 @@
       tag: 'LEONARDO-SCYTHED-1485', icon: '⚙️',
       modal: ['İki oyma at, deri koşum ve uzun ahşap çeki çerçevesi', 'Demir çemberli ispitli tekerlekler, taç/fener dişliler ve sürekli mil', 'Dört kavisli orak; yavaş gösterim, elle faz, X-Ray ve aktarım vurgusu', 'Dişli oranları, boyutlar ve açılır panel sergi yorumudur; savaşta kullanım iddiası yok'],
       svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#74543b" stroke-width="5"><path d="M40 99H264M54 95V74H100V95"/><circle cx="67" cy="99" r="25"/><path d="M67 74V124M42 99H92M120 94V66L154 59L168 32L182 35L176 57L160 72V94M135 71V95"/></g><path d="M240 96L284 80Q307 76 300 54Q292 72 276 72L240 88L207 78Q190 70 187 50Q176 75 201 86Z" fill="#8b928d" stroke="#384444" stroke-width="2"/><path d="M252 97V61" stroke="#74543b" stroke-width="5"/></svg>'
+    }
+
+    ,{
+      id: 'hwacha', sim: 'hwacha', group: 5, status: 'live', year: 1451, yearLabel: '1451', eraLabel: 'JOSEON DÖNEMİ',
+      domain: 'land', era: 'gunpowder', energy: ['gunpowder'], role: ['artillery'], origin: 'korea',
+      name: 'Kore Hwacha’sı — Munjong', sub: 'YÜZ SINGIJEON • AHŞAP ARABA VE DELİKLİ KASET',
+      desc: '1451 tarihli yüz oklu varyantın dış rekonstrüksiyonu. İspitli ahşap tekerlekler, uzun saplar, gerçek açıklıklı kaset levhaları, demir kuşaklar ve mafsallı taşıyıcılar. Levhaları ayırın, okları gizleyin ve sıralı incelemeyi başlatın.',
+      tags: ['18 İnceleme Grubu', '100 Ok / 100 Açıklık', 'Ayrılabilir Levhalar', 'Joseon • 1451'],
+      specs: [['VARYANT', 'Munjong • Singijeon taşıyıcısı'], ['KAPASİTE', '100 orta boy Singijeon'], ['MODEL', 'Yaklaşık dış rekonstrüksiyon'], ['ETKİLEŞİM', 'Kaset açısı, levha ayırma, sıralı inceleme']],
+      tag: 'HWACHA-MUNJONG-1451', icon: '🏹',
+      modal: ['Dilimli ahşap tekerlekler, demir çember, dingil ve uzun taşıma kolları', 'İki delikli levha, yüz uzun ok sapı ve dış kılıflar', 'Dört ahşap görünümü, altı kamera, X-Ray ve altı adımlı tur', 'Kore Ulusal Tarih Enstitüsü tarih referansı; ölçüler ve gösterim temposu temsili'],
+      svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><g stroke="#654b32" stroke-width="7" fill="none"><path d="M35 120L235 84M60 125L260 90M215 90L224 43"/><circle cx="205" cy="103" r="29"/><path d="M205 74V132M176 103H234M184 82L226 124M184 124L226 82" stroke-width="3"/></g><path d="M165 51L210 26L235 64L190 90Z" fill="#98734e" stroke="#493b2d" stroke-width="3"/><g stroke="#c3a266" stroke-width="3"><path d="M80 106L229 20M87 111L236 25M94 116L243 30M101 121L250 35M108 126L257 40"/></g></svg>'
     }
 
   ];

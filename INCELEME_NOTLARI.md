@@ -418,8 +418,8 @@
 - Enigma masaüstü/mobil klavye, örnek şifreleme, ayar doğrulama, geri çözme ve çift adımlama kontrol edildi. Sayfa harici Three.js/font kaynakları kullanır; tamamen çevrimdışı paket değildir.
 
 ## Beşinci grup — kullanıcı tarafından onaylanan sıra
-1. Leonardo’nun oraklı savaş arabası (`scythed`) — bu çalışmanın kapsamı.
-2. Kore Hwacha’sı.
+1. Leonardo’nun oraklı savaş arabası (`scythed`) — tamamlandı.
+2. Kore Hwacha’sı (`hwacha`) — tamamlandı.
 3. Atlatl — mızrak fırlatma kolu.
 4. Fenerli kalkan.
 5. Polybolos.
@@ -440,3 +440,14 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Test, dönen daireye ait eksen hizalı kutunun sahte zemin/çarpışma sonucu üretmesini önlemek için gerçek dönüştürülmüş tekerlek ve dişli köşelerini kullanır. 73 fazda orak/at, dişli/şasi açıklığı ve tekerlek zemin teması; dik aktarımın v=ω×r yönleri, 3:1/1:3 hızlar, sıfır devir, manuel öncelik, kapak, gizleme ve sıfırlama doğrulanır.
 
 - Sonuç: beşinci grup 1/10 tamamlandı; katalog 21 aktif. Normal görünüm, açık kapak/X-Ray arka dişli yakın planı, 45° ön orak pozu ve 390×844 mobil kadraj gözle incelendi. Tarayıcıda dört kaplama, CAD/X-Ray, altı tur adımı ve Leonardo zırhlı araç/Chain Home/Enigma/yeni araç geçişleri kontrol edildi. Mobilde oynatma ilerledi; elle 90° seçilince devir sıfıra indi ve açı korundu. Konsolda sayfa hatası yok.
+
+
+## Kore Hwacha’sı — 6 Kasım 2026
+- Varyant: 1451 Munjong Hwacha, 100 orta boy Singijeon taşıyan düzen. Kore Ulusal Tarih Enstitüsü, https://contents.history.go.kr/play/view.do?itemId=tz&lang=eng&levelId=tz_b32 ; Munjong kayıtlarının 13 Şubat 1451 tarihli anlatımında 100 Singijeon ile 50 sajeon chongtong seçenekleri ayrılır. Bu model ikinci varyantı temsil etmez.
+- Görsel kaynak: Korea Culture Information Service Agency (@kcisameta), “Singijeon Hwacha”, https://sketchfab.com/3d-models/singijeon-hwacha-85f48b05a86240e99b755d70070d8401 . Sayfa web aracında 403 verdi; herkese açık Sketchfab model API kaydındaki kurumun 1920×1080 önizlemesi alınıp gözle incelendi. Model dosyası indirilmedi/kopyalanmadı; yerel geometri sıfırdan yazıldı.
+- Görsel dayanak modern rekonstrüksiyondur; orijinal korunmuş araç veya kesin üretim ölçüsü iddiası yoktur. Ahşap araba, uzun kollar, büyük ispitli tekerlekler, eğimli delikli kaset ve uzun saplar esas alındı. İkinci kılavuz levha, birleşimler, destek hareketi, açı aralığı ve yüzey renkleri sergi yorumudur. Sergi levhasındaki üç çizgi dekoratiftir; tarihsel yazıt değildir.
+- 18 seçilebilir grup, 168 kayıtlı mesh: iki ahşap tekerlek, demir çemberler, parmaklar/göbekler/pimler, şasi/döşeme/çaprazlar, taşıma kolları, dayanaklar, yan dikmeler, mafsallar, kaset çerçevesi, iki delikli levha ve yüz dış ok modeli. Her levhada gerçek geometriyle 100 açıklık vardır. Tekrarlanan ok parçaları InstancedMesh kullanır.
+- Etkileşim: temsili sıralı eksilme, duraklatma, 100 oka yenileme, kaset inceleme açısı, levhaları ayırma, okları gizleme ve başlangıca dönüş. Dört ahşap görünümü, altı kamera ve altı tur. İç mühimmat yapısı veya balistik hesap yok; eksilme temposu tarihsel atış hızı değildir.
+- Testler: `node tests/hwacha.cjs` (200 deliğe raycast ve ahşap aralıklara kontrol ışınları; 26 açıda destek uçları, zemin/tekerlek açıklığı; 100 okun eksilmesi, zaman birikimi, duraklatma, manuel öncelik, yenileme, görünürlük, sınırlar ve sıfırlama), `node tests/scythed.cjs`, `node tests/j79.cjs` geçti. Son test katalog facet değerlerini ve simulator modül sözdizimini de doğrular.
+- Görsel kontrol: masaüstü genel görünüm, arka saplar/X-Ray yakın planı, oklar gizliyken ayrılmış delikli levhalar; dört kaplama ve CAD aç/kapat; altı tur; 390×844 mobil genel görünüm. Mobil yatay taşma yok; gösterim sayacı azaldı, duraklatınca sabit kaldı. Scythed/Enigma/Hwacha geçişleri çalıştı. Sayfa JavaScript hatası yok; mevcut favicon.ico eksikliği 404 veriyor.
+- Katalog: 22 aktif model; yeni Kore (Joseon) filtresi yalnız Hwacha’yı getiriyor. Beşinci grup 2/10 tamamlandı; sıradaki Atlatl. Türkçe commit, push kullanıcı talimatına kadar yok.
