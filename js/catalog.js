@@ -203,15 +203,9 @@
       year: 1862, yearLabel: '1862', eraLabel: 'SANAYİ DEVRİMİ',
       domain: 'sea', era: 'industrial', energy: ['steam', 'gunpowder'], role: ['artillery', 'armor'], origin: 'usa',
       name: 'USS Monitor & Ericsson Döner Taret', sub: 'IRONCLAD REVOLVING TURRET • 2 × 11 İNÇ DAHLGREN TOPU',
-<<<<<<< HEAD
-      desc: 'John Ericsson tarafından tasarlanan, su hattının hemen üzerinde ("sal üzerinde peynir kutusu") yüzen ilk döner taretli zırhlı savaş gemisi. 8 kat 1 inçlik dövme demir plakadan oluşan 6,1 m çapındaki taret, merkezi mil üzerinde kaldırılıp buharlı yardımcı motor ve dişli çarklarla 360° döndürülür; atış anında ağır sarkaçlı kepenkler lombarları kapatır.',
-      tags: ['360° Buharlı Döner Taret', '2 × 11 inç Dahlgren Topu', 'Sarkaçlı Lombar Kepenkleri', 'Titreşimli Manivela Buhar Motoru'],
-      specs: [['ZIRH KALINLIĞI', '203 mm (8×1 inç Dövme Demir)'], ['SİLAH', '2 × 279 mm (11 inç) Dahlgren'], ['TARET İÇ ÇAPI', '6,10 m (20 ft) • ~120 Ton'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
-=======
       desc: 'USS Monitor (1862): döner demir taret, iki XI-inç Dahlgren topu ve yatay buhar makinesini anlatan 22 gruplu tam gemi modeli. X-Ray ile içini inceleyin; kepenkleri açın ve temsili geri tepme gösterimini oynatın. Alçak gövde, kumanda kabini, filikalar, bacalar ve kıç pervanesiyle gemiyi inceleyin. İç ölçüler yaklaşık yeniden kurulmuştur.',
       tags: ['360° Buharlı Döner Taret', '2 × 11 inç Dahlgren Topu', 'Sarkaçlı Lombar Kepenkleri', 'Şematik Yatay Buhar Makinesi'],
       specs: [['ZIRH KALINLIĞI', '203 mm (8×1 inç Dövme Demir)'], ['SİLAH', '2 × 279 mm (11 inç) Dahlgren'], ['TARET İÇ ÇAPI', '~6,10 m (20 ft)'], ['3D PARÇA SAYISI', '22 Bağımsız Grup']],
->>>>>>> 734ff246925d81fd6781dd8e9a0cf25945f2a2fc
       tag: 'MONITOR-1862', icon: '⚓',
       modal: [
         '8 kat 1 inç dövme demir plakalı silindirik taret (X-Ray kesiti) ve merkezi kaldırma/dönüş mili',
