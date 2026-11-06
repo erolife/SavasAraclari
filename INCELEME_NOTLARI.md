@@ -387,3 +387,11 @@
 - Portre kadraj kök nedeni: OrbitControls.maxDistance yeni kamera mesafesini sınırlıyordu. flyCameraTo içinde yalnızca portre ölçeklemesi sırasında uzaklık sınırı hedef mesafeye uyarlanır. Araç kimliğine özel çekirdek koşulu yok. Tekrar ekran görüntüsünde iki rotor ucu da kadraja girdi.
 
 - U-505 tamamlandı: `node tests/u505.cjs` → `PASS U-505: 20 groups, 454 meshes, twin shafts, stop/reset, periscope/rudder, 76.8m hull`. Gövde boyu testi ilk uygulamadaki yerel eksen ölçekleme hatasını yakaladı; düşey kesit ölçeği düzeltildi. Normal görünümde baş/kıç güverte boşluğu kapatıldı; X-Ray makine dairesi ve 390×844 mobil genel görünüm incelendi. Konsolda hata yok.
+
+## Enigma — özel çalışma planı
+- Enigma I seçildi; M4 deniz modeliyle karıştırılmaz. Crypto Museum: https://www.cryptomuseum.com/crypto/enigma/i/index.htm ; bağlantılar https://www.cryptomuseum.com/crypto/enigma/wiring.htm ; adımlama https://www.cryptomuseum.com/crypto/enigma/working.htm . Tarihsel bağlamda Polonyalı matematikçiler, Turing/Welchman ve daha geniş ekip birlikte anlatılır.
+- İki görünüm aynı modeli/hesabı kullanır: standart müze adaptörü ve enigma.html şifreleme masası. 3B ahşap kasa/kapak, tuşlar, lambalar, fişler, rotorlar, mandallar ve iç bağlantılar.
+- Saf JS şifre çekirdeği: I–V rotorlar, B/C yansıtıcı, halka/konumlar, fiş çiftleri; elektrik geçmeden önce adımlama, çift adımlama. Varsayılan I-II-III/AAA/AAA/B fişsiz AAAAA→BDZGO ve HELLOWORLD→ILBDAAMTAZ vektörleri; III-II-I/ADQ→AER→BFS.
+- Masa: gerçek tuş girişi, çıktı şeridi, ayar doğrulama, 9 aşamalı iz, adım seçimi, aynı başlangıç ayarıyla çözme ve çift adımlama örneği. Mobil düzen ve klavye erişimi kontrol edilir.
+
+- Enigma tamamlandı: çekirdek ve model testleri geçti. Tarayıcıda AAAAA→BDZGO, geri çözme→AAAAA, ADQ→AER→BFS ve tekrarlı fiş uyarısı doğrulandı. Uygulanmamış form değişikliğinin geri çözmeyi etkilemesi engellendi. Masa ve müze görünümü, 390×844 mobil kadraj/klavye kontrol edildi; yatay taşma yok. Altın gidiş ve turkuaz dönüş yolları açıklayıcı görselleştirmedir. 17 grup; metinsiz testte 316 mesh.

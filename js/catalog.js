@@ -32,12 +32,12 @@
       { key: 'muscle', label: '💪 Kas Gücü & Burulma' }, { key: 'gravity', label: '⚖️ Yerçekimi' },
       { key: 'gunpowder', label: '💥 Barut' }, { key: 'ice', label: '⚙️ İçten Yanmalı Motor' },
       { key: 'steam', label: '♨️ Buhar Makinesi' },
-      { key: 'jet', label: '🔥 Jet & Roket' }
+      { key: 'jet', label: '🔥 Jet & Roket' }, { key: 'electric', label: '⚡ Elektrik & Elektromekanik' }
     ] },
     { key: 'role', url: 'gorev', label: 'Görev Tipi', options: [
       { key: 'siege', label: 'Kuşatma' }, { key: 'artillery', label: 'Topçu' },
       { key: 'armor', label: 'Zırhlı Araç' }, { key: 'aircraft', label: 'Savaş Uçağı' },
-      { key: 'smallarms', label: 'Hafif & Makineli Silah' }, { key: 'defense', label: 'Savunma Sistemi' }
+      { key: 'smallarms', label: 'Hafif & Makineli Silah' }, { key: 'defense', label: 'Savunma Sistemi' }, { key: 'intelligence', label: 'Haberleşme & İstihbarat' }
     ] },
     { key: 'origin', url: 'koken', label: 'Köken', options: [
       { key: 'rome', label: 'Roma' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
@@ -285,9 +285,10 @@
       modal:['Tam gövde, kokpit, kabin koltukları, kızaklar ve uzun kuyruk bomu','T53 dış gövdeleri, transmisyon, mast ve kumanda bağlantıları','İki palli rotorlar, kollektif pala açısı ve kayar kapılar','Smithsonian ölçü referansı; iç ayrıntılar yaklaşık rekonstrüksiyon'],
       svg:'<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M110 55 Q165 35 200 60 L230 92 L100 92 L40 75 L20 45 L35 42 L50 68 L110 75Z" fill="#4e5940" stroke="#1e293b" stroke-width="3"/><path d="M154 55V24 M75 24H260 M110 105H235 M130 91V105 M210 92V105" stroke="#334155" stroke-width="4"/><path d="M170 55L200 64L215 81H170Z" fill="#8ab0bb"/></svg>'
     },
-    {id:'u505',sim:'u505',group:4,status:'live',year:1941,yearLabel:'1941',eraLabel:'II. DÜNYA SAVAŞI',domain:'sea',era:'ww2',energy:['ice'],role:['defense'],origin:'germany',
+    {id:'u505',sim:'u505',group:4,status:'live',year:1941,yearLabel:'1941',eraLabel:'II. DÜNYA SAVAŞI',domain:'sea',era:'ww2',energy:['ice','electric'],role:['defense'],origin:'germany',
     name:'U-505 — Type IXC Denizaltı',sub:'DİZEL-ELEKTRİK TAHRİK • TAM TEKNE',desc:'Korunmuş U-505 müze örneğine dayalı tam tekne; basınç gövdesi, periskoplar, makine dairesi, bataryalar ve yaşam bölmeleri. Çift şaft ve pervane hareketini X-Ray ile izleyin.',
-    tags:['20 İnceleme Grubu','İki Dizel ve İki Elektrik Motoru','Hareketli Periskoplar','X-Ray Bölmeler'],specs:[['BOY','~76,8 m'],['EN','~6,8 m'],['TAHRİK','Dizel / elektrik'],['MODEL','20 Bağımsız Grup']],tag:'U505-IXC',icon:'⚓',modal:['Tam dış tekne, kule ve güverte donanımı','Basınç teknesi, postalar, kumanda odası ve ranzalar','Çift şaft, pervaneler, periskop ve dümen gösterimi','Griffin MSI müze referansı; iç ayrıntılar yaklaşık'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M15 85Q140 60 300 85Q280 115 40 108Z" fill="#626c70" stroke="#1e293b" stroke-width="3"/><path d="M135 80V45H180V80M150 45V20H160" fill="#89949a" stroke="#1e293b" stroke-width="3"/></svg>'}
+    tags:['20 İnceleme Grubu','İki Dizel ve İki Elektrik Motoru','Hareketli Periskoplar','X-Ray Bölmeler'],specs:[['BOY','~76,8 m'],['EN','~6,8 m'],['TAHRİK','Dizel / elektrik'],['MODEL','20 Bağımsız Grup']],tag:'U505-IXC',icon:'⚓',modal:['Tam dış tekne, kule ve güverte donanımı','Basınç teknesi, postalar, kumanda odası ve ranzalar','Çift şaft, pervaneler, periskop ve dümen gösterimi','Griffin MSI müze referansı; iç ayrıntılar yaklaşık'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M15 85Q140 60 300 85Q280 115 40 108Z" fill="#626c70" stroke="#1e293b" stroke-width="3"/><path d="M135 80V45H180V80M150 45V20H160" fill="#89949a" stroke="#1e293b" stroke-width="3"/></svg>'},
+    {id:'enigma',sim:'enigma',group:4,status:'live',year:1930,yearLabel:'1930',eraLabel:'II. DÜNYA SAVAŞINA GİDEN DÖNEM',domain:'land',era:'ww2',energy:['electric'],role:['intelligence'],origin:'germany',name:'Enigma I — Bir Harfin Yolculuğu',sub:'ÖZEL ŞİFRELEME MASASI • ÜÇ ROTOR VE YANSITICI',desc:'Ahşap kasayı ve iç mekanizmayı inceleyin; özel şifreleme masasında kendi mesajınızı yazın. Rotorlar, halka ayarları ve fiş çiftleriyle harfin dokuz aşamalı gidiş-dönüş yolunu izleyin.',tags:['Etkileşimli Şifreleme Masası','Tarihsel Rotor Bağlantıları','Çift Adımlama','17 İnceleme Grubu'],specs:[['MODEL','Enigma I'],['ROTORLAR','I–V arasından üç farklı rotor'],['YANSITICI','B / C'],['DENEYİM','3D inceleme + şifreleme masası']],tag:'ENIGMA-I',icon:'🔐',modal:['Ahşap kasa, menteşeler, bakelit tuşlar, lambalar ve sayısal rotor halkaları','Özel şifreleme masası: mesaj, rotor/halka ayarları ve fiş çiftleri','Bilinen test vektörleri ve çift adımlama ile doğrulanmış hesaplama','Polonyalı matematikçiler ve Müttefik ekiplerin katkılarını içeren tarihsel anlatım'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M60 60V14H250V60M60 60H250V125H60Z" fill="#72452d" stroke="#342c24" stroke-width="3"/><path d="M72 72H238V115H72Z" fill="#202a26"/><g fill="#e9d8b7"><circle cx="100" cy="100" r="6"/><circle cx="130" cy="100" r="6"/><circle cx="160" cy="100" r="6"/><circle cx="190" cy="100" r="6"/><circle cx="220" cy="100" r="6"/></g><path d="M125 61V79M155 61V79M185 61V79" stroke="#c39b50" stroke-width="9"/></svg>'}
 
   ];
 
