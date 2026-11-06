@@ -425,7 +425,7 @@
 5. Polybolos (`polybolos`) — tamamlandı.
 6. Leonardo’nun dev arbaleti (`giantbow`) — tamamlandı.
 7. Çin tekrarlayan arbaleti — Chu-ko-nu (`chukonu`) — tamamlandı.
-8. Helepolis kuşatma kulesi.
+8. Helepolis kuşatma kulesi (`helepolis`) — tamamlandı.
 9. Leonardo’nun çok namlulu top düzeni.
 10. Kılıç–tabanca birleşimi.
 Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe commit alır. Push en son, kullanıcı talimatıyla. Çizimler, günümüze kalan nesneler ve modern rekonstrüksiyonlar birbirinden ayrılır.
@@ -496,3 +496,10 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - 16 grup / 104 mesh: dar kundak, yay katmanları/lif bağları, çift kol ve tutamak, pimler, üst hazne, kapak, köşe takviyeleri, on iki ok ve çağdaş mesnet. Dört mafsallı hareketin oranları, kiriş yer değiştirmesi ve eksilme temposu sergi yorumudur; nesnenin ölçülü mekanik kopyası değildir.
 - İlk görsel kontrolde hazne yüksekliği azaltıldı. 101 evrede kaldıraç/hazne mafsalı, sabit boylu ön bağlantılar, hazne-kundak açıklığı ve kiriş uçları test edildi. On iki çevrim, boşta duruş, yenileme, manuel öncelik, kapak/duvar açma ve sıfırlama geçti. Dev arbalet/J79 regresyonları geçti.
 - Masaüstü açık hazne yakın planı, dört kaplama/CAD, altı tur ve 390×844 mobil genel görünüm incelendi. Mobil yatay taşma ve konsol hatası yok. Katalog 27 aktif, Çin köken filtresi eklendi. Grup 7/10; sıradaki Helepolis. Push yok.
+
+
+## Helepolis — 6 Kasım 2026
+- Kaynak: Kotsanas Museum, https://collection.kotsanasmuseum.com/en/exhibits/106078/ ve ön/arka fotoğrafları https://kotsanas.com/el/exhibits/military/helepolis-epimachus/ . Modern rekonstrüksiyonun iki fotoğrafı incelendi. Dokuz kat, sekiz tekerlek, iki merdiven ve yaklaşık 40 m anlatımı esas alındı; iç yerleşim/kaplama bağlantıları yorumdur.
+- 18 grup / 389 mesh: ızgara taban, dört çift masif tekerlek, yataklar, daralan dikmeler, kuşaklar/çaprazlar, dokuz döşeme, gerçek merdiven boşlukları, korkuluklar, sabit atıcı siluetleri, levhalı ön yüz, yan tahtalar, 18 kapak, menteşeli köprü ve halatlar. Tekrarlanan tahtalar ve parçalar örneklenmiştir.
+- Test: 91 köprü açısında halat bağlantısı; 16 merdiven boşluğuna raycast ve komşu dolu döşemeye kontrol ışını; dokuz kat filtresi, cephe ayırma, kapaklar, uçta duruş/manuel öncelik/sıfırlama geçti. Chu-ko-nu/J79 regresyonları geçti.
+- Görsel: genel görünüm, açık arka, dört katlı kesit ve mobil 390×844 incelendi. Kesitte gizlenmiş üst kata çıkan son merdiven ve desteksiz kalan halatlar gizlendi; arka kamera kadrajı genişletildi. Dört kaplama/CAD ve altı tur çalıştı; mobil taşma ve konsol hatası yok. Katalog 28 aktif, grup 8/10; sıradaki Leonardo çok namlulu düzen. Push yok.
