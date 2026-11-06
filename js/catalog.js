@@ -284,7 +284,10 @@
       specs:[['ROTOR ÇAPI','14,7 m'],['GÖVDE BOYU','~12,6 m'],['GÖSTERİM','Rotor, kollektif ve kapılar'],['MODEL','20 Bağımsız Grup']],tag:'UH1H-HUEY',icon:'🚁',
       modal:['Tam gövde, kokpit, kabin koltukları, kızaklar ve uzun kuyruk bomu','T53 dış gövdeleri, transmisyon, mast ve kumanda bağlantıları','İki palli rotorlar, kollektif pala açısı ve kayar kapılar','Smithsonian ölçü referansı; iç ayrıntılar yaklaşık rekonstrüksiyon'],
       svg:'<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M110 55 Q165 35 200 60 L230 92 L100 92 L40 75 L20 45 L35 42 L50 68 L110 75Z" fill="#4e5940" stroke="#1e293b" stroke-width="3"/><path d="M154 55V24 M75 24H260 M110 105H235 M130 91V105 M210 92V105" stroke="#334155" stroke-width="4"/><path d="M170 55L200 64L215 81H170Z" fill="#8ab0bb"/></svg>'
-    }
+    },
+    {id:'u505',sim:'u505',group:4,status:'live',year:1941,yearLabel:'1941',eraLabel:'II. DÜNYA SAVAŞI',domain:'sea',era:'ww2',energy:['ice'],role:['defense'],origin:'germany',
+    name:'U-505 — Type IXC Denizaltı',sub:'DİZEL-ELEKTRİK TAHRİK • TAM TEKNE',desc:'Korunmuş U-505 müze örneğine dayalı tam tekne; basınç gövdesi, periskoplar, makine dairesi, bataryalar ve yaşam bölmeleri. Çift şaft ve pervane hareketini X-Ray ile izleyin.',
+    tags:['20 İnceleme Grubu','İki Dizel ve İki Elektrik Motoru','Hareketli Periskoplar','X-Ray Bölmeler'],specs:[['BOY','~76,8 m'],['EN','~6,8 m'],['TAHRİK','Dizel / elektrik'],['MODEL','20 Bağımsız Grup']],tag:'U505-IXC',icon:'⚓',modal:['Tam dış tekne, kule ve güverte donanımı','Basınç teknesi, postalar, kumanda odası ve ranzalar','Çift şaft, pervaneler, periskop ve dümen gösterimi','Griffin MSI müze referansı; iç ayrıntılar yaklaşık'],svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M15 85Q140 60 300 85Q280 115 40 108Z" fill="#626c70" stroke="#1e293b" stroke-width="3"/><path d="M135 80V45H180V80M150 45V20H160" fill="#89949a" stroke="#1e293b" stroke-width="3"/></svg>'}
 
   ];
 
