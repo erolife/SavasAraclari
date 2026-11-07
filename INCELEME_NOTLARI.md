@@ -935,3 +935,9 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 
 
 
+
+### Seçildiğinde model yükleme — 8 Kasım 2026
+- 38 adaptörün betiği ve geometrisi araç seçildiğinde yüklenir. Tiger/Şahi eski çekirdek bağımlılıkları nedeniyle başlangıçta kalır. Ziyaret edilen modeller aynı oturumda önbellekte tutulur; sınırsız gezinti için bellek tahliyesi bu değişikliğin kapsamında değildir.
+- Aynı dosya için eşzamanlı istekler paylaşılır; hata sonrası yeniden deneme ve son araç seçiminin önceliği korunur. Enigma çekirdeği modelinden önce yüklenir. Menü, yüklenmiş nesnelerden değil katalogdan beslenir.
+- Aynı Maxim açılışında kayıtlı mesh 9707 → 809 (%91,7 azalma), parça grubu 702 → 55; araç betiği 40 → 3. GPU geometrisi 796 → 149. Bunlar nesne sayımlarıdır; FPS veya kesin bellek yüzdesi iddiası değildir.
+- Tarayıcıda 40 aracın tümüne menü üzerinden geçiş başarılı. 1440×1000 Maxim ve 390×844 X-Ray görünümü kontrol edildi. Yeni çalışma hatası yok; ortak favicon 404 / ses başlatma uyarısı sürüyor. Loader testi: allowlist, önbellek, eşzamanlı istek, hata/yeniden deneme ve Enigma sırası geçti; J79 entegrasyon/sözdizimi testi geçti.

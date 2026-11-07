@@ -1,0 +1,10 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const env={window:{}};vm.runInNewContext(fs.readFileSync('js/vehicle-loader.js','utf8'),env);
+(async()=>{const calls=[],catalog=['tiger','sahi','maxim','enigma'].map(id=>({id,status:'live'}));let fail=true;
+const loader=env.window.createVehicleLoader(catalog,async url=>{calls.push(url);if(url.includes('maxim')&&fail){fail=false;throw Error('offline');}});
+assert(!loader.has('../secret'));await assert.rejects(loader.prepare('../secret'));assert.equal(calls.length,0);
+await loader.prepare('tiger');await loader.prepare('sahi');assert.equal(calls.length,0);
+await assert.rejects(loader.prepare('maxim'));await Promise.all([loader.prepare('maxim'),loader.prepare('maxim')]);assert.equal(calls.filter(x=>x.includes('maxim')).length,2);
+await loader.prepare('enigma');assert.deepEqual(calls.slice(-2),['js/enigma-core.js','js/vehicles/enigma.js']);await loader.prepare('enigma');assert.equal(calls.length,4);
+const html=fs.readFileSync('simulator.html','utf8');assert.equal((html.match(/<script src="js\/vehicles\//g)||[]).length,2);assert(html.includes('request !== vehicleRequest'));assert(html.includes('await switchVehicle(params.get'));
+console.log('PASS loader: allowlist, legacy exceptions, single request/cache, failure retry, Enigma dependency and async bootstrap');})().catch(e=>{console.error(e);process.exitCode=1;});
