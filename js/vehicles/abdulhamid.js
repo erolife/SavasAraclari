@@ -1,6 +1,6 @@
 // ============================================================================
 // 1886 OSMANLI ABDÜLHAMİD (NORDENFELT II) BUHARLI DENİZALTISI — js/vehicles/abdulhamid.js
-// Dünya tarihinde su altında torpido ateşleyen ilk denizaltı (Taşkızak Tersanesi, 1886/1888)
+// Erken Osmanlı denizaltıcılığı; torpido denemelerine ilişkin kaynak farkları turda açıklanır.
 // 15 Bağımsız Mekanik Parça Grubu • 4 Alt Sistem • Lamm Kızgın Buhar & Dikey Dalış Pervaneleri
 // ============================================================================
 (function () {
@@ -44,7 +44,7 @@
     // ------------------------------------------------------------------------
     const SCHEMES = {
       taskizak1886: {
-        name: '⚓ 1886 Taşkızak Tersanesi (Koyu Demir Gri & Kırmızı Karina)',
+        name: '⚓ Koyu demir ve kırmızı karina · temsili',
         hullUpper: 0x2b343b,
         hullLower: 0x6b261f,
         deckIron: 0x1f262b,
@@ -55,7 +55,7 @@
         water: 0x0e7490
       },
       sarayburnu1888: {
-        name: '💥 1888 Sarayburnu Torpido Atış Testi (Haliç Kömür & Tuz Patinası)',
+        name: '💥 Kömür ve tuz patinası · temsili',
         hullUpper: 0x1e2429,
         hullLower: 0x52211b,
         deckIron: 0x161b20,
@@ -66,7 +66,7 @@
         water: 0x0369a1
       },
       barrow1886: {
-        name: '⚙️ Barrow-in-Furness Fabrika Astarı (Kurşun Gri & Parlak Pirinç)',
+        name: '⚙️ Fabrika grisi ve pirinç · temsili',
         hullUpper: 0x434d56,
         hullLower: 0x333c44,
         deckIron: 0x2e363d,
@@ -77,7 +77,7 @@
         water: 0x0284c7
       },
       deniz_muzesi: {
-        name: '🏛️ İstanbul Deniz Müzesi Sergi Modeli (Siyah/Altın & Meşe)',
+        name: '🏛️ Siyah ve altın sergi yorumu · temsili',
         hullUpper: 0x1c2024,
         hullLower: 0x7f1d1d,
         deckIron: 0x272c33,
@@ -195,7 +195,7 @@
         name: cfg.name,
         subsystem: cfg.subsystem,
         subLabel: cfg.sub,
-        desc: cfg.desc,
+        desc: cfg.desc + ' İç düzen, renkler ve hareket oranları yaklaşık sergi yorumudur; özgün imalat planı değildir.',
         material: cfg.mat,
         weight: cfg.weight,
         spec: cfg.spec,
@@ -280,10 +280,10 @@
       id: 'ab_lamm_cisterns',
       name: '6. Baş ve Kıç "Lamm" Kızgın Su / Buhar Biriktirme Sarnıçları',
       sub: 'ALT SİSTEM: LAMM KIZGIN BUHAR SİSTEMİ & MAKİNE',
-      desc: 'Elektrik akülerinin henüz yetersiz olduğu 1886 yılında su altında buharlı tahrik sağlayan Emile Lamm sistemi iki dev kızgın su sarnıcı (~8 ton kapasiteli). Satıh seyrinde kazandan gelen fazla buhar bu sarnıçlardaki suyu yüksek basınç altında aşırı ısıtır; dalışta ocak sönükken bu sarnıçlardan salınan gizli buhar makineyi saatlerce çalıştırır (ancak iç ortamı ~50°C üzerine kadar ısıtırdı).',
+      desc: 'Dalış sırasında önceden depolanan ısıdan yararlanma prensibini gösteren hazneler. İki haznenin boyutu ve konumu yaklaşık kesit yorumudur; özgün kapasite veya dalış süresi iddiası değildir.',
       mat: 'Perçinli Basınçlı Çelik Sarnıçlar & Bakır Buhar Boruları',
       weight: '~14 Ton (Dolu Sarnıçlar)',
-      spec: 'Lamm Termal Akümülatör • ~4 Knot Su Altı Menzili',
+      spec: 'Isı biriktirme prensibi · yaklaşık kesit',
       loc: 'Baş (z = +2,55 m) ve Kıç (z = -2,85 m) Bölmeleri',
       subsystem: 'steam_lamm',
       explode: [-1.6, 0.9, 0.5]
@@ -384,9 +384,9 @@
 
     const partWhiteheadTorpedo = makePart({
       id: 'ab_whitehead_torpedo',
-      name: '14. 356 mm Schwarzkopff / Whitehead Torpidosu (İlk Su Altı Atışı — 1888)',
+      name: '14. 356 mm Schwarzkopff / Whitehead Torpidosu (Sergi Rekonstrüksiyonu)',
       sub: 'ALT SİSTEM: 356 MM TORPİDO KOVANI & GÜVERTE TOPLARI',
-      desc: 'Şubat 1888\'de Sarayburnu–Salacak açıklarında su altındayken ateşlenerek eski bir hedef gemisini batıran 356 mm (14 inç) çapında, basınçlı hava tahrikli Schwarzkopff (fosfor-bronz) / Whitehead tipi torpido. Arkasında ters yönde dönen çift pervane ve baş kısmında harp başlığı bulunur.',
+      desc: 'Dönemin kendinden tahrikli torpidosunu temsil eder. Abdülhamid ve Abdülmecid denemelerine ilişkin ilk atış anlatıları kaynaklarda farklıdır. İki atışlık stok, yalnızca sergi etkileşimidir.',
       mat: 'Fosfor-Bronz / Çelik Gövde & Basınçlı Hava Motoru',
       weight: '2 × ~265 kg (1 Kovanda + 1 Yedek)',
       spec: 'Ø 356 mm • Boy ~4,5 m • 2 Adet Mühimmat',
@@ -423,10 +423,10 @@
       const r1 = hullRadiusAtZ(z1);
 
       // Üst yarı kabuk (koyu demir gri) ve alt yarı karina (kırmızı astar)
-      const upperGeo = new THREE.CylinderGeometry(r1, r0, dz, 28, 1, true, -Math.PI * 0.5, Math.PI);
+      const upperGeo = new THREE.CylinderGeometry(r1, r0, dz, 28, 1, true, Math.PI * 0.5, Math.PI);
       addMesh(partOuterHull, upperGeo, matHullUpper, [0, Y_HULL, zMid], [Math.PI / 2, 0, 0]);
 
-      const lowerGeo = new THREE.CylinderGeometry(r1, r0, dz, 28, 1, true, Math.PI * 0.5, Math.PI);
+      const lowerGeo = new THREE.CylinderGeometry(r1, r0, dz, 28, 1, true, -Math.PI * 0.5, Math.PI);
       addMesh(partOuterHull, lowerGeo, matHullLower, [0, Y_HULL, zMid], [Math.PI / 2, 0, 0]);
 
       // Her 2 segmentte bir dış perçin kuşağı
@@ -618,8 +618,8 @@
       bevMain.position.set(0, Y_SHAFT, zV - R_BEVEL_VERT);
       partVerticalScrews.add(bevMain);
       addMesh(bevMain, new THREE.CylinderGeometry(R_BEVEL_MAIN, R_BEVEL_MAIN * 0.78, 0.06, 18), matBrass, [0, 0, 0], [Math.PI / 2, 0, 0]);
-      for (let t = 0; t < 12; t++) {
-        const a = (t / 12) * Math.PI * 2;
+      for (let t = 0; t < 16; t++) {
+        const a = (t / 16) * Math.PI * 2;
         addMesh(bevMain, new THREE.BoxGeometry(0.028, 0.032, 0.055), matBrass, [Math.cos(a) * R_BEVEL_MAIN, Math.sin(a) * R_BEVEL_MAIN, 0], [0, 0, a]);
       }
       mainBevelVisuals.push(bevMain);
@@ -812,10 +812,7 @@
       const pitchRad = THREE.MathUtils.degToRad(S.pitchDeg);
       rudderPivot.rotation.y = helmRad;
       helmWheelGrp.rotation.z = -helmRad * 2.5;
-      deckGunSwivels.forEach(sw => {
-        sw.rotation.y = helmRad * 0.8;
-        sw.rotation.x = -pitchRad * 0.5;
-      });
+      // Güverte topları dümen ve derinlik kumandasından bağımsızdır.
       hydroplanePivots.forEach(hp => { hp.rotation.x = pitchRad; });
 
       // 4. Baş torpido kovan kapağı (+75° = 1.309 rad açılır)
@@ -843,6 +840,9 @@
       }
     }
 
+    mainShaftGrp.name = 'ab-shaft';
+    activeTorpedoGrp.name = 'ab-torpedo';
+    tubeShutterPivot.name = 'ab-shutter';
     // İlk kurulumda durumu senkronize et
     syncVisualState(0);
 
@@ -850,7 +850,7 @@
     // KAMERA AÇILARI VE 6 ADIMLI REHBERLİ TUR
     // ========================================================================
     const camPresets = {
-      iso: { pos: [9.2, 4.4, 8.8], look: [0, 1.3, 0.2] },
+      iso: { pos: [14, 6.0, 14], look: [0, 1.3, 0.2] },
       front: { pos: [2.8, 2.3, 8.4], look: [0, 1.5, 3.8] },
       breech: { pos: [2.4, 2.2, 5.2], look: [0, 1.76, 4.65] },
       engine: { pos: [3.4, 2.1, -1.8], look: [0, 1.25, -1.2] },
@@ -861,7 +861,7 @@
     const tourSteps = [
       {
         title: 'Genel Bakış: 1886 Osmanlı Abdülhamid (Nordenfelt II) Denizaltısı',
-        desc: '6 Eylül 1886\'da İstanbul Taşkızak Tersanesi\'nde suya indirilen ve 1888\'de Sarayburnu açıklarında su altında torpido ateşleyerek dünya tarihine geçen ilk denizaltı. Puro biçimli perçinli gövdesi 30,5 metre boyundadır.',
+        desc: "1886’da Taşkızak’ta suya indirilen Nordenfelt II, Osmanlı donanmasının erken denizaltı deneylerini temsil eder. Puro biçimli gövde, güverte topları ve camlı kumanda mahalli dönemin yüzey gemisi anlayışını da taşır.",
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -870,7 +870,7 @@
       },
       {
         title: 'Lamm Kızgın Buhar Biriktirme Sarnıçları (Termal Akümülatör)',
-        desc: 'Elektrik akülerinin henüz yetersiz olduğu dönemde su altında buhar gücü sağlamak için baş ve kıçta iki dev Lamm sıcak su sarnıcı kullanılmıştır. Satıhta kazandan depolanan kızgın su, dalışta ocak sönükken saatlerce buhar üretir.',
+        desc: "Dalışta ocak yakmak yerine önceden biriktirilen ısıdan yararlanılması, buharlı denizaltının ayırt edici fikriydi. Kesitteki iki hazne ve borular, bu prensibin yaklaşık görsel anlatımıdır.",
         explode: 0,
         cutaway: true,
         sub: 'all',
@@ -879,7 +879,7 @@
       },
       {
         title: 'Teleskopik Baca & 250 BG Bileşik Buhar Makinesi',
-        desc: 'Dalış emri verildiğinde kömürlü kazan ocağı söndürülür, teleskopik duman bacası gövde içine indirilir ve üst sızdırmaz kapak kilitlenir. 250 BG çift silindirli bileşik makine Lamm sarnıçlarından gelen gizli buharla çalışmaya devam eder.',
+        desc: "Yüzey ve dalış kiplerini karşılaştırın: baca ile ocak görünüşü değişirken buhar makinesinin hareketi ayrı kumandadan durdurulabilir. İç yerleşim ve devirler ölçülmüş performans verisi değildir.",
         explode: 0,
         cutaway: true,
         sub: 'all',
@@ -888,7 +888,7 @@
       },
       {
         title: 'Baş ve Kıç Dikey Dalış Pervaneleri (90° Konik Dişli)',
-        desc: 'Abdülhamid pozitif yüzerlikle daldığı için su altında kalması baş ve kıçtaki iki dikey pervanenin sürekli aşağı doğru çekiş üretmesine bağlıydı. Bu pervaneler ana şafttan 90° konik dişli çiftiyle (1:2 hız oranında) tahrik edilir.',
+        desc: "Dikey pervaneler, Nordenfelt tasarımının dalış yaklaşımını gösterir. Sergideki dişli çifti ve hız oranı açıklayıcı modellemedir; teknenin özgün aktarma planı olarak okunmamalıdır.",
         explode: 0,
         cutaway: true,
         sub: 'all',
@@ -897,7 +897,7 @@
       },
       {
         title: 'Cam Gözetleme Kubbeli Komutan Kulesi & Trim Zorluğu',
-        desc: 'Komutan, sırt güvertesindeki cam kubbeli kuleden (conning cupola) dümeni ve dikey dalış pervanelerini yönetirdi. Sıcak suyun çalkalanması ve torpido ateşlenmesi geminin boyuna dengesini (trim) hızla değiştirdiği için kullanımı büyük ustalık gerektiriyordu.',
+        desc: "Boyuna denge, bu teknelerin başlıca sorunuydu. Mürettebatın yer değiştirmesi ve torpido denemeleri trim yönetimini zorlaştırıyordu. Gösterim tam bir hidrodinamik simülasyon değildir.",
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -906,7 +906,7 @@
       },
       {
         title: '356 mm Baş Torpido Kovanı & Schwarzkopff Torpidosu (1888)',
-        desc: 'Pruva üstündeki harici kovanda taşıdığı 356 mm (14 inç) Schwarzkopff/Whitehead torpidosunu su altındayken ateşleyerek hedef gemiyi batırmış ve dünya deniz harp tarihinde su altında torpido atan ilk denizaltı olmuştur.',
+        desc: "İlk su altı torpido atışı yaygın biçimde Abdülhamid’e atfedilir; kaynaklar tarih ve tekne konusunda ayrışır. USNI’nin 1974 incelemesi Ocak 1888 İzmit denemesini Abdülmecid adıyla anlatır. Bu nedenle kesin bir Sarayburnu zaferi sunulmuyor.",
         explode: 0,
         cutaway: true,
         sub: 'all',
@@ -923,14 +923,15 @@
 
     const ui = {
       title: '1886 OSMANLI ABDÜLHAMİD (NORDENFELT II) BUHARLI DENİZALTISI',
-      sub: 'Dünyada Su Altında Torpido Ateşleyen İlk Denizaltı • Taşkızak Tersanesi (1886) • Lamm Kızgın Buhar & Dikey Pervaneler',
+      sub: 'Erken Osmanlı Denizaltıcılığı • Taşkızak, 1886 • Buhar Gücü ve Denge Sorunu',
       badge: 'ABDÜLHAMİD — 1886',
       partCount: '15 Ana Grup',
-      portraitCameraScale: 1.35,
+      portraitCameraScale: 1.7,
+      fog: {near: 45, far: 100},
       shadowExtent: 11,
       sliders: [
         { label: 'Buhar Makinesi & Ana Uskur Devri', min: 0, max: 90, step: 1, fmt: v => `${Math.round(v)} RPM` },
-        { label: 'Kıç İstikamet Dümeni & Nişan Açısı', min: -25, max: 25, step: 1, fmt: v => `${v > 0 ? '+' : ''}${Math.round(v)}°` },
+        { label: 'Kıç İstikamet Dümeni', min: -25, max: 25, step: 1, fmt: v => `${v > 0 ? '+' : ''}${Math.round(v)}°` },
         { label: 'Derinlik / Yunuslama Kanadı (Hydroplane)', min: -15, max: 15, step: 1, fmt: v => `${v > 0 ? '+' : ''}${Math.round(v)}°` }
       ],
       buttons: {
@@ -939,7 +940,7 @@
         mode: true
       },
       telemetryTag: 'TAŞKIZAK TERSANESİ — 1886',
-      statLabels: ['SEYİR HIZI / GÜÇ', 'DALIŞ & BACA DURUMU', '356 MM TORPİDO', 'DİKEY PERVANE DEVRİ'],
+      statLabels: ['TEMSİLİ MAKİNE DEVRİ', 'DALIŞ & BACA DURUMU', '356 MM TORPİDO', 'DİKEY PERVANE DEVRİ'],
       camLabels: {
         iso: 'İzometrik Genel',
         front: 'Pruva & Kule',
@@ -1024,6 +1025,7 @@
 
       onSlider(idx, val) {
         const v = Number(val);
+        if (!Number.isFinite(v)) return {};
         if (idx === 0) {
           S.rpm = Math.max(0, Math.min(90, v));
         } else if (idx === 1) {
@@ -1037,6 +1039,7 @@
 
       onButton(name) {
         if (name === 'terrain') {
+          if (S.torpedoFiring) return {active: S.shutterOpen, msg: 'Torpido geçişi tamamlanana kadar kapak açık tutulur.'};
           S.shutterOpen = !S.shutterOpen;
           ui.buttons.terrain = S.shutterOpen
             ? '🛡️ Torpido Kovan Kapağı: AÇIK (Atışa Hazır)'
@@ -1089,6 +1092,7 @@
       },
 
       onFire() {
+        if (S.torpedoFiring) return {ok: false, msg: 'Torpido gösterimi sürüyor.'};
         if (S.ammo <= 0) {
           S.ammo = 2;
           S.torpedoFiring = false;
@@ -1118,12 +1122,14 @@
       },
 
       fireButtonLabel() {
+        if (S.torpedoFiring) return '⏳ TORPİDO GÖSTERİMİ SÜRÜYOR';
         if (S.ammo <= 0) return '🔄 356 MM TORPİDO İKMALİ YAP (2 ADET)';
         if (!S.shutterOpen) return '🔒 KOVAN KAPAĞI KAPALI (EMNİYET KİLİDİ)';
         return `🚀 356 MM SCHWARZKOPFF TORPİDOSU ATEŞLE (${S.ammo}/2)`;
       },
 
       mobileFireButtonLabel() {
+        if (S.torpedoFiring) return '⏳ Gösterim sürüyor';
         if (S.ammo <= 0) return '🔄 İkmal Yap';
         if (!S.shutterOpen) return '🔒 Kapak Kapalı';
         return '🚀 Torpido At';
@@ -1135,15 +1141,12 @@
 
       getStats() {
         const effRpm = S.autoSteam ? S.rpm : 0;
-        const maxKt = S.mode === 'submerged' ? 4.0 : 6.0;
-        const speedKt = ((effRpm / 90) * maxKt).toFixed(1);
-        const ihp = Math.round((effRpm / 90) * 250);
         const diveStat = S.mode === 'submerged'
           ? 'Dalmış <span>(Baca İnik)</span>'
           : 'Satıh <span>(Baca Açık)</span>';
         const vertRpm = S.mode === 'submerged' ? effRpm * 2 : 0;
         return [
-          `${speedKt} <span>Knot (${ihp} BG)</span>`,
+          `${effRpm} <span>RPM · sergi animasyonu</span>`,
           diveStat,
           `${S.ammo} / 2 <span>Adet (356 mm)</span>`,
           `${vertRpm} <span>RPM (1:2 Konik)</span>`

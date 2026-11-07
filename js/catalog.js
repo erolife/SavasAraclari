@@ -360,23 +360,60 @@
   VEHICLES.push({"id":"turbanhelmet","sim":"turbanhelmet","group":8,"status":"live","year":1480,"yearLabel":"15. yüzyıl sonu","eraLabel":"TÜRKMEN GELENEĞİ • OLASI AKKOYUNLU BAĞLANTISI","domain":"land","era":"medieval","energy":["muscle"],"role":["armor"],"origin":"turkmen","name":"Akkoyunlu Geleneğinde Bezemeli Miğfer","sub":"SARIK MİĞFER • METAL KABUK • GÜMÜŞ VE ALTIN RENKLİ BEZEME","desc":"Met 04.3.461 eserinin büyütülmüş yorumu. İçi boş gövde, göz üstü açıklıkları, yatay bezeme kuşakları ve düşey burun koruması. Kabuğu kaldırıp astar yorumunu inceleyin; zincir boyunluk tamamlamasını ayrıca açın.","tags":["Somut Müze Eseri","İçi Boş Kabuk","Ayrı Tamamlama Katmanı"],"specs":[["ESER","Met 04.3.461"],["DÖNEM","15. yüzyıl sonu"],["KAYNAK BOYU","29,2 cm"],["KAYNAK AĞIRLIĞI","1496 g"]],"tag":"TURKMAN-TURBAN-HELMET","icon":"🪖","modal":["İçi boş gövde, alt kenar ve göz üstü açıklıkları","Yatay kuşaklar, madalyonlar ve bitkisel bezeme yorumu","Kılavuz içinde kayan burun koruması ve delikli üstlük","Ayrılabilir astar ve isteğe bağlı zincir tamamlama yorumu"],"svg":"<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M91 123V83Q88 59 128 32L160 4L192 32Q232 59 229 83V123L180 120L170 112H150L140 120Z\" fill=\"#465057\" stroke=\"#a38e59\" stroke-width=\"2\"/><path d=\"M115 52H205M104 65H216M95 78H225M94 92H226\" stroke=\"#b3a579\" stroke-width=\"3\"/><path d=\"M160 126V73\" stroke=\"#b5b7b1\" stroke-width=\"7\"/><ellipse cx=\"160\" cy=\"66\" rx=\"12\" ry=\"16\" fill=\"#b5b7b1\"/><path d=\"M107 105L117 98L127 105L117 115ZM193 105L203 98L213 105L203 115Z\" fill=\"none\" stroke=\"#baa568\" stroke-width=\"2\"/></svg>"});
   VEHICLES.push({"id":"maxim","sim":"maxim","group":9,"status":"live","year":1884,"yearLabel":"1884 / 1895 sonrası","eraLabel":"SANAYİ DEVRİMİ","domain":"land","era":"industrial","energy":["gunpowder"],"role":["smallarms"],"origin":"uk","name":"Maxim–Nordenfelt Makineli Tüfeği","sub":"GERİ TEPMEDEN OTOMATİK ÇEVRİME","desc":"Maxim’in 1884 patentli otomatik silah fikri; Museums Victoria ST 23731’deki 1895 sonrası örnek üzerinden. Pirinç su ceketi, kumaş şerit, yan yay kapağı ve açılan üst kapak. Gatling ile karşılaştırarak insan gücünden geri tepme enerjisine geçişi keşfedin.","tags":["Su Ceketi","Açılan Üst Kapak","Gatling Karşılaştırması","Müze Referansı"],"specs":[["GÖRSEL ÖRNEK","ST 23731 • 1895 sonrası"],["KAYNAK BOYU / KÜTLESİ","110 cm / 27,26 kg"],["KALİBRE (KAYNAK)",".450/.577 in."],["ÇALIŞMA","Geri tepme • şerit besleme"]],"tag":"MAXIM-NORDENFELT","icon":"⚙️","modal":["Pirinç ceket, iç namlu ve açık besleme pencereleri","Kumaş şerit, kartuş cepleri ve yüzey ayrıntıları","Menteşeli üst kapak ve yavaşlatılmış temsili iç hareket","Gatling karşılaştırması; kaynak eser ve yorumlanan parçalar ayrı belirtilir"],"svg":"<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M30 104H290\" stroke=\"#475569\" stroke-width=\"4\"/><path d=\"M100 102V77M220 102V82\" stroke=\"#475569\" stroke-width=\"4\"/><rect x=\"31\" y=\"53\" width=\"135\" height=\"27\" rx=\"6\" fill=\"#ae8c50\" stroke=\"#665639\" stroke-width=\"2\"/><rect x=\"166\" y=\"45\" width=\"104\" height=\"43\" rx=\"3\" fill=\"#3c444a\"/><path d=\"M270 50H286V82H270M13 66H31\" fill=\"none\" stroke=\"#7e6844\" stroke-width=\"5\"/><path d=\"M176 59Q202 67 187 111\" fill=\"none\" stroke=\"#b6a17b\" stroke-width=\"10\"/><path d=\"M182 72H251\" stroke=\"#b99a5b\" stroke-width=\"6\"/></svg>"});
   VEHICLES.push({
-    id: 'abdulhamid', sim: 'abdulhamid', group: 10, status: 'live',
-    year: 1886, yearLabel: '1886', eraLabel: 'SANAYİ DEVRİMİ • OSMANLI BAHRİYESİ',
-    domain: 'sea', era: 'industrial', energy: ['steam'], role: ['artillery', 'defense'], origin: 'ottoman',
-    name: 'Osmanlı Abdülhamid (Nordenfelt II) Buharlı Denizaltısı',
-    sub: 'DÜNYADA SU ALTINDA TORPİDO ATEŞLEYEN İLK DENİZALTI • LAMM KIZGIN BUHAR & DİKEY PERVANELER',
-    desc: '6 Eylül 1886\'da İstanbul Taşkızak Tersanesi\'nde suya indirilen ve 1888\'de Sarayburnu açıklarında su altında 356 mm torpido ateşleyerek dünya tarihine geçen buharlı denizaltı. X-Ray ile Lamm kızgın su sarnıçlarını, teleskopik bacayı, 250 BG bileşik buhar makinesini ve 90° konik dişliyle çalışan baş/kıç dikey dalış pervanelerini inceleyin.',
-    tags: ['Lamm Kızgın Buhar Sarnıçları', 'Baş/Kıç Dikey Dalış Pervaneleri', '356 mm Schwarzkopff Torpidosu', '15 İnceleme Grubu'],
-    specs: [['TAM BOY / EN', '30,5 m × 3,66 m (~100 Ton)'], ['TAHRİK', '250 BG Buhar + Lamm Sarnıçları'], ['SİLAH', '356 mm Torpido + 2×35 mm Top'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
-    tag: 'ABDULHAMID-NORDENFELT-1886', icon: '⚓',
-    modal: [
-      'Puro biçimli perçinli çelik gövde, 24 halka posta, cam gözetleme kubbeli kule ve Taşkızak kızak beşikleri',
-      'Kömürlü deniz kazanı, indirilebilir teleskopik baca ve su altı buharı depolayan ikiz Lamm kızgın su sarnıçları',
-      'Ana şafttan 90° konik dişli (1:2 oran) ile tahrik edilen baş ve kıç dikey dalış pervaneleri',
-      'Pruva üstü 356 mm harici torpido kovanı, menteşeli kapak emniyet kilidi ve Schwarzkopff torpido atışı'
+  "id": "abdulhamid",
+  "sim": "abdulhamid",
+  "group": 10,
+  "status": "live",
+  "year": 1886,
+  "yearLabel": "1886",
+  "eraLabel": "SANAYİ DEVRİMİ • OSMANLI BAHRİYESİ",
+  "domain": "sea",
+  "era": "industrial",
+  "energy": [
+    "steam"
+  ],
+  "role": [
+    "artillery",
+    "defense"
+  ],
+  "origin": "ottoman",
+  "name": "Osmanlı Abdülhamid (Nordenfelt II) Buharlı Denizaltısı",
+  "sub": "ERKEN OSMANLI DENİZALTICILIĞI · BUHAR GÜCÜ VE DENGE",
+  "desc": "1886’da Taşkızak’ta suya indirilen Nordenfelt II. Buhar gücü, dikey dalış pervaneleri ve boyuna denge sorunları üzerinden erken Osmanlı denizaltıcılığını keşfedin. İlk su altı torpido atışına ilişkin tarih ve tekne bilgileri kaynaklarda ayrışır; model yaklaşık bir sergi rekonstrüksiyonudur.",
+  "tags": [
+    "Lamm Kızgın Buhar Sarnıçları",
+    "Baş/Kıç Dikey Dalış Pervaneleri",
+    "356 mm Schwarzkopff Torpidosu",
+    "15 İnceleme Grubu"
+  ],
+  "specs": [
+    [
+      "DÖNEM",
+      "1886 · Osmanlı denizaltı deneyleri"
     ],
-    svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 58 Q90 54 160 58 T308 58" stroke="#0284c7" stroke-width="1.6" stroke-dasharray="5 3"/><path d="M22 82 Q95 54 160 54 Q225 54 298 82 Q225 110 160 110 Q95 110 22 82 Z" fill="#334155" fill-opacity="0.32" stroke="#0f172a" stroke-width="2.2"/><rect x="148" y="38" width="14" height="20" rx="2" fill="#475569" stroke="#0f172a" stroke-width="1.8"/><path d="M178 55 A12 10 0 0 1 202 55 Z" fill="#38bdf8" fill-opacity="0.5" stroke="#0f172a" stroke-width="1.8"/><rect x="216" y="48" width="54" height="9" rx="3" fill="#b45309" fill-opacity="0.45" stroke="#78350f" stroke-width="1.8"/><ellipse cx="105" cy="82" rx="24" ry="12" fill="#d97706" fill-opacity="0.3" stroke="#b45309" stroke-width="1.6"/><ellipse cx="215" cy="82" rx="24" ry="12" fill="#d97706" fill-opacity="0.3" stroke="#b45309" stroke-width="1.6"/><line x1="62" y1="62" x2="62" y2="102" stroke="#0284c7" stroke-width="2.5"/><line x1="258" y1="62" x2="258" y2="102" stroke="#0284c7" stroke-width="2.5"/></svg>'
-  });
+    [
+      "TAHRİK",
+      "Buhar gücü"
+    ],
+    [
+      "GÖSTERİM",
+      "Temsili iç düzen ve hareket"
+    ],
+    [
+      "İNCELEME",
+      "15 bağımsız grup"
+    ]
+  ],
+  "tag": "ABDULHAMID-NORDENFELT-1886",
+  "icon": "⚓",
+  "modal": [
+    "Perçinli gövde, camlı kumanda mahalli ve güverte ayrıntıları",
+    "Yüzey ve dalış kipleri; baca ve buhar makinesi gösterimi",
+    "Dikey pervaneler ve yaklaşık aktarma modeli",
+    "Kaynak farklılıkları açıklanan torpido denemeleri ve Türk tarihi rotası"
+  ],
+  "svg": "<svg viewBox=\"0 0 320 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 58 Q90 54 160 58 T308 58\" stroke=\"#0284c7\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><path d=\"M22 82 Q95 54 160 54 Q225 54 298 82 Q225 110 160 110 Q95 110 22 82 Z\" fill=\"#334155\" fill-opacity=\"0.32\" stroke=\"#0f172a\" stroke-width=\"2.2\"/><rect x=\"148\" y=\"38\" width=\"14\" height=\"20\" rx=\"2\" fill=\"#475569\" stroke=\"#0f172a\" stroke-width=\"1.8\"/><path d=\"M178 55 A12 10 0 0 1 202 55 Z\" fill=\"#38bdf8\" fill-opacity=\"0.5\" stroke=\"#0f172a\" stroke-width=\"1.8\"/><rect x=\"216\" y=\"48\" width=\"54\" height=\"9\" rx=\"3\" fill=\"#b45309\" fill-opacity=\"0.45\" stroke=\"#78350f\" stroke-width=\"1.8\"/><ellipse cx=\"105\" cy=\"82\" rx=\"24\" ry=\"12\" fill=\"#d97706\" fill-opacity=\"0.3\" stroke=\"#b45309\" stroke-width=\"1.6\"/><ellipse cx=\"215\" cy=\"82\" rx=\"24\" ry=\"12\" fill=\"#d97706\" fill-opacity=\"0.3\" stroke=\"#b45309\" stroke-width=\"1.6\"/><line x1=\"62\" y1=\"62\" x2=\"62\" y2=\"102\" stroke=\"#0284c7\" stroke-width=\"2.5\"/><line x1=\"258\" y1=\"62\" x2=\"258\" y2=\"102\" stroke=\"#0284c7\" stroke-width=\"2.5\"/></svg>"
+});
   VEHICLES.push({
     id: 'greekfire', sim: 'greekfire', group: 10, status: 'live',
     year: 672, yearLabel: 'MS 672', eraLabel: 'ORTA ÇAĞ • BİZANS DONANMASI',
@@ -499,17 +536,17 @@
     }
   ],
   "abdulhamid": [
-    {
-      "title": "Nordenfelt buharlı denizaltı modeli ve Lamm sistemi — Science Museum Group",
-      "url": "https://collection.sciencemuseumgroup.org.uk/objects/co42231/model-of-nordenfelt-submarine-boat",
-      "note": "Garrett ve Nordenfelt'in puro gövdeli, dikey dalış pervaneli ve Lamm sıcak su sarnıçlı buharlı denizaltı tasarımı."
-    },
-    {
-      "title": "Abdülhamid Denizaltısı (1886) — Deniz Müzesi Komutanlığı",
-      "url": "https://denizmuzesi.dzkk.tsk.tr/",
-      "note": "Taşkızak Tersanesi'nde 6 Eylül 1886'da suya indirilen Abdülhamid denizaltısının tarihsel bağlamı; iç yerleşim yaklaşık müze kesitidir."
-    }
-  ],
+  {
+    "title": "US Naval Institute — The Sultan’s Submarines (1974)",
+    "url": "https://www.usni.org/magazines/proceedings/1974/october/sultans-submarines",
+    "note": "İnşa ve denemeler; Ocak 1888 torpido denemesi Abdülmecid adıyla aktarılır. İç yerleşim ve renkler kesin rekonstrüksiyon değildir."
+  },
+  {
+    "title": "University of Melbourne — Nordenfelt II",
+    "url": "https://torp.esrc.unimelb.edu.au/biogs/E000136b.htm",
+    "note": "İlk su altı torpido atışını Abdülhamid’e atfeden anlatı; USNI ile kaynak farkı korunur."
+  }
+],
   "maxim": [{"title":"Museums Victoria — ST 23731","url":"https://collections.museumsvictoria.com.au/items/406622","note":"1895 sonrası Maxim-Nordenfelt; görsel referans, 110 cm, 27,26 kg. İç geometri yaklaşık; mesnet çağdaş sergi yorumudur."},{"title":"National Army Museum — Maxim’in tarihsel bağlamı","url":"https://collection.nam.ac.uk/detail.php?acc=1974-07-41-1","note":"1884 patenti ve sömürge savaşları. Bu kayıttaki Extra Light sürümü modelin görsel referansı değildir."},{"title":"Royal Armouries — Birinci Dünya Savaşı silahları","url":"https://royalarmouries.org/objects-and-stories/stories/arms-of-the-first-world-war","note":"Maxim’den Vickers’a uzanan gelişim ve savaşın insan bedeli."}],
   "turbanhelmet": [{"title":"Turban Helmet — The Met, 04.3.461","url":"https://www.metmuseum.org/art/collection/search/22014","note":"15. yy. sonu, Batı İran / Türkmen zırh geleneği. Müze Akkoyunlu bağlantısını olasılıkla belirtir. 29,2 cm, 1496 g."},{"title":"Helmet with Aventail — The Met, 50.87","url":"https://www.metmuseum.org/art/collection/search/24813","note":"Yalnız isteğe bağlı zincir boyunluk için karşılaştırma. 04.3.461 ile aynı eser değildir; astar ve zincir yorumdur."}],
   "dragonmace": [{"title":"Court and Cosmos — Met, 2016, katalog 146, s.234","url":"https://www.metmuseum.org/met-publications/court-and-cosmos","note":"Anadolu, 12–13. yüzyıl; Furusiyya R-113, 35 cm. Küçük hayvanın türü kesin değil; boğa/aslan yorumları var."},{"title":"Sergi kataloğu PDF — ejder başlı gürz fotoğrafı","url":"https://cdn.sanity.io/files/cctd4ker/production/ee5d53316c311c05a2bf22ae2a99460ea2b8e5cd.pdf","note":"PDF sayfa 249 / basılı sayfa 234. Başın silueti ve yüzey ayrıntıları için görsel kaynak."}],

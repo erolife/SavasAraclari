@@ -964,3 +964,9 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Dört yeni modelin tarayıcıda seçimi/yüklenmesi doğrulandı. Çizelge 44 kartı ve dört yeni model bağlantısını gösteriyor. Katalog 44 araç / 76 kaynak. Birleşim sonrası 36 test dosyası yeniden geçti. Önceki performans sayımları 40 araçlık tabanda alınmış karşılaştırma kaydıdır.
 
 - İkinci eşzamanlı güncelleme f806866 (Strv 103) de korunarak alındı. Yeni modelin doğrudan açılışı doğrulandı; son katalog 45 araç / 78 kaynak. Çizelge ve filtre testleri güncel katalogla geçti.
+
+### Abdülhamid incelemesi — 8 Kasım 2026
+- USNI, The Sultan’s Submarines (1974) ile Melbourne Nordenfelt II kaydı karşılaştırıldı. Tekne/tarih farkı katalog, tur ve rota içinde açıklandı; kesin Sarayburnu 1888 hedef batırma anlatısı kaldırıldı. İç yerleşim, renkler ve hareket oranları yaklaşık sergi yorumu olarak belirtildi.
+- Ters renklendirilmiş üst/alt gövde yarıları, dümenle birlikte dönen güverte topları, tekrarlı atışta stok kaybı ve son torpidonun görünür kalması düzeltildi. Genel ve mobil kadraj genişletildi; mobilde sis nedeniyle silikleşme giderildi.
+- Türk tarihi rotası dokuz durağa çıkarıldı. Abdülhamid, Osmanlı yayı ile Nusret arasına eklendi; kayıtlı ilerleme korunur. Tarayıcıda 1/9 ilerleme yenileme sonrası doğrulandı.
+- tests/abdulhamid.cjs: gerçek Three.js geometrisi, malzeme, gövde yarıları, sıfır devir, duraklatma, geçersiz slider, kapak kilidi, ardışık tıklama, son torpido ve ikmal geçti. Rota ve J79 entegrasyon testleri geçti. 1440×1000 genel/X-Ray ve 390×844 model/rota görsel kontrolleri tamamlandı.

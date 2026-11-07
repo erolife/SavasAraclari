@@ -1,0 +1,9 @@
+const {common,assert,THREE}=require('./model-harness.cjs');const {ad,meshes}=common('abdulhamid',15,require('./canvas-stub.cjs'));
+const shaft=ad.root.getObjectByName('ab-shaft'),torpedo=ad.root.getObjectByName('ab-torpedo'),shutter=ad.root.getObjectByName('ab-shutter');
+ad.onSlider(0,0);const angle=shaft.rotation.z;ad.update(.1);assert.equal(shaft.rotation.z,angle);
+ad.onSlider(0,'bad');assert.equal(ad.getSliderValues()[0],0);ad.onSlider(0,200);assert.equal(ad.getSliderValues()[0],90);ad.update(.1);assert.notEqual(shaft.rotation.z,angle);
+ad.onButton('sweep');const stopped=shaft.rotation.z;ad.update(.1);assert.equal(shaft.rotation.z,stopped);
+ad.onButton('terrain');assert.equal(ad.onFire().ok,false);assert.equal(shutter.rotation.x,0);ad.onButton('terrain');assert.equal(ad.onFire().ok,true);assert.equal(ad.onFire().ok,false);ad.onButton('terrain');assert.equal(ad.buttonActive('terrain'),true);for(let i=0;i<20;i++)ad.update(.1);assert.equal(ad.onFire().ok,true);assert.equal(ad.onFire().ok,false);for(let i=0;i<20;i++)ad.update(.1);assert.equal(torpedo.visible,false);assert.equal(ad.onFire().refill,true);assert.equal(torpedo.visible,true);
+// Cylinder halves must occupy their advertised upper/lower hull side after rotation.
+ad.root.updateMatrixWorld(true);for(const m of meshes.filter(m=>['hullUpper','hullLower'].includes(m.material.userData.abRole)&&m.geometry.type==='CylinderGeometry')){const a=m.geometry.attributes.position;const v=new THREE.Vector3();let y=0;for(let i=0;i<a.count;i++){v.fromBufferAttribute(a,i).applyMatrix4(m.matrixWorld);y+=v.y;}y/=a.count;assert(m.material.userData.abRole==='hullUpper'?y>m.position.y:y<m.position.y);}
+console.log('PASS Abdülhamid: geometry, materials, hull halves, shaft stop, finite sliders, cap lock, repeated fire, last torpedo and refill');
