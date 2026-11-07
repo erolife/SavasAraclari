@@ -644,3 +644,9 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 
 ### Üç modelin ortak son doğrulaması
 25 test dosyası başarılı; katalog 33 aktif araç ve 54 HTTPS kaynak içeriyor. Yeni üç kartın simülatör bağlantıları, kaynak paneli ve kronolojik araç geçişi tarayıcıda kontrol edildi. Mobil portre ölçekleri ve bağlama uygun eylem etiketleri ayrı ayarlandı.
+
+
+## 7 Kasım 2026 — Nusret
+- Kaynaklar: https://www.msb.gov.tr/SlaytHaber/932021-42524 ve https://www.gmo.org.tr/upl/gdt_dergi/196.pdf (s.64). Ana oran ~40 × 7,4 m. Almanya inşası ve Osmanlı hizmeti açıkça ayrıldı. Özgün gemi / modern müze gemisi karıştırılmadı; iç makineler ve yerleşim yaklaşık eğitim kesitidir.
+- 26 grup / 441 mesh: tam karina, postalar, yükseltilmiş baş güverte, camlı seyir evi, kaldırılabilir tavan, baca, direk/arma, açık filikalar, raylar, sekiz sergi maketi, vinç, demirler, kazanlar ve çift şaft/pervane. Tarihsel görevdeki 26 sayısı ayrı anlatılır.
+- 101 araba konumu, tekerlek-ray oturuşu, otomatik uç sınırları/el ayarı, çift pervane ve sıfır devir, dümen, tavan/reset, gövde boyu test edildi. nusret, j79 ve museum-links testleri geçti. Masaüstü genel görünüm, makine X-Ray ve 390×844 mobil kadraj/taşma kontrol edildi.
