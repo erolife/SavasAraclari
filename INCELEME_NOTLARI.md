@@ -839,14 +839,14 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 ---
 
 ## 10.4. 1969 Hawker Siddeley Harrier GR.1 & Rolls-Royce *Pegasus* VTOL Motoru — `js/vehicles/harrier.js`
-- **Durum:** Planlandı (Uygulanıyor)
+- **Durum:** Tamamlandı & Doğrulandı (2026-11-08)
 - **Kaynaklar ve varsayımlar:**
   - *Tarihsel ve Müze Kaynakları:*
-    - RAF Museum Hendon / Cosford (*Hawker Siddeley Harrier GR.1 / GR.3* ve *Pegasus* sergisi: `https://www.rafmuseum.org.uk/`), Londra *Science Museum Group* Rolls-Royce *Pegasus* kesitli vektörel itki motoru (`https://collection.sciencemuseumgroup.org.uk/`), ve Imperial War Museum (IWM Duxford) Harrier koleksiyonu (`https://www.iwm.org.uk/`).
+    - RAF Museum Hendon / Cosford (*Hawker Siddeley Harrier GR.1 / GR.3* ve *Pegasus* sergisi: `https://www.rafmuseum.org.uk/research/collections/hawker-siddeley-harrier-gr3/`), Londra *Science Museum Group* Rolls-Royce *Pegasus* kesitli vektörel itki motoru (`https://collection.sciencemuseumgroup.org.uk/objects/co30232/rolls-royce-bristol-pegasus-turbofan-aero-engine`), ve Imperial War Museum (IWM Duxford) Harrier koleksiyonu.
     - 1969'da Kraliyet Hava Kuvvetleri'nde (RAF) hizmete giren **Hawker Siddeley Harrier GR.1**, tarihin ilk operasyonel **dikey/kısa kalkış ve iniş (V/STOL)** jet taarruz uçağıdır. Başarısının sırrı, **Rolls-Royce Pegasus (BE.53)** iki şaftlı turbofan motorunun gövde yanlarındaki **zincir ve dişliyle senkronize dönen 4 adet vektörel nozuludur** ($0^\circ$ yatay uçuş $\to 90^\circ$ dikey *hover* $\to 98^\circ$ frenleme).
   - *Gerçek Boyutlar ve Sahne Ölçeği (`1:1,35` müze ölçeği):*
     - Gerçek boy `13,87 m`, kanat açıklığı `7,70 m`, yükseklik `3,45 m`, kanat negatif dihedral (anhedral) açısı $-12^\circ$, Rolls-Royce *Pegasus 101 (Mk 101)* itkisi `84,5 kN (19.000 lbf)`, bisiklet tip ana iniş takımı + kanat ucu destek tekerlekleri (*outriggers*).
-    - Sahne ölçeği (`1:1,35`): Sahne boyu `10,20 m` (`z = -5,10 .. +5,10 m`), kanat açıklığı `5,70 m` (`x = -2,85 .. +2,85 m`), yerde bisiklet iniş takımı ve kanat ucu destek tekerlekleri tam `y = 0,000 m` düzlemine basar; `VTOL Hover` modunda uçak yerden `+1,45 m` havaya yükselir!
+    - Sahne ölçeği (`1:1,35`): Sahne boyu `10,20 m` (`z = -5,10 .. +5,10 m`), kanat açıklığı `5,70 m` (`x = -2,85 .. +2,85 m`), yerde bisiklet iniş takımı ve kanat ucu destek tekerlekleri tam `y = 0,000 m` düzlemine basar; `VTOL Hover` modunda uçak yerden `+0,95 m` havaya yükselir!
 - **Tartışmalı tarihsel noktalar ve teknik sınırlar:**
   - *Ters Yönde Dönen Çift Şaft (Contra-Rotating Spools):* *Pegasus* motorunda alçak basınçlı (LP) fan şaftı ile yüksek basınçlı (HP) kompresör/türbin şaftı **zıt yönlerde** ($\omega_{\text{HP}} = -1,35\,\omega_{\text{LP}}$) döner! Bunun nedeni, uçak havada asılı (*hover*) dururken aerodinamik kumanda yüzeyleri çalışmadığı için motorun **jiroskopik kuplaj (gyroscopic precession)** momentini sıfırlamaktır; aksi halde burun kaldırıldığında uçak kontrolsüzce yana yatardı.
   - *Puffer Ducts (Tepki Kontrol Valf Nozulları):* *Hover* sırasında kanatçık, irtifa ve istikamet dümenleri işlevsiz olduğundan, HP kompresörden alınan basınçlı hava **burun, kuyruk ve iki kanat ucundaki "puffer" tepki kontrol valflerinden** püskürtülerek uçağın yunuslama, yalpa ve sapma kontrolü sağlanır.
@@ -859,20 +859,78 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
   5. `hr_pegasus_fan_lp`: Rolls-Royce *Pegasus* 3 Kademeli Alçak Basınç (LP) Titanyum Fanı & LP Şaftı ($\omega_{\text{LP}} > 0$)
   6. `hr_pegasus_core_hp`: *Pegasus* 8 Kademeli Yüksek Basınç (HP) Kompresörü, Yanma Odası & Zıt Döner HP Türbin Şaftı ($\omega_{\text{HP}} = -1,35\,\omega_{\text{LP}}$)
   7. `hr_nozzle_drive`: Pnömatik Nozul Tahrik Motoru, Senkronizasyon Milleri & Zincir Dişli Kutuları (`1:1` 4 nozul kilidi)
-  8. `hr_cold_nozzles`: Ön İkiz "Soğuk" (LP Fan Baypas) Döner Vektör Nozulları (`x = ±0,68 m`, `z = +0,62 m`, $0^\circ \dots 98^\circ$)
-  9. `hr_hot_nozzles`: Arka İkiz "Sıcak" (Türbin Egzoz) Döner Vektör Nozulları (`x = ±0,68 m`, `z = -0,82 m`, $0^\circ \dots 98^\circ$)
+  8. `hr_cold_nozzles`: Ön İkiz "Soğuk" (LP Fan Baypas) Döner Vektör Nozulları (`x = ±0,64 m`, `z = +0,62 m`, $0^\circ \dots 98^\circ$)
+  9. `hr_hot_nozzles`: Arka İkiz "Sıcak" (Türbin Egzoz) Döner Vektör Nozulları (`x = ±0,64 m`, `z = -0,82 m`, $0^\circ \dots 98^\circ$)
   10. `hr_rcs_puffers`: *Hover* Tepki Kontrol Sistemi (*RCS "Puffer" Valfleri*): Burun, Kuyruk ve Kanat Ucu Basınçlı Hava Boruları & Valfleri
   11. `hr_bicycle_gear`: Bisiklet Tipi Burun & Merkez Çift Tekerlekli Ana İniş Takımı (`y = 0,000 m`)
-  12. `hr_outrigger_gear`: Kanat Ucu Destek Tekerlekleri (*Outrigger Landing Gear*, `x = ±2,58 m`, `y = 0,000 m`)
+  12. `hr_outrigger_gear`: Kanat Ucu Destek Tekerlekleri (*Outrigger Landing Gear*, `x = ±2,54 m`, `y = 0,000 m`)
   13. `hr_aden_pods`: Gövde Altı 2 × 30 mm *ADEN* Revolver Top Podları & Karın Yönlendirici Levhaları (*Strakes*)
-  14. `hr_sneak_rockets`: Kanat Altı 2 × *Matra SNEB* 68 mm Roket Podları & Harici Yakıt Tankları
+  14. `hr_sneb_rockets`: Kanat Altı 2 × *Matra SNEB* 68 mm Roket Podları & Harici Yakıt Tankları
   15. `hr_vtol_jets`: 4 × Vektörel İtki Akış Konisi (Soğuk Mavi Fan Jeti + Sıcak Turuncu Egzoz) & RCS *Puffer* Hava Jeti
+- **Tespit edilen hatalar:** İlk denemede 4 vektörel jet akış konisinin uzunluğu yerde (`ground` modunda) $82^\circ$ aşağı baktığında zemin düzleminin (`y = 0,000 m`) altına sarkıyordu (`min.y = -0,274 m`); koni boyutları (`0,78 m` ve `0,84 m`) yer yüksekliğine göre kalibre edilerek `min.y = 0,000 m` tam zemin teması sağlandı.
+- **Yapılan düzeltmeler:**
+  - Zıt yönlerde dönen LP fan ve HP kompresör/türbin çift şaftı ($\omega_{\text{HP}} = -1,35\,\omega_{\text{LP}}$), pnömatik hava motoru ve zincir-şaft senkronizasyonuyla dönen 4 vektör nozulu ($0^\circ \dots 98^\circ$), bisiklet iniş takımı + kanat ucu destek tekerlekleri (`y = 0,000 m`), RCS *puffer* valfleri ve 30 mm ADEN / 68 mm Matra SNEB roket podları modellendi.
+- **Kalan şüpheliler / sınırlamalar:** Yok; 241 mesh ile 60 FPS akıcılık sınırının içinde.
 - **Mekanik hesaplar (`v = ω × r`, zıt döner şaftlar ve 4 nozul vektörleme):**
   - **Zıt Döner Çift Şaft (Jiroskopik Moment Sıfırlama):**
     $$\theta_{\text{LP}}(t + \Delta t) = \theta_{\text{LP}}(t) + \omega_{\text{LP}}\Delta t, \qquad \theta_{\text{HP}}(t + \Delta t) = \theta_{\text{HP}}(t) - 1,35\,\omega_{\text{LP}}\Delta t, \qquad \vec{L}_{\text{toplam}} = I_{\text{LP}}\vec{\omega}_{\text{LP}} + I_{\text{HP}}\vec{\omega}_{\text{HP}} \approx \vec{0}$$
   - **4 Döner Nozul Senkronizasyonu ($\theta_N \in [0^\circ, 98^\circ]$):**
     $$\theta_{\text{ön,sol}} = \theta_{\text{ön,sağ}} = \theta_{\text{arka,sol}} = \theta_{\text{arka,sağ}} = \theta_N, \qquad \vec{F}_{\text{itki}} = F_0\,(-\sin\theta_N\,\hat{j} - \cos\theta_N\,\hat{k})$$
   - `RPM = 0` iken hem LP fan hem HP kompresör/türbin tamamen durur ($\Delta\theta_{\text{LP}} = \Delta\theta_{\text{HP}} = 0$).
+- **Test çıktısı:**
+  - `DOĞRULANDI [harrier.js]: 15 grup, 241 mesh, min.y=0.000m, Pegasus Zıt Döner LP/HP Şaft (dLp=25.00, dHp=-33.75, oran=-1.35, RPM=0 duruş) OK, 4x Vektör Nozul Senkron (0°->90°->98°) OK, ADEN/SNEB Salvo (4->0->4) OK, UTF-8 temiz.`
+  - `PASS museum-links: 44 vehicle URLs, subdirectory/private-query cleanup, native/cancel/copy/manual paths, 76 HTTPS sources`
+  - Görsel doğrulama: `rev_harrier_iso.png`, `rev_harrier_engine_xray.png`, `rev_harrier_breech.png` — konsol hatası yok (`0 error`).
+
+---
+
+## 10.5. 1967 Stridsvagn 103 ("S-Tank") — Taretsiz Hidropnömatik Tank — `js/vehicles/strv103.js`
+- **Durum:** Tamamlandı & Doğrulandı (2026-11-08)
+- **Kaynaklar ve varsayımlar:**
+  - *Tarihsel ve Müze Kaynakları:*
+    - İsveç Zırhlı Araçlar Müzesi — **Arsenalen** (*Försvarsfordonsmuseet Arsenalen, Strängnäs* — Strv 103C koleksiyonu: `https://arsenalen.se/en/`), İngiltere **The Tank Museum, Bovington** (*Stridsvagn 103C* sergisi: `https://tankmuseum.org/tank-nuts/tank-collection/stridsvagn-103`), ve Bofors / Landsverk arşiv teknik kesitleri.
+    - 1950'lerin sonunda İsveç Ordusu'ndan **Sven Berge** tarafından tasarlanan ve 1967'de hizmete giren **Stridsvagn 103 (Strv 103 / "S-Tank")**, tank tasarım tarihinde **tareti tamamen ortadan kaldıran** tek modern ana muharebe tankıdır (MBT).
+  - *Gerçek Boyutlar ve Sahne Ölçeği (`1:1` tam ölçek):*
+    - Gerçek boy `8,99 m` (namlu dahil; gövde boyu `7,04 m`), genişlik `3,63 m` (`Strv 103C` yan yakıt bidonlarıyla), yükseklik yalnızca `2,14 m` (periskop tepesi; gövde tavanı `1,90 m` — dünyadaki en alçak profilli ana muharebe tankı!), kütle `39,7 ton` (103B) / `42,5 ton` (103C).
+    - Ana silah: Gövdeye **tamamen sabitlenmiş** `105 mm Bofors L74` (`L/62` uzun namlulu yivli top — standart L7'den 10 kalibre daha uzun!).
+    - Sahne ölçeği (`1:1`): Palet alt yüzeyleri ve 4 büyük yol tekerleği tam `y = 0,000 m` düzlemine basar; gövde boyu `z = -3,45 .. +3,45 m`, namlu ucu `z = +5,45 m`, genişlik `x = -1,80 .. +1,80 m`.
+- **Tartışmalı tarihsel noktalar ve teknik sınırlar:**
+  - *Avcı Tankı (Tank Destroyer) mı, Ana Muharebe Tankı (MBT) mı?* Taretsiz olması nedeniyle II. Dünya Savaşı *Jagdpanzer* / *StuG* araçlarına benzetilse de, İsveç doktrininde Strv 103 tam teşekküllü bir **Ana Muharebe Tankıdır**. Çift yönlü sürüş kontrolü (arkaya bakan telsizci/arka sürücü), komutan ve sürücü/nişancının her ikisinin de tankı sürüp ateşleyebilmesi (hatta tek kişiyle tam operasyon!) ve hidrostatik rejeneratif direksiyonuyla durduğu yerde saniyeler içinde hedefe dönebilmesi onu klasik kundağı motorlu toplardan ayırır.
+  - *Hidropnömatik Süspansiyonla Nişan Alma ($\pm 11^\circ$ Yunuslama):* Top gövdeye sabit olduğu için dikey yükseliş açısı (**elevation/depression**), ön (1. aks) ve arka (4. aks) yol tekerleklerinin **hidropnömatik süspansiyon kollarının** zıt yönlerde kaldırılıp indirilmesiyle tüm tank gövdesi öne/arkaya yatırılarak ($\theta_{\text{pitch}} \in [-11^\circ, +12^\circ]$) verilir! Merkezdeki 2. ve 3. akslar devrilme noktası (pivot) görevi görür.
+  - *Dünyanın İlk CODAG (Dizel + Gaz Türbini) Tank Motoru:* Ön zırhın hemen arkasında (mürettebatı koruyan ek kalkan olarak!) iki farklı motor yan yana çalışır: normal seyir ve nişan manevraları için **Rolls-Royce K60** 2 zamanlı **karşıt pistonlu (opposed-piston)** çok yakıtlı dizel motor (`240 hp`) ve tam güç/hücum için **Boeing 553 (Caterpillar)** gaz türbini (`490 hp`, toplam `730 hp`).
+  - *50 Mermilik Çift Şarjörlü Otomatik Doldurucu & Arka Kovan Fırlatma:* Gövdenin en arkasındaki iki zırhlı şarjör (sol 25 + sağ 25 = 50 mermi) dakikada **15 mermi (4 saniyede 1 atış!)** hızla sabit topu besler; boş pirinç kovan tankın içine düşmez, **kıç plakadaki otomatik kapakçıktan dışarı (tankın arkasına) fırlatılır**!
+- **15 Bağımsız Mekanik Parça Grubu (4 Alt Sistem):**
+  1. `s103_sloped_hull`: $78^\circ$ Eğimli Yivli (*Ribbed*) Ön Glasis Zırhı, Alçak Gövde Kabuğu & Yan *Jerrycan* Zırh Etekleri (`isOuterShell: true`, X-Ray'de saydamlaşır)
+  2. `s103_bofors_l74`: Gövdeye Sabitlenmiş `105 mm Bofors L74 (L/62)` Uzun Yivli Top Namlusu, Duman Tahliye Silindiri (*Fume Extractor*) & Termal Ceket
+  3. `s103_breech_recoil`: Gövde İçi Kama Bloğu, Hidropnömatik Geri Tepme Silindirleri & Sabit Beşik
+  4. `s103_autoloader_mags`: Kıç Çift Otomatik Doldurucu Şarjörü (`2 × 25 = 50` Adet 105 mm Mermi Rafı & Besleme Sürgüsü)
+  5. `s103_rear_ejector`: Kıç Zırh Boş Kovan Fırlatma Kapakçığı (*Rear Shell Ejection Hatch*) & Fırlatılan Pirinç Kovan
+  6. `s103_k60_diesel`: Ön Sağ *Rolls-Royce K60* 6 Silindirli (12 Karşıt Pistonlu) İki Zamanlı Dizel Seyir Motoru (`240 hp`)
+  7. `s103_boeing_turbine`: Ön Sol *Boeing 553* Gaz Türbini (`490 hp`) & CODAG Birleştirme Dişli Kutusu / Hidrostatik Direksiyon Ünitesi
+  8. `s103_crew_station`: 3 Kişilik Mürettebat Bölmesi: Sürücü/Nişancı İkiz Kumandası, Jiroskopik Sabitlenmiş Komutan Kupolası (*OPS-1*) & Arkaya Bakan Telsizci/Arka Sürücü Koltuğu
+  9. `s103_hydro_actuators`: Gövde İçi Hidropnömatik Süspansiyon Pompaları, Azot Küreleri & Ön/Arka Krank Kolları
+  10. `s103_roadwheels_left`: Sol 4 × Büyük Kauçuk Kaplı Çelik Yol Tekerleği & Hidropnömatik Salıncak Kolları (`y = 0,000 m`)
+  11. `s103_roadwheels_right`: Sağ 4 × Büyük Kauçuk Kaplı Çelik Yol Tekerleği & Hidropnömatik Salıncak Kolları (`y = 0,000 m`)
+  12. `s103_tracks_sprockets`: Ön Cer Dişlileri (*Drive Sprockets*), Arka İstikamet Tekerlekleri & Çift Pimli Çelik Paletler (`y = 0,000 m`)
+  13. `s103_dozer_blade`: Gövde Altına Katlanan Hidrolik İstihkâm Dozer Bıçağı (*BT-41 Fold-Out Dozer Blade*, $0^\circ \dots 115^\circ$ açılır)
+  14. `s103_anti_heat_fence`: Ön Glasis Katlanır Anti-HEAT Çubuk Zırh Kafesi & Çift Sabit 7,62 mm *Ksp 58* Makineli Tüfek Kutusu
+  15. `s103_muzzle_blast`: 105 mm Bofors L74 Namlu Alevi, APDS-T Sabot Çekirdeği & Kıçtan Fırlayan Sıcak Pirinç Kovan Efekti
+- **Tespit edilen hatalar:** İlk çalıştırmada herhangi bir geometri veya hiza hatası tespit edilmedi; `min.y = -0,000 m` ile paletler ve 4 aks yol tekerleği zemine tam oturdu.
+- **Yapılan düzeltmeler:**
+  - $78^\circ$ eğimli yivli glasis zırhı, yan eteklerde 18 adet 22 litrelik dizel bidonu, gövdeye sabit 105 mm Bofors L74 (L/62) topu, $\pm 11^\circ$ hidropnömatik süspansiyonla yunuslama ve $\pm 25^\circ$ hidrostatik yön nişanı, ön zırh altındaki CODAG (Rolls-Royce K60 karşıt pistonlu dizel + Boeing 553 gaz türbini) güç paketi, 3 kişilik çift yönlü mürettebat bölmesi, 50 mermilik çift arka şarjör, kıçtan boş kovan fırlatma kapakçığı ve BT-41 katlanır dozer bıçağı eksiksiz modellendi.
+- **Kalan şüpheliler / sınırlamalar:** Yok; 357 mesh ile 60 FPS akıcılık sınırının içinde.
+- **Mekanik hesaplar (`v = ω × r`, Hidropnömatik Süspansiyonla Nişan Alma ve Otomatik Doldurucu):**
+  - **Hidropnömatik Gövde Yunuslama Açısı ($\theta_{\text{pitch}} \in [-11^\circ, +12^\circ]$):**
+    $$\Delta y_{\text{gövde}}(z) = z \cdot \sin\theta_{\text{pitch}}, \qquad \theta_{\text{kol},i} = -\left(\frac{z_i}{2,05}\right)\cdot 0,85\,\theta_{\text{pitch}}$$
+    Gövde $\theta_{\text{pitch}}$ açısıyla yukarı/aşağı eğilirken, 4 aksın ($z_1 = +2,05\text{ m}, z_2 = +0,68\text{ m}, z_3 = -0,68\text{ m}, z_4 = -2,05\text{ m}$) yol tekerlekleri ve alt palet kolu **zemine (`y = 0,000 m`) yapışık kalır**!
+  - **CODAG Motor & Palet Hızı:** `RPM = 0` iken K60 karşıt piston şaftı, Boeing gaz türbini rotoru, cer dişlileri ve yol tekerlekleri tamamen durur ($\Delta\theta = 0$).
+  - **Otomatik Doldurucu & Kıç Kovan Fırlatma:** Her atışta 105 mm L74 topu gövde içinde `-0,34 m` geri teper, mermi sayacı `50 -> 49` azalır ve kıç zırhtaki fırlatma kapakçığı açılarak boş pirinç kovan $-Z$ yönünde dışarı fırlatılır!
+- **Test çıktısı:**
+  - `DOĞRULANDI [strv103.js]: 15 grup, 357 mesh, min.y=-0.000m, Hidropnömatik Yunuslama (-11°..+12°) & Hidrostatik Yön (±25°) OK, CODAG K60+Boeing553 (dK=14.00, dB=-25.20, RPM=0 duruş) OK, BT-41 Dozer & 105mm L74 Kıçtan Kovan Fırlatma OK, UTF-8 temiz.`
+  - `PASS museum-links: 45 vehicle URLs, subdirectory/private-query cleanup, native/cancel/copy/manual paths, 78 HTTPS sources`
+  - Görsel doğrulama: `rev_strv103_iso.png`, `rev_strv103_engine_xray.png`, `rev_strv103_breech_xray.png` — konsol hatası yok (`0 error`).
+
+
 
 
 

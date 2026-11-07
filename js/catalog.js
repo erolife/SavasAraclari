@@ -431,7 +431,37 @@
     ],
     svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28 74 L92 60 L216 58 L268 72 L292 78 L256 84 L96 86 Z" fill="#3f4d3b" fill-opacity="0.42" stroke="#1e293b" stroke-width="2"/><path d="M52 58 L72 32 L96 32 L82 60 Z" fill="#475569" fill-opacity="0.45" stroke="#1e293b" stroke-width="1.8"/><path d="M124 66 L192 82 L138 82 Z" fill="#64748b" fill-opacity="0.5" stroke="#1e293b" stroke-width="1.8"/><circle cx="164" cy="76" r="9" fill="#94a3b8" stroke="#1e293b" stroke-width="2"/><circle cx="126" cy="76" r="9" fill="#ea580c" fill-opacity="0.6" stroke="#7c2d12" stroke-width="2"/><path d="M160 85 L154 122 L172 122 Z" fill="#38bdf8" fill-opacity="0.65"/><path d="M122 85 L116 124 L134 124 Z" fill="#f97316" fill-opacity="0.75"/></svg>'
   });
+  VEHICLES.push({
+    id: 'strv103', sim: 'strv103', group: 10, status: 'live',
+    year: 1967, yearLabel: '1967', eraLabel: 'SOĞUK SAVAŞ • TARETSİZ MBT',
+    domain: 'land', era: 'coldwar', energy: ['ice', 'jet'], role: ['armor', 'defense'], origin: 'sweden',
+    name: 'Stridsvagn 103 ("S-Tank") — Taretsiz Hidropnömatik Tank',
+    sub: 'GÖVDEYE SABİT 105 MM BOFORS L74 TOP • HİDROPNÖMATİK SÜSPANSİYONLA NİŞAN • CODAG (DİZEL + GAZ TÜRBİNİ) & 4 SN OTOMATİK DOLDURUCU',
+    desc: 'Sven Berge tarafından tasarlanan ve tareti tamamen ortadan kaldırarak yüksekliği 1,90 metreye indiren benzersiz İsveç ana muharebe tankı. Gövdeye sabit 105 mm L/62 topuna hidropnömatik süspansiyonla (±11° gövde eğimi) nişan verin; X-Ray modunda K60 karşıt pistonlu dizel + Boeing 553 gaz türbinli CODAG güç paketini, 50 mermilik otomatik doldurucuyu ve kıçtan boş kovan fırlatma mekanizmasını inceleyin.',
+    tags: ['Hidropnömatik Gövde Eğimi (±11°)', 'CODAG (Dizel + Gaz Türbini)', '50 Mermi Şarjör & Kıç Kovan Atıcı', '15 İnceleme Grubu'],
+    specs: [['TAM BOY / YÜKSEKLİK', '8,99 m × 3,63 m × 1,90 m (Tavan)'], ['ANA SİLAH', 'Sabit 105 mm Bofors L74 (L/62)'], ['GÜÇ PAKETİ (CODAG)', 'K60 Dizel (240hp) + Boeing 553 Türbin (490hp)'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
+    tag: 'STRV-103-STANK-1967', icon: '🛡️',
+    modal: [
+      '78° eğimli APFSDS kırıcı yivli (ribbed) ön glasis zırhı, yan yakıt bidonu etekleri, BT-41 katlanır dozer bıçağı ve Anti-HEAT kafesi',
+      'Gövdeye sabit 105 mm Bofors L74 (L/62) top, 50 mermilik (15 atış/dk) çift arka otomatik doldurucu ve kıçtan boş kovan fırlatma kapakçığı',
+      'Ön zırh altında mürettebatı koruyan CODAG güç paketi (Rolls-Royce K60 karşıt pistonlu dizel + Boeing 553 gaz türbini) ve arkaya bakan 3. sürücü',
+      '1. ve 4. aksları zıt yönlerde kaldırıp indirerek tüm tank gövdesini -11°..+12° eğen hidropnömatik nişan süspansiyonu'
+    ],
+    svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M36 86 L46 62 L156 56 L248 76 L232 92 L48 92 Z" fill="#3b4d38" fill-opacity="0.48" stroke="#1e293b" stroke-width="2"/><line x1="168" y1="64" x2="306" y2="60" stroke="#1e293b" stroke-width="5" stroke-linecap="round"/><rect x="44" y="88" width="188" height="24" rx="12" fill="#334155" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/><circle cx="72" cy="100" r="10" fill="#475569" stroke="#1e293b" stroke-width="2"/><circle cx="116" cy="100" r="10" fill="#475569" stroke="#1e293b" stroke-width="2"/><circle cx="160" cy="100" r="10" fill="#475569" stroke="#1e293b" stroke-width="2"/><circle cx="204" cy="100" r="10" fill="#475569" stroke="#1e293b" stroke-width="2"/></svg>'
+  });
   const SOURCES = {
+  "strv103": [
+    {
+      "title": "Stridsvagn 103C ('S-Tank') koleksiyonu — The Tank Museum, Bovington",
+      "url": "https://tankmuseum.org/tank-nuts/tank-collection/stridsvagn-103",
+      "note": "Taretsiz gövdeye sabit 105 mm Bofors L74 topu, hidropnömatik nişan süspansiyonu ve CODAG (dizel + gaz türbini) güç paketi referansı."
+    },
+    {
+      "title": "İsveç Zırhlı Araçlar Müzesi koleksiyonu — Arsenalen (Strängnäs)",
+      "url": "https://arsenalen.se/en/",
+      "note": "Sven Berge'nin Strv 103B/103C tasarımı, BT-41 katlanır dozer bıçağı, Anti-HEAT çubuk zırh kafesi ve 50 mermilik otomatik doldurucu bağlamı."
+    }
+  ],
   "harrier": [
     {
       "title": "Rolls-Royce Pegasus V/STOL turbofan motoru koleksiyonu — Science Museum Group",
