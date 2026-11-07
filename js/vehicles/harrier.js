@@ -56,8 +56,8 @@
       titanium: 0xcbd5e1
     },
     falklands1982: {
-      name: '⚓ 1982 Falkland Savaşı — HMS Hermes Görev Gücü (Koyu Deniz Grisi)',
-      btn: '⚓ 1982 Falkland (Koyu Deniz Grisi)',
+      name: '⚓ Koyu deniz grisi · temsili, GR.3 rekonstrüksiyonu değildir',
+      btn: '⚓ Deniz Grisi · Temsili',
       fuselageTop: 0x334155,
       fuselageSide: 0x475569,
       belly: 0x64748b,
@@ -76,8 +76,8 @@
       titanium: 0xe2e8f0
     },
     kestrel_p1127: {
-      name: '✨ 1964 Hawker Siddeley Kestrel / P.1127 Prototipi (Parlak Cilalı Alüminyum)',
-      btn: '✨ P.1127 / Kestrel (Parlak Metal)',
+      name: '✨ Prototiplerden esinlenen metal yüzey · temsili',
+      btn: '✨ Metal Yüzey · Temsili',
       fuselageTop: 0xcbd5e1,
       fuselageSide: 0x94a3b8,
       belly: 0xe2e8f0,
@@ -299,7 +299,7 @@
         name: cfg.name,
         subsystem: cfg.sub,
         subLabel: SUB_LABELS[cfg.sub] || 'ALT SİSTEM: HARRIER GR.1 VTOL',
-        desc: cfg.desc,
+        desc: cfg.desc + ' Geometri ve hareketler yaklaşık sergi yorumudur; uçuş performansı simülasyonu değildir.',
         material: cfg.material || 'Havacılık Duralümin & Titanyum Alaşımı',
         weight: cfg.weight || '320 kg',
         spec: cfg.spec || 'Hawker Siddeley / Rolls-Royce',
@@ -334,7 +334,7 @@
 
     const partAnhedralWings = makePart({
       id: 'hr_anhedral_wings',
-      name: '3. -12° Anhedral (Aşağı Eğimli) Süperkritik Ana Kanatlar & Flaperonlar',
+      name: '3. -12° Anhedral (Aşağı Eğimli) Ok Açılı Ana Kanatlar & Flaperonlar',
       sub: 'airframe_wings',
       explode: [0, 1.4, -0.3],
       spec: 'Açıklık: 7,70 m | Dihedral Açısı: -12° (Anhedral) | Ok Açısı: 34°',
@@ -365,7 +365,7 @@
       name: '6. Pegasus 8 Kademeli Yüksek Basınç (HP) Kompresörü & Zıt Döner HP Türbin Şaftı',
       sub: 'pegasus_engine',
       explode: [0, 0.5, -0.5],
-      spec: 'Kademe: 8 HP Kompresör + Halkasal Yanma Odası + 2 HP / 2 LP Türbin | Dönüş: LP Şaftına ZIT Yönde (ω_HP = -1,35 ω_LP)!',
+      spec: 'Kademe: 8 HP Kompresör + Halkasal Yanma Odası + 2 HP / 2 LP Türbin | Dönüş: LP şaftına zıt yönde; hız oranı sergi için seçildi',
       desc: 'Pegasus\'un en kritik sırrı: HP kompresör/türbin şaftı ile LP fan şaftı ZIT YÖNLERDE döner! Böylece uçak havada asılı (hover) dururken her iki şaftın açısal momentumları birbirini götürür (L_toplam ≈ 0) ve tehlikeli jiroskopik yalpa/yunuslama kuplajı ortadan kalkar.'
     });
 
@@ -411,7 +411,7 @@
       name: '15. 4 × Vektörel İtki Akış Konileri (Mavi Fan + Turuncu Egzoz) & Puffer Jetleri',
       sub: 'vector_nozzles',
       explode: [0, -1.6, -1.2],
-      spec: 'Toplam İtki: 84,5 kN (19.000 lbf) | Vektörleme: 0° İleri İtki -> 90° Dikey Hover -> 98° Geri Frenleme (VIFF)',
+      spec: 'Dört senkron nozul · mavi/turuncu akış renkleri temsili',
       desc: 'Ön iki nozuldan çıkan soğuk mavi fan jeti, arka iki nozuldan çıkan sıcak turuncu egzoz jeti ve uçlardaki RCS puffer hava jetlerinin vektörel görselleştirmesi. Nozul açısı değiştikçe 4 itki vektörü eşzamanlı döner.'
     });
 
@@ -490,7 +490,9 @@
     addMesh(cockpitNozzleLever, new THREE.SphereGeometry(0.024, 8, 8), matHotCore, [0, 0.18, 0]);
 
     // Damla biçimli cam kanopi ve çerçevesi (z = +1,85 .. +3,35 m)
-    addMesh(partCockpitCanopy, new THREE.CylinderGeometry(0.28, 0.34, 1.45, 16, 1, false, 0, Math.PI), matCanopyGlass, [0, 1.62, 2.55], [Math.PI / 2, 0, Math.PI / 2]);
+    const canopy=addMesh(partCockpitCanopy,new THREE.SphereGeometry(1,28,18),matCanopyGlass,[0,1.72,2.55]);
+    canopy.scale.set(.31,.34,.80);canopy.name='hr-canopy';
+    for(const z of [2.02,2.96])addMesh(partCockpitCanopy,new THREE.TorusGeometry(.28,.016,8,24,Math.PI),matFuselageSide,[0,1.72,z]);
     addMesh(partCockpitCanopy, new THREE.TorusGeometry(0.31, 0.018, 8, 16, Math.PI), matFuselageSide, [0, 1.62, 2.85]);
 
     // --- 3. -12° Anhedral (Aşağı Eğimli) Ana Kanatlar & Flaperonlar (partAnhedralWings) ---
@@ -504,7 +506,11 @@
       partAnhedralWings.add(wGrp);
 
       // Kanat ana kutusu (geriye 34° ok açılı, yarı açıklık ~2,20 m)
-      addMesh(wGrp, new THREE.BoxGeometry(2.15, 0.075, 1.32), matWingUpper, [side * 1.05, 0, -0.45], [0, -side * 0.36, 0]);
+      const wingShape=new THREE.Shape();
+      [[0,0.64],[side*1.12,-0.04],[side*1.18,0.02],[side*2.20,-0.72],[side*2.20,-1.15],[side*0.65,-0.95],[0,-0.80]].forEach(([x,z],i)=>i?wingShape.lineTo(x,-z):wingShape.moveTo(x,-z));wingShape.closePath();
+      addMesh(wGrp,new THREE.ExtrudeGeometry(wingShape,{depth:0.065,bevelEnabled:false}),matWingUpper,[0,0.0325,0],[Math.PI/2,0,0]);
+      for(const [r,c,y] of [[0.17,0x233d68,0.038],[0.10,0xa43b35,0.041]])addMesh(wGrp,new THREE.CircleGeometry(r,24),new THREE.MeshStandardMaterial({color:c,roughness:.8}),[side*1.55,y,-.62],[-Math.PI/2,0,0]);
+      addMesh(wGrp,new THREE.SphereGeometry(.035,10,8),new THREE.MeshStandardMaterial({color:side<0?0xc53632:0x399355}),[side*2.20,0,-.75]);
       // Kanat ucu aerodinamik podu ve testere dişi hücum kenarı (dogtooth)
       addMesh(wGrp, new THREE.CylinderGeometry(0.07, 0.09, 1.12, 12), matFuselageSide, [side * 2.12, -0.02, -0.82], [Math.PI / 2, 0, 0]);
       // Kanatçık (Aileron)
@@ -518,8 +524,9 @@
 
     // --- 4. Kuyruk Konisi, Dikey Stabilizatör & Yatay Stabilizatör (partTailEmpennage) ---
     // Dikey stabilizatör (fin) ve üst RWR uyarı anteni (z = -3,10 .. -4,65 m, y = 1,55 .. 2,88 m)
-    addMesh(partTailEmpennage, new THREE.BoxGeometry(0.07, 1.32, 1.25), matFuselageSide, [0, 2.15, -3.75], [-0.38, 0, 0]);
-    addMesh(partTailEmpennage, new THREE.BoxGeometry(0.11, 0.14, 0.56), matRadome, [0, 2.82, -4.05]);
+    const finShape=new THREE.Shape();finShape.moveTo(-3.0,1.48);finShape.lineTo(-3.75,2.86);finShape.lineTo(-4.30,2.86);finShape.lineTo(-4.38,1.48);finShape.closePath();
+    const finGeo=new THREE.ExtrudeGeometry(finShape,{depth:.07,bevelEnabled:false});finGeo.rotateY(-Math.PI/2);finGeo.translate(.035,0,0);
+    addMesh(partTailEmpennage,finGeo,matFuselageSide,[0,0,0]);
     // Tam hareketli anhedral yatay stabilizatör (All-moving tailplane)
     const tailplanePivot = new THREE.Group();
     tailplanePivot.position.set(0, 1.48, -4.15);
@@ -777,7 +784,7 @@
 
       // 3. VTOL Hover Yüksekliği vs. Yerde (Ground) Duruş
       // Ground modunda airframe.position.y = 0.000 (tekerlekler tam y = 0,000 m zemine basar!)
-      const targetLift = (S.mode === 'hover' && S.nozzleDeg >= 45 && S.rpm >= 2000) ? 0.95 : 0.0;
+      const targetLift = (S.mode === 'hover' && S.nozzleDeg >= 75 && S.rpm >= 2000) ? 0.95 : 0.0;
       S.hoverLift = targetLift;
       airframe.position.y = S.hoverLift;
 
@@ -814,13 +821,17 @@
 
     // Başlangıçta 'ground' modunda senkronize et ki min.y = 0,000 m zemin teması daima net olsun
     S.mode = 'ground';
+    lpSpoolGrp.name='hr-lp';hpSpoolGrp.name='hr-hp';
+    [...coldNozzlePivots,...hotNozzlePivots].forEach((p,i)=>p.name='hr-nozzle-'+i);
+    [...coldJetPlumes,...hotJetPlumes].forEach((p,i)=>p.name='hr-jet-'+i);
+    snebProjectiles.forEach((p,i)=>p.grp.name='hr-projectile-'+i);
     syncVisualState(0);
 
     // ========================================================================
     // KAMERA AÇILARI VE 6 ADIMLI REHBERLİ TUR
     // ========================================================================
     const camPresets = {
-      iso: { pos: [6.8, 3.4, 6.6], look: [0, 1.35, 0] },
+      iso: { pos: [13, 6, 13], look: [0, 1.35, 0] },
       front: { pos: [2.2, 2.1, 7.2], look: [0, 1.35, 1.2] },
       breech: { pos: [3.2, 1.9, 0.8], look: [0, 1.25, -0.1] },
       engine: { pos: [3.4, 2.2, 1.4], look: [0, 1.35, 0.2] },
@@ -840,7 +851,7 @@
       },
       {
         title: 'X-Ray: Rolls-Royce Pegasus & Zıt Yönde Dönen Çift Şaft (Jiroskopik Denge)',
-        desc: 'X-Ray modunda 3 kademeli titanyum LP fan ile 8 kademeli HP kompresörün ZIT YÖNLERDE döndüğünü izleyin! Bu tasarım, uçak havada asılı (hover) dururken jiroskopik momenti sıfırlayarak uçağın kontrolsüzce yana yatmasını önler.',
+        desc: 'X-Ray modunda 3 kademeli titanyum LP fan ile 8 kademeli HP kompresörün ZIT YÖNLERDE döndüğünü izleyin! Bu tasarım, uçak havada asılı (hover) dururken jiroskopik etkileri azaltarak uçağın kontrolsüzce yana yatmasını önler.',
         explode: 0,
         cutaway: true,
         sub: 'all',
@@ -896,7 +907,8 @@
       sub: 'Tarihin İlk Operasyonel V/STOL Jet Taarruz Uçağı • Zıt Döner Çift Şaftlı Pegasus Turbofan, 4 Döner Vektör Nozulu & RCS Puffer',
       badge: 'HARRIER GR.1 — 1969',
       partCount: '15 Ana Grup',
-      portraitCameraScale: 1.30,
+      portraitCameraScale: 1.55,
+      fog: {near: 40, far: 90},
       shadowExtent: 9,
       sliders: [
         { label: '4 × Vektör Nozul Açısı (0° Uçuş .. 90° Hover .. 98° Fren)', min: 0, max: 98, step: 1, fmt: v => `${Math.round(v)}°` },
@@ -909,7 +921,7 @@
         mode: true
       },
       telemetryTag: 'ROLLS-ROYCE PEGASUS MK 101',
-      statLabels: ['PEGASUS TOPLAM İTKİ', 'NOZUL VEKTÖR AÇISI', 'ÇİFT ŞAFT (LP / HP)', 'ADEN & SNEB MÜHİMMAT'],
+      statLabels: ['TEMSİLİ MOTOR DEVRİ', 'NOZUL VEKTÖR AÇISI', 'ÇİFT ŞAFT (LP / HP)', 'ADEN & SNEB MÜHİMMAT'],
       camLabels: {
         iso: 'İzometrik Genel',
         front: 'Pruva & Hava Girişi',
@@ -989,6 +1001,7 @@
 
       onSlider(idx, val) {
         const v = Number(val);
+        if (!Number.isFinite(v)) return {};
         if (idx === 0) {
           S.autoCycle = false;
           S.nozzleDeg = Math.max(0, Math.min(98, v));
@@ -1030,6 +1043,7 @@
         }
         if (name === 'mode') {
           S.mode = S.mode === 'hover' ? 'ground' : 'hover';
+          S.autoCycle = false;
           if (S.mode === 'hover' && S.nozzleDeg < 80) S.nozzleDeg = 90;
           syncVisualState(0);
           return {
@@ -1056,6 +1070,7 @@
       },
 
       onFire() {
+        if (S.firing) return {ok:false,msg:'Salvo gösterimi sürüyor.'};
         if (S.ammoSalvo <= 0) {
           S.ammoSalvo = 4;
           S.firing = false;
@@ -1079,11 +1094,13 @@
       },
 
       fireButtonLabel() {
+        if(S.firing) return '⏳ SALVO GÖSTERİMİ SÜRÜYOR';
         if (S.ammoSalvo <= 0) return '🔄 30 MM ADEN & 68 MM SNEB MÜHİMMAT İKMALİ YAP';
         return `💥 30 MM ADEN & SNEB ROKET SALVOSU ATEŞLE (${S.ammoSalvo}/4)`;
       },
 
       mobileFireButtonLabel() {
+        if(S.firing) return '⏳ Gösterim sürüyor';
         return S.ammoSalvo <= 0 ? '🔄 İkmal Yap' : '💥 ADEN & SNEB';
       },
 
@@ -1092,7 +1109,6 @@
       },
 
       getStats() {
-        const thrustKn = ((S.rpm / 8500) * 84.5).toFixed(1);
         const modeTxt = S.nozzleDeg >= 75
           ? `${S.nozzleDeg}° <span>(VTOL Hover)</span>`
           : S.nozzleDeg >= 30
@@ -1102,7 +1118,7 @@
           ? '0 <span>RPM (Durdu)</span>'
           : `+${Math.round(S.rpm / 100)} / -${Math.round((S.rpm * 1.35) / 100)} <span>Zıt Şaft</span>`;
         return [
-          `${thrustKn} <span>kN (Pegasus)</span>`,
+          `${S.rpm} <span>RPM · temsili devir</span>`,
           modeTxt,
           spoolTxt,
           `${S.ammoSalvo} / 4 <span>Salvo (30mm+68mm)</span>`
@@ -1114,10 +1130,10 @@
           return { text: '30 MM ADEN & 68 MM SNEB SALVOSU ATEŞLENİYOR!', color: '#dc2626' };
         }
         if (S.ammoSalvo <= 0) {
-          return { text: 'MÜHİMMAT BİTTİ — CEri İKMAL GEREKLİ', color: '#d97706' };
+          return { text: 'MÜHİMMAT BİTTİ — İKMAL GEREKLİ', color: '#d97706' };
         }
-        if (S.mode === 'hover') {
-          return { text: 'DİKEY VTOL HOVER — 4 NOZUL & RCS PUFFER DEVREDE', color: '#0284c7' };
+        if (S.hoverLift > 0) {
+          return { text: 'TEMSİLİ DİKEY VTOL HOVER — 4 NOZUL & RCS PUFFER DEVREDE', color: '#0284c7' };
         }
         return { text: 'PİST / STOL KONUMU — ATIŞA VE VTOL KALKIŞA HAZIR', color: '#16a34a' };
       },

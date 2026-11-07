@@ -525,23 +525,59 @@
   "svg": "<svg viewBox=\"0 0 320 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M148 12 L160 2 L172 12 L172 108 L148 108 Z\" fill=\"#4b5842\" fill-opacity=\"0.4\" stroke=\"#1e293b\" stroke-width=\"2\"/><path d=\"M148 42 L116 108 L148 104 Z\" fill=\"#ea580c\" fill-opacity=\"0.45\" stroke=\"#7c2d12\" stroke-width=\"1.8\"/><path d=\"M172 42 L204 108 L172 104 Z\" fill=\"#ea580c\" fill-opacity=\"0.45\" stroke=\"#7c2d12\" stroke-width=\"1.8\"/><line x1=\"92\" y1=\"112\" x2=\"228\" y2=\"112\" stroke=\"#334155\" stroke-width=\"4\"/><path d=\"M104 112 L136 68 M216 112 L184 68\" stroke=\"#475569\" stroke-width=\"2.5\"/><path d=\"M126 108 L118 134 L142 134 Z M152 108 L146 136 L174 136 Z M194 108 L178 134 L202 134 Z\" fill=\"#f97316\" fill-opacity=\"0.7\"/></svg>"
 });
   VEHICLES.push({
-    id: 'harrier', sim: 'harrier', group: 10, status: 'live',
-    year: 1969, yearLabel: '1969', eraLabel: 'SOĞUK SAVAŞ • V/STOL JET ÇAĞI',
-    domain: 'air', era: 'coldwar', energy: ['jet'], role: ['aircraft'], origin: 'uk',
-    name: 'Hawker Siddeley Harrier GR.1 & Rolls-Royce Pegasus VTOL Motoru',
-    sub: 'İLK OPERASYONEL V/STOL JET TAARRUZ UÇAĞI • ZIT DÖNER ÇİFT ŞAFTLI PEGASUS TURBOFAN • 4 DÖNER NOZUL & RCS PUFFER',
-    desc: '1969\'da RAF hizmetine giren ve piste ihtiyaç duymadan dikey kalkış/iniş (V/STOL) yapabilen tarihin ilk operasyonel jet taarruz uçağı. X-Ray ile Rolls-Royce Pegasus motorunun jiroskopik momenti sıfırlamak için zıt yönlerde dönen LP/HP çift şaftını, zincir tahrikli 4 senkron vektör nozulunu (0°..98°) ve kanat ucu/burun/kuyruk RCS "puffer" tepki valflerini inceleyin.',
-    tags: ['Zıt Döner Çift Şaft (Pegasus)', '4× Döner Vektör Nozulu (0°..98°)', 'RCS Puffer & Bisiklet İniş Takımı', '15 İnceleme Grubu'],
-    specs: [['TAM BOY / KANAT', '13,87 m × 7,70 m (-12° Anhedral)'], ['MOTOR & İTKİ', 'Rolls-Royce Pegasus Mk 101 (84,5 kN)'], ['SİLAHLAR', '2× 30 mm ADEN Top + 36× 68 mm SNEB'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
-    tag: 'HARRIER-GR1-PEGASUS-1969', icon: '🛫',
-    modal: [
-      'Dev yanal hava girişleri, vakumla açılan 16 yardımcı emme kapakçığı (blow-in doors), kokpit ve tekli nozul vektör kolu',
-      'Jiroskopik denge için zıt yönlerde dönen (ω_HP = -1,35 × ω_LP) 3 kademeli titanyum LP fan ve 8 kademeli HP kompresör/türbin',
-      'Pnömatik hava motoru ve zincir-şaft sistemiyle 0° yatay uçuştan 90° dikey hover ve 98° VIFF frenlemeye senkron dönen 4 nozul',
-      '-12° anhedral kanatlar, bisiklet iniş takımı + outrigger tekerlekleri, RCS "puffer" valfleri ve 2× 30 mm ADEN / 68 mm SNEB podları'
+  "id": "harrier",
+  "sim": "harrier",
+  "group": 10,
+  "status": "live",
+  "year": 1969,
+  "yearLabel": "1969",
+  "eraLabel": "SOĞUK SAVAŞ • V/STOL JET ÇAĞI",
+  "domain": "air",
+  "era": "coldwar",
+  "energy": [
+    "jet"
+  ],
+  "role": [
+    "aircraft"
+  ],
+  "origin": "uk",
+  "name": "Hawker Siddeley Harrier GR.1 & Rolls-Royce Pegasus VTOL Motoru",
+  "sub": "İLK OPERASYONEL V/STOL JET TAARRUZ UÇAĞI • ZIT DÖNER ÇİFT ŞAFTLI PEGASUS TURBOFAN • 4 DÖNER NOZUL & RCS PUFFER",
+  "desc": "1969’da RAF hizmetine giren Harrier GR.1 ve Pegasus motoru. Ok açılı kanatlar, bisiklet iniş takımı, yanal hava girişleri ve birlikte dönen dört nozul. GR.1, Falkland’da kullanılan GR.3 ve Sea Harrier’den ayrıdır. Kesit ve hover hareketi yaklaşık sergi yorumudur.",
+  "tags": [
+    "Zıt Döner Çift Şaft (Pegasus)",
+    "4× Döner Vektör Nozulu (0°..98°)",
+    "RCS Puffer & Bisiklet İniş Takımı",
+    "15 İnceleme Grubu"
+  ],
+  "specs": [
+    [
+      "SÜRÜM",
+      "Harrier GR.1 · RAF 1969"
     ],
-    svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28 74 L92 60 L216 58 L268 72 L292 78 L256 84 L96 86 Z" fill="#3f4d3b" fill-opacity="0.42" stroke="#1e293b" stroke-width="2"/><path d="M52 58 L72 32 L96 32 L82 60 Z" fill="#475569" fill-opacity="0.45" stroke="#1e293b" stroke-width="1.8"/><path d="M124 66 L192 82 L138 82 Z" fill="#64748b" fill-opacity="0.5" stroke="#1e293b" stroke-width="1.8"/><circle cx="164" cy="76" r="9" fill="#94a3b8" stroke="#1e293b" stroke-width="2"/><circle cx="126" cy="76" r="9" fill="#ea580c" fill-opacity="0.6" stroke="#7c2d12" stroke-width="2"/><path d="M160 85 L154 122 L172 122 Z" fill="#38bdf8" fill-opacity="0.65"/><path d="M122 85 L116 124 L134 124 Z" fill="#f97316" fill-opacity="0.75"/></svg>'
-  });
+    [
+      "MOTOR",
+      "Pegasus 10 / Mk 101"
+    ],
+    [
+      "AYIRT EDİCİ",
+      "Dört döner nozul · V/STOL"
+    ],
+    [
+      "İNCELEME",
+      "15 bağımsız grup"
+    ]
+  ],
+  "tag": "HARRIER-GR1-PEGASUS-1969",
+  "icon": "🛫",
+  "modal": [
+    "Daralan ok açılı kanatlar, düzeltilmiş kanopi ve GR.1 kuyruk silueti",
+    "Pegasus’un zıt dönüşlü iki şaftı; hız oranı temsili",
+    "Dört senkron nozul, bisiklet ve destek iniş takımları",
+    "Temsili hover ve salvo gösterimi; performans hesabı değildir"
+  ],
+  "svg": "<svg viewBox=\"0 0 320 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M28 74 L92 60 L216 58 L268 72 L292 78 L256 84 L96 86 Z\" fill=\"#3f4d3b\" fill-opacity=\"0.42\" stroke=\"#1e293b\" stroke-width=\"2\"/><path d=\"M52 58 L72 32 L96 32 L82 60 Z\" fill=\"#475569\" fill-opacity=\"0.45\" stroke=\"#1e293b\" stroke-width=\"1.8\"/><path d=\"M124 66 L192 82 L138 82 Z\" fill=\"#64748b\" fill-opacity=\"0.5\" stroke=\"#1e293b\" stroke-width=\"1.8\"/><circle cx=\"164\" cy=\"76\" r=\"9\" fill=\"#94a3b8\" stroke=\"#1e293b\" stroke-width=\"2\"/><circle cx=\"126\" cy=\"76\" r=\"9\" fill=\"#ea580c\" fill-opacity=\"0.6\" stroke=\"#7c2d12\" stroke-width=\"2\"/><path d=\"M160 85 L154 122 L172 122 Z\" fill=\"#38bdf8\" fill-opacity=\"0.65\"/><path d=\"M122 85 L116 124 L134 124 Z\" fill=\"#f97316\" fill-opacity=\"0.75\"/></svg>"
+});
   VEHICLES.push({
     id: 'strv103', sim: 'strv103', group: 10, status: 'live',
     year: 1967, yearLabel: '1967', eraLabel: 'SOĞUK SAVAŞ • TARETSİZ MBT',
@@ -574,17 +610,17 @@
     }
   ],
   "harrier": [
-    {
-      "title": "Rolls-Royce Pegasus V/STOL turbofan motoru koleksiyonu — Science Museum Group",
-      "url": "https://collection.sciencemuseumgroup.org.uk/objects/co30232/rolls-royce-bristol-pegasus-turbofan-aero-engine",
-      "note": "Zıt yönlerde dönen LP fan ve HP kompresör/türbin şaftları ile 4 döner vektör nozuluna sahip Rolls-Royce Pegasus V/STOL motoru."
-    },
-    {
-      "title": "Hawker Siddeley Harrier GR.1 / GR.3 koleksiyonu — Royal Air Force Museum",
-      "url": "https://www.rafmuseum.org.uk/research/collections/hawker-siddeley-harrier-gr3/",
-      "note": "Harrier GR.1/GR.3 gövde yapısı, -12° anhedral kanatlar, bisiklet iniş takımı, RCS puffer valfleri ve 30 mm ADEN top podları referansı."
-    }
-  ],
+  {
+    "title": "ASME — Pegasus 3 Engine BS 916",
+    "url": "https://www.asme.org/about-asme/engineering-history/landmarks/168-pegasus-3-engine-bs-916",
+    "note": "Dört döner nozul, Pegasus geliştirme tarihi, 1969 Harrier ve Mk 101. Sergideki nesne erken Pegasus 3 prototipidir."
+  },
+  {
+    "title": "RAF Museum — Harriers over Falklands",
+    "url": "https://www.rafmuseum.org.uk/blog/harriers-over-falklands/",
+    "note": "1982’de kullanılan GR.3 ve Sea Harrier ayrımı; model GR.1 olarak kalır."
+  }
+],
   "r7": [
   {
     "title": "Smithsonian NASM — Racing to Space: Gagarin and Shepard",
