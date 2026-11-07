@@ -1474,7 +1474,7 @@
               ${v.specs.map(([k, val]) => `<div>${escapeHtml(k)}<strong>${escapeHtml(val)}</strong></div>`).join('')}
             </div>
             <div class="mc-actions">${actions}</div>
-            <div class="museum-links"><button class="btn btn-sm" data-museum-share="${v.id}" aria-label="${escapeHtml(v.name)} bağlantısını paylaş">Paylaş ↗</button><button class="btn btn-sm" data-museum-sources="${v.id}">Kaynaklar</button></div>
+            <div class="museum-links"><button class="btn btn-sm" data-museum-share="${v.id}" aria-label="${escapeHtml(v.name)} bağlantısını paylaş">Paylaş ↗</button><button class="btn btn-sm" data-museum-sources="${v.id}">Kaynaklar</button>${['maxim','gatling'].includes(v.id) ? '<a class="btn btn-sm" href="maxim-gatling.html">Gatling ↔ Maxim</a>' : ''}</div>
           </div>
         </article>`;
     }

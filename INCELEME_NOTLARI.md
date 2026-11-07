@@ -687,3 +687,13 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - `tests/turbanhelmet.cjs`: 101 burun koruması/kılavuz/kabuk konumu, açık alt boşluk, üstlük delikleri, halka sayısı ve hiyerarşisi, varsayılan zincir gizliliği, sınırlar/sıfırlama geçti.
 - Chrome 1440×1000 genel ve kabuk açık X-Ray; 390×844 mobil kontrol edildi. Tam açılım için genel kadraj genişletildi. Model hatası görülmedi; ortak favicon.ico 404 ve programatik ses başlatma uyarısı mevcut.
 - Son regresyonda 31 test dosyası geçti. Katalog 39 aktif araç / 65 HTTPS kaynak. Her model ayrı Türkçe commit; push üçlü sonunda.
+
+
+### Maxim–Nordenfelt ve Gatling karşılaştırması — 7 Kasım 2026
+- Görsel referans: Museums Victoria ST 23731, 1895 sonrası Maxim-Nordenfelt; https://collections.museumsvictoria.com.au/items/406622 . Müze fotoğraflarında pirinç ceket, uzun yay kapağı, besleme penceresi ve tutamak silueti incelendi. Kaynak boyu 110 cm, kütle 27,26 kg, kalibre .450/.577 in. Fotoğraflar projeye kopyalanmadı.
+- 1884 patent tarihi NAM kaydıyla doğrulandı. NAM Extra Light örneği farklı sürüm olduğu için dış model referansı olarak kullanılmadı. Kesitli müze örneğinin dış yüzeyi tamamlanmış görsel yorumdur; iç hareket ve eksik açılar yaklaşık, kaide/mesnetler çağdaş sergi elemanlarıdır.
+- 20 grup / 87 mesh: pirinç su ceketi, tek namlu, gerçek delikli besleme pencereleri, kıvrımlı kumaş şerit ve kartuşlar, özel biçimli yan yay kapağı, perçinler, dolum kapağı/zincir, gez/arpacık ve arka tutamaklar. Üst kapak menteşeden açılır; hareketli iç kütle yalnız yavaşlatılmış prensip anlatımıdır. Gerçek atış veya cephane tüketimi simülasyonu yapılmaz.
+- maxim-gatling.html: özgün siluetler, karşılaştırma tablosu, duraklatılabilir enerji akışı, tarihsel bağlam ve dört kaynak. Her iki envanter kartından ve kaynak panelinden erişilir. Azaltılmış hareket tercihi desteklenir.
+- tests/maxim.cjs: 101 evre/kapak konumu, sabit ceket, menteşe hiyerarşisi, raycast ile gerçek besleme açıklıkları, elle kontrolün otomatiği durdurması, sınırlar/NaN/sıfırlama/duraklatma. tests/maxim-gatling.cjs: akış kontrolü, erişilebilir durum, model bağlantıları ve tablo semantiği.
+- Chrome 1440×1000 genel ve 65 derece açık kapak/X-Ray; 390×844 genel model kontrol edildi. Yakın kamera, kapağın tam açılımını kapsayacak şekilde genişletildi. Karşılaştırma masaüstü ve mobilde; enerji kontrolü, tablo, bağlantılar ve yatay taşma açısından incelendi. Karşılaştırmada konsol hatası yok; simülatörde önceden mevcut favicon 404 ve otomatik ses başlatma uyarısı dışında yeni hata yok.
+- Tam regresyon: 33 test dosyası geçti; 40 aktif araç / 68 HTTPS kaynak. git diff --check temiz.

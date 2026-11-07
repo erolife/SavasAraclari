@@ -1,0 +1,6 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+let click,pressed='false',running=false;const button={textContent:'',getAttribute:()=>pressed,setAttribute:(k,v)=>{pressed=v;},addEventListener:(k,fn)=>{click=fn;}},status={textContent:''},flows={classList:{toggle:(k,v)=>{running=v;}}};
+vm.runInNewContext(fs.readFileSync('js/maxim-gatling.js','utf8'),{document:{getElementById:id=>id==='flow-toggle'?button:status,querySelector:()=>flows}});
+click();assert.equal(pressed,'true');assert(running);assert(status.textContent.includes('geri tepme'));click();assert.equal(pressed,'false');assert(!running);assert(status.textContent.includes('duraklatıldı'));
+const html=fs.readFileSync('maxim-gatling.html','utf8');for(const id of ['maxim','gatling']){assert(html.includes('simulator.html?vehicle='+id));assert(fs.existsSync('js/vehicles/'+id+'.js'));}assert(html.includes('scope="row"'));assert(html.includes('scope="col"'));assert(html.includes('aria-pressed="false"'));assert(fs.readFileSync('css/maxim-gatling.css','utf8').includes('prefers-reduced-motion'));
+console.log('PASS maxim-gatling: energy toggle, accessible state, model links, table semantics and reduced motion');

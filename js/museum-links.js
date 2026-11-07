@@ -57,6 +57,9 @@
   }
   function sources(vehicle) {
     open(vehicle.name + ' — Kaynaklar');
+    if (vehicle.id === 'maxim' || vehicle.id === 'gatling') {
+      const link = document.createElement('a'); link.href = 'maxim-gatling.html'; link.textContent = 'Gatling → Maxim: kranktan geri tepmeye karşılaştırması ↗'; content.append(link);
+    }
     paragraph('Araştırma kaynakları ve ek okuma için müze, kurum ve tarihsel belge bağlantıları. Rekonstrüksiyonlar ile yorumlanan ayrıntılar araç açıklamalarında belirtilir.');
     const list = document.createElement('ul');
     for (const source of vehicle.sources || []) {
