@@ -941,3 +941,9 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Aynı dosya için eşzamanlı istekler paylaşılır; hata sonrası yeniden deneme ve son araç seçiminin önceliği korunur. Enigma çekirdeği modelinden önce yüklenir. Menü, yüklenmiş nesnelerden değil katalogdan beslenir.
 - Aynı Maxim açılışında kayıtlı mesh 9707 → 809 (%91,7 azalma), parça grubu 702 → 55; araç betiği 40 → 3. GPU geometrisi 796 → 149. Bunlar nesne sayımlarıdır; FPS veya kesin bellek yüzdesi iddiası değildir.
 - Tarayıcıda 40 aracın tümüne menü üzerinden geçiş başarılı. 1440×1000 Maxim ve 390×844 X-Ray görünümü kontrol edildi. Yeni çalışma hatası yok; ortak favicon 404 / ses başlatma uyarısı sürüyor. Loader testi: allowlist, önbellek, eşzamanlı istek, hata/yeniden deneme ve Enigma sırası geçti; J79 entegrasyon/sözdizimi testi geçti.
+
+
+### Tarih çizelgesi — 8 Kasım 2026
+- tarih.html kataloğun 40 aktif kaydını kronolojik sıralar. Tarih aralıkları korunur; eşit zaman aralığı veya savaşta kullanım iddiası yapılmaz. Türkçe arama, dönem/ortam birleşik filtreleri, URL üzerinden paylaşılabilir filtre durumu, boş sonuç ve temizleme mevcut.
+- Ana sayfa gezinmesine ve mobilde de görünen giriş düğmesine eklendi. Kartlardan 3D model ve kaynaklar açılır.
+- tests/history-timeline.cjs: tarih sırası, Türkçe büyük/küçük harf, birleşik filtre, boş sonuç, planlanan araçların dışlanması ve özgün tarih etiketi geçti. Chrome 1440×1000 genel / 390×844 Nusret kartı incelendi; arama, sıfırlama, birleşik filtre ve URL doğrulandı. Yatay taşma ve konsol hatası yok.

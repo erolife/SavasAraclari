@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tarih Çizelgesi — Savaş Makineleri</title>
+  <meta name="description" content="Savaş makinelerini dönemler boyunca keşfedin. Envanterdeki araçları tarih sırasıyla inceleyin ve 3D modellerine geçin.">
+  <link rel="stylesheet" href="css/museum-explore.css"><link rel="stylesheet" href="css/museum-links.css">
+</head>
+<body>
+  <a class="skip" href="#results">Çizelgeye geç</a>
+  <nav class="museum-nav" aria-label="Ana gezinme"><a href="index.html">← Savaş Makineleri</a><span>KOLEKSİYONU KEŞFET / 01</span><a href="maxim-gatling.html">Gatling ↔ Maxim</a></nav>
+  <main class="explore">
+    <header class="explore-hero"><p class="eyebrow">BİR İCAT, BİR DÖNEM, BİR DEĞİŞİM</p><h1>Makinelerin<br><em>zaman içindeki izi.</em></h1><div class="hero-bottom"><p>İlkel araçlardan modern sistemlere uzanan koleksiyonu tarih sırasıyla keşfedin. Bir döneme odaklanın, ayrıntılarına girmek istediğiniz modeli açın.</p><div class="collection-count"><strong id="total">40</strong><span>etkileşimli model</span></div></div></header>
+    <section class="filter-panel" aria-label="Çizelge filtreleri">
+      <label>Araç ara<input id="search" type="search" placeholder="Örn. Nusret, Enigma, yay" autocomplete="off"></label>
+      <label>Dönem<select id="era"><option value="">Bütün dönemler</option></select></label>
+      <label>Kullanım ortamı<select id="domain"><option value="">Bütün ortamlar</option></select></label>
+      <button id="reset" type="button">Temizle</button>
+    </section>
+    <div class="timeline-intro"><p id="result-count" role="status" aria-live="polite"></p><p>Tarihler eşit aralıklı değildir. Yaklaşık tarihler ve aralıklar katalogdaki biçimiyle gösterilir; sıralama katalog yılına dayanır.</p></div>
+    <section id="results" tabindex="-1" aria-label="Kronolojik araç listesi"><ol class="timeline" id="timeline-list"></ol><div id="empty" class="empty" hidden><h2>Bu aralıkta bir araç bulunamadı.</h2><p>Aramayı kısaltın veya filtreleri temizleyin.</p><button id="empty-reset" type="button">Tüm koleksiyonu göster</button></div></section>
+    <noscript>Çizelge için JavaScript gerekir. <a href="index.html">Envantere dönün.</a></noscript>
+    <aside class="editorial-note"><strong>Tarih, yalnızca savaşta kullanılan makinelerden oluşmuyor.</strong><p>Koleksiyonda deneysel tasarımlar, kişisel donanımlar ve müze rekonstrüksiyonları da var. Bir tarih etiketi, bir aracın o yıl savaşta kullanıldığını göstermez. Ayrıntılar için model açıklamalarını ve kaynaklarını inceleyin.</p></aside>
+  </main>
+  <footer class="museum-footer"><a href="index.html">Envantere dön</a><span>Savaş Makineleri · İnteraktif Müze</span></footer>
+  <script src="js/catalog.js"></script><script src="js/museum-links.js"></script><script src="js/history-timeline.js"></script>
+</body></html>

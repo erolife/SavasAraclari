@@ -1,0 +1,5 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const env={window:{}};for(const p of ['js/catalog.js','js/history-timeline.js'])vm.runInNewContext(fs.readFileSync(p,'utf8'),env);
+const catalog=env.window.MUSEUM_CATALOG.VEHICLES,select=env.window.MuseumTimeline.select;
+const all=select(catalog);assert.equal(all.length,40);assert(all.every((v,i)=>i===0||v.year>=all[i-1].year));assert.equal(select(catalog,{q:'NUSRET'})[0].id,'nusret');assert.equal(select(catalog,{q:'ŞAHİ'})[0].id,'sahi');assert(select(catalog,{domain:'sea'}).every(v=>v.domain==='sea'));assert(select(catalog,{era:'ww2',domain:'air'}).every(v=>v.era==='ww2'&&v.domain==='air'));assert.equal(select(catalog,{q:'no-such-vehicle'}).length,0);assert.equal(select([{id:'future',year:2000,status:'planned'}]).length,0);assert.equal(select(catalog,{q:'maxim'})[0].yearLabel,'1884 / 1895 sonrası');
+console.log('PASS timeline: 40 chronological models, Turkish search, combined filters, empty/planned cases and original date labels');
