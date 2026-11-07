@@ -970,3 +970,8 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Ters renklendirilmiş üst/alt gövde yarıları, dümenle birlikte dönen güverte topları, tekrarlı atışta stok kaybı ve son torpidonun görünür kalması düzeltildi. Genel ve mobil kadraj genişletildi; mobilde sis nedeniyle silikleşme giderildi.
 - Türk tarihi rotası dokuz durağa çıkarıldı. Abdülhamid, Osmanlı yayı ile Nusret arasına eklendi; kayıtlı ilerleme korunur. Tarayıcıda 1/9 ilerleme yenileme sonrası doğrulandı.
 - tests/abdulhamid.cjs: gerçek Three.js geometrisi, malzeme, gövde yarıları, sıfır devir, duraklatma, geçersiz slider, kapak kilidi, ardışık tıklama, son torpido ve ikmal geçti. Rota ve J79 entegrasyon testleri geçti. 1440×1000 genel/X-Ray ve 390×844 model/rota görsel kontrolleri tamamlandı.
+
+### Rum Ateşi incelemesi — 8 Kasım 2026
+- BNE Skylitzes Matritensis kaydı (12. yüzyıl Sicilya) ve ACS/C&EN Haldon söyleşisi kontrol edildi. Kesin 672 icat yılı, bilinen yakıt tarifi, özgün basınç/menzil ve doğrulanmış iç düzen iddiaları kaldırıldı. Barut filtresi düzeltildi. Kaplar, bronz aslan başı, bordalar ve kesit ayrıntıları korundu; temsili model sınırı açıklandı.
+- Çok yakın genel kamera genişletildi; mobil kadraj ve sis ayarlandı. Dördüncü alev gösteriminin kaybolması, yinelenen tıklamada stok tüketimi, inceleme kipinde süren efekt ve geçersiz slider girdileri düzeltildi.
+- tests/greekfire.cjs geçti: geometri/kaplama, duraklatma, dört gösterim, tekrar tıklama, kip değişimi, yenileme, fiziksel performans iddiası içermeyen telemetri. Masaüstü genel/X-Ray ve 390×844 mobil görüntü incelendi.

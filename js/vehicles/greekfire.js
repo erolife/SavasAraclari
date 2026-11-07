@@ -1,7 +1,7 @@
 // ============================================================================
-// 672 BİZANS "RUM ATEŞİ" (GREEK FIRE / HYGRON PYR) & ÇİFT PİSTONLU SİFON POMPASI
+// 7. yy. sonu BİZANS "RUM ATEŞİ" (GREEK FIRE / HYGRON PYR) & ÇİFT PİSTONLU SİFON POMPASI
 // Madrid Skylitzes Elyazması (fol. 34v), VI. Leon Taktika (Böl. XIX) ve
-// Haldon & Byrne (2002) Tam Ölçekli Deneysel Rekonstrüksiyonuna Göre
+// Modern rekonstrüksiyonlardan esinlenen yaklaşık sergi yorumu.
 // 1:1 Tam Ölçekli Bizans Dromon Pruvası (Xylokastron) & Alt Güverte Sifon Dairesi
 // ============================================================================
 (function () {
@@ -49,7 +49,7 @@
   const SCHEMES = {
     constantinople674: {
       name: '🔥 674 Konstantinopolis Kuşatması (İmparatorluk Erguvanı & Dövme Bronz)',
-      btn: '🔥 674 Kuşatması (Erguvan & Bronz)',
+      btn: '🔥 Erguvan & Bronz · Temsili',
       hullWood: 0x5c3a21,
       hullTrim: 0x7f1d1d,
       deckOak: 0x785233,
@@ -72,8 +72,8 @@
       water: 0x0284c7
     },
     haldon2002: {
-      name: '⚗️ 2002 Haldon & Byrne Deneysel Rekonstrüksiyonu (Ham Çam, Bakır & Pirinç)',
-      btn: '⚗️ Haldon-Byrne Deneyi (Ham Bakır)',
+      name: '⚗️ Ham ahşap ve bakır · temsili',
+      btn: '⚗️ Ham Bakır · Temsili',
       hullWood: 0x6b4423,
       hullTrim: 0x57534e,
       deckOak: 0x8c6239,
@@ -85,7 +85,7 @@
     },
     dromon_night717: {
       name: '🌙 717 Haliç Gece Baskını (Ziftli Kararmış Gövde & Kızıl Ocak)',
-      btn: '🌙 717 Gece Baskını (Ziftli Siyah)',
+      btn: '🌙 Koyu Kaplama · Temsili',
       hullWood: 0x292524,
       hullTrim: 0x450a0a,
       deckOak: 0x44403c,
@@ -301,9 +301,9 @@
         name: cfg.name,
         subsystem: cfg.sub,
         subLabel: SUB_LABELS[cfg.sub] || 'ALT SİSTEM: RUM ATEŞİ SİFONU',
-        desc: cfg.desc,
+        desc: cfg.desc + ' Düzen ve renkler yaklaşık sergi yorumudur; tarihsel imalat planı değildir.',
         material: cfg.material || 'Dövme Bronz, Bakır & Meşe',
-        weight: cfg.weight || '85 kg',
+        weight: 'Özgün parça ağırlığı bilinmiyor',
         spec: cfg.spec || 'Standart',
         location: cfg.location || 'Dromon Pruvası',
         basePos: [0, 0, 0],
@@ -319,8 +319,8 @@
       sub: 'dromon_hull',
       color: '#785233',
       explode: [0, 0.4, -1.8],
-      spec: 'Gövde: Meşe postalar ve sedir/çam kaplama | Pruva Kalesi: Xylokastron (Ahşap Burun Kulesi) | Mahmuz: Su üstü dövme bronz Peronion',
-      desc: 'Bizans İmparatorluk donanmasının belkemiği olan Dromon kadırgalarının pruva (prorai) bölümü. Alt güvertede gizli ısıtma kazanı ve çift pistonlu sifon pompası korunurken, üst pruva kalesinde (xylokastron) döner bronz sifon namlusu yer alır. X-Ray modunda dış borda kaplaması saydamlaşarak alt güvertedeki gizli sifon dairesini açığa çıkarır.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Dromonun tamamı yerine pruva bölümünü gösteren bir sahne. Bordalar, kürekler, üst platform ve sifon silueti birlikte okunur. Minyatürler teknik çizim değildir."
     });
 
     const partKeelWater = makePart({
@@ -329,18 +329,18 @@
       sub: 'dromon_hull',
       color: '#5c3a21',
       explode: [0, -1.3, 0],
-      spec: 'Omurga Tabanı: y = 0,000 m meşe tersane kızakları | Su Hattı: y = 0,95 m yarı saydam Marmara / Haliç denizi',
-      desc: 'Dromon pruva kesitini y = 0,000 m müze zemininde taşıyan ağır meşe kızak beşikleri, omurga takozları ve geminin su çekimini (draft) gösteren yarı saydam deniz yüzeyi.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Ahşap kızaklar müze sunumuna aittir. Saydam su düzlemi, deniz ortamını anlatır; belirli bir geminin su çekimini ölçmez."
     });
 
     const partNaphthaAmphorae = makePart({
       id: 'gf_naphtha_amphorae',
-      name: '3. Ziftli Neft (Nafta) & Çam Reçinesi Amforaları ve Bakır İkmal Varilleri',
+      name: '3. Pişmiş Toprak Amforalar ve Bakır Kaplar',
       sub: 'dromon_hull',
       color: '#9a3412',
       explode: [-1.8, 0.3, -1.6],
-      spec: 'Yakıt: Karadeniz (Taman/Kafkasya) ham neft yağı + çam reçinesi + kükürt | Depolama: Zift sıvalı pişmiş toprak amforalar ve bakır fıçılar',
-      desc: 'İmparator VII. Konstantinos Porphyrogennetos\'un "devlet sırrı" olarak tanımladığı sıvı yangın bileşiminin depolandığı sızdırmaz amforalar ve bakır ikmal varilleri. Ham petrol (nafta), yoğunlaştırıcı çam reçinesi ile karıştırılarak su üstünde yüzen ve sönmeyen bir jel-sıvı haline getirilirdi.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Pişmiş toprak kaplar ve bakır variller, gemide malzeme taşıma fikrini temsil eder. Rum Ateşi’nin kesin bileşimi bilinmediği için bir yakıt tarifi sunulmaz."
     });
 
     const partHideShields = makePart({
@@ -349,8 +349,8 @@
       sub: 'dromon_hull',
       color: '#7c2d12',
       explode: [1.9, 0.9, 1.0],
-      spec: 'Koruma: Sirke, şap (alum) ve suyla ıslatılmış kalın sığır derisi / keçe perdeler | Konum: Xylokastron pruva siperi ve borda kalkanları',
-      desc: 'VI. Leon\'un Taktika eserinde tarif edildiği üzere, hem kendi sifonlarından sıçrayabilecek kızgın neft damlalarına hem de düşman ok ve yangın silahlarına karşı pruva kalesinin dışına asılan sirke ve şap emdirilmiş çok katmanlı deri siperlikler ve Bizans Chi-Rho (☧) kalkanları.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Asılı perdeler ve kalkanlar güverteye katmanlı bir görünüm kazandırır. İşaretler, malzemeler ve konumları görsel yorumdur."
     });
 
     // ALT SİSTEM 2: Körüklü Ocak & Bakır Ön-Isıtma Kazanı (cauldron_hearth)
@@ -360,8 +360,8 @@
       sub: 'cauldron_hearth',
       color: '#ea580c',
       explode: [-1.9, -0.3, -0.6],
-      spec: 'Ocak: Tuğla ve demir kuşaklı gemi mangalı | Hava Beslemesi: Pompa koluna senkron çift deri körük (Bellows)',
-      desc: 'Alt güvertede bakır kazanın altında yanan izole kömür/odun ocağı ve ateşi harlayan çift deri körük. Neft karışımının viskozitesini düşürmek ve namludan çıktığında anında buharlaşıp tutuşmasını sağlamak için yakıt kontrollü biçimde ön ısıtmaya tabi tutulurdu.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Kesit içindeki ocak ve körük biçimleri modern rekonstrüksiyon düşüncesinden esinlenmiştir. Düzenin özgün gemilerde aynen bulunduğu doğrulanmış değildir."
     });
 
     const partCopperCauldron = makePart({
@@ -370,8 +370,8 @@
       sub: 'cauldron_hearth',
       color: '#b45309',
       explode: [0, 0.8, -1.1],
-      spec: 'Malzeme: Kalın dövme bakır levha (Chalkion) | İşlev: Neft ve reçine karışımını ~70-90°C sıcaklığa ısıtma ve emiş borusuna besleme',
-      desc: 'Kallinikos\'un sisteminin kalbi olan kubbeli bakır kazan. Altındaki ocaktan aldığı ısıyla neft-reçine karışımını akışkan ve uçucu hale getirir; alt çıkış borusuyla yakıtı doğrudan Ktesibios tipi çift pistonlu bronz kuvvet pompasına iletir.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Bakır haznenin perçinleri, çemberleri ve kavisli yüzeyi modelde incelenebilir. Sıcaklık veya işletme basıncı verilmez; kesin iç yapı bilinmiyor."
     });
 
     const partHandCheirosiphones = makePart({
@@ -380,8 +380,8 @@
       sub: 'cauldron_hearth',
       color: '#ca8a04',
       explode: [2.0, 0.6, -0.4],
-      spec: 'El Silahı: İmparator VI. Leon dönemi bronz şırınga-pistonlu Cheirosiphon (3 adet) | Mühimmat: Fitilli pişmiş toprak Rum Ateşi el bombaları',
-      desc: 'VI. Leon\'un Taktika (Böl. XIX) eserinde "bizim yeni icadımız" diyerek tanıttığı, askerlerin kalkan arkasından düşman güvertesine alev püskürttüğü portatif el sifonları (cheirosiphones) ve çarpma anında kırılıp tutuşan neft dolu seramik el bombaları.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Küçük sifon ve seramik kap biçimleri, Bizans yangın silahlarına ilişkin farklı anlatıları hatırlatır. Bütün parçaların aynı tarihte aynı gemide bulunduğu iddia edilmez."
     });
 
     // ALT SİSTEM 3: Ktesibios Çift Pistonlu Kuvvet Pompası & Windkessel (pump_hydraulics)
@@ -391,8 +391,8 @@
       sub: 'pump_hydraulics',
       color: '#d97706',
       explode: [0, 1.9, 0.25],
-      spec: 'Mekanizma: Merkez mafsallı (R = 0,36 m) demir kuşaklı meşe terazi kolu | Tahrik: 2-4 Siphonarios (sifon eri) tarafından karşılıklı basma',
-      desc: 'Alt güvertedeki sifoncuların (siphonarioi) karşılıklı olarak aşağı-yukarı bastığı uzun terazi manivelası. Kolun bir ucu inerken diğer ucu yükselir; böylece ikiz bronz silindirler 180° faz farkıyla kesintisiz basınç üretir.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Sergi animasyonunda terazi kolu iki yöne sallanır. Bu hareket, mekanik görsel yorumdur; özgün sifon sisteminin doğrulanmış çalışma çevrimi değildir."
     });
 
     const partTwinCylinders = makePart({
@@ -401,8 +401,8 @@
       sub: 'pump_hydraulics',
       color: '#eab308',
       explode: [-1.8, 0.5, 0.25],
-      spec: 'Tasarım: İskenderiyeli Ktesibios / İskenderiyeli Heron çift etkili bronz kuvvet pompası | Çap: 2 × Ø180 mm | Basınç: ~8–10 bar',
-      desc: 'Antik Yunan-Roma hidrolik mühendisliğinin zirvesi olan Ktesibios kuvvet pompası. Bir piston yukarı çıkarken bakır kazandan sıcak nefti emer, diğer piston aşağı inerken tek yönlü bronz klapeyi (flap valve) açarak sıvıyı merkez basınç kubbesine basar.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "İki pistonun karşılıklı hareketi kesitte izlenebilir. Pompa biçimi varsayımsal rekonstrüksiyona aittir; boyutlar ve basınç değerleri tarihsel veri olarak kullanılmaz."
     });
 
     const partWindkesselDome = makePart({
@@ -411,8 +411,8 @@
       sub: 'pump_hydraulics',
       color: '#f59e0b',
       explode: [1.8, 0.5, 0.25],
-      spec: 'Prensip: Sıkıştırılmış hava yastıklı hidrolik akümülatör (Windkessel) | İşlev: Piston vuruşlarını sönümleyip kesintisiz jet akışı sağlama',
-      desc: 'İkiz silindirlerin ortasında yer alan hava sıkıştırma kubbesi. Pompalanan neft kubbenin alt kısmına dolarken üstteki hapsolmuş havayı sıkıştırır; bu hava yayı sayesinde sıvı kesik kesik değil, 15-20 metre menzilli kesintisiz bir mızrak gibi fışkırır.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Kubbe, kesitte bakır ve bronz yüzeyleri birbirinden ayıran bir görsel öğedir. Özgün Rum Ateşi düzeninde bu biçimin varlığı kesin değildir."
     });
 
     const partRiserConduit = makePart({
@@ -421,8 +421,8 @@
       sub: 'pump_hydraulics',
       color: '#b45309',
       explode: [0, 1.1, 1.2],
-      spec: 'Hat: Windkessel kubbesinden üst pruva güvertesine çıkan kalın etli bakır boru | Kontrol: Çeyrek turlu konik bronz ana vana (Stopcock)',
-      desc: 'Alt güvertedeki pompa kolektöründen üst pruva kalesindeki (xylokastron) sifon kundağına basınçlı sıcak neft taşıyan dikme borusu ve sifon başçavuşunun (protosiphonarios) atışı başlatmak için açtığı ana kesme vanası.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Dik boru ve mafsal, güverte altı ile üstteki sifon arasında görsel bağ kurar. Bağlantılar yaklaşık model ayrıntılarıdır."
     });
 
     // ALT SİSTEM 4: Döner Sifon Namlusu, Pilot Meşale & Rum Ateşi Jeti (siphon_armament)
@@ -432,8 +432,8 @@
       sub: 'siphon_armament',
       color: '#d97706',
       explode: [0, 1.4, 2.15],
-      spec: 'Mafsal: Strepton ("dönebilen") sızdırmaz bronz döner kundak | Yanal Açı: -35° .. +35° | Yükseliş Açısı: -10° .. +25°',
-      desc: 'Bizans kaynaklarında "strepton" olarak adlandırılan, sifon namlusunun hem sancak-iskele yönünde (±35°) hem de aşağı-yukarı (-10°..+25°) döndürülerek düşman gemisinin güvertesine veya su hattına nişan alınmasını sağlayan çift eksenli bronz kundak.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Döner kaide, aslan başlı sifonu farklı açılardan incelemeyi sağlar. Açı sınırları yalnızca ekran etkileşimi içindir."
     });
 
     const partBronzeSiphon = makePart({
@@ -442,8 +442,8 @@
       sub: 'siphon_armament',
       color: '#eab308',
       explode: [0, 1.8, 3.1],
-      spec: 'Namlu Boyu: 1,70 m konik daralan dövme bronz boru | Ağız Süsü: Düşmana korku salan açık ağızlı bronz Aslan Başı (Leontokephalos)',
-      desc: 'VI. Leon\'un Taktika\'sında "pruvanın önünde aslan veya başka yırtıcı hayvan başlarıyla kaplı bronz sifonlar bulunur" sözleriyle tarif ettiği ana silah namlusu. Uçtaki daraltıcı nozul (Ø22 mm), basıncı yüksek hızlı bir sıvı sütununa dönüştürür.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Aslan biçimli ağız, gözler ve yele kabartmaları Bizans hayvan başlı silah tasvirlerinden esinlenir. Minyatürden ölçülü bir teknik plan çıkarılamaz."
     });
 
     const partPilotLance = makePart({
@@ -452,8 +452,8 @@
       sub: 'siphon_armament',
       color: '#f97316',
       explode: [1.2, 1.9, 3.6],
-      spec: 'Ateşleme: Sifon ağzının 22 cm önünde asılı yanan reçine/kükürt meşale çanağı | Emniyet: Pilot meşale sönükse sıvı neft tutuşmaz!',
-      desc: 'Sifon namlusunun altından uzanan demir kol üzerindeki sürekli yanan pilot ateş çanağı. Ana vana açıldığında nozuldan fışkıran basınçlı sıcak neft bu pilot alevin içinden geçerek gök gürültüsünü andıran bir kükreme ("bronte") ve yoğun dumanla dev bir alev sütununa dönüşür.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Küçük alev yalnızca sergi efektidir. Tarihsel ateşleme yönteminin kesin olarak yeniden kurulduğu iddia edilmez."
     });
 
     const partFlameJet = makePart({
@@ -462,8 +462,8 @@
       sub: 'siphon_armament',
       color: '#dc2626',
       explode: [0, 1.5, 5.2],
-      spec: 'Menzil: ~15–20 metre basınçlı parabolik sıvı alev sütunu | Özellik: Su üzerinde yüzer, su döküldükçe harlanır; ancak kum, sirke veya şaplı deriyle boğulabilir',
-      desc: 'Arapça kaynaklarda "Neft", Haçlı kaynaklarında "Yunan/Rum Ateşi", Bizans\'ta ise "Deniz Ateşi" (Pyr Thalassion) veya "Sıvı Ateş" (Hygron Pyr) olarak anılan korkunç alev jeti. Suyla söndürülemez; deniz yüzeyine düştüğünde bile su üstünde yüzerek düşman kadırgalarını su hattından tutuşturur.'
+      spec: 'Yaklaşık sergi rekonstrüksiyonu',
+      desc: "Alev ve su üzerindeki ışık lekeleri stilize bir anlatımdır; yanma fiziği, menzil ya da bir yakıt formülü simüle edilmez."
     });
 
     // Tüm grupları root'a ekle
@@ -847,7 +847,7 @@
       // 4. Ana kesme vanası (stopcock) ve Rum Ateşi alev jeti
       if (S.firing) {
         S.fireTimer -= stepDt;
-        if (S.fireTimer <= 0 || !S.pilotLit || S.fuelPct <= 0) {
+        if (S.fireTimer <= 0 || !S.pilotLit) {
           S.firing = false;
           S.fireTimer = 0;
         }
@@ -860,7 +860,7 @@
 
       if (jetActive) {
         // Pompa hızına göre menzil çarpanı (en az %65, yüksek tempoda %115)
-        const reachScale = 0.72 + (S.spm / 70) * 0.42;
+        const reachScale = 0.8; // Sabit sergi efekti; menzil hesabı değildir.
         flameJetStreamGrp.rotation.set(-elevRad, yawRad, 0, 'YXZ');
         jetSegments.forEach((seg, idx) => {
           const pulse = 1.0 + 0.15 * Math.sin(S.pumpPhase * 4.5 - idx * 0.7);
@@ -874,13 +874,15 @@
       }
     }
 
+    flameJetStreamGrp.name = 'gf-jet';
+    pumpBeamPivot.name = 'gf-beam';
     syncVisualState(0);
 
     // ========================================================================
     // KAMERA AÇILARI VE 6 ADIMLI REHBERLİ TUR
     // ========================================================================
     const camPresets = {
-      iso: { pos: [5.8, 3.6, 5.4], look: [0, 1.55, 0.8] },
+      iso: { pos: [13, 8, 14], look: [0, 1.55, 0.4] },
       front: { pos: [2.2, 2.4, 6.2], look: [0, 1.95, 2.6] },
       breech: { pos: [2.1, 2.5, 3.8], look: [0, 2.25, 2.8] },
       engine: { pos: [3.2, 2.1, -0.9], look: [0, 1.35, -0.6] },
@@ -890,8 +892,8 @@
 
     const tourSteps = [
       {
-        title: 'Genel Bakış: 672 Bizans "Rum Ateşi" (Pyr Thalassion) & Dromon Pruvası',
-        desc: 'MS 672\'de Suriyeli Kallinikos tarafından geliştirilen ve 674–678 ile 717–718 Arap kuşatmalarında Konstantinopolis\'i kurtaran ünlü deniz silahı. Dromon kadırgasının pruva kalesi (xylokastron) ve alt güvertedeki gizli sifon dairesi birlikte görülüyor.',
+        title: 'Genel Bakış: 7. yy. sonu Bizans "Rum Ateşi" (Pyr Thalassion) & Dromon Pruvası',
+        desc: "Rum Ateşi, Bizans deniz savaşlarının en tanınmış silahlarından biridir. 7. yüzyıl sonuyla ilişkilendirilir; kesin icat yılı ve bütün iç düzen ayrıntıları bilinmez. Bu sahne bir dromon pruva yorumudur.",
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -900,7 +902,7 @@
       },
       {
         title: 'X-Ray: Körüklü Ocak & Kubbeli Bakır Ön-Isıtma Kazanı (Chalkion)',
-        desc: 'Borda kaplaması saydamlaştığında alt güvertedeki ziftli neft amforaları, çift körüklü ocak ve kubbeli bakır kazan (chalkion) ortaya çıkar. Ham neft yağı (nafta) ve çam reçinesi burada ısıtılarak akışkan ve uçucu hale getirilir.',
+        desc: "Kesitte hazne, kaplar ve ahşap iskelet görünür. Bunlar kesin arkeolojik iç yerleşim değildir. Yakıt formülü ve işletme değerleri yerine görsel rekonstrüksiyonun sınırları vurgulanır.",
         explode: 0,
         cutaway: true,
         sub: 'all',
@@ -909,7 +911,7 @@
       },
       {
         title: 'Ktesibios Çift Pistonlu Bronz Kuvvet Pompası & Windkessel Kubbesi',
-        desc: 'Sifoncuların (siphonarioi) karşılıklı bastığı terazi manivelası, ikiz bronz silindirlerdeki pistonları 180° zıt fazda çalıştırır. Ortadaki Windkessel hava kubbesi basıncı (~8-10 bar) dengeleyerek sıvının kesintisiz fışkırmasını sağlar.',
+        desc: "Hareketli terazi kolu ile karşılıklı pistonları gözleyin. Bu düzen modern bir açıklama modeli olarak sunulur; antik pompa geleneği ile Rum Ateşi arasında kesin bir özdeşlik kurulmaz.",
         explode: 0,
         cutaway: true,
         sub: 'all',
@@ -918,7 +920,7 @@
       },
       {
         title: 'Strepton Döner Bronz Mafsal & Aslan Başlı Sifon Namlusu (Sipho)',
-        desc: 'VI. Leon\'un Taktika eserinde tarif ettiği üzere, üst pruva kalesindeki döner kundak (strepton) üzerinde yükselen ve ucu yırtıcı aslan başı (leontokephalos) biçiminde dövülmüş bronz sifon namlusu.',
+        desc: "Aslan başlı sifonun yüzeyini ve döner kaideyi inceleyin. Hayvan başlı ağız tasvirleri ayrıntı için ilham sağlar; model belirli bir korunmuş silahın kopyası değildir.",
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -927,7 +929,7 @@
       },
       {
         title: 'Pilot Ateşleme Mızrağı & Su Üstünde Sönmeyen Sıvı Alev Jeti',
-        desc: 'Namlunun altındaki pilot meşale çanağı sürekli yanar; ana vana açıldığında fışkıran basınçlı sıcak neft pilot alevin içinden geçerek 15-20 metre menzilli bir ateş sütununa dönüşür ve deniz yüzeyinde yüzerek yanmaya devam eder.',
+        desc: "Alev gösterimi stilize ve kısa süreli bir müze efektidir. Kontroller görsel anlatımı değiştirir; menzil, basınç veya yakıt performansı hesabı yapılmaz.",
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -936,7 +938,7 @@
       },
       {
         title: 'VI. Leon\'un El Sifonları (Cheirosiphones) & Sirke-Şaplı Deri Siperler',
-        desc: 'Korkulukta dizili portatif el sifonları (cheirosiphones), seramik el bombaları ve kendi pruvasını yangından koruyan sirke/şap emdirilmiş kalın deri perdeler.',
+        desc: "BNE’deki Skylitzes Matritensis 12. yüzyılda hazırlanmıştır; Rum Ateşi’nin ilk ortaya çıktığı çağın doğrudan çizimi değildir. Eski olayların sonraki yüzyıllarda nasıl resmedildiğini karşılaştırın.",
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -952,11 +954,12 @@
     let reliefEnabled = true;
 
     const ui = {
-      title: '672 BİZANS "RUM ATEŞİ" (GREEK FIRE) & ÇİFT PİSTONLU SİFON POMPASI',
-      sub: 'Kallinikos\'un Devlet Sırrı Deniz Silahı (Pyr Thalassion) • Bakır Kazan, Ktesibios Çift Pistonlu Pompa & Aslan Başlı Bronz Sifon',
-      badge: 'RUM ATEŞİ — MS 672',
+      title: '7. yy. sonu BİZANS "RUM ATEŞİ" (GREEK FIRE) & ÇİFT PİSTONLU SİFON POMPASI',
+      sub: 'Bizans Deniz Savaşları • Kesin İç Düzeni Bilinmeyen Bir Silahın Sergi Yorumu',
+      badge: 'RUM ATEŞİ — 7. yy. sonu',
       partCount: '15 Ana Grup',
-      portraitCameraScale: 1.30,
+      portraitCameraScale: 1.65,
+      fog: {near: 45, far: 100},
       shadowExtent: 9,
       sliders: [
         { label: 'Ktesibios Çift Piston Pompa Temposu', min: 0, max: 70, step: 1, fmt: v => `${Math.round(v)} Vuruş/dk` },
@@ -968,8 +971,8 @@
         sweep: '💪 Sifoncu Pompa Ekibi: ÇALIŞIYOR',
         mode: true
       },
-      telemetryTag: 'KONSTANTİNOPOLİS — MS 672',
-      statLabels: ['SİFON BASINCI / MENZİL', 'OCAK & PİLOT MEŞALE', 'SICAK NEFT KAZANI', 'POMPA TEMPOSU'],
+      telemetryTag: 'KONSTANTİNOPOLİS — 7. yy. sonu',
+      statLabels: ['SERGİ EFEKTİ', 'OCAK & PİLOT MEŞALE', 'GÖSTERİM STOKU', 'POMPA TEMPOSU'],
       camLabels: {
         iso: 'İzometrik Dromon',
         front: 'Pruva & Aslan Başı',
@@ -1054,6 +1057,7 @@
 
       onSlider(idx, val) {
         const v = Number(val);
+        if (!Number.isFinite(v)) return {};
         if (idx === 0) {
           S.spm = Math.max(0, Math.min(70, v));
         } else if (idx === 1) {
@@ -1076,8 +1080,8 @@
           return {
             active: S.pilotLit,
             msg: S.pilotLit
-              ? 'Sifon ağzındaki reçineli pilot ateşleme meşalesi tutuşturuldu; Rum Ateşi püskürtmeye hazır!'
-              : 'Pilot ateşleme meşalesi söndürüldü; açık alev olmadan neft jeti tutuşmaz.'
+              ? 'Küçük alev efekti açıldı.'
+              : 'Küçük alev efekti kapatıldı; gösterim durduruldu.'
           };
         }
         if (name === 'sweep') {
@@ -1095,12 +1099,13 @@
         }
         if (name === 'mode') {
           S.mode = S.mode === 'battle' ? 'preheat' : 'battle';
+          S.firing = false;
           syncVisualState(0);
           return {
             active: S.mode === 'battle',
             msg: S.mode === 'battle'
-              ? '🔥 Savaş & Sifon Atış Düzeni: Windkessel kubbesi tam basınçta, ana kesme vanası atışa hazır!'
-              : '⚗️ Alt Güverte Kazan Ön-Isıtma & Amfora İkmal Düzeni: Neft-reçine karışımı bakır kazanda ısıtılıyor.'
+              ? '🔥 Savaş & Sifon Atış Düzeni: Temsili alev gösterimi kullanılabilir.'
+              : '⚗️ Alt Güverte Kazan Ön-Isıtma & Amfora İkmal Düzeni: İç düzeni inceleyin; alev gösterimi kapalı.'
           };
         }
         return {};
@@ -1120,6 +1125,8 @@
       },
 
       onFire() {
+        if (S.firing) return {ok:false,msg:'Gösterim sürüyor.'};
+        if (S.mode !== 'battle') return {ok:false,msg:'İnceleme kipinde alev gösterimi kapalı.'};
         if (S.fuelPct <= 0) {
           S.fuelPct = 100;
           S.firing = false;
@@ -1128,13 +1135,13 @@
           return {
             ok: true,
             refill: true,
-            msg: '🏺 Ziftli amforalardan bakır kazana (Chalkion) taze neft yağı ve çam reçinesi dolduruldu (%100).'
+            msg: '🏺 Dört gösterimlik sergi döngüsü yenilendi.'
           };
         }
         if (!S.pilotLit) {
           return {
             ok: false,
-            msg: '⚠️ <strong>PİLOT MEŞALE SÖNÜK:</strong> Sifon ağzındaki pilot ateşleme mızrağı yanmadan sıcak neft tutuşmaz! Önce pilot meşaleyi yakın.'
+            msg: '⚠️ <strong>PİLOT MEŞALE SÖNÜK:</strong> Gösterim kapalı; önce alev efektini etkinleştirin.'
           };
         }
         S.fuelPct = Math.max(0, S.fuelPct - 25);
@@ -1144,18 +1151,22 @@
         if (ctx.audio && ctx.audio.playCannonFire) ctx.audio.playCannonFire();
         return {
           ok: true,
-          msg: `🔥 <strong>RUM ATEŞİ (PYR THALASSION) PÜSKÜRTÜLDÜ!</strong> Basınçlı neft jeti deniz yüzeyini tutuşturdu (Kalan Kazan Yakıtı: %${S.fuelPct}).`
+          msg: `🔥 Stilize Rum Ateşi gösterimi başladı. Kalan gösterim: ${S.fuelPct / 25}.`
         };
       },
 
       fireButtonLabel() {
-        if (S.fuelPct <= 0) return '🏺 AMFORALARDAN NEFT & REÇİNE İKMALİ YAP (%100)';
+        if(S.firing) return '⏳ ALEV GÖSTERİMİ SÜRÜYOR';
+        if(S.mode !== 'battle') return 'İNCELEME KİPİ — GÖSTERİM KAPALI';
+        if (S.fuelPct <= 0) return '🏺 AMFORALARDAN GÖSTERİM İKMALİ YAP (%100)';
         if (!S.pilotLit) return '💨 PİLOT MEŞALE SÖNÜK (ÖNCE MEŞALEYİ YAKIN)';
         return `🔥 RUM ATEŞİ SİFONUNU PÜSKÜRT (%${S.fuelPct} YAKIT)`;
       },
 
       mobileFireButtonLabel() {
-        if (S.fuelPct <= 0) return '🏺 Neft İkmali';
+        if(S.firing) return '⏳ Gösterim sürüyor';
+        if(S.mode !== 'battle') return 'İnceleme kipi';
+        if (S.fuelPct <= 0) return '🏺 Gösterimi Yenile';
         if (!S.pilotLit) return '💨 Meşale Sönük';
         return '🔥 Rum Ateşi At';
       },
@@ -1166,15 +1177,13 @@
 
       getStats() {
         const effSpm = S.autoPump ? S.spm : 0;
-        const bar = (1.5 + (effSpm / 70) * 8.0).toFixed(1);
-        const rangeM = Math.round(6 + (effSpm / 70) * 14);
         const pilotText = S.pilotLit
-          ? 'Pilot Yanıyor <span>(~85°C)</span>'
+          ? 'Pilot Yanıyor <span>(Temsili)</span>'
           : 'Pilot Sönük <span>(Kilitli)</span>';
         return [
-          `${bar} <span>Bar (~${rangeM} m)</span>`,
+          S.firing ? 'Alev efekti açık' : 'Alev efekti kapalı',
           pilotText,
-          `%${S.fuelPct} <span>Neft + Reçine</span>`,
+          `%${S.fuelPct} <span>Sergi gösterimi</span>`,
           `${effSpm} <span>Vuruş/dk (180° Faz)</span>`
         ];
       },
@@ -1190,7 +1199,7 @@
           return { text: 'PİLOT MEŞALE SÖNÜK — ATEŞLEME KİLİTLİ', color: '#d97706' };
         }
         return S.mode === 'battle'
-          ? { text: 'WINDKESSEL TAM BASINÇTA — PÜSKÜRTMEYE HAZIR', color: '#16a34a' }
+          ? { text: 'TEMSİLİ ALEV GÖSTERİMİ HAZIR', color: '#16a34a' }
           : { text: 'ALT GÜVERTE KAZAN ÖN-ISITMA MODU — HAZIR', color: '#0284c7' };
       },
 

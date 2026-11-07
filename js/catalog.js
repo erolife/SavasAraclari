@@ -415,23 +415,60 @@
   "svg": "<svg viewBox=\"0 0 320 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 58 Q90 54 160 58 T308 58\" stroke=\"#0284c7\" stroke-width=\"1.6\" stroke-dasharray=\"5 3\"/><path d=\"M22 82 Q95 54 160 54 Q225 54 298 82 Q225 110 160 110 Q95 110 22 82 Z\" fill=\"#334155\" fill-opacity=\"0.32\" stroke=\"#0f172a\" stroke-width=\"2.2\"/><rect x=\"148\" y=\"38\" width=\"14\" height=\"20\" rx=\"2\" fill=\"#475569\" stroke=\"#0f172a\" stroke-width=\"1.8\"/><path d=\"M178 55 A12 10 0 0 1 202 55 Z\" fill=\"#38bdf8\" fill-opacity=\"0.5\" stroke=\"#0f172a\" stroke-width=\"1.8\"/><rect x=\"216\" y=\"48\" width=\"54\" height=\"9\" rx=\"3\" fill=\"#b45309\" fill-opacity=\"0.45\" stroke=\"#78350f\" stroke-width=\"1.8\"/><ellipse cx=\"105\" cy=\"82\" rx=\"24\" ry=\"12\" fill=\"#d97706\" fill-opacity=\"0.3\" stroke=\"#b45309\" stroke-width=\"1.6\"/><ellipse cx=\"215\" cy=\"82\" rx=\"24\" ry=\"12\" fill=\"#d97706\" fill-opacity=\"0.3\" stroke=\"#b45309\" stroke-width=\"1.6\"/><line x1=\"62\" y1=\"62\" x2=\"62\" y2=\"102\" stroke=\"#0284c7\" stroke-width=\"2.5\"/><line x1=\"258\" y1=\"62\" x2=\"258\" y2=\"102\" stroke=\"#0284c7\" stroke-width=\"2.5\"/></svg>"
 });
   VEHICLES.push({
-    id: 'greekfire', sim: 'greekfire', group: 10, status: 'live',
-    year: 672, yearLabel: 'MS 672', eraLabel: 'ORTA ÇAĞ • BİZANS DONANMASI',
-    domain: 'sea', era: 'medieval', energy: ['muscle', 'gunpowder'], role: ['artillery', 'defense'], origin: 'byzantine',
-    name: 'Bizans "Rum Ateşi" (Greek Fire) & Çift Pistonlu Sifon Pompası',
-    sub: 'KALLİNİKOS’UN DEVLET SIRRI SİLAHI • BAKIR KAZAN • KTESİBİOS ÇİFT PİSTONLU POMPA & ASLAN BAŞLI SİFON',
-    desc: 'MS 672\'de Suriyeli Kallinikos\'un geliştirdiği ve Konstantinopolis kuşatmalarında Arap donanmalarını su üstünde bile sönmeyen sıvı alevle durduran "Deniz Ateşi" (Pyr Thalassion). X-Ray ile Dromon pruvası altındaki körüklü ocağı, kubbeli bakır kazanı, Ktesibios tipi çift pistonlu bronz kuvvet pompasını ve üst güvertedeki aslan başlı döner sifonu inceleyin.',
-    tags: ['Ktesibios İkiz Bronz Pompa', 'Bakır Ön-Isıtma Kazanı', 'Aslan Başlı Bronz Sifon', '15 İnceleme Grubu'],
-    specs: [['SİLAH TİPİ', 'Basınçlı Sıvı Alev Sifonu'], ['POMPA BASINCI', '~8–10 bar (Windkessel Kubbeli)'], ['MENZİL', '~15–20 Metre (Su Üstünde Yanar)'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
-    tag: 'GREEK-FIRE-672', icon: '🔥',
-    modal: [
-      'Bizans Dromon pruva kesiti, Xylokastron ahşap burun kalesi, bronz Peronion mahmuzu ve ziftli neft amforaları',
-      'Çift körüklü odun/kömür ocağı ve neft-reçine karışımını ısıtan perçinli kubbeli bakır kazan (Chalkion)',
-      '180° zıt fazda çalışan Ktesibios tipi ikiz bronz kuvvet pompası ve basınç dengeleyici Windkessel hava kubbesi',
-      'Strepton döner kundak, aslan başlı (Leontokephalos) dövme bronz sifon namlusu, pilot meşale ve deniz üstü alev jeti'
+  "id": "greekfire",
+  "sim": "greekfire",
+  "group": 10,
+  "status": "live",
+  "year": 672,
+  "yearLabel": "7. yüzyıl sonu",
+  "eraLabel": "ORTA ÇAĞ • BİZANS DONANMASI",
+  "domain": "sea",
+  "era": "medieval",
+  "energy": [
+    "muscle"
+  ],
+  "role": [
+    "artillery",
+    "defense"
+  ],
+  "origin": "byzantine",
+  "name": "Bizans Rum Ateşi — Dromon Pruva Rekonstrüksiyonu",
+  "sub": "TARİHSEL TASVİRLER VE REKONSTRÜKSİYONUN SINIRLARI",
+  "desc": "Bizans deniz savaşlarıyla özdeşleşen Rum Ateşi’nin dromon pruva yorumu. Ahşap bordalar, bronz aslan başı ve yaklaşık kesit düzeni. Kesin bileşim ve iç sistem bilinmiyor; hareketler stilize sergi gösterimidir.",
+  "tags": [
+    "Dromon Pruvası",
+    "Aslan Başlı Sifon",
+    "12. Yüzyıl Tasvirleri",
+    "Yaklaşık Kesit"
+  ],
+  "specs": [
+    [
+      "DÖNEM",
+      "7. yüzyıl sonundan itibaren"
     ],
-    svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 105 Q90 100 160 105 T310 105" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 3"/><path d="M24 108 L42 64 L188 64 L216 96 L185 112 Z" fill="#785233" fill-opacity="0.35" stroke="#451a03" stroke-width="2.2"/><ellipse cx="78" cy="88" rx="18" ry="14" fill="#b45309" fill-opacity="0.45" stroke="#78350f" stroke-width="1.8"/><rect x="118" y="76" width="28" height="24" rx="3" fill="#d97706" fill-opacity="0.4" stroke="#78350f" stroke-width="1.8"/><line x1="106" y1="68" x2="158" y2="68" stroke="#451a03" stroke-width="3"/><path d="M168 52 L226 46" stroke="#d97706" stroke-width="5" stroke-linecap="round"/><path d="M228 46 Q268 42 304 68 Q272 58 228 52 Z" fill="#ef4444" fill-opacity="0.65" stroke="#ea580c" stroke-width="1.8"/></svg>'
-  });
+    [
+      "GÖRSEL KAYNAK",
+      "Skylitzes · 12. yüzyıl"
+    ],
+    [
+      "İÇ DÜZEN",
+      "Varsayımsal rekonstrüksiyon"
+    ],
+    [
+      "İNCELEME",
+      "15 bağımsız grup"
+    ]
+  ],
+  "tag": "GREEK-FIRE-672",
+  "icon": "🔥",
+  "modal": [
+    "Ahşap pruva kesiti ve güverte ayrıntıları",
+    "Minyatürlerden esinlenen aslan başlı sifon",
+    "Yaklaşık iç düzen ve temsili hareketler",
+    "Kesin yakıt, basınç veya menzil iddiası bulunmaz"
+  ],
+  "svg": "<svg viewBox=\"0 0 320 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M10 105 Q90 100 160 105 T310 105\" stroke=\"#0284c7\" stroke-width=\"1.8\" stroke-dasharray=\"5 3\"/><path d=\"M24 108 L42 64 L188 64 L216 96 L185 112 Z\" fill=\"#785233\" fill-opacity=\"0.35\" stroke=\"#451a03\" stroke-width=\"2.2\"/><ellipse cx=\"78\" cy=\"88\" rx=\"18\" ry=\"14\" fill=\"#b45309\" fill-opacity=\"0.45\" stroke=\"#78350f\" stroke-width=\"1.8\"/><rect x=\"118\" y=\"76\" width=\"28\" height=\"24\" rx=\"3\" fill=\"#d97706\" fill-opacity=\"0.4\" stroke=\"#78350f\" stroke-width=\"1.8\"/><line x1=\"106\" y1=\"68\" x2=\"158\" y2=\"68\" stroke=\"#451a03\" stroke-width=\"3\"/><path d=\"M168 52 L226 46\" stroke=\"#d97706\" stroke-width=\"5\" stroke-linecap=\"round\"/><path d=\"M228 46 Q268 42 304 68 Q272 58 228 52 Z\" fill=\"#ef4444\" fill-opacity=\"0.65\" stroke=\"#ea580c\" stroke-width=\"1.8\"/></svg>"
+});
   VEHICLES.push({
     id: 'r7', sim: 'r7', group: 10, status: 'live',
     year: 1957, yearLabel: '1957 / 1961', eraLabel: 'SOĞUK SAVAŞ • UZAY ÇAĞI',
@@ -524,17 +561,17 @@
     }
   ],
   "greekfire": [
-    {
-      "title": "Madrid Skylitzes Elyazması (MS Graecus Vitr. 26-2, fol. 34v) — Biblioteca Nacional de España",
-      "url": "https://www.bne.es/es/colecciones/manuscritos/skylitzes-matritensis",
-      "note": "Bizans dromonunun pruvasından düşman gemisine basınçlı sifonla Rum Ateşi ('Pyr Thalassion') püskürtülmesini gösteren tek özgün dönem minyatürü."
-    },
-    {
-      "title": "Bizans Deniz Harp Koleksiyonu — Atina Savaş Müzesi (War Museum Athens)",
-      "url": "https://warmuseum.gr/en/",
-      "note": "Bizans dromon pruva yapısı, el sifonları (cheirosiphones) ve seramik Rum Ateşi el bombaları tarihsel bağlamı; alt güverte pompa yerleşimi Haldon & Byrne (2002) deneysel rekonstrüksiyonuna dayanır."
-    }
-  ],
+  {
+    "title": "BNE — Un universo de imágenes: Skylitzes Matritensis",
+    "url": "https://www.bne.es/es/agenda/universo-imagenes-skylitzes-matritensis",
+    "note": "12. yüzyıl Sicilya el yazması. Tasvirler, 7. yüzyıl düzeninin teknik planları değildir."
+  },
+  {
+    "title": "ACS / C&EN — John Haldon ile tarihsel rekonstrüksiyon söyleşisi",
+    "url": "https://cen.acs.org/physical-chemistry/Podcast-Historians-decode-centuries-old/99/web/2021/01",
+    "note": "Modern araştırma ve yeniden kurma girişimleri; model kesin bir özgün sistem olarak sunulmaz."
+  }
+],
   "abdulhamid": [
   {
     "title": "US Naval Institute — The Sultan’s Submarines (1974)",
