@@ -633,3 +633,14 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - 20 grup, 155 mesh. Kalınlıklı 32 ahşap kaplama, iç postalar, kuşak/perçinler, camlı başlık, menteşeli kapak, hava boruları, kabin, göstergeler, iki pervane, yataklı krank ve balast pompası. Saldırı düzeneği yerine hareket/yaşam alanı anlatılır.
 - 106 kapak açısı, ortak şaft fazları, sıfır devir/durdurma, açık kapak pompa kilidi, su bitişi, el ayarı ve 101 su düzeyi test edildi. Testin bulduğu kapak/başlık çakışması menteşe yüksekliğiyle düzeltildi.
 - tests/turtle.cjs, tests/j79.cjs, tests/museum-links.cjs geçti. Masaüstü kapalı/açık kabuk ve X-Ray; 390×844 mobil kadraj, yatay taşma ve pompa etiketi kontrol edildi. Uygulama JavaScript hatası görülmedi.
+
+
+## 7 Kasım 2026 — RRH m/42
+- Kaynaklar: https://ilmatorjuntamuseo.fi/ilmatorjuntamuseo/kokoelman_helmet/rrh/ ve /acousticlocators/; dış biçim fotoğrafı: https://www.festungswerke-cuxhaven.de/horchgeraete (RRH-002). Dört ayrı borulu TSH fotoğrafı ile halka hunili RRH ayrıştırıldı. Alman RRH ailesi / Finlandiya m/42 adlandırması; tam alt tip veya ölçülü iç mekanizma kopyası değildir.
+- 20 grup, 149 mesh: içi açık dört eğrisel halka hunisi, flanş/perçinler, çatal, bağlı esnek hortumlar, iki başlık, üç oturak, el çarkları, kapalı raporlama kutusu, vidalı üç ayak ve dönüş yatağı.
+- Eğitim dalgası alıcıya doğru ilerler; 343 m/s sabit ses hızıyla mesafe/gecikme, görsel 4× zaman. Gerçek radar veya atış kontrol hesabı yoktur.
+- tests/rrh.cjs: 61 yükselişte hortum uçları, merkez açıklığı, gecikme, dalga yönü, kesintisiz tarama başlangıcı, el ayarı, reset ve zemin teması geçti. j79 ve museum-links entegrasyon testleri geçti.
+- 1440×1000 izometrik ve 60° yükselişte arka X-Ray, 390×844 mobil kadraj ve eylem etiketi kontrol edildi; uygulama hatası görülmedi.
+
+### Üç modelin ortak son doğrulaması
+25 test dosyası başarılı; katalog 33 aktif araç ve 54 HTTPS kaynak içeriyor. Yeni üç kartın simülatör bağlantıları, kaynak paneli ve kronolojik araç geçişi tarayıcıda kontrol edildi. Mobil portre ölçekleri ve bağlama uygun eylem etiketleri ayrı ayarlandı.
