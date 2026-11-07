@@ -619,3 +619,10 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Önce 20 araç için araştırma defterindeki 38 bağlantı aktarıldı. İlk 10 araç için 10 ek okuma bağlantısı araştırıldı: English Heritage (Roma ballistası/Orta Çağ kuşatma bağlamı), Historic England (1464 top arşivi), Tank Museum (Tiger I/Mark I), Museum of Flight (Spitfire IX), Museo Scienza (Leonardo), Vakıflar Dergisi (tarihi kadırga), US36836A patent kaydı ve ABD Hava Kuvvetleri Müzesi (Fokker). Tam URL’ler katalogda; ek okumalar birebir model referansı olmadıkları notuyla gösterilir. Fokker doğrudan web açmada 403 verdi, kurumsal arama kaydı okundu.
 - Testler: `node tests/museum-links.cjs` — 30 araç URL’si, alt dizin ve özel sorgu temizleme, native/iptal/pano/manuel yollar, 48 HTTPS kaynak, tüm araçlarda kaynak varlığı geçti. `node tests/j79.cjs` katalog/simulator sözdizimi ve `node tests/enigma-core.cjs` regresyonları geçti.
 - Tarayıcı: katalogdaki 30 paylaş düğmesi, Chu-ko-nu doğru URL kopyalama, araç değiştirdikten sonra kılıç-tabanca URL’si, pano reddinde seçili alan ve kapanınca odağın düğmeye dönmesi doğrulandı. Atlatl masaüstü kaynak paneli ve 390×844 simülatör/Enigma panelleri gözle incelendi. Dialog varsayılan margin sıfırlamasına karşı ortalandı; Enigma mobil üst çubuğuna satır kaydırma eklendi.
+
+
+## 7 Kasım 2026 — Arşimet’in Demir Eli
+- Kaynak: https://kotsanas.com/el/exhibits/military/archimedes-iron-hand/ . Modern müze rekonstrüksiyonu; kesin antik ölçüler ve kapasite iddiası yoktur.
+- 18 grup, 218 mesh: taş sur, destekli döşeme, döner dikme, çatal, kol, kayan karşı ağırlık, irgat, bağlı halat, düşey zincir, demir kanca ve kaplamalı küçük tekne.
+- 186 açı/yön/zincir konumunda bağlantı uçları ve tekne açıklıkları doğrulandı. Otomatik gösterim, el ayarı, sınırlar, sıfırlama ve dört kaplama test edildi.
+- tests/archimedes.cjs, tests/j79.cjs ve tests/museum-links.cjs geçti. Masaüstü izometrik, X-Ray ve 390×844 mobil görünüm kontrol edildi; mobil kadraj ve eylem etiketi düzeltildi. Bilinen favicon 404 ve kullanıcı etkileşimi öncesi AudioContext uyarısı dışında uygulama hatası görülmedi.

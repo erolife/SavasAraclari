@@ -346,7 +346,10 @@
 ];
 
   // Araştırma defterinden aktarılan doğrulanmış bağlantılar; model bilgileriyle aynı kaynakta.
+  VEHICLES.push({"id":"archimedes","sim":"archimedes","group":6,"status":"live","year":-213,"yearLabel":"MÖ 3. yüzyıl","eraLabel":"SİRAKÜZA • MODERN REKONSTRÜKSİYON","domain":"land","era":"ancient","energy":["muscle","gravity"],"role":["defense"],"origin":"greek","name":"Arşimet’in Demir Eli — Siraküza Vinci","sub":"DÖNER DİKME • KARŞI AĞIRLIK • ZİNCİRLİ KANCA","desc":"Taş sur, ahşap çalışma yolu ve küçük tekneyle ayrıntılı diorama. Kolu kaldırın, dikmeyi döndürün ve düşey zinciri inceleyin. Kotsanas Müzesi yorumundan; özgün ölçüler bilinmiyor.","tags":["18 İnceleme Grubu","Hareketli Karşı Ağırlık","Taş Sur Dioraması","Yavaş Kaldırma"],"specs":[["DÖNEM","MÖ 3. yüzyıl"],["KAYNAK","Kotsanas Müzesi"],["STATÜ","Modern rekonstrüksiyon"],["ÖLÇEK","Temsili sergi oranları"]],"tag":"ARCHIMEDES-CLAW","icon":"⚓","modal":["Taş sur ve ahşap çalışma döşemesi","Döner dikme, çatal, mil ve kol","Kayan karşı ağırlık, irgat ve bağlı halat","Düşey zincir, demir kanca ve ahşap tekne"],"svg":"<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M30 130V58H85V130\" fill=\"#b7a68a\"/><path d=\"M66 115V22M37 46L252 20\" stroke=\"#775535\" stroke-width=\"11\"/><path d=\"M252 20V90M238 87Q252 110 266 87\" fill=\"none\" stroke=\"#485156\" stroke-width=\"4\"/><path d=\"M200 108H301L281 130H221Z\" fill=\"#97734f\"/><path d=\"M35 40H64V72H35Z\" fill=\"#8a8578\"/></svg>"});
+
   const SOURCES = {
+  "archimedes": [{"title":"Demir El rekonstrüksiyonu — Kotsanas Müzesi","url":"https://kotsanas.com/el/exhibits/military/archimedes-iron-hand/","note":"Model modern müze yorumudur; özgün antik ölçüler bilinmez."}],
   "monitor": [
     {
       "title": "USS Monitor koruma çalışmaları — Mariners’ Museum",
