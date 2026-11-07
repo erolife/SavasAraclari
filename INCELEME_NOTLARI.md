@@ -650,3 +650,10 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Kaynaklar: https://www.msb.gov.tr/SlaytHaber/932021-42524 ve https://www.gmo.org.tr/upl/gdt_dergi/196.pdf (s.64). Ana oran ~40 × 7,4 m. Almanya inşası ve Osmanlı hizmeti açıkça ayrıldı. Özgün gemi / modern müze gemisi karıştırılmadı; iç makineler ve yerleşim yaklaşık eğitim kesitidir.
 - 26 grup / 441 mesh: tam karina, postalar, yükseltilmiş baş güverte, camlı seyir evi, kaldırılabilir tavan, baca, direk/arma, açık filikalar, raylar, sekiz sergi maketi, vinç, demirler, kazanlar ve çift şaft/pervane. Tarihsel görevdeki 26 sayısı ayrı anlatılır.
 - 101 araba konumu, tekerlek-ray oturuşu, otomatik uç sınırları/el ayarı, çift pervane ve sıfır devir, dümen, tavan/reset, gövde boyu test edildi. nusret, j79 ve museum-links testleri geçti. Masaüstü genel görünüm, makine X-Ray ve 390×844 mobil kadraj/taşma kontrol edildi.
+
+
+### Osmanlı kompozit yayı — 7 Kasım 2026
+- Met Müzesi 35.113.1a–oo (1719–1720): kirişsiz C biçimi, koyu lake ve altın renkli sadeleştirilmiş bezeme; iki sergi oku. Büyütülmüş model, özgün ölçü ve kurulu yorum ayrımı arayüzde açık.
+- 16 seçilebilir grup, 122 mesh; ayrı ahşap/boynuz/sinir/lake katmanları, tüyler ve geometrik açık gezler. Kurulu yorumda 101 çekiş konumunda kiriş bağlantısı ve sabit uzunluk doğrulandı.
+- `node tests/ottomanbow.cjs`, J79 katalog/entegrasyon ve museum-links testleri geçti (35 araç, 57 kaynak).
+- Chrome 1440×1000 genel ve katman/X-Ray yakın planı; 390×844 mobil müze ve kurulu görünüm kontrol edildi, yatay taşma yok. Model hatası yok; ortak favicon.ico 404 ve programatik etkileşimde ses otomatik oynatma uyarısı mevcut.

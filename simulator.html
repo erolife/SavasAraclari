@@ -1590,6 +1590,7 @@
   <script src="js/vehicles/turtle.js"></script>
   <script src="js/vehicles/rrh.js"></script>
   <script src="js/vehicles/nusret.js"></script>
+  <script src="js/vehicles/ottomanbow.js"></script>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -2462,8 +2463,10 @@
     const rrh = window.VehicleBuilders.rrh(buildCtx);
     currentBuildVehicle = 'nusret';
     const nusret = window.VehicleBuilders.nusret(buildCtx);
-    const ADAPTERS = { nusret, rrh, turtle, archimedes, swordpistol, organ33, helepolis, chukonu, giantbow, polybolos, lantern, atlatl, hwacha, scythed, chainhome, lcvp, enigma, u505, huey, phalanx, v2, katyusha, j79, monitor, ballista, trebuchet, spitfire, leonardo, kadirga, gatling, mark1, fokker };
-    const VEHICLE_ROOTS = { nusret: nusret.root, rrh: rrh.root, turtle: turtle.root, archimedes: archimedes.root, swordpistol: swordpistol.root, organ33: organ33.root, helepolis: helepolis.root, chukonu: chukonu.root, giantbow: giantbow.root, polybolos: polybolos.root, lantern: lantern.root, atlatl: atlatl.root, hwacha: hwacha.root, scythed: scythed.root, chainhome: chainhome.root, lcvp: lcvp.root, enigma: enigma.root, u505: u505.root, huey: huey.root, phalanx: phalanx.root, v2: v2.root, katyusha: katyusha.root, j79: j79.root, monitor: monitor.root, tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root, leonardo: leonardo.root, kadirga: kadirga.root, gatling: gatling.root, mark1: mark1.root, fokker: fokker.root };
+    currentBuildVehicle = 'ottomanbow';
+    const ottomanbow = window.VehicleBuilders.ottomanbow(buildCtx);
+    const ADAPTERS = { ottomanbow, nusret, rrh, turtle, archimedes, swordpistol, organ33, helepolis, chukonu, giantbow, polybolos, lantern, atlatl, hwacha, scythed, chainhome, lcvp, enigma, u505, huey, phalanx, v2, katyusha, j79, monitor, ballista, trebuchet, spitfire, leonardo, kadirga, gatling, mark1, fokker };
+    const VEHICLE_ROOTS = { ottomanbow: ottomanbow.root, nusret: nusret.root, rrh: rrh.root, turtle: turtle.root, archimedes: archimedes.root, swordpistol: swordpistol.root, organ33: organ33.root, helepolis: helepolis.root, chukonu: chukonu.root, giantbow: giantbow.root, polybolos: polybolos.root, lantern: lantern.root, atlatl: atlatl.root, hwacha: hwacha.root, scythed: scythed.root, chainhome: chainhome.root, lcvp: lcvp.root, enigma: enigma.root, u505: u505.root, huey: huey.root, phalanx: phalanx.root, v2: v2.root, katyusha: katyusha.root, j79: j79.root, monitor: monitor.root, tiger: tankRoot, sahi: sahiRoot, ballista: ballista.root, trebuchet: trebuchet.root, spitfire: spitfire.root, leonardo: leonardo.root, kadirga: kadirga.root, gatling: gatling.root, mark1: mark1.root, fokker: fokker.root };
     function activeAdapter() { return ADAPTERS[state.vehicle] || null; }
 
     currentBuildVehicle = 'tiger';
