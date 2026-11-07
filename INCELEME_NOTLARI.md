@@ -672,3 +672,10 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - 23 grup / 174 mesh; delikli lameller ve deri bağları instancing ile, atın gövde/baş/boynu özel yüzeylerle; açık üzengiler, kaşlı eyer, kolan/göğüslük/gem/dizgin bağlantıları. Zırh panelleri, bağlı tolga/ense kaldırma ve binici gizleme işlevleri.
 - `tests/gokturk.cjs`: 101 panel/tolga konumu, açık üzengiler ve levha delikleri, toynak/kaide teması, dönüş sınırları, binici/dizgin görünürlüğü ve sıfırlama geçti. J79 entegrasyon ve kaynak testleri geçti (37 araç / 61 kaynak).
 - Chrome 1440×1000 genel, zırh açılımı ve X-Ray; 390×844 genel ve binicisiz eyer yakın planı kontrol edildi. Atın üst bacakları yumuşatıldı, yüz açıklığı ve etek paneli konumları düzeltildi. Mobil yatay taşma yok.
+
+
+### Selçuklu ejder başlı gürzü — 7 Kasım 2026
+- Met Court and Cosmos (2016), kat.146, s.234; Furusiyya R-113. Katalog PDF fotoğrafı incelendi: Anadolu 12–13. yy., bakır alaşımı/demir, 35 cm. Ağızdaki figür kesin aslan diye adlandırılmadı; kaynak boğa/aslan seçeneklerini tartışıyor.
+- 14 grup / 65 mesh: özel eğrili baş silueti, hacimli göz çevresi, açık ağız/kıvrım, küçük dört ayaklı motif, demir sap, bilezik ve yüzey detayları. Çene sabit; baş-sap ve motif ayrımı yalnız sergi incelemesi.
+- `tests/dragonmace.cjs`: 101 ayrılma konumu, değişmeyen çene geometrisi, gerçek negatif boşluklar, bağlı motif parçaları, dönüş sınırı, mesnet görünürlüğü ve sıfırlama geçti. Katalog/bağlantı kontrolleri 38 araç / 63 kaynak ile geçti.
+- 1440×1000 genel, motif yakın planı ve tam ayrılmış X-Ray; 390×844 mobil genel görünüm kontrol edildi. En açık konumda kesilmeyi önlemek için yakın plan kamera genişletildi. Yatay taşma yok.
