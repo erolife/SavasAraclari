@@ -470,23 +470,60 @@
   "svg": "<svg viewBox=\"0 0 320 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M10 105 Q90 100 160 105 T310 105\" stroke=\"#0284c7\" stroke-width=\"1.8\" stroke-dasharray=\"5 3\"/><path d=\"M24 108 L42 64 L188 64 L216 96 L185 112 Z\" fill=\"#785233\" fill-opacity=\"0.35\" stroke=\"#451a03\" stroke-width=\"2.2\"/><ellipse cx=\"78\" cy=\"88\" rx=\"18\" ry=\"14\" fill=\"#b45309\" fill-opacity=\"0.45\" stroke=\"#78350f\" stroke-width=\"1.8\"/><rect x=\"118\" y=\"76\" width=\"28\" height=\"24\" rx=\"3\" fill=\"#d97706\" fill-opacity=\"0.4\" stroke=\"#78350f\" stroke-width=\"1.8\"/><line x1=\"106\" y1=\"68\" x2=\"158\" y2=\"68\" stroke=\"#451a03\" stroke-width=\"3\"/><path d=\"M168 52 L226 46\" stroke=\"#d97706\" stroke-width=\"5\" stroke-linecap=\"round\"/><path d=\"M228 46 Q268 42 304 68 Q272 58 228 52 Z\" fill=\"#ef4444\" fill-opacity=\"0.65\" stroke=\"#ea580c\" stroke-width=\"1.8\"/></svg>"
 });
   VEHICLES.push({
-    id: 'r7', sim: 'r7', group: 10, status: 'live',
-    year: 1957, yearLabel: '1957 / 1961', eraLabel: 'SOĞUK SAVAŞ • UZAY ÇAĞI',
-    domain: 'space', era: 'coldwar', energy: ['jet'], role: ['artillery', 'transport'], origin: 'ussr',
-    name: 'R-7 Semyorka / Vostok Kıtalararası Roket & Korolev Haçı',
-    sub: 'DÜNYANIN İLK ICBM’İ • SPUTNİK 1 & VOSTOK 1 TAŞIYICISI • 32 ODALI RD-107/108 & KOROLEV HAÇI',
-    desc: 'Sergey Korolev (OKB-1) başmühendisliğinde geliştirilen, 4 Ekim 1957\'de Sputnik 1\'i ve 12 Nisan 1961\'de Yuri Gagarin\'i (Vostok 1) uzaya taşıyan efsanevi 1,5 kademeli roket. Baykonur Saha 1/5 "Tulip" yaprak kulelerinin açılışını, 32 yanma odalı RD-107/108 kümesini, Vostok 3KA kapsülünü ve 4 konik yan hızlandırıcının simetrik "Korolev Haçı" (✕) ayrılmasını deneyimleyin.',
-    tags: ['Korolev Haçı (4× Yan Hızlandırıcı)', '32 Odalı RD-107/108 Kümesi', 'Baykonur Yaprak Kuleleri', '16 İnceleme Grubu'],
-    specs: [['TAM BOY / KÜTLE', '38,36 m × 10,3 m (~287 Ton)'], ['KALKIŞ İTKİSİ', '3.997 kN (32 Yanma Odası)'], ['FAYDALI YÜK', 'Vostok 3KA / Sputnik 1 / ICBM'], ['3D PARÇA SAYISI', '16 Bağımsız Grup']],
-    tag: 'R7-SEMYORKA-VOSTOK-1957', icon: '🚀',
-    modal: [
-      'Baykonur Saha 1/5 ("Gagarin\'in Başlangıcı") çelik fırlatma masası ve 42° dışa açılan 4 karşı ağırlıklı yaprak kule',
-      'Merkez Blok A kriyojenik LOX/Kerosen tankları, açık çelik kafes ara kademe (hot-staging) ve Blok E üst kademesi',
-      '20 ana çan yanma odası ve ±18° dönebilen 12 gimbal vernier nozulundan oluşan RD-107 / RD-108 motor kümesi',
-      'T+118 saniyede 4 konik yan hızlandırıcının simetrik "Korolev Haçı" ayrılması ve Vostok 3KA / Sputnik 1 yükü'
+  "id": "r7",
+  "sim": "r7",
+  "group": 10,
+  "status": "live",
+  "year": 1961,
+  "yearLabel": "1961 · R-7 ailesi: 1957",
+  "eraLabel": "SOĞUK SAVAŞ • UZAY ÇAĞI",
+  "domain": "space",
+  "era": "coldwar",
+  "energy": [
+    "jet"
+  ],
+  "role": [
+    "artillery",
+    "transport"
+  ],
+  "origin": "ussr",
+  "name": "Vostok-K — R-7 Ailesi ve Korolev Haçı",
+  "sub": "BALİSTİK FÜZEDEN İNSANLI UZAY UÇUŞUNA",
+  "desc": "R-7 ailesinin 1961 Vostok-K düzeni: dört yan hızlandırıcı, Blok E üst kademesi ve Vostok 3KA kapsülü. Sputnik’in 1957 taşıyıcısı ayrı bir konfigürasyondur; model ikisini aynı uçuşta birleştirmez. Ayrılma hareketi temsili müze gösterimidir.",
+  "tags": [
+    "Korolev Haçı (4× Yan Hızlandırıcı)",
+    "32 Odalı RD-107/108 Kümesi",
+    "Baykonur Yaprak Kuleleri",
+    "16 İnceleme Grubu"
+  ],
+  "specs": [
+    [
+      "DÜZEN",
+      "Vostok-K · 1961"
     ],
-    svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M148 12 L160 2 L172 12 L172 108 L148 108 Z" fill="#4b5842" fill-opacity="0.4" stroke="#1e293b" stroke-width="2"/><path d="M148 42 L116 108 L148 104 Z" fill="#ea580c" fill-opacity="0.45" stroke="#7c2d12" stroke-width="1.8"/><path d="M172 42 L204 108 L172 104 Z" fill="#ea580c" fill-opacity="0.45" stroke="#7c2d12" stroke-width="1.8"/><line x1="92" y1="112" x2="228" y2="112" stroke="#334155" stroke-width="4"/><path d="M104 112 L136 68 M216 112 L184 68" stroke="#475569" stroke-width="2.5"/><path d="M126 108 L118 134 L142 134 Z M152 108 L146 136 L174 136 Z M194 108 L178 134 L202 134 Z" fill="#f97316" fill-opacity="0.7"/></svg>'
-  });
+    [
+      "AİLE",
+      "R-7 · 1957’den itibaren"
+    ],
+    [
+      "MOTOR DÜZENİ",
+      "20 ana + 12 yönlendirme odası"
+    ],
+    [
+      "İNCELEME",
+      "16 bağımsız grup"
+    ]
+  ],
+  "tag": "R7-SEMYORKA-VOSTOK-1957",
+  "icon": "🚀",
+  "modal": [
+    "Panel kuşakları ve bağlantı ayrıntılarıyla dört hızlandırıcı",
+    "Merkez kademe, açık kafes ve Blok E üst kademesi",
+    "Ayrılan gövdeyle birlikte hareket eden motor kümeleri",
+    "Açılır kaporta altında yalnız Vostok 3KA; temsili alev ve ayrılma"
+  ],
+  "svg": "<svg viewBox=\"0 0 320 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M148 12 L160 2 L172 12 L172 108 L148 108 Z\" fill=\"#4b5842\" fill-opacity=\"0.4\" stroke=\"#1e293b\" stroke-width=\"2\"/><path d=\"M148 42 L116 108 L148 104 Z\" fill=\"#ea580c\" fill-opacity=\"0.45\" stroke=\"#7c2d12\" stroke-width=\"1.8\"/><path d=\"M172 42 L204 108 L172 104 Z\" fill=\"#ea580c\" fill-opacity=\"0.45\" stroke=\"#7c2d12\" stroke-width=\"1.8\"/><line x1=\"92\" y1=\"112\" x2=\"228\" y2=\"112\" stroke=\"#334155\" stroke-width=\"4\"/><path d=\"M104 112 L136 68 M216 112 L184 68\" stroke=\"#475569\" stroke-width=\"2.5\"/><path d=\"M126 108 L118 134 L142 134 Z M152 108 L146 136 L174 136 Z M194 108 L178 134 L202 134 Z\" fill=\"#f97316\" fill-opacity=\"0.7\"/></svg>"
+});
   VEHICLES.push({
     id: 'harrier', sim: 'harrier', group: 10, status: 'live',
     year: 1969, yearLabel: '1969', eraLabel: 'SOĞUK SAVAŞ • V/STOL JET ÇAĞI',
@@ -549,17 +586,22 @@
     }
   ],
   "r7": [
-    {
-      "title": "R-7 / Vostok 8K72K ve RD-107 roket motoru koleksiyonu — Science Museum Group",
-      "url": "https://collection.sciencemuseumgroup.org.uk/objects/co8401389/rd-107-rocket-engine",
-      "note": "OKB-1 (Korolev) ve OKB-456 (Gluşko) tarafından geliştirilen 4 ana odalı + 2 vernier nozullu RD-107 motoru ve R-7/Vostok taşıyıcı roket sistemi."
-    },
-    {
-      "title": "Sputnik 1 ve R-7 Semyorka fırlatma aracının tarihçesi — Smithsonian NASM",
-      "url": "https://airandspace.si.edu/collection-objects/sputnik-1-replica/nasm_A19750618000",
-      "note": "4 Ekim 1957 Sputnik 1 ve 12 Nisan 1961 Vostok 1 görevlerinde kullanılan R-7 Semyorka ailesinin tarihsel ve teknik bağlamı."
-    }
-  ],
+  {
+    "title": "Smithsonian NASM — Racing to Space: Gagarin and Shepard",
+    "url": "https://airandspace.si.edu/gagarin-vs-shepard",
+    "note": "R-7’ye eklenen üst kademe ve 1961 Vostok uçuşu."
+  },
+  {
+    "title": "Smithsonian — RD-107 Attitude Control Engine",
+    "url": "https://www.si.edu/object/nasm_A19990074000",
+    "note": "RD-107: dört ana ve iki küçük yönlendirme odası. Müze nesnesi sonraki Soyuz sürümüne aittir; motor ailesi karşılaştırmasıdır."
+  },
+  {
+    "title": "ESA — The flight of Vostok 1",
+    "url": "https://www.esa.int/About_Us/50_years_of_ESA/50_years_of_humans_in_space/The_flight_of_Vostok_1",
+    "note": "12 Nisan 1961 uçuşunun tarihsel bağlamı; model uçuş fiziği simülasyonu değildir."
+  }
+],
   "greekfire": [
   {
     "title": "BNE — Un universo de imágenes: Skylitzes Matritensis",

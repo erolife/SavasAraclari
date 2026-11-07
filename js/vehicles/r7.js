@@ -57,7 +57,7 @@
     },
     sputnik1957: {
       name: '🛰️ 4 Ekim 1957 Sputnik 1 — 8K71PS İlk Uydu Fırlatışı (Parlak Duralümin & Gri)',
-      btn: '🛰️ 1957 Sputnik 1 (Gümüş & Gri)',
+      btn: '🛰️ Gümüş & Gri · Temsili',
       rocketBody: 0x94a3b8,
       loxFrost: 0xf8fafc,
       fairing: 0xcbd5e1,
@@ -67,7 +67,7 @@
     },
     semyorka_icbm: {
       name: '☢️ 1957 R-7 Semyorka 8K71 Kıtalararası Balistik Füze (Koyu Askerî Haki)',
-      btn: '☢️ 1957 R-7 ICBM (Askerî Haki)',
+      btn: '☢️ Koyu Haki · Temsili',
       rocketBody: 0x3f4a3c,
       loxFrost: 0xdbeafe,
       fairing: 0x52525b,
@@ -77,7 +77,7 @@
     },
     vdnh_moscow: {
       name: '🏛️ Moskova VDNH / Kozmonotik Müzesi Anıt Sergisi (Beyaz & Titanyum Gri)',
-      btn: '🏛️ Moskova VDNH Anıtı (Beyaz)',
+      btn: '🏛️ Beyaz Sergi Yorumu',
       rocketBody: 0xe2e8f0,
       loxFrost: 0xffffff,
       fairing: 0xf8fafc,
@@ -215,7 +215,7 @@
         name: cfg.name,
         subsystem: cfg.sub,
         subLabel: SUB_LABELS[cfg.sub] || 'ALT SİSTEM: R-7 SEMYORKA / VOSTOK',
-        desc: cfg.desc,
+        desc: cfg.desc + ' İç yerleşim, renkler ve hareket süreleri yaklaşık sergi yorumudur.',
         material: cfg.material || 'AMG-6 Alüminyum-Magnezyum Alaşımı & Çelik',
         weight: cfg.weight || '3.500 kg',
         spec: cfg.spec || 'OKB-1 Korolev Tasarımı',
@@ -345,16 +345,16 @@
       sub: 'upper_payload',
       explode: [0, 2.5, 0],
       spec: 'Motor: Kosberg RD-0109 (LOX/Kerosen, 54,5 kN Vakum İtkisi) | Görev: Yörünge hızına (~7,8 km/sn) çıkarma',
-      desc: 'Orijinal R-7 ICBM\'ine 1959-1960\'ta eklenen Blok E üst kademesi. Vostok uzay aracını ve Luna sondalarını alçak Dünya yörüngesine veya kaçış hızına ulaştıran üçüncü kademedir.'
+      desc: 'Orijinal R-7 ICBM\'ine 1958’den itibaren geliştirilen Blok E üst kademesi. Vostok uzay aracını ve Luna sondalarını alçak Dünya yörüngesine veya kaçış hızına ulaştıran üçüncü kademedir.'
     });
 
     const partVostokSpacecraft = makePart({
       id: 'r7_vostok_spacecraft',
-      name: '14. Vostok 3KA Küresel İniş Kapsülü ("Sharik") & Sputnik 1 Uydusu',
+      name: '14. Vostok 3KA Küresel İniş Kapsülü ("Sharik")',
       sub: 'upper_payload',
       explode: [1.6, 3.0, 1.4],
-      spec: 'Kapsül: Ø2,3 m Küresel Vostok 3KA (2,46 ton, TDU Fren Motorlu) + Ø58 cm 4 Antenli Sputnik 1 Küresi',
-      desc: 'Burun kaportasının içinde korunan, 12 Nisan 1961\'de Yuri Gagarin\'in Dünya çevresinde 108 dakikalık ilk insanlı uzay uçuşunu yaptığı küresel Vostok 3KA ("Sharik") kapsülü, konik ekipman modülü ve yanında karşılaştırmalı ölçekte 4 bıyık antenli Sputnik 1 uydusu.'
+      spec: 'Kapsül: Ø2,3 m Küresel Vostok 3KA (2,46 ton, TDU Fren Motorlu)',
+      desc: 'Burun kaportasının içinde korunan, 12 Nisan 1961\'de Yuri Gagarin\'in Dünya çevresinde 108 dakikalık ilk insanlı uzay uçuşunu yaptığı küresel Vostok 3KA ("Sharik") kapsülü, konik ekipman modülü.'
     });
 
     const partPayloadFairing = makePart({
@@ -364,7 +364,7 @@
       isOuterShell: true,
       explode: [-1.8, 3.2, 0],
       spec: 'Yapı: Boyuna ikiye ayrılan aerodinamik burun konisi | Gözlem: Kozmonot lomboz pencereleri ve antenler',
-      desc: 'Vostok uzay aracını atmosferik tırmanış sırasında aerodinamik ısınma ve basınçtan koruyan iki parçalı konik burun kaportası. X-Ray modunda veya kaporta açma düğmesiyle içindeki Vostok 3KA kapsülü ve Sputnik 1 görülür.'
+      desc: 'Vostok uzay aracını atmosferik tırmanış sırasında aerodinamik ısınma ve basınçtan koruyan iki parçalı konik burun kaportası. X-Ray modunda veya kaporta açma düğmesiyle içindeki Vostok 3KA kapsülü görülür.'
     });
 
     const partExhaustPlumes = makePart({
@@ -525,6 +525,12 @@
       addMesh(bodyGrp, new THREE.CylinderGeometry(0.18, 0.32, 2.10, 24), matLoxFrost, [0, -1.77, 0]);
       // Alt Kerosen (T-1) konik/silindirik gövde
       addMesh(bodyGrp, new THREE.CylinderGeometry(0.32, 0.38, 2.35, 24), matBoosterSkin, [0, -3.99, 0]);
+      for (const y of [-1.0,-2.4,-3.3,-4.5]) {
+        const r = y > -2.8 ? 0.18 + (-y - 0.72) / 2.1 * 0.14 : 0.32 + (-y - 2.815) / 2.35 * 0.06;
+        addMesh(bodyGrp,new THREE.TorusGeometry(r+0.004,0.009,6,24),matAlloy,[0,y,0],[Math.PI/2,0,0]);
+        for(let n=0;n<6;n++){const a=n*Math.PI/3;addMesh(bodyGrp,new THREE.SphereGeometry(0.013,6,4),matAlloy,[Math.sin(a)*(r+0.008),y,Math.cos(a)*(r+0.008)]);}
+      }
+      addMesh(bodyGrp,new THREE.BoxGeometry(0.035,3.7,0.035),matAlloy,[0,-3.2,0.335]);
       // Etek kuşağı ve üçgen aerodinamik stabilizatör kanatçığı
       addMesh(bodyGrp, new THREE.TorusGeometry(0.382, 0.018, 8, 24), matOrangeTrim, [0, -5.15, 0], [Math.PI / 2, 0, 0]);
       addMesh(bodyGrp, new THREE.BoxGeometry(0.035, 0.78, 0.46), matOrangeTrim, [0, -4.72, 0.48], [0.28, 0, 0]);
@@ -575,7 +581,7 @@
     addMesh(partBlokEStage, new THREE.TorusGeometry(0.435, 0.02, 8, 28), matOrangeTrim, [0, 9.52, 0], [Math.PI / 2, 0, 0]);
     addMesh(partBlokEStage, new THREE.CylinderGeometry(0.06, 0.15, 0.34, 18), matNozzle, [0, 8.36, 0]);
 
-    // --- 14. Vostok 3KA Küresel İniş Kapsülü ("Sharik") & Sputnik 1 Uydusu (partVostokSpacecraft) ---
+    // --- 14. Vostok 3KA Küresel İniş Kapsülü ("Sharik") (partVostokSpacecraft) ---
     // Konik ekipman ve TDU fren motoru modülü (y = 9,55 .. 9,98 m)
     addMesh(partVostokSpacecraft, new THREE.CylinderGeometry(0.28, 0.36, 0.42, 22), matGoldFoil, [0, 9.76, 0]);
     // Oksijen/azot küresel gaz tüpleri çelengi (12 adet küçük küre)
@@ -590,15 +596,10 @@
     // Vzor optik yönelim penceresi ve fırlatma koltuğu kapağı
     addMesh(partVostokSpacecraft, new THREE.CylinderGeometry(0.08, 0.08, 0.04, 14), matOrangeTrim, [0, 10.42, 0.31], [Math.PI / 2 - 0.3, 0, 0]);
 
-    // Üst kısmında karşılaştırmalı ölçekte 4 bıyık antenli Sputnik 1 (PS-1) küresi (y = 10,92 m)
-    addMesh(partVostokSpacecraft, new THREE.SphereGeometry(0.11, 20, 16), matAlloy, [0, 10.92, 0]);
-    for (let ant = 0; ant < 4; ant++) {
-      const aa = (ant / 4) * Math.PI * 2 + 0.4;
-      addMesh(partVostokSpacecraft, new THREE.CylinderGeometry(0.006, 0.008, 0.62, 8), matAlloy, [Math.cos(aa) * 0.18, 10.68, Math.sin(aa) * 0.18], [Math.sin(aa) * 0.38, 0, -Math.cos(aa) * 0.38]);
-    }
+    // Sputnik 1, Vostok ile aynı uçuş yükü değildir; bu model yalnız Vostok taşır.
 
     // --- 15. İki Parçalı Konik Burun Kaportası (Payload Fairing) (partPayloadFairing) ---
-    // Sol (-X) ve Sağ (+X) yarım kaporta kabukları (açılıp Vostok 3KA & Sputnik 1'i sergileyebilir)
+    // Sol (-X) ve Sağ (+X) yarım kaporta kabukları (açılıp Vostok 3KA'i sergileyebilir)
     const fairingHalves = [];
     [-1, 1].forEach(side => {
       const fHalf = new THREE.Group();
@@ -617,7 +618,7 @@
     corePlumeGrp.position.set(0, 1.15, 0);
     partExhaustPlumes.add(corePlumeGrp);
     addMesh(corePlumeGrp, new THREE.ConeGeometry(0.28, 1.10, 18), matPlumeCore, [0, -0.52, 0], [Math.PI, 0, 0]);
-    addMesh(corePlumeGrp, new THREE.ConeGeometry(0.42, 1.35, 18), matPlumeOuter, [0, -0.62, 0], [Math.PI, 0, 0]);
+    addMesh(corePlumeGrp, new THREE.ConeGeometry(0.42, 0.95, 18), matPlumeOuter, [0, -0.46, 0], [Math.PI, 0, 0]);
 
     const boosterPlumeGroups = [];
     for (let k = 0; k < 4; k++) {
@@ -637,8 +638,7 @@
       vernierDeg: 0,            // 12 × Vernier yönlendirme nozulu gimbal açısı (-18°..+18°)
       fairingOpen: false,       // Burun kaportası açık mı? (terrain butonu)
       autoCross: false,         // Otomatik Korolev Haçı & kule animasyonu (sweep butonu)
-      mode: 'vostok',           // 'vostok' (1961 Vostok 1 / Gagarin) | 'sputnik' (1957 Sputnik 1 / ICBM)
-      firing: true,             // 32 odalı RD-107/108 ateşlemesi aktif mi?
+      firing: false,             // 32 odalı RD-107/108 ateşlemesi aktif mi?
       stageFuel: 100,           // Yakıt/Ateşleme durumu (%100)
       animTime: 0
     };
@@ -673,14 +673,14 @@
         const rPos = 0.46 + tau * 2.15;
         const yPos = 6.62 - tau * tau * 0.75;
         bd.bMoveGrp.position.set(bd.ux * rPos, yPos, bd.uz * rPos);
-        bd.bMoveGrp.rotation.set(tau * 0.90, bd.phi, 0, 'YXZ');
+        bd.bMoveGrp.rotation.set(-tau * 0.90, bd.phi, 0, 'YXZ');
 
         bd.rd107MoveGrp.position.copy(bd.bMoveGrp.position);
         bd.rd107MoveGrp.rotation.copy(bd.bMoveGrp.rotation);
 
         // Yan hızlandırıcı alev sütunları (tau < 0.35 iken yanar, ayrıldıktan sonra söner)
         const bp = boosterPlumeGroups[idx];
-        bp.visible = S.firing && tau < 0.35;
+        bp.visible = S.firing && tau === 0;
         const rNozWorld = rPos + 0.66;
         bp.position.set(bd.ux * rNozWorld, yPos - 5.48, bd.uz * rNozWorld);
       });
@@ -706,13 +706,15 @@
       }
     }
 
+    boosterAnimData.forEach((b,i)=>{b.bMoveGrp.name='r7-booster-'+i;b.rd107MoveGrp.name='r7-engine-'+i;});
+    corePlumeGrp.name='r7-plume';
     syncVisualState(0);
 
     // ========================================================================
     // KAMERA AÇILARI VE 6 ADIMLI REHBERLİ TUR
     // ========================================================================
     const camPresets = {
-      iso: { pos: [10.8, 6.8, 11.4], look: [0, 5.6, 0] },
+      iso: { pos: [17, 9.2, 18], look: [0, 5.6, 0] },
       front: { pos: [0.2, 5.8, 13.8], look: [0, 5.6, 0] },
       breech: { pos: [3.2, 10.4, 3.6], look: [0, 10.1, 0] },
       engine: { pos: [3.4, 1.6, 3.6], look: [0, 1.4, 0] },
@@ -722,8 +724,8 @@
 
     const tourSteps = [
       {
-        title: 'Genel Bakış: 1957 R-7 Semyorka / Vostok & Uzay Çağı\'nın Doğuşu',
-        desc: 'Sergey Korolev\'in (OKB-1) başmühendisliğinde geliştirilen R-7 Semyorka; 1957\'de dünyanın ilk kıtalararası balistik füzesi (ICBM) olmuş, Sputnik 1\'i ve 12 Nisan 1961\'de Yuri Gagarin\'i (Vostok 1) uzaya taşıyarak insanlık tarihini değiştirmiştir.',
+        title: 'Genel Bakış: 1961 Vostok-K & Uzay Çağı\'nın Doğuşu',
+        desc: 'R-7 ailesi, balistik füze geliştirmesinden Sputnik ve insanlı uzay uçuşlarına uzanır. Burada görülen Blok E üst kademeli Vostok-K, 1961 düzeninin yaklaşık modelidir; 1957 Sputnik taşıyıcısıyla aynı roket konfigürasyonu değildir.',
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -750,7 +752,7 @@
       },
       {
         title: '"Korolev Haçı" (Korolev Cross): 4 Yan Hızlandırıcının Simetrik Ayrılması',
-        desc: 'Kalkıştan 118 saniye sonra yakıtı biten 4 konik yan hızlandırıcı (Blok B, V, G, D), üst küresel mafsallardan kurtulup oksijen tankı valflerinin itkisiyle dışa doğru simetrik bir haç (✕) çizerek merkez gövdeden ayrılır.',
+        desc: 'Dört yan hızlandırıcının ayrılması, geride kalan merkez kademe çevresinde haç biçimli bir görüntü oluşturur. Buradaki hareket yavaşlatılmış ve geri sarılabilir sergi anlatımıdır; platform üzerinde gerçek bir uçuş hesaplanmaz.',
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -767,8 +769,8 @@
         part: partInterstageTruss
       },
       {
-        title: 'Vostok 3KA ("Sharik") Küresel Kapsülü & Sputnik 1 Uydusu',
-        desc: 'Burun kaportası açıldığında Yuri Gagarin\'i taşıyan Ø2,3 m\'lik küresel Vostok 3KA iniş kapsülü, ekipman modülü ve 4 bıyık antenli Sputnik 1 uydusu ortaya çıkar.',
+        title: 'Vostok 3KA ("Sharik") Küresel Kapsülü',
+        desc: 'Burun kaportası açıldığında Yuri Gagarin\'i taşıyan Ø2,3 m\'lik küresel Vostok 3KA iniş kapsülü, ekipman modülü ve dış bağlantıları ortaya çıkar.',
         explode: 0,
         cutaway: true,
         sub: 'all',
@@ -784,11 +786,12 @@
     let reliefEnabled = true;
 
     const ui = {
-      title: '1957 R-7 SEMYORKA / VOSTOK KITALARARASI ROKET & KOROLEV HAÇI',
-      sub: 'Dünyanın İlk ICBM\'i, Sputnik 1 & Vostok 1 Taşıyıcısı • 32 Odalı RD-107/108 Kümesi, Baykonur Yaprak Kuleleri & Korolev Haçı',
-      badge: 'R-7 / VOSTOK — 1957–61',
+      title: '1961 VOSTOK-K — R-7 AİLESİ VE UZAY UÇUŞU',
+      sub: 'R-7 Ailesinden İnsanlı Uzay Uçuşuna • Vostok-K, 1961 • Temsili Kademe Ayrılması',
+      badge: 'VOSTOK-K — 1961',
       partCount: '16 Ana Grup',
-      portraitCameraScale: 1.45,
+      portraitCameraScale: 1.35,
+      fog: {near: 45, far: 100},
       shadowExtent: 12,
       sliders: [
         { label: 'Korolev Haçı (4 Yan Hızlandırıcı Ayrılma Evresi)', min: 0, max: 100, step: 1, fmt: v => `%${Math.round(v)}` },
@@ -801,11 +804,11 @@
         mode: true
       },
       telemetryTag: 'OKB-1 KOROLEV — BAYKONUR SAHA 1/5',
-      statLabels: ['TOPLAM KALKIŞ İTKİSİ', 'KOROLEV HAÇI & KULELER', 'AKTİF YANMA ODASI', 'FAYDALI YÜK / GÖREV'],
+      statLabels: ['SERGİ EFEKTİ', 'KOROLEV HAÇI & KULELER', 'AKTİF YANMA ODASI', 'FAYDALI YÜK / GÖREV'],
       camLabels: {
         iso: 'İzometrik Genel',
         front: 'Cephe Boy Görünüm',
-        breech: 'Vostok 3KA & Sputnik',
+        breech: 'Vostok 3KA',
         engine: '32 Odalı RD-107/108',
         suspension: 'Baykonur Yaprak Kulesi',
         top: 'Üst (Korolev Haçı)'
@@ -816,7 +819,7 @@
         { key: 'launch_complex', label: 'Baykonur Saha 1/5 & "Tulip" Yaprak Kuleleri', count: 3, color: '#475569' },
         { key: 'core_stage', label: 'Merkez Çekirdek Kademe (Blok A) & RD-108', count: 3, color: '#16a34a' },
         { key: 'strapon_boosters', label: '4 Konik Yan Hızlandırıcı (Korolev Haçı) & RD-107', count: 5, color: '#ea580c' },
-        { key: 'upper_payload', label: 'Açık Kafes, Blok E, Vostok 3KA & Sputnik 1', count: 5, color: '#0284c7' }
+        { key: 'upper_payload', label: 'Açık Kafes, Blok E, Vostok 3KA', count: 5, color: '#0284c7' }
       ],
       activeTexture: () => activeScheme,
       textureLabel: () => SCHEMES[activeScheme].name,
@@ -882,6 +885,7 @@
 
       onSlider(idx, val) {
         const v = Number(val);
+        if (!Number.isFinite(v)) return {};
         if (idx === 0) {
           S.autoCross = false;
           S.korolevPct = Math.max(0, Math.min(100, v));
@@ -899,13 +903,13 @@
         if (name === 'terrain') {
           S.fairingOpen = !S.fairingOpen;
           ui.buttons.terrain = S.fairingOpen
-            ? '🛰️ Burun Kaportası (Fairing): AÇIK (Vostok 3KA & Sputnik Görünür)'
+            ? '🛰️ Burun Kaportası (Fairing): AÇIK (Vostok 3KA Görünür)'
             : '🛡️ Burun Kaportası (Fairing): KAPALI (Uçuşa Hazır)';
           syncVisualState(0);
           return {
             active: S.fairingOpen,
             msg: S.fairingOpen
-              ? 'İki parçalı konik burun kaportası ayrıldı; içteki Vostok 3KA ("Sharik") kapsülü ve Sputnik 1 uydusu açığa çıktı!'
+              ? 'İki parçalı konik burun kaportası ayrıldı; içteki Vostok 3KA ("Sharik") kapsülü açığa çıktı!'
               : 'Burun kaportası kapatıldı.'
           };
         }
@@ -923,14 +927,9 @@
           };
         }
         if (name === 'mode') {
-          S.mode = S.mode === 'vostok' ? 'sputnik' : 'vostok';
+          S.firing = !S.firing;
           syncVisualState(0);
-          return {
-            active: S.mode === 'vostok',
-            msg: S.mode === 'vostok'
-              ? '👨‍🚀 Vostok 8K72K Konfigürasyonu (12 Nisan 1961): Blok E üst kademesi ve Vostok 3KA insanlı uzay aracı aktif.'
-              : '🛰️ Sputnik 8K71PS / R-7 ICBM Konfigürasyonu (4 Ekim 1957): 1,5 kademeli temel Semyorka ve PS-1 uydusu.'
-          };
+          return {active:S.firing,msg:'Stilize motor alevi ' + (S.firing ? 'açıldı.' : 'kapatıldı.')};
         }
         return {};
       },
@@ -938,17 +937,14 @@
       buttonActive(name) {
         if (name === 'terrain') return S.fairingOpen;
         if (name === 'sweep') return S.autoCross;
-        if (name === 'mode') return S.mode === 'vostok';
+        if (name === 'mode') return S.firing;
         return false;
       },
 
-      modeLabel() {
-        return S.mode === 'vostok'
-          ? '👨‍🚀 Kip: 1961 Vostok 8K72K (Yuri Gagarin İnsanlı Uzay Aracı)'
-          : '🛰️ Kip: 1957 Sputnik 8K71PS / R-7 Semyorka ICBM';
-      },
+      modeLabel() { return S.firing ? '🔥 Temsili motor alevi: AÇIK' : '🔥 Temsili motor alevi: KAPALI'; },
 
       onFire() {
+        S.autoCross = false;
         S.firing = true;
         if (S.korolevPct < 10) {
           S.tulipDeg = 42;
@@ -957,11 +953,12 @@
           if (ctx.audio && ctx.audio.playCannonFire) ctx.audio.playCannonFire();
           return {
             ok: true,
-            msg: '🚀 <strong>"POYEHALİ!" (GİDİYORUZ!)</strong> Baykonur yaprak kuleleri 42° açıldı, T+118 sn\'de 4 yan hızlandırıcı simetrik <strong>Korolev Haçı (✕)</strong> çizerek ayrıldı!'
+            msg: '🚀 <strong>"POYEHALİ!" (GİDİYORUZ!)</strong> Baykonur yaprak kuleleri 42° açıldı, temsili olarak 4 yan hızlandırıcı simetrik <strong>Korolev Haçı (✕)</strong> çizerek ayrıldı!'
           };
         }
         S.korolevPct = 0;
         S.tulipDeg = 0;
+        S.firing = false;
         syncVisualState(0);
         return {
           ok: true,
@@ -972,7 +969,7 @@
 
       fireButtonLabel() {
         return S.korolevPct < 10
-          ? '🚀 KALKIŞ & KOROLEV HAÇI AYRILMASINI BAŞLAT (T+118 SN)'
+          ? '🚀 KALKIŞ & KOROLEV HAÇI AYRILMASINI BAŞLAT (TEMSİLİ)'
           : '🔄 ROKETİ BAYKONUR KULELERİNE YENİDEN KENETLE (%0)';
       },
 
@@ -986,18 +983,15 @@
 
       getStats() {
         const boostersAttached = S.korolevPct < 35;
-        const thrustKn = boostersAttached ? 3997 : 941;
         const activeChambers = boostersAttached ? '32 <span>Oda (20 Ana+12 Vern)</span>' : '8 <span>Oda (RD-108 Merkez)</span>';
         const crossState = S.korolevPct === 0
           ? `Kule: ${S.tulipDeg}° <span>(Kenetli)</span>`
           : `Haç: %${S.korolevPct} <span>(Ayrıldı)</span>`;
-        const payloadText = S.mode === 'vostok'
-          ? 'Vostok 3KA <span>(4.725 kg)</span>'
-          : 'Sputnik 1 <span>(83,6 kg)</span>';
+        const payloadText = 'Vostok 3KA <span>(1961)</span>';
         return [
-          `${thrustKn.toLocaleString('tr-TR')} <span>kN İtki</span>`,
+          S.firing ? 'Temsili alev açık' : 'Temsili alev kapalı',
           crossState,
-          activeChambers,
+          S.firing ? activeChambers : '0 <span>Gösterim kapalı</span>',
           payloadText
         ];
       },

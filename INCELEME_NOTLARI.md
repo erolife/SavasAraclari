@@ -975,3 +975,8 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - BNE Skylitzes Matritensis kaydı (12. yüzyıl Sicilya) ve ACS/C&EN Haldon söyleşisi kontrol edildi. Kesin 672 icat yılı, bilinen yakıt tarifi, özgün basınç/menzil ve doğrulanmış iç düzen iddiaları kaldırıldı. Barut filtresi düzeltildi. Kaplar, bronz aslan başı, bordalar ve kesit ayrıntıları korundu; temsili model sınırı açıklandı.
 - Çok yakın genel kamera genişletildi; mobil kadraj ve sis ayarlandı. Dördüncü alev gösteriminin kaybolması, yinelenen tıklamada stok tüketimi, inceleme kipinde süren efekt ve geçersiz slider girdileri düzeltildi.
 - tests/greekfire.cjs geçti: geometri/kaplama, duraklatma, dört gösterim, tekrar tıklama, kip değişimi, yenileme, fiziksel performans iddiası içermeyen telemetri. Masaüstü genel/X-Ray ve 390×844 mobil görüntü incelendi.
+
+### R-7 / Vostok-K incelemesi — 8 Kasım 2026
+- Smithsonian’ın Vostok ve RD-107 kayıtları, ESA Vostok 1 uçuş anlatısı kontrol edildi. Katalog ve model 1961 Vostok-K düzeni olarak ayrıştırıldı; aynı kaportadaki Sputnik küresi/antenleri kaldırıldı. İşlevsiz Sputnik konfigürasyon düğmesi yerine gerçek görsel karşılığı olan alev aç/kapat eklendi.
+- İçeri devrilen hızlandırıcıların açılma yönü düzeltildi. Motor/gövde eşleşmesi korunur; otomatik döngü elle gösterim başlatılınca kapanır. Zemin altına geçen alev küçültüldü, başlangıçta kapatıldı. Panel kuşakları, bağlantı noktaları ve dış kanallar eklendi.
+- Genel kamera ve sis düzeltildi. 1440×1000 genel, X-Ray/açık kaporta/tam ayrılma ve 390×844 mobil kontrol edildi. tests/r7.cjs: geometri/kaplama, zemin, dört yönde dışa ayrılma, motor/gövde hizası, geçersiz girdi, elle devralma, alev, kaporta ve tek görev yükü geçti.
