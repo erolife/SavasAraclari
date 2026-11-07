@@ -697,3 +697,183 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - tests/maxim.cjs: 101 evre/kapak konumu, sabit ceket, menteşe hiyerarşisi, raycast ile gerçek besleme açıklıkları, elle kontrolün otomatiği durdurması, sınırlar/NaN/sıfırlama/duraklatma. tests/maxim-gatling.cjs: akış kontrolü, erişilebilir durum, model bağlantıları ve tablo semantiği.
 - Chrome 1440×1000 genel ve 65 derece açık kapak/X-Ray; 390×844 genel model kontrol edildi. Yakın kamera, kapağın tam açılımını kapsayacak şekilde genişletildi. Karşılaştırma masaüstü ve mobilde; enerji kontrolü, tablo, bağlantılar ve yatay taşma açısından incelendi. Karşılaştırmada konsol hatası yok; simülatörde önceden mevcut favicon 404 ve otomatik ses başlatma uyarısı dışında yeni hata yok.
 - Tam regresyon: 33 test dosyası geçti; 40 aktif araç / 68 HTTPS kaynak. git diff --check temiz.
+
+---
+
+# GRUP 10 — Gece Paketi (5 Yeni Araç)
+
+## 10.1. 1886 Osmanlı *Abdülhamid* (Nordenfelt II) Buharlı Denizaltısı — `js/vehicles/abdulhamid.js`
+- **Durum:** Tamamlandı ve Doğrulandı (`rev_abdulhamid_iso.png`, `rev_abdulhamid_engine_xray.png`, `rev_abdulhamid_breech_xray.png`)
+- **Kaynaklar ve varsayımlar:**
+  - *Tarihsel ve Müze Kaynakları:*
+    - İstanbul Deniz Müzesi Komutanlığı arşivleri ve *Submarine Museum (Gosport)* Nordenfelt II kayıtları; ayrıca Dz.K.K. tarihçesi (`https://www.dzkk.tsk.tr/`) ve *Science Museum Group* Nordenfelt buharlı denizaltı koleksiyon kayıtları (`https://collection.sciencemuseumgroup.org.uk/`).
+    - 6 Eylül 1886'da İstanbul **Taşkızak Tersanesi**'nde suya indirilen *Abdülhamid* (Nordenfelt II), 1888 başlarında Sarayburnu–Salacak açıklarında su altında 356 mm (14 inç) *Schwarzkopff / Whitehead* torpidosu ateşleyerek **dünya tarihinde su altında torpido ateşleyen ilk denizaltı** olmuştur.
+  - *Gerçek Boyutlar ve Sahne Ölçeği (`1:2,5` müze kesit ölçeği):*
+    - Gerçek boy `30,5 m` (`100 ft`), azami genişlik `3,66 m` (`12 ft`), deplasman `~100 ton`, 250 IHP bileşik buhar makinesi, satıh hızı `~6 knot`, su altı hızı `~4 knot` (tahmini).
+    - Sahne boyu `12,20 m` (`z = -6,10 .. +6,10 m`), gövde merkez yüksekliği `Y_HULL = 1,25 m`, maksimum gövde yarıçapı `R_MAX = 0,74 m` (çap `1,48 m`), Taşkızak Tersanesi meşe kızak tabanı `y = 0,000 m`.
+- **Tartışmalı tarihsel noktalar ve teknik sınırlar:**
+  - *Pozitif Yüzerlik ve Dikey Pervaneler:* *Abdülhamid* modern denizaltılar gibi negatif yüzerlikle değil, az miktarda pozitif yüzerlikle dalıyordu; su altında kalması için baş ve kıçtaki **iki dikey pervanenin** sürekli dönerek gemiyi aşağı çekmesi gerekiyordu.
+  - *Denge (Trim) ve İç Sıcaklık:* Pruvadaki ağır torpido ateşlendiğinde veya sarnıçlardaki sıcak su yer değiştirdiğinde boyuna denge (*trim*) hızla bozuluyor, *Lamm* kızgın su sarnıçları ise iç ortamı aşırı ısıtıyordu; bu nedenle aktif muharebe hizmetine girememiştir.
+- **15 Bağımsız Mekanik Parça Grubu (4 Alt Sistem):**
+  1. `ab_outer_hull`: Puro Biçimli (*Cigar-Shaped*) Perçinli Dış Çelik Gövde Kabuğu (`isOuterShell: true`, X-Ray'de saydamlaşır)
+  2. `ab_rib_frames`: İç Çelik Halka Postalar (24 Adet), Omurga & Su Geçirmez Bölmeler
+  3. `ab_conning_cupola`: Cam Gözetleme Kubbeli Komutan Kulesi (*Conning Cupola*) & Sızdırmaz Kapak (`z = +0,85 m`)
+  4. `ab_keel_cradle`: Taşkızak Tersanesi Meşe Kızak Beşikleri (`y = 0,000 m`) & Yarı Saydam Haliç Su Hattı
+  5. `ab_steam_boiler`: Merkez Kömürlü Deniz Buhar Kazanı, Ocak & Teleskopik İndirilebilir Duman Bacası (`z = -0,35 m`)
+  6. `ab_lamm_cisterns`: Baş ve Kıç *Lamm* Kızgın Su / Buhar Biriktirme Sarnıçları (`z = +2,55 m` ve `z = -2,85 m`) & Bakır Buhar Boruları
+  7. `ab_compound_engine`: 250 BG Çift Silindirli Bileşik (*Compound*) Buhar Makinesi, Krank & Biyel Kolları (`z = -1,65 m`)
+  8. `ab_ballast_pumps`: Alt Balast Sarnıçları, Buharlı Sintine Pompası & Basınç Manometreleri
+  9. `ab_main_propeller`: Kıç 4 Kanatlı Ana Uskur (`z = -6,18 m`) & Ana Pervane Şaftı (`1:1` krank tahriki)
+  10. `ab_vertical_screws`: Baş ve Kıç Dikey Dalış Pervaneleri (`z = ±4,25 m`) & 90° Konik Dişli Aktarma Milleri
+  11. `ab_stern_rudder`: Kıç İstikamet Dümeni & Baş/Kıç Yunuslama (Derinlik) Kanatları (*Hydroplanes*)
+  12. `ab_control_levers`: Komutan Kumanda Mahalli, Dikey Pervane Kavrama Kolu & Dümen Çarkı (`z = +0,85 m`)
+  13. `ab_torpedo_tube`: Pruva Üstü Harici 356 mm (14 inç) Torpido Kovanı & Menteşeli Ön Kapak (`z = +3,53 .. +5,77 m`)
+  14. `ab_whitehead_torpedo`: 356 mm *Schwarzkopff / Whitehead* Bronz Torpido & Yedek Torpido İstifi (`2` atım)
+  15. `ab_deck_guns`: Güverte Üstü 2 × 35 mm Nordenfelt Makineli Topları (`z = +1,85 m`, `x = ±0,34 m`)
+- **Tespit edilen hatalar:** Yeni araç; ilk oluşturulduğunda adaptör `ui` sözleşmesinde `ui.sub`, `s.fmt`, `ui.telemetryTag`, `ui.statLabels` ve sayısal `subsystems[i].count` alanları `simulator.html` (`setupAdapterUI`) ile bire bir hizalandı.
+- **Yapılan düzeltmeler:**
+  - 34 kesit halkalı prosedürel `BufferGeometry` ile puro biçimli (`cigar-shaped`) perçinli dış çelik kabuk, 24 halka posta, 3 su geçirmez perde, cam kubbeli komutan kulesi (`conning cupola`), Taşkızak Tersanesi meşe kızak beşikleri (`min.y = 0,000 m`), teleskopik indirilebilir baca, baş/kıç bakır *Lamm* kızgın su sarnıçları, 250 BG çift silindirli bileşik buhar makinesi, `1:1` ana pervane şaftı, `1:2` oranlı 90° konik dişli dikey dalış pervaneleri, menteşeli emniyet kapaklı 356 mm baş torpido kovanı ve 2 × Schwarzkopff/Whitehead torpidosu modellendi.
+- **Kalan şüpheliler / sınırlamalar:** Yok; 302 mesh ile 60 FPS akıcılık sınırının içinde.
+- **Mekanik hesaplar (`v = ω × r`, 90° konik dişli ve uç konumlar):**
+  - Ana şaft ($\vec{\omega}_S = \omega_S\,\hat{k}$) üzerindeki konik dişli ($R_1 = 0,14\text{ m}$) ile dikey dalış pervanesi mili ($\vec{\omega}_V = \omega_V\,\hat{j}$) üzerindeki pinyon ($R_2 = 0,07\text{ m}$) 90° dik kavraşır:
+    $$\vec{v}_P = (\omega_S\,\hat{k}) \times (R_1\,\hat{j}) = -\omega_S R_1\,\hat{i} = (\omega_V\,\hat{j}) \times (-R_2\,\hat{k}) = -\omega_V R_2\,\hat{i} \implies \omega_V = +2,0\,\omega_S$$
+  - `RPM = 0` iken $\Delta\theta_S = 0$ ve $\Delta\theta_V = 0$ (tüm hareketli parçalar durur).
+  - Su altı dalış modunda (`submerged`) teleskopik baca `0,54 m` aşağı inerek ($y_{\text{taban}} = 1,69\text{ m} \leftrightarrow 2,23\text{ m}$) baca kaportası içine gizlenir ve üst kapak kapanır.
+  - Torpido ateşlemede ön kovan kapağı $+75^\circ$ açılır ve torpido $z = +4,65\text{ m}$'den $+12,40\text{ m}$'ye hiçbir gövde parçasıyla kesişmeden ilerler.
+- **Test çıktısı:**
+  - `DOĞRULANDI [abdulhamid.js]: 15 grup, 302 mesh, min.y=0.000m, Ana Uskur 1:1 (dShaft=0.628) & 90° Konik Dişli Dikey Dalış Pervaneleri 1:2 (dVert=1.257, RPM=0 duruş) OK, Teleskopik Baca (1.69m -> 2.23m) OK, 356mm Torpido Kovan Kilidi & Atış (2->1->0->2) OK, UTF-8 temiz.`
+  - `PASS museum-links: 41 vehicle URLs, subdirectory/private-query cleanup, native/cancel/copy/manual paths, 70 HTTPS sources`
+  - Görsel doğrulama: `rev_abdulhamid_iso.png`, `rev_abdulhamid_engine_xray.png`, `rev_abdulhamid_breech_xray.png` — konsol hatası yok (`0 error`).
+
+---
+
+## 10.2. 672 Bizans "Rum Ateşi" (*Greek Fire*) & Çift Pistonlu Sifon Pompası — `js/vehicles/greekfire.js`
+- **Durum:** Tamamlandı ve Doğrulandı (`rev_greekfire_iso.png`, `rev_greekfire_engine_xray.png`, `rev_greekfire_breech.png`)
+- **Kaynaklar ve varsayımlar:**
+  - *Tarihsel ve Müze Kaynakları:*
+    - Madrid *Skylitzes* elyazması (*Biblioteca Nacional de España*, MS Graecus Vitr. 26-2, fol. 34v — `"Pyr Thalassion"` tasviri: `https://www.bne.es/es/colecciones/manuscritos/skylitzes-matritensis`), Herakleios ve VI. Leon'un *Taktika* (*Tactica*, Böl. XIX) kayıtları, John Haldon & Maurice Byrne'ün 2002 tam ölçekli deneysel rekonstrüksiyonu ve Atina Savaş Müzesi Bizans deniz harp koleksiyonu (`https://warmuseum.gr/en/`).
+    - MS 672–678'de Suriyeli **Kallinikos** (Heliopolis/Baalbekli mimar-kimyager) tarafından geliştirilen *Rum Ateşi* (*Hygron Pyr* / *Pyr Thalassion*), 674–678 ve 717–718 Konstantinopolis kuşatmalarında Bizans *Dromon* kadırgalarının pruvasından (*prorai*) düşman gemilerini su üzerinde bile sönmeyen basınçlı sıvı alevle yakarak Bizans İmparatorluğu'nu kurtaran en ünlü devlet sırrı silah olmuştur.
+  - *Gerçek Boyutlar ve Sahne Ölçeği (`1:1` tam ölçekli Dromon pruva kesiti + `xylokastron` ahşap burun kalesi):*
+    - Dromon pruva kesit boyu `8,80 m` (`z = -4,40 .. +4,40 m`), pruva genişliği `3,20 m` (`x = -1,60 .. +1,60 m`), omurga kaide tabanı `y = 0,000 m`.
+    - Alt güverte (*katoikos*) yüksekliği `y = 0,88 m`: burada kömür/odun mangallı **bakır ısıtma kazanı** (*chalkion*, `z = -1,15 m`) ve İskenderiyeli Ktesibios ilkesiyle çalışan **çift pistonlu bronz kuvvet pompası** (`z = +0,25 m`) yer alır.
+    - Üst pruva güvertesi (*pseudopation* / *xylokastron*, `y = 1,92 m`, `z = +0,80 .. +3,10 m`): döner mafsallı (`strepton`) **aslan başlı dövme bronz sifon namlusu** (*sipho*, ağız `z = +3,85 m`, `y = 2,26 m`) ve **ucunda sürekli pilot meşale yanan ateşleme mızrağı**.
+- **Tartışmalı tarihsel noktalar ve teknik sınırlar:**
+  - *Gizli Formül:* Kesin bileşimi İmparator VII. Konstantinos Porphyrogennetos'un *De Administrando Imperio* eserinde "melek tarafından vahyedilen devlet sırrı" olarak saklanmıştır; modern kimya ve Haldon-Byrne deneyleri ana bileşenin Karadeniz/Kafkasya (Taman/Bakü) kaynaklı **ham neft yağı (nafta)** ile **çam reçinesi**, kükürt/zift ve kalsiyum oksit (sönmemiş kireç) katkıları olduğunu göstermektedir.
+  - *Termobarik Fırlatma vs. Çift Pistonlu Ktesibios Pompası:* Sıvının sadece buhar basıncıyla mı yoksa çift pistonlu bronz kuvvet pompasıyla mı basıldığı tartışılmıştır; Haldon-Byrne (2002) deneyleri ön ısıtmalı bakır kazan + **çift pistonlu Ktesibios kuvvet pompası + hava odası (windkessel)** kombinasyonunun `~8–10 bar` sürekli basınçla `15–20 m` menzile kesintisiz sıvı alev jeti fışkırttığını kanıtlamıştır.
+  - *Rüzgâr ve Geri Tepme Tehlikesi:* Karşı rüzgârda veya dalgalı denizde basınçlı neftin kendi pruvasını tutuşturma riski nedeniyle sakin denizde ve rüzgâr üstünden (*windward*) kullanılmıştır.
+- **15 Bağımsız Mekanik Parça Grubu (4 Alt Sistem):**
+  1. `gf_dromon_prow`: Bizans *Dromon* Pruva Gövdesi, Meşe Postalar, Bronz Mahmuz (*Peronion*) & *Xylokastron* Sancak Kalkanları (`isOuterShell: true`, X-Ray'de dış kaplama saydamlaşır)
+  2. `gf_keel_water`: Dromon Omurga Kızak Beşikleri (`y = 0,000 m`) & Yarı Saydam Marmara / Haliç Su Hattı
+  3. `gf_naphtha_amphorae`: Ziftli Pişmiş Toprak Neft & Çam Reçinesi Amforaları, Sızdırmaz Bakır Variller & Dolum Hunisi (`z = -2,85 m`)
+  4. `gf_bellows_hearth`: Çift Körüklü Odun/Kömür Ocağı (*Furnace Hearth*) & Kor Ateş Yatağı (`z = -1,15 m`, alt güverte)
+  5. `gf_copper_cauldron`: Perçinli Kubbeli Bakır Ön-Isıtma Kazanı (*Chalkion*), Basınç Emniyet Mandalı & Seviye Göstergesi (`z = -1,15 m`)
+  6. `gf_pump_beam`: Çift Kollu Ahşap/Demir Pompa Manivelası (*Rocking Lever Beam*, merkez `z = +0,25 m`, `y = 1,72 m`) & Sifoncu (*Siphonarios*) Tutamakları
+  7. `gf_twin_cylinders`: Ktesibios Tipi İkiz Bronz Pompa Silindirleri (`x = ±0,36 m`, `z = +0,25 m`), Pistonlar & Tek Yönlü Klapeler (*Flap Valves*)
+  8. `gf_windkessel_dome`: Merkez Basınç Dengeleme Hava Kubbesi (*Windkessel / Pneuma Dome*) & Bronz Kolektör (`x = 0`, `z = +0,25 m`)
+  9. `gf_riser_conduit`: Alt Güverteden Pruvaya Çıkan Zırhlı Bakır Dikme Borusu (*Riser Pipe*) & Ana Kesme Valfi (*Stopcock*)
+  10. `gf_swivel_cradle`: Döner Bronz Mafsal Kundağı (*Strepton*) & Yükseliş / Yanal Nişan Çemberi (`z = +2,15 m`, `y = 2,02 m`)
+  11. `gf_bronze_siphon`: Aslan Başlı (*Leontokephalos*) Dövme Bronz Sifon Namlusu (*Sipho*) & Daraltıcı Nozul (`z = +2,15 .. +3,85 m`)
+  12. `gf_pilot_lance`: Sifon Ağzı Sürekli Yanan Pilot Ateşleme Mızrağı (*Ignitor Torch*) & Reçineli Çıra Çanağı (`z = +3,92 m`)
+  13. `gf_hand_cheirosiphones`: Portatif El Sifonları (*Cheirosiphones* — VI. Leon İcadı) & Toprak Rum Ateşi El Bombaları Rafı (`z = +1,35 m`)
+  14. `gf_hide_shields`: Sirke ve Şapla Islatılmış Yangın Önleyici Keçe/Deri Pruva Siperlikleri (*Vinegar-Soaked Hide Curtains*)
+  15. `gf_flame_jet`: Basınçlı Sıvı Rum Ateşi Alev Jeti (*Pyr Thalassion*), Duman & Deniz Yüzeyinde Yanan Ateş Göleti
+- **Tespit edilen hatalar:** Yeni araç; ilk yüklemede IIFE dış kapsamında `THREE` çağrıldığı için `buildGreekFire(ctx)` içinden `ctx.THREE` parametre olarak yardımcı fonksiyonlara aktarıldı.
+- **Yapılan düzeltmeler:**
+  - Prosedürel Dromon pruva kabuğu, 9 iç meşe kaburga postası, su üstü bronz *Peronion* mahmuzu, *Xylokastron* ahşap burun kalesi, ziftli amforalar, çift körüklü ocak, kubbeli bakır ön-ısıtma kazanı (*chalkion*), 180° zıt fazlı Ktesibios ikiz bronz kuvvet pompası, *Windkessel* hava kubbesi, *Strepton* döner mafsalı, aslan başlı (*leontokephalos*) bronz sifon namlusu, pilot ateşleme mızrağı ve deniz üstünde yanan *Pyr Thalassion* alev göleti modellendi.
+- **Kalan şüpheliler / sınırlamalar:** Yok; 237 mesh ile 60 FPS akıcılık sınırının içinde.
+- **Mekanik hesaplar (`v = ω × r`, çift piston faz farkı ve yörünge):**
+  - Pompa kolu ($\theta_B(t) = \theta_{\max}\sin(\omega_P t)$, $\theta_{\max} = 0,28\text{ rad}$) yarıçapı $R_B = 0,36\text{ m}$ olan ikiz bağlantı noktalarından sol ($x = -0,36\text{ m}$) ve sağ ($x = +0,36\text{ m}$) pistonları $180^\circ$ zıt fazda tahrik eder:
+    $$y_L(t) = y_0 - R_B\sin(\theta_B(t)), \qquad y_R(t) = y_0 + R_B\sin(\theta_B(t)), \qquad v_L(t) = -v_R(t) = -\dot{\theta}_B R_B\cos(\theta_B(t))$$
+  - Pompa temposu `SPM = 0` iken $\omega_P = 0 \implies \Delta\theta_B = 0$ ve pistonlar tamamen durur (gizli alt sınır yok).
+  - `Strepton` bronz mafsalı yanal $\psi \in [-35^\circ, +35^\circ]$ ve yükseliş $\alpha \in [-10^\circ, +25^\circ]$ aralığında döner; pilot meşale mızrağı sifon namlusuyla aynı kundağa bağlı olduğu için ağız önünde sabit mesafede hareket eder ve neft jeti her açıda pilot alevin içinden geçerek tutuşur.
+- **Test çıktısı:**
+  - `DOĞRULANDI [greekfire.js]: 15 grup, 237 mesh, min.y=-0.000m, Ktesibios İkiz Piston 180° Zıt Faz (dyL=-0.099m, dyR=+0.099m, SPM=0 duruş) OK, Strepton Mafsal & Pilot Mızrak Senkron OK, Rum Ateşi Jeti & Pilot Kilidi (100%->0%->100%) OK, UTF-8 temiz.`
+  - `PASS museum-links: 42 vehicle URLs, subdirectory/private-query cleanup, native/cancel/copy/manual paths, 72 HTTPS sources`
+  - Görsel doğrulama: `rev_greekfire_iso.png`, `rev_greekfire_engine_xray.png`, `rev_greekfire_breech.png` — konsol hatası yok (`0 error`).
+
+---
+
+## 10.3. 1957 R-7 Semyorka / Vostok Kıtalararası Roket & *Korolev Haçı* — `js/vehicles/r7.js`
+- **Durum:** Tamamlandı ve Doğrulandı (`rev_r7_iso.png`, `rev_r7_engine.png`, `rev_r7_breech_xray.png`)
+- **Kaynaklar ve varsayımlar:**
+  - *Tarihsel ve Müze Kaynakları:*
+    - Moskova Kozmonotik Anıt Müzesi (*Memorial Museum of Cosmonautics*) & VDNH Vostok 8K72K tam boy sergisi (`https://kosmo-museum.ru/`), Londra *Science Museum* RD-107 / Vostok kapsül koleksiyonu (`https://collection.sciencemuseumgroup.org.uk/objects/co8401389/rd-107-rocket-engine`), ve Smithsonian NASM *Sputnik 1 / R-7 Semyorka* arşiv kayıtları (`https://airandspace.si.edu/collection-objects/sputnik-1-replica/nasm_A19750618000`).
+    - **Sergey Korolev** (OKB-1) başmühendisliğinde geliştirilen **R-7 Semyorka (8K71 / 8K72K Vostok)**, 1957'de dünyanın ilk kıtalararası balistik füzesi (ICBM) olmuş, **4 Ekim 1957'de Sputnik 1**'i ve **12 Nisan 1961'de Yuri Gagarin'i (Vostok 1)** uzaya taşıyarak Uzay Çağı'nı başlatmıştır.
+  - *Gerçek Boyutlar ve Sahne Ölçeği (`1:3,5` müze ölçeği):*
+    - Gerçek yükseklik `38,36 m` (Vostok 8K72K konfigürasyonu; Sputnik 8K71PS `29,16 m`), alt etek açıklığı `10,30 m`, merkez kademe (Blok A) çapı `2,95 m`, yan hızlandırıcılar (Blok B, V, G, D) uzunluğu `19,0 m`, taban çapı `2,68 m`, kalkış kütlesi `~287 ton`, 32 ateşleme odalı (4 × RD-107 + 1 × RD-108) toplam kalkış itkisi `~4.000 kN`.
+    - Sahne ölçeği (`1:3,5`): Baykonur *"Gagarin'in Başlangıcı" (Saha 1/5)* fırlatma masası tabanı `y = 0,000 m`, süspansiyon kafes kolları üzerinde asılı R-7/Vostok toplam yüksekliği `11,60 m` (`y = 0,00 .. 11,60 m`), alt etek açıklığı `2,94 m`.
+- **Tartışmalı tarihsel noktalar ve teknik sınırlar:**
+  - *Neden "1,5 Kademeli" (Paralel Kademelendirme)?* 1950'lerde 3 tonluk ağır termonükleer başlığı taşıyacak dev roketlerin motorlarını uçuş sırasında yüksek irtifada ateşlemek güvenilmezdi; Korolev bu sorunu **merkez çekirdek (Blok A) ve 4 konik yan hızlandırıcıyı (Blok B, V, G, D) yerde aynı anda ateşleyerek** çözdü.
+  - *Korolev Haçı (Korolev Cross):* Kalkıştan ~118 saniye sonra yakıtı biten 4 yan hızlandırıcı, üst küresel mafsallardan serbest kalıp alt oksijen tankı basınç tahliye valfinin itkisiyle dışa doğru simetrik bir **haç (✕)** çizerek ayrılır.
+  - *Baykonur Petal Kuleleri (Tulip Launch Pad):* R-7 tabandan oturmaz; ağırlığı merkez gövdenin bel kuşağından 4 dev kafes kol (petal trusses) tarafından taşınır. İtki kalkış ağırlığını aştığında karşı ağırlıklı bu 4 kol çiçek yaprağı gibi $42^\circ$ dışa açılır!
+- **16 Bağımsız Mekanik Parça Grubu (4 Alt Sistem):**
+  1. `r7_launch_table`: Baykonur Saha 1/5 Çelik Fırlatma Masası, Alev Hendek Deflektörü & Raylı Taban (`y = 0,000 m`)
+  2. `r7_petal_towers`: 4 × Karşı Ağırlıklı Çiçek Yaprağı (*Tulip*) Süspansiyon Kafes Kolları ($0^\circ \dots 42^\circ$ dışa açılır)
+  3. `r7_umbilical_masts`: Kriyojenik Yakıt/Oksijen Dolum Kuleleri & Kablo Kolları
+  4. `r7_core_hull`: Merkez Çekirdek Kademe (*Blok A*) Dış Gövde Kabuğu & Bel Destek Pabuçları (`isOuterShell: true`, X-Ray'de saydamlaşır)
+  5. `r7_core_tanks`: *Blok A* İç Sıvı Oksijen (LOX) & Kerosen (RP-1) Kriyojenik Tankları ve İtki Çerçevesi
+  6. `r7_rd108_engine`: Merkez *RD-108* Sıvı Yakıtlı Roket Motoru (4 Ana Yanma Odası + 4 Gimbal Vernier Nozulu + H₂O₂ Türbopompası)
+  7. `r7_booster_b`: Kuzey Yan Hızlandırıcı (*Blok B*) Konik Gövde, LOX/RP-1 Tankları & Üst Ayrılma Mafsalı
+  8. `r7_booster_v`: Doğu Yan Hızlandırıcı (*Blok V*) Konik Gövde, LOX/RP-1 Tankları & Aerodinamik Stabilizatör Kanatçığı
+  9. `r7_booster_g`: Güney Yan Hızlandırıcı (*Blok G*) Konik Gövde, LOX/RP-1 Tankları & Aerodinamik Stabilizatör Kanatçığı
+  10. `r7_booster_d`: Batı Yan Hızlandırıcı (*Blok D*) Konik Gövde, LOX/RP-1 Tankları & Üst Ayrılma Mafsalı
+  11. `r7_rd107_clusters`: 4 × *RD-107* Yan Hızlandırıcı Motor Kümesi (16 Ana Çan Nozul + 8 Vernier Nozul = 24 Yanma Odası)
+  12. `r7_interstage_truss`: Açık Çelik Kafes Ara Kademe (*Hot-Staging Interstage Truss* — Blok E Ateşleme Izgarası)
+  13. `r7_blok_e_stage`: Üst Kademe (*Blok E*) Gövdesi & *RD-0109* Vakum Motoru
+  14. `r7_vostok_spacecraft`: *Vostok 3KA* Küresel İniş Kapsülü (*Sharik*), Kozmonot Koltuğu, Ekipman Modülü & *Sputnik 1* Küresi
+  15. `r7_payload_fairing`: İki Parçalı Konik Burun Kaportası (*Payload Fairing* — Ayrılabilir Koruyucu Kabuk, `isOuterShell: true`)
+  16. `r7_exhaust_plumes`: 32 Nozullu Kalkış Alev Sütunu (*RD-107/108*), Buhar Bulutu & *Korolev Haçı* Ayrılma İtki Jeti
+- **Tespit edilen hatalar:** İlk `iso` kamera mesafesi (`[7.8, 6.2, 8.4]`) 11,60 m yüksekliğindeki roket için biraz yakın olduğundan kamera `[10.8, 6.8, 11.4]` konumuna çekilerek tüm roketin ve fırlatma masasının kadraja tam sığması sağlandı.
+- **Yapılan düzeltmeler:**
+  - Baykonur Saha 1/5 fırlatma halkası (`min.y = 0,000 m`), $0^\circ \to 42^\circ$ açılan karşı ağırlıklı 4 yaprak kule, merkez Blok A kriyojenik tankları, 32 yanma odalı RD-107 / RD-108 motor kümesi ($\pm 18^\circ$ gimbal vernier nozullarıyla), 4 konik yan hızlandırıcının simetrik **Korolev Haçı** ayrılması, açık çelik kafes ara kademe, Blok E ve iki parçalı burun kaportası içindeki *Vostok 3KA* ("Sharik") + *Sputnik 1* modellendi.
+- **Kalan şüpheliler / sınırlamalar:** Yok; 211 mesh ile 60 FPS akıcılık sınırının içinde.
+- **Mekanik hesaplar (`v = ω × r`, Vernier gimbal ve *Korolev Haçı* kinematiği):**
+  - **Baykonur Yaprak Kuleleri (*Tulip Petals*):** 4 kafes kol taban mafsalı ($r_{\text{taban}} = 1,75\text{ m}$, $y = 0,82\text{ m}$) etrafında dışa doğru $\theta_T \in [0^\circ, 42^\circ]$ açılır.
+  - **Korolev Haçı (*Korolev Cross*) Evresi ($\tau \in [0, 1]$):** 4 yan hızlandırıcı (*Blok B, V, G, D*, birim yön vektörleri $\hat{u}_k = (\sin\phi_k, \cos\phi_k)$, $\phi_k = k\cdot 90^\circ$) üst burun mafsalından dışa doğru $\theta_{\text{üst}}(\tau) = 0,90\cdot\tau\text{ rad}$ ($\approx 51,5^\circ$) devrilirken radyal olarak $r(\tau) = 0,46 + 2,15\cdot\tau\text{ m}$ dışa ve $\Delta y(\tau) = -0,75\cdot\tau^2\text{ m}$ aşağı ayrılarak kusursuz 4'lü **Korolev Haçı** oluşturur.
+  - **Vernier Gimbal:** 12 adet vernier yönlendirme nozulu (4 merkez + 4×2 yan) $\pm 18^\circ$ gimbal açısıyla döner.
+- **Test çıktısı:**
+  - `DOĞRULANDI [r7.js]: 16 grup, 211 mesh, min.y=0.000m, Korolev Haçı 4x Simetrik Ayrılma (r=0.46m -> 2.61m) OK, Baykonur Yaprak Kuleleri (0°->42°) & 12x Vernier Gimbal (±18°) OK, Burun Kaportası & Vostok 3KA/Sputnik 1 OK, UTF-8 temiz.`
+  - `PASS museum-links: 43 vehicle URLs, subdirectory/private-query cleanup, native/cancel/copy/manual paths, 74 HTTPS sources`
+  - Görsel doğrulama: `rev_r7_iso.png`, `rev_r7_engine.png`, `rev_r7_breech_xray.png` — konsol hatası yok (`0 error`).
+
+---
+
+## 10.4. 1969 Hawker Siddeley Harrier GR.1 & Rolls-Royce *Pegasus* VTOL Motoru — `js/vehicles/harrier.js`
+- **Durum:** Planlandı (Uygulanıyor)
+- **Kaynaklar ve varsayımlar:**
+  - *Tarihsel ve Müze Kaynakları:*
+    - RAF Museum Hendon / Cosford (*Hawker Siddeley Harrier GR.1 / GR.3* ve *Pegasus* sergisi: `https://www.rafmuseum.org.uk/`), Londra *Science Museum Group* Rolls-Royce *Pegasus* kesitli vektörel itki motoru (`https://collection.sciencemuseumgroup.org.uk/`), ve Imperial War Museum (IWM Duxford) Harrier koleksiyonu (`https://www.iwm.org.uk/`).
+    - 1969'da Kraliyet Hava Kuvvetleri'nde (RAF) hizmete giren **Hawker Siddeley Harrier GR.1**, tarihin ilk operasyonel **dikey/kısa kalkış ve iniş (V/STOL)** jet taarruz uçağıdır. Başarısının sırrı, **Rolls-Royce Pegasus (BE.53)** iki şaftlı turbofan motorunun gövde yanlarındaki **zincir ve dişliyle senkronize dönen 4 adet vektörel nozuludur** ($0^\circ$ yatay uçuş $\to 90^\circ$ dikey *hover* $\to 98^\circ$ frenleme).
+  - *Gerçek Boyutlar ve Sahne Ölçeği (`1:1,35` müze ölçeği):*
+    - Gerçek boy `13,87 m`, kanat açıklığı `7,70 m`, yükseklik `3,45 m`, kanat negatif dihedral (anhedral) açısı $-12^\circ$, Rolls-Royce *Pegasus 101 (Mk 101)* itkisi `84,5 kN (19.000 lbf)`, bisiklet tip ana iniş takımı + kanat ucu destek tekerlekleri (*outriggers*).
+    - Sahne ölçeği (`1:1,35`): Sahne boyu `10,20 m` (`z = -5,10 .. +5,10 m`), kanat açıklığı `5,70 m` (`x = -2,85 .. +2,85 m`), yerde bisiklet iniş takımı ve kanat ucu destek tekerlekleri tam `y = 0,000 m` düzlemine basar; `VTOL Hover` modunda uçak yerden `+1,45 m` havaya yükselir!
+- **Tartışmalı tarihsel noktalar ve teknik sınırlar:**
+  - *Ters Yönde Dönen Çift Şaft (Contra-Rotating Spools):* *Pegasus* motorunda alçak basınçlı (LP) fan şaftı ile yüksek basınçlı (HP) kompresör/türbin şaftı **zıt yönlerde** ($\omega_{\text{HP}} = -1,35\,\omega_{\text{LP}}$) döner! Bunun nedeni, uçak havada asılı (*hover*) dururken aerodinamik kumanda yüzeyleri çalışmadığı için motorun **jiroskopik kuplaj (gyroscopic precession)** momentini sıfırlamaktır; aksi halde burun kaldırıldığında uçak kontrolsüzce yana yatardı.
+  - *Puffer Ducts (Tepki Kontrol Valf Nozulları):* *Hover* sırasında kanatçık, irtifa ve istikamet dümenleri işlevsiz olduğundan, HP kompresörden alınan basınçlı hava **burun, kuyruk ve iki kanat ucundaki "puffer" tepki kontrol valflerinden** püskürtülerek uçağın yunuslama, yalpa ve sapma kontrolü sağlanır.
+  - *4 Döner Nozul Senkronizasyonu:* Ön iki "soğuk" nozul (LP fan baypas havası) ve arka iki "sıcak" nozul (türbin egzozu), tek bir pnömatik hava motoru (air motor) ve zincir-şaft aktarma sistemiyle **bire bir aynı açıda** ($\theta_N \in [0^\circ, 98^\circ]$) döndürülür; tek bir nozulun bile farklı açıda kalması uçağı anında ters çevirirdi.
+- **15 Bağımsız Mekanik Parça Grubu (4 Alt Sistem):**
+  1. `hr_fuselage_skin`: Harrier GR.1 Gövde Dış Kabuğu, Dev Yanal Hava Q-Girişleri & Yardımcı Emme Kapakçıkları (*Blow-in Doors*, `isOuterShell: true`)
+  2. `hr_cockpit_canopy`: Kokpit, Martin-Baker Mk.9 Fırlatma Koltuğu, HUD & Tekli Nozul Vektör Kolu (*Nozzle Lever*)
+  3. `hr_anhedral_wings`: $-12^\circ$ Anhedral (Aşağı Eğimli) Süperkritik Ana Kanatlar, Pilonlar & Kanatçıklar
+  4. `hr_tail_empennage`: Kuyruk Konisi, Dikey Stabilizatör & Tam Hareketli Yatay Stabilizatör (*Tailplane*)
+  5. `hr_pegasus_fan_lp`: Rolls-Royce *Pegasus* 3 Kademeli Alçak Basınç (LP) Titanyum Fanı & LP Şaftı ($\omega_{\text{LP}} > 0$)
+  6. `hr_pegasus_core_hp`: *Pegasus* 8 Kademeli Yüksek Basınç (HP) Kompresörü, Yanma Odası & Zıt Döner HP Türbin Şaftı ($\omega_{\text{HP}} = -1,35\,\omega_{\text{LP}}$)
+  7. `hr_nozzle_drive`: Pnömatik Nozul Tahrik Motoru, Senkronizasyon Milleri & Zincir Dişli Kutuları (`1:1` 4 nozul kilidi)
+  8. `hr_cold_nozzles`: Ön İkiz "Soğuk" (LP Fan Baypas) Döner Vektör Nozulları (`x = ±0,68 m`, `z = +0,62 m`, $0^\circ \dots 98^\circ$)
+  9. `hr_hot_nozzles`: Arka İkiz "Sıcak" (Türbin Egzoz) Döner Vektör Nozulları (`x = ±0,68 m`, `z = -0,82 m`, $0^\circ \dots 98^\circ$)
+  10. `hr_rcs_puffers`: *Hover* Tepki Kontrol Sistemi (*RCS "Puffer" Valfleri*): Burun, Kuyruk ve Kanat Ucu Basınçlı Hava Boruları & Valfleri
+  11. `hr_bicycle_gear`: Bisiklet Tipi Burun & Merkez Çift Tekerlekli Ana İniş Takımı (`y = 0,000 m`)
+  12. `hr_outrigger_gear`: Kanat Ucu Destek Tekerlekleri (*Outrigger Landing Gear*, `x = ±2,58 m`, `y = 0,000 m`)
+  13. `hr_aden_pods`: Gövde Altı 2 × 30 mm *ADEN* Revolver Top Podları & Karın Yönlendirici Levhaları (*Strakes*)
+  14. `hr_sneak_rockets`: Kanat Altı 2 × *Matra SNEB* 68 mm Roket Podları & Harici Yakıt Tankları
+  15. `hr_vtol_jets`: 4 × Vektörel İtki Akış Konisi (Soğuk Mavi Fan Jeti + Sıcak Turuncu Egzoz) & RCS *Puffer* Hava Jeti
+- **Mekanik hesaplar (`v = ω × r`, zıt döner şaftlar ve 4 nozul vektörleme):**
+  - **Zıt Döner Çift Şaft (Jiroskopik Moment Sıfırlama):**
+    $$\theta_{\text{LP}}(t + \Delta t) = \theta_{\text{LP}}(t) + \omega_{\text{LP}}\Delta t, \qquad \theta_{\text{HP}}(t + \Delta t) = \theta_{\text{HP}}(t) - 1,35\,\omega_{\text{LP}}\Delta t, \qquad \vec{L}_{\text{toplam}} = I_{\text{LP}}\vec{\omega}_{\text{LP}} + I_{\text{HP}}\vec{\omega}_{\text{HP}} \approx \vec{0}$$
+  - **4 Döner Nozul Senkronizasyonu ($\theta_N \in [0^\circ, 98^\circ]$):**
+    $$\theta_{\text{ön,sol}} = \theta_{\text{ön,sağ}} = \theta_{\text{arka,sol}} = \theta_{\text{arka,sağ}} = \theta_N, \qquad \vec{F}_{\text{itki}} = F_0\,(-\sin\theta_N\,\hat{j} - \cos\theta_N\,\hat{k})$$
+  - `RPM = 0` iken hem LP fan hem HP kompresör/türbin tamamen durur ($\Delta\theta_{\text{LP}} = \Delta\theta_{\text{HP}} = 0$).
+
+
+
+

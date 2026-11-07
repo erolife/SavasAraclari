@@ -41,9 +41,9 @@
     ] },
     { key: 'origin', url: 'koken', label: 'Köken', options: [
       { key: 'china', label: 'Çin' },
-      { key: 'rome', label: 'Roma' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
+      { key: 'rome', label: 'Roma' }, { key: 'byzantine', label: 'Bizans (Doğu Roma)' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
       { key: 'ottoman', label: 'Osmanlı' }, { key: 'turkmen', label: 'Türkmen / Akkoyunlu geleneği' }, { key: 'seljuk', label: 'Selçuklular' }, { key: 'gokturk', label: 'Göktürkler' }, { key: 'turkey', label: 'Türkiye' }, { key: 'italy', label: 'İtalya (Rönesans)' },
-      { key: 'uk', label: 'İngiltere' }, { key: 'germany', label: 'Almanya' },
+      { key: 'uk', label: 'İngiltere' }, { key: 'germany', label: 'Almanya' }, { key: 'sweden', label: 'İsveç' },
       { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }, { key: 'korea', label: 'Kore (Joseon)' }, { key: 'mexico', label: 'Meksika (Mezoamerika)' }, { key: 'europe', label: 'Avrupa (yer atfı belirsiz)' }, { key: 'greek', label: 'Helenistik Dünya' }
     ] },
     { key: 'status', url: 'durum', label: 'Durum', options: [
@@ -359,7 +359,127 @@
   VEHICLES.push({"id":"dragonmace","sim":"dragonmace","group":8,"status":"live","year":1200,"yearLabel":"12–13. yüzyıl","eraLabel":"ANADOLU SELÇUKLU • METAL İŞÇİLİĞİ","domain":"land","era":"medieval","energy":["muscle"],"role":["melee"],"origin":"seljuk","name":"Selçuklu Ejder Başlı Gürzü","sub":"KIVRIMLI EJDER • AĞIZ İÇİNDE HAYVAN • DÖKÜM BEZEME","desc":"Furusiyya R-113 eserinin büyütülmüş yorumu: kıvrılan ejder başı, açık ağızdaki küçük hayvan figürü, kabartmalı göz ve aşınmış metal yüzey. Nesneyi döndürün; baş–sap ve motif ayrımını sergi görünümünde inceleyin.","tags":["Somut Eser Referansı","Heykelsi Baş","Ayrılabilir Motif"],"specs":[["ESER","Furusiyya R-113"],["TARİH","12–13. yüzyıl"],["KAYNAK BOYU","35 cm"],["MALZEME","Bakır alaşımı / demir"]],"tag":"SELJUK-DRAGON-MACE","icon":"🐉","modal":["Kıvrımlı sabit döküm baş ve gerçek açık ağız","Kabartmalı göz, yanak ve boyun bezemeleri","Ağız içindeki küçük dört ayaklı figür","Demir sap, bilezik ve çağdaş sergi mesnetleri"],"svg":"<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M143 127L148 65\" stroke=\"#695344\" stroke-width=\"9\"/><path d=\"M144 70Q123 24 156 22L170 5L172 33Q210 37 194 62Q185 69 185 58Q197 43 171 44Q152 47 157 71Z\" fill=\"#736b46\" stroke=\"#b29a5a\" stroke-width=\"2\"/><circle cx=\"145\" cy=\"36\" r=\"7\" fill=\"#333e35\" stroke=\"#b29a5a\"/><path d=\"M172 23L183 18L192 39L181 42\" fill=\"none\" stroke=\"#736b46\" stroke-width=\"6\"/></svg>"});
   VEHICLES.push({"id":"turbanhelmet","sim":"turbanhelmet","group":8,"status":"live","year":1480,"yearLabel":"15. yüzyıl sonu","eraLabel":"TÜRKMEN GELENEĞİ • OLASI AKKOYUNLU BAĞLANTISI","domain":"land","era":"medieval","energy":["muscle"],"role":["armor"],"origin":"turkmen","name":"Akkoyunlu Geleneğinde Bezemeli Miğfer","sub":"SARIK MİĞFER • METAL KABUK • GÜMÜŞ VE ALTIN RENKLİ BEZEME","desc":"Met 04.3.461 eserinin büyütülmüş yorumu. İçi boş gövde, göz üstü açıklıkları, yatay bezeme kuşakları ve düşey burun koruması. Kabuğu kaldırıp astar yorumunu inceleyin; zincir boyunluk tamamlamasını ayrıca açın.","tags":["Somut Müze Eseri","İçi Boş Kabuk","Ayrı Tamamlama Katmanı"],"specs":[["ESER","Met 04.3.461"],["DÖNEM","15. yüzyıl sonu"],["KAYNAK BOYU","29,2 cm"],["KAYNAK AĞIRLIĞI","1496 g"]],"tag":"TURKMAN-TURBAN-HELMET","icon":"🪖","modal":["İçi boş gövde, alt kenar ve göz üstü açıklıkları","Yatay kuşaklar, madalyonlar ve bitkisel bezeme yorumu","Kılavuz içinde kayan burun koruması ve delikli üstlük","Ayrılabilir astar ve isteğe bağlı zincir tamamlama yorumu"],"svg":"<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M91 123V83Q88 59 128 32L160 4L192 32Q232 59 229 83V123L180 120L170 112H150L140 120Z\" fill=\"#465057\" stroke=\"#a38e59\" stroke-width=\"2\"/><path d=\"M115 52H205M104 65H216M95 78H225M94 92H226\" stroke=\"#b3a579\" stroke-width=\"3\"/><path d=\"M160 126V73\" stroke=\"#b5b7b1\" stroke-width=\"7\"/><ellipse cx=\"160\" cy=\"66\" rx=\"12\" ry=\"16\" fill=\"#b5b7b1\"/><path d=\"M107 105L117 98L127 105L117 115ZM193 105L203 98L213 105L203 115Z\" fill=\"none\" stroke=\"#baa568\" stroke-width=\"2\"/></svg>"});
   VEHICLES.push({"id":"maxim","sim":"maxim","group":9,"status":"live","year":1884,"yearLabel":"1884 / 1895 sonrası","eraLabel":"SANAYİ DEVRİMİ","domain":"land","era":"industrial","energy":["gunpowder"],"role":["smallarms"],"origin":"uk","name":"Maxim–Nordenfelt Makineli Tüfeği","sub":"GERİ TEPMEDEN OTOMATİK ÇEVRİME","desc":"Maxim’in 1884 patentli otomatik silah fikri; Museums Victoria ST 23731’deki 1895 sonrası örnek üzerinden. Pirinç su ceketi, kumaş şerit, yan yay kapağı ve açılan üst kapak. Gatling ile karşılaştırarak insan gücünden geri tepme enerjisine geçişi keşfedin.","tags":["Su Ceketi","Açılan Üst Kapak","Gatling Karşılaştırması","Müze Referansı"],"specs":[["GÖRSEL ÖRNEK","ST 23731 • 1895 sonrası"],["KAYNAK BOYU / KÜTLESİ","110 cm / 27,26 kg"],["KALİBRE (KAYNAK)",".450/.577 in."],["ÇALIŞMA","Geri tepme • şerit besleme"]],"tag":"MAXIM-NORDENFELT","icon":"⚙️","modal":["Pirinç ceket, iç namlu ve açık besleme pencereleri","Kumaş şerit, kartuş cepleri ve yüzey ayrıntıları","Menteşeli üst kapak ve yavaşlatılmış temsili iç hareket","Gatling karşılaştırması; kaynak eser ve yorumlanan parçalar ayrı belirtilir"],"svg":"<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M30 104H290\" stroke=\"#475569\" stroke-width=\"4\"/><path d=\"M100 102V77M220 102V82\" stroke=\"#475569\" stroke-width=\"4\"/><rect x=\"31\" y=\"53\" width=\"135\" height=\"27\" rx=\"6\" fill=\"#ae8c50\" stroke=\"#665639\" stroke-width=\"2\"/><rect x=\"166\" y=\"45\" width=\"104\" height=\"43\" rx=\"3\" fill=\"#3c444a\"/><path d=\"M270 50H286V82H270M13 66H31\" fill=\"none\" stroke=\"#7e6844\" stroke-width=\"5\"/><path d=\"M176 59Q202 67 187 111\" fill=\"none\" stroke=\"#b6a17b\" stroke-width=\"10\"/><path d=\"M182 72H251\" stroke=\"#b99a5b\" stroke-width=\"6\"/></svg>"});
+  VEHICLES.push({
+    id: 'abdulhamid', sim: 'abdulhamid', group: 10, status: 'live',
+    year: 1886, yearLabel: '1886', eraLabel: 'SANAYİ DEVRİMİ • OSMANLI BAHRİYESİ',
+    domain: 'sea', era: 'industrial', energy: ['steam'], role: ['artillery', 'defense'], origin: 'ottoman',
+    name: 'Osmanlı Abdülhamid (Nordenfelt II) Buharlı Denizaltısı',
+    sub: 'DÜNYADA SU ALTINDA TORPİDO ATEŞLEYEN İLK DENİZALTI • LAMM KIZGIN BUHAR & DİKEY PERVANELER',
+    desc: '6 Eylül 1886\'da İstanbul Taşkızak Tersanesi\'nde suya indirilen ve 1888\'de Sarayburnu açıklarında su altında 356 mm torpido ateşleyerek dünya tarihine geçen buharlı denizaltı. X-Ray ile Lamm kızgın su sarnıçlarını, teleskopik bacayı, 250 BG bileşik buhar makinesini ve 90° konik dişliyle çalışan baş/kıç dikey dalış pervanelerini inceleyin.',
+    tags: ['Lamm Kızgın Buhar Sarnıçları', 'Baş/Kıç Dikey Dalış Pervaneleri', '356 mm Schwarzkopff Torpidosu', '15 İnceleme Grubu'],
+    specs: [['TAM BOY / EN', '30,5 m × 3,66 m (~100 Ton)'], ['TAHRİK', '250 BG Buhar + Lamm Sarnıçları'], ['SİLAH', '356 mm Torpido + 2×35 mm Top'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
+    tag: 'ABDULHAMID-NORDENFELT-1886', icon: '⚓',
+    modal: [
+      'Puro biçimli perçinli çelik gövde, 24 halka posta, cam gözetleme kubbeli kule ve Taşkızak kızak beşikleri',
+      'Kömürlü deniz kazanı, indirilebilir teleskopik baca ve su altı buharı depolayan ikiz Lamm kızgın su sarnıçları',
+      'Ana şafttan 90° konik dişli (1:2 oran) ile tahrik edilen baş ve kıç dikey dalış pervaneleri',
+      'Pruva üstü 356 mm harici torpido kovanı, menteşeli kapak emniyet kilidi ve Schwarzkopff torpido atışı'
+    ],
+    svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 58 Q90 54 160 58 T308 58" stroke="#0284c7" stroke-width="1.6" stroke-dasharray="5 3"/><path d="M22 82 Q95 54 160 54 Q225 54 298 82 Q225 110 160 110 Q95 110 22 82 Z" fill="#334155" fill-opacity="0.32" stroke="#0f172a" stroke-width="2.2"/><rect x="148" y="38" width="14" height="20" rx="2" fill="#475569" stroke="#0f172a" stroke-width="1.8"/><path d="M178 55 A12 10 0 0 1 202 55 Z" fill="#38bdf8" fill-opacity="0.5" stroke="#0f172a" stroke-width="1.8"/><rect x="216" y="48" width="54" height="9" rx="3" fill="#b45309" fill-opacity="0.45" stroke="#78350f" stroke-width="1.8"/><ellipse cx="105" cy="82" rx="24" ry="12" fill="#d97706" fill-opacity="0.3" stroke="#b45309" stroke-width="1.6"/><ellipse cx="215" cy="82" rx="24" ry="12" fill="#d97706" fill-opacity="0.3" stroke="#b45309" stroke-width="1.6"/><line x1="62" y1="62" x2="62" y2="102" stroke="#0284c7" stroke-width="2.5"/><line x1="258" y1="62" x2="258" y2="102" stroke="#0284c7" stroke-width="2.5"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'greekfire', sim: 'greekfire', group: 10, status: 'live',
+    year: 672, yearLabel: 'MS 672', eraLabel: 'ORTA ÇAĞ • BİZANS DONANMASI',
+    domain: 'sea', era: 'medieval', energy: ['muscle', 'gunpowder'], role: ['artillery', 'defense'], origin: 'byzantine',
+    name: 'Bizans "Rum Ateşi" (Greek Fire) & Çift Pistonlu Sifon Pompası',
+    sub: 'KALLİNİKOS’UN DEVLET SIRRI SİLAHI • BAKIR KAZAN • KTESİBİOS ÇİFT PİSTONLU POMPA & ASLAN BAŞLI SİFON',
+    desc: 'MS 672\'de Suriyeli Kallinikos\'un geliştirdiği ve Konstantinopolis kuşatmalarında Arap donanmalarını su üstünde bile sönmeyen sıvı alevle durduran "Deniz Ateşi" (Pyr Thalassion). X-Ray ile Dromon pruvası altındaki körüklü ocağı, kubbeli bakır kazanı, Ktesibios tipi çift pistonlu bronz kuvvet pompasını ve üst güvertedeki aslan başlı döner sifonu inceleyin.',
+    tags: ['Ktesibios İkiz Bronz Pompa', 'Bakır Ön-Isıtma Kazanı', 'Aslan Başlı Bronz Sifon', '15 İnceleme Grubu'],
+    specs: [['SİLAH TİPİ', 'Basınçlı Sıvı Alev Sifonu'], ['POMPA BASINCI', '~8–10 bar (Windkessel Kubbeli)'], ['MENZİL', '~15–20 Metre (Su Üstünde Yanar)'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
+    tag: 'GREEK-FIRE-672', icon: '🔥',
+    modal: [
+      'Bizans Dromon pruva kesiti, Xylokastron ahşap burun kalesi, bronz Peronion mahmuzu ve ziftli neft amforaları',
+      'Çift körüklü odun/kömür ocağı ve neft-reçine karışımını ısıtan perçinli kubbeli bakır kazan (Chalkion)',
+      '180° zıt fazda çalışan Ktesibios tipi ikiz bronz kuvvet pompası ve basınç dengeleyici Windkessel hava kubbesi',
+      'Strepton döner kundak, aslan başlı (Leontokephalos) dövme bronz sifon namlusu, pilot meşale ve deniz üstü alev jeti'
+    ],
+    svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 105 Q90 100 160 105 T310 105" stroke="#0284c7" stroke-width="1.8" stroke-dasharray="5 3"/><path d="M24 108 L42 64 L188 64 L216 96 L185 112 Z" fill="#785233" fill-opacity="0.35" stroke="#451a03" stroke-width="2.2"/><ellipse cx="78" cy="88" rx="18" ry="14" fill="#b45309" fill-opacity="0.45" stroke="#78350f" stroke-width="1.8"/><rect x="118" y="76" width="28" height="24" rx="3" fill="#d97706" fill-opacity="0.4" stroke="#78350f" stroke-width="1.8"/><line x1="106" y1="68" x2="158" y2="68" stroke="#451a03" stroke-width="3"/><path d="M168 52 L226 46" stroke="#d97706" stroke-width="5" stroke-linecap="round"/><path d="M228 46 Q268 42 304 68 Q272 58 228 52 Z" fill="#ef4444" fill-opacity="0.65" stroke="#ea580c" stroke-width="1.8"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'r7', sim: 'r7', group: 10, status: 'live',
+    year: 1957, yearLabel: '1957 / 1961', eraLabel: 'SOĞUK SAVAŞ • UZAY ÇAĞI',
+    domain: 'space', era: 'coldwar', energy: ['jet'], role: ['artillery', 'transport'], origin: 'ussr',
+    name: 'R-7 Semyorka / Vostok Kıtalararası Roket & Korolev Haçı',
+    sub: 'DÜNYANIN İLK ICBM’İ • SPUTNİK 1 & VOSTOK 1 TAŞIYICISI • 32 ODALI RD-107/108 & KOROLEV HAÇI',
+    desc: 'Sergey Korolev (OKB-1) başmühendisliğinde geliştirilen, 4 Ekim 1957\'de Sputnik 1\'i ve 12 Nisan 1961\'de Yuri Gagarin\'i (Vostok 1) uzaya taşıyan efsanevi 1,5 kademeli roket. Baykonur Saha 1/5 "Tulip" yaprak kulelerinin açılışını, 32 yanma odalı RD-107/108 kümesini, Vostok 3KA kapsülünü ve 4 konik yan hızlandırıcının simetrik "Korolev Haçı" (✕) ayrılmasını deneyimleyin.',
+    tags: ['Korolev Haçı (4× Yan Hızlandırıcı)', '32 Odalı RD-107/108 Kümesi', 'Baykonur Yaprak Kuleleri', '16 İnceleme Grubu'],
+    specs: [['TAM BOY / KÜTLE', '38,36 m × 10,3 m (~287 Ton)'], ['KALKIŞ İTKİSİ', '3.997 kN (32 Yanma Odası)'], ['FAYDALI YÜK', 'Vostok 3KA / Sputnik 1 / ICBM'], ['3D PARÇA SAYISI', '16 Bağımsız Grup']],
+    tag: 'R7-SEMYORKA-VOSTOK-1957', icon: '🚀',
+    modal: [
+      'Baykonur Saha 1/5 ("Gagarin\'in Başlangıcı") çelik fırlatma masası ve 42° dışa açılan 4 karşı ağırlıklı yaprak kule',
+      'Merkez Blok A kriyojenik LOX/Kerosen tankları, açık çelik kafes ara kademe (hot-staging) ve Blok E üst kademesi',
+      '20 ana çan yanma odası ve ±18° dönebilen 12 gimbal vernier nozulundan oluşan RD-107 / RD-108 motor kümesi',
+      'T+118 saniyede 4 konik yan hızlandırıcının simetrik "Korolev Haçı" ayrılması ve Vostok 3KA / Sputnik 1 yükü'
+    ],
+    svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M148 12 L160 2 L172 12 L172 108 L148 108 Z" fill="#4b5842" fill-opacity="0.4" stroke="#1e293b" stroke-width="2"/><path d="M148 42 L116 108 L148 104 Z" fill="#ea580c" fill-opacity="0.45" stroke="#7c2d12" stroke-width="1.8"/><path d="M172 42 L204 108 L172 104 Z" fill="#ea580c" fill-opacity="0.45" stroke="#7c2d12" stroke-width="1.8"/><line x1="92" y1="112" x2="228" y2="112" stroke="#334155" stroke-width="4"/><path d="M104 112 L136 68 M216 112 L184 68" stroke="#475569" stroke-width="2.5"/><path d="M126 108 L118 134 L142 134 Z M152 108 L146 136 L174 136 Z M194 108 L178 134 L202 134 Z" fill="#f97316" fill-opacity="0.7"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'harrier', sim: 'harrier', group: 10, status: 'live',
+    year: 1969, yearLabel: '1969', eraLabel: 'SOĞUK SAVAŞ • V/STOL JET ÇAĞI',
+    domain: 'air', era: 'coldwar', energy: ['jet'], role: ['fighter'], origin: 'britain',
+    name: 'Hawker Siddeley Harrier GR.1 & Rolls-Royce Pegasus VTOL Motoru',
+    sub: 'İLK OPERASYONEL V/STOL JET TAARRUZ UÇAĞI • ZIT DÖNER ÇİFT ŞAFTLI PEGASUS TURBOFAN • 4 DÖNER NOZUL & RCS PUFFER',
+    desc: '1969\'da RAF hizmetine giren ve piste ihtiyaç duymadan dikey kalkış/iniş (V/STOL) yapabilen tarihin ilk operasyonel jet taarruz uçağı. X-Ray ile Rolls-Royce Pegasus motorunun jiroskopik momenti sıfırlamak için zıt yönlerde dönen LP/HP çift şaftını, zincir tahrikli 4 senkron vektör nozulunu (0°..98°) ve kanat ucu/burun/kuyruk RCS "puffer" tepki valflerini inceleyin.',
+    tags: ['Zıt Döner Çift Şaft (Pegasus)', '4× Döner Vektör Nozulu (0°..98°)', 'RCS Puffer & Bisiklet İniş Takımı', '15 İnceleme Grubu'],
+    specs: [['TAM BOY / KANAT', '13,87 m × 7,70 m (-12° Anhedral)'], ['MOTOR & İTKİ', 'Rolls-Royce Pegasus Mk 101 (84,5 kN)'], ['SİLAHLAR', '2× 30 mm ADEN Top + 36× 68 mm SNEB'], ['3D PARÇA SAYISI', '15 Bağımsız Grup']],
+    tag: 'HARRIER-GR1-PEGASUS-1969', icon: '🛫',
+    modal: [
+      'Dev yanal hava girişleri, vakumla açılan 16 yardımcı emme kapakçığı (blow-in doors), kokpit ve tekli nozul vektör kolu',
+      'Jiroskopik denge için zıt yönlerde dönen (ω_HP = -1,35 × ω_LP) 3 kademeli titanyum LP fan ve 8 kademeli HP kompresör/türbin',
+      'Pnömatik hava motoru ve zincir-şaft sistemiyle 0° yatay uçuştan 90° dikey hover ve 98° VIFF frenlemeye senkron dönen 4 nozul',
+      '-12° anhedral kanatlar, bisiklet iniş takımı + outrigger tekerlekleri, RCS "puffer" valfleri ve 2× 30 mm ADEN / 68 mm SNEB podları'
+    ],
+    svg: '<svg viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28 74 L92 60 L216 58 L268 72 L292 78 L256 84 L96 86 Z" fill="#3f4d3b" fill-opacity="0.42" stroke="#1e293b" stroke-width="2"/><path d="M52 58 L72 32 L96 32 L82 60 Z" fill="#475569" fill-opacity="0.45" stroke="#1e293b" stroke-width="1.8"/><path d="M124 66 L192 82 L138 82 Z" fill="#64748b" fill-opacity="0.5" stroke="#1e293b" stroke-width="1.8"/><circle cx="164" cy="76" r="9" fill="#94a3b8" stroke="#1e293b" stroke-width="2"/><circle cx="126" cy="76" r="9" fill="#ea580c" fill-opacity="0.6" stroke="#7c2d12" stroke-width="2"/><path d="M160 85 L154 122 L172 122 Z" fill="#38bdf8" fill-opacity="0.65"/><path d="M122 85 L116 124 L134 124 Z" fill="#f97316" fill-opacity="0.75"/></svg>'
+  });
   const SOURCES = {
+  "harrier": [
+    {
+      "title": "Rolls-Royce Pegasus V/STOL turbofan motoru koleksiyonu — Science Museum Group",
+      "url": "https://collection.sciencemuseumgroup.org.uk/objects/co30232/rolls-royce-bristol-pegasus-turbofan-aero-engine",
+      "note": "Zıt yönlerde dönen LP fan ve HP kompresör/türbin şaftları ile 4 döner vektör nozuluna sahip Rolls-Royce Pegasus V/STOL motoru."
+    },
+    {
+      "title": "Hawker Siddeley Harrier GR.1 / GR.3 koleksiyonu — Royal Air Force Museum",
+      "url": "https://www.rafmuseum.org.uk/research/collections/hawker-siddeley-harrier-gr3/",
+      "note": "Harrier GR.1/GR.3 gövde yapısı, -12° anhedral kanatlar, bisiklet iniş takımı, RCS puffer valfleri ve 30 mm ADEN top podları referansı."
+    }
+  ],
+  "r7": [
+    {
+      "title": "R-7 / Vostok 8K72K ve RD-107 roket motoru koleksiyonu — Science Museum Group",
+      "url": "https://collection.sciencemuseumgroup.org.uk/objects/co8401389/rd-107-rocket-engine",
+      "note": "OKB-1 (Korolev) ve OKB-456 (Gluşko) tarafından geliştirilen 4 ana odalı + 2 vernier nozullu RD-107 motoru ve R-7/Vostok taşıyıcı roket sistemi."
+    },
+    {
+      "title": "Sputnik 1 ve R-7 Semyorka fırlatma aracının tarihçesi — Smithsonian NASM",
+      "url": "https://airandspace.si.edu/collection-objects/sputnik-1-replica/nasm_A19750618000",
+      "note": "4 Ekim 1957 Sputnik 1 ve 12 Nisan 1961 Vostok 1 görevlerinde kullanılan R-7 Semyorka ailesinin tarihsel ve teknik bağlamı."
+    }
+  ],
+  "greekfire": [
+    {
+      "title": "Madrid Skylitzes Elyazması (MS Graecus Vitr. 26-2, fol. 34v) — Biblioteca Nacional de España",
+      "url": "https://www.bne.es/es/colecciones/manuscritos/skylitzes-matritensis",
+      "note": "Bizans dromonunun pruvasından düşman gemisine basınçlı sifonla Rum Ateşi ('Pyr Thalassion') püskürtülmesini gösteren tek özgün dönem minyatürü."
+    },
+    {
+      "title": "Bizans Deniz Harp Koleksiyonu — Atina Savaş Müzesi (War Museum Athens)",
+      "url": "https://warmuseum.gr/en/",
+      "note": "Bizans dromon pruva yapısı, el sifonları (cheirosiphones) ve seramik Rum Ateşi el bombaları tarihsel bağlamı; alt güverte pompa yerleşimi Haldon & Byrne (2002) deneysel rekonstrüksiyonuna dayanır."
+    }
+  ],
+  "abdulhamid": [
+    {
+      "title": "Nordenfelt buharlı denizaltı modeli ve Lamm sistemi — Science Museum Group",
+      "url": "https://collection.sciencemuseumgroup.org.uk/objects/co42231/model-of-nordenfelt-submarine-boat",
+      "note": "Garrett ve Nordenfelt'in puro gövdeli, dikey dalış pervaneli ve Lamm sıcak su sarnıçlı buharlı denizaltı tasarımı."
+    },
+    {
+      "title": "Abdülhamid Denizaltısı (1886) — Deniz Müzesi Komutanlığı",
+      "url": "https://denizmuzesi.dzkk.tsk.tr/",
+      "note": "Taşkızak Tersanesi'nde 6 Eylül 1886'da suya indirilen Abdülhamid denizaltısının tarihsel bağlamı; iç yerleşim yaklaşık müze kesitidir."
+    }
+  ],
   "maxim": [{"title":"Museums Victoria — ST 23731","url":"https://collections.museumsvictoria.com.au/items/406622","note":"1895 sonrası Maxim-Nordenfelt; görsel referans, 110 cm, 27,26 kg. İç geometri yaklaşık; mesnet çağdaş sergi yorumudur."},{"title":"National Army Museum — Maxim’in tarihsel bağlamı","url":"https://collection.nam.ac.uk/detail.php?acc=1974-07-41-1","note":"1884 patenti ve sömürge savaşları. Bu kayıttaki Extra Light sürümü modelin görsel referansı değildir."},{"title":"Royal Armouries — Birinci Dünya Savaşı silahları","url":"https://royalarmouries.org/objects-and-stories/stories/arms-of-the-first-world-war","note":"Maxim’den Vickers’a uzanan gelişim ve savaşın insan bedeli."}],
   "turbanhelmet": [{"title":"Turban Helmet — The Met, 04.3.461","url":"https://www.metmuseum.org/art/collection/search/22014","note":"15. yy. sonu, Batı İran / Türkmen zırh geleneği. Müze Akkoyunlu bağlantısını olasılıkla belirtir. 29,2 cm, 1496 g."},{"title":"Helmet with Aventail — The Met, 50.87","url":"https://www.metmuseum.org/art/collection/search/24813","note":"Yalnız isteğe bağlı zincir boyunluk için karşılaştırma. 04.3.461 ile aynı eser değildir; astar ve zincir yorumdur."}],
   "dragonmace": [{"title":"Court and Cosmos — Met, 2016, katalog 146, s.234","url":"https://www.metmuseum.org/met-publications/court-and-cosmos","note":"Anadolu, 12–13. yüzyıl; Furusiyya R-113, 35 cm. Küçük hayvanın türü kesin değil; boğa/aslan yorumları var."},{"title":"Sergi kataloğu PDF — ejder başlı gürz fotoğrafı","url":"https://cdn.sanity.io/files/cctd4ker/production/ee5d53316c311c05a2bf22ae2a99460ea2b8e5cd.pdf","note":"PDF sayfa 249 / basılı sayfa 234. Başın silueti ve yüzey ayrıntıları için görsel kaynak."}],
