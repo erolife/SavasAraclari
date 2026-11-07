@@ -1,5 +1,5 @@
 # Gemini Argon — Uzun Süreli Çalışma Promptu
-> **Güncel durum — 7 Kasım 2026:** Maxim–Nordenfelt ve Gatling karşılaştırması tamamlandı; toplam 40 aktif model ve 68 kaynak bağlantısı. 33 test dosyası geçti. Araştırma ve masaüstü/X-Ray/mobil görsel kontrol kayıtları INCELEME_NOTLARI.md içinde. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
+> **Güncel durum — 8 Kasım 2026:** 40 aktif model / 68 katalog kaynağı. Seçildiğinde model yükleme, filtrelenebilir tarih çizelgesi ve sekiz duraklı Türk tarihi rotası tamamlandı. 36 test dosyası geçti; araştırma ve görsel kontroller INCELEME_NOTLARI.md içinde. Yeni adaptörleri statik olarak oluşturmayın; güncel yükleme kuralını okuyun. Eski görev sıraları tarihsel kayıttır.
 
 > **Amaç:** Gemini Argon'un birkaç gün boyunca, bağımsız olarak yeni araçlar eklemesi.
 > Daha sonra Claude ile yapılacak kısa (en fazla 5 saatlik) inceleme oturumunun hızlı ve verimli geçmesi.

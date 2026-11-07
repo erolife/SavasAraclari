@@ -947,3 +947,12 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - tarih.html kataloğun 40 aktif kaydını kronolojik sıralar. Tarih aralıkları korunur; eşit zaman aralığı veya savaşta kullanım iddiası yapılmaz. Türkçe arama, dönem/ortam birleşik filtreleri, URL üzerinden paylaşılabilir filtre durumu, boş sonuç ve temizleme mevcut.
 - Ana sayfa gezinmesine ve mobilde de görünen giriş düğmesine eklendi. Kartlardan 3D model ve kaynaklar açılır.
 - tests/history-timeline.cjs: tarih sırası, Türkçe büyük/küçük harf, birleşik filtre, boş sonuç, planlanan araçların dışlanması ve özgün tarih etiketi geçti. Chrome 1440×1000 genel / 390×844 Nusret kartı incelendi; arama, sıfırlama, birleşik filtre ve URL doğrulandı. Yatay taşma ve konsol hatası yok.
+
+
+### Türk tarihi rotası — 8 Kasım 2026
+- Sekiz durak: Göktürk süvarisi, Selçuklu gürzü, Şahi, Akkoyunlu geleneğinde miğfer, kadırga, Osmanlı yayı, Nusret, Vecihi K-VI. Katalog sırası, kaynak bağlantıları, modelde inceleme önerileri, düşünme soruları ve her nesnenin yorum sınırı. Kesintisiz devlet/icat silsilesi veya bütün nesnelerin savaşta kullanıldığı iddia edilmez.
+- Met 04.3.461 / 35.113.1a–oo, Court and Cosmos, Çerezci 2019, Tarihi Kadırga araştırması, Historic England AA077288 ve TVHMD kaydı yeniden okundu. Nusret için MSB doğrudan açılışı yönlendirme döngüsüne girdi; Çanakkale Savaşları Gelibolu Tarihi Alan Başkanlığının Nusrat anma kaydıyla 8 Mart 1915 bağlamı doğrulandı. Durağa doğrudan bu kaynak eklendi.
+- İlerleme yerel tarayıcıda, kullanıcı İnceledim dediğinde kaydedilir. Bozuk kayıtlar ayıklanır; depolama engelliyken sayfa çalışır ve durum açıklanır. Durak URL’si, ileri/geri gezinme, 3D modele geçiş ve aynı durağa dönüş mevcut.
+- Test: 8 geçerli/kronolojik durak, kaynak ve model URL’leri, bozuk/tekrarlı ilerleme, sözdizimi. Tarayıcıda sekiz durağın tamamı, 8/8 tamamlanma, sıfırlama, yenileme sonrası koruma ve engellenmiş depolama denendi. Nusret modelinden aynı durağa dönüş doğrulandı.
+- 1440×1000 ve 390×844 rota/ana sayfa kontrolleri tamamlandı. Mobil simülatör dönüş bağlantısı nedeniyle oluşan üst çubuk taşması, düğmelerin satıra sarılmasıyla giderildi ve yeniden görüntülendi. Rota içeriğinde yatay taşma yok. Ortak favicon 404 dışında yeni hata görülmedi.
+- Son regresyon: 36 test dosyası geçti; git diff --check temiz. Üç iş ayrı Türkçe commit; push tümü tamamlandıktan sonra.

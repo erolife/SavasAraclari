@@ -1,0 +1,20 @@
+(function(){'use strict';
+ const {stops,normalizeProgress,modelURL}=window.TurkHistoryRoute,catalog=window.MUSEUM_CATALOG.VEHICLES,key='museum-turk-route-v1';
+ const byId=id=>document.getElementById(id),escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ let progress=normalizeProgress(null),storage=true;
+ try{progress=normalizeProgress(JSON.parse(localStorage.getItem(key)));}catch(_){storage=false;}
+ function fromURL(){const id=new URLSearchParams(location.search).get('durak');if(stops.some(s=>s.id===id))progress.current=id;}
+ function save(){try{localStorage.setItem(key,JSON.stringify(progress));}catch(_){storage=false;}if(!storage)byId('storage-note').textContent='Tarayıcı kaydı kullanılamıyor; ilerleme bu sayfa açıkken korunur.';}
+ function go(index,push=true){if(index<0||index>=stops.length)return;progress.current=stops[index].id;if(push){const u=new URL(location.href);u.searchParams.set('durak',progress.current);history.pushState(null,'',u);}save();render();byId('stop-heading').focus({preventScroll:true});byId('stop-detail').scrollIntoView({behavior:'auto',block:'start'});}
+ function render(){
+  const index=stops.findIndex(s=>s.id===progress.current),stop=stops[index],vehicle=catalog.find(v=>v.id===stop.id),source=stop.source||vehicle.sources[0];
+  byId('progress-text').textContent=progress.completed.length+' / '+stops.length;byId('route-progress').value=progress.completed.length;byId('route-progress').max=stops.length;byId('route-complete').hidden=progress.completed.length!==stops.length;
+  byId('route-stops').innerHTML=stops.map((s,i)=>`<li><button type="button" data-stop="${i}" ${s.id===stop.id?'aria-current="step"':''}><span class="stop-num">${progress.completed.includes(s.id)?'✓':String(i+1).padStart(2,'0')}</span><span>${escape(s.title)}<small>${escape(catalog.find(v=>v.id===s.id).yearLabel)}${progress.completed.includes(s.id)?' · İncelendi':''}</small></span></button></li>`).join('');
+  byId('stop-detail').innerHTML=`<div class="stop-heading-row"><span>DURAK ${String(index+1).padStart(2,'0')} / ${stops.length}</span><span>${escape(stop.theme)}</span></div><h2 id="stop-heading" tabindex="-1">${escape(stop.title)}</h2><p class="vehicle-name">${escape(vehicle.name)}</p><div class="stop-art"><div aria-hidden="true">${vehicle.svg}</div><span>${escape(stop.place)} · ${escape(vehicle.yearLabel)}</span></div><p class="context">${escape(stop.context)}</p><a class="source-link" href="${escape(source.url)}" target="_blank" rel="noopener noreferrer">${escape(source.title)} ↗</a><div class="actions"><a class="action primary" id="open-model" href="${modelURL(stop.id)}">3D modelde keşfet ↗</a><button type="button" data-museum-sources="${stop.id}">Tüm kaynaklar</button></div><div class="focus-box"><h3>Modelde bunlara bakın</h3><ul>${stop.focus.map(text=>`<li>${escape(text)}</li>`).join('')}</ul></div><p class="question">${escape(stop.question)}</p><p class="source-note"><strong>Kaynak ve yorum sınırı:</strong> ${escape(stop.note)}</p><div class="route-controls"><button id="prev-stop" type="button" ${index===0?'disabled':''}>← Önceki</button><button id="complete-stop" type="button">${progress.completed.includes(stop.id)?'İncelendi ✓':'İnceledim ✓'}</button><button id="next-stop" type="button" ${index===stops.length-1?'disabled':''}>Sonraki →</button></div>`;
+  byId('prev-stop').onclick=()=>go(index-1);byId('next-stop').onclick=()=>go(index+1);
+  byId('complete-stop').onclick=()=>{if(!progress.completed.includes(stop.id))progress.completed.push(stop.id);save();render();byId('complete-stop').focus({preventScroll:true});};
+ }
+ byId('route-stops').addEventListener('click',e=>{const b=e.target.closest('[data-stop]');if(b)go(Number(b.dataset.stop));});
+ byId('reset-progress').addEventListener('click',()=>{progress.completed=[];save();render();});
+ window.addEventListener('popstate',()=>{fromURL();render();});fromURL();const initialURL=new URL(location.href);initialURL.searchParams.set('durak',progress.current);history.replaceState(null,'',initialURL);save();render();
+})();

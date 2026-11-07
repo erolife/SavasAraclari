@@ -931,6 +931,9 @@
 
       .top-actions {
         gap: 5px;
+        grid-column: 1 / -1;
+        min-width: 0;
+        flex-wrap: wrap;
       }
 
       .top-actions .btn {
@@ -1558,6 +1561,8 @@
   <script src="js/vehicles/sahi1453.js"></script>
   <script src="js/model-kit.js"></script>
   <script src="js/vehicle-loader.js"></script>
+  <script src="js/turk-route-data.js"></script>
+  <script src="js/route-return.js"></script>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
