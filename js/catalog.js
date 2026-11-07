@@ -416,7 +416,7 @@
   VEHICLES.push({
     id: 'harrier', sim: 'harrier', group: 10, status: 'live',
     year: 1969, yearLabel: '1969', eraLabel: 'SOĞUK SAVAŞ • V/STOL JET ÇAĞI',
-    domain: 'air', era: 'coldwar', energy: ['jet'], role: ['fighter'], origin: 'britain',
+    domain: 'air', era: 'coldwar', energy: ['jet'], role: ['aircraft'], origin: 'uk',
     name: 'Hawker Siddeley Harrier GR.1 & Rolls-Royce Pegasus VTOL Motoru',
     sub: 'İLK OPERASYONEL V/STOL JET TAARRUZ UÇAĞI • ZIT DÖNER ÇİFT ŞAFTLI PEGASUS TURBOFAN • 4 DÖNER NOZUL & RCS PUFFER',
     desc: '1969\'da RAF hizmetine giren ve piste ihtiyaç duymadan dikey kalkış/iniş (V/STOL) yapabilen tarihin ilk operasyonel jet taarruz uçağı. X-Ray ile Rolls-Royce Pegasus motorunun jiroskopik momenti sıfırlamak için zıt yönlerde dönen LP/HP çift şaftını, zincir tahrikli 4 senkron vektör nozulunu (0°..98°) ve kanat ucu/burun/kuyruk RCS "puffer" tepki valflerini inceleyin.',

@@ -956,3 +956,11 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Test: 8 geçerli/kronolojik durak, kaynak ve model URL’leri, bozuk/tekrarlı ilerleme, sözdizimi. Tarayıcıda sekiz durağın tamamı, 8/8 tamamlanma, sıfırlama, yenileme sonrası koruma ve engellenmiş depolama denendi. Nusret modelinden aynı durağa dönüş doğrulandı.
 - 1440×1000 ve 390×844 rota/ana sayfa kontrolleri tamamlandı. Mobil simülatör dönüş bağlantısı nedeniyle oluşan üst çubuk taşması, düğmelerin satıra sarılmasıyla giderildi ve yeniden görüntülendi. Rota içeriğinde yatay taşma yok. Ortak favicon 404 dışında yeni hata görülmedi.
 - Son regresyon: 36 test dosyası geçti; git diff --check temiz. Üç iş ayrı Türkçe commit; push tümü tamamlandıktan sonra.
+
+
+### Eşzamanlı çalışmaların korunması — 8 Kasım 2026
+- Push öncesi origin/main üzerindeki ab24b9e alındı; Abdülhamid, Greek Fire, R-7 ve Harrier dosyaları/kayıtları korunarak üç commit bu tabana taşındı. Statik build eklemeleri seçildiğinde yükleme sistemi tarafından karşılanır.
+- Harrier için tanımsız fighter/britain filtre anahtarları mevcut aircraft/uk anahtarlarına eşlendi. Model içeriği değiştirilmedi. Çizelge testi araç sayısını katalogdan hesaplar.
+- Dört yeni modelin tarayıcıda seçimi/yüklenmesi doğrulandı. Çizelge 44 kartı ve dört yeni model bağlantısını gösteriyor. Katalog 44 araç / 76 kaynak. Birleşim sonrası 36 test dosyası yeniden geçti. Önceki performans sayımları 40 araçlık tabanda alınmış karşılaştırma kaydıdır.
+
+- İkinci eşzamanlı güncelleme f806866 (Strv 103) de korunarak alındı. Yeni modelin doğrudan açılışı doğrulandı; son katalog 45 araç / 78 kaynak. Çizelge ve filtre testleri güncel katalogla geçti.
