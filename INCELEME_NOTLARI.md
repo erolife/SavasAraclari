@@ -665,3 +665,10 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - `tests/vecihi.cjs`: 1000 pervane/krank adımı, sabit silindirler, piston aralıkları, sıfır devir, 41 dümen konumu, açık kokpit delikleri, 11,7 m açıklık, yer teması ve sıfırlama geçti. Türkiye ve Savaşlar Arası katalog filtreleri eklendi.
 - Chrome 1440×1000 genel, açık kaporta/X-Ray motor ve kokpit yakın planı; 390×844 mobil kadraj kontrol edildi. İskelet kaplamanın içine alındı, kokpit kamerası paneli ve koltukları gösterecek şekilde düzeltildi; yatay taşma yok. Ortak favicon 404 / otomatik ses uyarısı dışında model hatası görülmedi.
 - Son regresyon: 28 test dosyasının tamamı geçti; 36 araç, 59 HTTPS kaynak. Üç yeni araç için ayrı Türkçe commit.
+
+
+### Göktürk süvarisi — 7 Kasım 2026
+- Çerezci 2019, Göktürk Dönemi Madeni Silahları: Balık-Sook zırh rekonstrüksiyonu, levha ve tolga tabloları görsel olarak incelendi. Eyer bağlamı Türk Eyerinin Kültürel Tarihi araştırmasıyla desteklendi. Tam takım, renkler, at anatomisi ve boyutlar birleşik müze yorumu olarak etiketlendi.
+- 23 grup / 174 mesh; delikli lameller ve deri bağları instancing ile, atın gövde/baş/boynu özel yüzeylerle; açık üzengiler, kaşlı eyer, kolan/göğüslük/gem/dizgin bağlantıları. Zırh panelleri, bağlı tolga/ense kaldırma ve binici gizleme işlevleri.
+- `tests/gokturk.cjs`: 101 panel/tolga konumu, açık üzengiler ve levha delikleri, toynak/kaide teması, dönüş sınırları, binici/dizgin görünürlüğü ve sıfırlama geçti. J79 entegrasyon ve kaynak testleri geçti (37 araç / 61 kaynak).
+- Chrome 1440×1000 genel, zırh açılımı ve X-Ray; 390×844 genel ve binicisiz eyer yakın planı kontrol edildi. Atın üst bacakları yumuşatıldı, yüz açıklığı ve etek paneli konumları düzeltildi. Mobil yatay taşma yok.
