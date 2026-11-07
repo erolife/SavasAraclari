@@ -888,9 +888,11 @@
         if (!Number.isFinite(v)) return {};
         if (idx === 0) {
           S.autoCross = false;
+          ui.buttons.sweep = "✨ Otomatik Korolev Haçı Gösterimi: KAPALI";
           S.korolevPct = Math.max(0, Math.min(100, v));
         } else if (idx === 1) {
           S.autoCross = false;
+          ui.buttons.sweep = "✨ Otomatik Korolev Haçı Gösterimi: KAPALI";
           S.tulipDeg = Math.max(0, Math.min(42, v));
         } else if (idx === 2) {
           S.vernierDeg = Math.max(-18, Math.min(18, v));
@@ -945,6 +947,7 @@
 
       onFire() {
         S.autoCross = false;
+          ui.buttons.sweep = "✨ Otomatik Korolev Haçı Gösterimi: KAPALI";
         S.firing = true;
         if (S.korolevPct < 10) {
           S.tulipDeg = 42;

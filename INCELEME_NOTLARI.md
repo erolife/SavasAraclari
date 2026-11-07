@@ -991,3 +991,8 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Gövde eğim merkezi düzeltildi, uç açılarda zemine girme giderildi. Süspansiyon bağlantıları eğilen gövde ile sabit tekerlek merkezleri arasında kalır. Namlu ve kama geri tepmesi eşlendi; tekrar tıklamada atış sıfırlanması engellendi. Park halindeki paletler sabitken tekerleklerin dönmesi kaldırıldı. Kafes düğmesi, doğrulanmamış katlanma yerine sergi katmanını gizler.
 - Bidon kapak/tutamakları, kapak panjurları, periskop camları, far/çekme halkaları ve palet uç dönüşleri eklendi. 459 mesh. Genel ve mobil kadraj düzenlendi; masaüstü genel/X-Ray, +12° eğim/dozer ve 390×844 görüntüler incelendi.
 - tests/strv103.cjs: eğim/yön/dozer kombinasyonlarında zemin ve tekerlek teması, sıfır motor devri, sabit paletler, 50 atış/ikmal, namlu-kama uyumu, tekrar tıklama, elle devralma ve kafes geçti. Toplam 41 test dosyası geçti.
+
+### Ortak kontrol etiketleri ve son doğrulama — 8 Kasım 2026
+- Simülatör, adaptörlerin değişen terrain/sweep düğme metinlerini de yeniler. Önceden yalnız etkin sınıfı değiştiği için açık dozer, kapalı kapak veya durdurulan otomatik gösterim yanlış etiket taşıyabiliyordu. R-7/Harrier/Strv elle devralma yolları da kapanan otomatiğin yazısını günceller.
+- Tarayıcıda beş model arasında menü geçişi, terrain düğmesinin yeni metni, sweep ve elle devralma ayrı ayrı doğrulandı; yatay taşma yok. Konsolda yalnız mevcut favicon.ico 404 ve ses otomatik başlatma uyarısı var.
+- Son regresyon: 41 test dosyası, 45 katalog modeli / 78 HTTPS kaynak, 9 rota durağı. Üç değişen adaptörün testleri ve simülatör sözdizimi ayrıca geçti. Araştırma kaynakları katalogda araç başına erişilebilir.

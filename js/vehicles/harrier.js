@@ -1004,6 +1004,7 @@
         if (!Number.isFinite(v)) return {};
         if (idx === 0) {
           S.autoCycle = false;
+          ui.buttons.sweep = "🔄 Otomatik VTOL Geçiş Döngüsü: KAPALI";
           S.nozzleDeg = Math.max(0, Math.min(98, v));
         } else if (idx === 1) {
           S.rpm = Math.max(0, Math.min(8500, v));
@@ -1044,6 +1045,7 @@
         if (name === 'mode') {
           S.mode = S.mode === 'hover' ? 'ground' : 'hover';
           S.autoCycle = false;
+          ui.buttons.sweep = "🔄 Otomatik VTOL Geçiş Döngüsü: KAPALI";
           if (S.mode === 'hover' && S.nozzleDeg < 80) S.nozzleDeg = 90;
           syncVisualState(0);
           return {

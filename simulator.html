@@ -2945,6 +2945,8 @@
       gs.style.color = st.color;
       document.getElementById('btn-fire').textContent = ad.fireButtonLabel();
       document.getElementById('mob-q-fire').textContent = ad.mobileFireButtonLabel ? ad.mobileFireButtonLabel() : '💥 Ateşle';
+      document.getElementById('btn-terrain').textContent = ad.ui.buttons.terrain;
+      document.getElementById('btn-turret-sweep').textContent = ad.ui.buttons.sweep;
       document.getElementById('btn-terrain').classList.toggle('active', ad.buttonActive('terrain'));
       document.getElementById('btn-turret-sweep').classList.toggle('active', ad.buttonActive('sweep'));
       if (ad.ui.buttons.mode) {
