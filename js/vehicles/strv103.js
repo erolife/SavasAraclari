@@ -1,9 +1,9 @@
 // ============================================================================
-// 1967 STRIDSVAGN 103 ("S-TANK") — TARETSİZ HİDROPNÖMATİK ANA MUHAREBE TANKI
+// 1986 STRIDSVAGN 103C ("S-TANK") — TARETSİZ HİDROPNÖMATİK ANA MUHAREBE TANKI
 // Arsenalen (İsveç Zırhlı Araçlar Müzesi, Strängnäs) ve The Tank Museum (Bovington)
 // Strv 103C Koleksiyonlarına Göre 1:1 Tam Ölçekli Müze Rekonstrüksiyonu
 // Gövdeye Sabit 105 mm Bofors L74 (L/62) Top, Hidropnömatik Süspansiyonla Nişan Alma
-// (±11° Yunuslama), CODAG (Rolls-Royce K60 Karşıt Pistonlu Dizel + Boeing 553 Gaz Türbini)
+// (±11° Yunuslama), CODAG (Detroit 6V-53T Karşıt Pistonlu Dizel + Caterpillar 553 Gaz Türbini)
 // Güç Paketi, 50 Mermilik Çift Otomatik Doldurucu, Kıçtan Kovan Fırlatma & Dozer Bıçağı
 // ============================================================================
 (function () {
@@ -43,8 +43,8 @@
   // --- 4 Tarihsel Boya Şeması ---
   const SCHEMES = {
     foa_m90_splinter: {
-      name: '🌲 İsveç Ordusu FOA M90 "Splinter" Geometrik Orman Kamuflajı (P 4 Skaraborg)',
-      btn: '🌲 İsveç M90 Splinter (Koyu & Açık Yeşil)',
+      name: '🌲 İsveç yeşilleri · temsili sergi kaplaması',
+      btn: '🌲 Koyu & Açık Yeşil · Temsili',
       armorMain: 0x3b4d38,
       armorSecondary: 0x526b47,
       skirtFuel: 0x2d3a2a,
@@ -53,8 +53,8 @@
       brass: 0xd97706
     },
     nordic_olive1967: {
-      name: '🛡️ 1967 Strv 103B Erken Hizmet — İskandinav Zeytin Yeşili (Norrland Tugayı)',
-      btn: '🛡️ 1967 İskandinav Zeytin Yeşili',
+      name: '🛡️ Zeytin yeşili · temsili 103C kaplaması',
+      btn: '🛡️ Zeytin Yeşili · Temsili',
       armorMain: 0x434d36,
       armorSecondary: 0x4f5b41,
       skirtFuel: 0x363f2c,
@@ -73,8 +73,8 @@
       brass: 0xd97706
     },
     bovington_museum: {
-      name: '🏛️ Arsenalen & Bovington Tank Müzesi Kesit Sergisi (Koyu Antrasit & Çelik)',
-      btn: '🏛️ Arsenalen Müze Sergisi',
+      name: '🏛️ Müze Kesiti İçin Temsili Kaplama (Koyu Antrasit & Çelik)',
+      btn: '🏛️ Koyu Sergi Kaplaması',
       armorMain: 0x3f493d,
       armorSecondary: 0x475569,
       skirtFuel: 0x334155,
@@ -269,7 +269,7 @@
         name: cfg.name,
         subsystem: cfg.sub,
         subLabel: SUB_LABELS[cfg.sub] || 'ALT SİSTEM: STRV 103 S-TANK',
-        desc: cfg.desc,
+        desc: cfg.desc + ' Boyutlar ve iç hareketler yaklaşık sergi yorumudur.',
         material: cfg.material || 'İsveç Bofors Zırh Çeliği (270–340 BHN)',
         weight: cfg.weight || '850 kg',
         spec: cfg.spec || 'Bofors / Landsverk — Strv 103C',
@@ -361,23 +361,23 @@
       desc: 'Bofors L74 L/62 namlusundan 1.500 m/s hızla çıkan zırh delici sabot mermisi ve yüksek basınçlı namlu ağzı şok konisi.'
     }, false);
 
-    // ALT SİSTEM 3: CODAG (K60 Dizel + Boeing 553 Türbin) Güç Paketi & Mürettebat (codag_crew — 3 Grup)
+    // ALT SİSTEM 3: CODAG (Detroit V6 Dizel + Caterpillar 553 Türbin) Güç Paketi & Mürettebat (codag_crew — 3 Grup)
     const partK60Diesel = makePart({
       id: 's103_k60_diesel',
-      name: '6. Ön Sağ: Rolls-Royce K60 İki Zamanlı Karşıt Pistonlu (Opposed-Piston) Dizel Motor',
+      name: '6. Ön Sağ: Detroit 6V-53T V6 Dizel Motor — 103C',
       sub: 'codag_crew',
       explode: [1.5, 1.5, 1.6],
-      spec: 'Tip: 6 Silindir, 12 Karşıt Piston, Çift Kranklı 2 Zamanlı Çok Yakıtlı Dizel | Güç: 240 hp (Strv 103C: Detroit 6V-53T 290 hp)',
-      desc: 'Ön glasis zırhının hemen altında, mürettebatı önden gelen mermilere karşı koruyan ikinci bir metal kalkan olarak yerleştirilen yassı karşıt pistonlu dizel motor. Normal seyir ve hassas hidropnömatik/hidrostatik nişan manevralarında tek başına çalışır.'
+      spec: '103C: Detroit 6V-53T · iki zamanlı V6 · yaklaşık kesit',
+      desc: '103C modernizasyonundaki Detroit dizel motorunun yaklaşık sergi kesiti. Önceki A/B sürümlerinin Rolls-Royce K60 motoruyla karıştırılmamalıdır.',
     }, false);
 
     const partBoeingTurbine = makePart({
       id: 's103_boeing_turbine',
-      name: '7. Ön Sol: Boeing 553 (Caterpillar) Gaz Türbini & CODAG Birleştirme Şanzımanı',
+      name: '7. Ön Sol: Caterpillar 553 Gaz Türbini & CODAG Birleştirme Şanzımanı',
       sub: 'codag_crew',
       explode: [-1.5, 1.5, 1.6],
-      spec: 'Gaz Türbini: Boeing 553 (490 hp) | Toplam CODAG Gücü: 730 hp | Direksiyon: Hidrostatik Rejeneratif',
-      desc: 'Tarihte bir muharebe tankında kullanılan ilk gaz türbini! Soğuk İskandinav kışında anında çalışır ve yüksek hız/engebeli arazi hücumunda dizel motora ek 490 beygir güç katar. Önündeki birleştirme dişli kutusu ve hidrostatik direksiyon tankı nokta etrafında döndürür.'
+      spec: 'Caterpillar 553 gaz türbini · yaklaşık güç paketi kesiti',
+      desc: 'Dizel motorla birlikte kullanılan Caterpillar 553 gaz türbini. Kesit, iki farklı güç kaynağını ayırır; iç boyutlar ve dönüş hızları açıklayıcı sergi yorumudur.',
     }, false);
 
     const partCrewStation = makePart({
@@ -459,26 +459,36 @@
       for (let j = 0; j < 9; j++) {
         const zCan = -2.65 + j * 0.64;
         addMesh(partSlopedHull, new THREE.BoxGeometry(0.14, 0.46, 0.56), matSkirtFuel, [xSide, 0.90, zCan]);
+        addMesh(partSlopedHull,new THREE.BoxGeometry(.10,.035,.18),matInteriorAlloy,[xSide,1.155,zCan]);
+        addMesh(partSlopedHull,new THREE.CylinderGeometry(.035,.035,.025,10),matInteriorAlloy,[xSide,1.145,zCan+.17]);
         // Bidon X kabartma nervürü
         addMesh(partSlopedHull, new THREE.BoxGeometry(0.15, 0.32, 0.04), matArmorSec, [xSide, 0.90, zCan], [0.6, 0, 0]);
       }
     });
 
+    // Kapak panjurları, çekme halkaları ve korumalı farlar: yaklaşık dış ayrıntılar.
+    for(const side of [-1,1]){
+      for(let j=0;j<8;j++)addMesh(partSlopedHull,new THREE.BoxGeometry(.66,.018,.025),matBarrelSteel,[side*.58,1.57+(j-3.5)*.035,1.65-(j-3.5)*.112],[.30,0,0]);
+      addMesh(partSlopedHull,new THREE.TorusGeometry(.085,.022,8,16),matInteriorAlloy,[side*1.22,.73,3.46]);
+      addMesh(partSlopedHull,new THREE.CylinderGeometry(.09,.09,.10,16),matArmorSec,[side*1.31,1.07,3.25],[Math.PI/2,0,0]);
+      addMesh(partSlopedHull,new THREE.CircleGeometry(.07,16),new THREE.MeshStandardMaterial({color:0xd6d6bf,roughness:.25}),[side*1.31,1.07,3.305]);
+    }
     // --- 2. Gövdeye Sabit 105 mm Bofors L74 (L/62) Uzun Top Namlusu (partBoforsL74) ---
     // Namlu ekseni: x = 0, y = 1,42 m; glasis çıkış boğazı z = +1,45 m'den namlu ağzı z = +5,45 m'ye uzanır!
     const Y_GUN = 1.42;
     // Gövde üstü zırhlı namlu boğaz bileziği (collar)
     addMesh(partBoforsL74, new THREE.BoxGeometry(0.42, 0.34, 0.95), matArmorSec, [0, Y_GUN - 0.02, 1.35]);
+    const barrelRecoilGrp=new THREE.Group();partBoforsL74.add(barrelRecoilGrp);
     // Ana 105 mm L/62 namlu borusu (termal ceketli)
-    addMesh(partBoforsL74, new THREE.CylinderGeometry(0.082, 0.105, 4.10, 20), matBarrelSteel, [0, Y_GUN, 3.40], [Math.PI / 2, 0, 0]);
+    addMesh(barrelRecoilGrp, new THREE.CylinderGeometry(0.082, 0.105, 4.10, 20), matBarrelSteel, [0, Y_GUN, 3.40], [Math.PI / 2, 0, 0]);
     // Eksantrik duman tahliye silindiri (Bore Evacuator / Fume Extractor, z = +3,15 m)
-    addMesh(partBoforsL74, new THREE.CylinderGeometry(0.135, 0.135, 0.68, 20), matArmorSec, [0, Y_GUN + 0.015, 3.15], [Math.PI / 2, 0, 0]);
+    addMesh(barrelRecoilGrp, new THREE.CylinderGeometry(0.135, 0.135, 0.68, 20), matArmorSec, [0, Y_GUN + 0.015, 3.15], [Math.PI / 2, 0, 0]);
     // Termal ceket kelepçe bilezikleri ve namlu ağzı MRS aynası
     [2.25, 2.75, 3.65, 4.35, 5.10].forEach(zBand => {
-      addMesh(partBoforsL74, new THREE.CylinderGeometry(0.092, 0.092, 0.05, 18), matArmorSec, [0, Y_GUN, zBand], [Math.PI / 2, 0, 0]);
+      addMesh(barrelRecoilGrp, new THREE.CylinderGeometry(0.092, 0.092, 0.05, 18), matArmorSec, [0, Y_GUN, zBand], [Math.PI / 2, 0, 0]);
     });
-    addMesh(partBoforsL74, new THREE.CylinderGeometry(0.096, 0.086, 0.14, 20), matBarrelSteel, [0, Y_GUN, 5.42], [Math.PI / 2, 0, 0]);
-    addMesh(partBoforsL74, new THREE.CylinderGeometry(0.052, 0.052, 0.16, 16), new THREE.MeshStandardMaterial({ color: 0x09090b, roughness: 0.9 }), [0, Y_GUN, 5.43], [Math.PI / 2, 0, 0]);
+    addMesh(barrelRecoilGrp, new THREE.CylinderGeometry(0.096, 0.086, 0.14, 20), matBarrelSteel, [0, Y_GUN, 5.42], [Math.PI / 2, 0, 0]);
+    addMesh(barrelRecoilGrp, new THREE.CylinderGeometry(0.052, 0.052, 0.16, 16), new THREE.MeshStandardMaterial({ color: 0x09090b, roughness: 0.9 }), [0, Y_GUN, 5.43], [Math.PI / 2, 0, 0]);
 
     // --- 3. Gövde İçi Kama Bloğu & Hidropnömatik Geri Tepme Silindirleri (partBreechRecoil) ---
     // Sabit top beşiği (cradle)
@@ -529,13 +539,15 @@
     addMesh(ejectedCasingGrp, new THREE.CylinderGeometry(0.052, 0.056, 0.62, 14), matBrass, [0, 0, 0], [Math.PI / 2, 0, 0]);
     ejectedCasingGrp.visible = false;
 
-    // --- 6. Ön Sağ: Rolls-Royce K60 İki Zamanlı Karşıt Pistonlu Dizel Motor (partK60Diesel) ---
+    // --- 6. Ön Sağ: Detroit 6V-53T İki Zamanlı Karşıt Pistonlu Dizel Motor (partK60Diesel) ---
     // Sağ ön motor bölmesinde (x = +0,54 m, y = 0,88 m, z = +1,95 m) çift kranklı yassı K60 dizel
     addMesh(partK60Diesel, new THREE.BoxGeometry(0.62, 0.56, 1.32), matDieselBlue, [0.54, 0.88, 1.95]);
-    // Üst ve alt karşıt piston krank karterleri ve egzoz manifoldu
-    addMesh(partK60Diesel, new THREE.CylinderGeometry(0.12, 0.12, 1.38, 14), matInteriorAlloy, [0.54, 1.16, 1.95], [Math.PI / 2, 0, 0]);
-    addMesh(partK60Diesel, new THREE.CylinderGeometry(0.12, 0.12, 1.38, 14), matInteriorAlloy, [0.54, 0.60, 1.95], [Math.PI / 2, 0, 0]);
-    // Dönen K60 krank volanı ve soğutma fanı
+    // Yaklaşık V6 üst kapakları: eski karşıt pistonlu K60 görünüşünü kullanma.
+    for(const side of [-1,1]){
+      addMesh(partK60Diesel,new THREE.BoxGeometry(.22,.22,1.16),matInteriorAlloy,[.54+side*.18,1.17,1.95],[0,0,-side*.38]);
+      for(let c=0;c<3;c++)addMesh(partK60Diesel,new THREE.CylinderGeometry(.065,.065,.18,12),matDieselBlue,[.54+side*.22,1.21,1.59+c*.36],[0,0,-side*.38]);
+    }
+    // Dönen dizel krank volanı ve soğutma fanı
     const k60FlywheelGrp = new THREE.Group();
     k60FlywheelGrp.position.set(0.54, 0.88, 2.66);
     partK60Diesel.add(k60FlywheelGrp);
@@ -545,8 +557,8 @@
       addMesh(k60FlywheelGrp, new THREE.BoxGeometry(0.38, 0.04, 0.09), matBrass, [0, 0, 0], [0, 0, a]);
     }
 
-    // --- 7. Ön Sol: Boeing 553 Gaz Türbini & CODAG Birleştirme Şanzımanı (partBoeingTurbine) ---
-    // Sol ön motor bölmesinde (x = -0,54 m, y = 0,88 m, z = +1,85 m) Boeing 553 gaz türbini
+    // --- 7. Ön Sol: Caterpillar 553 Gaz Türbini & CODAG Birleştirme Şanzımanı (partBoeingTurbine) ---
+    // Sol ön motor bölmesinde (x = -0,54 m, y = 0,88 m, z = +1,85 m) Caterpillar 553 gaz türbini
     addMesh(partBoeingTurbine, new THREE.CylinderGeometry(0.24, 0.28, 1.18, 18), matTurbineOrange, [-0.54, 0.88, 1.85], [Math.PI / 2, 0, 0]);
     addMesh(partBoeingTurbine, new THREE.CylinderGeometry(0.29, 0.24, 0.36, 18), matInteriorAlloy, [-0.54, 0.88, 1.12], [Math.PI / 2, 0, 0]);
     // Dönen gaz türbini kompresör çarkı
@@ -572,6 +584,7 @@
     addMesh(partCrewStation, new THREE.BoxGeometry(0.44, 0.48, 0.46), matArmorSec, [0.68, 0.96, -0.25]);
     addMesh(partCrewStation, new THREE.CylinderGeometry(0.38, 0.42, 0.24, 20), matArmorSec, [0.68, 1.94, -0.15]);
     addMesh(partCrewStation, new THREE.CylinderGeometry(0.28, 0.34, 0.12, 18), matHullOuter, [0.68, 2.08, -0.15]);
+    for(let i=0;i<6;i++){const a=i*Math.PI/3;addMesh(partCrewStation,new THREE.BoxGeometry(.13,.055,.045),new THREE.MeshStandardMaterial({color:0x233f43,metalness:.3,roughness:.2}),[.68+Math.sin(a)*.36,2.02,-.15+Math.cos(a)*.36],[0,a,0]);}
     // Komutan kupolası makineli tüfek konsolu
     addMesh(partCrewStation, new THREE.CylinderGeometry(0.022, 0.022, 0.58, 10), matBarrelSteel, [0.92, 2.06, 0.18], [Math.PI / 2, 0, 0]);
 
@@ -605,8 +618,8 @@
         const armPiv = new THREE.Group();
         armPiv.position.set(xArm, Y_WHEEL, zAx);
         parent.add(armPiv);
-        addMesh(armPiv, new THREE.BoxGeometry(0.10, 0.14, 0.46), matInteriorAlloy, [0, 0.14, 0.16], [-0.45, 0, 0]);
-        swingArmPivots.push({ grp: armPiv, zAx });
+        addMesh(armPiv,new THREE.CylinderGeometry(.055,.055,1,10),matInteriorAlloy,[0,0,0]);
+        swingArmPivots.push({ grp: armPiv, zAx, xArm });
 
         // Çift diskli kauçuk kaplı çelik yol tekerleği (döner!)
         const whGrp = new THREE.Group();
@@ -645,6 +658,10 @@
       addMesh(idl, new THREE.CylinderGeometry(0.32, 0.32, 0.30, 20), matArmorSec, [0, 0, 0], [0, 0, Math.PI / 2]);
       sprocketMeshes.push(idl);
 
+      for(const end of [-1,1])for(let i=0;i<8;i++){
+        const a=-Math.PI/2+(i+.5)*Math.PI/8;
+        addMesh(partTracksSprockets,new THREE.BoxGeometry(.64,.035,.16),matTrackSteel,[xTr,.73+Math.sin(a)*.37,end*(3.02+Math.cos(a)*.37)],[-end*(a+Math.PI/2),0,0]);
+      }
       // 2 × Üst taşıyıcı makara (Return Rollers)
       [-1.10, 1.10].forEach(zRet => {
         addMesh(partTracksSprockets, new THREE.CylinderGeometry(0.11, 0.11, 0.26, 14), matArmorSec, [xTr, 0.96, zRet], [0, 0, Math.PI / 2]);
@@ -737,21 +754,32 @@
       // 1. Hidropnömatik Süspansiyonla Gövde Yunuslama (Pitch: -11° .. +12°) ve Hidrostatik Yön (Yaw: -25° .. +25°)
       // Gövde merkezi (0, 1.08, 0) etrafında eğilirken, 4 yol tekerleği ve alt palet kolu y = 0,000 m zeminde sabit kalır!
       const pitchRad = THREE.MathUtils.degToRad(S.pitchDeg);
-      hullPitchGroup.position.set(0, Math.max(0, Math.abs(S.pitchDeg) * 0.008), 0);
+      const pivotY=1.08;
+      hullPitchGroup.position.set(0,pivotY*(1-Math.cos(pitchRad)),pivotY*Math.sin(pitchRad));
       hullPitchGroup.rotation.x = -pitchRad;
       yawPivot.rotation.y = THREE.MathUtils.degToRad(S.hullYawDeg);
 
-      // Salıncak kolları gövdenin ön/arka kalkışına göre açı değiştirir
-      swingArmPivots.forEach(sp => {
-        sp.grp.rotation.x = -(sp.zAx / 2.05) * pitchRad * 0.85;
+      // Gövde alt köşelerini zeminin üzerinde tut; sabit palet kolu yerinden oynamaz.
+      let lowest=Infinity;
+      for(const y of [.40,1.80])for(const z of [-3.45,3.45]){
+        const point=new THREE.Vector3(0,y,z).applyEuler(hullPitchGroup.rotation).add(hullPitchGroup.position);
+        lowest=Math.min(lowest,point.y);
+      }
+      hullPitchGroup.position.y+=Math.max(0,.06-lowest);
+      swingArmPivots.forEach(sp=>{
+        const anchor=new THREE.Vector3(sp.xArm,.68,sp.zAx+.22).applyEuler(hullPitchGroup.rotation).add(hullPitchGroup.position);
+        const wheel=new THREE.Vector3(sp.xArm,Y_WHEEL,sp.zAx);
+        sp.grp.position.copy(anchor).add(wheel).multiplyScalar(.5);
+        sp.grp.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),anchor.clone().sub(wheel).normalize());
+        sp.grp.scale.y=anchor.distanceTo(wheel);
       });
 
-      // 2. CODAG Motor (Rolls-Royce K60 Dizel + Boeing 553 Gaz Türbini) ve Yürüyüş Takımı Kinematiği
+      // 2. CODAG Motor (Detroit 6V-53T Dizel + Caterpillar 553 Gaz Türbini) ve Yürüyüş Takımı Kinematiği
       // KURAL: Gizli alt sınır YOKTUR; S.rpm === 0 iken tüm şaftlar ve tekerlekler tamamen durur!
       const omegaEngine = (S.rpm / 60) * 0.35;
       const dEng = omegaEngine * stepDt;
       S.engineAngle += dEng;
-      S.wheelAngle += dEng * 0.28;
+      // Park halindeki sergide palet ve tekerlekler motor devriyle dönmez.
 
       k60FlywheelGrp.rotation.z = S.engineAngle;
       boeingRotorGrp.rotation.z = -S.engineAngle * 1.8; // Yüksek devirli gaz türbini rotoru
@@ -762,7 +790,7 @@
       dozerPivot.rotation.x = S.dozerDeployed ? 1.82 : 0.0;
 
       // 4. Anti-HEAT Çubuk Zırh Kafesi (Savunma modunda dik, seyir modunda glasis üzerine yatık)
-      antiHeatFenceGrp.rotation.x = S.mode === 'defense' ? 0.0 : 1.35;
+      antiHeatFenceGrp.visible = S.mode === 'defense'; // Sökülebilir sergi katmanı; katlanır mekanizma iddiası yok.
 
       // 5. 105 mm Bofors L74 Geri Tepme, Otomatik Doldurucu & Kıçtan Boş Kovan Fırlatma!
       if (S.firing) {
@@ -805,15 +833,20 @@
         ejectedCasingGrp.visible = false;
         muzzleFlashGrp.visible = false;
       }
+      barrelRecoilGrp.position.z=breechRecoilGrp.position.z;
     }
 
+    barrelRecoilGrp.name='s103-barrel';breechRecoilGrp.name='s103-breech';
+    k60FlywheelGrp.name='s103-diesel';boeingRotorGrp.name='s103-turbine';
+    antiHeatFenceGrp.name='s103-fence';ejectedCasingGrp.name='s103-casing';
+    roadWheelMeshes.forEach((w,i)=>w.name='s103-wheel-'+i);
     syncVisualState(0);
 
     // ========================================================================
     // KAMERA AÇILARI VE 6 ADIMLI REHBERLİ TUR
     // ========================================================================
     const camPresets = {
-      iso: { pos: [6.4, 3.1, 6.6], look: [0, 1.05, 0.4] },
+      iso: { pos: [12, 5.8, 12], look: [0, 1.05, 0.4] },
       front: { pos: [1.8, 1.7, 7.4], look: [0, 1.15, 1.5] },
       breech: { pos: [3.2, 2.2, -2.6], look: [0, 1.25, -1.6] },
       engine: { pos: [2.8, 2.3, 3.2], look: [0, 1.0, 1.8] },
@@ -823,8 +856,8 @@
 
     const tourSteps = [
       {
-        title: 'Genel Bakış: 1967 Stridsvagn 103 ("S-Tank") — Taretsiz Ana Muharebe Tankı',
-        desc: 'Sven Berge tarafından tasarlanan Strv 103, tareti tamamen kaldırarak yüksekliği 1,90 metreye indiren ve 78° eğimli yivli ön zırhıyla mermileri kıran benzersiz bir İsveç ana muharebe tankıdır.',
+        title: 'Genel Bakış: 1986 Stridsvagn 103C ("S-Tank") — Taretsiz Ana Muharebe Tankı',
+        desc: 'Sven Berge’nin taretsiz tank fikri, yatay yönlendirmede gövdeyi; dikey yönlendirmede süspansiyonu kullanır. A ailesinin teslimatları 1967’de başladı. Buradaki yan bidonlu ve yenilenmiş motorlu yorum, 1986’dan itibaren 103C modernizasyonuna aittir.',
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -841,8 +874,8 @@
         part: partRoadwheelsRight
       },
       {
-        title: 'X-Ray: Dünyanın İlk CODAG Tank Motoru (K60 Dizel + Boeing 553 Gaz Türbini)',
-        desc: 'Ön zırhın hemen altında mürettebatı koruyan iki farklı motor yan yana çalışır: sağda 2 zamanlı karşıt pistonlu Rolls-Royce K60 dizel (seyir ve nişan için) ve solda 490 beygirlik Boeing 553 gaz türbini (hücum için).',
+        title: 'X-Ray: 103C Güç Paketi (Detroit V6 Dizel + Caterpillar 553 Gaz Türbini)',
+        desc: '103C kesitinde Detroit 6V-53T dizel ile Caterpillar 553 gaz türbini birlikte görülür. Arsenalen kaydı 1986 modernizasyonunu belirtir. Önceki K60 motoru bu sürümün güç paketi olarak sunulmaz.',
         explode: 0,
         cutaway: true,
         sub: 'all',
@@ -869,7 +902,7 @@
       },
       {
         title: 'BT-41 Katlanır İstihkâm Dozer Bıçağı & Anti-HEAT Çubuk Zırh Kafesi',
-        desc: 'Gövde altına katlanan BT-41 dozer bıçağı sayesinde her Strv 103 dakikalar içinde kendi ateş mevziini (hull-down) kazar; ön glasis üzerindeki Anti-HEAT kafesi ise çukur imlalı roketleri erken patlatır.',
+        desc: 'Dozer bıçağı ve öndeki çubuk kafes, dış görünüşün ayırt edici parçalarıdır. Kafesi gizleme işlemi yalnız inceleme kolaylığı sağlar; otomatik katlanan bir zırh düzeneği iddia edilmez.',
         explode: 0,
         cutaway: false,
         sub: 'all',
@@ -885,15 +918,16 @@
     let reliefEnabled = true;
 
     const ui = {
-      title: '1967 STRIDSVAGN 103 ("S-TANK") — TARETSİZ HİDROPNÖMATİK TANK',
+      title: '1986 STRIDSVAGN 103C ("S-TANK") — TARETSİZ HİDROPNÖMATİK TANK',
       sub: 'Gövdeye Sabit 105 mm Bofors L74 Top • Hidropnömatik Süspansiyonla Nişan • CODAG (Dizel + Gaz Türbini) & 4 Sn Otomatik Doldurucu',
-      badge: 'STRV 103C ("S-TANK") — 1967',
+      badge: 'STRV 103C ("S-TANK") — 1986',
       partCount: '15 Ana Grup',
-      portraitCameraScale: 1.28,
+      portraitCameraScale: 1.65,
+      fog: {near: 40, far: 90},
       shadowExtent: 9,
       sliders: [
         { label: 'Hidropnömatik Gövde Eğimi (Top Yükselişi -11° .. +12°)', min: -11, max: 12, step: 0.5, fmt: v => `${v > 0 ? '+' : ''}${Number(v).toFixed(1)}°` },
-        { label: 'CODAG Motor Devri (K60 Dizel + Boeing 553 Türbin)', min: 0, max: 3600, step: 100, fmt: v => `${Math.round(v)} RPM` },
+        { label: 'CODAG Motor Devri (Detroit V6 Dizel + Caterpillar 553 Türbin)', min: 0, max: 3600, step: 100, fmt: v => `${Math.round(v)} RPM` },
         { label: 'Hidrostatik Gövde Yönü (Yatay Nişan -25° .. +25°)', min: -25, max: 25, step: 1, fmt: v => `${v > 0 ? '+' : ''}${Math.round(v)}°` }
       ],
       buttons: {
@@ -916,13 +950,13 @@
       subsystems: [
         { key: 'hull_armor', label: '78° Yivli Glasis, Jerrycan Etek, Dozer & Anti-HEAT', count: 3, color: '#3b4d38' },
         { key: 'gun_autoloader', label: 'Sabit 105 mm L74 Top, 50 Mermi Şarjör & Kıç Atıcı', count: 5, color: '#d97706' },
-        { key: 'codag_crew', label: 'CODAG (K60 Dizel + Boeing Türbin) & 3 Ekip', count: 3, color: '#0284c7' },
+        { key: 'codag_crew', label: 'CODAG (Detroit V6 Dizel + Caterpillar Türbin) & 3 Ekip', count: 3, color: '#0284c7' },
         { key: 'hydro_suspension', label: 'Hidropnömatik Süspansiyon & 4 Akslı Paletler', count: 4, color: '#475569' }
       ],
       activeTexture: () => activeScheme,
       textureLabel: () => SCHEMES[activeScheme].name,
       relief: () => reliefEnabled,
-      reliefLabel: v => `🪨 78° Glasis APFSDS Kırıcı Çelik Yiv Dokusu: ${v ? 'AÇIK' : 'KAPALI'}`
+      reliefLabel: v => `🪨 Glasis Yiv ve Yüzey Dokusu: ${v ? 'AÇIK' : 'KAPALI'}`
     };
 
     function applyTextures(isBlueprint) {
@@ -982,13 +1016,16 @@
 
       onSlider(idx, val) {
         const v = Number(val);
+        if (!Number.isFinite(v)) return {};
         if (idx === 0) {
           S.autoAimSweep = false;
+          ui.buttons.sweep = "🎯 Otomatik Hidropnömatik Nişan Tarama: KAPALI";
           S.pitchDeg = Math.max(-11, Math.min(12, v));
         } else if (idx === 1) {
           S.rpm = Math.max(0, Math.min(3600, v));
         } else if (idx === 2) {
           S.autoAimSweep = false;
+          ui.buttons.sweep = "🎯 Otomatik Hidropnömatik Nişan Tarama: KAPALI";
           S.hullYawDeg = Math.max(-25, Math.min(25, v));
         }
         syncVisualState(0);
@@ -1029,7 +1066,7 @@
             active: S.mode === 'defense',
             msg: S.mode === 'defense'
               ? '🛡️ Savunma Mevzii Kipi: Ön glasis Anti-HEAT çubuk zırh kafesi dikildi, 105 mm L74 topu atışa hazır.'
-              : '🛣️ Yol Seyir Kipi: Anti-HEAT çubuk kafesi glasis üzerine katlandı.'
+              : '🛣️ Yol Seyir Kipi: Anti-HEAT kafesi inceleme için gizlendi.'
           };
         }
         return {};
@@ -1044,11 +1081,12 @@
 
       modeLabel() {
         return S.mode === 'defense'
-          ? '🛡️ Kip: Savunma Mevzii (Anti-HEAT Kafesi Dikili)'
-          : '🛣️ Kip: Yol Seyir Konumu (Anti-HEAT Kafesi Katlı)';
+          ? '🛡️ Kip: Savunma Mevzii (Anti-HEAT Kafesi Görünür)'
+          : '🛣️ Kip: Yol Seyir Konumu (Anti-HEAT Kafesi Gizli)';
       },
 
       onFire() {
+        if(S.firing) return {ok:false,msg:'Atış gösterimi sürüyor.'};
         if (S.ammoCount <= 0) {
           S.ammoCount = 50;
           S.firing = false;
@@ -1072,11 +1110,13 @@
       },
 
       fireButtonLabel() {
+        if(S.firing) return '⏳ ATIŞ GÖSTERİMİ SÜRÜYOR';
         if (S.ammoCount <= 0) return '🔄 50 ADET 105 MM ŞARJÖR İKMALİ YAP';
         return `💥 105 MM BOFORS L74 ATEŞLE & KOVAN FIRLAT (${S.ammoCount}/50)`;
       },
 
       mobileFireButtonLabel() {
+        if(S.firing) return '⏳ Gösterim sürüyor';
         return S.ammoCount <= 0 ? '🔄 İkmal Yap' : '💥 105mm Ateşle';
       },
 
@@ -1086,12 +1126,7 @@
 
       getStats() {
         const pitchTxt = `${S.pitchDeg > 0 ? '+' : ''}${S.pitchDeg.toFixed(1)}° <span>(Yön: ${S.hullYawDeg > 0 ? '+' : ''}${S.hullYawDeg}°)</span>`;
-        const powerHp = Math.round((S.rpm / 3600) * 730);
-        const codagTxt = S.rpm === 0
-          ? '0 <span>hp (Durdu)</span>'
-          : S.rpm > 1800
-            ? `${powerHp} <span>hp (Dizel+Türbin)</span>`
-            : `${powerHp} <span>hp (K60 Dizel)</span>`;
+        const codagTxt = `${S.rpm} <span>RPM · temsili devir</span>`;
         return [
           pitchTxt,
           codagTxt,
