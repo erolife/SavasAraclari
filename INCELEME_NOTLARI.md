@@ -657,3 +657,11 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - 16 seçilebilir grup, 122 mesh; ayrı ahşap/boynuz/sinir/lake katmanları, tüyler ve geometrik açık gezler. Kurulu yorumda 101 çekiş konumunda kiriş bağlantısı ve sabit uzunluk doğrulandı.
 - `node tests/ottomanbow.cjs`, J79 katalog/entegrasyon ve museum-links testleri geçti (35 araç, 57 kaynak).
 - Chrome 1440×1000 genel ve katman/X-Ray yakın planı; 390×844 mobil müze ve kurulu görünüm kontrol edildi, yatay taşma yok. Model hatası yok; ortak favicon.ico 404 ve programatik etkileşimde ses otomatik oynatma uyarısı mevcut.
+
+
+### Vecihi K-VI ve Türk tarihi serisi — 7 Kasım 2026
+- TVHMD dönem fotoğrafları ve Hürkuş’un yayımlanmış anlatımı esas alındı: 28 Ocak 1925 ilk uçuş, Benz altı silindirli su soğutmalı motor, 200 BG ve 11,7 m açıklık. Kaynaktaki teorik hızlar gerçek uçuş ölçümü olarak aktarılmadı. Renk ve gizli yerleşim yaklaşık müze yorumu.
+- 24 grup / 370 mesh: kavisli kumaş kanatlar, ayrı ahşap kaburgalar, gergiler, kaporta yarıkları ve perçinler; iki gerçek boşluklu kokpit, panel, koltuklar; altı silindir, su soğutma, ahşap pervane; menteşeli kuyruk dümenleri ve ay-yıldız.
+- `tests/vecihi.cjs`: 1000 pervane/krank adımı, sabit silindirler, piston aralıkları, sıfır devir, 41 dümen konumu, açık kokpit delikleri, 11,7 m açıklık, yer teması ve sıfırlama geçti. Türkiye ve Savaşlar Arası katalog filtreleri eklendi.
+- Chrome 1440×1000 genel, açık kaporta/X-Ray motor ve kokpit yakın planı; 390×844 mobil kadraj kontrol edildi. İskelet kaplamanın içine alındı, kokpit kamerası paneli ve koltukları gösterecek şekilde düzeltildi; yatay taşma yok. Ortak favicon 404 / otomatik ses uyarısı dışında model hatası görülmedi.
+- Son regresyon: 28 test dosyasının tamamı geçti; 36 araç, 59 HTTPS kaynak. Üç yeni araç için ayrı Türkçe commit.

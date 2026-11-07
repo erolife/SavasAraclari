@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 7 Kasım 2026:** Altıncı gruptaki Arşimet’in Demir Eli, Turtle ve RRH m/42 tamamlandı; toplam 33 aktif model ve 54 kaynak bağlantısı. Her araç için ayrı test ve masaüstü/X-Ray/mobil görsel kontrol kaydı INCELEME_NOTLARI.md içinde. Paylaşım ve kaynak panelleri aktif. Yeni araç talep formu eklendi; ortak kayıt için Supabase yapılandırması gerekir. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
+> **Güncel durum — 7 Kasım 2026:** Yedinci gruptaki Nusret, Osmanlı kompozit yayı ve Vecihi K-VI tamamlandı; toplam 36 aktif model ve 59 kaynak bağlantısı. Her araç için ayrı test ve masaüstü/X-Ray/mobil görsel kontrol kaydı INCELEME_NOTLARI.md içinde. Paylaşım ve kaynak panelleri aktif. Yeni araç talep formu eklendi; ortak kayıt için Supabase yapılandırması gerekir. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.
