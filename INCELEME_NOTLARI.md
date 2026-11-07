@@ -626,3 +626,10 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - 18 grup, 218 mesh: taş sur, destekli döşeme, döner dikme, çatal, kol, kayan karşı ağırlık, irgat, bağlı halat, düşey zincir, demir kanca ve kaplamalı küçük tekne.
 - 186 açı/yön/zincir konumunda bağlantı uçları ve tekne açıklıkları doğrulandı. Otomatik gösterim, el ayarı, sınırlar, sıfırlama ve dört kaplama test edildi.
 - tests/archimedes.cjs, tests/j79.cjs ve tests/museum-links.cjs geçti. Masaüstü izometrik, X-Ray ve 390×844 mobil görünüm kontrol edildi; mobil kadraj ve eylem etiketi düzeltildi. Bilinen favicon 404 ve kullanıcı etkileşimi öncesi AudioContext uyarısı dışında uygulama hatası görülmedi.
+
+
+## 7 Kasım 2026 — Turtle
+- Kaynaklar: https://collection.sciencemuseumgroup.org.uk/objects/co42224/model-of-submersible-turtle-cut-away-object-submarines-submersibles-warships (1976-480, varsayımsal kesit modeli) ve https://www.history.navy.mil/research/library/online-reading-room/title-list-alphabetically/s/submarine-turtle-naval-documents.html . Özgün tekne ölçüsü veya kesin iç yerleşim iddiası yoktur.
+- 20 grup, 155 mesh. Kalınlıklı 32 ahşap kaplama, iç postalar, kuşak/perçinler, camlı başlık, menteşeli kapak, hava boruları, kabin, göstergeler, iki pervane, yataklı krank ve balast pompası. Saldırı düzeneği yerine hareket/yaşam alanı anlatılır.
+- 106 kapak açısı, ortak şaft fazları, sıfır devir/durdurma, açık kapak pompa kilidi, su bitişi, el ayarı ve 101 su düzeyi test edildi. Testin bulduğu kapak/başlık çakışması menteşe yüksekliğiyle düzeltildi.
+- tests/turtle.cjs, tests/j79.cjs, tests/museum-links.cjs geçti. Masaüstü kapalı/açık kabuk ve X-Ray; 390×844 mobil kadraj, yatay taşma ve pompa etiketi kontrol edildi. Uygulama JavaScript hatası görülmedi.
