@@ -679,3 +679,11 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - 14 grup / 65 mesh: özel eğrili baş silueti, hacimli göz çevresi, açık ağız/kıvrım, küçük dört ayaklı motif, demir sap, bilezik ve yüzey detayları. Çene sabit; baş-sap ve motif ayrımı yalnız sergi incelemesi.
 - `tests/dragonmace.cjs`: 101 ayrılma konumu, değişmeyen çene geometrisi, gerçek negatif boşluklar, bağlı motif parçaları, dönüş sınırı, mesnet görünürlüğü ve sıfırlama geçti. Katalog/bağlantı kontrolleri 38 araç / 63 kaynak ile geçti.
 - 1440×1000 genel, motif yakın planı ve tam ayrılmış X-Ray; 390×844 mobil genel görünüm kontrol edildi. En açık konumda kesilmeyi önlemek için yakın plan kamera genişletildi. Yatay taşma yok.
+
+
+### Akkoyunlu geleneğinde miğfer — 7 Kasım 2026
+- Met 04.3.461 mevcut eser fotoğrafı esas alındı: 15. yy. sonu, 29,2 cm, 1496 g; Akkoyunlu ilişkisi kesin sahiplik olarak sunulmadı. Bu örnekteki sivri, yatay kuşaklı gövde izlendi; başka miğferlerdeki belirgin dilimler eklenmedi. Yazıt yerine sahte metin değil açıkça etiketli bitkisel bezeme yorumu kullanıldı.
+- 17 grup / 112 mesh: çift cidarlı içi boş kabuk, göz üstü açıklıkları, delikli burun üstlüğü, sabit kılavuz, tepe bileziği, kuşak/madalyon/kıvrımlar. Astar yorumdur. Met 50.87 karşılaştırmasıyla hazırlanan 1040 halkalı zincir tamamlama varsayılan kapalıdır; özgün eserin korunmuş parçası olduğu iddia edilmez.
+- `tests/turbanhelmet.cjs`: 101 burun koruması/kılavuz/kabuk konumu, açık alt boşluk, üstlük delikleri, halka sayısı ve hiyerarşisi, varsayılan zincir gizliliği, sınırlar/sıfırlama geçti.
+- Chrome 1440×1000 genel ve kabuk açık X-Ray; 390×844 mobil kontrol edildi. Tam açılım için genel kadraj genişletildi. Model hatası görülmedi; ortak favicon.ico 404 ve programatik ses başlatma uyarısı mevcut.
+- Son regresyonda 31 test dosyası geçti. Katalog 39 aktif araç / 65 HTTPS kaynak. Her model ayrı Türkçe commit; push üçlü sonunda.

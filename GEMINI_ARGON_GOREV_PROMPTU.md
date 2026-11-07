@@ -1,5 +1,5 @@
 # Gemini Argon — Uzun Süreli Çalışma Promptu
-> **Güncel durum — 7 Kasım 2026:** Yedinci gruptaki Nusret, Osmanlı kompozit yayı ve Vecihi K-VI tamamlandı; toplam 36 aktif model ve 59 kaynak bağlantısı. Her araç için ayrı test ve masaüstü/X-Ray/mobil görsel kontrol kaydı INCELEME_NOTLARI.md içinde. Paylaşım ve kaynak panelleri aktif. Yeni araç talep formu eklendi; ortak kayıt için Supabase yapılandırması gerekir. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
+> **Güncel durum — 7 Kasım 2026:** Sekizinci gruptaki Göktürk süvarisi, Selçuklu ejder başlı gürzü ve Akkoyunlu geleneğinde miğfer tamamlandı; toplam 39 aktif model ve 65 kaynak bağlantısı. Her araç için ayrı test ve masaüstü/X-Ray/mobil görsel kontrol kaydı INCELEME_NOTLARI.md içinde. Paylaşım ve kaynak panelleri aktif. Yeni araç talep formu eklendi; ortak kayıt için Supabase yapılandırması gerekir. Aşağıdaki eski görev sıraları tarihsel kayıttır; teknik kalite kuralları geçerlidir.
 
 > **Amaç:** Gemini Argon'un birkaç gün boyunca, bağımsız olarak yeni araçlar eklemesi.
 > Daha sonra Claude ile yapılacak kısa (en fazla 5 saatlik) inceleme oturumunun hızlı ve verimli geçmesi.
