@@ -1,10 +1,18 @@
 # 📋 YAPILACAK ARAÇLAR LİSTESİ & 2 KİŞİLİK ORTAK ÇALIŞMA PLANI
 
 > **Son Güncelleme:** 9 Kasım 2026<br>
-> **Mevcut Durum:** **45 Aktif Araç** (`Grup 1 .. Grup 10` tamamlandı)  
+> **Mevcut Durum:** **46 Aktif Araç** (`Grup 1 .. Grup 10` ve ek öncelik `fa330` tamamlandı)
 > **Hedef:** **Grup 11 .. Grup 16** (`Araç #46 .. #75` — 30 yeni araçlık çakışmasız yol haritası)
 
 Bu dosya, projeyi geliştiren **iki geliştiricinin** aynı aracı mükerrer (tekrarlı) kodlamasını önlemek, dosya/kimlik (`id`) adlarını önceden sabitlemek ve Git birleştirme (*merge*) çakışmalarını sıfıra indirmek amacıyla hazırlanmıştır.
+
+### Kullanıcı önceliği — Fa 330 (9 Kasım 2026)
+
+| Kimlik | Çalışma | Geliştirici | Durum |
+| --- | --- | --- | --- |
+| `fa330` / Grup 17 | Fa 330 Bachstelze, temsili denizaltı güvertesi ve çekme düzeneği | MesAi C | ✅ Tamamlandı — 23 grup, 262 mesh; 42 test dosyası ve masaüstü/X-Ray/mobil kontrol |
+
+Bu ek çalışma kullanıcı tarafından ayrıca istendi. Aşağıdaki **#46–75 rezervasyonları değiştirilmedi**; bunlar plan sıra numaralarıdır. Kullanıcının “push en son” talebi nedeniyle sahiplenme ve tamamlanma birlikte gönderilir. Model seçildiğinde yüklenir; simülatöre statik adaptör eklenmez.
 
 ---
 
@@ -24,9 +32,9 @@ Bu dosya, projeyi geliştiren **iki geliştiricinin** aynı aracı mükerrer (te
 
 ---
 
-## ✅ 2. Mevcut 45 Aracın Hızlı Envanteri (Mükerrer Kayıt Kontrolü)
+## ✅ 2. Başlangıçtaki 45 Aracın Hızlı Envanteri (Mükerrer Kayıt Kontrolü)
 
-Aşağıdaki **45 araç ve mekanizma zaten projede mevcuttur**; yeni araç seçerken bu `id` ve mekanizmalar tekrar edilmemelidir:
+Yukarıdaki ek `fa330` ile toplam 46 aktif araç vardır. Aşağıdaki **başlangıçtaki 45 araç ve mekanizma zaten projede mevcuttur**; yeni araç seçerken bu `id` ve mekanizmalar tekrar edilmemelidir:
 
 | Grup | Araçlar (`id` — Yıl — Kısa Ad) |
 | :--- | :--- |

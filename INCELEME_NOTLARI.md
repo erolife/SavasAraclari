@@ -996,3 +996,28 @@ Her araç ayrı araştırma, uygulama, test ve görsel kontrolden sonra Türkçe
 - Simülatör, adaptörlerin değişen terrain/sweep düğme metinlerini de yeniler. Önceden yalnız etkin sınıfı değiştiği için açık dozer, kapalı kapak veya durdurulan otomatik gösterim yanlış etiket taşıyabiliyordu. R-7/Harrier/Strv elle devralma yolları da kapanan otomatiğin yazısını günceller.
 - Tarayıcıda beş model arasında menü geçişi, terrain düğmesinin yeni metni, sweep ve elle devralma ayrı ayrı doğrulandı; yatay taşma yok. Konsolda yalnız mevcut favicon.ico 404 ve ses otomatik başlatma uyarısı var.
 - Son regresyon: 41 test dosyası, 45 katalog modeli / 78 HTTPS kaynak, 9 rota durağı. Üç değişen adaptörün testleri ve simülatör sözdizimi ayrıca geçti. Araştırma kaynakları katalogda araç başına erişilebilir.
+# Fa 330 Bachstelze — 9 Kasım 2026
+
+Kullanıcının ayrı önceliği olarak `fa330` eklendi: **46 aktif araç / 81 kaynak**, 23 seçilebilir grup ve 262 kayıtlı mesh. Planın #46–75 kimlikleri korunur; Fa 330 ek Grup 17 olarak ayrılır. Katalog, filtre, tarih çizelgesi ve araç menüsü mevcut ortak veri üzerinden çalışır; yeni adaptör yalnız seçildiğinde yüklenir.
+
+## Araştırma ve yorum sınırı
+
+- [Musée de l’Air et de l’Espace](https://www.museeairespace.fr/aller-plus-haut/collections/focke-achgelis-fa-330-a-0-bachstelze/): motorsuz gözlem aracı, 7,30 m rotor, 1942 denemeleri ve Type IXD2 bağlamı. İlk uçuş, prototip ve hizmet tarihleri aynı şey değildir; katalog 1942 denemelerini esas alır.
+- [ABD Hava Kuvvetleri Müzesi](https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196312/focke-achgelis-fa-330-sandpiper/): güvertedeki vinç, çelik hat ve telefon bağlantısı. Rotor hızı arayüzde gerçek RPM olarak sunulmaz.
+- [Luftfahrtlexikon müze fotoğrafları](https://luftfahrtlexikon.com/focke-achgelis-fa-330-bachstelze-motorloser-kleintragschrauber-fuer-den-einsatz-auf-u-booten-und-schiffen/): açık boru iskeleti, rotor başı, kemerler, ayaklıklar ve kuyruk için görsel referans. Fotoğraf projeye kopyalanmadı.
+- Smithsonian kayıtlarında rotor çapı için birbirini tutmayan metadata değerleri bulunduğundan modelde bu değerler birleştirilmedi; Fransız müzesinin 7,30 m değeri esas alındı. Kesin ağırlık, üretim adedi veya tek bir seri numarası atanmadı.
+- Güverte, kısmi kule, vinç muhafazası, tüpler ve küçük donanım yerleşimleri yaklaşık sergi rekonstrüksiyonudur. Belirli bir U-botun birebir kopyası veya U-505’in bu sistemi taşıdığı iddiası yoktur. Kablo mesafesi kısaltılmıştır; sergi konumu gerçek irtifa ya da uçuş hesabı değildir. Sınırlı kullanım, savaşın sonucunu değiştiren yaygın bir başarı gibi sunulmaz.
+
+## Model ve etkileşim
+
+Üç profilli rotor palası, mafsallı göbek, direk, açık koltuk, dokuma kemerler, kumanda kolu, ayaklıklar, telefon kutusu, kuyruk destekleri ve kızaklar ayrı incelenir. Güverte ahşabı, postalar, drenaj izleri, merdiven, menhol, babalar, vinç tamburu, fren, el çarkı ve kılavuz makara eklenmiştir. İki saklama tüpü içi boş duvarlarla yapılır; kapaklar menteşeden açılır.
+
+Üç kaydırıcı sergi konumu, rotorun görsel hızı ve baş eğimini ayarlar. Rotor gösterimi başlatılıp durdurulur; hız sıfırsa rotor ve akım okları durur. Elle ayar otomatik konum hareketini kapatır. Kablo segmentleri geometri üretmeden uç bağlantıyı izler, tambur hareketle döner. Dört kaplama, alt sistem filtreleri, altı kamera, altı tur adımı ve X-Ray desteklenir.
+
+## Doğrulama
+
+- `tests/fa330.cjs`: 101 konumda kablo uçları ve segment sürekliliği; ±8° eğimde ve tam rotor dönüşü boyunca kuyruk açıklığı; kule açıklığı, direğin koltuğun gerisinde kalması, kızakların gerçek yüzeyinin güverteye oturması; sıfır hız, durdurma, manuel öncelik, değer sınırları, geçersiz değerler, açık tüplerin iç boşluğu ve 200 güncellemede aynı geometri tamponlarının korunması.
+- **42 test dosyası geçti.** Son tüp ayrıntısından sonra Fa 330 testi yeniden geçti. Katalog bağlantı testi 46 araç ve 81 HTTPS kaynağını doğruladı; mevcut modeller, tarih çizelgesi, Türk tarihi rotası ve seçildiğinde yükleme testleri de geçti.
+- Yerel Chromium/Playwright: 1440×1000 masaüstü genel, gözlemci, rotor başı, vinç, açık kapak, X-Ray, güverteye oturma ve uzatılmış konum görüntüleri gözle incelendi. 390×844 mobil genel ve X-Ray görüntüleri incelendi; yatay taşma ve sayfa JavaScript hatası yok. Mobil rotor/X-Ray düğmeleri ve tur adımları çalıştı.
+- Görsel düzeltmeler: loft yüzeylerinin dışa bakan normalleri, koltuğun arkasına alınan rotor direği, kuyruk açıklığı, gerçek kızak yüzeyinin zemine hizalanması, vinç çarkını gösteren yakın kamera ve tüm güverteyi alan mobil kadraj.
+- Ana sayfa kartı, model bağlantısı ve tarih çizelgesi tarayıcıda doğrulandı. İlk yüklemede yalnız Tiger/Şahi eski çekirdek modelleri ve Fa 330 oluşturuldu; diğer modeller yüklenmedi.

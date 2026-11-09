@@ -31,7 +31,7 @@
     { key: 'energy', url: 'enerji', label: 'Enerji / Temel Mekanik', options: [
       { key: 'muscle', label: '💪 Kas Gücü & Burulma' }, { key: 'gravity', label: '⚖️ Yerçekimi' },
       { key: 'gunpowder', label: '💥 Barut' }, { key: 'ice', label: '⚙️ İçten Yanmalı Motor' },
-      { key: 'steam', label: '♨️ Buhar Makinesi' },
+      { key: 'steam', label: '♨️ Buhar Makinesi' }, { key: 'airflow', label: '🌬️ Hava Akımı / Motorsuz' },
       { key: 'jet', label: '🔥 Jet & Roket' }, { key: 'electric', label: '⚡ Elektrik & Elektromekanik' }
     ] },
     { key: 'role', url: 'gorev', label: 'Görev Tipi', options: [
@@ -634,7 +634,23 @@
   ],
   "svg": "<svg viewBox=\"0 0 320 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M36 86 L46 62 L156 56 L248 76 L232 92 L48 92 Z\" fill=\"#3b4d38\" fill-opacity=\"0.48\" stroke=\"#1e293b\" stroke-width=\"2\"/><line x1=\"168\" y1=\"64\" x2=\"306\" y2=\"60\" stroke=\"#1e293b\" stroke-width=\"5\" stroke-linecap=\"round\"/><rect x=\"44\" y=\"88\" width=\"188\" height=\"24\" rx=\"12\" fill=\"#334155\" fill-opacity=\"0.35\" stroke=\"#1e293b\" stroke-width=\"2\"/><circle cx=\"72\" cy=\"100\" r=\"10\" fill=\"#475569\" stroke=\"#1e293b\" stroke-width=\"2\"/><circle cx=\"116\" cy=\"100\" r=\"10\" fill=\"#475569\" stroke=\"#1e293b\" stroke-width=\"2\"/><circle cx=\"160\" cy=\"100\" r=\"10\" fill=\"#475569\" stroke=\"#1e293b\" stroke-width=\"2\"/><circle cx=\"204\" cy=\"100\" r=\"10\" fill=\"#475569\" stroke=\"#1e293b\" stroke-width=\"2\"/></svg>"
 });
+  VEHICLES.push({
+    id:'fa330', sim:'fa330', group:17, status:'live', year:1942, yearLabel:'1942', eraLabel:'II. DÜNYA SAVAŞI • DENİZ KEŞFİ',
+    domain:'air', era:'ww2', energy:['airflow'], role:['intelligence'], origin:'germany',
+    name:'Fa 330 Bachstelze — Denizaltının Uçan Gözcüsü', sub:'MOTORSUZ ROTOR UÇURTMASI • GÜVERTE VE ÇEKME VİNCİ',
+    desc:'Denizaltının arkasında çekilen tek kişilik gözlem aracı. Üç palalı rotor, açık boru iskeleti, kemerli koltuk, kuyruk, güverte vinci ve bağlı kabloyu inceleyin. Konum ve rotor hareketleri eğitim amaçlıdır; gerçek uçuş mesafesi sahnede kısaltılmıştır.',
+    tags:['Üç Palalı Serbest Rotor','Güverte ve Vinç','Hareketi İzleyen Kablo','Telefon Bağlantısı'],
+    specs:[['ROTOR ÇAPI','~7,30 m'],['MOTOR','Yok — autorotasyon'],['GÖREV','Denizaltı için gözlem'],['SAHNE','Temsili güverte / kısa çekme hattı']],
+    tag:'FA330-1942', icon:'🌬️',
+    modal:['Açık iskelet, çift kızak ve kemerli koltuk','Üç palalı rotor başlığı, mafsallar ve kuyruk','Temsili denizaltı güvertesi, saklama tüpleri ve vinç','Kısa çekme kablosu, telefon hattı ve altı adımlı tur'],
+    svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M25 108H240L270 121H46Z" fill="#4c585d"/><path d="M55 108V85H84V108" fill="#718187"/><path d="M115 108Q140 78 169 66" fill="none" stroke="#a58d62" stroke-width="2"/><path d="M157 72L179 66L240 77M178 65L176 31M157 72L153 84H191M240 77V54L259 76Z" fill="none" stroke="#71928b" stroke-width="4"/><path d="M176 31L90 22M176 31L271 18M176 31L202 55" stroke="#71928b" stroke-width="7"/><path d="M168 54V66H181" fill="none" stroke="#303b3e" stroke-width="5"/><circle cx="114" cy="106" r="7" fill="none" stroke="#a58d62" stroke-width="3"/></svg>'
+  });
   const SOURCES = {
+  "fa330": [
+    {"title":"Fa 330-A-0 — Musée de l’Air et de l’Espace","url":"https://www.museeairespace.fr/aller-plus-haut/collections/focke-achgelis-fa-330-a-0-bachstelze/","note":"Motorsuz gözlem aracı, 7,30 m rotor, 1942 denemeleri ve Type IXD2 bağlamı. Güverte düzeni ölçülü kopya değildir."},
+    {"title":"Fa 330 Sandpiper — ABD Hava Kuvvetleri Müzesi","url":"https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196312/focke-achgelis-fa-330-sandpiper/","note":"Güverte vinci, çelik çekme kablosu ve telefon bağlantısı. Model gerçek uçuş fiziği hesaplamaz."},
+    {"title":"Fa 330 müze fotoğrafları — Luftfahrtlexikon","url":"https://luftfahrtlexikon.com/focke-achgelis-fa-330-bachstelze-motorloser-kleintragschrauber-fuer-den-einsatz-auf-u-booten-und-schiffen/","note":"Koltuk, kemerler, rotor başı ve açık iskeletin görsel referansı. Fotoğraf projeye kopyalanmamıştır; ayrıntı oranları yaklaşık yorumdur."}
+  ],
   "strv103": [
   {
     "title": "Arsenalen — Stridsvagn 103C",
