@@ -1,8 +1,8 @@
 # 📋 YAPILACAK ARAÇLAR LİSTESİ & 2 KİŞİLİK ORTAK ÇALIŞMA PLANI
 
-> **Son Güncelleme:** 9 Kasım 2026<br>
-> **Mevcut Durum:** **46 Aktif Araç** (`Grup 1 .. Grup 10` ve ek öncelik `fa330` tamamlandı)
-> **Hedef:** **Grup 11 .. Grup 16** (`Araç #46 .. #75` — 30 yeni araçlık çakışmasız yol haritası)
+> **Son Güncelleme:** 10 Kasım 2026<br>
+> **Mevcut Durum:** **49 Aktif Araç** (`Grup 1 .. Grup 10`, ek öncelik `fa330` ve **Grup 11 `#46..#48`** tamamlandı)
+> **Hedef:** **Grup 11 .. Grup 16** (`Araç #49 .. #75` — kalan 27 araçlık çakışmasız yol haritası)
 
 Bu dosya, projeyi geliştiren **iki geliştiricinin** aynı aracı mükerrer (tekrarlı) kodlamasını önlemek, dosya/kimlik (`id`) adlarını önceden sabitlemek ve Git birleştirme (*merge*) çakışmalarını sıfıra indirmek amacıyla hazırlanmıştır.
 
@@ -61,9 +61,9 @@ Yukarıdaki ek `fa330` ile toplam 46 aktif araç vardır. Aşağıdaki **başlan
 ### 📦 GRUP 11 (Araç #46 – #50): İkonik Zırhlı, Havacılık, Deniz Topçusu & Modern Hava Savunma
 | Sıra | Sabit `id` & Dosya | Yıl / Dönem / Ortam / Köken | Araç Adı & Müze Referansı | Gösterilecek Benzersiz Mekanik İlke & Canlı 3D Etkileşim | Geliştirici | Durum |
 | :---: | :--- | :--- | :--- | :--- | :---: | :---: |
-| **#46** | `t34`<br>`js/vehicles/t34.js` | **1940 / 1944**<br>II. Dünya Savaşı<br>🪖 Kara • `ussr` | **T-34/76 (veya T-34/85) & Christie Helezon Süspansiyon + V-2 Dizel**<br>*(Bovington Tank Museum / Kubinka)* | Gövde iç duvarlarında dikey/eğimli çalışan dev **Christie helezon yayları**, $45^\circ$ eğimli zırh geometrisi ve alüminyum bloklu **V-2-34 V12 dizel motoru**. | — | ⏳ Planlı |
-| **#47** | `norden`<br>`js/vehicles/norden.js` | **1942**<br>II. Dünya Savaşı<br>✈️ Hava • `usa` | **Norden M-9 Bomba Nişangâhı — Mekanik Analog Bilgisayar**<br>*(Smithsonian NASM / NMUSAF)* | İkiz jiroskop, **bilye-disk integratörü (*ball-and-disc integrator*)**, döner optik prizma teleskobu ve uçağın hız/irtifa/rüzgâr verisiyle bırakma noktasını otomatik hesaplayan dişli diferansiyeli. | — | ⏳ Planlı |
-| **#48** | `f14`<br>`js/vehicles/f14.js` | **1974**<br>Soğuk Savaş<br>✈️ Hava • `usa` | **Grumman F-14 Tomcat — Değişken Ok Açılı (*Swing-Wing*) Kanat & AWG-9**<br>*(Smithsonian NASM Udvar-Hazy)* | Titanyum merkez kutu kirişi (*wing carry-through box*) üzerindeki dev rulmanlarla **$20^\circ \leftrightarrow 68^\circ$ (ve $75^\circ$ gemi parkı) senkron açılıp kapanan değişken ok açılı kanatlar**, burun *AWG-9* radar çanağı ve *AIM-54 Phoenix* paletleri. | — | ⏳ Planlı |
+| **#46** | `t34`<br>`js/vehicles/t34.js` | **1940 / 1944**<br>II. Dünya Savaşı<br>🪖 Kara • `ussr` | **T-34/76 (veya T-34/85) & Christie Helezon Süspansiyon + V-2 Dizel**<br>*(Bovington Tank Museum / Kubinka)* | Gövde iç duvarlarında dikey/eğimli çalışan dev **Christie helezon yayları**, $45^\circ$ eğimli zırh geometrisi ve alüminyum bloklu **V-2-34 V12 dizel motoru**. | Antigravity | 🟢 Tamamlandı (18 grup, 246 mesh) |
+| **#47** | `norden`<br>`js/vehicles/norden.js` | **1942**<br>II. Dünya Savaşı<br>✈️ Hava • `usa` | **Norden M-9 Bomba Nişangâhı — Mekanik Analog Bilgisayar**<br>*(Smithsonian NASM / NMUSAF)* | İkiz jiroskop, **bilye-disk integratörü (*ball-and-disc integrator*)**, döner optik prizma teleskobu ve uçağın hız/irtifa/rüzgâr verisiyle bırakma noktasını otomatik hesaplayan dişli diferansiyeli. | Antigravity | 🟢 Tamamlandı (16 grup, 58 mesh) |
+| **#48** | `f14`<br>`js/vehicles/f14.js` | **1974**<br>Soğuk Savaş<br>✈️ Hava • `usa` | **Grumman F-14 Tomcat — Değişken Ok Açılı (*Swing-Wing*) Kanat & AWG-9**<br>*(Smithsonian NASM Udvar-Hazy)* | Titanyum merkez kutu kirişi (*wing carry-through box*) üzerindeki dev rulmanlarla **$20^\circ \leftrightarrow 68^\circ$ (ve $75^\circ$ gemi parkı) senkron açılıp kapanan değişken ok açılı kanatlar**, burun *AWG-9* radar çanağı ve *AIM-54 Phoenix* paletleri. | Antigravity | 🟢 Tamamlandı (17 grup, 157 mesh) |
 | **#49** | `patriot`<br>`js/vehicles/patriot.js` | **1984 / 1991**<br>Modern<br>🪖 Kara • `usa` | **MIM-104 Patriot — M901 Fırlatma İstasyonu & AN/MPQ-53 Faz Dizinli Radar**<br>*(US Army ADA Museum / Smithsonian)* | Hidrolik dikme silindirleriyle $0^\circ \to 38^\circ$ yükselen 4'lü kanister, döner kaide, kırılabilir ön diyafram kapaklardan çıkan PAC-2 füzesi ve **faz dizinli (*phased array*) radar** kesiti. | — | ⏳ Planlı |
 | **#50** | `yamato460`<br>`js/vehicles/yamato460.js` | **1941**<br>II. Dünya Savaşı<br>⚓ Deniz • `japan`* | **IJN Yamato — 460 mm (*Type 94*) Üç Namlulu Deniz Topu Tareti & Asansörleri**<br>*(Yamato Museum, Kure)* | Tarihin en büyük deniz topu tareti (2.774 ton): su altı cephaneliğinden taret içine çıkan **3 katlı mermi ve barut kesesi asansörleri**, hidrolik tokmak ve 3 namlunun sarsıntıyı önleyen **gecikme bobinli (*delay coil*)** salvosu. | — | ⏳ Planlı |
 

@@ -645,7 +645,49 @@
     modal:['Açık iskelet, çift kızak ve kemerli koltuk','Üç palalı rotor başlığı, mafsallar ve kuyruk','Temsili denizaltı güvertesi, saklama tüpleri ve vinç','Kısa çekme kablosu, telefon hattı ve altı adımlı tur'],
     svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M25 108H240L270 121H46Z" fill="#4c585d"/><path d="M55 108V85H84V108" fill="#718187"/><path d="M115 108Q140 78 169 66" fill="none" stroke="#a58d62" stroke-width="2"/><path d="M157 72L179 66L240 77M178 65L176 31M157 72L153 84H191M240 77V54L259 76Z" fill="none" stroke="#71928b" stroke-width="4"/><path d="M176 31L90 22M176 31L271 18M176 31L202 55" stroke="#71928b" stroke-width="7"/><path d="M168 54V66H181" fill="none" stroke="#303b3e" stroke-width="5"/><circle cx="114" cy="106" r="7" fill="none" stroke="#a58d62" stroke-width="3"/></svg>'
   });
+  VEHICLES.push({
+    id:'t34', sim:'t34', group:11, status:'live', year:1940, yearLabel:'1940–1941 (erken üretim)', eraLabel:'II. DÜNYA SAVAŞI • ORTA TANK',
+    domain:'land', era:'ww2', energy:['ice'], role:['armor'], origin:'ussr',
+    name:'T-34/76 — Christie Süspansiyonu ve V-2 Dizel', sub:'EĞİMLİ ZIRH • YAN DUVAR HELEZON YAYLARI • 76,2 MM TOP',
+    desc:'Eğimli zırh, geniş palet ve dizel motoru bir araya getiren Sovyet orta tankı. Engel kaydırıcısıyla bir tekerleğin altına kütük koyun: Christie kolu döner, gövde duvarındaki helezon yay kısalır ve palet hattı yeniden çizilir. X-Ray ile V-2 V12 dizeli, volan-fanı ve arka cer dişlilerini inceleyin. Ölçüler ve iç yerleşim yaklaşıktır.',
+    tags:['Christie Süspansiyonu','Kütük Engel Testi','V-2 V12 Dizel','76,2 mm Top'],
+    specs:[['AĞIRLIK','~26,5 t'],['MOTOR','V-2-34 V12 dizel, ~500 BG'],['ZIRH','15–45 mm, eğimli'],['YÜRÜYÜŞ','5 büyük tekerlek / taraf, dönüş makarası yok']],
+    tag:'T34-76-1941', icon:'🛡️',
+    modal:['Eğimli gövde, sürücü kapağı ve ön makineli tüfek','Altıgen taret, 76,2 mm top ve geri tepme','Christie salıncak kolları ve yan duvar yayları','V-2 dizel, volan-fan, şanzıman ve arka cer'],
+    svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M40 88L70 70H230L262 82L270 96H40Z" fill="#4a5532"/><path d="M120 70L132 50H190L198 70Z" fill="#465030"/><path d="M196 58H292" stroke="#3b4247" stroke-width="5"/><path d="M36 100H272L262 118H48Z" fill="#252b2e"/><g fill="#3b4247"><circle cx="78" cy="108" r="12"/><circle cx="114" cy="108" r="12"/><circle cx="150" cy="108" r="12"/><circle cx="186" cy="108" r="12"/><circle cx="222" cy="108" r="12"/></g><path d="M114 96L122 80" stroke="#8a9197" stroke-width="3"/></svg>'
+  });
+  VEHICLES.push({
+    id:'norden', sim:'norden', group:11, status:'live', year:1942, yearLabel:'1942 (M-9 ailesi)', eraLabel:'II. DÜNYA SAVAŞI • MEKANİK HESAP',
+    domain:'air', era:'ww2', energy:['electric'], role:['intelligence'], origin:'usa',
+    name:'Norden M-9 — Mekanik Analog Bomba Nişangâhı', sub:'DİSK–BİLYE İNTEGRATÖRÜ • JİROSKOPLU STABİLİZATÖR • DÜŞÜŞ AÇISI',
+    desc:'Uçağın yer hızını ve irtifasını dişliler, disk–bilye integratörü ve jiroskoplarla hesaplayan nişangâh. Bomba koşusunu başlatın: teleskop aynası hedefi izler, düşüş açısına ulaşınca bırakma kontağı kapanır. Hız ayarını bozarsanız artı işaret kayar ve ıska mesafesi hesaplanır. Hava direnci ve gerçek trail tabloları kullanılmaz; iç düzen eğitim amaçlı yorumdur.',
+    tags:['Disk–Bilye İntegratörü','Düşüş Açısı Hesabı','Jiroskoplu Stabilizatör','Hız Ayar Hatası ve Iska'],
+    specs:[['ÜRETİCİ (MÜZE ÖRNEĞİ)','Victor Adding Machine Co.'],['BİLEŞENLER','Nişangâh başlığı + stabilizatör'],['HESAP','tan δ = V·√(2h/g) / h (dirençsiz)'],['SAHNE','Müze kaidesi + eğitim ekranı']],
+    tag:'NORDEN-M9-1942', icon:'🎯',
+    modal:['Nişangâh başlığı, teleskop ve ayna tahriki','Hız motoru ve disk–bilye integratörü','Nişan ve düşüş açısı göstergeleri, bırakma kontağı','Jiroskoplu stabilizatör ve otomatik pilot bağlantısı'],
+    svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><rect x="110" y="96" width="100" height="26" fill="#252b2e"/><rect x="118" y="46" width="84" height="50" rx="6" fill="#2b2f33"/><circle cx="160" cy="71" r="16" fill="none" stroke="#a08046" stroke-width="3"/><path d="M160 71L176 64" stroke="#a08046" stroke-width="3"/><rect x="200" y="58" width="44" height="14" fill="#3b4247"/><path d="M244 65L290 122" stroke="#d89a43" stroke-dasharray="5 4" stroke-width="2"/><path d="M60 122H300" stroke="#71513b" stroke-width="3"/><circle cx="290" cy="122" r="5" fill="#863e32"/></svg>'
+  });
+  VEHICLES.push({
+    id:'f14', sim:'f14', group:11, status:'live', year:1974, yearLabel:'1974 (hizmet) • müze örneği F-14D(R)', eraLabel:'SOĞUK SAVAŞ • DEĞİŞKEN OK AÇILI KANAT',
+    domain:'air', era:'coldwar', energy:['jet'], role:['aircraft'], origin:'usa',
+    name:'Grumman F-14 Tomcat — Değişken Ok Açılı Kanat', sub:'20° ⇄ 68° SENKRON KANAT • 75° YERDE PARK • AIM-54 PHOENIX',
+    desc:'İki dış kanadın pivotlar etrafında aynı açıyla döndüğü uçak gemisi önleme uçağı. Ok açısını 20°’den 68°’e taşıyın, Mach’a bağlı temsili programı açın veya yerdeyken 75° park konumunu seçin. Açıklık, kanat ile kuyruk arasındaki yükseklik farkı ve AIM-54 ayrılması incelenebilir. Gövde ve iç yerleşim yaklaşıktır; gerçek CADC programı ve radar modellenmez.',
+    tags:['Senkron Kanat Pivotları','20° / 68° / 75° Konumları','Hava Alığı Rampası ve Art Yakıcı','6 × AIM-54'],
+    specs:[['AÇIKLIK','~19,54 m (20°) / ~11,65 m (68°)'],['PARK','~10,15 m (75°, yalnız yerde)'],['UZUNLUK','~19,1 m'],['MÜZE ÖRNEĞİ','F-14D(R), Udvar-Hazy']],
+    tag:'F14-TOMCAT-1974', icon:'✈️',
+    modal:['Kanat kök kutusu ve senkron pivotlar','20°–68° uçuş, 75° yerde park','Hava alığı rampası, fan ve art yakıcı lülesi','AIM-54 Phoenix ayrılması ve kanopi'],
+    svg:'<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M160 10L170 40V118L184 128H136L150 118V40Z" fill="#8f979c"/><path d="M168 56L290 86L292 94L168 82Z" fill="#7f878c"/><path d="M152 56L30 86L28 94L152 82Z" fill="#7f878c"/><path d="M168 56L250 112L244 118L168 84Z" fill="none" stroke="#d89a43" stroke-dasharray="4 3" stroke-width="2"/><path d="M146 104L120 122H146ZM174 104L200 122H174Z" fill="#6c7378"/><circle cx="168" cy="60" r="4" fill="#252b2e"/><circle cx="152" cy="60" r="4" fill="#252b2e"/></svg>'
+  });
   const SOURCES = {
+  "f14": [
+    {"title":"Grumman F-14D(R) Tomcat — Smithsonian NASM (A20040156000)","url":"https://airandspace.si.edu/collection-objects/grumman-f-14dr-tomcat/nasm_A20040156000","note":"Udvar-Hazy’de sergilenen, F-14A olarak üretilip D(R) standardına dönüştürülen uçak. Kanat açıları 20°/68°/75°; gövde ve iç yerleşim yaklaşık."}
+  ],
+  "norden": [
+    {"title":"Bombsight, Norden M-9, Enola Gay — Smithsonian NASM (A19470009000)","url":"https://airandspace.si.edu/collection-objects/bombsight-norden-m-9-stabilizer-type-x-1-reflex-sight/nasm_A19470009000","note":"Nişangâh başlığı, stabilizatör ve X-1 refleks nişangâhı; Victor Adding Machine Co. üretimi. Modelin iç dişli ve integratör ölçüleri eğitim amaçlı yorumdur."}
+  ],
+  "t34": [
+    {"title":"T-34/76 — The Tank Museum","url":"https://tankmuseum.org/tank-nuts/tank-collection/t-34-76","note":"Finlandiya’nın 1941’de ele geçirdiği erken üretim örnek; 76,2 mm top, 15–45 mm eğimli zırh, ~26,5 t, 4 kişilik mürettebat. Christie kol/yay oranları ve iç yerleşim yaklaşık yorumdur."}
+  ],
   "fa330": [
     {"title":"Fa 330-A-0 — Musée de l’Air et de l’Espace","url":"https://www.museeairespace.fr/aller-plus-haut/collections/focke-achgelis-fa-330-a-0-bachstelze/","note":"Motorsuz gözlem aracı, 7,30 m rotor, 1942 denemeleri ve Type IXD2 bağlamı. Güverte düzeni ölçülü kopya değildir."},
     {"title":"Fa 330 Sandpiper — ABD Hava Kuvvetleri Müzesi","url":"https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/196312/focke-achgelis-fa-330-sandpiper/","note":"Güverte vinci, çelik çekme kablosu ve telefon bağlantısı. Model gerçek uçuş fiziği hesaplamaz."},
