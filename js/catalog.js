@@ -44,7 +44,7 @@
       { key: 'rome', label: 'Roma' }, { key: 'byzantine', label: 'Bizans (Doğu Roma)' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
       { key: 'ottoman', label: 'Osmanlı' }, { key: 'turkmen', label: 'Türkmen / Akkoyunlu geleneği' }, { key: 'seljuk', label: 'Selçuklular' }, { key: 'gokturk', label: 'Göktürkler' }, { key: 'turkey', label: 'Türkiye' }, { key: 'italy', label: 'İtalya (Rönesans)' },
       { key: 'uk', label: 'İngiltere' }, { key: 'germany', label: 'Almanya' }, { key: 'sweden', label: 'İsveç' },
-      { key: 'france', label: 'Fransa' }, { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }, { key: 'korea', label: 'Kore (Joseon)' }, { key: 'mexico', label: 'Meksika (Mezoamerika)' }, { key: 'europe', label: 'Avrupa (yer atfı belirsiz)' }, { key: 'greek', label: 'Helenistik Dünya' }
+      { key: 'france', label: 'Fransa' }, { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }, { key: 'japan', label: 'Japonya' }, { key: 'korea', label: 'Kore (Joseon)' }, { key: 'mexico', label: 'Meksika (Mezoamerika)' }, { key: 'europe', label: 'Avrupa (yer atfı belirsiz)' }, { key: 'greek', label: 'Helenistik Dünya' }
     ] },
     { key: 'status', url: 'durum', label: 'Durum', options: [
       { key: 'live', label: '🟢 Simülatör Hazır' }, { key: 'planned', label: '⏳ Planlı' }
@@ -684,7 +684,116 @@
   VEHICLES.push({"id": "shermancrab", "sim": "shermancrab", "group": 18, "status": "live", "year": 1944, "yearLabel": "1944 • Normandiya", "eraLabel": "II. DÜNYA SAVAŞI • MUHAREBE İSTİHKÂMI", "domain": "land", "era": "ww2", "energy": ["ice"], "role": ["defense", "armor"], "origin": "uk", "name": "Sherman Crab — Zincirli Mayın Temizleme Tankı", "sub": "DÖNER TAMBUR • KALDIRMA KOLLARI • MULTIBANK MOTOR", "desc": "Sherman V gövdesi, zincirli ön tambur, bağlı hidrolik kollar ve beş bloklu motor. Dövücüyü yavaşlatılmış gösterimde çalıştırın; kapakları açıp iç yapıyı inceleyin. Mayın patlaması veya temizleme başarısı hesaplanmaz.", "tags": ["Zincirli Dövücü", "Hidrolik Kollar", "VVSS", "Motor Kesiti"], "specs": [["TEMEL ARAÇ", "M4A4 / Sherman V"], ["MÜRETTEBAT", "5 kişi"], ["KÜTLE", "~34,5 ton"], ["GÖREV", "Mayınlı alanda geçit açma"]], "tag": "SHERMAN-CRAB", "icon": "🛡️", "svg": "<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M40 90L65 60H175L210 90Z M90 60V35H140L160 60Z\" fill=\"#60674c\"/><path d=\"M95 45H25\" stroke=\"#394232\" stroke-width=\"7\"/><rect x=\"35\" y=\"90\" width=\"175\" height=\"30\" rx=\"15\" fill=\"#333c32\"/><path d=\"M190 85L280 70M260 70V115M270 70L290 110M280 70L310 100\" fill=\"none\" stroke=\"#727c70\" stroke-width=\"5\"/><circle cx=\"275\" cy=\"70\" r=\"14\" fill=\"#60674c\"/></svg>"});
   VEHICLES.push({"id": "french75", "sim": "french75", "group": 18, "status": "live", "year": 1897, "yearLabel": "1897", "eraLabel": "MODERN TOPÇULUĞA GEÇİŞ", "domain": "land", "era": "industrial", "energy": ["gunpowder"], "role": ["artillery"], "origin": "france", "name": "Fransız 75’liği — Hidropnömatik Geri Tepme", "sub": "CANON DE 75 MODÈLE 1897 • SABİT ARABA, KAYAN NAMLU", "desc": "Ahşap telli tekerlekler, kutu kuyruk ve açıklıklı kalkan. Namluyla bağlı yağ pistonunu ve temsili gaz hacmini kesitte izleyin. Boş mekanik çevrim ve elle konum kontrolü; balistik hesabı yoktur.", "tags": ["Geri Tepme Kesiti", "Ahşap Tekerlekler", "Elle Çevrim", "1897"], "specs": [["ÇAP", "75 mm"], ["MEKANİZMA", "Hidropnömatik geri tepme"], ["ARABA", "Tek kutu kuyruk"], ["MODEL", "Yaklaşık müze rekonstrüksiyonu"]], "tag": "FRENCH-75", "icon": "⚙️", "svg": "<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M50 115L180 82L190 45\" fill=\"none\" stroke=\"#66766f\" stroke-width=\"9\"/><path d=\"M150 55L295 35\" stroke=\"#5b6c65\" stroke-width=\"10\"/><path d=\"M185 95V20H205V90\" fill=\"#66766f\"/><circle cx=\"170\" cy=\"90\" r=\"35\" fill=\"none\" stroke=\"#8a7353\" stroke-width=\"7\"/><path d=\"M135 90H205M170 55V125M145 65L195 115M145 115L195 65\" stroke=\"#8a7353\" stroke-width=\"4\"/></svg>"});
   VEHICLES.push({"id": "dreadnought", "sim": "dreadnought", "group": 18, "status": "live", "year": 1906, "yearLabel": "1906", "eraLabel": "DENİZ GÜCÜNDE TASARIM DEVRİMİ", "domain": "sea", "era": "industrial", "energy": ["steam"], "role": ["artillery", "armor"], "origin": "uk", "name": "HMS Dreadnought — Türbinli Zırhlı Çağı", "sub": "BEŞ ÇİFT TARET • 18 KAZAN • DÖRT PERVANE", "desc": "Erken düzeni temel alan tam gemi: iki baca, üç ayaklı direk, filikalar ve beş ana taret. Kesitte kazanları, iki türbin çiftini ve bağlı dört şaftı inceleyin. İç yerleşim ve sahne oranları yaklaşık müze yorumudur.", "tags": ["Tam Gemi", "Türbin Kesiti", "Dört Şaft", "Beş Çift Taret"], "specs": [["ANA BATARYA", "10 × 305 mm"], ["TAHRİK", "Buhar türbinleri / 4 şaft"], ["KAZANLAR", "18 Babcock & Wilcox"], ["TARİHSEL HIZ", "21 knot"]], "tag": "DREADNOUGHT-1906", "icon": "⚓", "svg": "<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M15 90H305L285 115H40Z\" fill=\"#77858c\"/><path d=\"M30 108H290\" stroke=\"#863e32\" stroke-width=\"10\"/><path d=\"M95 90V60H120V90M140 90V35H155V90M180 90V40H195V90M163 70V12M145 27H181\" fill=\"#77858c\" stroke=\"#44545e\" stroke-width=\"3\"/><path d=\"M60 89V76H83V89M226 89V76H250V89M75 80H110M235 80H275\" fill=\"#677780\" stroke=\"#44545e\" stroke-width=\"4\"/></svg>"});
+  VEHICLES.push({
+    id: 'patriot', sim: 'patriot', group: 11, status: 'live',
+    year: 1984, yearLabel: '1984 (hizmet) / 1991 (PAC-2)', eraLabel: 'MODERN HAVA SAVUNMA • FAZ DİZİNLİ RADAR',
+    domain: 'land', era: 'modern', energy: ['jet', 'electric'], role: ['defense'], origin: 'usa',
+    name: 'MIM-104 Patriot — M901 Fırlatma İstasyonu ve AN/MPQ-53 Radar',
+    sub: '4× PAC-2 KANİSTER PAKETİ • DÖNMEYEN FAZ DİZİNLİ ANTEN • ELEKTRONİK HÜZME',
+    desc: 'Solda M860 yarı römorku üzerinde dört hücreli M901 fırlatma istasyonu, sağda AN/MPQ-53 faz dizinli radar seti. Kanisterleri 38° atış açısına kaldırıp dört MIM-104 füzesini sırayla ateşleyin; X-Ray ile radom arkasındaki ferrit faz kaydırıcı diziyi ve anten dönmeden çalışan elektronik tarama hüzmesini inceleyin. Saha yerleşimi ve iç modüller yaklaşık sergi yorumudur.',
+    tags: ['M901 + AN/MPQ-53 Çifti', 'Elektronik Faz Taraması', '4× Kırılabilir Kanister Kapağı', '18 İnceleme Grubu'],
+    specs: [['SÜRÜM', 'MIM-104A/C (PAC-2) • M901'], ['RADAR', 'AN/MPQ-53 pasif faz dizinli'], ['KANİSTER', '4 hücre • 0°–38° yükseliş'], ['İNCELEME', '18 bağımsız grup']],
+    tag: 'PATRIOT-M901-MPQ53', icon: '📡',
+    modal: [
+      'M860 yarı römork, dört açılır hidrolik denge ayağı ve yol/atış konumu dönüşümü',
+      'İkiz yükseliş silindirleri, 4× PAC-2 kanister, kırılabilir ön kapaklar ve sıralı ateşleme',
+      'AN/MPQ-53 sığınağı, Ø 2,44 m faz dizinli mercek, yardımcı TVM ve IFF dizileri',
+      'Mekanik dönmeyen anten üzerinde elektronik hüzme tarama gösterimi'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><line x1="16" y1="118" x2="304" y2="118" stroke="#94a3b8" stroke-dasharray="4 4"/><rect x="28" y="96" width="112" height="10" fill="#555f47"/><circle cx="48" cy="110" r="8" fill="#252b2e"/><circle cx="68" cy="110" r="8" fill="#252b2e"/><g transform="translate(56,92) rotate(-32)"><rect x="0" y="-26" width="82" height="24" rx="2" fill="#636b52" stroke="#1e293b" stroke-width="2"/><line x1="8" y1="-14" x2="76" y2="-14" stroke="#334155" stroke-width="1.5"/></g><rect x="190" y="96" width="102" height="10" fill="#555f47"/><rect x="218" y="56" width="66" height="40" fill="#636b52" stroke="#1e293b" stroke-width="2"/><line x1="214" y1="96" x2="196" y2="46" stroke="#1e293b" stroke-width="5"/><circle cx="204" cy="68" r="14" fill="#bfc4b8" stroke="#334155" stroke-width="2"/><path d="M196 64 L142 36 L150 68 Z" fill="#38bdf8" fill-opacity="0.38"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'yamato460', sim: 'yamato460', group: 11, status: 'live',
+    year: 1941, yearLabel: '1941 (Kure Tersanesi)', eraLabel: 'II. DÜNYA SAVAŞI • SÜPER ZIRHLI TOPÇULUĞU',
+    domain: 'sea', era: 'ww2', energy: ['gunpowder', 'electric'], role: ['artillery', 'armor'], origin: 'japan',
+    name: 'IJN Yamato — 460 mm (Type 94) Üçlü Deniz Topu Tareti ve Asansörleri',
+    sub: '650 MM ÖN ZIRH • BAĞIMSIZ ÜÇ BEŞİK • 0,08 SN GECİKME BOBİNİ • BARBET ASANSÖRLERİ',
+    desc: 'Savaş gemilerine takılmış en büyük çaplı top: üç adet 460 mm L/45 namlu, 15 metrelik yan mesafe ölçer kolları ve güverte altındaki çok katlı mermi/barut odalarıyla 1:2 müze kesiti. Namlu ağzı şok dalgası girişimini önleyen 0,08 saniyelik orta namlu gecikme bobinini ve +3° sabit açıda çalışan asansör–zincirli rammer çevrimini inceleyin.',
+    tags: ['650 mm Ön Zırh & X-Ray', '0,08 sn Orta Namlu Gecikmesi', '+3° Asansör & Rammer Dolumu', '18 İnceleme Grubu'],
+    specs: [['ÇAP / NAMLU', '460 mm (46 cm/45 Type 94)'], ['TARET KÜTLESİ', '~2.774 ton (tam ölçek)'], ['MERMİ', '1.460 kg Type 91 Zırh Delici'], ['ÖLÇEK', '1:2 dikey barbet müze kesiti']],
+    tag: 'YAMATO-460MM-TYPE94', icon: '⚓',
+    modal: [
+      '650 mm eğimli ön zırh, teak güverte kesiti, bilyeli yatak ve 15 m mesafe ölçer kolları',
+      'Bağımsız yükselen üç 460 mm L/45 namlu ve 0,08 sn kademeli salvo geri tepmesi',
+      'Kesitli 560 mm barbet içinde üst mermi odası ve alev kapaklı alt ipek barut odası',
+      '+3° dolum açısında yükselen mermi/barut asansörleri, Welin kamalar ve zincirli rammer'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><rect x="92" y="64" width="96" height="64" fill="#434c54" fill-opacity="0.35" stroke="#1e293b" stroke-width="2"/><line x1="48" y1="64" x2="236" y2="64" stroke="#8a6b48" stroke-width="5"/><polygon points="84,62 102,34 176,34 196,62" fill="#4b545c" stroke="#1e293b" stroke-width="2.2"/><line x1="178" y1="46" x2="296" y2="24" stroke="#334155" stroke-width="5" stroke-linecap="round"/><line x1="180" y1="52" x2="300" y2="32" stroke="#1e293b" stroke-width="5" stroke-linecap="round"/><rect x="70" y="38" width="22" height="10" fill="#434c54" stroke="#1e293b" stroke-width="1.5"/><line x1="126" y1="68" x2="126" y2="122" stroke="#d97706" stroke-width="3" stroke-dasharray="4 3"/><line x1="154" y1="68" x2="154" y2="122" stroke="#0284c7" stroke-width="3" stroke-dasharray="4 3"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'cezeri', sim: 'cezeri', group: 12, status: 'live',
+    year: 1206, yearLabel: '1206 (Diyarbakır • Artuklu)', eraLabel: 'ORTA ÇAĞ • HİDROLİK & MEKANİK OTOMASYON',
+    domain: 'land', era: 'medieval', energy: ['gravity'], role: ['transport'], origin: 'seljuk',
+    name: '1206 El-Cezerî — Su Çarklı, Kam Milli ve İkiz Pompalı Mekanik Düzenek',
+    sub: '90° ÇİVİLİ ÇARK & FENER DİŞLİ • EKSANTRİK KAM MİLİ • YARIK KOLLU İKİZ BAKIR POMPA',
+    desc: 'Bedîüzzaman El-Cezerî’nin 1206’da Diyarbakır Artuklu Sarayı’nda tamamladığı Kitâbü’l-Hiyel’deki iki temel makine ilkesini birleştiren müze rekonstrüksiyonu: su çarkından 1:2 hız oranlı 90° fener dişliyle sürülen dört fazlı eksantrik kam mili ve krank pimini doğrusal harekete çeviren yarık salınım kollu ikiz bakır emme-basma pompası. Savak kapısını %0’a indirdiğinizde tüm aktarma durur.',
+    tags: ['Yarık Kollu İkiz Pompa', '4 Fazlı Eksantrik Kam Mili', '90° Fener Dişli (1:2)', 'Klape Valf Kesiti'],
+    specs: [['TARİH / YER', '1206 • Diyarbakır (Artuklu)'], ['KAYNAK ESER', 'Kitâbü’l-Hiyel (Kategori V)'], ['AKTARMA', 'Su çarkı → 90° dişli + yarık kol'], ['İNCELEME', '18 bağımsız grup']],
+    tag: 'CEZERI-1206-PUMP-CAM', icon: '⚙️',
+    modal: [
+      'Bazalt su arkı, ayarlanabilir meşe savak kapısı ve 16 kanatlı alt akışlı su çarkı',
+      'Temas noktasında eş teğetsel hızlı 20 dişli çivili çark ve 10 çubuklu fener dişli',
+      '90° faz farklı dört eksantrik kam lobu ve sıralı mafsallı devirme kolları',
+      'Yarık kol, karşılıklı ikiz bakır pistonlar, 4 tek yönlü klape valf ve bakır terfi borusu'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="114" width="280" height="12" fill="#3a3d40"/><rect x="24" y="104" width="272" height="10" fill="#2b8cbe" fill-opacity="0.55"/><circle cx="92" cy="74" r="38" fill="none" stroke="#785638" stroke-width="5"/><line x1="54" y1="74" x2="130" y2="74" stroke="#785638" stroke-width="3"/><line x1="92" y1="36" x2="92" y2="112" stroke="#785638" stroke-width="3"/><line x1="92" y1="106" x2="108" y2="54" stroke="#a68446" stroke-width="5"/><rect x="44" y="78" width="28" height="14" fill="#b86d3c" stroke="#523924" stroke-width="1.8"/><rect x="122" y="78" width="28" height="14" fill="#b86d3c" stroke="#523924" stroke-width="1.8"/><path d="M58 78 V34 H246 M136 78 V34" fill="none" stroke="#b86d3c" stroke-width="4"/><line x1="166" y1="64" x2="276" y2="64" stroke="#523924" stroke-width="5"/><circle cx="196" cy="64" r="9" fill="#b86d3c"/><circle cx="228" cy="64" r="9" fill="#a68446"/><circle cx="260" cy="64" r="9" fill="#b86d3c"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'saturnv_f1', sim: 'saturnv_f1', group: 13, status: 'live',
+    year: 1967, yearLabel: '1967 • Apollo 4 ilk uçuş', eraLabel: 'SOĞUK SAVAŞ • AY YARIŞI & SIVI ROKET İTKİSİ',
+    domain: 'space', era: 'coldwar', energy: ['jet'], role: ['transport'], origin: 'usa',
+    name: 'Saturn V — Rocketdyne F-1 Dev Roket Motoru ve Türbopompa Kesiti',
+    sub: '1:1 ÖLÇEK (Ø 3,7 M LÜLE) • 55.000 BG MARK 10 TÜRBOPOMPA • ±6° KARDAN VEKTÖRLEME',
+    desc: 'Apollo Ay uçuşlarını taşıyan Saturn V’in birinci kademesindeki tek odalı en güçlü sıvı yakıtlı roket motoru. 1:1 müze standında 178 borulu rejeneratif yanma odasını, kararsızlık önleyici bakır bölmeli (baffle) enjektörü, ortak milde dönen LOX/RP-1 çarklarıyla 55.000 BG türbopompayı ve alt lüle perde soğutmasını inceleyin. Gaz %0 iken şaft durur ve ateşleme kilitlenir.',
+    tags: ['55.000 BG Türbopompa Kesiti', 'Rejeneratif & Perde Soğutma', '±6° X/Z Kardan Vektörleme', '17 İnceleme Grubu'],
+    specs: [['DENİZ SEVİYESİ İTKİ', '6,77 MN (1,5 milyon lbf)'], ['BOY / ÇAP', '5,6 m / Ø 3,7 m (1:1)'], ['YAKIT / OKSİTLEYİCİ', 'RP-1 Kerosen + Sıvı Oksijen'], ['MÜZE REFERANSI', 'Smithsonian NASM A19700271000']],
+    tag: 'SATURNV-F1-1967', icon: '🚀',
+    modal: [
+      'Statik test çerçevesi, üniversal kardan mafsalı ve ±6° X/Z hidrolik vektör aktüatörleri',
+      'LOX kubbesi, radyal bölmeli bakır enjektör, Inconel soğutma boruları ve sökülür folyo ceket',
+      'Ortak şaftlı LOX çarkı, RP-1 çarkı ve 2 kademeli türbinden oluşan Mark 10 türbopompa kesiti',
+      'Sarmal türbin egzoz manifoldu, Ø 3,7 m perde soğutmalı alt çan ve statik ateşleme gösterimi'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><line x1="76" y1="14" x2="244" y2="14" stroke="#455058" stroke-width="5"/><line x1="88" y1="14" x2="72" y2="128" stroke="#455058" stroke-width="4"/><line x1="232" y1="14" x2="248" y2="128" stroke="#455058" stroke-width="4"/><circle cx="152" cy="28" r="12" fill="#7a838b" stroke="#1e293b" stroke-width="2"/><path d="M140 34 L144 52 L120 82 L104 114 H200 L184 82 L160 52 L164 34 Z" fill="#b49658" fill-opacity="0.5" stroke="#1e293b" stroke-width="2.2"/><ellipse cx="152" cy="82" rx="36" ry="6" fill="#7a838b" stroke="#1e293b" stroke-width="2"/><rect x="184" y="40" width="22" height="36" rx="4" fill="#7a838b" stroke="#1e293b" stroke-width="1.8"/><path d="M116 114 L152 136 L188 114 Z" fill="#f97316" fill-opacity="0.72"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'firtina', sim: 'firtina', group: 16, status: 'live',
+    year: 2001, yearLabel: '2001 (TSK envanteri)', eraLabel: 'MODERN ÇAĞ • KUNDAĞI MOTORLU TOPÇU',
+    domain: 'land', era: 'modern', energy: ['ice', 'gunpowder'], role: ['artillery', 'armor'], origin: 'turkey',
+    name: 'T-155 Fırtına — 155 mm L/52 Kundağı Motorlu Obüs ve Otomatik Yükleyici',
+    sub: '155 MM L/52 NAMLU • ROBOTİK MERMİ YÜKLEME KOLU • 12× HİDROPNÖMATİK SÜSPANSİYON',
+    desc: 'Ön-sağda 1.000 BG MTU V8 dizel ve Allison otomatik şanzıman, arkada 48 atımlık taret magazini ve her yükseliş açısında (-2°..+68°) namlu eksenine hizalanan robotik mermi yükleme kolu. Beşik üstü ilk hız radarını (MVR), çift bölmeli ağız baskısını ve 12 hidropnömatik süspansiyon kolunun atış kilidi (çökme) hareketini X-Ray ile inceleyin.',
+    tags: ['Robotik Yükleme Kolu', '155 mm L/52 & İlk Hız Radarı', '12× Hidropnömatik HSU', '19 İnceleme Grubu'],
+    specs: [['NAMLU', '155 mm L/52 (~8,06 m)'], ['YÜKSELİŞ / TARET', '-2°..+68° / ±180°'], ['GÜÇ PAKETİ', '1.000 BG V8 dizel (ön-sağ)'], ['MÜHİMMAT', '48 adet 155 mm (otomatik raf)']],
+    tag: 'T155-FIRTINA-2001', icon: '🛡️',
+    modal: [
+      'Kaynaklı zırhlı gövde, sol sürücü mahalli, katlanır yol kilidi ve arka ikmal kapısı',
+      'Ön-sağ 1.000 BG V8 dizel, Allison şanzıman, ön cer dişlileri ve 12 hidropnömatik kol',
+      '155 mm L/52 namlu, duman tahliyesi, çift bölmeli ağız baskısı ve ilk hız radarı (MVR)',
+      '48 mermi magazini ve namlu yükseliş açısına hizalanan robotik mermi sürme kolu'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M32 94 L46 78 H198 L224 88 L216 102 H32 Z" fill="#4c583e" stroke="#1e293b" stroke-width="2"/><path d="M46 78 L54 48 H152 L166 78 Z" fill="#525e44" stroke="#1e293b" stroke-width="2"/><line x1="158" y1="58" x2="298" y2="22" stroke="#3a4332" stroke-width="6" stroke-linecap="round"/><rect x="220" y="37" width="18" height="9" transform="rotate(-14 220 37)" fill="#3a4332"/><rect x="290" y="16" width="14" height="10" transform="rotate(-14 290 16)" fill="#252b2e"/><rect x="36" y="100" width="182" height="20" rx="10" fill="#252b2e"/><g fill="#4c583e"><circle cx="56" cy="110" r="8"/><circle cx="82" cy="110" r="8"/><circle cx="108" cy="110" r="8"/><circle cx="134" cy="110" r="8"/><circle cx="160" cy="110" r="8"/><circle cx="186" cy="110" r="8"/></g></svg>'
+  });
   const SOURCES = {
+  "patriot": [
+    {"title": "MIM-104A Patriot Hava Savunma Füzesi — Smithsonian NASM (A19990073000)", "url": "https://airandspace.si.edu/collection-objects/missile-surface-air-patriot-mim-104a/nasm_A19990073000", "note": "Füze dış boyutları (~5,2 m boy, ~41 cm çap) ve PAC-1/PAC-2 gelişim bağlamı. M901 ve AN/MPQ-53 iç ayrıntıları yaklaşık sergi yorumudur."},
+    {"title": "Patriot Füze Sergisi — White Sands Missile Range Museum", "url": "https://wsmrmuseum.com/2026/10/02/missile-park-2/36/", "note": "Test sahası ve fırlatma sistemi tarihsel bağlamı. Elektronik tarama hüzmesi eğitim amaçlı görselleştirmedir."}
+  ],
+  "yamato460": [
+    {"title": "Yamato Müzesi (Kure Denizcilik Tarihi ve Bilim Müzesi)", "url": "https://yamato-museum.com/", "note": "Kure Donanma Tersanesi’nde inşa edilen Yamato ve 46 cm top sisteminin müze bağlamı."},
+    {"title": "40 cm/45 (46 cm) Type 94 Deniz Topu Teknik Dosyası — NavWeaps", "url": "https://www.navweaps.com/Weapons/WNJAP_18-45_t94.php", "note": "460 mm L/45 namlu, ~2.774 t taret kütlesi, 650 mm ön zırh, +3° yükleme açısı ve 0,08 sn gecikme bobini verileri. 1:2 barbet kesiti yaklaşık yorumdur."}
+  ],
+  "cezeri": [
+    {"title": "El-Cezerî’nin Mekanik Dehası ve İkiz Silindirli Su Pompası — Muslim Heritage", "url": "https://muslimheritage.com/800-years-later-in-memory-of-al-jazari-a-genius-mechanical-engineer/", "note": "1206 Kitâbü’l-Hiyel’deki su çarklı, yarık salınım kollu ve klape valfli ikiz bakır su pompası ile eksantrik kam mili ilkeleri. Ahşap/boru oranları müze rekonstrüksiyonudur."},
+    {"title": "Kitâbü’l-Hiyel El Yazması Yaprağı (1315 nüshası) — The Met (57.51.23)", "url": "https://www.metmuseum.org/art/collection/search/451402", "note": "El-Cezerî külliyatının dönem çizim üslubu için müze karşılaştırması; bu yaprak Fil Saati’ne aittir."}
+  ],
+  "saturnv_f1": [
+    {"title": "Rocketdyne F-1 Sıvı Yakıtlı Roket Motoru — Smithsonian NASM (A19700271000)", "url": "https://airandspace.si.edu/collection-objects/rocket-engine-liquid-fuel-f-1/nasm_A19700271000", "note": "5,6 m boy, 3,7 m çıkış çapı, LOX/RP-1 çevrimi, türbopompa ve türbin egzoz manifoldu referansı. İç çark/boru sayıları eğitim amaçlı sadeleştirilmiştir."}
+  ],
+  "firtina": [
+    {"title": "T-155 Fırtına Kundağı Motorlu Obüs — MKE Resmi Ürün Kaydı", "url": "https://www.mke.gov.tr/Urunler/Firtina-Kundagi-Motorlu-Obus/38", "note": "155 mm 52 kalibre silah sistemi ve mühimmat ailesi. İç otomatik yükleyici ve güç paketi geometrisi yaklaşık sergi yorumudur."},
+    {"title": "ASFAT A.Ş. — Millî Savunma Bakanlığı Askerî Fabrikalar ve Tersaneler", "url": "https://asfat.com.tr/", "note": "Ana üretici ve modernizasyon kurumsal bağlamı."}
+  ],
   "dreadnought": [{"title": "Dreadnought modeli — Royal Museums Greenwich", "url": "https://www.rmg.co.uk/collections/objects/rmgc-object-67323", "note": "1906 tasarımının tarihsel önemi, on ana top ve türbinli tahrik."}, {"title": "Dreadnought genel düzeni — Royal Museums Greenwich", "url": "https://www.rmg.co.uk/collections/objects/rmgc-object-54573", "note": "Erken genel düzen ve arma referansı. Model birebir tersane CAD verisi değildir."}, {"title": "Dreadnought denemeleri — US Naval Institute, 1906", "url": "https://www.usni.org/magazines/proceedings/1906/october/professional-notes", "note": "18 kazan, türbinler ve dönem mühendislik bağlamı. İç boru ve kademe ölçüleri yaklaşık."}, {"title": "Dreadnought — New Zealand Graphic, 1906", "url": "https://paperspast.natlib.govt.nz/periodicals/NZGRAP19061124.2.3", "note": "Dönem anlatımı: taret yerleşimi, dört şaft ve iki dümen."}],
   "french75": [{"title": "75 mm modèle 1897 — Musée de l’Armée", "url": "https://www.musee-armee.fr/en/collections/museum-treasures/75-mm-field-gun-1897-model.html", "note": "Yağ/gaz freni ve tarihsel önem. Kesit ölçülü üretim planı değildir."}, {"title": "Canon de 75 — Australian War Memorial", "url": "https://www.awm.gov.au/collection/C240163", "note": "Kutu kuyruk, ahşap telli tekerlekler, kalkan ve geri tepme sistemi."}],
   "shermancrab": [{"title": "Sherman Crab — The Tank Museum", "url": "https://tankmuseum.org/tank-nuts/tank-collection/sherman-crab", "note": "M4A4 tabanı, Mk I kaldırma sistemi, görev ve müze aracı. Model seri numarası kopyası değildir."}, {"title": "D-Day — ABD Kara Kuvvetleri", "url": "https://www.army.mil/d-day/history.html", "note": "Normandiya ve özel mühendislik araçlarının bağlamı."}, {"title": "M4A4 Multibank — Univem Paris", "url": "https://univem-paris.com/en/project/sherman-m4a4t-n2/", "note": "Özgün M4A4 motorunda beş altı silindirli blok. İç ölçüler yaklaşık."}],

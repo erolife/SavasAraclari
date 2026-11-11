@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 11 Kasım 2026:** 55 aktif model / 101 katalog kaynağı (`shermancrab`, `french75`, `dreadnought` dahil). Seçildiğinde model yükleme, filtrelenebilir tarih çizelgesi ve on duraklı Türk tarihi rotası tamamlandı. 51 test dosyası geçti; araştırma ve görsel kontroller INCELEME_NOTLARI.md içinde. Yeni adaptörleri statik olarak oluşturmayın; güncel yükleme kuralını okuyun. Eski görev sıraları tarihsel kayıttır.
+> **Güncel durum — 12 Kasım 2026:** 60 aktif model / 110 katalog kaynağı (`patriot`, `yamato460`, `cezeri`, `saturnv_f1`, `firtina` dahil). Seçildiğinde model yükleme, filtrelenebilir tarih çizelgesi ve on iki duraklı Türk tarihi rotası tamamlandı. 57 test dosyası geçti; araştırma ve görsel kontroller INCELEME_NOTLARI.md içinde. Yeni adaptörleri statik olarak oluşturmayın; güncel yükleme kuralını okuyun. Eski görev sıraları tarihsel kayıttır.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.
