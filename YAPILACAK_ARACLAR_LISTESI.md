@@ -156,3 +156,14 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 - Başlayan geliştirici ilgili U kodunu sahiplenir. Ortak arayüz dosyalarına dokunan işler, yeni araç entegrasyonlarıyla koordine edilir.
 - Mevcut seçildiğinde model yükleme, tarih çizelgesi, dokuz duraklı Türk tarihi rotası ve paylaşım/kaynak bağlantıları korunur.
 - Her işte kapsama uygun testler ve masaüstü/mobil görsel kontroller tamamlanır; sonuçlar INCELEME_NOTLARI.md içine kaydedilir. Her iş için ayrı Türkçe commit atılır; push zamanı kullanıcının o işteki talimatına göre belirlenir.
+
+
+### Kullanıcı önceliği — 11 Kasım 2026 / Mühendislik üçlüsü
+
+Mevcut sıra numaraları ve rezervasyonlar korunur. Kullanıcı talebiyle push üç iş tamamlandıktan sonra.
+
+| Kimlik / Grup | Çalışma | Geliştirici | Durum |
+| --- | --- | --- | --- |
+| `shermancrab` / 18 | Sherman Crab Mk I | MesAi C | ✅ Tamamlandı — 21 grup, 349 mesh, test ve görsel kontrol |
+| `french75` / 18 | Canon de 75 modèle 1897 | MesAi C | 🔨 Yapılıyor |
+| `dreadnought` / 18 | HMS Dreadnought (1906) | MesAi C | ⏳ Sırada |

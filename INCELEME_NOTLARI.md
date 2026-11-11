@@ -1073,3 +1073,12 @@ Doğrulama: renaultft.cjs, 300 kapalı palet pozu, sıfır hız, geometri tampon
 Kaynaklar katalogda: NASA SR-71 bilgi föyü (ilk uçuş ve boyutlar), Smithsonian NASM J58 (dördüncü kademeden altı baypas borusu), USAF Museum J58 (kompresör), Roadrunners Internationale giriş sistemi sunumu (26 inç koni hareketi). Dış oranlar ve iç yerleşim yaklaşık rekonstrüksiyondur.
 
 Doğrulama: sr71_j58.cjs ile 321 koni konumu, eş zamanlı rotorlar, yüksek Mach sırasında çekirdek sürekliliği, sıfır devir, kapak/kanopi/sıfırlama, tamponların yeniden kullanımı ve zemin kontrol edildi. Tüm 48 test dosyası geçti. 1440×1000 genel, X-Ray, motor kesiti ve açık kabuk/akış; 390×844 mobil görüntüler incelendi. Motor kamerasının kadrajı genişletildi. JavaScript hatası ve yatay taşma yok.
+
+
+## Sherman Crab Mk I — 11 Kasım 2026
+
+21 grup / 349 mesh. M4A4 gövdesi, sabit arkaya bakan 75 mm taret, altı VVSS boji, kapalı palet, 43 zincirli tambur, bağlı kaldırma kolları ve hidrolik çubuklar, sağ yan güç yolu, beş altı silindirli Multibank blok yorumu, kapaklar, far muhafazaları, arka işaret kutuları. Zincirler örneklenmiş geometri kullanır. Gövde ve iç düzen yaklaşık; bir müze seri numarasının birebir kopyası değildir. Gerçek tambur devri, patlama veya temizleme başarısı hesaplanmaz.
+
+Kaynaklar: The Tank Museum Sherman Crab (M4A4, Mk I, hidrolik kaldırma ve görev), ABD Kara Kuvvetleri D-Day (mühendislik araçları bağlamı), Univem Paris M4A4 (beş altı silindirli özgün motor). Bağlantılar katalogdadır.
+
+Doğrulama: shermancrab.cjs; 180 tambur/kol konumu, 43 zincirin her bağlantısının sabit boyu ve tambura bağlılığı, silindir uçları, zemin/gövde açıklığı, sıfır hız, paletler, kapaklar/sıfırlama ve geometri yeniden kullanımı. museum-links.cjs: 53 model / 95 kaynak. Masaüstü 1440×1000 genel, X-Ray ve motor kesiti; çalışan tambur/açık kapak; mobil 390×844 incelendi. Sayfa hatası ve yatay taşma yok.
