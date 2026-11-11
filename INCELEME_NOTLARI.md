@@ -1082,3 +1082,10 @@ Doğrulama: sr71_j58.cjs ile 321 koni konumu, eş zamanlı rotorlar, yüksek Mac
 Kaynaklar: The Tank Museum Sherman Crab (M4A4, Mk I, hidrolik kaldırma ve görev), ABD Kara Kuvvetleri D-Day (mühendislik araçları bağlamı), Univem Paris M4A4 (beş altı silindirli özgün motor). Bağlantılar katalogdadır.
 
 Doğrulama: shermancrab.cjs; 180 tambur/kol konumu, 43 zincirin her bağlantısının sabit boyu ve tambura bağlılığı, silindir uçları, zemin/gövde açıklığı, sıfır hız, paletler, kapaklar/sıfırlama ve geometri yeniden kullanımı. museum-links.cjs: 53 model / 95 kaynak. Masaüstü 1440×1000 genel, X-Ray ve motor kesiti; çalışan tambur/açık kapak; mobil 390×844 incelendi. Sayfa hatası ve yatay taşma yok.
+
+
+## Canon de 75 modèle 1897 — 11 Kasım 2026
+
+18 grup / 142 mesh. Ahşap telli çemberli tekerlekler, tek kutu kuyruk, mahmuz, açıklıklı kalkan, beşik, namlu, arka kapak, el çarkları ve nişangâh. Namluyla birlikte hareket eden bağlı piston, yağ/gaz hacim kesiti ve elle durdurulabilen boş mekanik çevrim. Yaklaşık 0,9 m hareket ve gaz hacmi eşlemesi öğretici yorumdur; gerçek basınç, valf veya balistik hesabı yapılmaz. Kaynaklar: Musée de l’Armée 75 mm modèle 1897 ve Australian War Memorial C240163; katalogda bağlantılıdır.
+
+Doğrulama: french75.cjs ile 404 yükseliş/geri tepme konumu, bağlı piston çubuğu, sabit tekerlekler, kalkan açıklığı, gaz hacminin küçülmesi, sıfır hız, çevrim sonu geri dönüş ve elle müdahale. Testin bulduğu dar üst kalkan açıklığı büyütüldü. museum-links.cjs: 54 model / 97 kaynak. 1440×1000 genel, X-Ray, kesit, açık muhafazada en geri konum ve 390×844 mobil görseller incelendi. Motor/kesit kamerası genişletildi. Sayfa hatası ve yatay taşma yok.

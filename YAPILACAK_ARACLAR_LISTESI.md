@@ -165,5 +165,5 @@ Mevcut sıra numaraları ve rezervasyonlar korunur. Kullanıcı talebiyle push �
 | Kimlik / Grup | Çalışma | Geliştirici | Durum |
 | --- | --- | --- | --- |
 | `shermancrab` / 18 | Sherman Crab Mk I | MesAi C | ✅ Tamamlandı — 21 grup, 349 mesh, test ve görsel kontrol |
-| `french75` / 18 | Canon de 75 modèle 1897 | MesAi C | 🔨 Yapılıyor |
-| `dreadnought` / 18 | HMS Dreadnought (1906) | MesAi C | ⏳ Sırada |
+| `french75` / 18 | Canon de 75 modèle 1897 | MesAi C | ✅ Tamamlandı — 18 grup, 142 mesh, test ve görsel kontrol |
+| `dreadnought` / 18 | HMS Dreadnought (1906) | MesAi C | 🔨 Yapılıyor |
