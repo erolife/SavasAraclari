@@ -1055,3 +1055,12 @@ Kullanıcının ayrı önceliği olarak `fa330` eklendi: **46 aktif araç / 81 k
 Kaynaklar: Australian National Maritime Museum “Johnnie and Mehmet” (https://www.sea.museum/en/whats-on/exhibitions/johnnie-and-mehmet) ve TINA sayı 4 AE2 araştırması (https://www.tinaturk.org/dergi/TINA_Dergi_Sayi_4/content/TINA_Dergi_Sayi_04.pdf). AE2, Sultanhisar ateşiyle hasar aldıktan sonra mürettebatınca batırılmıştır; torpido isabetiyle batma animasyonu yoktur. Müze fotoğrafı değil, yaklaşık gemi rekonstrüksiyonudur.
 
 Doğrulama: sultanhisar.cjs (500 krank/biyel konumu, şaft/pervane eşliği, sıfır devir, durdurma, 121 kovan açısı, açıklıklar, tavan/sıfırlama); turk-route.cjs ve museum-links.cjs geçti. Türk tarihi rotası on durağa çıkarıldı, yeni durak Nusret ile Vecihi arasına eklendi. Tarayıcıda durak seçimi, ilerleme kaydı ve modele rota bağlamıyla geçiş kontrol edildi. 1440×1000 genel, makine kesiti, X-Ray ve 390×844 mobil görüntüler incelendi; başın panel arkasında kalması kamera uzaklığıyla düzeltildi. JavaScript hatası ve yatay taşma yok.
+
+
+## Renault FT — 11 Kasım 2026
+
+22 grup / 315 mesh; 51 aktif model / 88 kaynak. 37 mm toplu çokgen perçinli taret yorumu; yuvarlak döküm taretle karıştırılmaz. Tam döner taret, ön sürücü, arka dört silindirli motor ve siper kuyruğu birlikte gösterilir. Motor kapağı ve iki ön kapı gerçek iç açıklıkları örter. İki kapalı palet yolu, dokuzar yol tekerleği, ön avara ve arka cer dişlisi; hız sıfırdayken palet güncellemesi atlanır. Müze sunumu hareketidir, arazi fiziği veya atış hesabı değildir.
+
+Kaynaklar: The Tank Museum (https://tankmuseum.org/article/ft-17), İspanya Kara Kuvvetleri El Goloso Müzesi (https://ejercito.defensa.gob.es/materiales/otros/museo_carros/museo-carros.html?__locale=es). Katalogda 1917 geliştirme ile 1918 muharebe kullanımı ayrıldı. Belirli bir seri numarası, özgün boya şeması veya kesin iç ölçü iddiası yoktur.
+
+Doğrulama: renaultft.cjs, 300 kapalı palet pozu, sıfır hız, geometri tamponlarının yeniden kullanımı, 146 taret/eğim kombinasyonu, gövde açıklığı, kapaklar, kuyruk, sonlu değerler ve zemine temas kontrolünü geçti. Katalog bağlantıları geçti. 1440×1000 genel, motor kesiti, X-Ray ve açık kapak/ön kapı; 390×844 mobil görüntüler incelendi. Sekizgen taret yüzeyleri, arka kapak ile gövde birleşimi ve düz alt palet hattı düzeltildi. JavaScript hatası ve yatay taşma yok.
