@@ -1,7 +1,7 @@
 # 📋 YAPILACAK ARAÇLAR LİSTESİ & 2 KİŞİLİK ORTAK ÇALIŞMA PLANI
 
-> **Son Güncelleme:** 10 Kasım 2026<br>
-> **Mevcut Durum:** **49 Aktif Araç** (`Grup 1 .. Grup 10`, ek öncelik `fa330` ve **Grup 11 `#46..#48`** tamamlandı)
+> **Son Güncelleme:** 11 Kasım 2026<br>
+> **Mevcut Durum:** **55 Aktif Araç** (`Grup 1 .. Grup 10`, ek öncelik `fa330` ve **Grup 11 `#46..#48`** tamamlandı)
 > **Hedef:** **Grup 11 .. Grup 16** (`Araç #49 .. #75` — kalan 27 araçlık çakışmasız yol haritası)
 
 Bu dosya, projeyi geliştiren **iki geliştiricinin** aynı aracı mükerrer (tekrarlı) kodlamasını önlemek, dosya/kimlik (`id`) adlarını önceden sabitlemek ve Git birleştirme (*merge*) çakışmalarını sıfıra indirmek amacıyla hazırlanmıştır.
@@ -166,4 +166,4 @@ Mevcut sıra numaraları ve rezervasyonlar korunur. Kullanıcı talebiyle push �
 | --- | --- | --- | --- |
 | `shermancrab` / 18 | Sherman Crab Mk I | MesAi C | ✅ Tamamlandı — 21 grup, 349 mesh, test ve görsel kontrol |
 | `french75` / 18 | Canon de 75 modèle 1897 | MesAi C | ✅ Tamamlandı — 18 grup, 142 mesh, test ve görsel kontrol |
-| `dreadnought` / 18 | HMS Dreadnought (1906) | MesAi C | 🔨 Yapılıyor |
+| `dreadnought` / 18 | HMS Dreadnought (1906) | MesAi C | ✅ Tamamlandı — 34 grup, 460 mesh, test ve görsel kontrol |

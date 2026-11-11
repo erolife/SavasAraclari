@@ -1089,3 +1089,14 @@ Doğrulama: shermancrab.cjs; 180 tambur/kol konumu, 43 zincirin her bağlantıs�
 18 grup / 142 mesh. Ahşap telli çemberli tekerlekler, tek kutu kuyruk, mahmuz, açıklıklı kalkan, beşik, namlu, arka kapak, el çarkları ve nişangâh. Namluyla birlikte hareket eden bağlı piston, yağ/gaz hacim kesiti ve elle durdurulabilen boş mekanik çevrim. Yaklaşık 0,9 m hareket ve gaz hacmi eşlemesi öğretici yorumdur; gerçek basınç, valf veya balistik hesabı yapılmaz. Kaynaklar: Musée de l’Armée 75 mm modèle 1897 ve Australian War Memorial C240163; katalogda bağlantılıdır.
 
 Doğrulama: french75.cjs ile 404 yükseliş/geri tepme konumu, bağlı piston çubuğu, sabit tekerlekler, kalkan açıklığı, gaz hacminin küçülmesi, sıfır hız, çevrim sonu geri dönüş ve elle müdahale. Testin bulduğu dar üst kalkan açıklığı büyütüldü. museum-links.cjs: 54 model / 97 kaynak. 1440×1000 genel, X-Ray, kesit, açık muhafazada en geri konum ve 390×844 mobil görseller incelendi. Motor/kesit kamerası genişletildi. Sayfa hatası ve yatay taşma yok.
+
+
+## HMS Dreadnought — 11 Kasım 2026
+
+34 grup / 460 mesh. Erken düzen yorumu: tam gövde, yükseltilmiş başüstü, beş çift 305 mm taret, iki baca, üç ayaklı ön direk, arka direk, arma, filikalar, davitler, lombozlar, ırgatlar ve ince korkuluklar. Merkez taretler sınırlı açıda döner, yan taretler dışa bakar. 18 kazan, iki türbin çifti, dört bağlı şaft/pervane ve çift dümen. Türbin kapakları ayrılır. Sahne 1:5 ölçeğinde; iç borular ve kademe sayısı yaklaşık öğretici yorumdur, atış/itki hesabı yoktur.
+
+Kaynaklar katalogda: Royal Museums Greenwich SLR1364 ve genel düzen kaydı; US Naval Institute Ekim 1906 mühendislik notları; New Zealand Graphic 24 Kasım 1906 dönem anlatımı.
+
+Doğrulama: dreadnought.cjs, 180 tahrik pozu, 141 taret yönü, 51 dümen açısı, komşu pervaneler arası açıklık, ışınla kıç gövde/pervane açıklığı, sıfır hız/duraklatma, kapak/sıfırlama ve geometri yeniden kullanımı. Kıç karinası pervanelere açıklık sağlayacak biçimde inceltildi; pervaneler sahne ölçeğine küçültüldü ve dümen milleri gövdeye uzatıldı. 1440×1000 genel, X-Ray, türbin kesiti, çalışan pervaneler ve açık kapaklar; 390×844 mobil görüntüler incelendi. Sayfa hatası ve yatay taşma yok.
+
+Üçlü son doğrulaması: tüm 51 test dosyası geçti; son kıç ayrıntı düzeltmesinden sonra Dreadnought testi tekrar geçti. Katalog 55 model / 101 HTTPS kaynak, Türk tarihi rotası 10 durak. Ortak çekirdeğe statik model kaydı eklenmedi; seçildiğinde yükleme korundu.
