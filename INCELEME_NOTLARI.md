@@ -1064,3 +1064,12 @@ Doğrulama: sultanhisar.cjs (500 krank/biyel konumu, şaft/pervane eşliği, sı
 Kaynaklar: The Tank Museum (https://tankmuseum.org/article/ft-17), İspanya Kara Kuvvetleri El Goloso Müzesi (https://ejercito.defensa.gob.es/materiales/otros/museo_carros/museo-carros.html?__locale=es). Katalogda 1917 geliştirme ile 1918 muharebe kullanımı ayrıldı. Belirli bir seri numarası, özgün boya şeması veya kesin iç ölçü iddiası yoktur.
 
 Doğrulama: renaultft.cjs, 300 kapalı palet pozu, sıfır hız, geometri tamponlarının yeniden kullanımı, 146 taret/eğim kombinasyonu, gövde açıklığı, kapaklar, kuyruk, sonlu değerler ve zemine temas kontrolünü geçti. Katalog bağlantıları geçti. 1440×1000 genel, motor kesiti, X-Ray ve açık kapak/ön kapı; 390×844 mobil görüntüler incelendi. Sekizgen taret yüzeyleri, arka kapak ile gövde birleşimi ve düz alt palet hattı düzeltildi. JavaScript hatası ve yatay taşma yok.
+
+
+## SR-71A / J58 — 11 Kasım 2026
+
+28 grup / 301 mesh; toplam 52 aktif model / 92 kaynak. İnce gövde ve yan uzantılar, delta kanat, iki içe yatık kuyruk, tandem kokpit ve iniş takımları. İki motorun ayrı açılan üst kabukları, dokuz kompresör kademesi, iki türbin kademesi, sekiz yanma tüpü, altışar baypas borusu ve içi açık egzozlar. Koniler birlikte geriye kayar; yüksek Mach vurgusunda mavi çekirdek yolu görünür kalır. Doğrusal koni eşlemesi ve baypas görünürlük eşiği sergi anlatımıdır, gerçek kontrol programı değildir. Kanopi kaldırma hareketi de sergi ayırmasıdır.
+
+Kaynaklar katalogda: NASA SR-71 bilgi föyü (ilk uçuş ve boyutlar), Smithsonian NASM J58 (dördüncü kademeden altı baypas borusu), USAF Museum J58 (kompresör), Roadrunners Internationale giriş sistemi sunumu (26 inç koni hareketi). Dış oranlar ve iç yerleşim yaklaşık rekonstrüksiyondur.
+
+Doğrulama: sr71_j58.cjs ile 321 koni konumu, eş zamanlı rotorlar, yüksek Mach sırasında çekirdek sürekliliği, sıfır devir, kapak/kanopi/sıfırlama, tamponların yeniden kullanımı ve zemin kontrol edildi. Tüm 48 test dosyası geçti. 1440×1000 genel, X-Ray, motor kesiti ve açık kabuk/akış; 390×844 mobil görüntüler incelendi. Motor kamerasının kadrajı genişletildi. JavaScript hatası ve yatay taşma yok.

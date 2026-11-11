@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 10 Kasım 2026:** 49 aktif model / 84 katalog kaynağı (`t34`, `norden`, `f14` dahil). Seçildiğinde model yükleme, filtrelenebilir tarih çizelgesi ve dokuz duraklı Türk tarihi rotası tamamlandı. 44 test dosyası geçti; araştırma ve görsel kontroller INCELEME_NOTLARI.md içinde. Yeni adaptörleri statik olarak oluşturmayın; güncel yükleme kuralını okuyun. Eski görev sıraları tarihsel kayıttır.
+> **Güncel durum — 11 Kasım 2026:** 52 aktif model / 92 katalog kaynağı (`sultanhisar`, `renaultft`, `sr71_j58` dahil). Seçildiğinde model yükleme, filtrelenebilir tarih çizelgesi ve on duraklı Türk tarihi rotası tamamlandı. 48 test dosyası geçti; araştırma ve görsel kontroller INCELEME_NOTLARI.md içinde. Yeni adaptörleri statik olarak oluşturmayın; güncel yükleme kuralını okuyun. Eski görev sıraları tarihsel kayıttır.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.
