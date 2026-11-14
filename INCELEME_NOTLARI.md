@@ -1155,3 +1155,7 @@ Rotor eşliği ve sıfır hız, 101 kapak ve egzoz konumu, kanopi ve sıfırlama
 ## Corvus — 14 Kasım 2026
 
 Polybios I.22–23 temelli yaklaşık müze sahnesi. İki kürekli gemi, ahşap postalar, kare yelken, mafsallı tahta köprü ve halat. 12 grup, 189 mesh. Halat bağlantısı 228 konumda doğrulandı. Masaüstü, mobil ve X-Ray incelendi. İki gemiyi kadraja almak için genel kamera genişletildi.
+
+## Humbara — 14 Kasım 2026
+
+Döküm havanın dış biçimi, ahşap yatak ve bağımsız rubu tahtası sergisi. 12 grup, 77 mesh. Tarihsel bağlam TDV Humbaracı Ahmed Paşa ve Rubu Tahtası maddelerine dayanır. Türk tarihi rotasında kronolojik 8. durak. Ölçüm ipinin 91 konumu, örtü ve sıfırlama, masaüstü/mobil/X-Ray ve rota bağlantısı doğrulandı.
