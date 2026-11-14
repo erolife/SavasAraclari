@@ -1151,3 +1151,7 @@ Doğrulama: dreadnought.cjs, 180 tahrik pozu, 141 taret yönü, 51 dümen açıs
 21 grup, 150 mesh. Me 262 A-1a dış biçimi, pilot mahalli ve iki Jumo 004 kesiti. Sekiz kompresör kademesi, altı yanma odası, senkron türbin çarkı ve hareketli egzoz merkezi. Smithsonian uçak ve motor koleksiyonları referans alınmıştır. İç oranlar, renkler ve hareketler yaklaşık sergi yorumudur.
 
 Rotor eşliği ve sıfır hız, 101 kapak ve egzoz konumu, kanopi ve sıfırlama test edildi. Masaüstü, mobil ve X-Ray incelendi. Mobil sis uzaklığı ve motor kamerası düzeltildi. Koleksiyon genelinde 59 test dosyası geçti.
+
+## Corvus — 14 Kasım 2026
+
+Polybios I.22–23 temelli yaklaşık müze sahnesi. İki kürekli gemi, ahşap postalar, kare yelken, mafsallı tahta köprü ve halat. 12 grup, 189 mesh. Halat bağlantısı 228 konumda doğrulandı. Masaüstü, mobil ve X-Ray incelendi. İki gemiyi kadraja almak için genel kamera genişletildi.
