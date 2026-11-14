@@ -1159,3 +1159,7 @@ Polybios I.22–23 temelli yaklaşık müze sahnesi. İki kürekli gemi, ahşap 
 ## Humbara — 14 Kasım 2026
 
 Döküm havanın dış biçimi, ahşap yatak ve bağımsız rubu tahtası sergisi. 12 grup, 77 mesh. Tarihsel bağlam TDV Humbaracı Ahmed Paşa ve Rubu Tahtası maddelerine dayanır. Türk tarihi rotasında kronolojik 8. durak. Ölçüm ipinin 91 konumu, örtü ve sıfırlama, masaüstü/mobil/X-Ray ve rota bağlantısı doğrulandı.
+
+## Kamov Ka-27PS — 14 Kasım 2026
+
+15 grup, 173 mesh. Arama kurtarma varyantı, güverte, ters yönlü eş eksenli rotorlar, sürgülü kapılar, ayrılabilir motor kaportası ve temsili sepet. Rostec ve US Army ODIN kaynakları katalogda. Rotor yönü ve sıfır hız, 101 kapı ve vinç konumu, sepet ile güverte açıklığı ve sıfırlama doğrulandı. Masaüstü, mobil, X-Ray ve etkin vinç tarayıcıda incelendi. Koleksiyonda 62 test dosyası geçti.
