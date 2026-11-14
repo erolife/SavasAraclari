@@ -1139,3 +1139,9 @@ Doğrulama: dreadnought.cjs, 180 tahrik pozu, 141 taret yönü, 51 dümen açıs
 17 grup, 473 mesh. Üç direk, kavisli yelkenler, çarmıhlar, kıç galerileri, ahşap postalar ve üç güverteli sancak kesiti. Lombar sayısı ve iç donanım temsili. Tarihsel bağlam MSGSÜ koleksiyonu ile İstanbul Üniversitesi Sivastopol çalışmasına dayanır. Türk tarihi rotasına 1829 durağı eklendi.
 
 101 lombar konumu, bağımsız güverte kontrolü, sancak kesiti, yelken görünürlüğü ve sıfırlama doğrulandı. Masaüstü, mobil, X-Ray ve rota bağlantısı üzerinden sancak kesiti tarayıcıda kontrol edildi.
+
+## Wagenburg — 14 Kasım 2026
+
+11 grup, 236 mesh. Ahşap şasi, dört telli tekerlek, açılır yan paneller ve arka kapak, kaldırılabilir bez örtü ve üç arabalı sergi görünümü. Biçim ve hareketler kesin tarihî ölçüler yerine Prag Askerî Tarih Enstitüsü kaynaklarına dayanan yaklaşık müze yorumudur.
+
+101 panel ve kapak konumu, zemin açıklığı, komşu arabaların görünürlüğü ve aralığı, örtü ve sıfırlama doğrulandı. Masaüstü, mobil, X-Ray ve üstten üç araçlı görünüm kontrol edildi.
