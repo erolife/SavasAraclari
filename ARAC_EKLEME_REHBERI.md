@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 12 Kasım 2026:** 60 aktif model / 110 katalog kaynağı (`patriot`, `yamato460`, `cezeri`, `saturnv_f1`, `firtina` dahil). Seçildiğinde model yükleme, filtrelenebilir tarih çizelgesi ve on iki duraklı Türk tarihi rotası tamamlandı. 57 test dosyası geçti; araştırma ve görsel kontroller INCELEME_NOTLARI.md içinde. Yeni adaptörleri statik olarak oluşturmayın; güncel yükleme kuralını okuyun. Eski görev sıraları tarihsel kayıttır.
+> **Güncel durum — 14 Kasım 2026:** 63 aktif model / 116 katalog kaynağı. Mahmudiye, Wagenburg ve Me 262 / Jumo 004 eklendi. Türk tarihi rotası 13 durak; 59 test dosyası geçti. Araştırma ve görsel kontrol kayıtları INCELEME_NOTLARI.md içinde.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.

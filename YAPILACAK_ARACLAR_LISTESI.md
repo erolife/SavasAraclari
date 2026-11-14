@@ -1,12 +1,12 @@
 # 📋 YAPILACAK ARAÇLAR LİSTESİ & 2 KİŞİLİK ORTAK ÇALIŞMA PLANI
 
-> **Son Güncelleme:** 12 Kasım 2026<br>
-> **Mevcut Durum:** **60 Aktif Araç** (`110` HTTPS müze kaynağı • `57` test dosyası • `12` duraklı Türk tarihi rotası)
+> **Son Güncelleme:** 14 Kasım 2026<br>
+> **Mevcut Durum:** **63 Aktif Araç** (`116` HTTPS müze kaynağı • `59` test dosyası • `13` duraklı Türk tarihi rotası)
 > - Başlangıç envanteri (`Grup 1 .. Grup 10`): **45 araç**
 > - Kullanıcı önceliği ek araçlar (`Grup 17` & `Grup 18` — `fa330`, `shermancrab`, `french75`, `dreadnought`): **4 araç**
-> - Bu listeden (`#46 .. #75`) tamamlananlar (`#46 t34`, `#47 norden`, `#48 f14`, `#49 patriot`, `#50 yamato460`, `#51 cezeri`, `#55 sultanhisar`, `#56 sr71_j58`, `#57 saturnv_f1`, `#68 renaultft`, `#74 firtina`): **11 / 30 araç**
+> - Bu listeden (`#46 .. #75`) tamamlananlar (`#46 t34`, `#47 norden`, `#48 f14`, `#49 patriot`, `#50 yamato460`, `#51 cezeri`, `#55 sultanhisar`, `#56 sr71_j58`, `#57 saturnv_f1`, `#68 renaultft`, `#74 firtina`, `#54 mahmudiye`, `#60 jumo004`, `#64 wagenburg`): **14 / 30 araç**
 >
-> **Kalan Hedef:** **Grup 12 .. Grup 16** içinde **`⏳ Planlı` 19 araç** *(Grup 11 `5/5` tamamlandı)*
+> **Kalan Hedef:** **Grup 12 .. Grup 16** içinde **`⏳ Planlı` 16 araç** *(Grup 11 `5/5` tamamlandı)*
 
 Bu dosya, projeyi geliştiren **iki geliştiricinin** aynı aracı mükerrer (tekrarlı) kodlamasını önlemek, dosya/kimlik (`id`) adlarını önceden sabitlemek ve Git birleştirme (*merge*) çakışmalarını sıfıra indirmek amacıyla hazırlanmıştır.
 
@@ -42,7 +42,7 @@ Aşağıdaki 4 araç kullanıcı önceliğiyle plan dışı grup numaralarında 
 
 ## ✅ 2. Mevcut 60 Aktif Aracın Tam Envanteri (Mükerrer Kayıt Kontrolü)
 
-Aşağıdaki **60 araç ve mekanizma projede canlı (`status: 'live'`) olarak mevcuttur**; yeni araç veya ek öncelik seçerken bu `id` ve mekanizmalar tekrar edilmemelidir:
+Aşağıdaki **63 araç ve mekanizma projede canlı (`status: 'live'`) olarak mevcuttur**; yeni araç veya ek öncelik seçerken bu `id` ve mekanizmalar tekrar edilmemelidir:
 
 | Grup | Aktif Araçlar (`id` — Yıl — Kısa Ad) |
 | :--- | :--- |
@@ -57,8 +57,9 @@ Aşağıdaki **60 araç ve mekanizma projede canlı (`status: 'live'`) olarak me
 | **Grup 9 (40)** | `maxim` (1884 Maxim–Nordenfelt Makineli Tüfeği) |
 | **Grup 10 (41–45)** | `abdulhamid` (1886 Abdülhamid Denizaltısı) • `greekfire` (672 Bizans Rum Ateşi) • `r7` (1957/1961 R-7 Vostok & Korolev Haçı) • `harrier` (1969 Harrier GR.1 & Pegasus VTOL) • `strv103` (1967/1986 Stridsvagn 103C) |
 | **Grup 11 (5/5 Tamamlandı)** | `t34` (1940 T-34/76 & Christie) • `norden` (1942 Norden M-9 Bomba Nişangâhı) • `f14` (1974 Grumman F-14D(R) Tomcat) • `patriot` (1984 MIM-104 Patriot & AN/MPQ-53) • `yamato460` (1941 IJN Yamato 460 mm Üçlü Taret) |
-| **Grup 12 (2/5 Aktif)** | `cezeri` (1206 El-Cezerî Su Çarklı & İkiz Pompalı Düzenek — *Türk tarihi rotası 3. durak*) • `sultanhisar` (1915 Osmanlı Sultanhisar Torpidobotu — *Türk tarihi rotası 10. durak*) |
-| **Grup 13 (2/5 Aktif)** | `sr71_j58` (1964 SR-71 Blackbird & J58 Turboramjet) • `saturnv_f1` (1967 Saturn V Rocketdyne F-1 Motoru) |
+| **Grup 12 (3/5 Aktif)** | `cezeri` (1206 El-Cezerî Su Çarklı & İkiz Pompalı Düzenek — *Türk tarihi rotası 3. durak*) • `mahmudiye` (1829 Mahmudiye Kalyonu — *Türk tarihi rotası 8. durak*) • `sultanhisar` (1915 Osmanlı Sultanhisar Torpidobotu — *Türk tarihi rotası 11. durak*) |
+| **Grup 13 (3/5 Aktif)** | `sr71_j58` (1964 SR-71 Blackbird & J58 Turboramjet) • `saturnv_f1` (1967 Saturn V Rocketdyne F-1 Motoru) • `jumo004` (1944 Me 262 / Jumo 004) |
+| **Grup 14 (1/5 Aktif)** | `wagenburg` (15. yüzyıl Hussit Savaş Arabası) |
 | **Grup 15 (1/5 Aktif)** | `renaultft` (1917 Renault FT Tankı) |
 | **Grup 16 (1/5 Aktif)** | `firtina` (2001 T-155 Fırtına 155 mm L/52 Obüs — *Türk tarihi rotası 12. durak*) |
 | **Grup 17 (Ek — 1)** | `fa330` (1942 Fa 330 Bachstelze Denizaltı Rotor Uçurtması) |
@@ -67,7 +68,7 @@ Aşağıdaki **60 araç ve mekanizma projede canlı (`status: 'live'`) olarak me
 ### 📊 60 Araç Sonrası Güncel Kategori Dağılımı & Boşluk Analizi
 - **Ortam Dağılımı (`60`):** 🪖 Kara (`35`), ⚓ Deniz (`12`), ✈️ Hava (`10`), 🚀 Uzay (`3` — `v2`, `r7`, `saturnv_f1`).
 - **Dönem Dağılımı (`60`):** II. Dünya Savaşı (`14`), Barut & Rönesans (`11`), Soğuk Savaş (`8`), Sanayi Devrimi (`7`), Orta Çağ (`7`), I. Dünya Savaşı (`5`), Antik Çağ (`4`), Modern (`3` — `phalanx`, `patriot`, `firtina`), Savaşlar Arası (`1` — yalnızca `vecihi`).
-- **Öncelikli Boşluk Notu:** `patriot`, `firtina` ve `saturnv_f1` ile Modern (`3`) ve Uzay (`3`) kategorileri güçlendirildi; `japan` (`Japonya`) köken filtresi `yamato460` ile birlikte `js/catalog.js` içine eklendi. Kalan 19 araç içindeki `#59 nike`, `#70 bofors40` (Savaşlar Arası), **Grup 14 (`#61..#65` — Antik & Orta Çağ)** ve **Grup 16 (`#71, #72, #73, #75` — Modern)** dönem/ortam dengesini daha da derinleştirecektir.
+- **Öncelikli Boşluk Notu:** `patriot`, `firtina` ve `saturnv_f1` ile Modern (`3`) ve Uzay (`3`) kategorileri güçlendirildi; `japan` (`Japonya`) köken filtresi `yamato460` ile birlikte `js/catalog.js` içine eklendi. Kalan 16 araç içindeki `#59 nike`, `#70 bofors40` (Savaşlar Arası), **Grup 14 (`#61..#65` — Antik & Orta Çağ)** ve **Grup 16 (`#71, #72, #73, #75` — Modern)** dönem/ortam dengesini daha da derinleştirecektir.
 
 ---
 
@@ -77,9 +78,9 @@ Aşağıdaki **60 araç ve mekanizma projede canlı (`status: 'live'`) olarak me
 | Grup | Tamamlanan (`11`) | Kalan Planlı Araçlar (`19`) |
 | :--- | :--- | :--- |
 | **Grup 11 (`#46–#50`)** | `#46 t34`, `#47 norden`, `#48 f14`, `#49 patriot`, `#50 yamato460` *(5/5 — Tamamlandı)* | — |
-| **Grup 12 (`#51–#55`)** | `#51 cezeri`, `#55 sultanhisar` *(2/5)* | **`#52 rammah`**, **`#53 humbara`**, **`#54 mahmudiye`** |
-| **Grup 13 (`#56–#60`)** | `#56 sr71_j58`, `#57 saturnv_f1` *(2/5)* | **`#58 b29_turret`**, **`#59 nike`**, **`#60 jumo004`** |
-| **Grup 14 (`#61–#65`)** | — *(0/5)* | **`#61 corvus`**, **`#62 zhinanche`**, **`#63 testudo_ram`**, **`#64 wagenburg`**, **`#65 geobukseon`** |
+| **Grup 12 (`#51–#55`)** | `#51 cezeri`, `#54 mahmudiye`, `#55 sultanhisar` *(3/5)* | **`#52 rammah`**, **`#53 humbara`** |
+| **Grup 13 (`#56–#60`)** | `#56 sr71_j58`, `#57 saturnv_f1`, `#60 jumo004` *(3/5)* | **`#58 b29_turret`**, **`#59 nike`** |
+| **Grup 14 (`#61–#65`)** | `#64 wagenburg` *(1/5)* | **`#61 corvus`**, **`#62 zhinanche`**, **`#63 testudo_ram`**, **`#65 geobukseon`** |
 | **Grup 15 (`#66–#70`)** | `#68 renaultft` *(1/5)* | **`#66 bigbertha`**, **`#67 buffington`**, **`#69 rangefinder`**, **`#70 bofors40`** |
 | **Grup 16 (`#71–#75`)** | `#74 firtina` *(1/5)* | **`#71 gepard`**, **`#72 kamov`**, **`#73 mk41vls`**, **`#75 korkut`** |
 
@@ -114,7 +115,7 @@ Aşağıdaki **60 araç ve mekanizma projede canlı (`status: 'live'`) olarak me
 | **#57** | `saturnv_f1`<br>`js/vehicles/saturnv_f1.js` | **1967**<br>Soğuk Savaş<br>🚀 Uzay • `usa` | **Saturn V — Rocketdyne *F-1* Dev Roket Motoru & Türbopompa Kesiti**<br>*(Smithsonian NASM / Kennedy Space Center)* | Tarihin en güçlü tek yanma odalı sıvı yakıtlı roket motoru (`6.770 kN`): **55.000 BG LOX/RP-1 türbopompası**, rejeneratif soğutma boruları, türbin egzoz soğutma manifoldu ve $\pm 6^\circ$ hidrolik gimbal yatağı. | Antigravity | 🟢 Tamamlandı (17 grup, 73 mesh) |
 | **#58** | `b29_turret`<br>`js/vehicles/b29_turret.js` | **1944**<br>II. Dünya Savaşı<br>✈️ Hava • `usa` | **Boeing B-29 Superfortress — GE Bilgisayarlı Uzaktan Kumandalı Taret Sistemi**<br>*(Smithsonian NASM Enola Gay / NMUSAF)* | Basınçlı kabindeki nişancının optik nişangâh kubbesini çevirdiğinde, **analog ateş kontrol bilgisayarı ve amplidin servolar** üzerinden gövde üstü/altı insansız taretlerin paralaks düzeltmesiyle eşzamanlı dönmesi! | — | ⏳ Planlı |
 | **#59** | `nike`<br>`js/vehicles/nike.js` | **1959**<br>Soğuk Savaş<br>🚀 Uzay • `usa` | **MIM-14 Nike Hercules — Yüksek İrtifa Hava Savunma Füzesi & 4× Booster**<br>*(İstanbul Hava Müzesi Yeşilköy / Smithsonian)* | Türkiye'de de uzun yıllar görev yapan iki kademeli hava savunma füzesi: **4× M5E1 katı yakıtlı hızlandırıcı kümesi**, hidrolik fırlatma rampası dikmesi ($0^\circ \to 85^\circ$), delta kanatçıklar ve kademe ayrılması. | — | ⏳ Planlı |
-| **#60** | `jumo004`<br>`js/vehicles/jumo004.js` | **1944**<br>II. Dünya Savaşı<br>✈️ Hava • `germany` | **Junkers Jumo 004B (Me 262) — İlk Seri Üretim Turbojet & *Zwiebel* İğne Nozulu**<br>*(Deutsches Museum Münih / Smithsonian)* | 8 kademeli eksenel kompresör, 6 yanma odası, burun içindeki 2 zamanlı *Riedel* marş motoru ve egzoz kesit alanını değiştirmek için ileri-geri kayan soğan biçimli **"Zwiebel" (hareketli merkez iğne)** mekanizması! | — | ⏳ Planlı |
+| **#60** | `jumo004`<br>`js/vehicles/jumo004.js` | **1944**<br>II. Dünya Savaşı<br>✈️ Hava • `germany` | **Junkers Jumo 004B (Me 262) — İlk Seri Üretim Turbojet & *Zwiebel* İğne Nozulu**<br>*(Deutsches Museum Münih / Smithsonian)* | 8 kademeli eksenel kompresör, 6 yanma odası, burun içindeki 2 zamanlı *Riedel* marş motoru ve egzoz kesit alanını değiştirmek için ileri-geri kayan soğan biçimli **"Zwiebel" (hareketli merkez iğne)** mekanizması! | MesAi C | ✅ Tamamlandı — 21 grup, 150 mesh, çift Jumo 004 kesiti |
 
 ---
 
