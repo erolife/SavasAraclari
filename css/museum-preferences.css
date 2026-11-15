@@ -1,0 +1,105 @@
+.museum-preferences {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.museum-preferences select {
+  width: auto;
+  min-height: 34px;
+  margin: 0;
+  padding: 4px 6px;
+  border: 1px solid var(--border-warm, var(--panel-border, var(--line, #c5b99c)));
+  border-radius: 6px;
+  background: var(--museum-input, #fcf9f2);
+  color: var(--museum-text, #243342);
+  font: 600 12px/1.2 system-ui, sans-serif;
+  cursor: pointer;
+}
+.museum-preferences select:focus-visible {
+  outline: 2px solid var(--accent, #b87228);
+  outline-offset: 2px;
+}
+.nav-cta, .museum-lab-header { flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .top-bar .museum-preferences { flex-basis: 100%; }
+}
+@media (max-width: 520px) {
+  .nav-cta .museum-preferences { justify-content: flex-end; }
+}
+:root[data-museum-theme="dark"] {
+  color-scheme: dark;
+  --museum-text: #e9e5da;
+  --museum-muted: #b7c1c4;
+  --museum-paper: #161d22;
+  --museum-panel: #212b31;
+  --museum-input: #26343c;
+  --museum-border: #52616a;
+  --museum-gold: #f0b35e;
+  --museum-blue: #85cced;
+  --bg-cream: var(--museum-paper);
+  --bg-dark: var(--museum-paper);
+  --bg-card: var(--museum-panel);
+  --bg-card-solid: var(--museum-panel);
+  --bg-sub: var(--museum-input);
+  --panel-bg: var(--museum-panel);
+  --panel-border: var(--museum-border);
+  --border-warm: var(--museum-border);
+  --border-slate: var(--museum-border);
+  --text-main: var(--museum-text);
+  --text-dark: var(--museum-text);
+  --text-body: var(--museum-text);
+  --text-muted: var(--museum-muted);
+  --accent: var(--museum-gold);
+  --accent-dark: var(--museum-gold);
+  --cyan: var(--museum-blue);
+  --emerald: #7cd4ad;
+  --paper: var(--museum-paper);
+  --ink: var(--museum-text);
+  --muted: var(--museum-muted);
+  --line: var(--museum-border);
+  --panel: var(--museum-panel);
+  --gold: var(--museum-gold);
+  --green: #85c8af;
+}
+[data-museum-theme="dark"] .btn-primary { color: #1c1b17; }
+[data-museum-theme="dark"] .hero-actions a[href$="vehicle=sahi"] { color: #fff5e2; }
+[data-museum-theme="dark"] :is(input,textarea)::placeholder { color: var(--museum-muted); }
+[data-museum-theme="dark"] .btn-cyan:hover { color: #17252b; }
+[data-museum-theme="dark"] .art,
+[data-museum-theme="dark"] .stop-art,
+[data-museum-theme="dark"] .focus-box,
+[data-museum-theme="dark"] .workspace,
+[data-museum-theme="dark"] .artifact,
+[data-museum-theme="dark"] .paper,
+[data-museum-theme="dark"] .museum-dialog {
+  background: var(--museum-panel);
+  color: var(--museum-text);
+}
+[data-museum-theme="dark"] .museum-dialog input,
+[data-museum-theme="dark"] .museum-dialog-head button,
+[data-museum-theme="dark"] .view-tools button:not([aria-pressed="true"]),
+[data-museum-theme="dark"] :is(.desk, .workspace, .explore) :is(input,select,textarea) {
+  background: var(--museum-input);
+  color: var(--museum-text);
+}
+[data-museum-theme="dark"] :is(.artifact-top,.caption,.paper p,#load-message) { color: var(--museum-muted); }
+[data-museum-theme="dark"] .museum-dialog a { color: var(--museum-blue); }
+[data-museum-theme="dark"] button.primary { color: var(--museum-paper); }
+[data-museum-theme="dark"] .route-progress,
+[data-museum-theme="dark"] .route-progress button,
+[data-museum-theme="dark"] #route-stops button[aria-current="step"],
+[data-museum-theme="dark"] #complete-stop {
+  color: var(--museum-text);
+}
+[data-museum-theme="light"]:has(.comparison-nav) {
+  color-scheme: light;
+  --bg: #f4f0e6;
+  --surface: #fffcf5;
+  --ink: #1d3035;
+  --muted: #4d6267;
+  --gold: #8f4a20;
+  --line: #bdb6a8;
+}
+[data-museum-theme="light"] .comparison-nav ~ main .weapon { background: var(--surface); }
+[data-museum-theme="light"] #flow-toggle { background: #f0b35e; }

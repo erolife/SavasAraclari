@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+  const t = (tr, en) => window.MuseumPreferences?.language === 'en' ? en : tr;
   const catalog = () => window.MUSEUM_CATALOG.VEHICLES;
   function currentVehicle(id) {
     const key = id || new URL(location.href).searchParams.get('vehicle') || (location.pathname.endsWith('/enigma.html') ? 'enigma' : 'tiger');
@@ -24,7 +25,7 @@
       dialog = document.createElement('dialog'); dialog.className = 'museum-dialog';
       dialog.setAttribute('aria-labelledby', 'museum-dialog-title');
       heading = document.createElement('h2'); heading.id = 'museum-dialog-title';
-      const close = document.createElement('button'); close.className = 'btn'; close.textContent = 'Kapat ×'; close.type = 'button';
+      const close = document.createElement('button'); close.className = 'btn'; close.textContent = t("Kapat ×", "Close ×"); close.type = 'button';
       close.addEventListener('click', () => dialog.close());
       const head = document.createElement('div'); head.className = 'museum-dialog-head'; head.append(heading, close);
       content = document.createElement('div'); content.className = 'museum-dialog-body'; dialog.append(head, content); document.body.append(dialog);
@@ -45,22 +46,22 @@
     const url = buildLink(vehicle, location.href, lab);
     button.disabled = true;
     try {
-      const result = await deliver({title: vehicle.name, text: vehicle.name + ' — İnteraktif 3D müze', url}, navigator);
-      if (result === 'copied') status('Araç bağlantısı kopyalandı.');
+      const result = await deliver({title: vehicle.name, text: vehicle.name + t(" — İnteraktif 3D müze", " — Interactive 3D museum"), url}, navigator);
+      if (result === 'copied') status(t("Araç bağlantısı kopyalandı.", "Exhibit link copied."));
       if (result === 'manual') {
-        open('Bağlantıyı paylaş'); paragraph(vehicle.name);
-        const label = document.createElement('label'); label.textContent = 'Paylaşılacak bağlantı';
+        open(t("Bağlantıyı paylaş", "Share link")); paragraph(vehicle.name);
+        const label = document.createElement('label'); label.textContent = t("Paylaşılacak bağlantı", "Link to share");
         const input = document.createElement('input'); input.type = 'url'; input.readOnly = true; input.value = url; label.append(input); content.append(label);
-        paragraph('Bağlantıyı seçip kopyalayabilirsiniz.'); input.focus(); input.select();
+        paragraph(t("Bağlantıyı seçip kopyalayabilirsiniz.", "Select and copy the link.")); input.focus(); input.select();
       }
     } finally { button.disabled = false; }
   }
   function sources(vehicle) {
-    open(vehicle.name + ' — Kaynaklar');
+    open(vehicle.name + t(" — Kaynaklar", " — Sources"));
     if (vehicle.id === 'maxim' || vehicle.id === 'gatling') {
-      const link = document.createElement('a'); link.href = 'maxim-gatling.html'; link.textContent = 'Gatling → Maxim: kranktan geri tepmeye karşılaştırması ↗'; content.append(link);
+      const link = document.createElement('a'); link.href = 'maxim-gatling.html'; link.textContent = t("Gatling → Maxim: kranktan geri tepmeye karşılaştırması ↗", "Gatling → Maxim: from crank to recoil ↗"); content.append(link);
     }
-    paragraph('Araştırma kaynakları ve ek okuma için müze, kurum ve tarihsel belge bağlantıları. Rekonstrüksiyonlar ile yorumlanan ayrıntılar araç açıklamalarında belirtilir.');
+    paragraph(t("Araştırma kaynakları ve ek okuma için müze, kurum ve tarihsel belge bağlantıları. Rekonstrüksiyonlar ile yorumlanan ayrıntılar araç açıklamalarında belirtilir.", "Museum records, institutional sources and historical documents for further reading."));
     const list = document.createElement('ul');
     for (const source of vehicle.sources || []) {
       let url; try { url = new URL(source.url); } catch (_) { continue; }
@@ -68,7 +69,7 @@
       const li = document.createElement('li'), a = document.createElement('a'); a.href = url.href; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = source.title + ' ↗'; li.append(a); if (source.note) { const note = document.createElement('small'); note.textContent = source.note; li.append(note); } list.append(li);
     }
     if (list.children.length) content.append(list);
-    else paragraph('Bu aracın kaynak bağlantıları henüz kataloğa aktarılmadı.');
+    else paragraph(t("Bu aracın kaynak bağlantıları henüz kataloğa aktarılmadı.", "The catalogue has no source links for this exhibit yet."));
   }
   document.addEventListener('click', e => {
     const button = e.target.closest('[data-museum-share], [data-museum-sources]'); if (!button) return;

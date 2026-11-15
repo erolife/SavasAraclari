@@ -151,13 +151,13 @@
       cursor: pointer;
       transition: all 0.2s ease;
       border: 1px solid var(--border-slate);
-      background: rgba(241, 236, 225, 0.9);
+      background: var(--museum-panel, rgba(241, 236, 225, 0.9));
       color: var(--text-main);
     }
 
     .btn:hover {
       border-color: var(--accent);
-      background: #ffffff;
+      background: var(--museum-input, #ffffff);
       color: var(--text-dark);
       transform: translateY(-1px);
     }
@@ -178,7 +178,7 @@
     .btn-cyan {
       background: var(--cyan-soft);
       border-color: var(--cyan);
-      color: #0369a1;
+      color: var(--museum-blue, #0369a1);
     }
 
     .btn-cyan:hover {
@@ -349,7 +349,7 @@
       height: 360px;
       border-radius: 10px;
       overflow: hidden;
-      background: #f2ece1;
+      background: var(--museum-panel, #f2ece1);
       border: 1px solid rgba(180, 145, 95, 0.28);
       cursor: grab;
     }
@@ -362,7 +362,7 @@
       position: absolute;
       bottom: 10px;
       left: 12px;
-      background: rgba(252, 249, 242, 0.9);
+      background: var(--museum-input, rgba(252, 249, 242, 0.9));
       border: 1px solid var(--border-warm);
       padding: 4px 9px;
       border-radius: 6px;
@@ -454,7 +454,7 @@
 
     .machine-card.featured-active {
       border: 2px solid var(--accent);
-      background: linear-gradient(180deg, rgba(255, 252, 245, 0.98) 0%, rgba(252, 247, 235, 0.96) 100%);
+      background: linear-gradient(180deg, var(--museum-input, rgba(255, 252, 245, 0.98)) 0%, var(--museum-panel, rgba(252, 247, 235, 0.96)) 100%);
       box-shadow: 0 12px 32px rgba(217, 119, 6, 0.16);
     }
 
@@ -492,7 +492,7 @@
 
     .mc-status.planned {
       background: var(--cyan-soft);
-      color: #0369a1;
+      color: var(--museum-blue, #0369a1);
       border: 1px solid rgba(2, 132, 199, 0.28);
     }
 
@@ -500,7 +500,7 @@
     .mc-blueprint {
       height: 155px;
       border-radius: 10px;
-      background: #efe9dc;
+      background: var(--museum-panel, #efe9dc);
       border: 1px solid rgba(180, 145, 95, 0.28);
       display: flex;
       align-items: center;
@@ -535,7 +535,7 @@
       font-family: var(--font-mono);
       font-size: 9.5px;
       color: var(--text-muted);
-      background: rgba(252, 249, 242, 0.85);
+      background: var(--museum-input, rgba(252, 249, 242, 0.85));
       padding: 2px 6px;
       border-radius: 4px;
       border: 1px solid rgba(15, 23, 42, 0.08);
@@ -574,7 +574,7 @@
       font-size: 10.5px;
       padding: 3px 8px;
       border-radius: 5px;
-      background: rgba(241, 236, 225, 0.9);
+      background: var(--museum-panel, rgba(241, 236, 225, 0.9));
       border: 1px solid rgba(148, 163, 184, 0.35);
       color: var(--text-main);
     }
@@ -583,7 +583,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 7px;
-      background: rgba(241, 236, 225, 0.7);
+      background: var(--museum-panel, rgba(241, 236, 225, 0.7));
       border: 1px solid rgba(148, 163, 184, 0.28);
       border-radius: 8px;
       padding: 10px;
@@ -746,7 +746,7 @@
       padding: 9px 12px;
       border-radius: 9px;
       border: 1px solid var(--border-slate);
-      background: #fffdf8;
+      background: var(--museum-input, #fffdf8);
       font-size: 13.5px;
       color: var(--text-dark);
       outline: none;
@@ -762,7 +762,7 @@
       padding: 9px 10px;
       border-radius: 9px;
       border: 1px solid var(--border-slate);
-      background: #fffdf8;
+      background: var(--museum-input, #fffdf8);
       font-size: 12.5px;
       color: var(--text-dark);
       font-family: var(--font-mono);
@@ -814,7 +814,7 @@
       padding: 5px 10px;
       border-radius: 999px;
       border: 1px solid var(--border-slate);
-      background: rgba(241, 236, 225, 0.85);
+      background: var(--museum-panel, rgba(241, 236, 225, 0.85));
       color: var(--text-body);
       font-size: 12px;
       font-weight: 600;
@@ -824,7 +824,7 @@
 
     .facet-chip:hover {
       border-color: var(--accent);
-      background: #fff;
+      background: var(--museum-input, #fff);
       color: var(--text-dark);
     }
 
@@ -841,7 +841,7 @@
 
     .facet-chip.disabled:hover {
       border-color: var(--border-slate);
-      background: rgba(241, 236, 225, 0.85);
+      background: var(--museum-panel, rgba(241, 236, 225, 0.85));
     }
 
     .facet-count {
@@ -880,7 +880,7 @@
       padding: 2px 8px;
       border-radius: 999px;
       background: rgba(2, 132, 199, 0.08);
-      color: #0369a1;
+      color: var(--museum-blue, #0369a1);
       border: 1px solid rgba(2, 132, 199, 0.2);
     }
 
@@ -1018,7 +1018,7 @@
       padding: 9px 12px;
       border-radius: 8px;
       border: 1px solid var(--border-slate);
-      background: #fffdf8;
+      background: var(--museum-input, #fffdf8);
       font-family: var(--font-sans);
       font-size: 13px;
       color: var(--text-dark);
@@ -1031,7 +1031,7 @@
     .req-textarea:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.16);
-      background: #fff;
+      background: var(--museum-input, #fff);
     }
 
     .req-textarea {
@@ -1080,6 +1080,8 @@
     }
   </script>
   <link rel="stylesheet" href="css/museum-links.css">
+<script src="js/museum-preferences.js"></script>
+  <link rel="stylesheet" href="css/museum-preferences.css">
 </head>
 
 <body>
@@ -1125,7 +1127,7 @@
         </p>
 
         <div class="hero-actions">
-          <a href="turk-tarihi.html" class="btn btn-primary">Türk Tarihi Rotası · 9 Durak →</a>
+          <a href="turk-tarihi.html" class="btn btn-primary">Türk Tarihi Rotası →</a>
           <a href="tarih.html" class="btn btn-cyan">Tarih Çizelgesini Keşfet →</a>
           <a href="simulator.html" class="btn btn-primary">
             🔥 1942 Tiger I Simülatörü
@@ -1401,6 +1403,7 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/museum-links.js"></script>
+  <script src="js/catalog-en.js"></script>
   <script type="module">
     import * as THREE from 'three';
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -1441,20 +1444,23 @@
       return true;
     }
 
+    const language = window.MuseumPreferences.language;
+    const t = (tr, en) => language === 'en' ? en : tr;
+
     function cardHTML(v) {
       const live = v.status === 'live';
       const status = live
-        ? '<span class="mc-status live">🟢 SİMÜLATÖR HAZIR</span>'
-        : `<span class="mc-status planned">⏳ ${v.group}. GRUP • PLANLI</span>`;
+        ? `<span class="mc-status live">${t("🟢 SİMÜLATÖR HAZIR", "🟢 INTERACTIVE")}</span>`
+        : `<span class="mc-status planned">⏳ ${v.group}. ${t("GRUP • PLANLI", "GROUP • PLANNED")}</span>`;
       const chips = [
         optionLabel('domain', v.domain),
         ...valuesOf(v, 'energy').map(k => optionLabel('energy', k))
       ].map(c => `<span class="mc-facet">${escapeHtml(c)}</span>`).join('');
       const actions = live
-        ? `<a href="simulator.html?vehicle=${v.sim}" class="btn btn-primary btn-sm">${v.icon} 3D Simülatörü Aç →</a>
-           <a href="simulator.html?vehicle=${v.sim}&mode=xray" class="btn btn-cyan btn-sm" style="flex:0.45;" title="X-Ray Kesit Modunda Aç">🩻 Kesit</a>
-           <a href="simulator.html?vehicle=${v.sim}&mode=explode" class="btn btn-sm" style="flex:0.45;" title="Parçalarına Ayrılmış Modda Aç">💥 %85</a>`
-        : `<button class="btn btn-sm" data-plan="${v.id}">🔍 Mühendislik Planını İncele</button>`;
+        ? `<a href="simulator.html?vehicle=${v.sim}" class="btn btn-primary btn-sm">${v.icon} ${t("3D Simülatörü Aç →", "Open in 3D →")}</a>
+           <a href="simulator.html?vehicle=${v.sim}&mode=xray" class="btn btn-cyan btn-sm" style="flex:0.45;" title="${t("X-Ray Kesit Modunda Aç", "Open in X-Ray")}">${t("🩻 Kesit", "🩻 Cutaway")}</a>
+           <a href="simulator.html?vehicle=${v.sim}&mode=explode" class="btn btn-sm" style="flex:0.45;" title="${t("Parçalarına Ayrılmış Modda Aç", "Open exploded view")}">💥 %85</a>`
+        : `<button class="btn btn-sm" data-plan="${v.id}">${t("🔍 Mühendislik Planını İncele", "🔍 View exhibit plan")}</button>`;
       return `
         <article class="machine-card ${live ? 'featured-active' : 'is-planned'}" data-id="${v.id}">
           <div>
@@ -1462,9 +1468,9 @@
               <span class="mc-year">${live ? '★ ' : ''}${escapeHtml(v.yearLabel)} • ${escapeHtml(v.eraLabel)}</span>
               ${status}
             </div>
-            <div class="mc-blueprint" style="margin: 12px 0;${live ? ' background: #ede5d4;' : ''}">
+            <div class="mc-blueprint" style="margin: 12px 0;${live ? ' background: var(--museum-panel, #ede5d4);' : ''}">
               ${v.svg}
-              <span class="mc-blueprint-tag">${live ? 'CANLI 3D' : 'CAD ŞEMA'}: ${escapeHtml(v.tag)}</span>
+              <span class="mc-blueprint-tag">${live ? t('CANLI 3D','LIVE 3D') : t('CAD ŞEMA','CAD DIAGRAM')}: ${escapeHtml(v.tag)}</span>
             </div>
             <div class="mc-facets">${chips}</div>
             <h3 class="mc-title">${escapeHtml(v.name)}</h3>
@@ -1477,7 +1483,7 @@
               ${v.specs.map(([k, val]) => `<div>${escapeHtml(k)}<strong>${escapeHtml(val)}</strong></div>`).join('')}
             </div>
             <div class="mc-actions">${actions}</div>
-            <div class="museum-links"><button class="btn btn-sm" data-museum-share="${v.id}" aria-label="${escapeHtml(v.name)} bağlantısını paylaş">Paylaş ↗</button><button class="btn btn-sm" data-museum-sources="${v.id}">Kaynaklar</button>${['maxim','gatling'].includes(v.id) ? '<a class="btn btn-sm" href="maxim-gatling.html">Gatling ↔ Maxim</a>' : ''}</div>
+            <div class="museum-links"><button class="btn btn-sm" data-museum-share="${v.id}" aria-label="${escapeHtml(v.name)} ${t("bağlantısını paylaş", "share link")}">${t("Paylaş ↗", "Share ↗")}</button><button class="btn btn-sm" data-museum-sources="${v.id}">${t("Kaynaklar", "Sources")}</button>${['maxim','gatling'].includes(v.id) ? '<a class="btn btn-sm" href="maxim-gatling.html">Gatling ↔ Maxim</a>' : ''}</div>
           </div>
         </article>`;
     }
@@ -1490,8 +1496,8 @@
           const active = facetSel[f.key].has(o.key);
           const disabled = count === 0 && !active;
           const title = disabled
-            ? (VEHICLES.some(v => valuesOf(v, f.key).includes(o.key)) ? 'Mevcut filtrelerle sonuç yok' : 'Bu kategoride henüz araç yok — yakında')
-            : `${count} araç`;
+            ? (VEHICLES.some(v => valuesOf(v, f.key).includes(o.key)) ? t('Mevcut filtrelerle sonuç yok','No results with these filters') : t('Bu kategoride henüz araç yok — yakında','No exhibits in this category yet'))
+            : `${count} ${t("araç","exhibits")}`;
           return `<button class="facet-chip${active ? ' active' : ''}${disabled ? ' disabled' : ''}" data-facet="${f.key}" data-opt="${o.key}" title="${title}" aria-pressed="${active}" ${disabled ? 'aria-disabled="true"' : ''}>${o.label}<span class="facet-count">${count}</span></button>`;
         }).join('');
         const n = facetSel[f.key].size;
@@ -1501,15 +1507,15 @@
 
     function renderCards() {
       const list = VEHICLES.filter(v => matches(v));
-      list.sort((a, b) => sortKey === 'name' ? a.name.localeCompare(b.name, 'tr')
+      list.sort((a, b) => sortKey === 'name' ? a.name.localeCompare(b.name, language)
         : sortKey === 'year-desc' ? b.year - a.year : a.year - b.year);
       document.getElementById('catalog-grid').innerHTML = list.map(cardHTML).join('');
       document.getElementById('catalog-empty').hidden = list.length > 0;
       const liveN = list.filter(v => v.status === 'live').length;
       const anyFilter = searchQuery || FACETS.some(f => facetSel[f.key].size);
       document.getElementById('filter-result').innerHTML = anyFilter
-        ? `<strong>${list.length}</strong> / ${VEHICLES.length} araç gösteriliyor • ${liveN} simülatör hazır`
-        : `Tüm koleksiyon: <strong>${VEHICLES.length}</strong> araç • ${VEHICLES.filter(v => v.status === 'live').length} simülatör hazır • ${VEHICLES.filter(v => v.status === 'planned').length} planlı`;
+        ? `<strong>${list.length}</strong> / ${VEHICLES.length} ${t("araç gösteriliyor", "exhibits shown")} • ${liveN} ${t("simülatör hazır", "interactive")}`
+        : `${t("Tüm koleksiyon:", "Entire collection:")} <strong>${VEHICLES.length}</strong> ${t("araç", "exhibits")} • ${VEHICLES.filter(v => v.status === 'live').length} ${t("simülatör hazır", "interactive")} • ${VEHICLES.filter(v => v.status === 'planned').length} ${t("planlı", "planned")}`;
       document.getElementById('catalog-clear').disabled = !anyFilter;
     }
 
@@ -1575,16 +1581,16 @@
     const eraCount = new Set(VEHICLES.map(v => v.era)).size;
     const liveCount = VEHICLES.filter(v => v.status === 'live').length;
     document.getElementById('catalog-summary').innerHTML =
-      `<div class="summary-num">${VEHICLES.length}</div><div class="summary-label">araç • ${liveCount} simülatör hazır<br/>${eraCount} dönem</div>`;
-    document.getElementById('metric-vehicles').innerHTML = `${VEHICLES.length} <span>Araç</span>`;
-    document.getElementById('metric-vehicles-label').textContent = `${liveCount} simülatör hazır • ${eraCount} dönem`;
+      `<div class="summary-num">${VEHICLES.length}</div><div class="summary-label">${t("araç", "exhibits")} • ${liveCount} ${t("simülatör hazır", "interactive")}<br/>${eraCount} ${t("dönem", "eras")}</div>`;
+    document.getElementById('metric-vehicles').innerHTML = `${VEHICLES.length} <span>${t("Araç", "Exhibits")}</span>`;
+    document.getElementById('metric-vehicles-label').textContent = `${liveCount} ${t("simülatör hazır", "interactive")} • ${eraCount} ${t("dönem", "eras")}`;
 
     // Planlı araçların mühendislik penceresi
     const modalEl = document.getElementById('blueprint-modal');
     function openBlueprintModal(id) {
       const v = VEHICLES.find(x => x.id === id);
       if (!v) return;
-      document.getElementById('modal-era').textContent = `${v.yearLabel} • ${v.eraLabel} — ${v.group}. GRUP MÜHENDİSLİK PLANI`;
+      document.getElementById('modal-era').textContent = `${v.yearLabel} • ${v.eraLabel} — ${v.group}. ${t("GRUP MÜHENDİSLİK PLANI", "GROUP ENGINEERING PLAN")}`;
       document.getElementById('modal-title').textContent = v.name;
       document.getElementById('modal-desc').textContent = v.desc;
       document.getElementById('modal-list').innerHTML = (v.modal || []).map(i => `<li>${escapeHtml(i)}</li>`).join('');
@@ -1660,7 +1666,7 @@
       // 20 saniye hız sınırı (Spam koruması)
       const now = Date.now();
       if (now - lastReqSubmitAt < 20000) {
-        showReqStatus('error', 'Lütfen yeni bir talep göndermeden önce birkaç saniye bekleyin.');
+        showReqStatus('error', t("Lütfen yeni bir talep göndermeden önce birkaç saniye bekleyin.", "Please wait a few seconds before submitting another suggestion."));
         return;
       }
 
@@ -1673,19 +1679,19 @@
       const requesterContact = document.getElementById('req-requester-contact').value.trim();
 
       if (vehicleName.length < 2) {
-        showReqStatus('error', 'Lütfen geçerli bir araç veya silah adı girin (en az 2 karakter).');
+        showReqStatus('error', t("Lütfen geçerli bir araç veya silah adı girin (en az 2 karakter).", "Enter a name of at least two characters."));
         return;
       }
       if (!eraOrYear) {
-        showReqStatus('error', 'Lütfen aracın ait olduğu dönemi veya yaklaşık yılını belirtin.');
+        showReqStatus('error', t("Lütfen aracın ait olduğu dönemi veya yaklaşık yılını belirtin.", "Enter the era or an approximate year."));
         return;
       }
       if (mechanismNotes.length < 5) {
-        showReqStatus('error', 'Lütfen görmek istediğiniz mekanizmayı veya eklenme nedenini kısaca açıklayın.');
+        showReqStatus('error', t("Lütfen görmek istediğiniz mekanizmayı veya eklenme nedenini kısaca açıklayın.", "Briefly explain what you would like to see or why it belongs in the collection."));
         return;
       }
       if (referenceUrl && !/^https?:\/\/.+/i.test(referenceUrl)) {
-        showReqStatus('error', 'Referans linki http:// veya https:// ile başlamalıdır.');
+        showReqStatus('error', t("Referans linki http:// veya https:// ile başlamalıdır.", "The reference link must start with http:// or https://."));
         return;
       }
 
@@ -1706,7 +1712,7 @@
       const sbTable = (sbCfg.table || 'vehicle_requests').trim();
 
       reqSubmitBtn.disabled = true;
-      reqSubmitBtn.textContent = '⏳ Gönderiliyor...';
+      reqSubmitBtn.textContent = t("⏳ Gönderiliyor...", "⏳ Submitting…");
 
       try {
         if (sbUrl && sbKey) {
@@ -1733,7 +1739,7 @@
           lastReqSubmitAt = Date.now();
           reqFormEl.reset();
           renderSavedRequests();
-          showReqStatus('success', `✅ Teşekkürler! "${vehicleName}" araç talebiniz başarıyla alındı.`);
+          showReqStatus('success', t(`✅ Teşekkürler! "${vehicleName}" araç talebiniz başarıyla alındı.`, `✅ Thank you! Your suggestion for "${vehicleName}" was received.`));
         } else {
           // Supabase henüz bağlanmadığında yerel kuyruğa kaydet
           const localList = JSON.parse(localStorage.getItem('savas_araclari_requests') || '[]');
@@ -1742,13 +1748,13 @@
           lastReqSubmitAt = Date.now();
           reqFormEl.reset();
           renderSavedRequests();
-          showReqStatus('success', `✅ Teşekkürler! "${vehicleName}" araç talebiniz başarıyla kaydedildi.`);
+          showReqStatus('success', t(`✅ Teşekkürler! "${vehicleName}" araç talebiniz başarıyla kaydedildi.`, `✅ Thank you! Your suggestion for "${vehicleName}" was saved.`));
         }
       } catch (err) {
-        showReqStatus('error', 'Talep gönderilirken bir hata oluştu: ' + (err.message || 'Bağlantı hatası'));
+        showReqStatus('error', t("Talep gönderilirken bir hata oluştu: ", "Could not submit the suggestion: ") + (err.message || t("Bağlantı hatası", "Connection error")));
       } finally {
         reqSubmitBtn.disabled = false;
-        reqSubmitBtn.textContent = '🚀 Talebi Gönder';
+        reqSubmitBtn.textContent = t("🚀 Talebi Gönder", "🚀 Submit suggestion");
       }
     });
 
@@ -1760,6 +1766,12 @@
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xf2ece1);
     scene.fog = new THREE.Fog(0xf2ece1, 14, 32);
+    function applyPreviewTheme() {
+      const color = window.MuseumPreferences.theme === 'dark' ? 0x242e34 : 0xf2ece1;
+      scene.background.setHex(color);
+      scene.fog.color.setHex(color);
+      floor.material.color.setHex(window.MuseumPreferences.theme === 'dark' ? 0x3f4950 : 0xdfd8c8);
+    }
 
     const camera = new THREE.PerspectiveCamera(40, stageContainer.clientWidth / stageContainer.clientHeight, 0.1, 100);
     camera.position.set(8.8, 5.2, 8.8);
@@ -1797,6 +1809,8 @@
     floor.position.y = -0.03;
     floor.receiveShadow = true;
     scene.add(floor);
+    applyPreviewTheme();
+    window.addEventListener('museumthemechange', applyPreviewTheme);
 
     const edgeDefault = new THREE.LineBasicMaterial({ color: 0x1e293b, transparent: true, opacity: 0.45 });
     const edgeBlue = new THREE.LineBasicMaterial({ color: 0x0284c7, transparent: true, opacity: 0.9 });
@@ -1938,6 +1952,7 @@
       renderer.setSize(stageContainer.clientWidth, stageContainer.clientHeight);
     });
   </script>
+<script src="js/museum-page-en.js"></script>
 </body>
 
 </html>
