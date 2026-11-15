@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Araç Karşılaştırma — Savaş Makineleri</title>
+  <meta name="description" content="Müze envanterinden iki sergiyi dönem, çalışma ilkesi ve tarihsel rol açısından karşılaştırın.">
+  <script src="js/museum-preferences.js"></script>
+  <link rel="stylesheet" href="css/museum-explore.css">
+  <link rel="stylesheet" href="css/museum-links.css">
+  <link rel="stylesheet" href="css/museum-preferences.css">
+  <link rel="stylesheet" href="css/museum-compare.css">
+</head>
+<body>
+  <nav class="museum-nav compare-nav" aria-label="Müze gezinmesi">
+    <a href="index.html" data-copy="home">← Envanter</a>
+    <a href="tarih.html" data-copy="timeline">Tarih çizelgesi ↗</a>
+  </nav>
+  <main class="explore compare">
+    <header class="compare-header">
+      <h1 data-copy="title">Araçları karşılaştır</h1>
+      <p data-copy="intro">Koleksiyondan iki sergi seçin. Dönemlerini, çalışma ilkelerini ve tarihsel rollerini yan yana inceleyin.</p>
+    </header>
+    <nav class="compare-pairs" aria-label="Önerilen karşılaştırmalar" id="compare-pairs">
+      <a class="action" data-pair="abdulhamid,u505" href="?left=abdulhamid&amp;right=u505">Abdülhamid ↔ U-505</a>
+      <a class="action" data-pair="j79,harrier" href="?left=j79&amp;right=harrier">J79 ↔ Pegasus</a>
+      <a class="action" href="maxim-gatling.html">Gatling ↔ Maxim ↗</a>
+    </nav>
+    <section aria-labelledby="compare-heading">
+      <h2 class="compare-visually-hidden" id="compare-heading" data-copy="selection">Sergi seçimi</h2>
+      <div class="compare-grid">
+        <label for="compare-left"><span data-copy="left">Birinci sergi</span><select id="compare-left"></select></label>
+        <label for="compare-right"><span data-copy="right">İkinci sergi</span><select id="compare-right"></select></label>
+        <article class="compare-card" id="compare-left-card"></article>
+        <article class="compare-card" id="compare-right-card"></article>
+      </div>
+      <p class="compare-visually-hidden" id="compare-status" role="status"></p>
+      <table class="compare-table" id="compare-table"></table>
+      <p class="compare-note" id="compare-note" hidden></p>
+    </section>
+    <noscript>Karşılaştırma ekranı JavaScript gerektirir. <a href="index.html">Envantere dön</a>.</noscript>
+  </main>
+  <script src="js/catalog.js"></script>
+  <script src="js/catalog-source-en.js"></script>
+  <script src="js/catalog-en.js"></script>
+  <script src="js/museum-links.js"></script>
+  <script src="js/museum-compare.js"></script>
+</body>
+</html>

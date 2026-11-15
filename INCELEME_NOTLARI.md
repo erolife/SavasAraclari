@@ -1186,3 +1186,9 @@ Doğrulama: 63 proje testi, üç sergi × iki dil × iki ekran boyutu (390 ve 14
 - `patriot`, `yamato460`, `cezeri`, `saturnv_f1`, `firtina`, `mahmudiye`, `wagenburg`, `jumo004`, `corvus`, `humbara`, `kamov`
 
 64 proje testi geçti. Uzun gövde ve döndürülmüş, tekrarlı geometri içeren kadrajlar için kamera regresyonu eklendi.
+
+## U3 — Araç karşılaştırma ekranı
+
+Envanterdeki 66 aktif sergiden ikisi seçilebilir. Hazır karşılaştırmalar Abdülhamid–U-505 ve J79-GE-15–Harrier GR.1 içindeki Pegasus Mk 101. Gatling–Maxim çalışmasına bağlantı korunur. Karşılaştırma, dönem, çalışma ilkesi, tarihsel rol ve kaynakları yan yana gösterir. Hazır çiftler için boyut satırı eklendi. Pegasus Mk 101 için doğrulanmış ölçü bulunamadı. Paylaşılabilir URL iki seçimi tutar.
+
+Doğrulama: 390 ve 1440 pikselde Türkçe ve İngilizce, iki hazır çift, serbest seçim, klavye erişimi, tarayıcı geri dönüşü, yinelenen seçim, kaynak penceresi ve 3D bağlantıları. 64 proje testi geçti.
