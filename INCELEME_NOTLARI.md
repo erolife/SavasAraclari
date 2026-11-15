@@ -1200,3 +1200,10 @@ Envanterden, 3D simülatörden ve Enigma laboratuvarından favori eklenebilir. K
 Veri yalnızca tarayıcıda saklanır. Kaldırılmış sergiler ve bozuk kayıtlar ayıklanır. Depolama engellenirse değişiklikler açık sayfanın belleğinde tutulur. Depolama açıkken aynı tarayıcının sekmeleri güncellenir.
 
 Doğrulama: 65 proje testi. Türkçe ve İngilizce, 390 ve 1440 pikselde favori ekleme ve kaldırma, son ziyaret sırası, Nusret’in üçüncü tur adımına dönüş, yenileme, temizleme ve sıfırlama. Enigma laboratuvarı dönüşü, sekmeler arası güncelleme ve depolama engeli ayrıca kontrol edildi.
+
+## U1 — Sade müze görünümü koleksiyonun tamamında
+
+66 aktif sergi için Türkçe ve İngilizce dört kısa alan eklendi. Sergi anlatımı nesneyi, tarihsel yerini ve çalışma ilkesini özetler. Dördüncü alan modelde görülebilen sergiye özgü bir ayrıntıya yönlendirir. Varsayılan Tiger I girişinde de sade görünüm açılır. Kesit, ayrılmış görünüm, özel kamera ve kaydedilmiş tur bağlantıları doğrudan teknik görünümü açar.
+
+Tarayıcı taraması 66 serginin Türkçe masaüstü ve İngilizce mobil görünümünü kapsadı. Dokuz farklı sergi Türkçe mobilde ve İngilizce masaüstünde ayrıca kontrol edildi. Envantere sonradan eklenen modeller için iki dilde anlatım kapsamını ölçen test eklendi.
+66 proje testi geçti. 320 ve 1440 pikselde varsayılan sergi, klavye ile görünüm geçişi, X-Ray, ayrılmış görünüm ve kayıtlı tur bağlantısı doğrulandı.

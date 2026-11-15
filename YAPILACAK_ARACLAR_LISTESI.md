@@ -173,14 +173,14 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 
 | Öncelik | Geliştirme | Amaç ve kapsam | Tamamlanma ölçütü | Geliştirici | Durum |
 | :---: | :--- | :--- | :--- | :---: | :---: |
-| U1 | **Sade müze görünümü** | Model için daha geniş alan; gerektiğinde açılan teknik paneller. “Nedir?”, “Neyi değiştirdi?”, “Nasıl çalışır?” anlatımı. Mevcut ayrıntılı inceleme kontrollerine geçiş korunur. | Masaüstü ve mobilde model ile anlatım okunabilir; teknik görünümle geçiş, parça seçimi ve mevcut kontroller çalışır. Klavye ile erişim ve odak yönetimi doğrulanır. | MesAi C | ✅ Pilot: Enigma, Nusret ve Selçuklu ejder başlı gürzü |
+| U1 | **Sade müze görünümü** | Model için daha geniş alan; gerektiğinde açılan teknik paneller. “Nedir?”, “Neyi değiştirdi?”, “Nasıl çalışır?” anlatımı. Mevcut ayrıntılı inceleme kontrollerine geçiş korunur. | Masaüstü ve mobilde model ile anlatım okunabilir; teknik görünümle geçiş, parça seçimi ve mevcut kontroller çalışır. Klavye ile erişim ve odak yönetimi doğrulanır. | MesAi C | ✅ 66 sergide Türkçe ve İngilizce |
 | U2 | **Koleksiyon genelinde görsel kalite kontrolü** | Mevcut aktif araçların (55+ model) genel ve yakın plan kameraları, ekrana sığdırma, metin okunabilirliği ve mobil kontrolleri için ortak kalite standardı. Son modellerde giderilen kadraj sorunları kalan araçlarda da taranır. | Her araç için masaüstü, X-Ray ve mobil kontrol kaydı tutulur. Genel görünüşte model kesilmez; yakın planlar ilgili parçayı gösterir. Bulunan sorunlar düzeltilip ilgili testlerle doğrulanır. | MesAi C | ✅ 66 model tarandı |
 | U3 | **Araç karşılaştırma ekranı** | Mevcut Gatling–Maxim çalışmasını temel alarak iki aracın dönemini, boyutlarını, güç kaynağını ve getirdiği yeniliği karşılaştırma. İlk adaylar: Abdülhamid–U-505 ve J79–Pegasus. | İki araç seçimi, kaynak bağlantıları ve mobil düzen çalışır. Bilinmeyen değerler açıkça belirtilir; farklı türdeki ölçüler doğrudan eşdeğer sayılmaz. Pegasus, mevcut Harrier içindeki motor olarak doğru adlandırılır. | MesAi C | ✅ İki hazır çift ve 66 sergi seçimi |
 | U4 | **Kişisel koleksiyon** | Favoriler, son incelenen araçlar ve kaldığın yerden devam. Sunucu veya hesap gerektirmeden tarayıcıda yerel saklama. | Yenileme sonrası kayıtlar korunur; kaldırma ve sıfırlama çalışır. Bozuk kayıt, kaldırılmış araç ve depolama engeli güvenli biçimde ele alınır. Verinin yalnız bu tarayıcıda tutulduğu açıklanır. | MesAi C | ✅ Tamamlandı |
 
 ### Uygulama ve doğrulama
 
-- U1 üç sergide pilot olarak açıldı. U2 kapsamında 66 model tarandı. U3 karşılaştırma ekranı açıldı. U4 kapsamında kişisel koleksiyon açıldı.
+- U1, üç sergideki pilot uygulamanın ardından 66 aktif modele açıldı. U2 kapsamında 66 model tarandı. U3 karşılaştırma ekranı açıldı. U4 kapsamında kişisel koleksiyon açıldı.
 - Başlayan geliştirici ilgili U kodunu sahiplenir. Ortak arayüz dosyalarına dokunan işler, yeni araç entegrasyonlarıyla koordine edilir.
 - Mevcut seçildiğinde model yükleme, tarih çizelgesi, on iki duraklı Türk tarihi rotası ve paylaşım/kaynak bağlantıları korunur.
 - Her işte kapsama uygun testler ve masaüstü/mobil görsel kontroller tamamlanır; sonuçlar `INCELEME_NOTLARI.md` içine kaydedilir. Her iş için ayrı Türkçe commit atılır; push zamanı kullanıcının o işteki talimatına göre belirlenir.

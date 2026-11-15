@@ -1312,8 +1312,9 @@
     </div>
   </header>
 
-  <section class="museum-overview" id="museum-overview" hidden>
+  <section class="museum-overview" id="museum-overview" tabindex="0" hidden>
     <dl>
+      <div><dt></dt><dd></dd></div>
       <div><dt></dt><dd></dd></div>
       <div><dt></dt><dd></dd></div>
       <div><dt></dt><dd></dd></div>
@@ -1600,6 +1601,7 @@
   <script src="js/catalog-en.js"></script>
   <script src="js/museum-links.js"></script>
   <script src="js/museum-collection.js"></script>
+  <script src="js/museum-view-copy.js"></script>
   <script src="js/museum-view.js"></script>
   <script src="js/museum-framing.js"></script>
   <script src="js/vehicles/tiger1.js"></script>
@@ -2298,11 +2300,13 @@
     container.appendChild(renderer.domElement);
 
     const overviewPanel = document.getElementById('museum-overview');
-    const museumView = window.MuseumView.mount({ english, onChange: visible => {
+    const museumView = window.MuseumView.mount({ english, onChange: (visible, navigating) => {
       if (visible) closeMobileSheet();
       resizeScene();
-      const iso = getActiveCamPresets().iso;
-      if (iso) flyCameraTo(iso.pos, iso.look, true);
+      if (visible || !navigating) {
+        const iso = getActiveCamPresets().iso;
+        if (iso) flyCameraTo(iso.pos, iso.look, true);
+      }
     } });
     function resizeScene() {
       document.body.style.setProperty('--museum-overview-height', `${overviewPanel.offsetHeight}px`);
@@ -3574,7 +3578,6 @@
         return;
       }
       state.vehicle = target;
-      museumView.show(target);
       const isSahi = state.vehicle === 'sahi';
       const ad = activeAdapter();
       const title = ad ? ad.ui.title : isSahi ? 'Osmanlı Şahi Topu' : 'Tiger I';
@@ -3610,10 +3613,7 @@
       bindSubsystemAndCamoButtons();
         updateVisualMaterials();
         applyTourStep(0);
-        return;
-      }
-
-      if (isSahi) {
+      } else if (isSahi) {
         setUiLabel(document.getElementById('header-vehicle-title'), 'OSMANLI ŞAHİ TOPU — Dardanelles Gun (1464)');
         setUiLabel(document.getElementById('header-vehicle-sub'), `1453 kuşatma toplarının günümüze ulaşan en yakın örneği • ~63 cm ağız • 16,8 t • İki parçalı vidalı tunç`);
         setUiLabel(document.getElementById('part-count-label'), '13 Ana Grup');
@@ -3797,6 +3797,7 @@
       bindSubsystemAndCamoButtons();
         applyTourStep(0);
       }
+      museumView.show(target);
       if (remember) {
         window.MuseumCollection.setActiveModel(target);
         recordCollectionModel();
@@ -4816,7 +4817,9 @@
     const params = new URLSearchParams(window.location.search);
     if (params.get('vehicle') && vehicleLoader.has(params.get('vehicle')) && params.get('vehicle') !== 'tiger') {
       await switchVehicle(params.get('vehicle'), false);
-    } else {
+    }
+    if (state.vehicle === 'tiger') {
+      museumView.show('tiger');
       selectPart(partGunBarrel);
     }
 

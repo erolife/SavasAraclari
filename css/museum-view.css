@@ -11,7 +11,7 @@
 
 .museum-overview dl {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -44,6 +44,8 @@
   top: var(--sim-header-bottom, 58px);
   bottom: var(--museum-overview-height, 0px);
 }
+
+.museum-overview-active .timeline-pills { display: none; }
 
 .museum-overview-active :is(.side-panel, .bottom-bar, .mobile-quick-bar, .mobile-bottom-nav) {
   display: none !important;
