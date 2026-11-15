@@ -18,8 +18,11 @@ for (const [index, vehicle] of english.VEHICLES.entries()) {
   assert.equal(vehicle.sim, old.sim);
   assert.equal(vehicle.year, old.year);
   assert.notEqual(vehicle.desc, old.desc, vehicle.id);
-  assert.equal(JSON.stringify(vehicle.sources), JSON.stringify(old.sources));
+  assert.equal(JSON.stringify(vehicle.sources.map(source => source.url)), JSON.stringify(old.sources.map(source => source.url)));
 }
+const mace = english.VEHICLES.find(vehicle => vehicle.id === 'dragonmace');
+assert.match(mace.sources[0].title, /catalogue entry 146/);
+assert.match(mace.sources[1].note, /printed page 234/);
 assert.equal(english.FACETS.find(f => f.key === 'domain').options[0].label, '🪖 Land');
 
 function preferences(storage, dark, search = '') {

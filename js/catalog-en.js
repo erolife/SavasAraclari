@@ -72,6 +72,19 @@ const FACET_TEXT={"domain":{"label":"Operating Environment","options":{"land":"�
 function translate(catalog){if(!catalog)return catalog;const copy=JSON.parse(JSON.stringify(catalog));copy.FACETS=(copy.FACETS||[]).map(f=>{const t=FACET_TEXT[f.key];if(!t)return f;f.label=t.label;f.options=(f.options||[]).map(o=>({...o,label:t.options[o.key]||o.label}));return f});copy.VEHICLES=(copy.VEHICLES||[]).map(v=>{const t=VEHICLE_TEXT[v.id];if(!t)return v;for(const k of ['name','sub','desc','yearLabel','eraLabel'])if(t[k]!==undefined)v[k]=t[k];if(t.tags)v.tags=t.tags;if(t.specs)v.specs=t.specs;return v});return copy}
 window.MuseumCatalogEnglish = { translate };
 if (window.MuseumPreferences?.language === 'en' && window.MUSEUM_CATALOG) {
-  window.MUSEUM_CATALOG = translate(window.MUSEUM_CATALOG);
+  const catalogue = translate(window.MUSEUM_CATALOG);
+  const mace = catalogue.VEHICLES.find(vehicle => vehicle.id === 'dragonmace');
+  const maceSources = {
+    'Court and Cosmos — Met, 2016, katalog 146, s.234': {
+      title: 'Court and Cosmos — The Met, 2016, catalogue entry 146, p. 234',
+      note: 'Anatolia, 12th–13th century. Furusiyya R-113, 35 cm. The small figure has been interpreted as a bull or a lion.'
+    },
+    'Sergi kataloğu PDF — ejder başlı gürz fotoğrafı': {
+      title: 'Exhibition catalogue PDF — photograph of the dragon-headed mace',
+      note: 'PDF page 249, printed page 234. Visual reference for the shape and surface details of the head.'
+    }
+  };
+  if (mace) mace.sources = mace.sources.map(source => ({ ...source, ...maceSources[source.title] }));
+  window.MUSEUM_CATALOG = catalogue;
 }
 })();
