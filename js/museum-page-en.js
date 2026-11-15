@@ -9,6 +9,7 @@ Müze Kataloğu & Filtreler|Museum catalogue & filters
 Tarih Çizelgesi|Timeline
 Türk Tarihi Rotası|Turkish History Trail
 Araçları karşılaştır|Compare exhibits
+Koleksiyonum|My collection
 💡 Yeni Araç Talep Et|💡 Suggest an exhibit
 ⚙️ PROSEDÜREL CAD & TEARDOWN SİMÜLATÖRÜ|⚙️ PROCEDURAL CAD & TEARDOWN SIMULATOR
 Savaş Tarihini Değiştiren Makinelerin|Explore the machines

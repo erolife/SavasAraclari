@@ -1192,3 +1192,11 @@ Doğrulama: 63 proje testi, üç sergi × iki dil × iki ekran boyutu (390 ve 14
 Envanterdeki 66 aktif sergiden ikisi seçilebilir. Hazır karşılaştırmalar Abdülhamid–U-505 ve J79-GE-15–Harrier GR.1 içindeki Pegasus Mk 101. Gatling–Maxim çalışmasına bağlantı korunur. Karşılaştırma, dönem, çalışma ilkesi, tarihsel rol ve kaynakları yan yana gösterir. Hazır çiftler için boyut satırı eklendi. Pegasus Mk 101 için doğrulanmış ölçü bulunamadı. Paylaşılabilir URL iki seçimi tutar.
 
 Doğrulama: 390 ve 1440 pikselde Türkçe ve İngilizce, iki hazır çift, serbest seçim, klavye erişimi, tarayıcı geri dönüşü, yinelenen seçim, kaynak penceresi ve 3D bağlantıları. 64 proje testi geçti.
+
+## U4 — Kişisel koleksiyon
+
+Envanterden, 3D simülatörden ve Enigma laboratuvarından favori eklenebilir. Koleksiyonum sayfası favorileri, son 12 sergiyi ve devam bağlantısını gösterir. Devam bağlantısı Enigma laboratuvarını veya son 3D serginin görünümünü ve teknik tur adımını açar. Favoriler tek tek kaldırılabilir. Geçmişi temizlemek favorileri korur. Koleksiyonu sıfırlamak iki listeyi de temizler.
+
+Veri yalnızca tarayıcıda saklanır. Kaldırılmış sergiler ve bozuk kayıtlar ayıklanır. Depolama engellenirse değişiklikler açık sayfanın belleğinde tutulur. Depolama açıkken aynı tarayıcının sekmeleri güncellenir.
+
+Doğrulama: 65 proje testi. Türkçe ve İngilizce, 390 ve 1440 pikselde favori ekleme ve kaldırma, son ziyaret sırası, Nusret’in üçüncü tur adımına dönüş, yenileme, temizleme ve sıfırlama. Enigma laboratuvarı dönüşü, sekmeler arası güncelleme ve depolama engeli ayrıca kontrol edildi.

@@ -1082,6 +1082,7 @@
   <link rel="stylesheet" href="css/museum-links.css">
 <script src="js/museum-preferences.js"></script>
   <link rel="stylesheet" href="css/museum-preferences.css">
+  <link rel="stylesheet" href="css/museum-collection.css">
 </head>
 
 <body>
@@ -1103,6 +1104,7 @@
       <a href="tarih.html">Tarih Çizelgesi</a>
       <a href="turk-tarihi.html">Türk Tarihi Rotası</a>
       <a href="karsilastir.html">Araçları karşılaştır</a>
+      <a href="koleksiyonum.html">Koleksiyonum</a>
     </nav>
 
     <div class="nav-cta">
@@ -1131,6 +1133,7 @@
           <a href="turk-tarihi.html" class="btn btn-primary">Türk Tarihi Rotası →</a>
           <a href="tarih.html" class="btn btn-cyan">Tarih Çizelgesini Keşfet →</a>
           <a href="karsilastir.html" class="btn btn-cyan">Araçları karşılaştır</a>
+          <a href="koleksiyonum.html" class="btn btn-cyan">Koleksiyonum</a>
           <a href="simulator.html" class="btn btn-primary">
             🔥 1942 Tiger I Simülatörü
           </a>
@@ -1405,6 +1408,7 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/catalog.js"></script>
   <script src="js/museum-links.js"></script>
+  <script src="js/museum-collection.js"></script>
   <script src="js/catalog-source-en.js"></script><script src="js/catalog-en.js"></script>
   <script type="module">
     import * as THREE from 'three';
@@ -1485,7 +1489,7 @@
               ${v.specs.map(([k, val]) => `<div>${escapeHtml(k)}<strong>${escapeHtml(val)}</strong></div>`).join('')}
             </div>
             <div class="mc-actions">${actions}</div>
-            <div class="museum-links"><button class="btn btn-sm" data-museum-share="${v.id}" aria-label="${escapeHtml(v.name)} ${t("bağlantısını paylaş", "share link")}">${t("Paylaş ↗", "Share ↗")}</button><button class="btn btn-sm" data-museum-sources="${v.id}">${t("Kaynaklar", "Sources")}</button>${['maxim','gatling'].includes(v.id) ? '<a class="btn btn-sm" href="maxim-gatling.html">Gatling ↔ Maxim</a>' : ''}</div>
+            <div class="museum-links">${live ? `<button type="button" class="btn btn-sm" data-museum-favorite="${v.id}"></button>` : ''}<button class="btn btn-sm" data-museum-share="${v.id}" aria-label="${escapeHtml(v.name)} ${t("bağlantısını paylaş", "share link")}">${t("Paylaş ↗", "Share ↗")}</button><button class="btn btn-sm" data-museum-sources="${v.id}">${t("Kaynaklar", "Sources")}</button>${['maxim','gatling'].includes(v.id) ? '<a class="btn btn-sm" href="maxim-gatling.html">Gatling ↔ Maxim</a>' : ''}</div>
           </div>
         </article>`;
     }
@@ -1511,7 +1515,9 @@
       const list = VEHICLES.filter(v => matches(v));
       list.sort((a, b) => sortKey === 'name' ? a.name.localeCompare(b.name, language)
         : sortKey === 'year-desc' ? b.year - a.year : a.year - b.year);
-      document.getElementById('catalog-grid').innerHTML = list.map(cardHTML).join('');
+      const grid = document.getElementById('catalog-grid');
+      grid.innerHTML = list.map(cardHTML).join('');
+      window.MuseumCollection.refreshButtons(grid);
       document.getElementById('catalog-empty').hidden = list.length > 0;
       const liveN = list.filter(v => v.status === 'live').length;
       const anyFilter = searchQuery || FACETS.some(f => facetSel[f.key].size);

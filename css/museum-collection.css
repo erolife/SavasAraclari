@@ -1,0 +1,69 @@
+[data-museum-favorite][aria-pressed="true"] {
+  background: var(--museum-input, #f7e5bb);
+  color: var(--museum-gold, #855000);
+  border-color: currentColor;
+}
+
+[data-museum-favorite][hidden] { display: none; }
+
+.collection-nav { justify-content: space-between; }
+
+.personal-collection header { padding: clamp(24px, 5vw, 55px) 0 20px; }
+.personal-collection h1 { margin: 0 0 10px; font-size: clamp(35px, 6vw, 64px); }
+.personal-collection header p { margin: 0 0 7px; color: var(--muted); }
+
+.collection-resume {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: clamp(14px, 3vw, 24px);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+}
+
+.personal-collection h2 { margin: 0; line-height: 1.25; font-size: clamp(1.1rem, 2.5vw, 1.45rem); }
+.collection-resume p { margin: 6px 0 0; color: var(--muted); overflow-wrap: anywhere; }
+
+.collection-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(15px, 3vw, 32px);
+  margin: 28px 0;
+}
+
+.collection-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 46px;
+}
+
+.collection-list { list-style: none; padding: 0; margin: 8px 0 0; }
+.collection-list li {
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  padding: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.collection-list a { font-weight: 650; line-height: 1.35; overflow-wrap: anywhere; }
+.collection-list button { flex: none; }
+.collection-empty { color: var(--muted); font-size: 0.92rem; }
+.collection-controls { border-top: 1px solid var(--line); padding: 14px 0 24px; }
+.collection-controls p { font-size: 0.9rem; color: var(--muted); }
+.collection-dialog { background: var(--panel); color: var(--ink); border: 1px solid var(--line); max-width: min(27rem, 92vw); padding: 20px; }
+.collection-dialog::backdrop { background: rgba(13, 22, 25, 0.62); }
+.collection-dialog h2 { margin-top: 0; font-size: 1.3rem; }
+
+@media (max-width: 680px) {
+  .collection-columns { grid-template-columns: 1fr; }
+  .collection-list button, .collection-heading button, .collection-resume a { min-height: 44px; }
+}

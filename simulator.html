@@ -1266,6 +1266,7 @@
 <link rel="stylesheet" href="css/museum-links.css">
   <link rel="stylesheet" href="css/museum-preferences.css">
   <link rel="stylesheet" href="css/museum-view.css">
+  <link rel="stylesheet" href="css/museum-collection.css">
 </head>
 
 <body>
@@ -1303,6 +1304,7 @@
 
     <div class="top-actions">
       <button type="button" class="btn btn-cyan" id="museum-view-toggle" aria-controls="museum-overview" hidden></button>
+      <button type="button" class="btn" id="museum-model-favorite" data-museum-favorite="" hidden></button>
       <button class="btn" data-museum-share="">Paylaş ↗</button>
       <button class="btn" data-museum-sources="">Kaynaklar</button>
       <button class="btn btn-cyan" id="btn-sound" title="Prosedürel Mekanik Ses Efektleri">🔊 Ses: Açık</button>
@@ -1597,6 +1599,7 @@
   <script src="js/catalog-source-en.js"></script>
   <script src="js/catalog-en.js"></script>
   <script src="js/museum-links.js"></script>
+  <script src="js/museum-collection.js"></script>
   <script src="js/museum-view.js"></script>
   <script src="js/museum-framing.js"></script>
   <script src="js/vehicles/tiger1.js"></script>
@@ -3553,7 +3556,7 @@
       }
     }
 
-    async function switchVehicle(targetVehicle) {
+    async function switchVehicle(targetVehicle, remember = true) {
       const target = vehicleLoader.has(targetVehicle) ? targetVehicle : 'tiger';
       const request = ++vehicleRequest;
       try {
@@ -3596,6 +3599,7 @@
       try {
         const u = new URL(window.location.href);
         u.searchParams.set('vehicle', state.vehicle);
+        if (remember) u.searchParams.delete('tour');
         window.history.replaceState(null, '', u.search);
       } catch (_) {}
 
@@ -3792,6 +3796,10 @@
       localizeUi(document.getElementById('subsystem-list'));
       bindSubsystemAndCamoButtons();
         applyTourStep(0);
+      }
+      if (remember) {
+        window.MuseumCollection.setActiveModel(target);
+        recordCollectionModel();
       }
     }
 
@@ -4228,8 +4236,16 @@
       }, 1450);
     });
 
-    document.getElementById('btn-tour-prev').addEventListener('click', () => applyTourStep(state.tourIndex - 1));
-    document.getElementById('btn-tour-next').addEventListener('click', () => applyTourStep(state.tourIndex + 1));
+    function recordCollectionModel() {
+      window.MuseumCollection.recordModel(state.vehicle, state.tourIndex + 1, museumView.visible);
+    }
+    function moveTour(direction) {
+      applyTourStep(state.tourIndex + direction);
+      recordCollectionModel();
+    }
+    document.getElementById('btn-tour-prev').addEventListener('click', () => moveTour(-1));
+    document.getElementById('btn-tour-next').addEventListener('click', () => moveTour(1));
+    document.getElementById('museum-view-toggle').addEventListener('click', recordCollectionModel);
 
     const toastEl = document.getElementById('toast');
     let toastTimer = null;
@@ -4799,7 +4815,7 @@
     // URL parametresi ile doğrudan araç ve mod başlatma (Landing Page bağlantıları için)
     const params = new URLSearchParams(window.location.search);
     if (params.get('vehicle') && vehicleLoader.has(params.get('vehicle')) && params.get('vehicle') !== 'tiger') {
-      await switchVehicle(params.get('vehicle'));
+      await switchVehicle(params.get('vehicle'), false);
     } else {
       selectPart(partGunBarrel);
     }
@@ -4823,15 +4839,25 @@
     applyRenderMode();
 
     // ?cam=iso|front|breech|engine|suspension|top — kamerayı doğrudan (geçişsiz) bir açıya yerleştirir
-    const camParam = getActiveCamPresets()[params.get('cam') || 'iso'];
-    if (camParam) {
-      flyCameraTo(camParam.pos, camParam.look, (params.get('cam') || 'iso') === 'iso');
+    const requestedTour = Number(params.get('tour'));
+    const tourLength = activeAdapter()?.tourSteps.length ?? (state.vehicle === 'sahi' ? TOUR_STEPS_SAHI.length : TOUR_STEPS_TIGER.length);
+    const resumeTour = !museumView.visible && Number.isInteger(requestedTour) && requestedTour > 1 && requestedTour <= tourLength;
+    if (resumeTour) {
+      applyTourStep(requestedTour - 1);
+      if (window.innerWidth <= 900) openMobileSheet('tour');
+    } else {
+      const camParam = getActiveCamPresets()[params.get('cam') || 'iso'];
+      if (camParam) flyCameraTo(camParam.pos, camParam.look, (params.get('cam') || 'iso') === 'iso');
+    }
+    if (state.camTargetPos) {
       camera.position.copy(state.camTargetPos);
       controls.target.copy(state.camTargetLook);
       state.camTargetPos = null;
       state.camTargetLook = null;
       controls.update();
     }
+    window.MuseumCollection.setActiveModel(state.vehicle);
+    recordCollectionModel();
     window.MuseumPerformance = { snapshot: () => ({models: Object.keys(VEHICLE_ROOTS), meshes: allMeshes.length, parts: allParts.length, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures}) };
     animate();
     })().catch(error => { console.error(error); setUiLabel(document.getElementById('header-vehicle-title'), 'Müze başlatılamadı — sayfayı yenileyin'); });
