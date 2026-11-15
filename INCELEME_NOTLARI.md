@@ -1163,3 +1163,9 @@ Döküm havanın dış biçimi, ahşap yatak ve bağımsız rubu tahtası sergis
 ## Kamov Ka-27PS — 14 Kasım 2026
 
 15 grup, 173 mesh. Arama kurtarma varyantı, güverte, ters yönlü eş eksenli rotorlar, sürgülü kapılar, ayrılabilir motor kaportası ve temsili sepet. Rostec ve US Army ODIN kaynakları katalogda. Rotor yönü ve sıfır hız, 101 kapı ve vinç konumu, sepet ile güverte açıklığı ve sıfırlama doğrulandı. Masaüstü, mobil, X-Ray ve etkin vinç tarayıcıda incelendi. Koleksiyonda 62 test dosyası geçti.
+
+## U1 — Sade müze görünümü
+
+Enigma, Nusret ve Selçuklu ejder başlı gürzü 3D model ve üç kısa açıklamayla açılır. Teknik inceleme düğmesi mevcut panelleri ve turu açar. Enigma sergisinden harf yolculuğu laboratuvarına bağlantı vardır. Kesit, ayrılmış görünüm ve kamera bağlantıları doğrudan teknik görünümü açar.
+
+Doğrulama: 63 proje testi, üç sergi × iki dil × iki ekran boyutu (390 ve 1440 piksel). Klavye ile geçiş, odağın korunması, tur ilerletme ve doğrudan kesit bağlantısı kontrol edildi.

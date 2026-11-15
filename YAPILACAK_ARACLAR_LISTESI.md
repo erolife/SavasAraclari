@@ -169,18 +169,18 @@ Her geliştirici listeden bir aracı üzerine aldığında [ARAC_EKLEME_REHBERI.
 
 ## 5. Uygulama Geliştirme Planı — 9 Kasım 2026
 
-Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek için aşağıdaki dört öneri plana eklendi. Önerilen uygulama sırası aşağıdadır; henüz geliştirmeye başlanmadı. Araç `#46–#75` sırası ve mevcut görev sahiplikleri korunur.
+Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek için aşağıdaki dört öneri plana eklendi. Önerilen uygulama sırası ve ilerleme durumu aşağıdadır. Araç `#46–#75` sırası ve mevcut görev sahiplikleri korunur.
 
 | Öncelik | Geliştirme | Amaç ve kapsam | Tamamlanma ölçütü | Geliştirici | Durum |
 | :---: | :--- | :--- | :--- | :---: | :---: |
-| U1 | **Sade müze görünümü** | Model için daha geniş alan; gerektiğinde açılan teknik paneller. “Nedir?”, “Neyi değiştirdi?”, “Nasıl çalışır?” anlatımı. Mevcut ayrıntılı inceleme kontrollerine geçiş korunur. | Masaüstü ve mobilde model ile anlatım okunabilir; teknik görünümle geçiş, parça seçimi ve mevcut kontroller çalışır. Klavye ile erişim ve odak yönetimi doğrulanır. | — | ⏳ Planlı |
+| U1 | **Sade müze görünümü** | Model için daha geniş alan; gerektiğinde açılan teknik paneller. “Nedir?”, “Neyi değiştirdi?”, “Nasıl çalışır?” anlatımı. Mevcut ayrıntılı inceleme kontrollerine geçiş korunur. | Masaüstü ve mobilde model ile anlatım okunabilir; teknik görünümle geçiş, parça seçimi ve mevcut kontroller çalışır. Klavye ile erişim ve odak yönetimi doğrulanır. | MesAi C | ✅ Pilot: Enigma, Nusret ve Selçuklu ejder başlı gürzü |
 | U2 | **Koleksiyon genelinde görsel kalite kontrolü** | Mevcut aktif araçların (55+ model) genel ve yakın plan kameraları, ekrana sığdırma, metin okunabilirliği ve mobil kontrolleri için ortak kalite standardı. Son modellerde giderilen kadraj sorunları kalan araçlarda da taranır. | Her araç için masaüstü, X-Ray ve mobil kontrol kaydı tutulur. Genel görünüşte model kesilmez; yakın planlar ilgili parçayı gösterir. Bulunan sorunlar düzeltilip ilgili testlerle doğrulanır. | — | ⏳ Planlı |
 | U3 | **Araç karşılaştırma ekranı** | Mevcut Gatling–Maxim çalışmasını temel alarak iki aracın dönemini, boyutlarını, güç kaynağını ve getirdiği yeniliği karşılaştırma. İlk adaylar: Abdülhamid–U-505 ve J79–Pegasus. | İki araç seçimi, kaynak bağlantıları ve mobil düzen çalışır. Bilinmeyen değerler açıkça belirtilir; farklı türdeki ölçüler doğrudan eşdeğer sayılmaz. Pegasus, mevcut Harrier içindeki motor olarak doğru adlandırılır. | — | ⏳ Planlı |
 | U4 | **Kişisel koleksiyon** | Favoriler, son incelenen araçlar ve kaldığın yerden devam. Sunucu veya hesap gerektirmeden tarayıcıda yerel saklama. | Yenileme sonrası kayıtlar korunur; kaldırma ve sıfırlama çalışır. Bozuk kayıt, kaldırılmış araç ve depolama engeli güvenli biçimde ele alınır. Verinin yalnız bu tarayıcıda tutulduğu açıklanır. | — | ⏳ Planlı |
 
 ### Uygulama ve doğrulama
 
-- İlk önerilen iş **U1 — Sade müze görünümü**. Bu kayıt, işe başlandığı veya uygulamanın tamamlandığı anlamına gelmez.
+- U1 üç sergide pilot olarak açıldı. Sıradaki iş U2 — koleksiyon genelinde görsel kalite kontrolü.
 - Başlayan geliştirici ilgili U kodunu sahiplenir. Ortak arayüz dosyalarına dokunan işler, yeni araç entegrasyonlarıyla koordine edilir.
 - Mevcut seçildiğinde model yükleme, tarih çizelgesi, on iki duraklı Türk tarihi rotası ve paylaşım/kaynak bağlantıları korunur.
 - Her işte kapsama uygun testler ve masaüstü/mobil görsel kontroller tamamlanır; sonuçlar `INCELEME_NOTLARI.md` içine kaydedilir. Her iş için ayrı Türkçe commit atılır; push zamanı kullanıcının o işteki talimatına göre belirlenir.
