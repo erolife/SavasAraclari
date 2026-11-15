@@ -1583,6 +1583,7 @@
   <!-- MAIN THREE.JS PROCEDURAL TEARDOWN ENGINE -->
   <!-- Müze kataloğu ve araç modülleri (klasik script: sayfa doğrudan dosyadan açıldığında da çalışır) -->
   <script src="js/catalog.js"></script>
+  <script src="js/catalog-source-en.js"></script>
   <script src="js/catalog-en.js"></script>
   <script src="js/museum-links.js"></script>
   <script src="js/vehicles/tiger1.js"></script>
@@ -1940,8 +1941,18 @@
     function translateLabel(value) {
       if (!english || typeof value !== 'string') return value;
       const trimmed = value.trim();
-      const translated = englishLabels.get(trimmed);
-      if (translated) return value.replace(trimmed, translated);
+      const translationKey = trimmed.replace(/\s+/g, ' ');
+      const translated = englishLabels.get(trimmed)
+        ?? window.MuseumLabelEnglish?.[translationKey]
+        ?? window.MuseumTourEnglish?.[translationKey]
+        ?? window.MuseumExhibitEnglish?.[translationKey];
+      if (typeof translated === 'string') return value.replace(trimmed, () => translated);
+      // Keep changing values intact while translating the adjacent label or unit.
+      const suffix = trimmed.match(/^([+-]?\d[\d.,]*\s+)([^\d].+)$/);
+      if (suffix) {
+        const label = translateLabel(suffix[2]);
+        if (label !== suffix[2]) return value.replace(trimmed, suffix[1] + label);
+      }
       return value.replace(/^(\s*)(\d+) Ana Grup(\s*)$/, '$1$2 main groups$3')
         .replace(/^(\s*)(\d+) Grup(\s*)$/, (_, before, n, after) => before + n + (n === '1' ? ' group' : ' groups') + after)
         .replace(/REHBERLİ TUR:/g, 'GUIDED TOUR:')
@@ -1991,6 +2002,16 @@
 
 
     (async function bootstrap() {
+    if (english) {
+      const files = ['exhibit-copy-en', 'exhibit-labels-en', 'exhibit-tours-en'];
+      await Promise.all(files.map(file => new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = `js/${file}.js`;
+        script.onload = resolve;
+        script.onerror = () => reject(new Error(`Could not load ${file}`));
+        document.head.append(script);
+      })));
+    }
 
     // ============================================================================
     // 1. PROCEDURAL WEB AUDIO SYNTHESIZER (Sıfır Harici Ses Dosyası)
@@ -3499,7 +3520,11 @@
       state.vehicle = target;
       const isSahi = state.vehicle === 'sahi';
       const ad = activeAdapter();
-      document.title = (ad ? ad.ui.title : isSahi ? 'Osmanlı Şahi Topu' : 'Tiger I') + ' — Savaş Makineleri 3D';
+      const title = ad ? ad.ui.title : isSahi ? 'Osmanlı Şahi Topu' : 'Tiger I';
+      const exhibit = english && CATALOG.VEHICLES.find(item => (item.sim || item.id) === target);
+      document.title = english
+        ? `${exhibit?.name || translateLabel(title)} — Military History Museum`
+        : `${title} — Savaş Makineleri 3D`;
       setUiLabel(document.getElementById('mob-q-fire'), ad && ad.mobileFireButtonLabel ? ad.mobileFireButtonLabel() : '💥 Ateşle');
 
       Object.keys(VEHICLE_ROOTS).forEach(k => { VEHICLE_ROOTS[k].visible = k === state.vehicle; });
@@ -3914,9 +3939,11 @@
       }
       const step = SAHI_RELOAD_STEPS[r.idx];
       const statusEl = document.getElementById('gun-status');
-      setUiLabel(statusEl, step.label.split(' ')[0] + ' DOLUM');
+      setUiLabel(statusEl, step.label.split(' ')[0] + (english ? ' RELOADING' : ' DOLUM'));
       statusEl.style.color = '#d97706';
-      document.getElementById('tour-desc').textContent = `Dolum döngüsü — ${step.label}.`;
+      document.getElementById('tour-desc').textContent = english
+        ? `Reload demonstration — step ${r.idx + 1} of ${SAHI_RELOAD_STEPS.length}.`
+        : `Dolum döngüsü — ${step.label}.`;
       if (step.ram) {
         sahiSetRammer(Math.min(100, state.sahiRammerPct + dt * 40));
         if (!state.sahiLoaded) { stopSahiReload('GÜLLE YOK'); return; }
@@ -3931,7 +3958,7 @@
       const b = document.getElementById('btn-sahi-mode');
       const transport = state.sahiMode === 'transport';
       b.classList.toggle('active', transport);
-      b.textContent = transport ? '🏰 Atış Mevziine Kur (Topu Vidala)' : '🐂 Nakliye Moduna Geç (Topu Sök)';
+      setUiLabel(b, transport ? '🏰 Atış Mevziine Kur (Topu Vidala)' : '🐂 Nakliye Moduna Geç (Topu Sök)');
     }
 
     document.getElementById('btn-sahi-mode').addEventListener('click', () => {
@@ -4154,6 +4181,7 @@
     let toastTimer = null;
     function showToast(html, ms = 3800) {
       toastEl.innerHTML = html;
+      localizeUi(toastEl);
       toastEl.style.display = 'block';
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => { toastEl.style.display = 'none'; }, ms);

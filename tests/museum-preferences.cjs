@@ -7,6 +7,7 @@ const window = { MuseumPreferences: { language: 'en' } };
 load('js/catalog.js', { window });
 const turkish = window.MUSEUM_CATALOG;
 const original = JSON.stringify(turkish);
+load('js/catalog-source-en.js', { window });
 load('js/catalog-en.js', { window });
 const english = window.MUSEUM_CATALOG;
 assert.notEqual(english, turkish);
@@ -19,11 +20,23 @@ for (const [index, vehicle] of english.VEHICLES.entries()) {
   assert.equal(vehicle.year, old.year);
   assert.notEqual(vehicle.desc, old.desc, vehicle.id);
   assert.equal(JSON.stringify(vehicle.sources.map(source => source.url)), JSON.stringify(old.sources.map(source => source.url)));
+  assert.equal(window.MuseumSourceEnglish[vehicle.id].length, old.sources.length, vehicle.id);
+  for (const [index, source] of vehicle.sources.entries()) {
+    assert.ok(source.title, vehicle.id);
+    if (old.sources[index].note) assert.notEqual(source.note, old.sources[index].note, vehicle.id);
+  }
 }
 const mace = english.VEHICLES.find(vehicle => vehicle.id === 'dragonmace');
 assert.match(mace.sources[0].title, /catalogue entry 146/);
 assert.match(mace.sources[1].note, /printed page 234/);
 assert.equal(english.FACETS.find(f => f.key === 'domain').options[0].label, '🪖 Land');
+
+load('js/exhibit-labels-en.js', { window });
+load('js/exhibit-tours-en.js', { window });
+load('js/exhibit-copy-en.js', { window });
+assert.equal(window.MuseumLabelEnglish['Dış Gövde ve Kanatlar'], 'Outer Fuselage & Wings');
+assert.equal(window.MuseumTourEnglish['Çanakkale’deki Rolü'], 'Its Role at Çanakkale');
+assert.equal(window.MuseumExhibitEnglish['23. Dümen Palası ve Mil'], '23. Rudder blade and stock');
 
 function preferences(storage, dark, search = '') {
   const root = { dataset: {} };

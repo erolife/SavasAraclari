@@ -73,6 +73,14 @@ function translate(catalog){if(!catalog)return catalog;const copy=JSON.parse(JSO
 window.MuseumCatalogEnglish = { translate };
 if (window.MuseumPreferences?.language === 'en' && window.MUSEUM_CATALOG) {
   const catalogue = translate(window.MUSEUM_CATALOG);
+  for (const vehicle of catalogue.VEHICLES) {
+    const translations = window.MuseumSourceEnglish?.[vehicle.id];
+    if (!translations) continue;
+    vehicle.sources = vehicle.sources.map((source, index) => {
+      const entry = translations[index];
+      return entry?.url === source.url ? { ...source, title: entry.title, note: entry.note } : source;
+    });
+  }
   const mace = catalogue.VEHICLES.find(vehicle => vehicle.id === 'dragonmace');
   const maceSources = {
     'Court and Cosmos — Met, 2016, katalog 146, s.234': {
@@ -84,7 +92,10 @@ if (window.MuseumPreferences?.language === 'en' && window.MUSEUM_CATALOG) {
       note: 'PDF page 249, printed page 234. Visual reference for the shape and surface details of the head.'
     }
   };
-  if (mace) mace.sources = mace.sources.map(source => ({ ...source, ...maceSources[source.title] }));
+  if (mace?.sources.length === 2) {
+    const originalTitles = window.MUSEUM_CATALOG.VEHICLES.find(vehicle => vehicle.id === 'dragonmace').sources;
+    mace.sources = mace.sources.map((source, index) => ({ ...source, ...maceSources[originalTitles[index].title] }));
+  }
   window.MUSEUM_CATALOG = catalogue;
 }
 })();
