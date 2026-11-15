@@ -1598,6 +1598,7 @@
   <script src="js/catalog-en.js"></script>
   <script src="js/museum-links.js"></script>
   <script src="js/museum-view.js"></script>
+  <script src="js/museum-framing.js"></script>
   <script src="js/vehicles/tiger1.js"></script>
   <script src="js/vehicles/sahi1453.js"></script>
   <script src="js/model-kit.js"></script>
@@ -2297,6 +2298,8 @@
     const museumView = window.MuseumView.mount({ english, onChange: visible => {
       if (visible) closeMobileSheet();
       resizeScene();
+      const iso = getActiveCamPresets().iso;
+      if (iso) flyCameraTo(iso.pos, iso.look, true);
     } });
     function resizeScene() {
       document.body.style.setProperty('--museum-overview-height', `${overviewPanel.offsetHeight}px`);
@@ -3191,14 +3194,35 @@
       return state.vehicle === 'sahi' ? CAM_PRESETS_SAHI : CAM_PRESETS_TIGER;
     }
 
-    function flyCameraTo(posArr, lookArr) {
+    function flyCameraTo(posArr, lookArr, overview = false) {
       state.camTargetPos = new THREE.Vector3(...posArr);
       state.camTargetLook = new THREE.Vector3(...lookArr);
-      const portraitScale = activeAdapter()?.ui.portraitCameraScale || 1;
-      if (window.innerWidth < 600 && window.innerHeight > window.innerWidth) {
+      if (overview) {
+        const content = container.getBoundingClientRect();
+        const horizontalInset = document.querySelector('.left-panel').getBoundingClientRect().right;
+        const headerBottom = topBar.getBoundingClientRect().bottom;
+        let bottomTop = content.bottom;
+        for (const el of document.querySelectorAll('.bottom-bar, .mobile-quick-bar')) {
+          if (el.clientHeight > 0) bottomTop = Math.min(bottomTop, el.getBoundingClientRect().top);
+        }
+        const verticalInset = Math.max(0, headerBottom - content.top, content.bottom - bottomTop);
+        const safeWidth = Math.max(0.25, 0.94 - (container.clientWidth > 900 ? 2 * horizontalInset / content.width : 0));
+        const safeHeight = Math.max(0.25, 0.94 - 2 * verticalInset / content.height);
+        const meshes = getActiveVehicleMeshes().filter(mesh => (mesh.userData.baseOpacity ?? 1) >= 0.38);
+        scene.updateMatrixWorld(true);
+        window.MuseumFraming.fitOverview(THREE, camera, meshes, state.camTargetPos, state.camTargetLook,
+          safeWidth, safeHeight, controls.minDistance);
+      } else if (window.innerWidth < 600 && window.innerHeight > window.innerWidth) {
+        const portraitScale = activeAdapter()?.ui.portraitCameraScale || 1;
         state.camTargetPos.sub(state.camTargetLook).multiplyScalar(portraitScale).add(state.camTargetLook);
-        controls.maxDistance = Math.max(controls.maxDistance, state.camTargetPos.distanceTo(state.camTargetLook) * 1.1);
       }
+      const distance = state.camTargetPos.distanceTo(state.camTargetLook);
+      controls.maxDistance = Math.max(controls.maxDistance, distance * 1.1);
+      camera.far = Math.max(200, distance * 2.2);
+      camera.updateProjectionMatrix();
+      const fog = activeAdapter()?.ui.fog || { near: 18, far: 45 };
+      scene.fog.near = overview ? Math.max(fog.near, distance * 1.6) : fog.near;
+      scene.fog.far = overview ? Math.max(fog.far, scene.fog.near + distance) : fog.far;
     }
 
     // ============================================================================
@@ -3385,7 +3409,7 @@
       });
 
       const preset = getActiveCamPresets()[step.cam];
-      if (preset) flyCameraTo(preset.pos, preset.look);
+      if (preset) flyCameraTo(preset.pos, preset.look, step.cam === 'iso' && step.explode === 0);
 
       updateVisualMaterials();
       selectPart(step.part);
@@ -3430,9 +3454,6 @@
     // Büyük araçlar (ör. 16 m'lik trebuchet) için sis mesafesi ve gölge kamerası alanı.
     // u = null → varsayılan değerler (Tiger, Şahi, Ballista ölçeği).
     function applySceneScale(u) {
-      const fog = (u && u.fog) || { near: 18, far: 45 };
-      scene.fog.near = fog.near;
-      scene.fog.far = fog.far;
       const ext = (u && u.shadowExtent) || 9;
       const sc = keyLight.shadow.camera;
       if (sc.right !== ext) {
@@ -3872,7 +3893,7 @@
     document.querySelectorAll('.cam-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const preset = getActiveCamPresets()[btn.dataset.cam];
-        if (preset) flyCameraTo(preset.pos, preset.look);
+        if (preset) flyCameraTo(preset.pos, preset.look, btn.dataset.cam === 'iso');
         if (window.innerWidth <= 900 && typeof closeMobileSheet === 'function') closeMobileSheet();
         audio.playClick(700);
       });
@@ -3880,7 +3901,7 @@
 
     document.getElementById('btn-reset-cam').addEventListener('click', () => {
       const iso = getActiveCamPresets().iso;
-      flyCameraTo(iso.pos, iso.look);
+      flyCameraTo(iso.pos, iso.look, true);
       audio.playClick(500);
     });
 
@@ -4804,7 +4825,7 @@
     // ?cam=iso|front|breech|engine|suspension|top — kamerayı doğrudan (geçişsiz) bir açıya yerleştirir
     const camParam = getActiveCamPresets()[params.get('cam') || 'iso'];
     if (camParam) {
-      flyCameraTo(camParam.pos, camParam.look);
+      flyCameraTo(camParam.pos, camParam.look, (params.get('cam') || 'iso') === 'iso');
       camera.position.copy(state.camTargetPos);
       controls.target.copy(state.camTargetLook);
       state.camTargetPos = null;

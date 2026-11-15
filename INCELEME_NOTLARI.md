@@ -1169,3 +1169,20 @@ Döküm havanın dış biçimi, ahşap yatak ve bağımsız rubu tahtası sergis
 Enigma, Nusret ve Selçuklu ejder başlı gürzü 3D model ve üç kısa açıklamayla açılır. Teknik inceleme düğmesi mevcut panelleri ve turu açar. Enigma sergisinden harf yolculuğu laboratuvarına bağlantı vardır. Kesit, ayrılmış görünüm ve kamera bağlantıları doğrudan teknik görünümü açar.
 
 Doğrulama: 63 proje testi, üç sergi × iki dil × iki ekran boyutu (390 ve 1440 piksel). Klavye ile geçiş, odağın korunması, tur ilerletme ve doğrudan kesit bağlantısı kontrol edildi.
+
+## U2 — Koleksiyonun görsel kalite kontrolü
+
+66 modelin her biri için 1440 × 900 masaüstü genel görünüm, masaüstü X-Ray tur görünümü ve 390 × 844 mobil genel görünüm alındı. 198 çekimde sayfa hatası veya yatay taşma görülmedi.
+
+İlk taramada mobilde 28, masaüstünde 4 genel model kadrajını aşıyordu. Genel kamera, modelin saydam dekor dışındaki geometrisini ve arayüzün kapladığı alanı hesaba katar. Kamera uzaklaştığında sis aralığı da ayarlanır. Abdülhamid ile Rum Ateşi sahnelerinde saydam su düzlemi ekrana taşabilir. Dreadnought’un kazanları için ayrı bir yakın plan eklendi.
+
+Üç görünümü doğrulanan sergi kimlikleri
+
+- `ballista`, `trebuchet`, `sahi`, `tiger`, `spitfire`, `leonardo`, `kadirga`, `gatling`, `mark1`, `fokker`, `monitor`
+- `katyusha`, `v2`, `j79`, `phalanx`, `huey`, `u505`, `enigma`, `lcvp`, `chainhome`, `scythed`, `hwacha`
+- `atlatl`, `lantern`, `polybolos`, `giantbow`, `chukonu`, `helepolis`, `organ33`, `swordpistol`, `archimedes`, `turtle`, `rrh`
+- `nusret`, `ottomanbow`, `vecihi`, `gokturk`, `dragonmace`, `turbanhelmet`, `maxim`, `abdulhamid`, `greekfire`, `r7`, `harrier`
+- `strv103`, `fa330`, `t34`, `norden`, `f14`, `sultanhisar`, `renaultft`, `sr71_j58`, `shermancrab`, `french75`, `dreadnought`
+- `patriot`, `yamato460`, `cezeri`, `saturnv_f1`, `firtina`, `mahmudiye`, `wagenburg`, `jumo004`, `corvus`, `humbara`, `kamov`
+
+64 proje testi geçti. Uzun gövde ve döndürülmüş, tekrarlı geometri içeren kadrajlar için kamera regresyonu eklendi.
