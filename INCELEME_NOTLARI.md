@@ -1207,3 +1207,9 @@ Doğrulama: 65 proje testi. Türkçe ve İngilizce, 390 ve 1440 pikselde favori 
 
 Tarayıcı taraması 66 serginin Türkçe masaüstü ve İngilizce mobil görünümünü kapsadı. Dokuz farklı sergi Türkçe mobilde ve İngilizce masaüstünde ayrıca kontrol edildi. Envantere sonradan eklenen modeller için iki dilde anlatım kapsamını ölçen test eklendi.
 66 proje testi geçti. 320 ve 1440 pikselde varsayılan sergi, klavye ile görünüm geçişi, X-Ray, ayrılmış görünüm ve kayıtlı tur bağlantısı doğrulandı.
+
+## Ana sayfa — Kompakt ve detaylı katalog
+
+Kompakt görünüm varsayılan olarak küçük görsel, sergi adı, yıl, kategori, 3D bağlantısı ve favori düğmesini gösterir. Detaylı görünüm mevcut anlatım ve teknik bağlantıları sunar. Görünüm tercihi tarayıcıda saklanır. Geçiş aramayı, sıralamayı, filtreleri ve paylaşılabilir adresi korur.
+
+66 proje testi geçti. Türkçe ve İngilizce, 390 ve 1440 pikselde görünüm, klavye ile geçiş, favori, kaynak penceresi, boş sonuç ve yenileme kontrol edildi. Tarayıcı depolamasının kapalı olduğu durumda geçiş çalışır.

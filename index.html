@@ -432,6 +432,39 @@
       gap: 22px;
     }
 
+    .catalog-grid[data-view="compact"] {
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+      gap: 12px;
+    }
+
+    .catalog-grid .machine-card.compact-card {
+      display: grid;
+      grid-template-columns: 65px minmax(0, 1fr);
+      align-items: start;
+      gap: 8px 12px;
+      padding: 12px;
+      border-width: 1px;
+      box-shadow: none;
+    }
+
+    .compact-card .mc-compact-art {
+      display: grid;
+      place-items: center;
+      min-height: 56px;
+      height: 100%;
+      padding: 5px;
+      background: var(--museum-panel, #f0e8d9);
+      border: 1px solid var(--border-warm);
+      border-radius: 7px;
+    }
+
+    .mc-compact-art svg { display: block; width: 100%; height: auto; }
+    .mc-compact-copy { min-width: 0; overflow-wrap: anywhere; }
+    .mc-compact-copy h3 { margin: 0 0 5px; font-size: 14px; line-height: 1.3; }
+    .mc-compact-copy p { margin: 0; color: var(--text-muted); font-size: 11px; line-height: 1.45; }
+    .mc-compact-actions { grid-column: 2; display: flex; flex-wrap: wrap; gap: 6px; }
+    .mc-compact-actions .btn { min-height: 34px; padding: 5px 9px; }
+
     .machine-card {
       background: var(--bg-card);
       border: 1px solid var(--border-warm);
@@ -740,6 +773,29 @@
       margin-bottom: 14px;
     }
 
+    .catalog-view-options {
+      display: inline-flex;
+      align-self: stretch;
+      padding: 2px;
+      gap: 2px;
+      border: 1px solid var(--border-warm);
+      border-radius: 9px;
+      background: var(--museum-input, #fffdf8);
+    }
+
+    .catalog-view-options .btn {
+      padding: 5px 10px;
+      min-height: 32px;
+      border-color: transparent;
+      box-shadow: none;
+    }
+
+    .catalog-view-options .btn[aria-pressed="true"] {
+      border-color: var(--accent);
+      color: var(--text-main);
+      background: var(--accent-soft);
+    }
+
     .catalog-search {
       flex: 1;
       min-width: 240px;
@@ -964,7 +1020,21 @@
       }
 
       .catalog-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .catalog-grid[data-view="compact"] {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+      }
+
+      .catalog-grid .machine-card.compact-card {
+        grid-template-columns: 52px minmax(0, 1fr);
+        padding: 9px;
+      }
+
+      .catalog-view-options .btn {
+        min-height: 38px;
       }
 
       .hero-metrics {
@@ -1216,13 +1286,17 @@
             <option value="year-desc">Sırala: En Yeni Önce</option>
             <option value="name">Sırala: Alfabetik</option>
           </select>
+          <div class="catalog-view-options" id="catalog-view-options" role="group" aria-label="Katalog görünümü">
+            <button type="button" class="btn btn-sm" data-catalog-view="compact" aria-controls="catalog-grid" aria-pressed="true">Kompakt</button>
+            <button type="button" class="btn btn-sm" data-catalog-view="detailed" aria-controls="catalog-grid" aria-pressed="false">Detaylı</button>
+          </div>
           <button class="btn btn-sm" id="catalog-clear">✕ Filtreleri Temizle</button>
         </div>
         <div class="facet-groups" id="facet-groups"></div>
         <div class="filter-result" id="filter-result"></div>
       </div>
 
-      <div class="catalog-grid" id="catalog-grid"></div>
+      <div class="catalog-grid" id="catalog-grid" data-view="compact"></div>
       <div class="catalog-empty" id="catalog-empty" hidden>
         <div style="font-size:30px;">🔍</div>
         <strong>Bu filtrelerle eşleşen araç yok.</strong>
@@ -1452,9 +1526,48 @@
 
     const language = window.MuseumPreferences.language;
     const t = (tr, en) => language === 'en' ? en : tr;
+    const catalogViewKey = 'museum-catalog-view';
+    const viewOptions = document.getElementById('catalog-view-options');
+    const viewButtons = [...viewOptions.querySelectorAll('[data-catalog-view]')];
+    let catalogView = 'compact';
+    try {
+      if (localStorage.getItem(catalogViewKey) === 'detailed') catalogView = 'detailed';
+    } catch (_) {}
+    if (language === 'en') {
+      viewOptions.setAttribute('aria-label', 'Catalogue view');
+      viewButtons[0].textContent = 'Compact';
+      viewButtons[1].textContent = 'Detailed';
+    }
+    function setCatalogView(view) {
+      catalogView = view;
+      viewButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.catalogView === view)));
+    }
+    setCatalogView(catalogView);
+    viewButtons.forEach(button => button.addEventListener('click', () => {
+      const view = button.dataset.catalogView;
+      if (view === catalogView) return;
+      setCatalogView(view);
+      try { localStorage.setItem(catalogViewKey, view); } catch (_) {}
+      renderCards();
+    }));
 
     function cardHTML(v) {
       const live = v.status === 'live';
+      const favorite = live ? `<button type="button" class="btn btn-sm" data-museum-favorite="${v.id}"></button>` : '';
+      if (catalogView === 'compact') {
+        const primary = live
+          ? `<a href="simulator.html?vehicle=${v.sim}" class="btn btn-primary btn-sm">${t('3D aç', 'Open 3D')}</a>`
+          : `<button type="button" class="btn btn-sm" data-plan="${v.id}">${t('Planı aç', 'View plan')}</button>`;
+        return `
+          <article class="machine-card compact-card ${live ? 'featured-active' : 'is-planned'}" data-id="${v.id}">
+            <div class="mc-compact-art" aria-hidden="true">${v.svg}</div>
+            <div class="mc-compact-copy">
+              <h3 class="mc-title">${escapeHtml(v.name)}</h3>
+              <p>${escapeHtml(v.yearLabel)} · ${escapeHtml(optionLabel('domain', v.domain))}</p>
+            </div>
+            <div class="mc-compact-actions">${primary}${favorite}</div>
+          </article>`;
+      }
       const status = live
         ? `<span class="mc-status live">${t("🟢 SİMÜLATÖR HAZIR", "🟢 INTERACTIVE")}</span>`
         : `<span class="mc-status planned">⏳ ${v.group}. ${t("GRUP • PLANLI", "GROUP • PLANNED")}</span>`;
@@ -1489,7 +1602,7 @@
               ${v.specs.map(([k, val]) => `<div>${escapeHtml(k)}<strong>${escapeHtml(val)}</strong></div>`).join('')}
             </div>
             <div class="mc-actions">${actions}</div>
-            <div class="museum-links">${live ? `<button type="button" class="btn btn-sm" data-museum-favorite="${v.id}"></button>` : ''}<button class="btn btn-sm" data-museum-share="${v.id}" aria-label="${escapeHtml(v.name)} ${t("bağlantısını paylaş", "share link")}">${t("Paylaş ↗", "Share ↗")}</button><button class="btn btn-sm" data-museum-sources="${v.id}">${t("Kaynaklar", "Sources")}</button>${['maxim','gatling'].includes(v.id) ? '<a class="btn btn-sm" href="maxim-gatling.html">Gatling ↔ Maxim</a>' : ''}</div>
+            <div class="museum-links">${favorite}<button class="btn btn-sm" data-museum-share="${v.id}" aria-label="${escapeHtml(v.name)} ${t("bağlantısını paylaş", "share link")}">${t("Paylaş ↗", "Share ↗")}</button><button class="btn btn-sm" data-museum-sources="${v.id}">${t("Kaynaklar", "Sources")}</button>${['maxim','gatling'].includes(v.id) ? '<a class="btn btn-sm" href="maxim-gatling.html">Gatling ↔ Maxim</a>' : ''}</div>
           </div>
         </article>`;
     }
@@ -1516,6 +1629,7 @@
       list.sort((a, b) => sortKey === 'name' ? a.name.localeCompare(b.name, language)
         : sortKey === 'year-desc' ? b.year - a.year : a.year - b.year);
       const grid = document.getElementById('catalog-grid');
+      grid.dataset.view = catalogView;
       grid.innerHTML = list.map(cardHTML).join('');
       window.MuseumCollection.refreshButtons(grid);
       document.getElementById('catalog-empty').hidden = list.length > 0;
