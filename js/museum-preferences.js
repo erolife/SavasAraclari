@@ -74,7 +74,8 @@
       const anchor = event.target.closest('a[href]');
       if (!anchor) return;
       const url = new URL(anchor.href, location.href);
-      if (url.origin === location.origin && url.pathname.endsWith('.html') && !url.searchParams.has('lang')) {
+      const pagePath = url.pathname.endsWith('.html') || !url.pathname.split('/').at(-1).includes('.');
+      if (url.origin === location.origin && pagePath && !url.searchParams.has('lang')) {
         url.searchParams.set('lang', settings.language);
         anchor.href = url.href;
       }

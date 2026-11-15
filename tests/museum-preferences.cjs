@@ -42,18 +42,32 @@ function preferences(storage, dark, search = '') {
   const root = { dataset: {} };
   let onSystemChange;
   const events = [];
+  const handlers = {};
+  const location = new URL('https://museum.example/index.html' + search);
   const media = { matches: dark, addEventListener(_, cb) { onSystemChange = cb; } };
   const window = {
     matchMedia: () => media,
     dispatchEvent(event) { events.push(event.type); }
   };
   load('js/museum-preferences.js', {
-    window, document: { documentElement: root, addEventListener() {} },
-    location: { search }, localStorage: { getItem: storage },
-    URLSearchParams, Event
+    window,
+    document: {
+      documentElement: root,
+      querySelector() { return null; },
+      addEventListener(type, listener) { handlers[type] = listener; }
+    },
+    location, localStorage: { getItem: storage },
+    URL, URLSearchParams, Event
   });
+  handlers.DOMContentLoaded();
   return { root, state: window.MuseumPreferences, events,
-    changeSystem(dark) { media.matches = dark; onSystemChange(); } };
+    changeSystem(dark) { media.matches = dark; onSystemChange(); },
+    follow(href) {
+      const anchor = { href: new URL(href, location).href };
+      if (handlers.click) handlers.click({ target: { closest: () => anchor } });
+      return anchor.href;
+    }
+  };
 }
 const system = preferences(() => 'invalid json', true);
 assert.equal(system.root.lang, 'tr');
@@ -71,4 +85,9 @@ assert.deepEqual(explicit.events, []);
 const blocked = preferences(() => { throw Error('Storage denied'); }, false, '?lang=en');
 assert.equal(blocked.root.lang, 'en');
 assert.equal(blocked.root.dataset.museumTheme, 'light');
+assert.equal(blocked.follow('/karsilastir'), 'https://museum.example/karsilastir?lang=en');
+assert.equal(blocked.follow('/simulator.html?vehicle=nusret'), 'https://museum.example/simulator.html?vehicle=nusret&lang=en');
+assert.equal(blocked.follow('/karsilastir?lang=tr'), 'https://museum.example/karsilastir?lang=tr');
+assert.equal(blocked.follow('/manual.pdf'), 'https://museum.example/manual.pdf');
+assert.equal(blocked.follow('https://sources.example/collection'), 'https://sources.example/collection');
 console.log('PASS preferences: catalogue coverage and integrity, saved preferences, system changes, denied storage fallback');
