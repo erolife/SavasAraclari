@@ -196,3 +196,5 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 Ō-yoroi (`yoroi`) tamamlandı. Met 36.25.39a–p temelinde, 18. yüzyılda eski üslubu canlandıran zırh. 32 grup ve 255 mesh, iki dilde sade anlatım ve teknik inceleme. Katana (`katana`) tamamlandı: Met 91.2.58 temelinde 17. yüzyıl çelik bıçak ve 19. yüzyıl gümüş donanım, ayrı kın sergisi, sap ve kın yüzeyi incelemesi. Kullanıcı onayıyla üç farklı ülkeden kılıç dışı sergi sırayla hazırlanıyor.
 
 - Sürpriz 1 tamamlandı: `chakar`, MMFA 2022.85 temelinde Sialkot/Pencap çelik savaş halkası.
+
+- Sürpriz 2 tamamlandı: `egyptchariot`, Yeni Krallık Mısır arabası; açık çeki düzeni ve deri örgü taban.

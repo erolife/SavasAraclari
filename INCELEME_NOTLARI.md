@@ -1248,3 +1248,10 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - MMFA 2022.85 fotoğrafı incelendi: 19. yüzyıl ortası, Sialkot/Pencap (günümüz Pakistan’ı), 28,6 cm, çelik ve altın/gümüş kakma. National Army Museum kaydıyla türün Sih savaşçı bağlamı karşılaştırıldı.
 - 19 grup / 90 mesh. Boru biçimli torus yerine dışa incelen, kapalı hacimli yassı çelik kesit; iki yüzlü kakma, sınırlar, geometrik kıvrımlar ve büyütülmüş kesit örneği. Yazıtlar taklit edilmedi. Dörde ayırma tarihsel eklem değil, açıkça belirtilen sergi hareketidir. Bezeme hareket eden çelik sektörünü izler.
 - Model testi: 101 ayırma konumu, bağlı bezeme, sınırlar, NaN, sıfırlama, destek ve TR/EN geçti; katalog/sade görünüm kapsam testleri geçti. Chrome TR/EN, 1440×1000 ve 390×844: sade/teknik geçiş, üç kontrol, taşma ve sayfa hatası kontrolleri geçti; genel ekran görüntüsü incelendi.
+
+
+## Mısır savaş arabası — 18 Kasım 2026
+
+- Griffith Institute Tutankhamun yapım notları ve Met 21.2.61 modern modeli incelendi. Yeni Krallık araç türü ile mezarda korunmuş kraliyet arabalarının fiilî savaş kullanımı ayrıldı; modern modelin 81 cm ölçüsü gerçek araca aktarılmadı.
+- 25 grup / 109 mesh: D biçimli bükülmüş çerçeve, deri örgü taban, arkaya yerleştirilen dingil, altı kollu iki teker, ahşap göbekler, deri/keten bağlar, uzun kavisli ok, iki eyerli boyunduruk, askılar ve yan ok kılıfı. Geometrik renkli bezeme sadeleştirilmiş yorumdur; hiyeroglif ve tarihsel kabartma üretilmedi. Atlar yerine çeki donanımı açık sergilendi.
+- 101 kabin/boyunduruk ayrımı, yerinde kalan taban, 25 teker açısı, sınırlar, NaN, sıfırlama ve destek testleri TR/EN geçti. Chrome TR/EN, masaüstü ve mobilde sade/teknik geçiş ve kontroller geçti; genel kadraj görüntüsü incelendi, taşma veya sayfa hatası yok.

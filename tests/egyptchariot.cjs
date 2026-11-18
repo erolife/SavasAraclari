@@ -1,0 +1,7 @@
+const {common,assert,THREE}=require('./model-harness.cjs');
+const {ad,meshes}=common('egyptchariot',25);
+function centre(k){ad.root.updateMatrixWorld(true);return new THREE.Box3().setFromObject(ad.parts[k]).getCenter(new THREE.Vector3());}
+const start=centre('panel'),yoke=centre('yoke'),floor=centre('floor');
+for(let i=0;i<=100;i++){ad.onSlider(0,i);ad.onSlider(2,i);assert.ok(Math.abs(centre('panel').y-start.y-.45*i/100)<1e-6);assert.ok(Math.abs(centre('yoke').y-yoke.y-.65*i/100)<1e-6);assert.ok(centre('floor').distanceTo(floor)<1e-8);}
+for(let angle=0;angle<=360;angle+=15){ad.onSlider(1,angle);const bound=new THREE.Box3().setFromObject(ad.parts.rimR);assert.ok(Math.abs(bound.min.y-.047)<.01);assert.equal(ad.getSliderValues()[1],angle);}
+ad.onSlider(1,999);assert.equal(ad.getSliderValues()[1],360);ad.onSlider(0,-999);assert.equal(ad.getSliderValues()[0],0);ad.onSlider(2,NaN);assert.equal(ad.getSliderValues()[2],100);ad.onButton('sweep');assert.deepEqual(Array.from(ad.getSliderValues()),[0,0,0]);ad.onFire();assert.equal(ad.getSliderValues()[0],100);ad.onButton('terrain');assert.equal(ad.parts.support.visible,false);ad.onButton('sweep');assert.equal(ad.parts.support.visible,true);common('egyptchariot',25,{window:{MuseumPreferences:{language:'en'}}});assert.ok(meshes.some(m=>m.isInstancedMesh&&m.count>=30));console.log('PASS egyptchariot: 25 groups, 109 meshes, 101 cab/yoke poses, wheel revolution, floor isolation, controls, both languages');

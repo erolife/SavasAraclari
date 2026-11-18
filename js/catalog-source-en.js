@@ -3,6 +3,9 @@
   'use strict';
 
   var titles = {
+"Griffith Institute — Tutankhamun araba yapım notları": "Griffith Institute — Tutankhamun chariot construction notes",
+"The Met — Mısır araba türü, modern müze modeli 21.2.61": "The Met — Egyptian chariot type, modern museum model 21.2.61",
+
 "MMFA — Chakar, 2022.85": "MMFA — Chakar ring, 2022.85",
 "National Army Museum — Sih savaş halkası": "National Army Museum — Sikh war quoit",
 
@@ -102,6 +105,9 @@
   };
 
   var notes = {
+"D biçimli gövde, arkada dingil, deri örgü döşeme, altı kollu tekerlek, çeki oku ve boyunduruk için arşiv referansı. Model tek bir kraliyet aracının birebir kopyası değildir.": "Archival reference for the D-shaped body, rear axle, leather-laced floor, six-spoke wheels, pole and yoke. The model is not a facsimile of one royal vehicle.",
+"Yeni Krallık askerî araba bağlamı ve müze rekonstrüksiyonu karşılaştırması. Mezar araçlarının hepsi savaş için uygun değildir; 81 cm modern model ölçüsü gerçek arabaya aktarılmamıştır.": "New Kingdom military context and comparison with a modern museum reconstruction. Not all tomb vehicles were suitable for warfare; the modern model’s 81 cm dimension is not applied to the ancient vehicle.",
+
 "Sialkot, Pencap, günümüz Pakistan’ı; 19. yüzyıl ortası; çelik, altın/gümüş kakma, 28,6 cm çap. Geometrik bezeme sadeleştirilmiştir; yazıtlar kopyalanmamıştır.": "Sialkot, Punjab, present-day Pakistan; mid-nineteenth century; steel, gold/silver inlay, diameter 28.6 cm. Geometric ornament is simplified; inscriptions are not copied.",
 "Chakar türü ve Sih savaşçı geleneği için ek tarihsel bağlam; bu modelin ölçü kaynağı değildir.": "Additional context for the chakar type and Sikh martial tradition; not the dimensional reference for this model.",
 
