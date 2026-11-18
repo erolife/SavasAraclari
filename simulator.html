@@ -1266,6 +1266,7 @@
 <link rel="stylesheet" href="css/museum-links.css">
   <link rel="stylesheet" href="css/museum-preferences.css">
   <link rel="stylesheet" href="css/museum-view.css">
+  <link rel="stylesheet" href="css/museum-loading.css">
   <link rel="stylesheet" href="css/museum-collection.css">
 </head>
 
@@ -1602,6 +1603,7 @@
   <script src="js/museum-links.js"></script>
   <script src="js/museum-collection.js"></script>
   <script src="js/museum-view-copy.js"></script>
+  <script src="js/museum-loading.js"></script>
   <script src="js/museum-view.js"></script>
   <script src="js/museum-framing.js"></script>
   <script src="js/vehicles/tiger1.js"></script>
@@ -2293,6 +2295,7 @@
     renderer.setClearColor(0xf2ece1, 1);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    window.MuseumLoading.bind(renderer);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -4862,8 +4865,9 @@
     window.MuseumCollection.setActiveModel(state.vehicle);
     recordCollectionModel();
     window.MuseumPerformance = { snapshot: () => ({models: Object.keys(VEHICLE_ROOTS), meshes: allMeshes.length, parts: allParts.length, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures}) };
+    window.MuseumLoading.ready();
     animate();
-    })().catch(error => { console.error(error); setUiLabel(document.getElementById('header-vehicle-title'), 'Müze başlatılamadı — sayfayı yenileyin'); });
+    })().catch(error => { console.error(error); window.MuseumLoading.fail(); setUiLabel(document.getElementById('header-vehicle-title'), 'Müze başlatılamadı — sayfayı yenileyin'); });
   </script>
 </body>
 
