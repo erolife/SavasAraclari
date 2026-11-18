@@ -3,6 +3,9 @@
   'use strict';
 
   var titles = {
+"MMFA — Chakar, 2022.85": "MMFA — Chakar ring, 2022.85",
+"National Army Museum — Sih savaş halkası": "National Army Museum — Sikh war quoit",
+
 "The Met — Katana, 91.2.58": "The Met — Katana blade and mounting, 91.2.58",
 "The Met — Katana karşılaştırması, 91.2.61": "The Met — Comparison katana, 91.2.61",
 
@@ -99,6 +102,9 @@
   };
 
   var notes = {
+"Sialkot, Pencap, günümüz Pakistan’ı; 19. yüzyıl ortası; çelik, altın/gümüş kakma, 28,6 cm çap. Geometrik bezeme sadeleştirilmiştir; yazıtlar kopyalanmamıştır.": "Sialkot, Punjab, present-day Pakistan; mid-nineteenth century; steel, gold/silver inlay, diameter 28.6 cm. Geometric ornament is simplified; inscriptions are not copied.",
+"Chakar türü ve Sih savaşçı geleneği için ek tarihsel bağlam; bu modelin ölçü kaynağı değildir.": "Additional context for the chakar type and Sikh martial tradition; not the dimensional reference for this model.",
+
 "Ana görsel ve ölçü kaynağı. 17. yüzyıl bıçak, 19. yüzyıl gümüş donanım. İnce bezeme ve iç bağlantılar yaklaşık yorumdur.": "Primary visual and dimensional reference. Seventeenth-century blade, nineteenth-century silver mounting. Fine ornament and hidden attachments are interpreted.",
 "Ayrı bir katana örneği; bu modelin ölçü kaynağı olarak kullanılmamıştır.": "A separate katana example; its dimensions are not used for this model.",
 

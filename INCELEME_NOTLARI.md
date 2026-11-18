@@ -1241,3 +1241,10 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - 20 seçilebilir grup / 72 mesh. Hacimli çelik kesiti, hamon yorumu, gümüş bambu sap, oval tsuba, habaki, kın ahşabı, iki askı ve balık-dalga bezemeleri. Sap ve kın yüzeyi hareketleri yalnızca sergi ayrımıdır.
 - `tests/katana.cjs`: iki dil, 101 sap/kın ayrımı konumu, sınırlar, NaN, sıfırlama, destek gizleme, geometri ve kaplamalar geçti. Katalog/dil ve sade görünüm testleri geçti.
 - Gerçek Chrome: TR/EN × 1440×1000 / 390×844; sade ve teknik görünüm, üç kaydırıcı, taşma ve sayfa hatası kontrolü geçti. Genel ve mobil kontrol ekran görüntüleri incelendi; sehpa dikmeleri üst yatağa uzatıldı.
+
+
+## Chakar — 18 Kasım 2026
+
+- MMFA 2022.85 fotoğrafı incelendi: 19. yüzyıl ortası, Sialkot/Pencap (günümüz Pakistan’ı), 28,6 cm, çelik ve altın/gümüş kakma. National Army Museum kaydıyla türün Sih savaşçı bağlamı karşılaştırıldı.
+- 19 grup / 90 mesh. Boru biçimli torus yerine dışa incelen, kapalı hacimli yassı çelik kesit; iki yüzlü kakma, sınırlar, geometrik kıvrımlar ve büyütülmüş kesit örneği. Yazıtlar taklit edilmedi. Dörde ayırma tarihsel eklem değil, açıkça belirtilen sergi hareketidir. Bezeme hareket eden çelik sektörünü izler.
+- Model testi: 101 ayırma konumu, bağlı bezeme, sınırlar, NaN, sıfırlama, destek ve TR/EN geçti; katalog/sade görünüm kapsam testleri geçti. Chrome TR/EN, 1440×1000 ve 390×844: sade/teknik geçiş, üç kontrol, taşma ve sayfa hatası kontrolleri geçti; genel ekran görüntüsü incelendi.

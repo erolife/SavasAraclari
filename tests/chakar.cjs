@@ -1,0 +1,6 @@
+const {common,assert,THREE}=require('./model-harness.cjs');
+const {ad,meshes}=common('chakar',19);
+ad.root.updateMatrixWorld(true);const initial=new THREE.Box3().setFromObject(ad.parts.sector0).getCenter(new THREE.Vector3());
+for(let i=0;i<=100;i++){ad.onSlider(0,i);ad.root.updateMatrixWorld(true);const now=new THREE.Box3().setFromObject(ad.parts.sector0).getCenter(new THREE.Vector3());assert.ok(Math.abs(now.x-initial.x-Math.SQRT1_2*.24*i/100)<1e-6);assert.ok(Math.abs(now.y-initial.y-Math.SQRT1_2*.24*i/100)<1e-6);const own=new THREE.Box3().setFromObject(ad.parts.ornament0).getCenter(new THREE.Vector3());assert.ok(own.distanceTo(now)<.12);}
+ad.onSlider(1,999);assert.equal(ad.getSliderValues()[1],60);ad.onSlider(2,-999);assert.equal(ad.getSliderValues()[2],-90);ad.onSlider(0,NaN);assert.equal(ad.getSliderValues()[0],100);ad.onButton('sweep');assert.deepEqual(Array.from(ad.getSliderValues()),[0,0,0]);ad.onFire();assert.equal(ad.getSliderValues()[0],100);ad.onButton('terrain');assert.equal(ad.parts.support.visible,false);ad.onButton('sweep');assert.equal(ad.parts.support.visible,true);common('chakar',19,{window:{MuseumPreferences:{language:'en'}}});
+assert.ok(meshes.some(m=>m.isInstancedMesh&&m.count>=60));console.log('PASS chakar: 19 groups, 90 meshes, 101 poses, attached inlay, clamps, supports and both languages');
