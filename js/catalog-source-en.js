@@ -3,6 +3,9 @@
   'use strict';
 
   var titles = {
+"Propstore — Terminator 2 film nesnesi, lot 511": "Propstore — Terminator 2 screen object, lot 511",
+"Original Prop Blog — Film nesnesinin ayrıntı fotoğrafları": "Original Prop Blog — Detailed photographs of the screen object",
+
 "Smithsonian — M1 tüfeği, AF.84450M": "Smithsonian — US M1 rifle, AF.84450M",
 "Rock Island Auction — 1944 M1 görsel kaydı": "Rock Island Auction — 1944 M1 visual record",
 "ARES — M1 klips sesi ve sinema": "ARES — M1 clip sound and cinema",
@@ -115,6 +118,9 @@
   };
 
   var notes = {
+"1888 üretimi, 69 × 4 × 15 cm film nesnesi; değiştirilmiş kol ve kısa ahşap kabza için ana kayıt. Dış yüzey yaklaşık modeldir.": "1888-made, 69 × 4 × 15 cm film object; primary record for the altered loop and short wooden grip. Exterior surfaces are interpreted.",
+"Ahşap ve metal dış biçiminin karşılaştırma fotoğrafları. Fotoğraflar projeye kopyalanmamıştır.": "Comparison photographs of exterior wood and metal forms. Photographs are not bundled in the project.",
+
 "M1 türü ve 110,49 cm referans boyu. Model belirli bir seri numarasının birebir kopyası değildir.": "M1 type and reference length 110.49 cm. The model is not a facsimile of a particular serial-numbered rifle.",
 "Ahşap profil, metal üst grup ve dış donanım için karşılaştırma fotoğrafı. Bu örnekte namlu değişmiştir; işaretler kopyalanmamıştır.": "Comparison photograph for wood profile, upper metalwork and exterior fittings. This specimen has a replacement barrel; markings are not copied.",
 "Sekizli klips, Er Ryan’ı Kurtarmak bağlantısı ve ses hakkındaki yaygın iddiaların değerlendirilmesi. Model sesi sentetiktir.": "Eight-round clip, Saving Private Ryan connection and assessment of common sound-related claims. Model audio is synthetic.",

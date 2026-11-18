@@ -1286,3 +1286,10 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - Smithsonian AF.84450M: 110,49 cm referans boyu ve M1 türü. 1944 tarihli Rock Island örneğinin fotoğrafıyla dış ahşap/metal profil karşılaştırıldı; değiştirilmiş namlu ve seri numarası aktarılmadı. ARES yazısıyla klips sesi ve Er Ryan’ı Kurtarmak bağlantısı doğrulandı.
 - 23 grup / 90 mesh: hacimli yuvarlak kesitli ceviz kundak, iki üst ahşap parça, alıcı ve sürgü dış biçimi, delikli arka gez ve tırtıllı başlar, korumalı arpacık, ön gaz silindiri, askı, dipçik tabanı ve ayrı sekizli klips. Ses açıkken klips sergisi üst konumunda kısa sentetik tını; özgün film kaydı kullanılmadı.
 - TR/EN ve 101 ahşap/klips konumu, sabit namlu, birlikte taşınan sekiz dolu sergi biçimi, sınırlar/NaN/reset ve kaplamalar geçti. İlk görselde saptanan ahşap yüzey yönü düzeltildi; dışa bakan normal ve UV testi eklendi. Klips altına kaide kondu. Chrome TR/EN × masaüstü/mobil sade/teknik kontrolleri, taşma ve sayfa hatası taraması geçti; düzeltilmiş genel görünüş incelendi.
+
+
+## Winchester Model 1887 — 19 Kasım 2026
+
+- Propstore lot 511: 1888 üretimli, 69 × 4 × 15 cm, değiştirilmiş Terminator 2 film nesnesi. Original Prop Blog ayrıntı fotoğrafı incelendi. Model adı (1887), kaynak üretim tarihi (1888), film tarihi (1991) ayrı gösterildi; fabrika çıkışındaki tüm örneklere genellenmedi.
+- 19 grup / 89 mesh: yuvarlatılmış alıcı gövde, çift tüp, kısa ahşap kabza, ön ahşap yüzeyler, açık geniş kol halkası, onunla birlikte dönen arka yüzey, sabit ortak eksen, dış horoz ve vidalar. Kol hareketi yalnız inceleme açısıdır; iç doldurma çevrimi veya dublör hareketi sunulmaz.
+- 101 ahşap ayrımı, 56 ortak eksenli kol açısı, kaide açıklığı, sabit namlu, NaN/sınırlar/reset ve iki dil geçti. Katalog/sade görünüm testleri geçti. Chrome TR/EN × masaüstü/mobil: görünüm geçişi, kaydırıcılar, taşma ve sayfa hatası kontrolleri geçti; genel görünüş incelendi.
