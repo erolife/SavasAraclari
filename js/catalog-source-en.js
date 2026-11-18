@@ -3,6 +3,9 @@
   'use strict';
 
   var titles = {
+"Smithsonian — Walther PPK, 1991.0854.099": "Smithsonian — Walther PPK, 1991.0854.099",
+"Royal Armouries — Bond’un silahları ve Boothroyd PPK": "Royal Armouries — Bond’s guns and Boothroyd PPK",
+
 "Propstore — Terminator 2 film nesnesi, lot 511": "Propstore — Terminator 2 screen object, lot 511",
 "Original Prop Blog — Film nesnesinin ayrıntı fotoğrafları": "Original Prop Blog — Detailed photographs of the screen object",
 
@@ -118,6 +121,9 @@
   };
 
   var notes = {
+"1931 tarihli müze kaydı ve 16 cm karşılaştırma boyu. Bu ölçü görseldeki Boothroyd nesnesinin birebir ölçümü olarak sunulmaz.": "1931 museum record and comparison length 16 cm. This is not presented as an exact measurement of the pictured Boothroyd object.",
+"Boothroyd PPK fotoğrafı kabza dokusu ve dış profil için görsel karşılaştırmadır; roman/film bağlantısı açıklanır. Markalar ve damgalar kopyalanmaz.": "The Boothroyd PPK photograph provides grip texture and exterior profile comparison, with novel/film context. Maker marks and stamps are not copied.",
+
 "1888 üretimi, 69 × 4 × 15 cm film nesnesi; değiştirilmiş kol ve kısa ahşap kabza için ana kayıt. Dış yüzey yaklaşık modeldir.": "1888-made, 69 × 4 × 15 cm film object; primary record for the altered loop and short wooden grip. Exterior surfaces are interpreted.",
 "Ahşap ve metal dış biçiminin karşılaştırma fotoğrafları. Fotoğraflar projeye kopyalanmamıştır.": "Comparison photographs of exterior wood and metal forms. Photographs are not bundled in the project.",
 

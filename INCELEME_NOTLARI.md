@@ -1293,3 +1293,10 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - Propstore lot 511: 1888 üretimli, 69 × 4 × 15 cm, değiştirilmiş Terminator 2 film nesnesi. Original Prop Blog ayrıntı fotoğrafı incelendi. Model adı (1887), kaynak üretim tarihi (1888), film tarihi (1991) ayrı gösterildi; fabrika çıkışındaki tüm örneklere genellenmedi.
 - 19 grup / 89 mesh: yuvarlatılmış alıcı gövde, çift tüp, kısa ahşap kabza, ön ahşap yüzeyler, açık geniş kol halkası, onunla birlikte dönen arka yüzey, sabit ortak eksen, dış horoz ve vidalar. Kol hareketi yalnız inceleme açısıdır; iç doldurma çevrimi veya dublör hareketi sunulmaz.
 - 101 ahşap ayrımı, 56 ortak eksenli kol açısı, kaide açıklığı, sabit namlu, NaN/sınırlar/reset ve iki dil geçti. Katalog/sade görünüm testleri geçti. Chrome TR/EN × masaüstü/mobil: görünüm geçişi, kaydırıcılar, taşma ve sayfa hatası kontrolleri geçti; genel görünüş incelendi.
+
+
+## Walther PPK — 19 Kasım 2026
+
+- Smithsonian 1991.0854.099: 1931 tarihli kayıt ve 16 cm karşılaştırma boyu. Royal Armouries Boothroyd PPK fotoğrafı ile kahverengi kabza, tırtıllar ve dış profil incelendi. Ölçü ve görselin aynı nesneye ait olmadığı hem sade anlatımda hem turda belirtildi; 1931 katalogda türün başlangıcı olarak kullanıldı.
+- 19 grup / 64 mesh: gerçek delikli tetik korkuluğu ve yan açıklık, ayrılabilir üst kabuk, sabit namlu dış yüzeyi, açık halkalı horoz, küçük nişangâhlar, arka tırtıllar, kahverengi yanaklar ve instanced baklava dokusu. Marka/yazı kopyalanmadı.
+- 101 üst kabuk/yanak konumu, bağlı nişangâh ve kabza dokusu, sabit namlu, açıklıklar, sınırlar/NaN/reset, destek ve iki dil geçti. Chrome TR/EN × masaüstü/mobil sade/teknik kontrolleri geçti; genel görünüş incelendi. Metal pürüz şiddeti inceltildi ve korkuluk boşluğu genişletildi.
