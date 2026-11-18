@@ -13,23 +13,23 @@
   const trail = trails.find(item => item.id === params.get('trail'));
   if (model) {
     function renderReturn() {
-    document.querySelector('.trail-return')?.remove();
-    const currentModel = new URLSearchParams(location.search).get('vehicle');
-    const index = trail?.models.indexOf(currentModel) ?? -1;
-    if (index < 0) return;
-    const nav = node('nav');
-    nav.className = 'trail-return';
-    nav.setAttribute('aria-label', t('Keşif rotası', 'Discovery trail'));
-    const back = node('a', trail.title[lang]);
-    back.href = 'rotalar.html#' + trail.id;
-    nav.append(back);
-    const next = trail.models[index + 1];
-    if (next) {
-      const link = node('a', t('Sonraki sergi →', 'Next exhibit →'));
-      link.href = 'simulator.html?' + new URLSearchParams({vehicle:next, trail:trail.id});
-      nav.append(link);
-    }
-    document.body.append(nav);
+      document.querySelector('.trail-return')?.remove();
+      const currentModel = new URLSearchParams(location.search).get('vehicle');
+      const index = trail?.models.indexOf(currentModel) ?? -1;
+      if (index < 0) return;
+      const nav = node('nav');
+      nav.className = 'trail-return';
+      nav.setAttribute('aria-label', t('Keşif rotası', 'Discovery trail'));
+      const back = node('a', trail.title[lang]);
+      back.href = 'rotalar.html#' + trail.id;
+      nav.append(back);
+      const next = trail.models[index + 1];
+      if (next) {
+        const link = node('a', t('Sonraki sergi →', 'Next exhibit →'));
+        link.href = 'simulator.html?' + new URLSearchParams({vehicle:next, trail:trail.id});
+        nav.append(link);
+      }
+      document.body.append(nav);
     }
     window.addEventListener('museumvehiclechange', renderReturn);
     renderReturn();

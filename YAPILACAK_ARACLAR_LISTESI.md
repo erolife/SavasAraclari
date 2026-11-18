@@ -184,3 +184,9 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 - Başlayan geliştirici ilgili U kodunu sahiplenir. Ortak arayüz dosyalarına dokunan işler, yeni araç entegrasyonlarıyla koordine edilir.
 - Mevcut seçildiğinde model yükleme, tarih çizelgesi, on iki duraklı Türk tarihi rotası ve paylaşım/kaynak bağlantıları korunur.
 - Her işte kapsama uygun testler ve masaüstü/mobil görsel kontroller tamamlanır; sonuçlar `INCELEME_NOTLARI.md` içine kaydedilir. Her iş için ayrı Türkçe commit atılır; push zamanı kullanıcının o işteki talimatına göre belirlenir.
+
+### Tamamlanan yeni uygulama geliştirmeleri — 18 Kasım 2026
+
+- U5 — 3D yükleme sırasında okunabilen sergi özeti, hata durumunda kaynaklar ve yeniden deneme; saklanan hafif kalite tercihi.
+- U6 — Leonardo, denizaltılar ve havacılık için dört duraklı tematik rotalar.
+- U7 — Enigma, Harrier ve El-Cezerî için tamamlandığında açıklama gösteren keşif görevleri.

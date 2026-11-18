@@ -1,0 +1,8 @@
+.discovery-card { padding: 13px; background: var(--museum-panel, #faf7ef); border: 1px solid var(--museum-border, #d8d0bf); border-radius: 8px; }
+.discovery-card[hidden], .discovery-card [hidden] { display: none; }
+.discovery-card h2 { font-size: 16px; margin: 0 0 8px; }
+.discovery-card p { font-size: 13px; line-height: 1.6; margin: 8px 0; }
+.discovery-card a { display: inline-block; }
+.desk .discovery-card { margin-bottom: 18px; }
+.museum-overview button[hidden] { display: none; }
+body[data-mob-sheet="part"] .discovery-card { display: none; }

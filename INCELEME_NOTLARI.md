@@ -1213,3 +1213,13 @@ Tarayıcı taraması 66 serginin Türkçe masaüstü ve İngilizce mobil görün
 Kompakt görünüm varsayılan olarak küçük görsel, sergi adı, yıl, kategori, 3D bağlantısı ve favori düğmesini gösterir. Detaylı görünüm mevcut anlatım ve teknik bağlantıları sunar. Görünüm tercihi tarayıcıda saklanır. Geçiş aramayı, sıralamayı, filtreleri ve paylaşılabilir adresi korur.
 
 66 proje testi geçti. Türkçe ve İngilizce, 390 ve 1440 pikselde görünüm, klavye ile geçiş, favori, kaynak penceresi, boş sonuç ve yenileme kontrol edildi. Tarayıcı depolamasının kapalı olduğu durumda geçiş çalışır.
+
+## Mobil erişim, tematik rotalar ve keşif görevleri
+
+3D hazırlanırken katalog çizimi, iki dilli sergi anlatımı ve kaynak düğmesi görünür. Yükleme başarısızsa bu içerik ve yeniden deneme düğmesi kalır. Hafif kalite piksel oranını 1 ile sınırlar ve gölgeleri kapatır. Seçim tarayıcıda saklanır.
+
+Keşif rotaları sayfasında dört duraklı üç tema bulunur. Leonardo’nun fikirleri, denizaltının doğuşu ve pervaneden jet motoruna geçiş. Her durak öncekiyle bağlantısını anlatır. Sergide rota sayfasına dönüş ve sıradaki sergi bağlantıları sunulur.
+
+Enigma laboratuvarında aynı harfi iki kez deneme, Harrier’da nozul açısını değiştirme ve El-Cezerî’de su kontrolünü kapatıp açma görevleri eklendi. Tamamlanınca kısa açıklama gösterilir. Görev tekrar denenebilir. Sade görünümden ilgili görev kartına geçilebilir.
+
+66 proje testi geçti. Türkçe ve İngilizce, mobil ve masaüstü tarayıcı kontrollerinde kalite tercihi, yükleme hatası, rota seçimi ve sergiye geçiş, üç görev ve yeniden deneme doğrulandı.

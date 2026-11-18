@@ -1268,6 +1268,7 @@
   <link rel="stylesheet" href="css/museum-view.css">
   <link rel="stylesheet" href="css/museum-loading.css">
   <link rel="stylesheet" href="css/museum-trails.css">
+  <link rel="stylesheet" href="css/museum-discovery.css">
   <link rel="stylesheet" href="css/museum-collection.css">
 </head>
 
@@ -1607,6 +1608,7 @@
   <script src="js/museum-loading.js"></script>
   <script src="js/museum-trails-data.js"></script>
   <script src="js/museum-trails.js"></script>
+  <script src="js/museum-discovery.js"></script>
   <script src="js/museum-view.js"></script>
   <script src="js/museum-framing.js"></script>
   <script src="js/vehicles/tiger1.js"></script>
@@ -3581,6 +3583,7 @@
       } catch (error) {
         if (request === vehicleRequest) showToast(translateLabel('Araç yüklenemedi. Bağlantınızı kontrol edip yeniden seçin.'), 6000);
         console.error(error);
+        if (!remember) throw error;
         return;
       }
       state.vehicle = target;
