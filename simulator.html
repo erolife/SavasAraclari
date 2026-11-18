@@ -1267,6 +1267,7 @@
   <link rel="stylesheet" href="css/museum-preferences.css">
   <link rel="stylesheet" href="css/museum-view.css">
   <link rel="stylesheet" href="css/museum-loading.css">
+  <link rel="stylesheet" href="css/museum-trails.css">
   <link rel="stylesheet" href="css/museum-collection.css">
 </head>
 
@@ -1604,6 +1605,8 @@
   <script src="js/museum-collection.js"></script>
   <script src="js/museum-view-copy.js"></script>
   <script src="js/museum-loading.js"></script>
+  <script src="js/museum-trails-data.js"></script>
+  <script src="js/museum-trails.js"></script>
   <script src="js/museum-view.js"></script>
   <script src="js/museum-framing.js"></script>
   <script src="js/vehicles/tiger1.js"></script>
@@ -3801,6 +3804,7 @@
         applyTourStep(0);
       }
       museumView.show(target);
+      window.dispatchEvent(new Event('museumvehiclechange'));
       if (remember) {
         window.MuseumCollection.setActiveModel(target);
         recordCollectionModel();
