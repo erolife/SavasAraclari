@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 14 Kasım 2026:** 66 aktif model / 121 katalog kaynağı. Corvus, Humbara ve Ka-27PS eklendi. Türk tarihi rotası 14 durak. 62 test dosyası geçti. Araştırma ve görsel kontrol kayıtları INCELEME_NOTLARI.md içinde.
+> **Güncel durum — 18 Kasım 2026:** 71 aktif model / 131 katalog kaynağı. Ō-yoroi, Katana, Chakar, Yeni Krallık Mısır arabası ve Pūtātara eklendi. Türk tarihi rotası 14 durak. 71 test dosyası geçti. Araştırma ve görsel kontrol kayıtları INCELEME_NOTLARI.md içinde.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.

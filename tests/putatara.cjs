@@ -1,0 +1,7 @@
+const {common,assert,THREE}=require('./model-harness.cjs');
+const {ad,meshes}=common('putatara',18);
+function centre(k){ad.root.updateMatrixWorld(true);return new THREE.Box3().setFromObject(ad.parts[k]).getCenter(new THREE.Vector3());}
+const front=centre('shellFront'),back=centre('shellBack');
+for(let i=0;i<=100;i++){ad.onSlider(0,i);const now=centre('shellFront');assert.ok(Math.abs(now.z-front.z-.65*i/100)<1e-6);assert.ok(Math.abs(now.y-front.y-.12*i/100)<1e-6);assert.ok(centre('shellBack').distanceTo(back)<1e-8);}
+ad.onSlider(1,75);ad.update(NaN);ad.update(-1);ad.update(10);assert.equal(ad.getSliderValues()[1],75);ad.onSlider(2,300);assert.equal(ad.getSliderValues()[2],90);ad.onSlider(0,NaN);assert.equal(ad.getSliderValues()[0],100);ad.onButton('sweep');assert.deepEqual(Array.from(ad.getSliderValues()),[0,0,0]);ad.onFire();assert.equal(ad.getSliderValues()[0],100);ad.onFire();assert.equal(ad.getSliderValues()[0],0);ad.onButton('terrain');assert.equal(ad.parts.support.visible,false);ad.onButton('sweep');assert.equal(ad.parts.support.visible,true);
+const fx=[];ad.root.traverse(o=>{if(o.isMesh&&!o.userData.origColor)fx.push(o);});assert.equal(fx.length,3);for(const m of fx)assert.ok(Number.isFinite(m.position.x));common('putatara',18,{window:{MuseumPreferences:{language:'en'}}});assert.ok(meshes.some(m=>m.isInstancedMesh&&m.count>=280));console.log('PASS putatara: 18 groups, 70 CAD meshes, 101 shell poses, fixed back, bounded illustrative waves, supports, both languages');

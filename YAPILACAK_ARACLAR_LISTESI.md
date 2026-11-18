@@ -193,8 +193,11 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 
 ### Kullanıcı önceliği — Samuray donanımı
 
-Ō-yoroi (`yoroi`) tamamlandı. Met 36.25.39a–p temelinde, 18. yüzyılda eski üslubu canlandıran zırh. 32 grup ve 255 mesh, iki dilde sade anlatım ve teknik inceleme. Katana (`katana`) tamamlandı: Met 91.2.58 temelinde 17. yüzyıl çelik bıçak ve 19. yüzyıl gümüş donanım, ayrı kın sergisi, sap ve kın yüzeyi incelemesi. Kullanıcı onayıyla üç farklı ülkeden kılıç dışı sergi sırayla hazırlanıyor.
+Ō-yoroi (`yoroi`) tamamlandı. Met 36.25.39a–p temelinde, 18. yüzyılda eski üslubu canlandıran zırh. 32 grup ve 255 mesh, iki dilde sade anlatım ve teknik inceleme. Katana (`katana`) tamamlandı: Met 91.2.58 temelinde 17. yüzyıl çelik bıçak ve 19. yüzyıl gümüş donanım, ayrı kın sergisi, sap ve kın yüzeyi incelemesi. Kullanıcı onayıyla üç farklı ülkeden kılıç dışı sergi de tamamlandı.
 
 - Sürpriz 1 tamamlandı: `chakar`, MMFA 2022.85 temelinde Sialkot/Pencap çelik savaş halkası.
 
 - Sürpriz 2 tamamlandı: `egyptchariot`, Yeni Krallık Mısır arabası; açık çeki düzeni ve deri örgü taban.
+
+- Sürpriz 3 tamamlandı: `putatara`, Aotearoa/Yeni Zelanda’dan Māori kabuk borusu; haberleşme ve törensel bağlam.
+- Katana ve üç sürpriz sergi: TR/EN, masaüstü/mobil, sade/teknik ve altı adımlı tur kontrolleri tamamlandı. 71 test dosyası geçti.

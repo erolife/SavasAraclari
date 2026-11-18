@@ -3,6 +3,9 @@
   'use strict';
 
   var titles = {
+"Te Papa — Pūtātara, ME003937": "Te Papa — Shell trumpet, ME003937",
+"Te Papa — Māori çalgıları ve çağrı işlevleri": "Te Papa — Māori instruments and calling roles",
+
 "Griffith Institute — Tutankhamun araba yapım notları": "Griffith Institute — Tutankhamun chariot construction notes",
 "The Met — Mısır araba türü, modern müze modeli 21.2.61": "The Met — Egyptian chariot type, modern museum model 21.2.61",
 
@@ -105,6 +108,9 @@
   };
 
   var notes = {
+"Whanganui, 1800–1900; 290 × 120 × 120 mm; kabuk, ahşap, tüy, muka. Ana görsel kaynağı. İç hacim ve oyma çizgiler yaklaşık yorumdur; kaynak görsel/ses dosyası projeye alınmadı.": "Whanganui, 1800–1900; 290 × 120 × 120 mm; shell, wood, feathers, muka. Primary visual reference. Cavity and carving are interpreted; no source image/audio is bundled.",
+"Pūtātara için karşılama, doğum, eğitim çağrısı ve savaş çağrısı bağlamları. Çalgı yalnızca silah olarak sınıflandırılmaz.": "Contexts for pūtātara include arrivals, births, calls to instruction and calls to arms. The instrument is not classified solely as a weapon.",
+
 "D biçimli gövde, arkada dingil, deri örgü döşeme, altı kollu tekerlek, çeki oku ve boyunduruk için arşiv referansı. Model tek bir kraliyet aracının birebir kopyası değildir.": "Archival reference for the D-shaped body, rear axle, leather-laced floor, six-spoke wheels, pole and yoke. The model is not a facsimile of one royal vehicle.",
 "Yeni Krallık askerî araba bağlamı ve müze rekonstrüksiyonu karşılaştırması. Mezar araçlarının hepsi savaş için uygun değildir; 81 cm modern model ölçüsü gerçek arabaya aktarılmamıştır.": "New Kingdom military context and comparison with a modern museum reconstruction. Not all tomb vehicles were suitable for warfare; the modern model’s 81 cm dimension is not applied to the ancient vehicle.",
 

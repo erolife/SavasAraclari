@@ -1255,3 +1255,13 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - Griffith Institute Tutankhamun yapım notları ve Met 21.2.61 modern modeli incelendi. Yeni Krallık araç türü ile mezarda korunmuş kraliyet arabalarının fiilî savaş kullanımı ayrıldı; modern modelin 81 cm ölçüsü gerçek araca aktarılmadı.
 - 25 grup / 109 mesh: D biçimli bükülmüş çerçeve, deri örgü taban, arkaya yerleştirilen dingil, altı kollu iki teker, ahşap göbekler, deri/keten bağlar, uzun kavisli ok, iki eyerli boyunduruk, askılar ve yan ok kılıfı. Geometrik renkli bezeme sadeleştirilmiş yorumdur; hiyeroglif ve tarihsel kabartma üretilmedi. Atlar yerine çeki donanımı açık sergilendi.
 - 101 kabin/boyunduruk ayrımı, yerinde kalan taban, 25 teker açısı, sınırlar, NaN, sıfırlama ve destek testleri TR/EN geçti. Chrome TR/EN, masaüstü ve mobilde sade/teknik geçiş ve kontroller geçti; genel kadraj görüntüsü incelendi, taşma veya sayfa hatası yok.
+
+
+## Pūtātara ve dört serginin son kontrolü — 18 Kasım 2026
+
+- Te Papa ME003937 görseli incelendi: Whanganui, 1800–1900, 290 × 120 × 120 mm, kabuk/ahşap/muka/tüy. Te Papa’nın çalgı anlatımıyla karşılama, tören, topluluk çağrısı ve savaş çağrısı birlikte ele alındı; yalnızca silah olarak sunulmadı. Kaynak fotoğraf ve ses dosyaları projeye alınmadı.
+- 18 seçilebilir grup / 70 CAD mesh. Kompakt doğal kabuk omuzları, yan açıklık, kalın dudak, iç yüzey, oyma yorumu, açık ahşap ağızlık, muka örgü, üç telli ip ve ince lifli tüyler. İlk uzamış spiral biçimi fotoğrafa göre yeniden çalışıldı. Kabuk ayrımı ve mavi ses halkaları açıkça temsili sergi özellikleridir.
+- Model testi: 101 ayırma konumu, sabit arka kabuk, sınırlı görsel dalga güncellemesi, sınırlar, NaN, sıfırlama, destek ve iki dil geçti.
+- Dört yeni modelde Chrome TR/EN × 1440×1000 / 390×844: sade/teknik görünüm ve üç kaydırıcı, sayfa hatası ve yatay taşma kontrolleri geçti. Açık/koyu genel görünüş, mobil sade görünüş ve yakın planlar incelendi.
+- Dört modelde altı kamera, altı rehberli tur adımı, X-Ray, ana inceleme düğmesi, mesnet gizleme/sıfırlama ve iki İngilizce kaynak bağlantısı doğrulandı. Kaynak diyaloğu Escape ile kapanıyor. Yerel basit sunucunun eksik `favicon.ico` yanıtı uygulama hatalarından ayrı tutuldu.
+- Tam test koşusu: 71 test dosyası geçti, 0 hata. Envanter 71 aktif sergi / 131 kaynak kaydı.
