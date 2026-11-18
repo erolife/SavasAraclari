@@ -1,6 +1,7 @@
 /* English catalog overlay. Load after catalog.js. */
 (function(){'use strict';
 const VEHICLE_TEXT = {
+"katana": {"name": "Katana — Steel and Silver", "sub": "CURVED STEEL • BAMBOO GRIP • FISH AND WAVE ORNAMENT", "desc": "Based on Met 91.2.58: a seventeenth-century blade with nineteenth-century silver fittings. Examine the scabbard, wooden core, tsuba, habaki and fish ornament.", "yearLabel": "17th / 19th century", "eraLabel": "JAPAN • EDO PERIOD", "tags": ["Japan", "Samurai Equipment", "Silverwork", "Museum Reconstruction"], "specs": [["REFERENCE", "Met 91.2.58"], ["CUTTING EDGE", "62.1 cm"], ["CURVATURE", "1.5 cm"], ["MOUNTED LENGTH", "94.5 cm"]]},
   "yoroi": {
     "name": "Ō-yoroi — Samurai Armour",
     "sub": "KABUTO • SODE • KUSAZURI • SILK-LACED SCALES",

@@ -1233,3 +1233,11 @@ Ana referans The Metropolitan Museum of Art, 36.25.39a–p, 18. yüzyıl. Müze 
 Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zaman çizelgesi ve dinamik yükleme bütünleştirildi. Katananın ayrı bir sergi olarak eklenmesi kullanıcıyla değerlendiriliyor.
 
 67 proje testi geçti. 101 ayrım ve kaldırma pozu, sınır değerler, sıfırlama, mesnet görünürlüğü ve geometri doğrulandı. Türkçe ve İngilizce, 390 ve 1440 pikselde sade/teknik görünüm, altı tur adımı ve kumandalar kontrol edildi. Genel, arka ve X-Ray yakın planlar görsel olarak incelendi. Kaldırılmış miğfere kamera payı eklendi. Üst kontrol çubuğunda dil, tema ve kalite seçenekleri 390, 1024, 1440 ve 1920 pikselde kadraj içinde doğrulandı.
+
+
+## Katana — 18 Kasım 2026
+
+- Met 91.2.58 görseli ve müze kaydı incelendi: 17. yüzyıl bıçak, 19. yüzyıl gümüş donanım; 62,1 cm kesici uzunluk, 1,5 cm eğrilik, 94,5 cm donanımlı boy. Karşılaştırma kaydındaki ölçüler modele karıştırılmadı.
+- 20 seçilebilir grup / 72 mesh. Hacimli çelik kesiti, hamon yorumu, gümüş bambu sap, oval tsuba, habaki, kın ahşabı, iki askı ve balık-dalga bezemeleri. Sap ve kın yüzeyi hareketleri yalnızca sergi ayrımıdır.
+- `tests/katana.cjs`: iki dil, 101 sap/kın ayrımı konumu, sınırlar, NaN, sıfırlama, destek gizleme, geometri ve kaplamalar geçti. Katalog/dil ve sade görünüm testleri geçti.
+- Gerçek Chrome: TR/EN × 1440×1000 / 390×844; sade ve teknik görünüm, üç kaydırıcı, taşma ve sayfa hatası kontrolü geçti. Genel ve mobil kontrol ekran görüntüleri incelendi; sehpa dikmeleri üst yatağa uzatıldı.

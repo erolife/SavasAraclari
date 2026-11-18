@@ -3,6 +3,9 @@
   'use strict';
 
   var titles = {
+"The Met — Katana, 91.2.58": "The Met — Katana blade and mounting, 91.2.58",
+"The Met — Katana karşılaştırması, 91.2.61": "The Met — Comparison katana, 91.2.61",
+
     'The Met — Ō-yoroi, 36.25.39a–p': 'The Met — Yoroi armour, 36.25.39a–p',
     'The Met — Orta Çağ yoroi, 14.100.121a–e': 'The Met — Medieval yoroi, 14.100.121a–e',
     'Roma ballistasının arkeolojik bağlamı — English Heritage': 'Archaeological context for the Roman ballista — English Heritage',
@@ -96,6 +99,9 @@
   };
 
   var notes = {
+"Ana görsel ve ölçü kaynağı. 17. yüzyıl bıçak, 19. yüzyıl gümüş donanım. İnce bezeme ve iç bağlantılar yaklaşık yorumdur.": "Primary visual and dimensional reference. Seventeenth-century blade, nineteenth-century silver mounting. Fine ornament and hidden attachments are interpreted.",
+"Ayrı bir katana örneği; bu modelin ölçü kaynağı olarak kullanılmamıştır.": "A separate katana example; its dimensions are not used for this model.",
+
     '18. yüzyıl canlandırması. Ana görsel ve ölçü referansı; ince bezeme, bağlar ve iç destek yaklaşık yorumdur.': 'An eighteenth-century revival. Main visual and dimensional reference; fine ornament, lacing and internal support are interpreted.',
     'Erken örnekle tarihsel karşılaştırma. Bu kayıttaki omuzluklar eksiktir.': 'Historical comparison with an early example. This record is missing its shoulder guards.',
     'Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir.': 'Further reading for historical context and comparison. This is not a direct reference for every detail of the model.',
