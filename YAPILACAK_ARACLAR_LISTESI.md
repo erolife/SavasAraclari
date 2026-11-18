@@ -206,7 +206,7 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 ### Onaylanan sinema beşlisi — 19 Kasım 2026
 
 1. ✅ Mauser C96 (`c96`) — NAM 1982-04-750-1; Star Wars/DL-44 bağlantısı.
-2. ⏳ M1 Garand — Er Ryan’ı Kurtarmak.
+2. ✅ M1 Garand (`garand`) — Er Ryan’ı Kurtarmak; ahşap ayrımı ve ayrı klips sergisi.
 3. ⏳ Winchester 1887 — Terminator 2.
 4. ⏳ Walther PPK — James Bond.
 5. ⏳ Smith & Wesson Model 29 — Kirli Harry.

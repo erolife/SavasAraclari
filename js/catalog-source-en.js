@@ -3,6 +3,10 @@
   'use strict';
 
   var titles = {
+"Smithsonian — M1 tüfeği, AF.84450M": "Smithsonian — US M1 rifle, AF.84450M",
+"Rock Island Auction — 1944 M1 görsel kaydı": "Rock Island Auction — 1944 M1 visual record",
+"ARES — M1 klips sesi ve sinema": "ARES — M1 clip sound and cinema",
+
 "National Army Museum — C96, 1982-04-750-1": "National Army Museum — Mauser C96, 1982-04-750-1",
 "Royal Armouries — Birinci Dünya Savaşı silahları ve C96": "Royal Armouries — First World War arms and the C96",
 
@@ -111,6 +115,10 @@
   };
 
   var notes = {
+"M1 türü ve 110,49 cm referans boyu. Model belirli bir seri numarasının birebir kopyası değildir.": "M1 type and reference length 110.49 cm. The model is not a facsimile of a particular serial-numbered rifle.",
+"Ahşap profil, metal üst grup ve dış donanım için karşılaştırma fotoğrafı. Bu örnekte namlu değişmiştir; işaretler kopyalanmamıştır.": "Comparison photograph for wood profile, upper metalwork and exterior fittings. This specimen has a replacement barrel; markings are not copied.",
+"Sekizli klips, Er Ryan’ı Kurtarmak bağlantısı ve ses hakkındaki yaygın iddiaların değerlendirilmesi. Model sesi sentetiktir.": "Eight-round clip, Saving Private Ryan connection and assessment of common sound-related claims. Model audio is synthetic.",
+
 "1916 dolaylarına ait 9 mm örnek; iki profil fotoğrafı ana görsel referanstır. Ahşap kılıf ve iç bağlantılar yaklaşık yorumdur.": "A circa-1916 9 mm specimen; two profile photographs are the primary visual reference. Wooden holster and hidden attachments are interpreted.",
 "Erken yarı otomatik tabanca bağlamı, Osmanlı saray muhafızları ve Star Wars aksesuarıyla bağlantı.": "Context for an early self-loading pistol, Ottoman palace guards and its connection to the Star Wars prop.",
 
