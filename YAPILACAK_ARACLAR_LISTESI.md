@@ -190,3 +190,7 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 - U5 — 3D yükleme sırasında okunabilen sergi özeti, hata durumunda kaynaklar ve yeniden deneme; saklanan hafif kalite tercihi.
 - U6 — Leonardo, denizaltılar ve havacılık için dört duraklı tematik rotalar.
 - U7 — Enigma, Harrier ve El-Cezerî için tamamlandığında açıklama gösteren keşif görevleri.
+
+### Kullanıcı önceliği — Samuray donanımı
+
+Ō-yoroi (`yoroi`) tamamlandı. Met 36.25.39a–p temelinde, 18. yüzyılda eski üslubu canlandıran zırh. 32 grup ve 255 mesh, iki dilde sade anlatım ve teknik inceleme. Katana ayrı sergi adayıdır.

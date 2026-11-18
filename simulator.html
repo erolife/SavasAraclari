@@ -455,7 +455,7 @@
     @media (min-width: 901px) and (max-width: 1600px) {
       .brand-badge { display: none; }
     }
-    @media (min-width: 901px) and (max-width: 1320px) {
+    @media (min-width: 901px) and (max-width: 1600px) {
       .top-bar {
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto auto;
@@ -3225,8 +3225,9 @@
         const safeHeight = Math.max(0.25, 0.94 - 2 * verticalInset / content.height);
         const meshes = getActiveVehicleMeshes().filter(mesh => (mesh.userData.baseOpacity ?? 1) >= 0.38);
         scene.updateMatrixWorld(true);
+        const cameraPadding = activeAdapter()?.ui.cameraPadding || 1;
         window.MuseumFraming.fitOverview(THREE, camera, meshes, state.camTargetPos, state.camTargetLook,
-          safeWidth, safeHeight, controls.minDistance);
+          safeWidth * cameraPadding, safeHeight * cameraPadding, controls.minDistance);
       } else if (window.innerWidth < 600 && window.innerHeight > window.innerWidth) {
         const portraitScale = activeAdapter()?.ui.portraitCameraScale || 1;
         state.camTargetPos.sub(state.camTargetLook).multiplyScalar(portraitScale).add(state.camTargetLook);

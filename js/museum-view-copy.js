@@ -3,6 +3,10 @@
 
   // Each pair contains the Turkish and English exhibit cards in display order.
   window.MuseumViewCopy = {
+    yoroi: [
+      ['Ō-yoroi, miğfer, geniş omuzluklar ve dört parçalı eteği olan Japon zırh geleneğidir.', 'Serginin görsel kaynağı, 18. yüzyılda Orta Çağ üslubunu yeniden canlandırmak için yapılmış bir zırhtır.', 'Lake kaplı küçük levhalar ipek bağlarla birleştirilir. Ayrı paneller gövdeyi ve omuzları çevreler.', 'Altın renkli kuwagata bezemesini ve omuzluklardaki sıralı bağları bul.'],
+      ['Ō-yoroi is a Japanese armour tradition with a helmet, broad shoulder guards and a four-part skirt.', 'The visual reference is eighteenth-century armour made during a revival of medieval styles.', 'Lacquered scales are joined with silk lacing. Separate panels surround the torso and shoulders.', 'Find the gilt-coloured kuwagata crest and the rows of lacing on the shoulder guards.']
+    ],
     enigma: [
       ['Enigma I, tuşları ve ışıklı harf paneli olan elektromekanik bir şifreleme makinesiydi.', 'Alman askerî haberleşmesini korudu. Polonyalı ve Müttefik ekiplerin şifreyi çözmesi savaş istihbaratını etkiledi.', 'Bir tuşa basınca rotorlar ilerler. Elektrik rotorlar ve yansıtıcıdan geçip çıkış harfinin lambasını yakar.', 'Tuş sıralarıyla kapağın altındaki rotor pencerelerini karşılaştır.'],
       ['Enigma I was an electromechanical cipher machine with a keyboard and a panel of letter lamps.', 'It protected German military communications. Work by Polish and Allied codebreakers shaped wartime intelligence.', 'A key press advances the rotors. The electrical signal passes through the rotors and reflector, lighting the output letter.', 'Compare the keyboard rows with the rotor windows beneath the lid.']

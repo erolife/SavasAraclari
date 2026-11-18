@@ -3,6 +3,8 @@
   'use strict';
 
   var titles = {
+    'The Met — Ō-yoroi, 36.25.39a–p': 'The Met — Yoroi armour, 36.25.39a–p',
+    'The Met — Orta Çağ yoroi, 14.100.121a–e': 'The Met — Medieval yoroi, 14.100.121a–e',
     'Roma ballistasının arkeolojik bağlamı — English Heritage': 'Archaeological context for the Roman ballista — English Heritage',
     'Orta Çağ kuşatma makineleri — English Heritage': 'Medieval siege engines — English Heritage',
     '1464 Dardanelles Gun arşiv fotoğrafı — Historic England': 'Archival photograph of the 1464 Dardanelles Gun — Historic England',
@@ -94,6 +96,8 @@
   };
 
   var notes = {
+    '18. yüzyıl canlandırması. Ana görsel ve ölçü referansı; ince bezeme, bağlar ve iç destek yaklaşık yorumdur.': 'An eighteenth-century revival. Main visual and dimensional reference; fine ornament, lacing and internal support are interpreted.',
+    'Erken örnekle tarihsel karşılaştırma. Bu kayıttaki omuzluklar eksiktir.': 'Historical comparison with an early example. This record is missing its shoulder guards.',
     'Ek okuma: tarihsel bağlam ve karşılaştırma. Modelin tüm ayrıntılarının birebir referansı değildir.': 'Further reading for historical context and comparison. This is not a direct reference for every detail of the model.',
     'Model modern müze yorumudur; özgün antik ölçüler bilinmez.': 'The model is a modern museum interpretation; the original ancient dimensions are unknown.',
     'Oranlar fotoğraftan yorumlanmıştır; tam alt tip ve iç hesaplayıcı kopyası değildir.': 'Proportions are interpreted from photographs; this is not a precise copy of a specific subtype or its internal calculator.',

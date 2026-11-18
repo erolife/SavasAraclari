@@ -1223,3 +1223,13 @@ Keşif rotaları sayfasında dört duraklı üç tema bulunur. Leonardo’nun fi
 Enigma laboratuvarında aynı harfi iki kez deneme, Harrier’da nozul açısını değiştirme ve El-Cezerî’de su kontrolünü kapatıp açma görevleri eklendi. Tamamlanınca kısa açıklama gösterilir. Görev tekrar denenebilir. Sade görünümden ilgili görev kartına geçilebilir.
 
 66 proje testi geçti. Türkçe ve İngilizce, mobil ve masaüstü tarayıcı kontrollerinde kalite tercihi, yükleme hatası, rota seçimi ve sergiye geçiş, üç görev ve yeniden deneme doğrulandı.
+
+## Ō-yoroi — Samuray zırhı, 18 Kasım 2026
+
+Ana referans The Metropolitan Museum of Art, 36.25.39a–p, 18. yüzyıl. Müze bu takımın 12–13. yüzyıl üslubunu canlandırdığını belirtir. Kaynakta sergilendiği haliyle 148,6 × 87,6 × 71,1 cm ölçülür. Model büyütülmüş yorumdur. Zaman çizelgesindeki 1750 değeri yüzyıl içinde sıralama içindir. Erken karşılaştırma kaydı Met 14.100.121a–e olarak eklenmiştir.
+
+32 seçilebilir grup ve 255 mesh. Tekrarlanan levhalar ve ipek bağlar instanced geometri kullanır. Kabuto, ense sıraları, yan kıvrımlar, ön bezeme, yüz koruması, göğüslük, waidate, sode, dört kusazuri, kollar ve baldır korumaları ayrı seçilir. Modern destek kutusu ve iç figür gizlenebilir. Panel ayrımı ve miğfer kaldırma hareketleri sergi incelemesidir. İnce süsleme ve görünmeyen bağlantılar sadeleştirilmiştir.
+
+Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zaman çizelgesi ve dinamik yükleme bütünleştirildi. Katananın ayrı bir sergi olarak eklenmesi kullanıcıyla değerlendiriliyor.
+
+67 proje testi geçti. 101 ayrım ve kaldırma pozu, sınır değerler, sıfırlama, mesnet görünürlüğü ve geometri doğrulandı. Türkçe ve İngilizce, 390 ve 1440 pikselde sade/teknik görünüm, altı tur adımı ve kumandalar kontrol edildi. Genel, arka ve X-Ray yakın planlar görsel olarak incelendi. Kaldırılmış miğfere kamera payı eklendi. Üst kontrol çubuğunda dil, tema ve kalite seçenekleri 390, 1024, 1440 ve 1920 pikselde kadraj içinde doğrulandı.

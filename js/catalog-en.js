@@ -1,6 +1,15 @@
 /* English catalog overlay. Load after catalog.js. */
 (function(){'use strict';
 const VEHICLE_TEXT = {
+  "yoroi": {
+    "name": "Ō-yoroi — Samurai Armour",
+    "sub": "KABUTO • SODE • KUSAZURI • SILK-LACED SCALES",
+    "desc": "An enlarged exhibit based on The Met's eighteenth-century revival armour, 36.25.39a–p. Lift the kabuto, separate the cuirass panels and inspect the silk lacing and four-part skirt.",
+    "yearLabel": "18th century",
+    "eraLabel": "JAPAN • EDO-PERIOD REVIVAL",
+    "tags": ["Japan", "Samurai Equipment", "Lacquer and Silk", "Museum Reconstruction"],
+    "specs": [["REFERENCE", "Met 36.25.39a–p"], ["DATE", "Eighteenth-century revival"], ["SOURCE HEIGHT", "148.6 cm as mounted"], ["MATERIALS", "Iron, lacquer, leather, silk"]]
+  },
   "ballista": {"name": "Roman torsion ballista", "sub": "TORSION SPRING ARTILLERY • VITRUVIUS RATIOS", "desc": "See how twisted fibre bundles power the arms of a Roman artillery reconstruction.", "yearLabel": "c. 300 BCE", "eraLabel": "ANTIQUITY", "tags": ["Twin torsion bundles", "Windlass and ratchet", "Slide & Claw Trigger", "Rapid Shot Display"], "specs": [["ENERGY SOURCE", "Torsion (Tendon)"], ["RANGE (ACCOUNT)", "~500 m @30° (estimated)"], ["BASIC DIMENSION", "D = Arrow Length / 9"], ["ASSEMBLIES", "12 groups"]]},
   "trebuchet": {"name": "Counterweight Trebuchet", "sub": "GRAVITY COUNTERWEIGHT ENGINE • CASTLE SIEGE", "desc": "Trace the motion from the descending counterweight through the throwing arm and sling.", "yearLabel": "1250", "eraLabel": "MIDDLE AGES", "tags": ["Hinged ⇄ Fixed Weight", "1:4 Lever Arm", "Physical Slingshot Simulation"], "specs": [["COUNTERWEIGHT", "3 – 10 t (adjustable)"], ["RANGE (MODEL)", "~320 m @6 t, 45°"], ["PROJECTILE", "100 kg Granite"], ["ASSEMBLIES", "14 groups"]]},
   "sahi": {"name": "Şahi Cannon — Dardanelles Gun", "sub": "TWO-PIECE CAST BRONZE BOMBARD • ~63 CM BORE", "desc": "Explore the two-part bronze gun and its transport display. The surviving museum reference dates to 1464.", "yearLabel": "1453 / 1464", "eraLabel": "AGE OF GUNPOWDER", "tags": ["Two-part bronze casting", "Granite ball display", "Transport cradle", "Cutaway"], "specs": [["TOTAL WEIGHT", "16.8 Tons of Bronze"], ["LENGTH / BORE", "~5.18 m / ~63 cm"], ["STONE BALL (ESTIMATE)", "Ø 61 cm ≈ 315 kg"], ["ASSEMBLIES", "13 groups"]]},
