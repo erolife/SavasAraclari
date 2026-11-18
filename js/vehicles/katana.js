@@ -16,9 +16,9 @@ window.VehicleBuilders.katana=function(ctx){
  const steel=mat(0xa6adb0,.88,.28),edge=mat(0xd4dadb,.92,.20),dark=mat(0x424746,.77,.5),silver=mat(0x8b9290,.82,.44,true),gold=mat(0xc3a459,.78,.32),wood=mat(0x43312a,.03,.85),corewood=mat(0xa48a60,.02,.88),cord=mat(0x726653,.02,.95);
  const mount=part('support','Kake Sergi Sehpası','Kake display stand','Sergi','Exhibit','İki ayrı seviyeli ahşap destek modern sergi düzenidir.','The two-level wooden stand is a modern display arrangement.',[0,-.12,0]);
  box(mount,[6,.10,1.55],[.1,.05,.2],wood);
- for(const x of [-1.25,1.8]){
+ for(const x of [-.40,1.8]){
   box(mount,[.25,.13,1.3],[x,.15,.2],wood);box(mount,[.12,1.86,.15],[x,1.10,.17],wood);
-  for(const y of [1.12,1.99]){pipe(mount,[[x-.22,y+.18,.17],[x-.19,y,.17],[x,y-.04,.17],[x+.19,y,.17],[x+.22,y+.18,.17]],.043,wood);}
+  for(const [y,z] of [[1.04,.31],[1.95,0]]){pipe(mount,[[x,y+.10,z-.13],[x,y-.02,z-.10],[x,y-.04,z],[x,y-.02,z+.10],[x,y+.10,z+.13]],.043,wood);}
  }
  const blade=part('blade','Kavisli Çelik Bıçak','Curved steel blade','Çelik','Steel','Met 91.2.58: kesici uzunluk 62,1 cm, eğrilik 1,5 cm. Çelik yüzey ve ısıl işlem çizgisi görsel yorumdur.','Met 91.2.58: cutting edge 62.1 cm, curvature 1.5 cm. Steel finish and heat-treatment line are interpreted.',[0,.6,0]);
  const bladeOrigin=[-.75,2,0];

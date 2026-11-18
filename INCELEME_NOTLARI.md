@@ -1265,3 +1265,10 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - Dört yeni modelde Chrome TR/EN × 1440×1000 / 390×844: sade/teknik görünüm ve üç kaydırıcı, sayfa hatası ve yatay taşma kontrolleri geçti. Açık/koyu genel görünüş, mobil sade görünüş ve yakın planlar incelendi.
 - Dört modelde altı kamera, altı rehberli tur adımı, X-Ray, ana inceleme düğmesi, mesnet gizleme/sıfırlama ve iki İngilizce kaynak bağlantısı doğrulandı. Kaynak diyaloğu Escape ile kapanıyor. Yerel basit sunucunun eksik `favicon.ico` yanıtı uygulama hatalarından ayrı tutuldu.
 - Tam test koşusu: 71 test dosyası geçti, 0 hata. Envanter 71 aktif sergi / 131 kaynak kaydı.
+
+
+### Son görsel düzeltmeler
+
+- Katana sehpasının dikmeleri sap balığını kapatmayacak konuma taşındı. Yataklar kılıç/kın eksenine dik ve ayrı yükseklik/derinliklerde düzenlendi; kın altındaki boşta duran yatak sorunu giderildi. Sapın açık kalması için regresyon kontrolü eklendi.
+- Mısır arabası tabanı dingilin üzerine yükseltildi; deri şeritler sıklaştırıldı. Tabanın dingille kesişmemesi testle sabitlendi. Deri döşeme kamerası açık arka taraftan bakacak şekilde düzeltildi.
+- İki modelin yakın planları yeniden görüntülenerek sap motifi ve kesintisiz deri örgü doğrulandı; ilgili testler geçti.

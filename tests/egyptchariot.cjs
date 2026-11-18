@@ -1,6 +1,7 @@
 const {common,assert,THREE}=require('./model-harness.cjs');
 const {ad,meshes}=common('egyptchariot',25);
 function centre(k){ad.root.updateMatrixWorld(true);return new THREE.Box3().setFromObject(ad.parts[k]).getCenter(new THREE.Vector3());}
+ad.root.updateMatrixWorld(true);const shaft=ad.parts.axle.children.find(m=>m.geometry?.type==='CylinderGeometry');assert.ok(new THREE.Box3().setFromObject(ad.parts.floor).min.y>new THREE.Box3().setFromObject(shaft).max.y+.06,'leather floor must clear the axle');
 const start=centre('panel'),yoke=centre('yoke'),floor=centre('floor');
 for(let i=0;i<=100;i++){ad.onSlider(0,i);ad.onSlider(2,i);assert.ok(Math.abs(centre('panel').y-start.y-.45*i/100)<1e-6);assert.ok(Math.abs(centre('yoke').y-yoke.y-.65*i/100)<1e-6);assert.ok(centre('floor').distanceTo(floor)<1e-8);}
 for(let angle=0;angle<=360;angle+=15){ad.onSlider(1,angle);const bound=new THREE.Box3().setFromObject(ad.parts.rimR);assert.ok(Math.abs(bound.min.y-.047)<.01);assert.equal(ad.getSliderValues()[1],angle);}
