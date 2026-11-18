@@ -1316,3 +1316,11 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - Chrome: TR/EN × 1440×1000 / 390×844, beş sergide sade/teknik geçiş ve üç kaydırıcı. Koyu temada altı kamera, altı tur, X-Ray, inceleme eylemi, destek/reset ve İngilizce kaynak diyalogları. Kaynak sayıları katalogla eşleşiyor; Escape ile kapanma ve Türkçe kalıntı taraması geçti. Garand klips kaydırıcısının %100 ses eylemi tarayıcı hatası üretmedi. Yerel favicon.ico eksikliği uygulama hatalarından ayrı tutuldu.
 - Genel ve açık inceleme yakın planları incelendi. Model 29 taşıyıcısı bağlı kalıyor, Garand ahşabı ve ayrı klips hareketleri tutarlı.
 - Tam koşu: 76 test dosyası, 76 geçti / 0 hata. Envanter: 76 aktif sergi / 143 kaynak kaydı.
+
+
+## Sinema rotası — 19 Kasım 2026
+
+- “Beyaz perdeden müzeye / From Screen to Museum” teması eklendi: C96 → M1 Garand → Winchester 1887 → Walther PPK → Model 29. Her durakta nesne ile film bağlantısını anlatan iki dilli geçiş metni bulunuyor. Tarihsel nesne, film aksesuarı ve farklı müze referansları arasındaki ayrımlar korunuyor.
+- Keşif rotaları sayfasının genel girişindeki sabit dört durak ifadesi kaldırıldı. Leonardo, denizaltı ve havacılık rotaları dörder durakla devam ediyor.
+- `tests/museum-trails.cjs`: beşli sıra, tekil ve aktif model kimlikleri, iki dilli metinler, eşleşen bağlantı sayısı, kaynaklar, sade müze anlatımı ve önceki rotaların dört durağı doğrulandı.
+- Gerçek Chrome: TR/EN × 1440×1000 / 390×844, açık/koyu tema. Dört tema sekmesi, beş durağın tam geçiş zinciri, her sergide doğru rota bağlantısı, son durakta ileri bağlantısının kalkması, rotaya dönüş ve dilin korunması geçti. Sayfa hatası veya yatay taşma yok. Masaüstü ve mobil rota görüntüleri incelendi.

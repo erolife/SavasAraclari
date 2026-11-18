@@ -214,3 +214,7 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 Her sergi kaynak, TR/EN, masaüstü/mobil ve görsel kontroller sonrası ayrı Türkçe commit; toplu push en son.
 
 Sinema beşlisi tamamlandı: 76 aktif sergi / 143 kaynak; 76 test dosyası geçti. Altı adımlı turlar, TR/EN, masaüstü/mobil ve koyu tema yakın planları kontrol edildi.
+
+### Sinema rotası — 19 Kasım 2026
+
+✅ “Beyaz perdeden müzeye” (`rotalar.html#cinema`): onaylanan beş sergi, iki dilli geçiş metinleri, sonraki sergi ve rotaya dönüş bağlantıları. TR/EN, mobil/masaüstü ve önceki üç tema kontrolleri tamamlandı.

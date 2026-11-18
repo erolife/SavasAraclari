@@ -39,6 +39,25 @@
         ['Soğuk Savaş döneminde kompresör, türbin ve egzoz bölümleri yeni hız hedeflerine göre gelişti.', 'In the Cold War, compressors, turbines and exhaust systems developed around new speed goals.'],
         ['Son sergide değişen yalnız hız değil. Pegasus’un döner nozulları itişin yönünü de değiştiriyor.', 'At the final stop, speed is only part of the story. The Pegasus nozzles change the direction of thrust.']
       ]
+    },
+    {
+      id: 'cinema',
+      title: ['Beyaz perdeden müzeye', 'From Screen to Museum'],
+      intro: ['Beş durakta sinemayla tanınan tarihsel nesneler. Film aksesuarı, müze örneği ve yorumlanan ayrıntıların nasıl ayrıldığını keşfet.',
+        'Five historical objects recognised through cinema. Explore the distinctions between screen props, museum specimens and interpreted details.'],
+      models: ['c96', 'garand', 'win1887', 'ppk', 'model29'],
+      connections: [
+        ['C96 ile başla: tarihsel tabancanın silueti, Han Solo’nun kurmaca DL-44 aksesuarına temel oldu. Sergideki 9 mm müze örneğini filmde kullanılan nesneyle karıştırmadan incele.',
+          'Start with the C96: a historical pistol silhouette became the basis of Han Solo’s fictional DL-44 prop. Inspect the 9 mm museum interpretation as a separate object from the screen prop.'],
+        ['Kurmaca tasarımdan savaş filmine geçiyoruz. Er Ryan’ı Kurtarmak bağlantısıyla M1’in ceviz gövdesini ve ayrı klips sergisini keşfet; duyulan kısa tını temsili olarak üretilir.',
+          'Move from a fictional design to a war film. Explore the M1’s walnut body and separate clip display through its Saving Private Ryan connection; the short tone is illustrative.'],
+        ['Bu kez sinema nesnenin dış biçimini değiştiriyor. Terminator 2 sergisinde kısa ahşap kabzayı ve geniş halkayı bul; model adı 1887, kaynak üretimi 1888, film ise 1991.',
+          'Cinema now changes the object’s exterior. Find the short wooden grip and wide loop in the Terminator 2 exhibit: 1887 is the model name, 1888 the source object’s production year, and 1991 the film year.'],
+        ['Büyük bir halkadan kompakt bir siluete geç. Bond’un PPK bağlantısında kahverengi kabzayı incele; karşılaştırma ölçüsünün ve görsel referansın farklı müze örneklerinden geldiğine dikkat et.',
+          'Move from a large loop to a compact silhouette. Examine the brown grip through the PPK’s Bond connection; note that the comparison dimension and visual reference come from different museum specimens.'],
+        ['Rotayı Kirli Harry ile bitir. Model 29’un boş tamburunu ve ahşap kabzadaki yazısız levhayı incele; John Milius’a sunulan müze nesnesinin sonradan eklenen ayrıntılarını filmdeki görünümden ayır.',
+          'Finish with Dirty Harry. Inspect the Model 29’s empty cylinder and unlettered grip plaque; distinguish later details on the museum object presented to John Milius from its screen appearance.']
+      ]
     }
   ];
 })();

@@ -37,8 +37,8 @@
   }
   document.title = t('Keşif rotaları', 'Discovery trails') + ' — War Machines';
   document.getElementById('trails-title').textContent = t('Keşif rotaları', 'Discovery trails');
-  document.getElementById('trails-intro').textContent = t('Bir tema seç, dört sergi arasındaki bağlantıları keşfet.',
-    'Choose a theme and explore the connections between four exhibits.');
+  document.getElementById('trails-intro').textContent = t('Bir tema seç, sergiler arasındaki bağlantıları keşfet.',
+    'Choose a theme and explore the connections between exhibits.');
   const links = document.querySelectorAll('.museum-nav a');
   links[0].textContent = t('← Envanter', '← Collection');
   links[1].textContent = t('Türk tarihi rotası ↗', 'Turkish history trail ↗');
