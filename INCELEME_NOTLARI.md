@@ -1300,3 +1300,10 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - Smithsonian 1991.0854.099: 1931 tarihli kayıt ve 16 cm karşılaştırma boyu. Royal Armouries Boothroyd PPK fotoğrafı ile kahverengi kabza, tırtıllar ve dış profil incelendi. Ölçü ve görselin aynı nesneye ait olmadığı hem sade anlatımda hem turda belirtildi; 1931 katalogda türün başlangıcı olarak kullanıldı.
 - 19 grup / 64 mesh: gerçek delikli tetik korkuluğu ve yan açıklık, ayrılabilir üst kabuk, sabit namlu dış yüzeyi, açık halkalı horoz, küçük nişangâhlar, arka tırtıllar, kahverengi yanaklar ve instanced baklava dokusu. Marka/yazı kopyalanmadı.
 - 101 üst kabuk/yanak konumu, bağlı nişangâh ve kabza dokusu, sabit namlu, açıklıklar, sınırlar/NaN/reset, destek ve iki dil geçti. Chrome TR/EN × masaüstü/mobil sade/teknik kontrolleri geçti; genel görünüş incelendi. Metal pürüz şiddeti inceltildi ve korkuluk boşluğu genişletildi.
+
+
+## Smith & Wesson Model 29 — 19 Kasım 2026
+
+- NRA National Firearms Museum film nesnesi ve sunum geçmişi, tarihsel Model 29 incelemesi ve John Milius’a armağan edilen nesnenin fotoğrafı karşılaştırıldı. Müze nesnesinin düz ahşabı ve sonradan eklenen levhası, ilk film görünümüyle aynı sayılmadı. Model 29 adı 1957; Kirli Harry 1971 olarak ayrı anlatıldı.
+- 24 grup / 103 mesh: yumuşak altı oluklu tambur, iki yüzde altışar gerçek açıklık, iç boş yüzeyler, merkez göbek, sabit mafsal ve aynı eksende yana dönen taşıyıcı; uzun koyu namlu, dış çubuk, arka gez, dolgun ahşap yanaklar ve yazısız sunum levhası.
+- 101 yana açılma/yanak konumu, hesaplanan alt gövde açıklığı, bağlı mafsal-taşıyıcı ilişkisi, 25 tambur açısı, gerçek delikler, dışa bakan yüzeyler, sınırlar/NaN/reset ve TR/EN geçti. Chrome TR/EN × masaüstü/mobil kontrolleri geçti. Açık tamburun yakın planı incelendi; pencere köşeleri ve ahşap kenarları yuvarlatıldı.

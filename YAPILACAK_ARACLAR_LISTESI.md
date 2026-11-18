@@ -209,6 +209,6 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 2. ✅ M1 Garand (`garand`) — Er Ryan’ı Kurtarmak; ahşap ayrımı ve ayrı klips sergisi.
 3. ✅ Winchester 1887 (`win1887`) — Terminator 2; geniş halka ve kısa ahşap kabza.
 4. ✅ Walther PPK (`ppk`) — James Bond; ayrılabilir üst kabuk ve baklava dokulu kahverengi yanaklar.
-5. ⏳ Smith & Wesson Model 29 — Kirli Harry.
+5. ✅ Smith & Wesson Model 29 (`model29`) — Kirli Harry; ortak eksenli tambur ve sunum kabzası.
 
 Her sergi kaynak, TR/EN, masaüstü/mobil ve görsel kontroller sonrası ayrı Türkçe commit; toplu push en son.

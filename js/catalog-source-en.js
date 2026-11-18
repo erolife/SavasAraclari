@@ -3,6 +3,10 @@
   'use strict';
 
   var titles = {
+"NRA National Firearms Museum — Kirli Harry Model 29": "NRA National Firearms Museum — Dirty Harry Model 29",
+"American Rifleman — Model 29’un tarihçesi": "American Rifleman — Model 29 historical account",
+"NRA Blog — Müzede sergilenen sunum nesnesi": "NRA Blog — Museum presentation object",
+
 "Smithsonian — Walther PPK, 1991.0854.099": "Smithsonian — Walther PPK, 1991.0854.099",
 "Royal Armouries — Bond’un silahları ve Boothroyd PPK": "Royal Armouries — Bond’s guns and Boothroyd PPK",
 
@@ -121,6 +125,10 @@
   };
 
   var notes = {
+"Film nesnesi ve John Milius’a sunum geçmişi. Kabza ve yüzeyler yaklaşık yorumdur; seri numarası ve sunum yazısı kopyalanmaz.": "Screen object and presentation to John Milius. Grip and surfaces are interpreted; serial numbers and dedication are not copied.",
+"1950’lerdeki .44 Magnum ailesi, 1957 Model 29 adı ve 1971 film bağlantısı için tarihsel inceleme.": "Historical account of the 1950s .44 Magnum family, the 1957 Model 29 name and the 1971 film connection.",
+"Düz ahşap kabza, sunum levhası ve koyu metal dış biçim için fotoğraf karşılaştırması. Kaynak fotoğraf projeye alınmadı.": "Photographic comparison for smooth wood, presentation plaque and blued metal exterior. Source photography is not bundled.",
+
 "1931 tarihli müze kaydı ve 16 cm karşılaştırma boyu. Bu ölçü görseldeki Boothroyd nesnesinin birebir ölçümü olarak sunulmaz.": "1931 museum record and comparison length 16 cm. This is not presented as an exact measurement of the pictured Boothroyd object.",
 "Boothroyd PPK fotoğrafı kabza dokusu ve dış profil için görsel karşılaştırmadır; roman/film bağlantısı açıklanır. Markalar ve damgalar kopyalanmaz.": "The Boothroyd PPK photograph provides grip texture and exterior profile comparison, with novel/film context. Maker marks and stamps are not copied.",
 
