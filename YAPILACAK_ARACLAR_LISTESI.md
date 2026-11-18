@@ -212,3 +212,5 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 5. ✅ Smith & Wesson Model 29 (`model29`) — Kirli Harry; ortak eksenli tambur ve sunum kabzası.
 
 Her sergi kaynak, TR/EN, masaüstü/mobil ve görsel kontroller sonrası ayrı Türkçe commit; toplu push en son.
+
+Sinema beşlisi tamamlandı: 76 aktif sergi / 143 kaynak; 76 test dosyası geçti. Altı adımlı turlar, TR/EN, masaüstü/mobil ve koyu tema yakın planları kontrol edildi.

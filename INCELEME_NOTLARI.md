@@ -1307,3 +1307,12 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - NRA National Firearms Museum film nesnesi ve sunum geçmişi, tarihsel Model 29 incelemesi ve John Milius’a armağan edilen nesnenin fotoğrafı karşılaştırıldı. Müze nesnesinin düz ahşabı ve sonradan eklenen levhası, ilk film görünümüyle aynı sayılmadı. Model 29 adı 1957; Kirli Harry 1971 olarak ayrı anlatıldı.
 - 24 grup / 103 mesh: yumuşak altı oluklu tambur, iki yüzde altışar gerçek açıklık, iç boş yüzeyler, merkez göbek, sabit mafsal ve aynı eksende yana dönen taşıyıcı; uzun koyu namlu, dış çubuk, arka gez, dolgun ahşap yanaklar ve yazısız sunum levhası.
 - 101 yana açılma/yanak konumu, hesaplanan alt gövde açıklığı, bağlı mafsal-taşıyıcı ilişkisi, 25 tambur açısı, gerçek delikler, dışa bakan yüzeyler, sınırlar/NaN/reset ve TR/EN geçti. Chrome TR/EN × masaüstü/mobil kontrolleri geçti. Açık tamburun yakın planı incelendi; pencere köşeleri ve ahşap kenarları yuvarlatıldı.
+
+
+### Sinema beşlisi — toplu son kontrol
+
+- Beş yeni sergi: C96 22/94, Garand 23/90, Winchester 19/89, PPK 19/64, Model 29 24/103 (grup/mesh). Her biri altı kamera, altı tur adımı ve TR/EN içerik içerir. Tüm sergiler mevcut sade/teknik görünüm, kaplama, X-Ray ve parça filtresini kullanır.
+- Metal pürüz şiddeti ölçülü hâle getirildi; ahşap damarları 256×128, doğrusal süzülen ve düşük kontrastlı dokuya geçirildi. Garand’ın yuvarlatılmış ahşap kesitleri sıklaştırıldı. Mesnet yatakları ve küçük sergi levhalarının kaideye teması düzeltildi.
+- Chrome: TR/EN × 1440×1000 / 390×844, beş sergide sade/teknik geçiş ve üç kaydırıcı. Koyu temada altı kamera, altı tur, X-Ray, inceleme eylemi, destek/reset ve İngilizce kaynak diyalogları. Kaynak sayıları katalogla eşleşiyor; Escape ile kapanma ve Türkçe kalıntı taraması geçti. Garand klips kaydırıcısının %100 ses eylemi tarayıcı hatası üretmedi. Yerel favicon.ico eksikliği uygulama hatalarından ayrı tutuldu.
+- Genel ve açık inceleme yakın planları incelendi. Model 29 taşıyıcısı bağlı kalıyor, Garand ahşabı ve ayrı klips hareketleri tutarlı.
+- Tam koşu: 76 test dosyası, 76 geçti / 0 hata. Envanter: 76 aktif sergi / 143 kaynak kaydı.

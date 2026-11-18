@@ -9,7 +9,7 @@ window.VehicleBuilders.ppk=function(ctx){
  function mat(color,metalness=.3,roughness=.6,paint=false){const m=new T.MeshStandardMaterial({color,metalness,roughness,bumpScale:.002});m.userData.paint=paint;return m;}
  function group(parent,pos=[0,0,0]){const g=new T.Group();g.position.set(...pos);parent.add(g);return g;}
  const exhibit=group(root);
- function grain(m){const a=new Uint8Array(128*32*4);for(let y=0;y<32;y++)for(let x=0;x<128;x++){const v=Math.round(210+23*Math.sin(y*1.3+Math.sin(x*.035)*2)+9*Math.sin(y*4+x*.07));a.set([v,v,v,255],(y*128+x)*4);}const tex=new T.DataTexture(a,128,32,T.RGBAFormat);tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.magFilter=T.LinearFilter;tex.minFilter=T.LinearFilter;tex.colorSpace=T.SRGBColorSpace;tex.needsUpdate=true;m.map=tex;return m;}
+ function grain(m){const a=new Uint8Array(256*128*4);for(let y=0;y<128;y++)for(let x=0;x<256;x++){const v=Math.round(235+8*Math.sin(y*.75+Math.sin(x*.018)*1.4)+3*Math.sin(y*3.1+x*.02)+2*Math.sin(y*8.3+x*.013));a.set([v,v,v,255],(y*256+x)*4);}const tex=new T.DataTexture(a,256,128,T.RGBAFormat);tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.magFilter=T.LinearFilter;tex.minFilter=T.LinearFilter;tex.colorSpace=T.SRGBColorSpace;tex.needsUpdate=true;m.map=tex;return m;}
  function tubeX(p,x1,x2,y,z,r,m){const points=[[r,x1],[r,x2],[r*.62,x2],[r*.62,x2-.11]].map(([a,b])=>new T.Vector2(a,b));const g=new T.LatheGeometry(points,40);return mesh(p,g,m,[0,y,z],[0,0,-Math.PI/2]);}
  function screw(p,x,y,z,r,m,slot){cyl(p,r,.018,[x,y,z],m,'z');box(p,[r*1.4,.007,.003],[x,y,z+(z<0?-.011:.011)],slot);}
 
@@ -65,7 +65,7 @@ window.VehicleBuilders.ppk=function(ctx){
  const details=part('details','Küçük Vidalar ve Kenar Çizgisi','Small screws and edge line','Yüzey','Surface','İnce kenar ve dış bağlantılar. Kaynak üzerindeki yazılar kopyalanmamıştır.','Fine edge and exterior fasteners. Source lettering is not copied.',[0,.2,.35]);
  for(const z of [-.14,.14]){screw(details,-.47,1.78,z,.019,edge,black);screw(details,-.52,2.16,z,.024,black,edge);pipe(details,[[-.43,2.25,z],[.80,2.25,z],[1.40,2.31,z]],.005,edge);}
  const film=part('film','Bond ve Boothroyd Bağlantısı','Bond and Boothroyd connection','Sergi','Exhibit','Royal Armouries, Boothroyd’un PPK’sını ve Bond bağlantısını anlatır. Müze görselleri ve karşılaştırma ölçüsü aynı nesneye ait sayılmaz.','Royal Armouries documents Boothroyd’s PPK and its Bond connection. Visual references and comparison dimensions are not treated as one specimen.',[0,.1,.35]);
- box(film,[.95,.025,.33],[1.25,.125,.5],brass);for(let i=0;i<6;i++)for(const z of [.37,.63])box(film,[.047,.003,.04],[.90+i*.14,.14,z],black);
+ box(film,[.95,.025,.33],[1.25,.1125,.5],brass);for(let i=0;i<6;i++)for(const z of [.37,.63])box(film,[.047,.003,.04],[.90+i*.14,.1265,z],black);
  function sync(){slidePivot.position.y=state.a/100*.55;gripGroups.forEach((g,i)=>g.position.z=(i===0?-1:1)*state.b/100*.30);exhibit.rotation.y=state.c*Math.PI/180;support.visible=state.support;}
 
  function reset(){Object.assign(state,{a:0,b:0,c:0,support:true});sync();}

@@ -6,10 +6,10 @@ window.VehicleBuilders.win1887=function(ctx){
  const {T,root,parts,mesh,box,cyl,ring,pipe,beam,instances}=K;
  const english=window.MuseumPreferences?.language==='en';const t=(tr,en)=>english?en:tr;
  const state={a:0,b:0,c:0,support:true};const counts={};let n=0;
- function mat(color,metalness=.3,roughness=.6,paint=false){const m=new T.MeshStandardMaterial({color,metalness,roughness});m.userData.paint=paint;return m;}
+ function mat(color,metalness=.3,roughness=.6,paint=false){const m=new T.MeshStandardMaterial({color,metalness,roughness,bumpScale:.002});m.userData.paint=paint;return m;}
  function group(parent,pos=[0,0,0]){const g=new T.Group();g.position.set(...pos);parent.add(g);return g;}
  const exhibit=group(root);
- function grain(m){const a=new Uint8Array(128*32*4);for(let y=0;y<32;y++)for(let x=0;x<128;x++){const v=Math.round(210+23*Math.sin(y*1.3+Math.sin(x*.035)*2)+9*Math.sin(y*4+x*.07));a.set([v,v,v,255],(y*128+x)*4);}const tex=new T.DataTexture(a,128,32,T.RGBAFormat);tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.colorSpace=T.SRGBColorSpace;tex.needsUpdate=true;m.map=tex;return m;}
+ function grain(m){const a=new Uint8Array(256*128*4);for(let y=0;y<128;y++)for(let x=0;x<256;x++){const v=Math.round(235+8*Math.sin(y*.75+Math.sin(x*.018)*1.4)+3*Math.sin(y*3.1+x*.02)+2*Math.sin(y*8.3+x*.013));a.set([v,v,v,255],(y*256+x)*4);}const tex=new T.DataTexture(a,256,128,T.RGBAFormat);tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.magFilter=T.LinearFilter;tex.minFilter=T.LinearFilter;tex.colorSpace=T.SRGBColorSpace;tex.needsUpdate=true;m.map=tex;return m;}
  function tubeX(p,x1,x2,y,z,r,m){const points=[[r,x1],[r,x2],[r*.62,x2],[r*.62,x2-.11]].map(([a,b])=>new T.Vector2(a,b));const g=new T.LatheGeometry(points,40);return mesh(p,g,m,[0,y,z],[0,0,-Math.PI/2]);}
  function screw(p,x,y,z,r,m,slot){cyl(p,r,.018,[x,y,z],m,'z');box(p,[r*1.4,.007,.003],[x,y,z+(z<0?-.011:.011)],slot);}
 
@@ -20,7 +20,7 @@ window.VehicleBuilders.win1887=function(ctx){
  const steel=mat(0x41484b,.82,.44,true),edge=mat(0x767c7b,.85,.35),black=mat(0x252b2d,.65,.56),wood=grain(mat(0x805139,.03,.82)),darkwood=mat(0x3f3028,.03,.88),brass=mat(0xa39163,.65,.5);
  const support=part('support','Çağdaş Sergi Mesnedi','Modern exhibit mount','Sergi','Exhibit','Kabza ve ön tüp altındaki iki mesnet tarihsel parçalar değildir.','Two mounts beneath the grip and forward tube are modern display fittings.',[0,-.12,0]);
  box(support,[5.65,.10,1.8],[.3,.05,0],darkwood);
- for(const[x,y]of [[-1.65,1.12],[1.9,1.88]]){cyl(support,.02,y-.12,[x,(y+.12)/2,0],brass);pipe(support,[[x,y+.07,-.16],[x,y-.02,-.09],[x,y-.04,0],[x,y-.02,.09],[x,y+.07,.16]],.021,brass);}
+ for(const[x,y]of [[-1.65,1.12],[1.9,1.93]]){cyl(support,.02,y-.12,[x,(y+.12)/2,0],brass);pipe(support,[[x,y+.07,-.16],[x,y-.02,-.09],[x,y-.04,0],[x,y-.02,.09],[x,y+.07,.16]],.021,brass);}
  const frame=part('frame','Yuvarlak Omuzlu Alıcı Gövdesi','Rounded-shoulder receiver','Gövde','Frame','Kıvrımlı arka kenar ve geniş yan yüzey, fotoğraftaki alıcı grubunun dış biçimini izler.','The curved rear edge and broad side face follow the photographed receiver exterior.',[0,.25,.25]);
  const rp=[[-.89,1.72],[-1.02,1.91],[-.99,2.11],[-.80,2.27],[-.61,2.34],[.08,2.34],[.35,2.28],[.49,2.18],[.49,1.83],[.31,1.68],[-.40,1.65]];
  plate(frame,rp,.26,steel,[0,0,-.13]);
@@ -60,7 +60,7 @@ window.VehicleBuilders.win1887=function(ctx){
  const screws=part('screws','Yan Vidalar ve Kenar Aşınması','Side screws and edge wear','Yüzey','Surface','Fotoğraftan yorumlanan dış vidalar ve ince açık renkli aşınma çizgileri.','Exterior screws and fine light-coloured wear lines interpreted from the photograph.',[0,.2,.4]);
  for(const sign of [-1,1]){for(const[x,y]of [[-.65,1.89],[.12,1.84],[-1.1,1.74]])screw(screws,x,y,sign*.17,.028,edge,black);for(let i=0;i<9;i++)box(screws,[.04+i%3*.012,.003,.003],[-.7+i*.12,2.26-i*.005,sign*.165],edge);}
  const film=part('film','Model 1887, Üretim 1888, Film 1991','Model 1887, made 1888, film 1991','Sergi','Exhibit','Propstore kaydı 1888 üretimi, 69 cm boyundaki değişmiş film nesnesini anlatır. Bu, fabrika çıkışı tüm Model 1887’lerin biçimi değildir.','Propstore documents an altered 1888-made, 69 cm film object. This is not the factory form of every Model 1887.',[0,.1,.4]);
- box(film,[1.1,.025,.33],[1.8,.125,.50],brass);for(let i=0;i<7;i++)for(const z of [.37,.63])box(film,[.047,.003,.04],[1.36+i*.14,.14,z],black);
+ box(film,[1.1,.025,.33],[1.8,.1125,.50],brass);for(let i=0;i<7;i++)for(const z of [.37,.63])box(film,[.047,.003,.04],[1.36+i*.14,.1265,z],black);
  function sync(){woodGroups.forEach((g,i)=>g.position.z=(i===0?-1:1)*state.a/100*.35);leverPivot.rotation.z=state.b*Math.PI/180;exhibit.rotation.y=state.c*Math.PI/180;support.visible=state.support;}
 
  function reset(){Object.assign(state,{a:0,b:0,c:0,support:true});sync();}

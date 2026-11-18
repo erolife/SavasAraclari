@@ -6,10 +6,10 @@ window.VehicleBuilders.c96=function(ctx){
  const {T,root,parts,mesh,box,cyl,ring,pipe,beam,instances}=K;
  const english=window.MuseumPreferences?.language==='en';const t=(tr,en)=>english?en:tr;
  const state={a:0,b:0,c:0,support:true};const counts={};let n=0;
- function mat(color,metalness=.3,roughness=.6,paint=false){const m=new T.MeshStandardMaterial({color,metalness,roughness});m.userData.paint=paint;return m;}
+ function mat(color,metalness=.3,roughness=.6,paint=false){const m=new T.MeshStandardMaterial({color,metalness,roughness,bumpScale:.002});m.userData.paint=paint;return m;}
  function group(parent,pos=[0,0,0]){const g=new T.Group();g.position.set(...pos);parent.add(g);return g;}
  const exhibit=group(root);
- function grain(m){const a=new Uint8Array(128*32*4);for(let y=0;y<32;y++)for(let x=0;x<128;x++){const v=Math.round(210+23*Math.sin(y*1.3+Math.sin(x*.035)*2)+9*Math.sin(y*4+x*.07));a.set([v,v,v,255],(y*128+x)*4);}const tex=new T.DataTexture(a,128,32,T.RGBAFormat);tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.colorSpace=T.SRGBColorSpace;tex.needsUpdate=true;m.map=tex;return m;}
+ function grain(m){const a=new Uint8Array(256*128*4);for(let y=0;y<128;y++)for(let x=0;x<256;x++){const v=Math.round(235+8*Math.sin(y*.75+Math.sin(x*.018)*1.4)+3*Math.sin(y*3.1+x*.02)+2*Math.sin(y*8.3+x*.013));a.set([v,v,v,255],(y*256+x)*4);}const tex=new T.DataTexture(a,256,128,T.RGBAFormat);tex.wrapS=tex.wrapT=T.RepeatWrapping;tex.magFilter=T.LinearFilter;tex.minFilter=T.LinearFilter;tex.colorSpace=T.SRGBColorSpace;tex.needsUpdate=true;m.map=tex;return m;}
  function tubeX(p,x1,x2,y,z,r,m){const points=[[r,x1],[r,x2],[r*.62,x2],[r*.62,x2-.11]].map(([a,b])=>new T.Vector2(a,b));const g=new T.LatheGeometry(points,40);return mesh(p,g,m,[0,y,z],[0,0,-Math.PI/2]);}
  function screw(p,x,y,z,r,m,slot){cyl(p,r,.018,[x,y,z],m,'z');box(p,[r*1.4,.007,.003],[x,y,z+(z<0?-.011:.011)],slot);}
 
@@ -20,7 +20,7 @@ window.VehicleBuilders.c96=function(ctx){
  const steel=mat(0x394247,.8,.43,true),edge=mat(0x697276,.84,.36),black=mat(0x22282b,.65,.55),wood=grain(mat(0x8b5835,.04,.79)),groove=mat(0x392c24,.03,.9),brass=mat(0xa99261,.68,.5);
  const support=part('support','Çağdaş Sergi Mesnedi','Modern exhibit mount','Sergi','Exhibit','Ahşap kaide ve ince tutucular sergi içindir.','The wooden plinth and slender supports are modern display fittings.',[0,-.12,0]);
  box(support,[5,.10,1.8],[.35,.05,0],groove);for(const x of [-.8,.45])box(support,[.19,.12,.34],[x,.16,-.695],groove);
- for(const [x,y]of [[-1.18,.94],[1.8,2.22]]){cyl(support,.019,y-.12,[x,(y+.12)/2,-.01],brass);pipe(support,[[x,y+.05,-.12],[x,y-.025,-.07],[x,y-.04,0],[x,y-.025,.07],[x,y+.05,.12]],.018,brass);}
+ for(const [x,y]of [[-1.18,.94],[1.8,2.26]]){cyl(support,.019,y-.12,[x,(y+.12)/2,-.01],brass);pipe(support,[[x,y+.05,-.12],[x,y-.025,-.07],[x,y-.04,0],[x,y-.025,.07],[x,y+.05,.12]],.018,brass);}
  const frame=part('frame','Gövde ve Açık Tetik Korkuluğu','Frame and open trigger guard','Gövde','Frame','Öndeki kutu hazne, açık tetik korkuluğu ve arkadaki sap C96 siluetini oluşturur.','The forward box magazine, open trigger guard and rear grip form the C96 silhouette.',[0,.2,.3]);
  const outline=[[-1.12,2.12],[-1.01,2.4],[.60,2.4],[.78,2.28],[.78,1.43],[-.13,1.43],[-.45,1.52],[-.67,1.69],[-.89,1.77],[-1.07,1.88]];
  const sh=new T.Shape();sh.moveTo(...outline[0]);outline.slice(1).forEach(p=>sh.lineTo(...p));sh.closePath();const hole=new T.Path();hole.absellipse(-.23,1.73,.235,.235,0,Math.PI*2,true);sh.holes.push(hole);mesh(frame,new T.ExtrudeGeometry(sh,{depth:.22,bevelEnabled:true,bevelSize:.014,bevelThickness:.012,bevelSegments:2}),steel,[0,0,-.11]);
@@ -67,7 +67,7 @@ window.VehicleBuilders.c96=function(ctx){
  const holsterFit=part('holsterFittings','Kılıf Uçları ve Metal Donanım','Holster ends and metal fittings','Kılıf','Holster','Kapak kenarı, mandal dış biçimi ve kısa bağlantı pabucu.','Lid border, exterior latch and short attachment shoe.',[0,.15,-.5]);
  box(holsterFit,[.07,.32,.32],[.98,.41,-.695],steel);box(holsterFit,[.18,.13,.04],[.87,.42,-.51],steel);screw(holsterFit,.87,.42,-.48,.025,edge,black);
  const film=part('film','Sinemaya Uzanan Siluet','A silhouette that reached cinema','Sergi','Exhibit','C96, Han Solo’nun DL-44 aksesuarının temelidir. Buradaki 9 mm müze örneği filmde kullanılan nesnenin kopyası değildir.','The C96 underlies Han Solo’s DL-44 prop. This 9 mm museum interpretation is not the screen-used object.',[0,.1,.3]);
- box(film,[.9,.025,.34],[1.82,.125,.47],brass);for(let i=0;i<6;i++)for(const z of [.34,.60])box(film,[.046,.003,.04],[1.48+i*.13,.14,z],black);
+ box(film,[.9,.025,.34],[1.82,.1125,.47],brass);for(let i=0;i<6;i++)for(const z of [.34,.60])box(film,[.046,.003,.04],[1.48+i*.13,.1265,z],black);
  function sync(){gripPanels.forEach((g,i)=>{g.position.z=(i===0?-1:1)*state.a/100*.34;});lidPivot.rotation.z=-state.b/100*Math.PI*.6;exhibit.rotation.y=state.c*Math.PI/180;support.visible=state.support;}
 
  function reset(){Object.assign(state,{a:0,b:0,c:0,support:true});sync();}
