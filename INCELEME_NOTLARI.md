@@ -1272,3 +1272,10 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - Katana sehpasının dikmeleri sap balığını kapatmayacak konuma taşındı. Yataklar kılıç/kın eksenine dik ve ayrı yükseklik/derinliklerde düzenlendi; kın altındaki boşta duran yatak sorunu giderildi. Sapın açık kalması için regresyon kontrolü eklendi.
 - Mısır arabası tabanı dingilin üzerine yükseltildi; deri şeritler sıklaştırıldı. Tabanın dingille kesişmemesi testle sabitlendi. Deri döşeme kamerası açık arka taraftan bakacak şekilde düzeltildi.
 - İki modelin yakın planları yeniden görüntülenerek sap motifi ve kesintisiz deri örgü doğrulandı; ilgili testler geçti.
+
+
+## Mauser C96 — 19 Kasım 2026
+
+- NAM 1982-04-750-1 iki profil fotoğrafı incelendi: yaklaşık 1916 tarihli 9 mm örnek. Royal Armouries kaydıyla erken yarı otomatik tabanca, Osmanlı muhafızları ve Star Wars/DL-44 bağlantısı karşılaştırıldı. Kalibre ve film aksesuarının kimliği karıştırılmadı.
+- 22 grup / 94 mesh: açık tetik korkuluğu, halkalı horoz, yaprak gez, tırtıllı arka tutamak, ahşap yanaklar ve oluklar, sabit ön kutu, dış vidalar, kılıf/dipçik yorumu ve destekli sergi. Kılıfın içi, ölçüleri ve donanımı yaklaşık sergi yorumudur.
+- Model testi: TR/EN, 101 yanak/kapak konumu, sabit namlu, gerçek boşluklu korkuluk, sonlu geometri, kaplamalar, sınırlar, NaN, destek ve sıfırlama geçti. Katalog/dil ve sade görünüm testleri geçti. Chrome TR/EN × masaüstü/mobil: sade/teknik geçiş, üç kaydırıcı, yatay taşma ve sayfa hatası kontrolü geçti. Genel görüntü incelendi; kılıf altına mesnetler eklendi.

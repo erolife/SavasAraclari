@@ -201,3 +201,14 @@ Yeni araç listesinin yanında, mevcut koleksiyonun kullanımını iyileştirmek
 
 - Sürpriz 3 tamamlandı: `putatara`, Aotearoa/Yeni Zelanda’dan Māori kabuk borusu; haberleşme ve törensel bağlam.
 - Katana ve üç sürpriz sergi: TR/EN, masaüstü/mobil, sade/teknik ve altı adımlı tur kontrolleri tamamlandı. 71 test dosyası geçti.
+
+
+### Onaylanan sinema beşlisi — 19 Kasım 2026
+
+1. ✅ Mauser C96 (`c96`) — NAM 1982-04-750-1; Star Wars/DL-44 bağlantısı.
+2. ⏳ M1 Garand — Er Ryan’ı Kurtarmak.
+3. ⏳ Winchester 1887 — Terminator 2.
+4. ⏳ Walther PPK — James Bond.
+5. ⏳ Smith & Wesson Model 29 — Kirli Harry.
+
+Her sergi kaynak, TR/EN, masaüstü/mobil ve görsel kontroller sonrası ayrı Türkçe commit; toplu push en son.

@@ -3,6 +3,9 @@
   'use strict';
 
   var titles = {
+"National Army Museum — C96, 1982-04-750-1": "National Army Museum — Mauser C96, 1982-04-750-1",
+"Royal Armouries — Birinci Dünya Savaşı silahları ve C96": "Royal Armouries — First World War arms and the C96",
+
 "Te Papa — Pūtātara, ME003937": "Te Papa — Shell trumpet, ME003937",
 "Te Papa — Māori çalgıları ve çağrı işlevleri": "Te Papa — Māori instruments and calling roles",
 
@@ -108,6 +111,9 @@
   };
 
   var notes = {
+"1916 dolaylarına ait 9 mm örnek; iki profil fotoğrafı ana görsel referanstır. Ahşap kılıf ve iç bağlantılar yaklaşık yorumdur.": "A circa-1916 9 mm specimen; two profile photographs are the primary visual reference. Wooden holster and hidden attachments are interpreted.",
+"Erken yarı otomatik tabanca bağlamı, Osmanlı saray muhafızları ve Star Wars aksesuarıyla bağlantı.": "Context for an early self-loading pistol, Ottoman palace guards and its connection to the Star Wars prop.",
+
 "Whanganui, 1800–1900; 290 × 120 × 120 mm; kabuk, ahşap, tüy, muka. Ana görsel kaynağı. İç hacim ve oyma çizgiler yaklaşık yorumdur; kaynak görsel/ses dosyası projeye alınmadı.": "Whanganui, 1800–1900; 290 × 120 × 120 mm; shell, wood, feathers, muka. Primary visual reference. Cavity and carving are interpreted; no source image/audio is bundled.",
 "Pūtātara için karşılama, doğum, eğitim çağrısı ve savaş çağrısı bağlamları. Çalgı yalnızca silah olarak sınıflandırılmaz.": "Contexts for pūtātara include arrivals, births, calls to instruction and calls to arms. The instrument is not classified solely as a weapon.",
 
