@@ -121,10 +121,28 @@
     'Humbaracı Ahmed Paşa — TDV İslâm Ansiklopedisi': 'Humbaracı Ahmed Pasha — TDV Encyclopaedia of Islam',
     'El-Cezerî’nin Mekanik Dehası ve İkiz Silindirli Su Pompası — Muslim Heritage': 'Al-Jazari’s mechanical ingenuity and twin-cylinder water pump — Muslim Heritage',
     'Kitâbü’l-Hiyel El Yazması Yaprağı (1315 nüshası) — The Met (57.51.23)': 'Folio from the Book of Ingenious Devices (1315 manuscript) — The Met (57.51.23)',
-    'Sultanhisar’ın yaklaşık 40,2 m boyu ve tarihsel karşılaşma. İç makine yerleşimi yaklaşık yorumdur.': 'Sultanhisar’s approximate 40.2 m length and the historical encounter. The internal machinery layout is an approximate interpretation.'
+    'Sultanhisar’ın yaklaşık 40,2 m boyu ve tarihsel karşılaşma. İç makine yerleşimi yaklaşık yorumdur.': 'Sultanhisar’s approximate 40.2 m length and the historical encounter. The internal machinery layout is an approximate interpretation.',
+    'Hasan el-Rammah ve Müslüman Roket Teknolojisi — Muslim Heritage': 'Hasan al-Rammah and Muslim Rocket Technology — Muslim Heritage',
+    'Kitâbü’l-Fürûsiyye El Yazması — BnF Gallica (Manuscrit Arabe 2825)': 'Book of Military Horsemanship Manuscript — BnF Gallica (Manuscrit Arabe 2825)',
+    'B-29 Gövde Kesiti ve Nişangâh İstasyonu — ABD Hava Kuvvetleri Müzesi (NMUSAF)': 'B-29 Fuselage Section and Sighting Station — National Museum of the USAF',
+    'Boeing B-29 Superfortress Enola Gay — Smithsonian NASM (A19500100000)': 'Boeing B-29 Superfortress Enola Gay — Smithsonian NASM (A19500100000)',
+    'Nike Füze Mevzii — ABD Ulusal Park Servisi (NPS Golden Gate)': 'Nike Missile Site — U.S. National Park Service (NPS Golden Gate)',
+    'Nike Hercules Füzesi — White Sands Missile Range Museum': 'Nike Hercules Missile — White Sands Missile Range Museum',
+    'KORKUT Yakın Alan Hava Savunma Sistemi — ASELSAN Resmi Ürün Kaydı': 'KORKUT Short-Range Air Defense System — Official ASELSAN Product Record',
+    'ATOM 35 mm Parçacıklı Mühimmat — ASELSAN': 'ATOM 35 mm Airburst Munition — ASELSAN',
+    'ASELSAN KORKUT Sistem Tanıtımı — TSKGV': 'ASELSAN KORKUT System Overview — TSKGV'
   };
 
   var notes = {
+    '~1280 Kitâbü’l-Fürûsiyye’deki al-bayda (kendi kendine hareket edip yakan yumurta), ikiz roket itkisi ve güherçile arıtma tarifleri. Mercek gövde oranları ve su oluğu sergi yorumudur.': 'Al-bayda (self-moving and combusting egg), twin rocket propulsion, and saltpeter purification in the ~1280 treatise. Lenticular proportions and launch trough are exhibit interpretations.',
+    'Tarihsel el yazması çizimleri ve pruva mahmuzlu su üstü yakıcı araç bağlamı.': 'Historical manuscript illustrations and context for the surface-skimming incendiary weapon.',
+    'Basınçlı kabin içindeki uzaktan kumandalı nişangâh istasyonu yerleşimi. Analog bilgisayar ve amplidin iç dişlileri eğitim amaçlı sergi yorumudur.': 'Remote sighting station layout inside the pressurized cabin. Internal analog computer cams and amplidyne gears are educational exhibit interpretations.',
+    'B-29 gövde kesiti, aerodinamik taret kubbeleri ve tarihsel mühendislik bağlamı.': 'B-29 fuselage cross-section, low-drag turret domes, and historical engineering context.',
+    'MIM-14 Nike Hercules hava savunma bataryası, hidrolik rampa dikmesi ve kalkış operasyon bağlamı. İç katı yakıt ve güdüm kesitleri eğitim amaçlı yorumdur.': 'MIM-14 Nike Hercules air defense battery, hydraulic erector, and launch context. Internal solid propellant and guidance sections are educational interpretations.',
+    '12,5 m boy, 4× M5E1 M42 booster kümesi ve iki kademeli yüksek irtifa uçuş profili referansı.': 'Reference for the 12.5 m length, 4× M5E1 M42 booster cluster, and two-stage high-altitude flight profile.',
+    'İnsansız stabilize kule, 2× 35 mm 1.100 atım/dk silah sistemi ve şeritsiz besleme bağlamı. İç mekanizma geometrisi yaklaşık sergi yorumudur.': 'Unmanned stabilized turret, twin 35 mm 1,100 rpm cannons, and linkless feed context. Internal mechanism geometry is an approximate exhibit interpretation.',
+    'Namlu çıkış hızı ölçümü, indüktif dip tapa programlama ve 4 km etkili menzilde tungsten parçacık bulutu referansı.': 'Reference for muzzle velocity sensing, inductive base-fuze programming, and tungsten pellet cloud at 4 km effective range.',
+    'FNSS ACV-30 amfibi paletli taşıyıcı ve Türk Silahlı Kuvvetleri entegrasyon bağlamı.': 'FNSS ACV-30 amphibious tracked carrier and Turkish Armed Forces integration context.',
 "Film nesnesi ve John Milius’a sunum geçmişi. Kabza ve yüzeyler yaklaşık yorumdur; seri numarası ve sunum yazısı kopyalanmaz.": "Screen object and presentation to John Milius. Grip and surfaces are interpreted; serial numbers and dedication are not copied.",
 "1950’lerdeki .44 Magnum ailesi, 1957 Model 29 adı ve 1971 film bağlantısı için tarihsel inceleme.": "Historical account of the 1950s .44 Magnum family, the 1957 Model 29 name and the 1971 film connection.",
 "Düz ahşap kabza, sunum levhası ve koyu metal dış biçim için fotoğraf karşılaştırması. Kaynak fotoğraf projeye alınmadı.": "Photographic comparison for smooth wood, presentation plaque and blued metal exterior. Source photography is not bundled.",

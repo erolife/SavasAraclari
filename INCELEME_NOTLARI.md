@@ -1324,3 +1324,31 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - Keşif rotaları sayfasının genel girişindeki sabit dört durak ifadesi kaldırıldı. Leonardo, denizaltı ve havacılık rotaları dörder durakla devam ediyor.
 - `tests/museum-trails.cjs`: beşli sıra, tekil ve aktif model kimlikleri, iki dilli metinler, eşleşen bağlantı sayısı, kaynaklar, sade müze anlatımı ve önceki rotaların dört durağı doğrulandı.
 - Gerçek Chrome: TR/EN × 1440×1000 / 390×844, açık/koyu tema. Dört tema sekmesi, beş durağın tam geçiş zinciri, her sergide doğru rota bağlantısı, son durakta ileri bağlantısının kalkması, rotaya dönüş ve dilin korunması geçti. Sayfa hatası veya yatay taşma yok. Masaüstü ve mobil rota görüntüleri incelendi.
+
+
+## 80 Araç Paketi (`#52 rammah`, `#58 b29_turret`, `#59 nike`, `#75 korkut`) — 19 Kasım 2026
+
+### Hasan el-Rammah “Yumurta” (*al-Bayda*) Roket Torpidosu (`rammah`)
+- **Kaynaklar:** *Muslim Heritage — Muslim Rocket Technology* (`200 OK`) ve BnF Gallica *Manuscrit Arabe 2825* el yazması kaydı.
+- **Model (16 grup / 54 mesh):** Keçe conta ve 18 instanced perçinle birleştirilen dövme bakır üst ve demir alt mercek tavalar, iç güherçile-neft-demir talaşı harcı kesiti, çatallı fitille ateşlenen ikiz yanal roket tüpü, alev konileri, ikiz arka kılavuz çubukları, $\pm 15^\circ$ dümen, yan denge kızakları, dikenli pruva mahmuzu ve ahşap fırlatma oluğu / temsili su ve hedef gemi bordası.
+- **Doğrulama:** `tests/rammah.cjs` — 16 grup, 54 mesh, üst tava kesiti açıkken fırlatma emniyet kilidi, `%0` itkide alevlerin kapanması, $\pm 15^\circ$ dümen dönüşü, hedef bordaya ilerleme ve TR/EN kontrolleri geçti.
+
+### Boeing B-29 Superfortress — GE Uzaktan Kumandalı Taret Sistemi (`b29_turret`)
+- **Kaynaklar:** ABD Hava Kuvvetleri Müzesi (*NMUSAF B-29 Walk-Through Fuselage*, `200 OK`) ve Smithsonian NASM (*Enola Gay*, `200 OK`).
+- **Model (17 grup / 47 mesh):** Basınçlı gövde kesiti, yan pleksiglas gözlem kubbesi (*blister*) ve jiroskopik optik nişangâh pedalı; kabin içinde dönen paralaks kam tamburları, amplidyne güç yükselticisi ve gövde ateş kesici (*interrupter*) diski; üst ve alt insansız 5:1 azimut dişlili ikiz `.50 cal` taretler, kalibrasyon hedef halkası ve 3 renkli paralaks yakınsama ışınları.
+- **Doğrulama:** `tests/b29_turret.cjs` — 17 grup, 47 mesh, 150 m (`22.0°` fark) vs 900 m (`4.9°` fark) gerçek paralaks matematiği, 5:1 pinyon dönüş yönü, gövde/kuyruk sektöründe ateş kesici kilidi, `400 -> 0 -> 400` mühimmat/ikmal çevrimi ve TR/EN kontrolleri geçti.
+
+### MIM-14 Nike Hercules — Yüksek İrtifa Füzesi & 4× Booster (`nike`)
+- **Kaynaklar:** ABD Ulusal Park Servisi (*NPS Golden Gate Nike Missile Site*, `200 OK`) ve White Sands Missile Range Museum (`200 OK`).
+- **Model (17 grup / 70 mesh):** Beton mevzii, arka eğimli çelik alev saptırıcı ve destek payandaları, `0°..85°` hareketli kafes rampa ve iki mafsal arasında eksiksiz uzayan ikiz teleskopik hidrolik dikme silindirleri; kare kümeli 4× M5E1 katı yakıtlı booster (X-Ray yıldız yakıt çekirdekleri + Laval lüleleri) ve M30 sustainer, 4× delta kanat, $\pm 20^\circ$ hareketli elevonlar, T-45 harp başlığı ve güdüm paketi.
+- **Doğrulama:** `tests/nike.cjs` — 17 grup, 70 mesh, `0°..85°` boyunca hidrolik silindir piston uçlarının mafsallarda kalması (`< 1e-4`), `< 45°` fırlatma kilidi, kademe ayrılması ve TR/EN kontrolleri geçti; görsel inceleme sonrası arka alev saptırıcı (`blastDeflector`) açısı ve destek kirişleri temas edecek şekilde düzeltildi.
+
+### ASELSAN KORKUT — 2× 35 mm Hava Savunma Sistemi & ATOM Mühimmatı (`korkut`)
+- **Kaynaklar:** ASELSAN Resmi Ürün Kaydı (*KORKUT*, `200 OK`), ASELSAN (*ATOM 35 mm ABM*, `200 OK`) ve TSKGV (`200 OK`).
+- **Model (19 grup / 95 mesh):** FNSS ACV-30 amfibi zırhlı gövde, ön-sağ güç paketi, kıç ikiz su jetleri, 6×2 yol tekerleği ve `92` instanced palet baklası; 5:1 azimut pinyonlu stabilize insansız kule ve **Otomatik Şeritsiz Çift Mühimmat Besleme (OŞMBM)**; ikiz 35 mm L/90 namlular ve namlu ağzı indüktif **ATOM programlama bobinleri**; 3B takip radarı, EOTS küresi ve namlu eksenini izleyen tungsten parçacık konisi + temsili İHA hedefi.
+- **Doğrulama:** `tests/korkut.cjs` — 19 grup, 95 mesh, kule/namlu/ATOM konisi hizalanması, `%0` taramada radar/EOTS duruşu, `ATOM ⇄ HEI-T` mod geçişi, ikiz zıt fazlı geri tepme ve TR/EN kontrolleri geçti.
+
+### 80 Araç & 15 Durak Toplu Görsel/Tarayıcı Kontrolü — 19 Kasım 2026
+- `index.html`: 80 kart listelendi. `turk-tarihi.html?durak=korkut`: 15 kronolojik durak doğrulandı (`tests/turk-route.cjs`).
+- Tam regresyon koşusu: `81 / 81` test dosyası geçti (`tests/museum-links.cjs`: `80` araç URL'si, `152` HTTPS kaynak).
+- Headless Chrome (CDP): 4 yeni araçta Sade Müze, Teknik, X-Ray, TR/EN masaüstü (`1440×900`) ve KORKUT mobil (`390×844`) görünümleri incelendi; çalışma zamanı hatası `0`.

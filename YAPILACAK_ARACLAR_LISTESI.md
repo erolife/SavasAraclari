@@ -1,12 +1,12 @@
 # 📋 YAPILACAK ARAÇLAR LİSTESİ & 2 KİŞİLİK ORTAK ÇALIŞMA PLANI
 
-> **Son Güncelleme:** 14 Kasım 2026<br>
-> **Mevcut Durum:** **66 Aktif Araç** (`121` HTTPS müze kaynağı • `62` test dosyası • `14` duraklı Türk tarihi rotası)
+> **Son Güncelleme:** 19 Kasım 2026<br>
+> **Mevcut Durum:** **80 Aktif Araç** (`152` HTTPS müze kaynağı • `81` test dosyası • `15` duraklı Türk tarihi rotası)
 > - Başlangıç envanteri (`Grup 1 .. Grup 10`): **45 araç**
-> - Kullanıcı önceliği ek araçlar (`Grup 17` & `Grup 18` — `fa330`, `shermancrab`, `french75`, `dreadnought`): **4 araç**
-> - Bu listeden (`#46 .. #75`) tamamlananlar (`#46 t34`, `#47 norden`, `#48 f14`, `#49 patriot`, `#50 yamato460`, `#51 cezeri`, `#55 sultanhisar`, `#56 sr71_j58`, `#57 saturnv_f1`, `#68 renaultft`, `#74 firtina`, `#54 mahmudiye`, `#60 jumo004`, `#64 wagenburg`, `#61 corvus`, `#53 humbara`, `#72 kamov`): **17 / 30 araç**
+> - Kullanıcı önceliği ek araçlar (`Grup 17` & `Grup 18` — Samuray/kültür, sinema beşlisi, `fa330`, `shermancrab`, `french75`, `dreadnought`): **14 sergi**
+> - Bu listeden (`#46 .. #75`) tamamlananlar (`#46 t34`, `#47 norden`, `#48 f14`, `#49 patriot`, `#50 yamato460`, `#51 cezeri`, `#52 rammah`, `#53 humbara`, `#54 mahmudiye`, `#55 sultanhisar`, `#56 sr71_j58`, `#57 saturnv_f1`, `#58 b29_turret`, `#59 nike`, `#60 jumo004`, `#61 corvus`, `#64 wagenburg`, `#68 renaultft`, `#72 kamov`, `#74 firtina`, `#75 korkut`): **21 / 30 araç**
 >
-> **Kalan Hedef:** **Grup 12 .. Grup 16** içinde **`⏳ Planlı` 13 araç** *(Grup 11 `5/5` tamamlandı)*
+> **Kalan Hedef:** **Grup 14, Grup 15 ve Grup 16** içinde **`⏳ Planlı` 9 araç** *(Grup 11, Grup 12 ve Grup 13 `5/5` tamamlandı)*
 
 Bu dosya, projeyi geliştiren **iki geliştiricinin** aynı aracı mükerrer (tekrarlı) kodlamasını önlemek, dosya/kimlik (`id`) adlarını önceden sabitlemek ve Git birleştirme (*merge*) çakışmalarını sıfıra indirmek amacıyla hazırlanmıştır.
 
@@ -40,9 +40,9 @@ Aşağıdaki 4 araç kullanıcı önceliğiyle plan dışı grup numaralarında 
 
 ---
 
-## ✅ 2. Mevcut 60 Aktif Aracın Tam Envanteri (Mükerrer Kayıt Kontrolü)
+## ✅ 2. Mevcut 80 Aktif Aracın Tam Envanteri (Mükerrer Kayıt Kontrolü)
 
-Aşağıdaki **66 araç ve mekanizma projede canlı (`status: 'live'`) olarak mevcuttur**; yeni araç veya ek öncelik seçerken bu `id` ve mekanizmalar tekrar edilmemelidir:
+Aşağıdaki **80 araç ve sergi projede canlı (`status: 'live'`) olarak mevcuttur**; yeni araç veya ek öncelik seçerken bu `id` ve mekanizmalar tekrar edilmemelidir:
 
 | Grup | Aktif Araçlar (`id` — Yıl — Kısa Ad) |
 | :--- | :--- |
@@ -57,32 +57,31 @@ Aşağıdaki **66 araç ve mekanizma projede canlı (`status: 'live'`) olarak me
 | **Grup 9 (40)** | `maxim` (1884 Maxim–Nordenfelt Makineli Tüfeği) |
 | **Grup 10 (41–45)** | `abdulhamid` (1886 Abdülhamid Denizaltısı) • `greekfire` (672 Bizans Rum Ateşi) • `r7` (1957/1961 R-7 Vostok & Korolev Haçı) • `harrier` (1969 Harrier GR.1 & Pegasus VTOL) • `strv103` (1967/1986 Stridsvagn 103C) |
 | **Grup 11 (5/5 Tamamlandı)** | `t34` (1940 T-34/76 & Christie) • `norden` (1942 Norden M-9 Bomba Nişangâhı) • `f14` (1974 Grumman F-14D(R) Tomcat) • `patriot` (1984 MIM-104 Patriot & AN/MPQ-53) • `yamato460` (1941 IJN Yamato 460 mm Üçlü Taret) |
-| **Grup 12 (4/5 Aktif)** | `cezeri` (1206 El-Cezerî Su Çarklı & İkiz Pompalı Düzenek — *Türk tarihi rotası 3. durak*) • `humbara` (1730’lar Osmanlı Havanı ve Hendese Sergisi — *Türk tarihi rotası 8. durak*) • `mahmudiye` (1829 Mahmudiye Kalyonu — *Türk tarihi rotası 9. durak*) • `sultanhisar` (1915 Osmanlı Sultanhisar Torpidobotu — *Türk tarihi rotası 12. durak*) |
-| **Grup 13 (3/5 Aktif)** | `sr71_j58` (1964 SR-71 Blackbird & J58 Turboramjet) • `saturnv_f1` (1967 Saturn V Rocketdyne F-1 Motoru) • `jumo004` (1944 Me 262 / Jumo 004) |
+| **Grup 12 (5/5 Tamamlandı)** | `cezeri` (1206 El-Cezerî Su Çarklı & İkiz Pompalı Düzenek — *Türk tarihi rotası 3. durak*) • `rammah` (~1280 Hasan el-Rammah “Al-Bayda” Roket Torpidosu) • `humbara` (1730’lar Osmanlı Havanı ve Hendese Sergisi — *Türk tarihi rotası 8. durak*) • `mahmudiye` (1829 Mahmudiye Kalyonu — *Türk tarihi rotası 9. durak*) • `sultanhisar` (1915 Osmanlı Sultanhisar Torpidobotu — *Türk tarihi rotası 12. durak*) |
+| **Grup 13 (5/5 Tamamlandı)** | `b29_turret` (1944 B-29 Uzaktan Kumandalı Taret Sistemi) • `nike` (1959 MIM-14 Nike Hercules) • `sr71_j58` (1964 SR-71 Blackbird & J58 Turboramjet) • `saturnv_f1` (1967 Saturn V Rocketdyne F-1 Motoru) • `jumo004` (1944 Me 262 / Jumo 004) |
 | **Grup 14 (2/5 Aktif)** | `corvus` (MÖ 260 Roma Geçiş Köprüsü) • `wagenburg` (15. yüzyıl Hussit Savaş Arabası) |
 | **Grup 15 (1/5 Aktif)** | `renaultft` (1917 Renault FT Tankı) |
-| **Grup 16 (2/5 Aktif)** | `kamov` (Ka-27PS arama kurtarma helikopteri) • `firtina` (2001 T-155 Fırtına — *Türk tarihi rotası 14. durak*) |
-| **Grup 17 (Ek — 1)** | `fa330` (1942 Fa 330 Bachstelze Denizaltı Rotor Uçurtması) |
-| **Grup 18 (Ek — 3)** | `shermancrab` (1944 Sherman Crab Mk I) • `french75` (1897 Fransız 75 mm Topu) • `dreadnought` (1906 HMS Dreadnought) |
+| **Grup 16 (3/5 Aktif)** | `kamov` (Ka-27PS arama kurtarma helikopteri) • `firtina` (2001 T-155 Fırtına — *Türk tarihi rotası 14. durak*) • `korkut` (2016 ASELSAN KORKUT & ATOM — *Türk tarihi rotası 15. durak*) |
+| **Grup 17 (Ek — 6)** | `fa330` (1942 Fa 330 Bachstelze) • `yoroi` (Ō-yoroi Zırhı) • `katana` (Katana) • `chakar` (Chakar Savaş Halkası) • `egyptchariot` (Mısır Savaş Arabası) • `putatara` (Pūtātara Kabuk Borusu) |
+| **Grup 18 (Ek — 8)** | `shermancrab` (1944 Sherman Crab Mk I) • `french75` (1897 Fransız 75 mm Topu) • `dreadnought` (1906 HMS Dreadnought) • `c96` (Mauser C96) • `garand` (M1 Garand) • `win1887` (Winchester 1887) • `ppk` (Walther PPK) • `model29` (S&W Model 29) |
 
-### 📊 60 Araç Sonrası Güncel Kategori Dağılımı & Boşluk Analizi
-- **Ortam Dağılımı (`60`):** 🪖 Kara (`35`), ⚓ Deniz (`12`), ✈️ Hava (`10`), 🚀 Uzay (`3` — `v2`, `r7`, `saturnv_f1`).
-- **Dönem Dağılımı (`60`):** II. Dünya Savaşı (`14`), Barut & Rönesans (`11`), Soğuk Savaş (`8`), Sanayi Devrimi (`7`), Orta Çağ (`7`), I. Dünya Savaşı (`5`), Antik Çağ (`4`), Modern (`3` — `phalanx`, `patriot`, `firtina`), Savaşlar Arası (`1` — yalnızca `vecihi`).
-- **Öncelikli Boşluk Notu:** `patriot`, `firtina` ve `saturnv_f1` ile Modern (`3`) ve Uzay (`3`) kategorileri güçlendirildi; `japan` (`Japonya`) köken filtresi `yamato460` ile birlikte `js/catalog.js` içine eklendi. Kalan 13 araç içindeki `#59 nike`, `#70 bofors40` (Savaşlar Arası), **Grup 14 (`#61..#65` — Antik & Orta Çağ)** ve **Grup 16 (`#71, #72, #73, #75` — Modern)** dönem/ortam dengesini daha da derinleştirecektir.
+### 📊 80 Araç Sonrası Güncel Kategori & Kalan Hedef Özeti
+- **Ortam & Dönem Güçlendirmesi:** `rammah` (Orta Çağ Deniz), `b29_turret` (II. Dünya Savaşı Hava/Elektrik), `nike` (Soğuk Savaş Uzay/Savunma) ve `korkut` (Modern Kara/Türk Savunma Sanayii + **15 duraklı Türk Tarihi Rotası**) ile koleksiyon tam **80 aktif sergiye** ulaştı; **Grup 12** ve **Grup 13** `5/5` tamamlandı.
+- **Kalan 9 Planlı Araç:** `#62 zhinanche`, `#63 testudo_ram`, `#65 geobukseon` (Grup 14); `#66 bigbertha`, `#67 buffington`, `#69 rangefinder`, `#70 bofors40` (Grup 15); `#71 gepard`, `#73 mk41vls` (Grup 16).
 
 ---
 
-## 🚀 3. Planlanan Yapılacak Araçlar Listesi (`#46 .. #75` — 11 Tamamlandı, 19 Planlı)
+## 🚀 3. Planlanan Yapılacak Araçlar Listesi (`#46 .. #75` — 21 Tamamlandı, 9 Planlı)
 
-### 🧭 Grup Bazında Hızlı Durum Özeti (Kalan 19 Araç)
-| Grup | Tamamlanan (`11`) | Kalan Planlı Araçlar (`19`) |
+### 🧭 Grup Bazında Hızlı Durum Özeti (Kalan 9 Araç)
+| Grup | Tamamlanan (`21`) | Kalan Planlı Araçlar (`9`) |
 | :--- | :--- | :--- |
 | **Grup 11 (`#46–#50`)** | `#46 t34`, `#47 norden`, `#48 f14`, `#49 patriot`, `#50 yamato460` *(5/5 — Tamamlandı)* | — |
-| **Grup 12 (`#51–#55`)** | `#51 cezeri`, `#53 humbara`, `#54 mahmudiye`, `#55 sultanhisar` *(4/5)* | **`#52 rammah`** |
-| **Grup 13 (`#56–#60`)** | `#56 sr71_j58`, `#57 saturnv_f1`, `#60 jumo004` *(3/5)* | **`#58 b29_turret`**, **`#59 nike`** |
+| **Grup 12 (`#51–#55`)** | `#51 cezeri`, `#52 rammah`, `#53 humbara`, `#54 mahmudiye`, `#55 sultanhisar` *(5/5 — Tamamlandı)* | — |
+| **Grup 13 (`#56–#60`)** | `#56 sr71_j58`, `#57 saturnv_f1`, `#58 b29_turret`, `#59 nike`, `#60 jumo004` *(5/5 — Tamamlandı)* | — |
 | **Grup 14 (`#61–#65`)** | `#61 corvus`, `#64 wagenburg` *(2/5)* | **`#62 zhinanche`**, **`#63 testudo_ram`**, **`#65 geobukseon`** |
 | **Grup 15 (`#66–#70`)** | `#68 renaultft` *(1/5)* | **`#66 bigbertha`**, **`#67 buffington`**, **`#69 rangefinder`**, **`#70 bofors40`** |
-| **Grup 16 (`#71–#75`)** | `#72 kamov`, `#74 firtina` *(2/5)* | **`#71 gepard`**, **`#73 mk41vls`**, **`#75 korkut`** |
+| **Grup 16 (`#71–#75`)** | `#72 kamov`, `#74 firtina`, `#75 korkut` *(3/5)* | **`#71 gepard`**, **`#73 mk41vls`** |
 
 ---
 
@@ -101,7 +100,7 @@ Aşağıdaki **66 araç ve mekanizma projede canlı (`status: 'live'`) olarak me
 | Sıra | Sabit `id` & Dosya | Yıl / Dönem / Ortam / Köken | Araç Adı & Müze Referansı | Gösterilecek Benzersiz Mekanik İlke & Canlı 3D Etkileşim | Geliştirici | Durum |
 | :---: | :--- | :--- | :--- | :--- | :---: | :---: |
 | **#51** | `cezeri`<br>`js/vehicles/cezeri.js` | **1206**<br>Orta Çağ<br>🪖 Kara • `seljuk` | **El-Cezerî'nin Su Çarklı, Kam Milli ve İkiz Pompalı Mekanik Düzeneği**<br>*(Topkapı Sarayı A.3472 / Muslim Heritage / Met Museum)* | Su çarkı tahrikli 2:1 taç–fener dişli, **4 fazlı yatay eksantrik kam mili**, oluklu salınım kolu (*slotted yoke*) ve tek yönlü klapeli **karşılıklı ikiz bakır su pompası** (*Türk tarihi rotası 3. durak*). | Antigravity | 🟢 Tamamlandı (18 grup, 116 mesh) |
-| **#52** | `rammah`<br>`js/vehicles/rammah.js` | **~1280**<br>Orta Çağ<br>⚓ Deniz • `medieval_eu`* | **Hasan el-Rammah "Yumurta" (*al-Bayda*) Öz-İtkili Roket Torpidosu**<br>*(BnF Arabe 2825 / İslam Bilim Müzesi)* | Tarihin ilk roket tahrikli deniz torpidosu: birleştirilmiş iki bakır tavadan oluşan mercek gövde, güherçileli **ikiz roket itki tüpü**, su üstü denge kızakları ve pruva mahmuz iğnesi. | — | ⏳ Planlı |
+| **#52** | `rammah`<br>`js/vehicles/rammah.js` | **~1280**<br>Orta Çağ<br>⚓ Deniz • `mamluk` | **Hasan el-Rammah “Yumurta” (*al-Bayda*) Öz-İtkili Roket Torpidosu**<br>*(BnF Arabe 2825 / Muslim Heritage)* | Tarihin ilk roket tahrikli deniz torpidosu: keçe contalı iki metal tavadan oluşan mercek gövde, güherçileli **ikiz roket itki tüpü**, su üstü denge kızakları ve pruva mahmuz iğnesi. | Antigravity | 🟢 Tamamlandı (16 grup, 54 mesh) |
 | **#53** | `humbara`<br>`js/vehicles/humbara.js` | **1735**<br>Barut & Rönesans<br>🪖 Kara • `ottoman` | **Osmanlı Humbara Havan Topu & *Rubu Tahtası* (Açı Ölçer) Düzeneği**<br>*(Harbiye Askerî Müzesi, İstanbul)* | Kısa ve kalın namlulu dökme tunç Osmanlı havanı, $45^\circ \dots 75^\circ$ yüksek açılı muylu yatağı, **içi barut dolu küresel demir *humbara* (patlayıcı gülle)**, ahşap saniyeli tapa ve *rubu tahtası* çekülüyle parabolik yörünge hesabı. | MesAi C | ✅ Tamamlandı — 12 grup, rubu tahtası ve Türk tarihi rotası |
 | **#54** | `mahmudiye`<br>`js/vehicles/mahmudiye.js` | **1829**<br>Sanayi Devrimi<br>⚓ Deniz • `ottoman` | **Osmanlı *Mahmudiye* Kalyonu — 3 Ambarlı 128 Toplu Borda Bataryası Kesiti**<br>*(İstanbul Deniz Müzesi, Beşiktaş)* | Dünyanın en büyük yelkenli harp gemilerinden *Mahmudiye*'nin **3 katlı (*kantara, orta, üst güverte*) borda kesiti**: meşe postalar, halatlı lombar kapakları ve 3 güvertenin kademeli borda salvosu. | MesAi C | ✅ Tamamlandı — 17 grup, 473 mesh, Türk tarihi rotası |
 | **#55** | `sultanhisar`<br>`js/vehicles/sultanhisar.js` | **1915**<br>I. Dünya Savaşı<br>⚓ Deniz • `ottoman` | **Osmanlı *Sultanhisar* Torpidobotu & Güverte Üstü Döner Torpido Kovanı**<br>*(ANMM / TINA Çanakkale 1915)* | Çanakkale/Marmara'da *HMAS AE2* denizaltısını saf dışı bırakan *Sultanhisar*: **üç silindirli dikey buhar makinesi**, güverte üstü **döner torpido kovanları** ve Türk tarihi rotası 5. durağı. | MesAi C | 🟢 Tamamlandı (22 grup, 226 mesh) |
@@ -113,8 +112,8 @@ Aşağıdaki **66 araç ve mekanizma projede canlı (`status: 'live'`) olarak me
 | :---: | :--- | :--- | :--- | :--- | :---: | :---: |
 | **#56** | `sr71_j58`<br>`js/vehicles/sr71_j58.js` | **1964 / 1966**<br>Soğuk Savaş<br>✈️ Hava • `usa` | **SR-71 Blackbird — Pratt & Whitney *J58* Turboramjet & Hareketli Giriş Konisi**<br>*(NASA / Smithsonian NASM Udvar-Hazy)* | Yüksek Mach'ta geriye kayan **sivri giriş konileri (*inlet spikes*)**, 9 kompresör / 2 türbin kademesi ve kompresör havasını art yakıcıya aktaran **altışar harici baypas borusu (*bleed tubes*)**. | MesAi C | 🟢 Tamamlandı (28 grup, 301 mesh) |
 | **#57** | `saturnv_f1`<br>`js/vehicles/saturnv_f1.js` | **1967**<br>Soğuk Savaş<br>🚀 Uzay • `usa` | **Saturn V — Rocketdyne *F-1* Dev Roket Motoru & Türbopompa Kesiti**<br>*(Smithsonian NASM / Kennedy Space Center)* | Tarihin en güçlü tek yanma odalı sıvı yakıtlı roket motoru (`6.770 kN`): **55.000 BG LOX/RP-1 türbopompası**, rejeneratif soğutma boruları, türbin egzoz soğutma manifoldu ve $\pm 6^\circ$ hidrolik gimbal yatağı. | Antigravity | 🟢 Tamamlandı (17 grup, 73 mesh) |
-| **#58** | `b29_turret`<br>`js/vehicles/b29_turret.js` | **1944**<br>II. Dünya Savaşı<br>✈️ Hava • `usa` | **Boeing B-29 Superfortress — GE Bilgisayarlı Uzaktan Kumandalı Taret Sistemi**<br>*(Smithsonian NASM Enola Gay / NMUSAF)* | Basınçlı kabindeki nişancının optik nişangâh kubbesini çevirdiğinde, **analog ateş kontrol bilgisayarı ve amplidin servolar** üzerinden gövde üstü/altı insansız taretlerin paralaks düzeltmesiyle eşzamanlı dönmesi! | — | ⏳ Planlı |
-| **#59** | `nike`<br>`js/vehicles/nike.js` | **1959**<br>Soğuk Savaş<br>🚀 Uzay • `usa` | **MIM-14 Nike Hercules — Yüksek İrtifa Hava Savunma Füzesi & 4× Booster**<br>*(İstanbul Hava Müzesi Yeşilköy / Smithsonian)* | Türkiye'de de uzun yıllar görev yapan iki kademeli hava savunma füzesi: **4× M5E1 katı yakıtlı hızlandırıcı kümesi**, hidrolik fırlatma rampası dikmesi ($0^\circ \to 85^\circ$), delta kanatçıklar ve kademe ayrılması. | — | ⏳ Planlı |
+| **#58** | `b29_turret`<br>`js/vehicles/b29_turret.js` | **1944**<br>II. Dünya Savaşı<br>✈️ Hava • `usa` | **Boeing B-29 Superfortress — GE Bilgisayarlı Uzaktan Kumandalı Taret Sistemi**<br>*(Smithsonian NASM Enola Gay / NMUSAF)* | Basınçlı kabindeki nişancının optik nişangâh kubbesini çevirdiğinde, **analog ateş kontrol bilgisayarı ve amplidin servolar** üzerinden gövde üstü/altı insansız taretlerin paralaks düzeltmesiyle eşzamanlı dönmesi! | Antigravity | 🟢 Tamamlandı (17 grup, 47 mesh) |
+| **#59** | `nike`<br>`js/vehicles/nike.js` | **1959**<br>Soğuk Savaş<br>🚀 Uzay • `usa` | **MIM-14 Nike Hercules — Yüksek İrtifa Hava Savunma Füzesi & 4× Booster**<br>*(NPS Golden Gate / White Sands Missile Range)* | Türkiye'de de uzun yıllar görev yapan iki kademeli hava savunma füzesi: **4× M5E1 katı yakıtlı hızlandırıcı kümesi**, hidrolik fırlatma rampası dikmesi ($0^\circ \to 85^\circ$), delta kanatçıklar ve kademe ayrılması. | Antigravity | 🟢 Tamamlandı (17 grup, 70 mesh) |
 | **#60** | `jumo004`<br>`js/vehicles/jumo004.js` | **1944**<br>II. Dünya Savaşı<br>✈️ Hava • `germany` | **Junkers Jumo 004B (Me 262) — İlk Seri Üretim Turbojet & *Zwiebel* İğne Nozulu**<br>*(Deutsches Museum Münih / Smithsonian)* | 8 kademeli eksenel kompresör, 6 yanma odası, burun içindeki 2 zamanlı *Riedel* marş motoru ve egzoz kesit alanını değiştirmek için ileri-geri kayan soğan biçimli **"Zwiebel" (hareketli merkez iğne)** mekanizması! | MesAi C | ✅ Tamamlandı — 21 grup, 150 mesh, çift Jumo 004 kesiti |
 
 ---
@@ -148,7 +147,7 @@ Aşağıdaki **66 araç ve mekanizma projede canlı (`status: 'live'`) olarak me
 | **#72** | `kamov`<br>`js/vehicles/kamov.js` | **1982**<br>Soğuk Savaş / Modern<br>✈️ Hava • `ussr` | **Kamov Ka-50 / Ka-27 — Eş-Eksenli Zıt Döner (*Coaxial*) Çift Rotor Kafası**<br>*(Monino Hava Kuvvetleri Müzesi)* | Kuyruk rotoruna ihtiyaç duymadan torku sıfırlayan, **iç içe geçen iki eş-eksenli şaft üzerinde zıt yönlerde dönen çift 3-palli rotor kafası** ve üst/alt yalpa plakaları (*swashplates*) biyel mekanizması! | MesAi C | ✅ Tamamlandı — 15 grup, Ka-27PS ve kurtarma vinci |
 | **#73** | `mk41vls`<br>`js/vehicles/mk41vls.js` | **1986**<br>Modern<br>⚓ Deniz • `usa` | **Mk 41 Dikey Fırlatma Sistemi (*VLS*) — 8 Hücreli Modül & Ortak Gaz Bacası**<br>*(US Navy / Türk Donanması Fırkateynleri)* | Savaş gemisi güvertesi altındaki 8 hücreli kanister modülü: zırhlı hücre kapağının açılması, roket egzoz gazının **alt *plenum* odasından geçip merkez zırhlı bacadan (*uptake*) yukarı tahliye edilmesi**. | — | ⏳ Planlı |
 | **#74** | `firtina`<br>`js/vehicles/firtina.js` | **2001**<br>Modern<br>🪖 Kara • `turkey` | **T-155 Fırtına — 155 mm L/52 Kundağı Motorlu Obüs & Otomatik Mermi Yükleme Kolu**<br>*(MKE / Harbiye Askerî Müzesi / ASFAT)* | 8 metre uzunluğundaki 155 mm L/52 namlu, 12× hidropnömatik süspansiyon, beşik üstü MVR radar ve 48 atımlık magazinden mermiyi alıp $+68^\circ$ dahil her açıda namluya süren **robotik yükleme kolu** (*Türk tarihi rotası 12. durak*). | Antigravity | 🟢 Tamamlandı (19 grup, 252 mesh) |
-| **#75** | `korkut`<br>`js/vehicles/korkut.js` | **2016**<br>Modern<br>🪖 Kara • `turkey` | **ASELSAN KORKUT — 2× 35 mm Hava Savunma Sistemi & *ATOM* Parçacıklı Mühimmat**<br>*(ASELSAN / MKE)* | Stabilize insansız kule, ikiz 35 mm topların namlu ağzındaki **elektromanyetik hız ölçer ve indüktif tapalama bobini** ile merminin namludan çıkarken programlanıp hedef önünde tungsten parçacık bulutu oluşturması! | — | ⏳ Planlı |
+| **#75** | `korkut`<br>`js/vehicles/korkut.js` | **2016**<br>Modern<br>🪖 Kara • `turkey` | **ASELSAN KORKUT — 2× 35 mm Hava Savunma Sistemi & *ATOM* Parçacıklı Mühimmat**<br>*(ASELSAN / TSKGV)* | Stabilize insansız kule, ikiz 35 mm topların namlu ağzındaki **elektromanyetik hız ölçer ve indüktif tapalama bobini** ile merminin namludan çıkarken programlanıp hedef önünde tungsten parçacık bulutu oluşturması (*Türk tarihi rotası 15. durak*). | Antigravity | 🟢 Tamamlandı (19 grup, 95 mesh) |
 
 > **Not (`*` İşaretli Köken Anahtarları):** `france` (`Fransa`) köken anahtarı `renaultft` ve `french75` ile birlikte, `japan` (`Japonya`) köken anahtarı ise `#50 yamato460` ile birlikte `js/catalog.js` içine eklendi. `#52 rammah` için mevcut `medieval_eu` kullanılabilir veya yeni bir köken etiketi tanımlanabilir.
 

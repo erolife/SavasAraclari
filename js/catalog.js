@@ -41,7 +41,7 @@
     ] },
     { key: 'origin', url: 'koken', label: 'Köken', options: [
       { key: 'china', label: 'Çin' }, { key: 'newzealand', label: 'Aotearoa / Yeni Zelanda' }, { key: 'egypt', label: 'Mısır (Yeni Krallık)' }, { key: 'pakistan', label: 'Pakistan (Pencap)' },
-      { key: 'rome', label: 'Roma' }, { key: 'byzantine', label: 'Bizans (Doğu Roma)' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' },
+      { key: 'rome', label: 'Roma' }, { key: 'byzantine', label: 'Bizans (Doğu Roma)' }, { key: 'medieval_eu', label: 'Orta Çağ Avrupa & Akdeniz' }, { key: 'mamluk', label: 'Suriye / Memlük dönemi' },
       { key: 'ottoman', label: 'Osmanlı' }, { key: 'turkmen', label: 'Türkmen / Akkoyunlu geleneği' }, { key: 'seljuk', label: 'Selçuklular' }, { key: 'gokturk', label: 'Göktürkler' }, { key: 'turkey', label: 'Türkiye' }, { key: 'italy', label: 'İtalya (Rönesans)' },
       { key: 'uk', label: 'İngiltere' }, { key: 'germany', label: 'Almanya' }, { key: 'sweden', label: 'İsveç' },
       { key: 'france', label: 'Fransa' }, { key: 'usa', label: 'ABD' }, { key: 'ussr', label: 'SSCB' }, { key: 'japan', label: 'Japonya' }, { key: 'korea', label: 'Kore (Joseon)' }, { key: 'mexico', label: 'Meksika (Mezoamerika)' }, { key: 'europe', label: 'Avrupa (yer atfı belirsiz)' }, { key: 'greek', label: 'Helenistik Dünya' }
@@ -801,7 +801,96 @@
   VEHICLES.push({"id": "win1887", "sim": "win1887", "group": 18, "status": "live", "year": 1888, "yearLabel": "1888 (kaynak nesne)", "eraLabel": "SANAYİ DÖNEMİ", "domain": "land", "era": "industrial", "energy": ["gunpowder"], "role": ["smallarms"], "origin": "usa", "name": "Winchester 1887 — Terminator 2 Sergisi", "sub": "KISA AHŞAP KABZA • GENİŞ KOL HALKASI • ÇİFT TÜP", "desc": "1888 üretimli, 69 cm boyundaki film nesnesinden yorumlanan sergi. Geniş kolu, ahşap yüzeyleri ve dış donanımı inceleyin; fabrika modeli ile sinema biçimini ayırt edin.", "tags": ["Terminator 2", "Film Nesnesi", "Geniş Kol Halkası", "Ahşap ve Çelik"], "specs": [["MODEL ADI", "Winchester Model 1887"], ["KAYNAK TARİHİ", "1888"], ["REFERANS BOYU", "69 cm"], ["FİLM", "Terminator 2 (1991)"]], "tag": "WIN1887", "icon": "🎞️", "svg": "<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M32 83L95 58L117 72L68 106L39 111Z\" fill=\"#805139\"/><path d=\"M90 56Q120 38 157 57V82H104Z\" fill=\"#41484b\"/><path d=\"M151 55H301M150 72H277\" stroke=\"#41484b\" stroke-width=\"9\"/><path d=\"M164 68H241\" stroke=\"#805139\" stroke-width=\"13\"/><path d=\"M102 84Q63 118 92 130Q132 143 143 84\" fill=\"none\" stroke=\"#41484b\" stroke-width=\"4\"/></svg>"});
   VEHICLES.push({"id": "ppk", "sim": "ppk", "group": 18, "status": "live", "year": 1931, "yearLabel": "1931 (türün başlangıcı)", "eraLabel": "SAVAŞLAR ARASI", "domain": "land", "era": "interwar", "energy": ["gunpowder"], "role": ["smallarms"], "origin": "germany", "name": "Walther PPK — Bond’un Silueti", "sub": "KOMPAKT GÖVDE • BAKLAVA DOKULU KABZA • ÜST KABUK", "desc": "Royal Armouries ve Smithsonian kayıtlarıyla karşılaştırmalı PPK sergisi. Üst kabuğu ve kahverengi yanakları ayırın; küçük dış ayrıntıları ve James Bond bağlantısını keşfedin.", "tags": ["James Bond", "Kompakt Siluet", "Dokulu Kabza", "Müze Karşılaştırması"], "specs": [["TÜR", "Walther PPK"], ["KARŞILAŞTIRMA BOYU", "16 cm (Smithsonian)"], ["GÖRSEL BAĞLAM", "Royal Armouries / Boothroyd"], ["SİNEMA", "James Bond serisi"]], "tag": "PPK", "icon": "🎞️", "svg": "<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M62 28H276Q291 28 291 45V60H133L116 118H61L78 63H54V40Z\" fill=\"#3e494e\"/><path d=\"M80 68H120L107 116H66Z\" fill=\"#573c2e\"/><path d=\"M129 62Q116 94 149 93Q180 91 181 62\" fill=\"none\" stroke=\"#3e494e\" stroke-width=\"7\"/><path d=\"M73 34V55M80 34V55M87 34V55M94 34V55\" stroke=\"#8a9290\" stroke-width=\"2\"/></svg>"});
   VEHICLES.push({"id": "model29", "sim": "model29", "group": 18, "status": "live", "year": 1957, "yearLabel": "1957 (Model 29 adı)", "eraLabel": "SOĞUK SAVAŞ", "domain": "land", "era": "coldwar", "energy": ["gunpowder"], "role": ["smallarms"], "origin": "usa", "name": "Smith & Wesson Model 29 — Kirli Harry", "sub": "ALTI OLUKLU TAMBUR • UZUN NAMLU • AHŞAP SUNUM KABZASI", "desc": "NRA müzesindeki sunum nesnesinden yorumlanan Model 29. Ortak eksenli tamburu yana açın, boş açıklıkları ve ahşap kabzayı inceleyin; Kirli Harry bağlantısını keşfedin.", "tags": ["Kirli Harry", "Altı Oluklu Tambur", "Ahşap Kabza", "Sunum Nesnesi"], "specs": [["MODEL ADI", "1957"], ["FİLM", "Kirli Harry (1971)"], ["TAMBUR", "Altı boş sergi açıklığı"], ["GÖRSEL KAYNAK", "NRA National Firearms Museum"]], "tag": "MODEL29", "icon": "🎞️", "svg": "<svg viewBox=\"0 0 320 140\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M68 28H174V75H107L87 125H47L66 74H52V42Z\" fill=\"#62696b\"/><path d=\"M168 36H304V51H168Z\" fill=\"#2b3942\"/><rect x=\"108\" y=\"36\" width=\"53\" height=\"36\" rx=\"9\" fill=\"#2b3942\"/><path d=\"M67 78L91 87L79 122H51Z\" fill=\"#936237\"/><path d=\"M99 75Q91 104 119 99L132 75\" stroke=\"#62696b\" fill=\"none\" stroke-width=\"5\"/></svg>"});
+  VEHICLES.push({
+    id: 'rammah', sim: 'rammah', group: 12, status: 'live',
+    year: 1280, yearLabel: '~1280', eraLabel: 'ORTA ÇAĞ • ERKEN ROKET İTKİSİ',
+    domain: 'sea', era: 'medieval', energy: ['gunpowder', 'jet'], role: ['projectile', 'artillery'], origin: 'mamluk',
+    name: 'Hasan el-Rammah “Yumurta” (al-Bayda) Roket Torpidosu',
+    sub: 'MERCEK BAKIR TAVA GÖVDE • İKİZ GÜHERÇİLE ROKETİ • PRUVA MAHMUZU',
+    desc: 'Hasan el-Rammah’ın ~1280 tarihli Kitâbü’l-Fürûsiyye el yazmasından (BnF Arabe 2825) yorumlanan öz-itkili su üstü yangın aracı. Üst tavayı ayırıp iç harç katmanlarını görün, dümeni ayarlayın ve torpidoyu hedef ahşap bordaya fırlatın.',
+    tags: ['BnF Arabe 2825 (~1280)', 'İkiz Güherçile Roketi', 'Kılavuz Çubuk & Dümen', '16 İnceleme Grubu'],
+    specs: [['TARİH / KAYNAK', '~1280 • Kitâbü’l-Fürûsiyye'], ['İTKİ', 'İkiz güherçileli kara barut roketi'], ['GÖVDE', 'Keçe contalı iki metal tava'], ['İNCELEME', '16 bağımsız grup']],
+    tag: 'RAMMAH-1280', icon: '🚀',
+    modal: [
+      'Keçe contayla birleştirilmiş üst bakır ve alt demir mercek tavalar + iç yakıt katmanları',
+      'Çatallı barut fitiliyle aynı anda ateşlenen iskele/sancak güherçile roketleri',
+      'Arka ikiz uzun kılavuz çubukları, ±15° yön dümeni ve yan denge kızakları',
+      'Dikenli pruva mahmuz mızrağı ve su oluğu boyunca temsili gemi bordasına çarpma'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M20 96H300" stroke="#3b7a94" stroke-width="3" stroke-dasharray="6 4"/><path d="M126 68Q185 38 242 68Q185 98 126 68Z" fill="#a8643a" stroke="#1e293b" stroke-width="2.2"/><line x1="242" y1="68" x2="294" y2="68" stroke="#3a4046" stroke-width="5"/><polygon points="294,61 310,68 294,75" fill="#3a4046"/><line x1="36" y1="68" x2="132" y2="68" stroke="#71513b" stroke-width="4"/><rect x="26" y="54" width="22" height="28" fill="#a8643a" stroke="#1e293b" stroke-width="1.6"/><path d="M108 62L74 54L74 82L108 74Z" fill="#f97316" fill-opacity="0.75"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'b29_turret', sim: 'b29_turret', group: 13, status: 'live',
+    year: 1944, yearLabel: '1944', eraLabel: 'II. DÜNYA SAVAŞI • ANALOG ATEŞ KONTROLÜ',
+    domain: 'air', era: 'ww2', energy: ['electric', 'gunpowder'], role: ['aircraft', 'defense'], origin: 'usa',
+    name: 'Boeing B-29 Superfortress — GE Uzaktan Kumandalı Taret Sistemi',
+    sub: 'BASINÇLI NİŞANGÂH • ANALOG PARALAKS BİLGİSAYARI • İNSANSIZ TARETLER',
+    desc: 'General Electric’in Central Station Fire Control sistemiyle çalışan uzaktan kumandalı B-29 savunma ağı. Basınçlı kabindeki nişangâhtan yön ve menzil verin; üst ve alt taretlerin gerçek paralaks düzeltmesiyle hedefe yakınsamasını ve gövde ateş kesicisini inceleyin.',
+    tags: ['Analog Paralaks Bilgisayarı', '5:1 Azimut Dişlisi', 'Gövde Ateş Kesicisi', '17 İnceleme Grubu'],
+    specs: [['SİSTEM', 'GE Central Station Fire Control'], ['TARET SİLAHI', '2× .50 Cal (12,7 mm) / taret'], ['DÜZELTME', 'Paralaks + balistik + amplidin'], ['İNCELEME', '17 bağımsız grup']],
+    tag: 'B29-CSFC-1944', icon: '✈️',
+    modal: [
+      'B-29 basınçlı gövde kesiti, yan gözlem kubbesi (blister) ve selsyn optik nişangâh',
+      'X-Ray altında GE analog bilgisayarı, paralaks kam tamburları ve amplidin sürücüsü',
+      '150 m – 900 m menzil değişiminde üst/alt insansız taretlerin paralaks yakınsaması',
+      'Gövde koruma ateş kesici (interrupter) kilidi ve ikiz .50 cal uzaktan salvo'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><rect x="44" y="42" width="176" height="56" rx="16" fill="#b8c0c8" stroke="#1e293b" stroke-width="2.2"/><path d="M92 42Q114 26 136 42Z" fill="#526452" stroke="#1e293b" stroke-width="2"/><line x1="136" y1="32" x2="188" y2="28" stroke="#272c31" stroke-width="4"/><path d="M94 98Q114 114 134 98Z" fill="#526452" stroke="#1e293b" stroke-width="2"/><line x1="134" y1="108" x2="188" y2="112" stroke="#272c31" stroke-width="4"/><circle cx="176" cy="70" r="14" fill="#9ed2e6" stroke="#1e293b" stroke-width="2"/><line x1="184" y1="70" x2="294" y2="70" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 3"/><line x1="188" y1="28" x2="294" y2="70" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 3"/><line x1="188" y1="112" x2="294" y2="70" stroke="#34d399" stroke-width="1.8" stroke-dasharray="4 3"/><circle cx="294" cy="70" r="8" fill="none" stroke="#dc2626" stroke-width="2.5"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'nike', sim: 'nike', group: 13, status: 'live',
+    year: 1959, yearLabel: '1959', eraLabel: 'SOĞUK SAVAŞ • İKİ KADEMELİ HAVA SAVUNMA',
+    domain: 'space', era: 'coldwar', energy: ['jet', 'electric'], role: ['defense'], origin: 'usa',
+    name: 'MIM-14 Nike Hercules — Yüksek İrtifa Füzesi & 4× Booster',
+    sub: '4× M5E1 BOOSTER KÜMESİ • M30 SUSTAINER • HİDROLİK DİKME RAMPASI',
+    desc: 'Türkiye dahil NATO hava savunmasında uzun yıllar görev yapan iki kademeli süpersonik füze sistemi. Hidrolik dikme rampasını 0°–85° yükseltin, kademe ayrılmasını X-Ray altında inceleyin ve 45° emniyet sınırının üstünde fırlatma çevrimini izleyin.',
+    tags: ['4× M5E1 Booster Kümesi', 'Hidrolik Dikme (0°–85°)', 'Kademe Ayrılması', '17 İnceleme Grubu'],
+    specs: [['UZUNLUK / KALKIS', '~12,5 m / ~4.850 kg'], ['1. KADEME', 'M42 kümesi (4× M5E1 katı yakıt)'], ['2. KADEME', 'M30 sustainer + T-45 başlık'], ['İNCELEME', '17 bağımsız grup']],
+    tag: 'NIKE-MIM14-1959', icon: '🚀',
+    modal: [
+      'Beton mevzii, arka alev saptırıcı ve 0°–85° hareketli teleskopik ikiz hidrolik dikme',
+      'X-Ray modunda 4× M5E1 katı yakıtlı booster çekirdekleri ve Laval egzoz lüleleri',
+      '2. kademe M30 sustainer motoru, delta kanatlar, hareketli elevonlar ve güdüm paketi',
+      'Kademe ayrılma incelemesi ve 45° emniyet kilitli fırlatma gösterimi'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><line x1="22" y1="120" x2="298" y2="120" stroke="#64748b" stroke-width="5"/><line x1="60" y1="118" x2="220" y2="42" stroke="#525d47" stroke-width="5"/><line x1="122" y1="118" x2="152" y2="74" stroke="#64748b" stroke-width="4"/><g transform="rotate(-25 160 66)"><rect x="74" y="54" width="84" height="22" rx="2" fill="#e2e6e0" stroke="#1e293b" stroke-width="2"/><polygon points="74,50 96,42 96,88 74,80" fill="#c45824" fill-opacity="0.75"/><rect x="158" y="57" width="92" height="16" fill="#e2e6e0" stroke="#1e293b" stroke-width="2"/><polygon points="250,57 284,65 250,73" fill="#e2e6e0" stroke="#1e293b" stroke-width="2"/><polygon points="168,57 224,57 180,41" fill="#c45824"/></g></svg>'
+  });
+  VEHICLES.push({
+    id: 'korkut', sim: 'korkut', group: 16, status: 'live',
+    year: 2016, yearLabel: '2016 (TSK envanteri)', eraLabel: 'MODERN ÇAĞ • AKILLI HAVA SAVUNMA',
+    domain: 'land', era: 'modern', energy: ['ice', 'gunpowder', 'electric'], role: ['defense', 'armor'], origin: 'turkey',
+    name: 'ASELSAN KORKUT — 2× 35 mm Hava Savunma Sistemi & ATOM Mühimmatı',
+    sub: 'AMFİBİ ACV-30 • ŞERİTSİZ ÇİFT BESLEME • NAMLU AĞZI ATOM PROGRAMLAYICI',
+    desc: 'FNSS ACV-30 amfibi paletli platform üzerinde stabilize insansız kule ve dakikada 1.100 atım yapan ikiz 35 mm KDC-02 topları. Namlu ağzı indüksiyon bobiniyle programlanan 35 mm ATOM parçacıklı mühimmatın hedef İHA önündeki tungsten bulutu oluşturmasını inceleyin.',
+    tags: ['35 mm ATOM Parçacıklı', 'Çift Şeritsiz Besleme', 'Amfibi ACV-30 & 1.100 atım/dk', '19 İnceleme Grubu'],
+    specs: [['SİLAH SİSTEMİ', '2× 35 mm L/90 (1.100 atım/dk)'], ['AKILLI MÜHİMMAT', 'ATOM 35 mm (4 km etkili menzil)'], ['PLATFORM', 'FNSS ACV-30 amfibi paletli'], ['İNCELEME', '19 bağımsız grup']],
+    tag: 'KORKUT-ATOM-2016', icon: '🛡️',
+    modal: [
+      'FNSS ACV-30 amfibi zırhlı gövde, ön-sağ güç paketi, su jetleri ve 6×2 palet takımı',
+      'İnsansız stabilize kule içinde Otomatik Şeritsiz Çift Mühimmat Besleme (ATOM ⇄ HEI-T)',
+      'Namlu ağzı ilk hız ölçer ve elektromanyetik ATOM dip tapa programlama bobinleri',
+      '3B takip radarı, elektro-optik küre ve hedef İHA önünde açılan tungsten parçacık bulutu'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M34 94L48 76H194L214 94Z" fill="#6c6855" stroke="#1e293b" stroke-width="2"/><rect x="38" y="96" width="172" height="22" rx="11" fill="#252b2e"/><g fill="#6c6855"><circle cx="54" cy="107" r="7"/><circle cx="80" cy="107" r="7"/><circle cx="106" cy="107" r="7"/><circle cx="132" cy="107" r="7"/><circle cx="158" cy="107" r="7"/><circle cx="184" cy="107" r="7"/></g><rect x="76" y="48" width="84" height="28" rx="4" fill="#5b5848" stroke="#1e293b" stroke-width="2"/><rect x="70" y="34" width="22" height="14" fill="#c8c3b4" stroke="#1e293b" stroke-width="1.5"/><line x1="158" y1="58" x2="238" y2="26" stroke="#252b2e" stroke-width="6" stroke-linecap="round"/><rect x="230" y="21" width="12" height="10" transform="rotate(-22 230 21)" fill="#c26d38"/><line x1="242" y1="24" x2="286" y2="12" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 3"/><circle cx="290" cy="11" r="7" fill="none" stroke="#f59e0b" stroke-width="2"/></svg>'
+  });
   const SOURCES = {
+  "rammah": [
+    {"title": "Hasan el-Rammah ve Müslüman Roket Teknolojisi — Muslim Heritage", "url": "https://muslimheritage.com/muslim-rocket-technology/", "note": "~1280 Kitâbü’l-Fürûsiyye’deki al-bayda (kendi kendine hareket edip yakan yumurta), ikiz roket itkisi ve güherçile arıtma tarifleri. Mercek gövde oranları ve su oluğu sergi yorumudur."},
+    {"title": "Kitâbü’l-Fürûsiyye El Yazması — BnF Gallica (Manuscrit Arabe 2825)", "url": "https://gallica.bnf.fr/ark:/12148/btv1b10888148q", "note": "Tarihsel el yazması çizimleri ve pruva mahmuzlu su üstü yakıcı araç bağlamı."}
+  ],
+  "b29_turret": [
+    {"title": "B-29 Gövde Kesiti ve Nişangâh İstasyonu — ABD Hava Kuvvetleri Müzesi (NMUSAF)", "url": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/Display/Article/195885/b-29-walk-through-fuselage/", "note": "Basınçlı kabin içindeki uzaktan kumandalı nişangâh istasyonu yerleşimi. Analog bilgisayar ve amplidin iç dişlileri eğitim amaçlı sergi yorumudur."},
+    {"title": "Boeing B-29 Superfortress Enola Gay — Smithsonian NASM (A19500100000)", "url": "https://airandspace.si.edu/collection-objects/boeing-b-29-superfortress-enola-gay/nasm_A19500100000", "note": "B-29 gövde kesiti, aerodinamik taret kubbeleri ve tarihsel mühendislik bağlamı."}
+  ],
+  "nike": [
+    {"title": "Nike Füze Mevzii — ABD Ulusal Park Servisi (NPS Golden Gate)", "url": "https://www.nps.gov/goga/nike-missile-site.htm", "note": "MIM-14 Nike Hercules hava savunma bataryası, hidrolik rampa dikmesi ve kalkış operasyon bağlamı. İç katı yakıt ve güdüm kesitleri eğitim amaçlı yorumdur."},
+    {"title": "Nike Hercules Füzesi — White Sands Missile Range Museum", "url": "https://wsmrmuseum.com/2026/10/02/missile-park-2/35/", "note": "12,5 m boy, 4× M5E1 M42 booster kümesi ve iki kademeli yüksek irtifa uçuş profili referansı."}
+  ],
+  "korkut": [
+    {"title": "KORKUT Yakın Alan Hava Savunma Sistemi — ASELSAN Resmi Ürün Kaydı", "url": "https://www.aselsan.com/tr/savunma/urun/korkut-14035", "note": "İnsansız stabilize kule, 2× 35 mm 1.100 atım/dk silah sistemi ve şeritsiz besleme bağlamı. İç mekanizma geometrisi yaklaşık sergi yorumudur."},
+    {"title": "ATOM 35 mm Parçacıklı Mühimmat — ASELSAN", "url": "https://www.aselsan.com/tr/savunma/urun/atom-35-abm", "note": "Namlu çıkış hızı ölçümü, indüktif dip tapa programlama ve 4 km etkili menzilde tungsten parçacık bulutu referansı."},
+    {"title": "ASELSAN KORKUT Sistem Tanıtımı — TSKGV", "url": "https://tskgv.org.tr/savunma-sanayii-gundem/aselsan-korkut-14035", "note": "FNSS ACV-30 amfibi paletli taşıyıcı ve Türk Silahlı Kuvvetleri entegrasyon bağlamı."}
+  ],
 "model29": [{"title": "NRA National Firearms Museum — Kirli Harry Model 29", "url": "https://www.nramuseum.org/the-museum/the-galleries/william-b-ruger-special-exhibits/hollywood-guns-6/dirty-harry-%281971%29-smith-wesson-29.aspx", "note": "Film nesnesi ve John Milius’a sunum geçmişi. Kabza ve yüzeyler yaklaşık yorumdur; seri numarası ve sunum yazısı kopyalanmaz."}, {"title": "American Rifleman — Model 29’un tarihçesi", "url": "https://www.americanrifleman.org/content/dirty-harry-s-model-29-america-s-shooting-star/", "note": "1950’lerdeki .44 Magnum ailesi, 1957 Model 29 adı ve 1971 film bağlantısı için tarihsel inceleme."}, {"title": "NRA Blog — Müzede sergilenen sunum nesnesi", "url": "https://www.nrablog.com/articles/2017/6/worlds-most-famous-gun-on-display-at-end-of-trail", "note": "Düz ahşap kabza, sunum levhası ve koyu metal dış biçim için fotoğraf karşılaştırması. Kaynak fotoğraf projeye alınmadı."}],
 "ppk": [{"title": "Smithsonian — Walther PPK, 1991.0854.099", "url": "https://americanhistory.si.edu/collections/object/nmah_1116101", "note": "1931 tarihli müze kaydı ve 16 cm karşılaştırma boyu. Bu ölçü görseldeki Boothroyd nesnesinin birebir ölçümü olarak sunulmaz."}, {"title": "Royal Armouries — Bond’un silahları ve Boothroyd PPK", "url": "https://royalarmouries.org/objects-and-stories/stories/james-bonds-guns", "note": "Boothroyd PPK fotoğrafı kabza dokusu ve dış profil için görsel karşılaştırmadır; roman/film bağlantısı açıklanır. Markalar ve damgalar kopyalanmaz."}],
 "win1887": [{"title": "Propstore — Terminator 2 film nesnesi, lot 511", "url": "https://uk.propstoreauction.com/view-auctions/catalog/id/44/lot/9838/index.html", "note": "1888 üretimi, 69 × 4 × 15 cm film nesnesi; değiştirilmiş kol ve kısa ahşap kabza için ana kayıt. Dış yüzey yaklaşık modeldir."}, {"title": "Original Prop Blog — Film nesnesinin ayrıntı fotoğrafları", "url": "https://www.originalprop.com/blog/2009/03/29/terminator-2-judgment-day-custom-winchester-shotgun-coltdetonics-handgun/", "note": "Ahşap ve metal dış biçiminin karşılaştırma fotoğrafları. Fotoğraflar projeye kopyalanmamıştır."}],
