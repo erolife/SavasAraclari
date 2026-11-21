@@ -873,7 +873,29 @@
     ],
     svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><path d="M34 94L48 76H194L214 94Z" fill="#6c6855" stroke="#1e293b" stroke-width="2"/><rect x="38" y="96" width="172" height="22" rx="11" fill="#252b2e"/><g fill="#6c6855"><circle cx="54" cy="107" r="7"/><circle cx="80" cy="107" r="7"/><circle cx="106" cy="107" r="7"/><circle cx="132" cy="107" r="7"/><circle cx="158" cy="107" r="7"/><circle cx="184" cy="107" r="7"/></g><rect x="76" y="48" width="84" height="28" rx="4" fill="#5b5848" stroke="#1e293b" stroke-width="2"/><rect x="70" y="34" width="22" height="14" fill="#c8c3b4" stroke="#1e293b" stroke-width="1.5"/><line x1="158" y1="58" x2="238" y2="26" stroke="#252b2e" stroke-width="6" stroke-linecap="round"/><rect x="230" y="21" width="12" height="10" transform="rotate(-22 230 21)" fill="#c26d38"/><line x1="242" y1="24" x2="286" y2="12" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4 3"/><circle cx="290" cy="11" r="7" fill="none" stroke="#f59e0b" stroke-width="2"/></svg>'
   });
+  VEHICLES.push({
+    id: 'gustav', sim: 'gustav', group: 19, status: 'live',
+    year: 1941, yearLabel: '1941 / 1942', eraLabel: 'II. DÜNYA SAVAŞI • DEMİRYOLU TOPÇUSU',
+    domain: 'land', era: 'ww2', energy: ['gunpowder', 'ice', 'electric'], role: ['siege', 'artillery'], origin: 'germany',
+    name: 'Schwerer Gustav — 80 cm Kanone (E) Demiryolu Topu',
+    sub: '800 MM YİVLİ NAMLU • 40 AKS / 80 TEKERLEK • İKİZ PARALEL RAY',
+    desc: 'Savaş tarihinde muharebede kullanılan en büyük kalibreli yivli top (800 mm, 1.350 ton). İkiz paralel demiryolu hattında 8×5 akslı boji üzerinde taşınır; 32,48 m namluyu +48° yükseltin, yatay kama ve mermi asansörüyle 7,1 ton AP / 4,8 ton HE mühimmat yükleyin ve X-Ray altında hidrolik geri tepmeyi izleyin.',
+    tags: ['800 mm (L/40.6) • 1.350 Ton', '40 Aks / 80 Tekerlekli Boji', 'Yatay Kama & Asansör', '19 İnceleme Grubu'],
+    specs: [['KALİBRE / NAMLU', '800 mm • 32,48 m (L/40.6)'], ['TOPLAM AĞIRLIK', '~1.350 t (80 tekerlek)'], ['MÜHİMMAT / MENZİL', '7,1 t AP (38 km) / 4,8 t HE (47 km)'], ['İNCELEME', '19 bağımsız grup (1:3 ölçek)']],
+    tag: 'GUSTAV-80CM-1941', icon: '🚂',
+    modal: [
+      'İkiz paralel standart ray hattı, 8×5 akslı 80 çelik tekerlek ve dengeleme köprüleri',
+      'X-Ray modunda alt ikiz yağlı geri tepme frenleri ile üst hidropnömatik geri getiriciler',
+      'Yatay kayar kama bloğu (Keilverschluss), kıç ikiz vinçler ve elektrikli mermi asansörü',
+      'Schießkurve (±15°) kavisli ray konumu ve 1,75 m insan boyu 800 mm mermi kıyas standı'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="122" x2="308" y2="122" stroke="#64748b" stroke-width="4"/><g fill="#334155"><circle cx="52" cy="113" r="6"/><circle cx="66" cy="113" r="6"/><circle cx="80" cy="113" r="6"/><circle cx="94" cy="113" r="6"/><circle cx="116" cy="113" r="6"/><circle cx="130" cy="113" r="6"/><circle cx="144" cy="113" r="6"/><circle cx="158" cy="113" r="6"/></g><rect x="44" y="88" width="128" height="19" rx="2" fill="#4b5156" stroke="#1e293b" stroke-width="2"/><rect x="86" y="64" width="44" height="24" rx="2" fill="#565c62" stroke="#1e293b" stroke-width="2"/><line x1="48" y1="88" x2="48" y2="48" stroke="#334155" stroke-width="4"/><line x1="44" y1="48" x2="62" y2="48" stroke="#334155" stroke-width="4"/><g transform="rotate(-24 108 74)"><rect x="76" y="67" width="38" height="14" rx="2" fill="#2f3438" stroke="#0f172a" stroke-width="1.8"/><polygon points="114,69 278,71 278,77 114,79" fill="#2f3438" stroke="#0f172a" stroke-width="1.8"/></g><rect x="276" y="100" width="8" height="20" fill="#dc2626"/><rect x="292" y="108" width="5" height="12" fill="#64748b"/></svg>'
+  });
   const SOURCES = {
+  "gustav": [
+    {"title": "Krupp 80 cm Kanone Schwerer Gustav (Dora) — Old Machine Press", "url": "https://oldmachinepress.com/2017/05/20/krupp-80-cm-schwerer-gustav-dora-railway-gun/", "note": "32,48 m namlu, 1.350 t kütle, 8×5 akslı boji (80 tekerlek), ±15° Schießkurve ve Sivastopol’da 48 atım verileri. 1:3 ölçek ve iç düzenek eğitim amaçlı yorumdur."},
+    {"title": "Ian V. Hogg, German Artillery of World War Two — Internet Archive", "url": "https://archive.org/details/germanartilleryo0000hogg", "note": "800 mm 7,1 t zırh delici (38 km) ile 4,8 t yüksek patlayıcı (47 km) mühimmat ve yatay kama mekanizması tarihsel bağlamı."}
+  ],
   "rammah": [
     {"title": "Hasan el-Rammah ve Müslüman Roket Teknolojisi — Muslim Heritage", "url": "https://muslimheritage.com/muslim-rocket-technology/", "note": "~1280 Kitâbü’l-Fürûsiyye’deki al-bayda (kendi kendine hareket edip yakan yumurta), ikiz roket itkisi ve güherçile arıtma tarifleri. Mercek gövde oranları ve su oluğu sergi yorumudur."},
     {"title": "Kitâbü’l-Fürûsiyye El Yazması — BnF Gallica (Manuscrit Arabe 2825)", "url": "https://gallica.bnf.fr/ark:/12148/btv1b10888148q", "note": "Tarihsel el yazması çizimleri ve pruva mahmuzlu su üstü yakıcı araç bağlamı."}

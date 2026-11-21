@@ -1,9 +1,9 @@
 # 📋 YAPILACAK ARAÇLAR LİSTESİ & 2 KİŞİLİK ORTAK ÇALIŞMA PLANI
 
-> **Son Güncelleme:** 19 Kasım 2026<br>
-> **Mevcut Durum:** **80 Aktif Araç** (`152` HTTPS müze kaynağı • `81` test dosyası • `15` duraklı Türk tarihi rotası)
+> **Son Güncelleme:** 21 Kasım 2026<br>
+> **Mevcut Durum:** **81 Aktif Araç** (`154` HTTPS müze kaynağı • `82` test dosyası • `15` duraklı Türk tarihi rotası)
 > - Başlangıç envanteri (`Grup 1 .. Grup 10`): **45 araç**
-> - Kullanıcı önceliği ek araçlar (`Grup 17` & `Grup 18` — Samuray/kültür, sinema beşlisi, `fa330`, `shermancrab`, `french75`, `dreadnought`): **14 sergi**
+> - Kullanıcı önceliği ek araçlar (`Grup 17`, `Grup 18` & `Grup 19` — Samuray/kültür, sinema beşlisi, `fa330`, `shermancrab`, `french75`, `dreadnought`, `gustav`): **15 sergi**
 > - Bu listeden (`#46 .. #75`) tamamlananlar (`#46 t34`, `#47 norden`, `#48 f14`, `#49 patriot`, `#50 yamato460`, `#51 cezeri`, `#52 rammah`, `#53 humbara`, `#54 mahmudiye`, `#55 sultanhisar`, `#56 sr71_j58`, `#57 saturnv_f1`, `#58 b29_turret`, `#59 nike`, `#60 jumo004`, `#61 corvus`, `#64 wagenburg`, `#68 renaultft`, `#72 kamov`, `#74 firtina`, `#75 korkut`): **21 / 30 araç**
 >
 > **Kalan Hedef:** **Grup 14, Grup 15 ve Grup 16** içinde **`⏳ Planlı` 9 araç** *(Grup 11, Grup 12 ve Grup 13 `5/5` tamamlandı)*
@@ -12,7 +12,7 @@ Bu dosya, projeyi geliştiren **iki geliştiricinin** aynı aracı mükerrer (te
 
 ### 📌 Kullanıcı Önceliği Ek Araçlar (`#46–#75` Plan Sırası Dışında Eklenenler)
 
-Aşağıdaki 4 araç kullanıcı önceliğiyle plan dışı grup numaralarında (`Grup 17` ve `Grup 18`) tamamlanmıştır; **`#46–#75` sıra numaraları ve `id` rezervasyonları aynen korunmuştur**:
+Aşağıdaki araçlar kullanıcı önceliğiyle plan dışı grup numaralarında (`Grup 17`, `Grup 18` ve `Grup 19`) tamamlanmıştır; **`#46–#75` sıra numaraları ve `id` rezervasyonları aynen korunmuştur**:
 
 | Kimlik / Grup | Yıl & Ortam | Çalışma | Geliştirici | Durum |
 | :--- | :--- | :--- | :---: | :--- |
@@ -20,6 +20,7 @@ Aşağıdaki 4 araç kullanıcı önceliğiyle plan dışı grup numaralarında 
 | `shermancrab` / Grup 18 | 1944 • 🪖 Kara (`uk`) | Sherman Crab Mk I — 43 zincirli mayın dövücü tambur ve M4A4 Multibank motor kesiti | MesAi C | ✅ Tamamlandı (21 grup, 349 mesh — 11 Kasım 2026) |
 | `french75` / Grup 18 | 1897 • 🪖 Kara (`france`) | Canon de 75 modèle 1897 — Hidropnömatik uzun geri tepme silindiri ve kama mekanizması | MesAi C | ✅ Tamamlandı (18 grup, 142 mesh — 11 Kasım 2026) |
 | `dreadnought` / Grup 18 | 1906 • ⚓ Deniz (`uk`) | HMS Dreadnought — Parsons buhar türbinleri, 4 şaft ve 5 × çift 305 mm taret düzeni | MesAi C | ✅ Tamamlandı (34 grup, 460 mesh — 11 Kasım 2026) |
+| `gustav` / Grup 19 | 1941 / 1942 • 🪖 Kara (`germany`) | Schwerer Gustav — 80 cm Kanone (E) ikiz paralel raylı kuşatma topu, 80 tekerlek ve hidrolik geri tepme (1:3 ölçek) | Antigravity | ✅ Tamamlandı (19 grup, 306 mesh — 21 Kasım 2026) |
 
 ---
 
@@ -40,9 +41,9 @@ Aşağıdaki 4 araç kullanıcı önceliğiyle plan dışı grup numaralarında 
 
 ---
 
-## ✅ 2. Mevcut 80 Aktif Aracın Tam Envanteri (Mükerrer Kayıt Kontrolü)
+## ✅ 2. Mevcut 81 Aktif Aracın Tam Envanteri (Mükerrer Kayıt Kontrolü)
 
-Aşağıdaki **80 araç ve sergi projede canlı (`status: 'live'`) olarak mevcuttur**; yeni araç veya ek öncelik seçerken bu `id` ve mekanizmalar tekrar edilmemelidir:
+Aşağıdaki **81 araç ve sergi projede canlı (`status: 'live'`) olarak mevcuttur**; yeni araç veya ek öncelik seçerken bu `id` ve mekanizmalar tekrar edilmemelidir:
 
 | Grup | Aktif Araçlar (`id` — Yıl — Kısa Ad) |
 | :--- | :--- |
@@ -64,9 +65,10 @@ Aşağıdaki **80 araç ve sergi projede canlı (`status: 'live'`) olarak mevcut
 | **Grup 16 (3/5 Aktif)** | `kamov` (Ka-27PS arama kurtarma helikopteri) • `firtina` (2001 T-155 Fırtına — *Türk tarihi rotası 14. durak*) • `korkut` (2016 ASELSAN KORKUT & ATOM — *Türk tarihi rotası 15. durak*) |
 | **Grup 17 (Ek — 6)** | `fa330` (1942 Fa 330 Bachstelze) • `yoroi` (Ō-yoroi Zırhı) • `katana` (Katana) • `chakar` (Chakar Savaş Halkası) • `egyptchariot` (Mısır Savaş Arabası) • `putatara` (Pūtātara Kabuk Borusu) |
 | **Grup 18 (Ek — 8)** | `shermancrab` (1944 Sherman Crab Mk I) • `french75` (1897 Fransız 75 mm Topu) • `dreadnought` (1906 HMS Dreadnought) • `c96` (Mauser C96) • `garand` (M1 Garand) • `win1887` (Winchester 1887) • `ppk` (Walther PPK) • `model29` (S&W Model 29) |
+| **Grup 19 (Ek — 1)** | `gustav` (1941 / 1942 Schwerer Gustav 80 cm Demiryolu Kuşatma Topu) |
 
-### 📊 80 Araç Sonrası Güncel Kategori & Kalan Hedef Özeti
-- **Ortam & Dönem Güçlendirmesi:** `rammah` (Orta Çağ Deniz), `b29_turret` (II. Dünya Savaşı Hava/Elektrik), `nike` (Soğuk Savaş Uzay/Savunma) ve `korkut` (Modern Kara/Türk Savunma Sanayii + **15 duraklı Türk Tarihi Rotası**) ile koleksiyon tam **80 aktif sergiye** ulaştı; **Grup 12** ve **Grup 13** `5/5` tamamlandı.
+### 📊 81 Araç Sonrası Güncel Kategori & Kalan Hedef Özeti
+- **Ortam & Dönem Güçlendirmesi:** `gustav` (II. Dünya Savaşı Kara / Süper Ağır Demiryolu Topçusu — `1:3` müze ölçeği) ile koleksiyon **81 aktif sergiye** (`154` HTTPS kaynağı, `82` test dosyası) ulaştı; **Grup 11**, **Grup 12** ve **Grup 13** `5/5` tamamlandı.
 - **Kalan 9 Planlı Araç:** `#62 zhinanche`, `#63 testudo_ram`, `#65 geobukseon` (Grup 14); `#66 bigbertha`, `#67 buffington`, `#69 rangefinder`, `#70 bofors40` (Grup 15); `#71 gepard`, `#73 mk41vls` (Grup 16).
 
 ---

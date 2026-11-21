@@ -130,7 +130,9 @@
     'Nike Hercules Füzesi — White Sands Missile Range Museum': 'Nike Hercules Missile — White Sands Missile Range Museum',
     'KORKUT Yakın Alan Hava Savunma Sistemi — ASELSAN Resmi Ürün Kaydı': 'KORKUT Short-Range Air Defense System — Official ASELSAN Product Record',
     'ATOM 35 mm Parçacıklı Mühimmat — ASELSAN': 'ATOM 35 mm Airburst Munition — ASELSAN',
-    'ASELSAN KORKUT Sistem Tanıtımı — TSKGV': 'ASELSAN KORKUT System Overview — TSKGV'
+    'ASELSAN KORKUT Sistem Tanıtımı — TSKGV': 'ASELSAN KORKUT System Overview — TSKGV',
+    'Krupp 80 cm Kanone Schwerer Gustav (Dora) — Old Machine Press': 'Krupp 80 cm Kanone Schwerer Gustav (Dora) — Old Machine Press',
+    'Ian V. Hogg, German Artillery of World War Two — Internet Archive': 'Ian V. Hogg, German Artillery of World War Two — Internet Archive'
   };
 
   var notes = {
@@ -242,7 +244,9 @@
     'Ölçüm aletinin geometrisi ve kullanıldığı bilimsel bağlam.': 'The instrument’s geometry and the scientific context in which it was used.',
     'Ocak reformları, matematik dersi ve 18. yüzyıl bağlamı.': 'Janissary corps reforms, mathematics instruction, and 18th-century context.',
     'Arama kurtarma varyantı ve Kamov’un gemi havacılığı bağlamı.': 'Search-and-rescue variant and the context of Kamov naval aviation.',
-    'Arama kurtarma varyantı ve dış biçim. Güverte ve sepet temsili sergi düzenidir.': 'Search-and-rescue variant and external form. The deck and rescue basket are represented as a display arrangement.'
+    'Arama kurtarma varyantı ve dış biçim. Güverte ve sepet temsili sergi düzenidir.': 'Search-and-rescue variant and external form. The deck and rescue basket are represented as a display arrangement.',
+    '32,48 m namlu, 1.350 t kütle, 8×5 akslı boji (80 tekerlek), ±15° Schießkurve ve Sivastopol’da 48 atım verileri. 1:3 ölçek ve iç düzenek eğitim amaçlı yorumdur.': 'Specifications for the 32.48 m barrel, 1,350 t mass, 8×5-axle bogies (80 wheels), ±15° Schießkurve firing curve, and 48 rounds fired at Sevastopol. 1:3 scale and internal assemblies are educational interpretations.',
+    '800 mm 7,1 t zırh delici (38 km) ile 4,8 t yüksek patlayıcı (47 km) mühimmat ve yatay kama mekanizması tarihsel bağlamı.': 'Historical context for the 800 mm 7.1 t armor-piercing (38 km) and 4.8 t high-explosive (47 km) shells and horizontal wedge breech.'
   };
 
   var sourceCatalog = window.MUSEUM_CATALOG && window.MUSEUM_CATALOG.VEHICLES;

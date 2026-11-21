@@ -1352,3 +1352,19 @@ Katalog, İngilizce kayıtlar ve kaynak notları, sade anlatım, favoriler, zama
 - `index.html`: 80 kart listelendi. `turk-tarihi.html?durak=korkut`: 15 kronolojik durak doğrulandı (`tests/turk-route.cjs`).
 - Tam regresyon koşusu: `81 / 81` test dosyası geçti (`tests/museum-links.cjs`: `80` araç URL'si, `152` HTTPS kaynak).
 - Headless Chrome (CDP): 4 yeni araçta Sade Müze, Teknik, X-Ray, TR/EN masaüstü (`1440×900`) ve KORKUT mobil (`390×844`) görünümleri incelendi; çalışma zamanı hatası `0`.
+
+---
+
+## 80 cm Kanone (E) “Schwerer Gustav” (`gustav`) — 21 Kasım 2026
+
+- **Doğrulanmış Kaynaklar (`HTTP 200`):** *Old Machine Press — Krupp 80 cm Kanone Schwerer Gustav (Dora)* (`200 OK`) ve *Ian V. Hogg, German Artillery of World War Two / Internet Archive* (`200 OK`).
+- **Ölçek & Kritik Mekanik Sabitler (1:3 Müze Ölçeği):**
+  - Gerçek `47,30 m` boy, `32,48 m` (`L/40.6`) iki parçalı ceketli namlu, `1.350 t` kütle (`~400 t` namlu/beşik/kama) ve `8 × 5` akslı boji (`40` aks / `80` tekerlek); `1:3` ölçekte `14,4 m` çift paralel I-ray yatağı (`Y_BALLAST = 0.08`, `Y_RAIL_TOP = 0.210`, `R_W = 0.16`, `Y_WHEEL = 0.370`).
+  - **Muylu ve Dişli Yükseliş Oranı:** `TRUNNION = (0, 2.95, +0.85)`, yükseliş yayı `R_ARC = 1.65 m`, elektrikli tahrik pinyonu `R_PIN = 0.16 m` (`10.3125:1` dişli oranı, `0°..+48°` yükseliş). Tam geri tepmede (`-0.40 m`) ve `+48°` yükselişte kuyruk altı `min.y ≈ 0.79 m > 0.210 m` olup orta açık geri tepme çukurunda ray ve köprülerle çakışmaz.
+  - **Yatay Kama, Yükleme Emniyeti & *Schießkurve*:** Yükleme çevriminde (`%1..%99`) yatay kama bloğu (*Keilverschluss*) `+0.58 m` yana kayar ve ateşleme kilidi devreye girer (`%0` ve `%100`'de kilitsiz); arka güverte gerçek asansör kuyusu açıklığına sahiptir. `±15° Schießkurve` kaydırıcısıyla araç `±1.15 m` kayarken 80 tekerlek `zShift / R_W` açısıyla kaymadan döner.
+  - **Kesit & Ölçek Standı:** Alttaki ikiz yağlı geri tepme frenleri (`recoilBrakes`) ile üstteki ikiz hidropnömatik geri getiriciler (`recuperators`) dışa-yukarı bakan açık kesit pencerelerine sahiptir; sağ arka kısımda `1,75 m` (`0,583 m`) insan silueti ile `800 mm` `7,1 t AP` / `4,8 t HE` mermi kıyas standı yer alır.
+- **Doğrulama:**
+  - `tests/gustav.cjs`: `PASS gustav: 19 groups, 306 meshes, 80 wheels grounded, +48 deg recoil clearance, breech safety lock, Schiesskurve shift & TR/EN`.
+  - Tam regresyon koşusu: `82 / 82` test dosyası geçti (`tests/museum-links.cjs`: `81` araç URL'si, `154` HTTPS kaynak).
+  - Headless Chrome (CDP): `index.html` (`81` kart, `Schwerer Gustav` dahil), `simulator.html?vehicle=gustav` üzerinde ISO, açık kama/asansör (`cam=breech`), `80` tekerlek/ray (`cam=suspension`), X-Ray kesit pencereleri (`cam=engine&mode=xray`), Teardown `%80`, İngilizce (`lang=en`) ve `390×844` mobil sade müze görünümü kontrol edildi (`RUNTIME ERRORS: 0`).
+

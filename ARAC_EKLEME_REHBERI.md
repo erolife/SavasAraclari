@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 19 Kasım 2026 (2. Oturum):** **80 aktif model / 152 katalog kaynağı.** Hasan el-Rammah *al-Bayda* (`rammah`), Boeing B-29 Uzaktan Kumandalı Taret (`b29_turret`), MIM-14 Nike Hercules (`nike`) ve ASELSAN KORKUT (`korkut`) eklendi. Türk tarihi rotası 15 durak. 81 test dosyası geçti. Araştırma ve görsel kontrol kayıtları `INCELEME_NOTLARI.md` içinde.
+> **Güncel durum — 21 Kasım 2026:** **81 aktif model / 154 katalog kaynağı.** 80 cm Kanone (E) *Schwerer Gustav* (`gustav`, 19 grup / 306 mesh) eklendi. Türk tarihi rotası 15 durak. 82 test dosyası geçti. Araştırma ve görsel kontrol kayıtları `INCELEME_NOTLARI.md` içinde.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.
