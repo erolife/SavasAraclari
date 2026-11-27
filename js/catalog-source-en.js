@@ -132,7 +132,13 @@
     'ATOM 35 mm Parçacıklı Mühimmat — ASELSAN': 'ATOM 35 mm Airburst Munition — ASELSAN',
     'ASELSAN KORKUT Sistem Tanıtımı — TSKGV': 'ASELSAN KORKUT System Overview — TSKGV',
     'Krupp 80 cm Kanone Schwerer Gustav (Dora) — Old Machine Press': 'Krupp 80 cm Kanone Schwerer Gustav (Dora) — Old Machine Press',
-    'Ian V. Hogg, German Artillery of World War Two — Internet Archive': 'Ian V. Hogg, German Artillery of World War Two — Internet Archive'
+    'Ian V. Hogg, German Artillery of World War Two — Internet Archive': 'Ian V. Hogg, German Artillery of World War Two — Internet Archive',
+    'Flakpanzer Gepard 1A2 — Deutsches Panzermuseum Munster': 'Flakpanzer Gepard 1A2 — Deutsches Panzermuseum Munster',
+    'Flugabwehrkanonenpanzer Gepard — Bundeswehr Arşivi': 'Flugabwehrkanonenpanzer Gepard — Bundeswehr Archive',
+    'MK 41 Dikey Fırlatma Sistemi (VLS) — ABD Donanması (NAVSEA)': 'MK 41 Vertical Launching System (VLS) — U.S. Navy (NAVSEA)',
+    'MK 41 VLS Modüler Sistem Özeti — Lockheed Martin': 'MK 41 VLS Modular System Overview — Lockheed Martin',
+    'Battery Chamberlin 6 İnç Kaybolan Kıyı Topu — NPS Presidio': 'Battery Chamberlin 6-Inch Disappearing Gun — NPS Presidio',
+    'Battery Chamberlin Koruma ve Mekanik Tarihçesi — NPS Golden Gate': 'Battery Chamberlin Preservation & History — NPS Golden Gate'
   };
 
   var notes = {
@@ -246,7 +252,13 @@
     'Arama kurtarma varyantı ve Kamov’un gemi havacılığı bağlamı.': 'Search-and-rescue variant and the context of Kamov naval aviation.',
     'Arama kurtarma varyantı ve dış biçim. Güverte ve sepet temsili sergi düzenidir.': 'Search-and-rescue variant and external form. The deck and rescue basket are represented as a display arrangement.',
     '32,48 m namlu, 1.350 t kütle, 8×5 akslı boji (80 tekerlek), ±15° Schießkurve ve Sivastopol’da 48 atım verileri. 1:3 ölçek ve iç düzenek eğitim amaçlı yorumdur.': 'Specifications for the 32.48 m barrel, 1,350 t mass, 8×5-axle bogies (80 wheels), ±15° Schießkurve firing curve, and 48 rounds fired at Sevastopol. 1:3 scale and internal assemblies are educational interpretations.',
-    '800 mm 7,1 t zırh delici (38 km) ile 4,8 t yüksek patlayıcı (47 km) mühimmat ve yatay kama mekanizması tarihsel bağlamı.': 'Historical context for the 800 mm 7.1 t armor-piercing (38 km) and 4.8 t high-explosive (47 km) shells and horizontal wedge breech.'
+    '800 mm 7,1 t zırh delici (38 km) ile 4,8 t yüksek patlayıcı (47 km) mühimmat ve yatay kama mekanizması tarihsel bağlamı.': 'Historical context for the 800 mm 7.1 t armor-piercing (38 km) and 4.8 t high-explosive (47 km) shells and horizontal wedge breech.',
+    'Munster koleksiyonunda sergilenen Gepard 1A2 kundağı ve 35 mm ikiz Oerlikon KDA bağlamı. İç besleme kanalları ve hüzme gösterimi eğitim yorumudur.': 'Context for the Gepard 1A2 and twin 35 mm Oerlikon KDA mounts displayed at Munster. Internal feed chutes and radar beams are educational visualizations.',
+    'Leopard 1 gövdesi, S-band MPDR-12 arama ve Ku-band takip radarının tarihsel operasyonel verileri.': 'Historical operational data for the Leopard 1 chassis, S-band MPDR-12 search radar, and Ku-band tracking radar.',
+    '1986’da USS Bunker Hill ile hizmete giren 8 hücreli modüler VLS, SM-2/Tomahawk/ESSM/VL-ASROC uyumluluğu. İç egzoz akışı eğitim amaçlı sergi yorumudur.': 'Eight-cell modular VLS introduced on USS Bunker Hill in 1986, compatible with SM-2, Tomahawk, ESSM, and VL-ASROC. Internal exhaust flow is an educational exhibit illustration.',
+    'Strike-Length hücre yerleşimi, ortak plenum odası ve merkez uptake gaz tahliye bacası mühendislik bağlamı.': 'Engineering context for the Strike-Length cell layout, common plenum chamber, and central uptake exhaust shaft.',
+    'Smithsonian’dan aktarılan 1905 model 6 inç namlu ve Buffington–Crozier kaybolan kundak sergisi. Kaldıraç oranları ve iç silindir kesiti yaklaşık sergi yorumudur.': 'Display of the 1905-model 6-inch gun transferred from the Smithsonian on a Buffington–Crozier disappearing carriage. Lever ratios and internal cylinder cutaways are approximate exhibit interpretations.',
+    'Endicott dönemi 2,6 m beton siper koruması, kurşun karşı ağırlık kuyusu ve geri tepmeyle otomatik çöküş tarihçesi.': 'History of the 2.6 m Endicott-era concrete parapet shield, vertical lead counterweight pit, and recoil-driven retraction.'
   };
 
   var sourceCatalog = window.MUSEUM_CATALOG && window.MUSEUM_CATALOG.VEHICLES;

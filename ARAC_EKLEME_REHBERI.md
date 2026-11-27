@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 21 Kasım 2026:** **81 aktif model / 154 katalog kaynağı.** 80 cm Kanone (E) *Schwerer Gustav* (`gustav`, 19 grup / 306 mesh) eklendi. Türk tarihi rotası 15 durak. 82 test dosyası geçti. Araştırma ve görsel kontrol kayıtları `INCELEME_NOTLARI.md` içinde.
+> **Güncel durum — 27 Kasım 2026:** **84 aktif model / 160 katalog kaynağı.** Seçenek A paketiyle Flakpanzer Gepard (`gepard`, 19 grup / 120 mesh), Mk 41 Dikey Fırlatma Sistemi (`mk41vls`, 18 grup / 114 mesh) ve Buffington–Crozier Kaybolan Top (`buffington`, 17 grup / 59 mesh) eklendi; **Grup 16** (`5/5`) tamamlandı. Türk tarihi rotası 15 durak. 86 test dosyası geçti. Araştırma ve görsel kontrol kayıtları `INCELEME_NOTLARI.md` içinde.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.

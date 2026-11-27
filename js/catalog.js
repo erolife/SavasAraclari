@@ -891,7 +891,73 @@
     ],
     svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="122" x2="308" y2="122" stroke="#64748b" stroke-width="4"/><g fill="#334155"><circle cx="52" cy="113" r="6"/><circle cx="66" cy="113" r="6"/><circle cx="80" cy="113" r="6"/><circle cx="94" cy="113" r="6"/><circle cx="116" cy="113" r="6"/><circle cx="130" cy="113" r="6"/><circle cx="144" cy="113" r="6"/><circle cx="158" cy="113" r="6"/></g><rect x="44" y="88" width="128" height="19" rx="2" fill="#4b5156" stroke="#1e293b" stroke-width="2"/><rect x="86" y="64" width="44" height="24" rx="2" fill="#565c62" stroke="#1e293b" stroke-width="2"/><line x1="48" y1="88" x2="48" y2="48" stroke="#334155" stroke-width="4"/><line x1="44" y1="48" x2="62" y2="48" stroke="#334155" stroke-width="4"/><g transform="rotate(-24 108 74)"><rect x="76" y="67" width="38" height="14" rx="2" fill="#2f3438" stroke="#0f172a" stroke-width="1.8"/><polygon points="114,69 278,71 278,77 114,79" fill="#2f3438" stroke="#0f172a" stroke-width="1.8"/></g><rect x="276" y="100" width="8" height="20" fill="#dc2626"/><rect x="292" y="108" width="5" height="12" fill="#64748b"/></svg>'
   });
+  VEHICLES.push({
+    id: 'gepard', sim: 'gepard', group: 16, status: 'live',
+    year: 1976, yearLabel: '1976', eraLabel: 'SOĞUK SAVAŞ • OTONOM HAVA SAVUNMA',
+    domain: 'land', era: 'coldwar', energy: ['ice', 'electric'], role: ['defense', 'armor', 'artillery'], origin: 'germany',
+    name: 'Flakpanzer Gepard — Çift Radarlı 2× 35 mm Uçaksavar Tankı',
+    sub: 'LEOPARD 1 ŞASİSİ • MPDR-12 + KU-BAND TAKİP • 2× 35 MM KDA',
+    desc: 'Leopard 1 gövdesi üzerinde MPDR-12 S-band arama radarı, Albis Ku-band takip radarı ve dıştan takılı 2× 35 mm Oerlikon KDA otomatik toplarını birleştiren otonom uçaksavar tankı. Arka radarı 90° katlayın, HEI-T ile FAPDS mühimmatı arasında geçiş yapın ve zıt fazlı salvoyu izleyin.',
+    tags: ['Çift S/Ku-Band Radar', '2× 35 mm KDA (1.100 atım/dk)', 'Katlanır Arama Direği', '19 İnceleme Grubu'],
+    specs: [['GÖVDE & APU', 'Leopard 1 (830 BG) + 90 BG APU'], ['ANA SİLAH', '2× 35 mm L/90 Oerlikon KDA'], ['MÜHİMMAT', '640 HEI-T + 40 FAPDS'], ['İNCELEME', '19 bağımsız grup (1:1 ölçek)']],
+    tag: 'GEPARD-1A2-1976', icon: '🛡️',
+    modal: [
+      'Arka kulede 90° hidrolik katlanabilen MPDR-12 S-band 360° arama radarı',
+      'Ön kule alnında namlu yükselişine eşlik eden Albis Ku-band monopulse takip radarı',
+      'X-Ray altında kule içi çift şeritli mühimmat besleme olukları, MTU V10 dizel ve 90 BG APU',
+      'Tek şalterle HEI-T (640) ⇄ FAPDS (40) seçimi ve zıt fazlı 35 mm geri tepme'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><rect x="46" y="88" width="184" height="24" rx="11" fill="#252b2e"/><path d="M48 86 L62 66 H212 L230 86 Z" fill="#525a44" stroke="#1e293b" stroke-width="2"/><rect x="88" y="42" width="96" height="24" rx="4" fill="#474f3b" stroke="#1e293b" stroke-width="2"/><line x1="184" y1="54" x2="262" y2="26" stroke="#1e293b" stroke-width="5" stroke-linecap="round"/><line x1="100" y1="42" x2="100" y2="22" stroke="#334155" stroke-width="3"/><ellipse cx="100" cy="18" rx="18" ry="6" fill="#cfc8b4" stroke="#1e293b" stroke-width="1.5"/><circle cx="192" cy="48" r="9" fill="#cfc8b4" stroke="#1e293b" stroke-width="1.5"/><circle cx="195" cy="48" r="14" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="3 2"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'mk41vls', sim: 'mk41vls', group: 16, status: 'live',
+    year: 1986, yearLabel: '1986', eraLabel: 'MODERN • DİKEY FIRLATMA SİSTEMİ',
+    domain: 'sea', era: 'modern', energy: ['jet', 'electric'], role: ['defense', 'artillery'], origin: 'usa',
+    name: 'Mk 41 Dikey Fırlatma Sistemi (VLS) — 8 Hücre & Ortak Baca',
+    sub: '8 HÜCRELİ STRIKE-LENGTH MODÜL • PLENUM & UPTAKE U-AKIŞI',
+    desc: 'Modern savaş gemilerinin güvertesi altında SM-2/6, Tomahawk, Quad-Pack 4’lü ESSM ve VL-ASROC füzelerini tek standart modülde barındıran dikey fırlatma sistemi. X-Ray ile alt ortak plenum odasından merkez zırhlı bacaya yükselen U-yörüngeli egzoz tahliyesini inceleyin.',
+    tags: ['8 Hücreli Modül (7,7 m)', 'Plenum + Merkez Uptake Baca', '4’lü Quad-Pack ESSM', '18 İnceleme Grubu'],
+    specs: [['MODÜL BOYUTU', '8 Hücre (Strike-Length 7,7 m)'], ['MUHTELİF YÜK', 'SM-2 / Tomahawk / ESSM / ASROC'], ['EGZOZ TAHLİYE', 'Alt Plenum + Merkez Uptake Baca'], ['İNCELEME', '18 bağımsız grup (1:1 ölçek)']],
+    tag: 'MK41-VLS-1986', icon: '🚀',
+    modal: [
+      '2×4 hücreli zırhlı güverte kapakları ve eşzamanlı açılan merkez gaz tahliye kapağı',
+      'X-Ray modunda fırlatılan roket alevinin alt ortak plenum odasında dönüp ortak bacadan çıkışı',
+      'Aynı hücre mimarisinde SM-2, BGM-109 Tomahawk, Quad-Pack ESSM ve VL-ASROC uyumu',
+      'Tekli fırlatma ⇄ 2’li Salvo modu ve 8 hücreli tam ikmal döngüsü'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><rect x="74" y="34" width="172" height="92" rx="3" fill="#3a434d" stroke="#1e293b" stroke-width="2"/><rect x="64" y="30" width="192" height="8" fill="#5b6672" stroke="#1e293b" stroke-width="1.5"/><rect x="84" y="102" width="152" height="18" fill="#d97706" fill-opacity="0.35" stroke="#d97706" stroke-width="1.5"/><rect x="148" y="34" width="24" height="68" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/><path d="M108 50 V110 H160 V14" fill="none" stroke="#f97316" stroke-width="3" stroke-dasharray="5 3"/><rect x="98" y="42" width="20" height="54" fill="#e2e8f0" stroke="#0f172a" stroke-width="1.5"/><polygon points="108,8 100,26 116,26" fill="#d97706"/></svg>'
+  });
+  VEHICLES.push({
+    id: 'buffington', sim: 'buffington', group: 15, status: 'live',
+    year: 1895, yearLabel: '1895 / 1903', eraLabel: 'SANAYİ DEVRİMİ • KAYBOLAN KIYI TOPU',
+    domain: 'land', era: 'industrial', energy: ['gravity', 'gunpowder'], role: ['artillery', 'defense'], origin: 'usa',
+    name: 'Buffington–Crozier “Kaybolan Top” — Karşı Ağırlıklı Kıyı Kundağı',
+    sub: '6 İNÇ M1905 • 2,70 M PARALEL KALDIRAÇ • OTOMATİK SİPER KORUMASI',
+    desc: 'Ateşlenmek için 2,60 m yüksekliğindeki beton siperin üzerine çıkan, ancak geri tepme enerjisini kullanarak kurşun karşı ağırlığı yukarı kaldırıp kendiliğinden siper arkasına çökerek mürettebatı koruyan kıyı topçusu başyapıtı.',
+    tags: ['Rijit 2,70 m Paralel Kaldıraç', 'Kurşun Karşı Ağırlık Kuyusu', 'Geri Tepmeyle Siper Gizleme', '17 İnceleme Grubu'],
+    specs: [['SİLAH ÇAPI', '152 mm (6 inç L/50 M1905)'], ['SİPER KORUMASI', '2,60 m beton siper + kuyu'], ['KUNDAK KÜTLESİ', '~50 ton (16 konik rulman)'], ['İNCELEME', '17 bağımsız grup (1:1 ölçek)']],
+    tag: 'CROZIER-M1903-1895', icon: '⚙️',
+    modal: [
+      'Ateşlendiğinde namlu 2,60 m beton duvarın arkasına iner, kurşun blok dikey kuyuda yükselir',
+      'İkiz 2,70 m rijit kaldıraç kolları ve yatay kızaktaki yağlı hidrolik fren silindirleri',
+      'Siper arkasında mandal emniyet kilidi ve mandal bırakıldığında karşı ağırlıkla mevziye kalkış',
+      '16 konik rulmanlı dairesel ray ve arka güvenli yükleme galerisi'
+    ],
+    svg: '<svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg"><rect x="28" y="106" width="264" height="16" fill="#9b9689" stroke="#1e293b" stroke-width="1.5"/><rect x="220" y="54" width="60" height="52" fill="#9b9689" stroke="#1e293b" stroke-width="2"/><line x1="30" y1="54" x2="285" y2="54" stroke="#38bdf8" stroke-dasharray="4 3" stroke-width="1.5"/><rect x="134" y="84" width="34" height="20" fill="#475569" stroke="#0f172a" stroke-width="1.5"/><line x1="150" y1="92" x2="122" y2="38" stroke="#3b443e" stroke-width="6" stroke-linecap="round"/><rect x="86" y="30" width="128" height="12" rx="3" transform="rotate(-7 122 38)" fill="#2f3438" stroke="#0f172a" stroke-width="1.8"/><circle cx="122" cy="38" r="5" fill="#d97706"/></svg>'
+  });
   const SOURCES = {
+  "gepard": [
+    {"title": "Flakpanzer Gepard 1A2 — Deutsches Panzermuseum Munster", "url": "https://daspanzermuseum.de/", "note": "Munster koleksiyonunda sergilenen Gepard 1A2 kundağı ve 35 mm ikiz Oerlikon KDA bağlamı. İç besleme kanalları ve hüzme gösterimi eğitim yorumudur."},
+    {"title": "Flugabwehrkanonenpanzer Gepard — Bundeswehr Arşivi", "url": "https://www.bundeswehr.de/de", "note": "Leopard 1 gövdesi, S-band MPDR-12 arama ve Ku-band takip radarının tarihsel operasyonel verileri."}
+  ],
+  "mk41vls": [
+    {"title": "MK 41 Dikey Fırlatma Sistemi (VLS) — ABD Donanması (NAVSEA)", "url": "https://www.navy.mil/Resources/Fact-Files/", "note": "1986’da USS Bunker Hill ile hizmete giren 8 hücreli modüler VLS, SM-2/Tomahawk/ESSM/VL-ASROC uyumluluğu. İç egzoz akışı eğitim amaçlı sergi yorumudur."},
+    {"title": "MK 41 VLS Modüler Sistem Özeti — Lockheed Martin", "url": "https://www.lockheedmartin.com/en-us/products/mk-41-vertical-launching-system.html", "note": "Strike-Length hücre yerleşimi, ortak plenum odası ve merkez uptake gaz tahliye bacası mühendislik bağlamı."}
+  ],
+  "buffington": [
+    {"title": "Battery Chamberlin 6 İnç Kaybolan Kıyı Topu — NPS Presidio", "url": "https://www.nps.gov/prsf/planyourvisit/batterychamberlin.htm", "note": "Smithsonian’dan aktarılan 1905 model 6 inç namlu ve Buffington–Crozier kaybolan kundak sergisi. Kaldıraç oranları ve iç silindir kesiti yaklaşık sergi yorumudur."},
+    {"title": "Battery Chamberlin Koruma ve Mekanik Tarihçesi — NPS Golden Gate", "url": "https://www.nps.gov/goga/learn/historyculture/battery-chamberlin-preservation.htm", "note": "Endicott dönemi 2,6 m beton siper koruması, kurşun karşı ağırlık kuyusu ve geri tepmeyle otomatik çöküş tarihçesi."}
+  ],
   "gustav": [
     {"title": "Krupp 80 cm Kanone Schwerer Gustav (Dora) — Old Machine Press", "url": "https://oldmachinepress.com/2017/05/20/krupp-80-cm-schwerer-gustav-dora-railway-gun/", "note": "32,48 m namlu, 1.350 t kütle, 8×5 akslı boji (80 tekerlek), ±15° Schießkurve ve Sivastopol’da 48 atım verileri. 1:3 ölçek ve iç düzenek eğitim amaçlı yorumdur."},
     {"title": "Ian V. Hogg, German Artillery of World War Two — Internet Archive", "url": "https://archive.org/details/germanartilleryo0000hogg", "note": "800 mm 7,1 t zırh delici (38 km) ile 4,8 t yüksek patlayıcı (47 km) mühimmat ve yatay kama mekanizması tarihsel bağlamı."}
