@@ -51,6 +51,55 @@
   display: none !important;
 }
 
+@keyframes museumTechPulse {
+  0% {
+    box-shadow: 0 2px 8px rgba(194, 65, 12, 0.35), 0 0 0 0 rgba(217, 119, 6, 0.58);
+  }
+  70% {
+    box-shadow: 0 2px 10px rgba(194, 65, 12, 0.40), 0 0 0 10px rgba(217, 119, 6, 0);
+  }
+  100% {
+    box-shadow: 0 2px 8px rgba(194, 65, 12, 0.35), 0 0 0 0 rgba(217, 119, 6, 0);
+  }
+}
+
+.museum-overview-active #museum-view-toggle.btn {
+  background: linear-gradient(135deg, #c2410c 0%, #d97706 100%);
+  color: #ffffff;
+  border-color: #9a3412;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(194, 65, 12, 0.35);
+  animation: museumTechPulse 2.2s ease-out infinite;
+}
+
+.museum-overview-active #museum-view-toggle.btn:hover {
+  background: linear-gradient(135deg, #9a3412 0%, #b45309 100%);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.museum-overview-active #museum-view-toggle.btn:focus-visible {
+  outline: 2px solid #9a3412;
+  outline-offset: 2px;
+}
+
+:root[data-museum-theme="dark"] .museum-overview-active #museum-view-toggle.btn {
+  background: linear-gradient(135deg, #ea580c 0%, #f59e0b 100%);
+  color: #14191d;
+  border-color: #fbbf24;
+}
+
+:root[data-museum-theme="dark"] .museum-overview-active #museum-view-toggle.btn:hover {
+  background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+  color: #14191d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .museum-overview-active #museum-view-toggle.btn {
+    animation: none;
+  }
+}
+
 @media (max-width: 680px) {
   .museum-overview {
     padding: 10px 14px max(10px, env(safe-area-inset-bottom));
