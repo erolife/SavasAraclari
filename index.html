@@ -1286,6 +1286,7 @@
           <select id="catalog-sort" class="catalog-sort" aria-label="Sıralama">
             <option value="year">Sırala: Kronolojik</option>
             <option value="year-desc">Sırala: En Yeni Önce</option>
+            <option value="added-desc">Sırala: Son Eklenen Önce</option>
             <option value="name">Sırala: Alfabetik</option>
           </select>
           <div class="catalog-view-options" id="catalog-view-options" role="group" aria-label="Katalog görünümü">
@@ -1495,6 +1496,7 @@
     // Tüm veriler js/catalog.js (window.MUSEUM_CATALOG) kaydından gelir.
     // ============================================================================
     const { FACETS, VEHICLES } = window.MUSEUM_CATALOG;
+    const addedOrder = new Map(VEHICLES.map((v, i) => [v.id, i]));
     const facetSel = {};
     FACETS.forEach(f => { facetSel[f.key] = new Set(); });
     let searchQuery = '';
@@ -1628,7 +1630,8 @@
 
     function renderCards() {
       const list = VEHICLES.filter(v => matches(v));
-      list.sort((a, b) => sortKey === 'name' ? a.name.localeCompare(b.name, language)
+      list.sort((a, b) => sortKey === 'added-desc' ? (addedOrder.get(b.id) - addedOrder.get(a.id))
+        : sortKey === 'name' ? a.name.localeCompare(b.name, language)
         : sortKey === 'year-desc' ? b.year - a.year : a.year - b.year);
       const grid = document.getElementById('catalog-grid');
       grid.dataset.view = catalogView;
@@ -1662,7 +1665,7 @@
           const f = FACETS.find(x => x.url === key);
           if (f) val.split(',').forEach(k => { if (f.options.some(o => o.key === k)) facetSel[f.key].add(k); });
           else if (key === 'ara') searchQuery = lower(val);
-          else if (key === 'sirala' && ['year', 'year-desc', 'name'].includes(val)) sortKey = val;
+          else if (key === 'sirala' && ['year', 'year-desc', 'added-desc', 'name'].includes(val)) sortKey = val;
         });
       }
       document.getElementById('catalog-search').value = searchQuery;

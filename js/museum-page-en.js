@@ -46,6 +46,7 @@ Katalogda ara|Search the catalogue
 Sıralama|Sort order
 Sırala: Kronolojik|Sort: oldest first
 Sırala: En Yeni Önce|Sort: newest first
+Sırala: Son Eklenen Önce|Sort: recently added
 Sırala: Alfabetik|Sort: alphabetical
 ✕ Filtreleri Temizle|✕ Clear filters
 Bu filtrelerle eşleşen araç yok.|No exhibits match these filters.
