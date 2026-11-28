@@ -3,6 +3,10 @@
   'use strict';
 
   var titles = {
+"Atatürk Araştırma Merkezi — Karadeniz Olayı": "Atatürk Research Centre — The Black Sea Incident",
+"Britanya Deniz İstihbaratı — Alman Donanması, Haziran 1917": "British Naval Intelligence — German Navy, June 1917",
+"Türk Tarih Kurumu — Yavuz ve Tamiri": "Turkish Historical Society — Yavuz and Its Repair",
+
 "NASA Ames — Macon’un Evi ve 1933 Trapez Fotoğrafı": "NASA Ames — The Home of the Macon and 1933 Trapeze Photograph",
 "NOAA — USS Macon Arkeolojik Araştırma Raporu": "NOAA — USS Macon Archaeological Survey Report",
 "ABD Deniz Kuvvetleri Müzesi — Macon NMUSN-5169": "National Museum of the US Navy — Macon NMUSN-5169",
@@ -154,6 +158,10 @@
   };
 
   var notes = {
+"1914 Karadeniz harekâtı ve Osmanlı’nın savaşa giriş süreci. Siyasi bağlam tek nedenli açıklanmaz.": "The 1914 Black Sea operation and Ottoman entry into the war. Political context is not reduced to a single cause.",
+"Moltke sınıfı ve Goeben için dönem kaydı: beş çift 28 cm taret ve tahrik bağlamı. 1917 değişiklikleri otomatik olarak 1914 modeline aktarılmaz; iç düzen yaklaşık yorumdur.": "Period record of the Moltke class and Goeben: five twin 28 cm turrets and propulsion context. Later 1917 changes are not automatically applied to the 1914 model; internals are approximate.",
+"Yavuz’un hizmeti, savaş hasarı ve Cumhuriyet dönemindeki tamir süreci. Sergi sonraki modernizasyonları 1914 görünümüne karıştırmaz.": "Yavuz’s service, war damage and Republican-era repair. Later modernisations are kept distinct from the exhibit’s 1914 configuration.",
+
 "785 ft uzunluk, 21 Nisan 1933 ilk uçuşu ve 80-G-441979 arşiv fotoğrafı. Serginin ayrı uçak modeli altı kat büyütülmüştür.": "785 ft length, first flight on 21 April 1933 and archive photograph 80-G-441979. The separate exhibit aircraft is enlarged sixfold.",
 "Sayfa 9–12: kanca, sabitleme bağlantısı, X rayı, dört uçağın depolanması ve 1935 kaybı. İç ölçüler ve hareket yolu nitel sergi yorumudur.": "Pages 9–12: hook, stabilising saddle, X rail, four-aircraft stowage and the 1935 loss. Internal dimensions and motion path are qualitative exhibit interpretations.",
 "Sekiz dış pervane ve yönlendirilebilir tahrik fotoğrafı. Model pervaneleri yalnızca sabit konumda sergi hızında döner.": "Photograph of eight external propellers and directional propulsion. Model propellers only rotate in fixed positions at exhibit speed.",

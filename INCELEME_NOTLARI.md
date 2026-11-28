@@ -1414,3 +1414,12 @@ Bu paketle birlikte **Grup 16 (`5/5`)** tamamen kapatıldı; koleksiyon **84 akt
 - İki ölçekte kanca-çubuk bağlantısı, sabit uzunluklu trapez kolları, yer açıklığı ve 101 kaldırma konumu; doğru boyuna pervane ekseni, sıfır hız ve reset test edildi. Alt hangar açıklığı ve açık kokpit gerçek geometrik boşluklardır.
 - Görsel kontrolde kesit açıları ve kameralar düzeltildi; Brennan üst yarısının gerçekten üstte olması ek testle güvenceye alındı. Yeni üç katalog kaydının İngilizce mühendislik maddeleri de tamamlandı.
 - TR/EN, 1440×1000 masaüstü ve 390×844 mobil, sade/teknik, altı kamera/tur ve üçer kaynak kontrol edildi. Üçünde koyu tema, açık gövde, X-Ray ve Blueprint denendi; JavaScript hatası ve yatay taşma görülmedi.
+
+
+## 28 Kasım 2026 — Yavuz Sultan Selim / 1914
+
+- 43 grup / 352 mesh. Yaklaşık 1:12 tam gövde, çapraz yan taretler, yükseltilmiş kıç tareti, iki baca, ince direkler, bağlı arma, açık filikalar, ağ bumbaları, demirler ve sancak. Türbin rotorları instancing ile 481 meshten 352 meshe indirildi.
+- ATAM Karadeniz Olayı, Haziran 1917 Britanya deniz istihbaratının Moltke/Goeben kaydı ve TTK Belleten tamir araştırması kullanıldı. Dönem çizimi üzerinden erken taret yerleşimi karşılaştırıldı. 1917 donanım değişiklikleri 1914 görünümüne aynen aktarılmadı; iç yerleşim yaklaşık yorumdur.
+- Dört türbin çıkışı dört pervaneye bağlı; üst makine kapağı sergi için kaldırılır. 101 konumda kıç taret açıklığı, taret yönleri ve kapak ayrımı; şaft uçları, sıfır hız, reset ve İngilizce metinler doğrulandı.
+- Türk tarihi rotasına Abdülhamid ile Nusret arasına eklendi; toplam 16 durak. TR/EN sayfa metinleri, ilerleme kaydı, model URL ve rotaya dönüş zinciri mobil/masaüstünde kontrol edildi.
+- 89 test dosyası geçti. TR/EN, masaüstü/mobil, sade/teknik, altı kamera/tur, üç kaynak, koyu tema, açık makine bölmesi, X-Ray ve Blueprint kontrolleri tamamlandı.

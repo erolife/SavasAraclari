@@ -1,6 +1,6 @@
 # 📋 YAPILACAK ARAÇLAR LİSTESİ & 2 KİŞİLİK ORTAK ÇALIŞMA PLANI
 
-> **Son Güncelleme:** 27 Kasım 2026<br>
+> **Son Güncelleme:** 28 Kasım 2026<br>
 > **Mevcut Durum:** **84 Aktif Araç** (`160` HTTPS müze kaynağı • `86` test dosyası • `15` duraklı Türk tarihi rotası)
 > - Başlangıç envanteri (`Grup 1 .. Grup 10`): **45 araç**
 > - Kullanıcı önceliği ek araçlar (`Grup 17`, `Grup 18` & `Grup 19` — Samuray/kültür, sinema beşlisi, `fa330`, `shermancrab`, `french75`, `dreadnought`, `gustav`): **15 sergi**
@@ -228,3 +228,12 @@ Sinema beşlisi tamamlandı: 76 aktif sergi / 143 kaynak; 76 test dosyası geçt
 3. ✅ USS Macon ve F9C Sparrowhawk (macon): 48 grup, 387 mesh; iç hangar, bağlı trapez ve altı kat büyütülmüş ayrı uçak sergisi.
 
 Her biri ayrı Türkçe commit; toplu push en son. Mevcut #46–75 rezervasyonları korunur.
+
+
+### Onaylanan yeni üçlü — Yavuz, Bailey ve Dreyse / 28 Kasım 2026
+
+1. ✅ Yavuz Sultan Selim (yavuz), 1914 biçimi: 43 grup / 352 mesh; Türk tarihi rotasına eklenen kronolojik kayıt (toplam 16 durak).
+2. ⏳ Bailey Köprüsü (bailey): sıradaki sergi.
+3. ⏳ Dreyse M/1841 (dreyse): üçüncü sergi.
+
+Her araç ayrı Türkçe commit; üçü bitince toplu push. #46–75 plan rezervasyonları korunur. Üstteki 84 araç tablosu önceki envanterin tarihsel dökümüdür; son ekler bu dosyanın sonunda kayıtlıdır.
