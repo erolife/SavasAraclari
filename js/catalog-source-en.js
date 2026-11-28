@@ -3,6 +3,10 @@
   'use strict';
 
   var titles = {
+"Australian War Memorial — Kerrison No 3, Perth 1942": "Australian War Memorial — Kerrison No 3, Perth 1942",
+"Kanada Millî Savunma — 1944 tarihli uçaksavar raporu": "Canadian National Defence — 1944 anti-aircraft report",
+"Avustralya Ordusu — Tarihî eğitim yayınları bibliyografyası": "Australian Army — Historical training publications bibliography",
+
 "Australian Dictionary of Biography — Louis Brennan": "Australian Dictionary of Biography — Louis Brennan",
 "Melbourne Üniversitesi — Brennan Torpidosu": "University of Melbourne — Brennan Torpedo",
 "Kent Tarihî Çevre Kaydı — Cliffe Brennan İstasyonu": "Kent Historic Environment Record — Cliffe Brennan Station",
@@ -146,6 +150,10 @@
   };
 
   var notes = {
+"P01260.020 arşiv fotoğrafı: 8 Battery, 2/3 Light Anti Aircraft Regiment. Dış oranlar yaklaşık yorum; iç düzen fotoğraftan doğrulanamaz.": "Archive photograph P01260.020: 8 Battery, 2/3 Light Anti Aircraft Regiment. Exterior proportions are approximate; the photograph cannot verify internals.",
+"Sayfa 24: Bofors başına Kerrison No 3 tahsisi ve taşıma güçlükleri. Dosya büyük bir tarihî PDF belgesidir.": "Page 24: Kerrison No 3 allocation per Bofors and transport difficulties. This is a large historical PDF.",
+"1940 tarihli Predictor No 3 and the Power Controlled 40-mm LAA Gun yayınının bibliyografik kaydı. Tam teknik el kitabı değildir.": "Bibliographic record of the 1940 Predictor No 3 and the Power Controlled 40-mm LAA Gun publication. This is not the full technical handbook.",
+
 "Kıyı buhar gücü, iki iç tel tamburu, karşıt pervaneler ve 1887 satın alımı. İç yerleşim ve istasyon ölçeği sergi yorumudur.": "Shore steam power, two internal wire drums, counter-rotating propellers and the 1887 acquisition. Internal arrangement and station scale are exhibit interpretations.",
 "Melbourne’de geliştirilmesi, liman savunması ve muharebede kullanılmadığı bilgisi.": "Development in Melbourne, harbour defence service and the statement that it was never used in anger.",
 "Kıyı istasyonu bağlamı. Sergi, Cliffe tesisinin ölçülü rekonstrüksiyonu değildir.": "Coastal station context. The exhibit is not a measured reconstruction of Cliffe Fort.",

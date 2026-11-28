@@ -1396,3 +1396,11 @@ Bu paketle birlikte **Grup 16 (`5/5`)** tamamen kapatıldı; koleksiyon **84 akt
 - 26 grup / 129 mesh. Alt ve kaldırılabilir üst gövde, kapalı burun, iki iç tel tamburu, şaftlar, iki karşıt pervane, kıyıdaki piston-volan ve sarım makinesi.
 - ANU biyografisi, Melbourne Üniversitesi ve Kent tarihi istasyon kaydı kullanıldı. 1887 satın alım yılıdır; gövde içi ölçüler, sıkıştırılmış kıyı sahnesi ve kapak ayrımı sergi yorumudur. Muharebede kullanılmadığı iki dilde belirtilir.
 - 101 konumda sürekli tel uçları, karşıt pervaneler, sıfır hız, reset ve İngilizce parça metinleri test edildi. 86 test dosyası geçti. TR/EN, 1440×1000 ve 390×844; sade/teknik, altı kamera, altı tur ve üç kaynak bağlantısı kontrol edildi.
+
+
+## 28 Kasım 2026 — Kerrison Predictor No 3
+
+- 28 grup / 115 mesh. Üç ayak, tesviye pabuçları, iki dürbün, el çarkları, dış göstergeler, kaldırılan üst/ön kabuk ve iç hesaplama sergisi.
+- AWM P01260.020 (Perth 1942), Kanada 1944 raporu ve Avustralya Ordusu yayın bibliyografyası. İç dişli/disk düzeninin birebir Kerrison iç planı veya balistik çözücü olmadığı iki dilde açıkça belirtilir. Ayrı Bofors modeli eklenmedi; plan rezervasyonu korunur.
+- 101 konumda bağlı kablo, dişli yönleri ve optik-gövde açıklığı; manuel kontrol önceliği, sınırlar ve reset test edildi. Dürbün yükselişi, model kabuğuna girmemesi için 0–25 derece sergi aralığındadır.
+- 87 test dosyası geçti. TR/EN, mobil/masaüstü, sade/teknik, altı kamera/tur ve kaynaklar kontrol edildi.

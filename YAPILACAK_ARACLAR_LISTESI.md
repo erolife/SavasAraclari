@@ -224,7 +224,7 @@ Sinema beşlisi tamamlandı: 76 aktif sergi / 143 kaynak; 76 test dosyası geçt
 ### Onaylanan uzaktan denetim ve keşif üçlüsü — 28 Kasım 2026
 
 1. ✅ Brennan torpidosu (brennan): 26 grup, 129 mesh; kıyı makinesi, sürekli çift tel, açılır gövde.
-2. ⏳ Kerrison Predictor (kerrison): sıradaki sergi.
+2. ✅ Kerrison Predictor (kerrison): 28 grup, 115 mesh; optik takip ve mekanik hesaplama yorumu.
 3. ⏳ USS Macon ve F9C Sparrowhawk (macon): üçüncü sergi.
 
 Her biri ayrı Türkçe commit; toplu push en son. Mevcut #46–75 rezervasyonları korunur.
