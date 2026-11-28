@@ -219,3 +219,12 @@ Sinema beşlisi tamamlandı: 76 aktif sergi / 143 kaynak; 76 test dosyası geçt
 ### Sinema rotası — 19 Kasım 2026
 
 ✅ “Beyaz perdeden müzeye” (`rotalar.html#cinema`): onaylanan beş sergi, iki dilli geçiş metinleri, sonraki sergi ve rotaya dönüş bağlantıları. TR/EN, mobil/masaüstü ve önceki üç tema kontrolleri tamamlandı.
+
+
+### Onaylanan uzaktan denetim ve keşif üçlüsü — 28 Kasım 2026
+
+1. ✅ Brennan torpidosu (brennan): 26 grup, 129 mesh; kıyı makinesi, sürekli çift tel, açılır gövde.
+2. ⏳ Kerrison Predictor (kerrison): sıradaki sergi.
+3. ⏳ USS Macon ve F9C Sparrowhawk (macon): üçüncü sergi.
+
+Her biri ayrı Türkçe commit; toplu push en son. Mevcut #46–75 rezervasyonları korunur.

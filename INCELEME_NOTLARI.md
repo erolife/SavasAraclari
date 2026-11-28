@@ -1389,3 +1389,10 @@ Bu paketle birlikte **Grup 16 (`5/5`)** tamamen kapatıldı; koleksiyon **84 akt
 - **Model (17 grup / 59 mesh, 1:1 ölçek) & Rijit 4-Çubuk Kinematiği:** `Y_RAIL = 1.72`, `Z_CW = 0.55`, `L_BOT = 1.05`, `L_TOP = 1.65` (`2,70 m` sabit kaldıraç boyu). Atış mevzisinde (`batteryPct = 100%`) muylu `yTrun = 3,36 m > 2,60 m` beton siperin üstündedir; ateşlenince geri tepme kızak arabası geriye kayar, `2,70 m` kaldıraç namluyu `2,60 m` siperin arkasına (`yTrun = 2,35 m`) indirir ve kurşun karşı ağırlığı dikey kuyu içinde saf dikey eksende (`Δz = 0`) `0,68 m -> 1,32 m` yükseltip mandalla kilitler.
 - **Doğrulama (`tests/buffington.cjs`):** Her konumda sabit `2,70 m` kaldıraç uzunluğu, saf dikey karşı ağırlık yolu, siper arkası ateşleme kilidi, mandal bırakınca mevziye kalkış ve `12 -> 0 -> 12` ikmal geçti. İlk görsel kontrolde `part(..., basePos)` çift ofseti temizlenerek siper duvarı, yükleme galerisi, 16 konik rulman, ikiz bakır fren silindirleri ve kurşun karşı ağırlık bloğu tam birleştirildi (`rev_buffington_iso.png`, `rev_buffington_engine_xray.png`).
 - **Bütünleşik Son Koşu:** `86 / 86` test dosyası geçti (`84` aktif araç URL'si, `160` HTTPS müze kaynağı, `TR/EN` sade ve teknik görünüm kapsama testleri dahil).
+
+
+## 28 Kasım 2026 — Brennan torpidosu
+
+- 26 grup / 129 mesh. Alt ve kaldırılabilir üst gövde, kapalı burun, iki iç tel tamburu, şaftlar, iki karşıt pervane, kıyıdaki piston-volan ve sarım makinesi.
+- ANU biyografisi, Melbourne Üniversitesi ve Kent tarihi istasyon kaydı kullanıldı. 1887 satın alım yılıdır; gövde içi ölçüler, sıkıştırılmış kıyı sahnesi ve kapak ayrımı sergi yorumudur. Muharebede kullanılmadığı iki dilde belirtilir.
+- 101 konumda sürekli tel uçları, karşıt pervaneler, sıfır hız, reset ve İngilizce parça metinleri test edildi. 86 test dosyası geçti. TR/EN, 1440×1000 ve 390×844; sade/teknik, altı kamera, altı tur ve üç kaynak bağlantısı kontrol edildi.

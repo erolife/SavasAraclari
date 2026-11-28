@@ -3,6 +3,10 @@
   'use strict';
 
   var titles = {
+"Australian Dictionary of Biography — Louis Brennan": "Australian Dictionary of Biography — Louis Brennan",
+"Melbourne Üniversitesi — Brennan Torpidosu": "University of Melbourne — Brennan Torpedo",
+"Kent Tarihî Çevre Kaydı — Cliffe Brennan İstasyonu": "Kent Historic Environment Record — Cliffe Brennan Station",
+
 "NRA National Firearms Museum — Kirli Harry Model 29": "NRA National Firearms Museum — Dirty Harry Model 29",
 "American Rifleman — Model 29’un tarihçesi": "American Rifleman — Model 29 historical account",
 "NRA Blog — Müzede sergilenen sunum nesnesi": "NRA Blog — Museum presentation object",
@@ -142,6 +146,10 @@
   };
 
   var notes = {
+"Kıyı buhar gücü, iki iç tel tamburu, karşıt pervaneler ve 1887 satın alımı. İç yerleşim ve istasyon ölçeği sergi yorumudur.": "Shore steam power, two internal wire drums, counter-rotating propellers and the 1887 acquisition. Internal arrangement and station scale are exhibit interpretations.",
+"Melbourne’de geliştirilmesi, liman savunması ve muharebede kullanılmadığı bilgisi.": "Development in Melbourne, harbour defence service and the statement that it was never used in anger.",
+"Kıyı istasyonu bağlamı. Sergi, Cliffe tesisinin ölçülü rekonstrüksiyonu değildir.": "Coastal station context. The exhibit is not a measured reconstruction of Cliffe Fort.",
+
     '~1280 Kitâbü’l-Fürûsiyye’deki al-bayda (kendi kendine hareket edip yakan yumurta), ikiz roket itkisi ve güherçile arıtma tarifleri. Mercek gövde oranları ve su oluğu sergi yorumudur.': 'Al-bayda (self-moving and combusting egg), twin rocket propulsion, and saltpeter purification in the ~1280 treatise. Lenticular proportions and launch trough are exhibit interpretations.',
     'Tarihsel el yazması çizimleri ve pruva mahmuzlu su üstü yakıcı araç bağlamı.': 'Historical manuscript illustrations and context for the surface-skimming incendiary weapon.',
     'Basınçlı kabin içindeki uzaktan kumandalı nişangâh istasyonu yerleşimi. Analog bilgisayar ve amplidin iç dişlileri eğitim amaçlı sergi yorumudur.': 'Remote sighting station layout inside the pressurized cabin. Internal analog computer cams and amplidyne gears are educational exhibit interpretations.',
