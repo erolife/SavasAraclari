@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 27 Kasım 2026:** **84 aktif model / 160 katalog kaynağı.** Seçenek A paketiyle Flakpanzer Gepard (`gepard`, 19 grup / 120 mesh), Mk 41 Dikey Fırlatma Sistemi (`mk41vls`, 18 grup / 114 mesh) ve Buffington–Crozier Kaybolan Top (`buffington`, 17 grup / 59 mesh) eklendi; **Grup 16** (`5/5`) tamamlandı. Türk tarihi rotası 15 durak. 86 test dosyası geçti. Araştırma ve görsel kontrol kayıtları `INCELEME_NOTLARI.md` içinde.
+> **Güncel durum — 28 Kasım 2026:** **87 aktif model / 169 katalog kaynağı.** Brennan, Kerrison No 3 ve USS Macon–Sparrowhawk eklendi. 88 test dosyası geçti. Türk tarihi rotası 15 durak; mevcut plan rezervasyonları korunur. TR/EN ve mobil/masaüstü sade/teknik görsel kontroller tamamlandı. Ayrıntılar INCELEME_NOTLARI.md içinde.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.

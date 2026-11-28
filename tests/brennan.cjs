@@ -1,5 +1,9 @@
 const {common,load,THREE,assert}=require('./model-harness.cjs');
 const {ad,meshes}=common('brennan',26);
+const topMesh=meshes.find(o=>o.parent===ad.parts.lid),bottomMesh=meshes.find(o=>o.parent===ad.parts.lower);
+topMesh.geometry.computeBoundingBox();bottomMesh.geometry.computeBoundingBox();
+assert(new THREE.Box3().setFromObject(topMesh).min.y>=1.55-1e-7,'lift-away half is above the centreline');
+assert(new THREE.Box3().setFromObject(bottomMesh).max.y<=1.55+1e-7,'fixed half is below the centreline');
 function ends(o){ad.root.updateMatrixWorld(true);return [-.5,.5].map(y=>o.localToWorld(new THREE.Vector3(0,y,0)));}
 const rods=meshes.filter(o=>o.parent===ad.parts.wires);
 for(let i=0;i<=100;i++){

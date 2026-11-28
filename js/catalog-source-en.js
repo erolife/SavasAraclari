@@ -3,6 +3,10 @@
   'use strict';
 
   var titles = {
+"NASA Ames — Macon’un Evi ve 1933 Trapez Fotoğrafı": "NASA Ames — The Home of the Macon and 1933 Trapeze Photograph",
+"NOAA — USS Macon Arkeolojik Araştırma Raporu": "NOAA — USS Macon Archaeological Survey Report",
+"ABD Deniz Kuvvetleri Müzesi — Macon NMUSN-5169": "National Museum of the US Navy — Macon NMUSN-5169",
+
 "Australian War Memorial — Kerrison No 3, Perth 1942": "Australian War Memorial — Kerrison No 3, Perth 1942",
 "Kanada Millî Savunma — 1944 tarihli uçaksavar raporu": "Canadian National Defence — 1944 anti-aircraft report",
 "Avustralya Ordusu — Tarihî eğitim yayınları bibliyografyası": "Australian Army — Historical training publications bibliography",
@@ -150,6 +154,10 @@
   };
 
   var notes = {
+"785 ft uzunluk, 21 Nisan 1933 ilk uçuşu ve 80-G-441979 arşiv fotoğrafı. Serginin ayrı uçak modeli altı kat büyütülmüştür.": "785 ft length, first flight on 21 April 1933 and archive photograph 80-G-441979. The separate exhibit aircraft is enlarged sixfold.",
+"Sayfa 9–12: kanca, sabitleme bağlantısı, X rayı, dört uçağın depolanması ve 1935 kaybı. İç ölçüler ve hareket yolu nitel sergi yorumudur.": "Pages 9–12: hook, stabilising saddle, X rail, four-aircraft stowage and the 1935 loss. Internal dimensions and motion path are qualitative exhibit interpretations.",
+"Sekiz dış pervane ve yönlendirilebilir tahrik fotoğrafı. Model pervaneleri yalnızca sabit konumda sergi hızında döner.": "Photograph of eight external propellers and directional propulsion. Model propellers only rotate in fixed positions at exhibit speed.",
+
 "P01260.020 arşiv fotoğrafı: 8 Battery, 2/3 Light Anti Aircraft Regiment. Dış oranlar yaklaşık yorum; iç düzen fotoğraftan doğrulanamaz.": "Archive photograph P01260.020: 8 Battery, 2/3 Light Anti Aircraft Regiment. Exterior proportions are approximate; the photograph cannot verify internals.",
 "Sayfa 24: Bofors başına Kerrison No 3 tahsisi ve taşıma güçlükleri. Dosya büyük bir tarihî PDF belgesidir.": "Page 24: Kerrison No 3 allocation per Bofors and transport difficulties. This is a large historical PDF.",
 "1940 tarihli Predictor No 3 and the Power Controlled 40-mm LAA Gun yayınının bibliyografik kaydı. Tam teknik el kitabı değildir.": "Bibliographic record of the 1940 Predictor No 3 and the Power Controlled 40-mm LAA Gun publication. This is not the full technical handbook.",

@@ -225,6 +225,6 @@ Sinema beşlisi tamamlandı: 76 aktif sergi / 143 kaynak; 76 test dosyası geçt
 
 1. ✅ Brennan torpidosu (brennan): 26 grup, 129 mesh; kıyı makinesi, sürekli çift tel, açılır gövde.
 2. ✅ Kerrison Predictor (kerrison): 28 grup, 115 mesh; optik takip ve mekanik hesaplama yorumu.
-3. ⏳ USS Macon ve F9C Sparrowhawk (macon): üçüncü sergi.
+3. ✅ USS Macon ve F9C Sparrowhawk (macon): 48 grup, 387 mesh; iç hangar, bağlı trapez ve altı kat büyütülmüş ayrı uçak sergisi.
 
 Her biri ayrı Türkçe commit; toplu push en son. Mevcut #46–75 rezervasyonları korunur.

@@ -1404,3 +1404,13 @@ Bu paketle birlikte **Grup 16 (`5/5`)** tamamen kapatıldı; koleksiyon **84 akt
 - AWM P01260.020 (Perth 1942), Kanada 1944 raporu ve Avustralya Ordusu yayın bibliyografyası. İç dişli/disk düzeninin birebir Kerrison iç planı veya balistik çözücü olmadığı iki dilde açıkça belirtilir. Ayrı Bofors modeli eklenmedi; plan rezervasyonu korunur.
 - 101 konumda bağlı kablo, dişli yönleri ve optik-gövde açıklığı; manuel kontrol önceliği, sınırlar ve reset test edildi. Dürbün yükselişi, model kabuğuna girmemesi için 0–25 derece sergi aralığındadır.
 - 87 test dosyası geçti. TR/EN, mobil/masaüstü, sade/teknik, altı kamera/tur ve kaynaklar kontrol edildi.
+
+
+## 28 Kasım 2026 — USS Macon ve Sparrowhawk
+
+- 48 grup / 387 mesh. 785 ft gövde, dört kuyruk yüzeyi, sekiz dış pervane ve iç motor hacimleri; ayrılan yan örtü, gaz hücreleri, halkalı kafes, alt geçit, iç hangar ve X rayı.
+- Ayrı altı kat büyütülmüş F9C-2: iki kanat, dikmeler ve germe telleri, açık kokpit, radyal motor dışı, iki kanatlı pervane, tekerlekler ve skyhook. Bu, 1933 tekerlekli biçimdir; sonraki yardımcı depo biçimiyle birleştirilmez.
+- NASA Ames 80-G-441979 fotoğrafı, NOAA arkeoloji raporu ve NMUSN-5169 kullanıldı. Macon deneysel keşif bağlamındadır; muharebe başarısı iddia edilmez. Kapasite sayımı sergideki tek uçaktan türetilmez. İç ölçüler ve kaldırma yolu nitel yorumdur.
+- İki ölçekte kanca-çubuk bağlantısı, sabit uzunluklu trapez kolları, yer açıklığı ve 101 kaldırma konumu; doğru boyuna pervane ekseni, sıfır hız ve reset test edildi. Alt hangar açıklığı ve açık kokpit gerçek geometrik boşluklardır.
+- Görsel kontrolde kesit açıları ve kameralar düzeltildi; Brennan üst yarısının gerçekten üstte olması ek testle güvenceye alındı. Yeni üç katalog kaydının İngilizce mühendislik maddeleri de tamamlandı.
+- TR/EN, 1440×1000 masaüstü ve 390×844 mobil, sade/teknik, altı kamera/tur ve üçer kaynak kontrol edildi. Üçünde koyu tema, açık gövde, X-Ray ve Blueprint denendi; JavaScript hatası ve yatay taşma görülmedi.
