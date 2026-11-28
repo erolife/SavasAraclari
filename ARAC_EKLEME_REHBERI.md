@@ -1,5 +1,5 @@
 # Araç Ekleme Rehberi ve Devam Promptu
-> **Güncel durum — 28 Kasım 2026:** **87 aktif model / 169 katalog kaynağı.** Brennan, Kerrison No 3 ve USS Macon–Sparrowhawk eklendi. 88 test dosyası geçti. Türk tarihi rotası 15 durak; mevcut plan rezervasyonları korunur. TR/EN ve mobil/masaüstü sade/teknik görsel kontroller tamamlandı. Ayrıntılar INCELEME_NOTLARI.md içinde.
+> **Güncel durum — 28 Kasım 2026:** **90 aktif model / 178 katalog kaynağı.** Yavuz (1914), Bailey Köprüsü ve Dreyse M/1841 tamamlandı. Türk tarihi rotası 16 durak; mevcut #46–75 rezervasyonları korunur. 91 test dosyası geçti. TR/EN, mobil/masaüstü, sade/teknik, koyu tema, kesit ve kaynak kontrolleri tamamlandı. Ayrıntılar `INCELEME_NOTLARI.md` içinde.
 
 > Bu dosya, yeni bir oturumda (hangi model veya ajan olursa olsun) projeye kaldığı yerden, aynı kalite çizgisinde devam edilebilsin diye hazırlandı.
 > **Kullanım:** Aşağıdaki "Hazır Prompt" bölümünü kopyalayıp yeni oturumun ilk mesajı olarak yapıştırın.

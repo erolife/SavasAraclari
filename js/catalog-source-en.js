@@ -3,6 +3,10 @@
   'use strict';
 
   var titles = {
+"Fransa Kültür Bakanlığı — Dreyse M/1841, IM40004067": "French Ministry of Culture — Dreyse M/1841, IM40004067",
+"Pontarlier Müzesi — Belfort’un 1858 M/1841 Fotoğrafı": "Pontarlier Museum — Photograph of Belfort’s 1858 M/1841",
+"Bavyera Ordu Müzesi — M/41 İğnesi ve Mekanik İlke": "Bavarian Army Museum — M/41 Needle and Mechanical Principle",
+
 "Yeni Zelanda Kültür ve Miras Bakanlığı — Sangro Bailey Köprüsü": "New Zealand Ministry for Culture and Heritage — Sangro Bailey Bridge",
 "Australian War Memorial — Bailey Bridge, F01288": "Australian War Memorial — Bailey Bridge, F01288",
 "ABD Savaş Bakanlığı — Bailey Kurulumu, 7 Ekim 1943": "US War Department — Launching the Bailey Bridge, 7 October 1943",
@@ -162,6 +166,10 @@
   };
 
   var notes = {
+"1861 tarihli kayıt: 142 cm uzunluk, ahşap kundak, parlak çelik namlu, pirinç donanım ve sürgü tanımı. Model 1841 ile üretim yılı 1861 ayrılır.": "1861 object record: 142 cm length, wood stock, polished-steel barrel, brass fittings and bolt description. Model year 1841 is distinguished from production date 1861.",
+"Basılı sayfa 31 / PDF sayfa 33: Belfort koleksiyonundaki 1858 tüfek ve ayrı süngü fotoğrafı. Kaynak fotoğraf projeye kopyalanmaz; dış biçim karşılaştırması yapılır.": "Printed page 31 / PDF page 33: photograph of an 1858 rifle and separate bayonet from Belfort. The source image is not copied into the project; exterior forms are compared.",
+"Arkadan doldurma, diz çökerek/yatarak doldurma ve iğne sistemi. Ayrı iç kesit boyutları ve sürgü hareket aralığı öğretici yorumdur.": "Breech loading, loading while kneeling or prone, and the needle system. Separate cutaway dimensions and bolt motion range are educational interpretations.",
+
 "1943 İtalya harekâtında yıkılan geçişler ve Bailey kullanımının tarihsel bağlamı. Sahne, fotoğraftaki köprünün birebir kopyası değildir.": "Historical context of destroyed crossings and Bailey use in the 1943 Italian campaign. The scene is not an exact copy of the photographed bridge.",
 "1945 tarihli Britanya Enformasyon Bakanlığı eğitim filmi kaydı; Donald Bailey tasarımı ve Royal Engineers gösterimleri.": "Record of a 1945 British Ministry of Information training film, featuring Donald Bailey’s design and Royal Engineers demonstrations.",
 "Tactical and Technical Trends No 35 dönem metninin aktarımı: 10 ft paneller, pimler, makaralar ve geçici burun. Sergi yük veya kurulum güvenliği hesabı yapmaz.": "Transcription of the period Tactical and Technical Trends No 35 article: 10 ft panels, pins, rollers and launching nose. The exhibit does not calculate loads or erection safety.",

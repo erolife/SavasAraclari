@@ -1433,3 +1433,12 @@ Bu paketle birlikte **Grup 16 (`5/5`)** tamamen kapatıldı; koleksiyon **84 akt
 - NZ History Sangro 1943 bağlamı, AWM F01288 (1945 eğitim filmi) ve ABD Savaş Bakanlığı Tactical and Technical Trends No 35 dönem metni. Modül boyu 10 ft; sahne belirli bir köprünün birebir kopyası değildir.
 - 101 kurulum/panel/pim konumu, modüller arası sabit mesafe, uçta duruş, elle kontrol önceliği, gerçek deliklere ışın testi ve İngilizce metinler doğrulandı. TR/EN, mobil/masaüstü, sade/teknik, altı kamera/tur, kaynaklar, koyu tema, X-Ray ve Blueprint kontrolleri tamamlandı.
 - Bütünleşik koşuda 90 test dosyası geçti.
+
+
+## 28 Kasım 2026 — Dreyse M/1841
+
+- 25 grup / 89 mesh. Sürekli yumuşak ahşap kundak ve 256×128 prosedürel damar; pirinç dipçik levhası, üç kuşak ve ön çift kuşak, tetik korkuluğu, katlanır gez, açık namlu ağzı ve alt çubuk.
+- POP IM40004067 (1861 tarihli 142 cm kayıt nesnesi), Pontarlier kataloğu basılı s.31 / PDF s.33 (Belfort koleksiyonundan 1858 tüfek ve süngü fotoğrafı), Bavyera Ordu Müzesi M/41 iğnesi. Model adı 1841 ile nesnelerin 1858/1861 üretim tarihleri ayrılır. Kaynak fotoğraflar projeye kopyalanmadı.
+- Sürgü önce döner, sonra geriye kayar. Üst kutuda kolun dönebileceği ve kayabileceği gerçek açıklıklar bulunur. Ayrı büyütülmüş, ölçeksiz kesitte iğne ve gerçek sarmal yay; ayrıca kovanlı süngü dış biçimi. İç boyut ve hareket aralığı pedagojik yorumdur; ateşleme yapılmaz.
+- 101 konumda kol-kutu açıklığı ışın testi, dönüşten sonra kayma sırası, kesit ayrımı, gerçek açık namlu, otomatik çevrim sonu, elle kontrol önceliği ve İngilizce metinler doğrulandı. Yeni üç katalog kaydının İngilizce mühendislik maddeleri de test kapsamındadır.
+- TR/EN, masaüstü/mobil, sade/teknik, altı kamera/tur, üçer kaynak, koyu tema, açık kesit, X-Ray ve Blueprint kontrolleri tamamlandı. Son toplam: 90 aktif sergi, 178 kaynak, 16 duraklı Türk tarihi rotası, 91 geçen test dosyası.
