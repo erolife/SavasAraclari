@@ -1423,3 +1423,13 @@ Bu paketle birlikte **Grup 16 (`5/5`)** tamamen kapatıldı; koleksiyon **84 akt
 - Dört türbin çıkışı dört pervaneye bağlı; üst makine kapağı sergi için kaldırılır. 101 konumda kıç taret açıklığı, taret yönleri ve kapak ayrımı; şaft uçları, sıfır hız, reset ve İngilizce metinler doğrulandı.
 - Türk tarihi rotasına Abdülhamid ile Nusret arasına eklendi; toplam 16 durak. TR/EN sayfa metinleri, ilerleme kaydı, model URL ve rotaya dönüş zinciri mobil/masaüstünde kontrol edildi.
 - 89 test dosyası geçti. TR/EN, masaüstü/mobil, sade/teknik, altı kamera/tur, üç kaynak, koyu tema, açık makine bölmesi, X-Ray ve Blueprint kontrolleri tamamlandı.
+
+
+## 28 Kasım 2026 — Bailey Köprüsü
+
+- 30 grup / 202 mesh. Yaklaşık 1:2 dört ana modül; gerçek C kanal kesitli elmas örgü, enine kirişler, kelepçeler, boyuna yol taşıyıcıları, rüzgâr çaprazları, ahşap döşeme ve yaklaşma rampaları.
+- Kurulum burnu ve makaralar geçici aşamada, döşeme ve rampalar tamamlanan aşamada görünür. Gerçek kurulum süreci yoğunlaştırılmış sergi gösterimidir; taşıma sınıfı veya saha hesabı iddia edilmez.
+- Ayrı iki kat büyük birleşimde çatal ve tek dilin eş eksenli gerçek delikleri, çıkarılabilir pim ve kanal kesiti incelenir. 1,75 m insan boyu figürü ana sahnenin ölçeğini karşılaştırır.
+- NZ History Sangro 1943 bağlamı, AWM F01288 (1945 eğitim filmi) ve ABD Savaş Bakanlığı Tactical and Technical Trends No 35 dönem metni. Modül boyu 10 ft; sahne belirli bir köprünün birebir kopyası değildir.
+- 101 kurulum/panel/pim konumu, modüller arası sabit mesafe, uçta duruş, elle kontrol önceliği, gerçek deliklere ışın testi ve İngilizce metinler doğrulandı. TR/EN, mobil/masaüstü, sade/teknik, altı kamera/tur, kaynaklar, koyu tema, X-Ray ve Blueprint kontrolleri tamamlandı.
+- Bütünleşik koşuda 90 test dosyası geçti.

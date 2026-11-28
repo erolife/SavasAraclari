@@ -3,6 +3,10 @@
   'use strict';
 
   var titles = {
+"Yeni Zelanda Kültür ve Miras Bakanlığı — Sangro Bailey Köprüsü": "New Zealand Ministry for Culture and Heritage — Sangro Bailey Bridge",
+"Australian War Memorial — Bailey Bridge, F01288": "Australian War Memorial — Bailey Bridge, F01288",
+"ABD Savaş Bakanlığı — Bailey Kurulumu, 7 Ekim 1943": "US War Department — Launching the Bailey Bridge, 7 October 1943",
+
 "Atatürk Araştırma Merkezi — Karadeniz Olayı": "Atatürk Research Centre — The Black Sea Incident",
 "Britanya Deniz İstihbaratı — Alman Donanması, Haziran 1917": "British Naval Intelligence — German Navy, June 1917",
 "Türk Tarih Kurumu — Yavuz ve Tamiri": "Turkish Historical Society — Yavuz and Its Repair",
@@ -158,6 +162,10 @@
   };
 
   var notes = {
+"1943 İtalya harekâtında yıkılan geçişler ve Bailey kullanımının tarihsel bağlamı. Sahne, fotoğraftaki köprünün birebir kopyası değildir.": "Historical context of destroyed crossings and Bailey use in the 1943 Italian campaign. The scene is not an exact copy of the photographed bridge.",
+"1945 tarihli Britanya Enformasyon Bakanlığı eğitim filmi kaydı; Donald Bailey tasarımı ve Royal Engineers gösterimleri.": "Record of a 1945 British Ministry of Information training film, featuring Donald Bailey’s design and Royal Engineers demonstrations.",
+"Tactical and Technical Trends No 35 dönem metninin aktarımı: 10 ft paneller, pimler, makaralar ve geçici burun. Sergi yük veya kurulum güvenliği hesabı yapmaz.": "Transcription of the period Tactical and Technical Trends No 35 article: 10 ft panels, pins, rollers and launching nose. The exhibit does not calculate loads or erection safety.",
+
 "1914 Karadeniz harekâtı ve Osmanlı’nın savaşa giriş süreci. Siyasi bağlam tek nedenli açıklanmaz.": "The 1914 Black Sea operation and Ottoman entry into the war. Political context is not reduced to a single cause.",
 "Moltke sınıfı ve Goeben için dönem kaydı: beş çift 28 cm taret ve tahrik bağlamı. 1917 değişiklikleri otomatik olarak 1914 modeline aktarılmaz; iç düzen yaklaşık yorumdur.": "Period record of the Moltke class and Goeben: five twin 28 cm turrets and propulsion context. Later 1917 changes are not automatically applied to the 1914 model; internals are approximate.",
 "Yavuz’un hizmeti, savaş hasarı ve Cumhuriyet dönemindeki tamir süreci. Sergi sonraki modernizasyonları 1914 görünümüne karıştırmaz.": "Yavuz’s service, war damage and Republican-era repair. Later modernisations are kept distinct from the exhibit’s 1914 configuration.",

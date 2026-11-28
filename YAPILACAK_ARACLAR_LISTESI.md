@@ -233,7 +233,7 @@ Her biri ayrı Türkçe commit; toplu push en son. Mevcut #46–75 rezervasyonla
 ### Onaylanan yeni üçlü — Yavuz, Bailey ve Dreyse / 28 Kasım 2026
 
 1. ✅ Yavuz Sultan Selim (yavuz), 1914 biçimi: 43 grup / 352 mesh; Türk tarihi rotasına eklenen kronolojik kayıt (toplam 16 durak).
-2. ⏳ Bailey Köprüsü (bailey): sıradaki sergi.
+2. ✅ Bailey Köprüsü (bailey): 30 grup / 202 mesh; dört modül, geçici kurulum burnu, makaralar ve büyütülmüş pim sergisi.
 3. ⏳ Dreyse M/1841 (dreyse): üçüncü sergi.
 
 Her araç ayrı Türkçe commit; üçü bitince toplu push. #46–75 plan rezervasyonları korunur. Üstteki 84 araç tablosu önceki envanterin tarihsel dökümüdür; son ekler bu dosyanın sonunda kayıtlıdır.
